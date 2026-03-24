@@ -22,19 +22,13 @@ export async function POST(request: NextRequest) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const listingData = session.metadata?.listingData;
+    const { listing_id, year, make, model } = session.metadata || {};
 
-    if (listingData) {
-      try {
-        const parsed = JSON.parse(listingData);
-        console.log('Payment received for listing:', parsed.year, parsed.make, parsed.model);
-        console.log('Session ID:', session.id);
-        console.log('Payment status:', session.payment_status);
-        // TODO: Save to Neon database via Drizzle
-      } catch (e) {
-        console.error('Failed to parse listing data from webhook:', e);
-      }
-    }
+    console.log('Payment received for listing:', year, make, model);
+    console.log('Listing ID:', listing_id);
+    console.log('Session ID:', session.id);
+    console.log('Payment status:', session.payment_status);
+    // TODO: Mark listing as active in Neon database via Drizzle
   }
 
   return NextResponse.json({ received: true });

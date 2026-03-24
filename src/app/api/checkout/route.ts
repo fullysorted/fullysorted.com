@@ -12,16 +12,16 @@ export async function POST(request: NextRequest) {
 
     const stripe = getStripe();
     const body = await request.json();
-    const { listingData } = body;
+    const { listingId, year, make, model } = body;
 
-    if (!listingData?.year || !listingData?.make || !listingData?.model) {
+    if (!year || !make || !model) {
       return NextResponse.json(
         { error: 'Listing data is required' },
         { status: 400 }
       );
     }
 
-    const vehicleTitle = `${listingData.year} ${listingData.make} ${listingData.model}`;
+    const vehicleTitle = `${year} ${make} ${model}`;
 
     // Derive site URL from the request so it works in any environment
     const origin = request.headers.get('origin')
@@ -57,7 +57,10 @@ export async function POST(request: NextRequest) {
       success_url: `${siteUrl}/sell/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/sell?cancelled=true`,
       metadata: {
-        listingData: JSON.stringify(listingData),
+        listing_id: String(listingId || ''),
+        year: String(year),
+        make: String(make).substring(0, 100),
+        model: String(model).substring(0, 100),
       },
     });
 

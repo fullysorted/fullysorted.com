@@ -146,17 +146,15 @@ export default function SellForm() {
 
       const listingData = await listingRes.json();
 
-      // Step 2: Create Stripe checkout session
+      // Step 2: Create Stripe checkout session — pass only short fields (Stripe metadata limit: 500 chars per value)
       const checkoutRes = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          listingData: {
-            ...listingData.listing,
-            year: form.year,
-            make: form.make,
-            model: form.model,
-          },
+          listingId: listingData.listing?.id,
+          year: form.year,
+          make: form.make,
+          model: form.model,
         }),
       });
 
