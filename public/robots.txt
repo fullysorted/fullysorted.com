@@ -1,0 +1,23 @@
+# Fully Sorted — Welcome to AI crawlers and search engines
+# https://fullysorted.com
+
+User-agent: *
+Allow: /
+
+# AI Crawlers — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://fullysorted.com/sitemap.xml
