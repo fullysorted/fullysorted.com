@@ -5,18 +5,22 @@ import { useState, useEffect } from "react";
 import { Menu, X, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Conditionally import Clerk hooks — they fail without ClerkProvider
-let useAuth: (() => { isSignedIn: boolean | undefined; isLoaded: boolean }) | null = null;
-let UserButton: React.ComponentType<{ signInUrl?: string }> | null = null;
-let SignInButton: React.ComponentType<{ mode?: string; children: React.ReactNode }> | null = null;
+// Only import Clerk when publishable key is configured
+const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-try {
-  const clerk = require("@clerk/nextjs");
-  useAuth = clerk.useAuth;
-  UserButton = clerk.UserButton;
-  SignInButton = clerk.SignInButton;
-} catch {
-  // Clerk not available
+let useAuth: (() => { isSignedIn: boolean | undefined; isLoaded: boolean }) | null = null;
+let UserButton: React.ComponentType<any> | null = null;
+let SignInButton: React.ComponentType<any> | null = null;
+
+if (clerkEnabled) {
+  try {
+    const clerk = require("@clerk/nextjs");
+    useAuth = clerk.useAuth;
+    UserButton = clerk.UserButton;
+    SignInButton = clerk.SignInButton;
+  } catch {
+    // Clerk not available
+  }
 }
 
 const navLinks = [
