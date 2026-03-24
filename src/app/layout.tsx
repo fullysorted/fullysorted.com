@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -74,19 +75,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        <meta name="theme-color" content="#1E6091" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
-      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
-        <Header />
-        <main className="flex-1 pb-20 md:pb-0">{children}</main>
-        <Footer />
-        <MobileNav />
-      </body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: '#d97706',
+          colorTextOnPrimaryBackground: '#ffffff',
+          borderRadius: '0.75rem',
+        },
+      }}
+    >
+      <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+        <head>
+          <meta name="theme-color" content="#1E6091" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+          <link rel="icon" href="/favicon.ico" sizes="any" />
+        </head>
+        <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
+          <Header />
+          <main className="flex-1 pb-20 md:pb-0">{children}</main>
+          <Footer />
+          <MobileNav />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Search, User } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
+import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -15,6 +16,7 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isSignedIn, isLoaded } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
@@ -62,12 +64,24 @@ export function Header() {
             >
               Sell a Car
             </Link>
-            <button
-              aria-label="Account"
-              className="p-2 rounded-lg text-text-secondary hover:text-foreground hover:bg-surface transition-colors"
-            >
-              <User className="w-5 h-5" />
-            </button>
+
+            {/* Auth */}
+            {isLoaded && isSignedIn ? (
+              <UserButton
+                signInUrl="/sign-in"
+                appearance={{
+                  elements: {
+                    avatarBox: 'w-8 h-8',
+                  },
+                }}
+              />
+            ) : isLoaded ? (
+              <SignInButton mode="modal">
+                <button className="px-4 py-2 text-sm font-medium text-accent border border-accent rounded-lg hover:bg-amber-50 transition-colors">
+                  Sign In
+                </button>
+              </SignInButton>
+            ) : null}
           </div>
 
           {/* Mobile Menu Button */}
@@ -107,13 +121,21 @@ export function Header() {
           >
             Sell a Car
           </Link>
-          <Link
-            href="/signin"
-            onClick={() => setMobileMenuOpen(false)}
-            className="px-4 py-3 text-lg font-medium text-center text-accent rounded-xl border border-accent hover:bg-accent-light transition-colors"
-          >
-            Sign In
-          </Link>
+          {isLoaded && !isSignedIn && (
+            <SignInButton mode="modal">
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-3 text-lg font-medium text-center text-accent rounded-xl border border-accent hover:bg-amber-50 transition-colors"
+              >
+                Sign In
+              </button>
+            </SignInButton>
+          )}
+          {isLoaded && isSignedIn && (
+            <div className="flex items-center justify-center px-4 py-3">
+              <UserButton signInUrl="/sign-in" />
+            </div>
+          )}
         </nav>
       </div>
     </header>
