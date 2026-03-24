@@ -38,10 +38,10 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(result);
-  } catch (error) {
-    console.error('AI description error:', error);
+  } catch (error: any) {
+    console.error('AI description error:', error?.message || error);
     return NextResponse.json(
-      { error: 'Failed to generate description' },
+      { error: error?.message || 'Failed to generate description' },
       { status: 500 }
     );
   }

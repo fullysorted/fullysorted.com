@@ -22,7 +22,21 @@ export async function POST(request: NextRequest) {
     }
 
     const vehicleTitle = `${listingData.year} ${listingData.make} ${listingData.model}`;
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
+    // Derive site URL from the request so it works in any environment
+    const origin = request.headers.get('origin')
+      || request.headers.get('referer')?.replace(/\/[^/]*$/, '')
+      || process.env.NEXT_PUBLIC_SITE_URL
+      || 'https://fullysorted.com';
+
+    // Clean the origin to just protocol + host
+    let siteUrl: string;
+    try {
+      const parsed = new URL(origin);
+      siteUrl = parsed.origin;
+    } catch {
+      siteUrl = origin;
+    }
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -48,10 +62,10 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({ sessionId: session.id, url: session.url });
-  } catch (error) {
-    console.error('Checkout error:', error);
+  } catch (error: any) {
+    console.error('Checkout error:', error?.message || error);
     return NextResponse.json(
-      { error: 'Failed to create checkout session' },
+      { error: error?.message || 'Failed to create checkout session' },
       { status: 500 }
     );
   }
