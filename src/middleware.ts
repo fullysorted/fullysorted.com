@@ -1,32 +1,35 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-// Routes that require authentication
-const isProtectedRoute = createRouteMatcher([
-  '/sell(.*)',
-  '/dashboard(.*)',
-  '/account(.*)',
-]);
+// Only enable Clerk middleware when keys are configured
+const clerkEnabled = !!(
+  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY &&
+  process.env.CLERK_SECRET_KEY
+);
 
-// Routes that are always public (API webhooks, etc.)
-const isPublicRoute = createRouteMatcher([
-  '/',
-  '/browse(.*)',
-  '/listings(.*)',
-  '/value-guide(.*)',
-  '/research(.*)',
-  '/services(.*)',
-  '/about(.*)',
-  '/contact(.*)',
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-  '/api/webhooks(.*)',
-]);
-
-export default clerkMiddleware(async (auth, request) => {
-  if (isProtectedRoute(request)) {
-    await auth.protect();
+export default async function middleware(request: NextRequest) {
+  // If Clerk is not configured, pass through all requests
+  if (!clerkEnabled) {
+    return NextResponse.next();
   }
-});
+
+  // Dynamically import Clerk middleware only when configured
+  const { clerkMiddleware, createRouteMatcher } = await import('@clerk/nextjs/server');
+
+  const isProtectedRoute = createRouteMatcher([
+    '/sell(.*)',
+    '/dashboard(.*)',
+    '/account(.*)',
+  ]);
+
+  const handler = clerkMiddleware(async (auth, req) => {
+    if (isProtectedRoute(req)) {
+      await auth.protect();
+    }
+  });
+
+  return handler(request, {} as any);
+}
 
 export const config = {
   matcher: [
