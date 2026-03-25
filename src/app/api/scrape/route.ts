@@ -124,6 +124,7 @@ async function refreshMarketSegments(): Promise<void> {
   const segments = await sql`
     SELECT
       segment,
+      MAX(category) AS category,
       COUNT(*)::int AS sale_count,
       ROUND(AVG(sale_price))::int AS avg_price,
       ROUND(PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY sale_price))::int AS median_price,
@@ -160,11 +161,17 @@ async function refreshMarketSegments(): Promise<void> {
       trendDir = trendPct > 1 ? 'up' : trendPct < -1 ? 'down' : 'flat';
     }
 
+    // Normalize segment key: remove non-alphanumeric chars, collapse spaces to underscores
+    const segKey = seg.segment
+      .toLowerCase()
+      .replace(/[^a-z0-9 ]/g, '')
+      .replace(/\s+/g, '_');
+
     await sql`
-      INSERT INTO market_data (segment, segment_key, avg_price, median_price, high_price, low_price, sale_count, trend_percent, trend_direction, data_source, recorded_at)
+      INSERT INTO market_data (segment, segment_key, avg_price, median_price, high_price, low_price, sale_count, trend_percent, trend_direction, data_source, category, recorded_at)
       VALUES (
         ${seg.segment},
-        ${seg.segment.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '')},
+        ${segKey},
         ${seg.avg_price},
         ${seg.median_price},
         ${seg.high_price},
@@ -173,6 +180,7 @@ async function refreshMarketSegments(): Promise<void> {
         ${trendPct.toFixed(2)},
         ${trendDir},
         'auction_results_aggregate',
+        ${seg.category || null},
         NOW()
       )
       ON CONFLICT DO NOTHING

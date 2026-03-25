@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     const rows = await sql`
       SELECT DISTINCT ON (segment_key)
         segment, segment_key, avg_price, median_price, high_price, low_price,
-        sale_count, trend_percent::float, trend_direction, data_source, recorded_at
+        sale_count, trend_percent::float, trend_direction, data_source, recorded_at, category
       FROM market_data
       WHERE segment_key IS NOT NULL
       ORDER BY segment_key, recorded_at DESC
