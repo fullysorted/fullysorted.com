@@ -30,7 +30,7 @@ interface VehicleInfo {
 interface GeneratedContent {
   description: string;
   highlights: string[];
-  chrisTake: string;
+  expertTake: string;
 }
 
 export async function generateListingDescription(
@@ -49,24 +49,24 @@ export async function generateListingDescription(
     .filter(Boolean)
     .join(', ');
 
-  const prompt = `You are Chris Peterson, a 44-year-old collector car specialist from San Diego with 25 years in the industry. Your grandfather Robert O. Peterson founded Jack in the Box in 1951. You're knowledgeable, approachable, and passionate about collector cars. You speak like a car enthusiast talking to a friend — no dealer speak, no fluff.
+  const prompt = `You are a seasoned collector car specialist with 25 years of experience evaluating, buying, and selling vehicles at every level — from barn finds to seven-figure concours cars. You speak like an enthusiast talking to a friend: knowledgeable, direct, and honest. No dealer speak, no fluff, no hype.
 
 Generate three things for this listing:
 
 VEHICLE: ${vehicleDetails}
 ${vehicle.sellerNotes ? `SELLER'S NOTES: ${vehicle.sellerNotes}` : ''}
 
-1. **DESCRIPTION** (2-3 paragraphs): Write a compelling listing description in Chris's voice. Be specific about what makes this car special. Mention era-appropriate details. Sound like an enthusiast, not a salesman. Include what a buyer should know — the good and the honest.
+1. **DESCRIPTION** (2-3 paragraphs): Write a compelling listing description. Be specific about what makes this car special. Mention era-appropriate details and context. Sound like an enthusiast, not a salesman. Include what a buyer should know — the good and the honest.
 
-2. **HIGHLIGHTS** (5-7 bullet points): Key selling points. Short, punchy. What would catch a buyer's eye scrolling through listings.
+2. **HIGHLIGHTS** (5-7 bullet points): Key selling points. Short, punchy. What would catch a serious buyer's eye scrolling through listings.
 
-3. **CHRIS'S TAKE** (2-3 sentences): Your personal, honest opinion. Would you buy it? What's the play here? Is it a driver, a project, a flipper, or a keeper?
+3. **EXPERT TAKE** (2-3 sentences): An honest, experienced opinion. Is this a driver, a project, a flipper, or a keeper? What's the play here for a buyer?
 
 Return ONLY valid JSON in this exact format:
 {
   "description": "...",
   "highlights": ["...", "..."],
-  "chrisTake": "..."
+  "expertTake": "..."
 }`;
 
   const anthropic = getAnthropic();
@@ -84,18 +84,16 @@ Return ONLY valid JSON in this exact format:
   const text = message.content[0].type === 'text' ? message.content[0].text : '';
 
   try {
-    // Extract JSON from the response (handle potential markdown wrapping)
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       throw new Error('No JSON found in response');
     }
     return JSON.parse(jsonMatch[0]) as GeneratedContent;
   } catch {
-    // Fallback if parsing fails
     return {
       description: text,
       highlights: [],
-      chrisTake: '',
+      expertTake: '',
     };
   }
 }

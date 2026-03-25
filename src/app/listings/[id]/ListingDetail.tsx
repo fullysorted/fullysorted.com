@@ -107,22 +107,25 @@ export function ListingDetail({ vehicle }: Props) {
             </button>
           </div>
 
-          {/* Chris's Take */}
-          <div className="bg-surface border border-border rounded-xl p-5">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center text-sm font-bold shrink-0">
-                CP
-              </div>
-              <div>
-                <p className="font-semibold text-foreground text-sm">
-                  Chris&apos;s Take
-                </p>
-                <p className="text-text-secondary mt-1 leading-relaxed">
-                  &ldquo;{vehicle.chrisTake}&rdquo;
-                </p>
+          {/* Expert Take */}
+          {vehicle.chrisTake && (
+            <div className="bg-surface border border-border rounded-xl p-5">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center text-sm font-bold shrink-0">
+                  FS
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground text-sm">
+                    Expert Take
+                  </p>
+                  <p className="text-text-secondary mt-1 leading-relaxed">
+                    &ldquo;{vehicle.chrisTake}&rdquo;
+                  </p>
+                  <p className="text-xs text-text-secondary mt-1">— Fully Sorted</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Description */}
           <div>

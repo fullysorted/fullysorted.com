@@ -57,7 +57,7 @@ export default function SellForm() {
     // AI-generated fields
     description: '',
     highlights: [] as string[],
-    chrisTake: '',
+    expertTake: '',
   });
 
   const updateField = (field: string, value: string) => {
@@ -109,7 +109,7 @@ export default function SellForm() {
           ...prev,
           description: data.description || prev.description,
           highlights: data.highlights || prev.highlights,
-          chrisTake: data.chrisTake || prev.chrisTake,
+          expertTake: data.expertTake || prev.expertTake,
         }));
       } else {
         const data = await res.json();
@@ -337,7 +337,7 @@ export default function SellForm() {
         <div className="space-y-6">
           <div>
             <h2 className="text-2xl font-bold text-stone-900 mb-1">Tell the story</h2>
-            <p className="text-stone-500">Add your notes, then let AI write the listing in Chris&apos;s voice.</p>
+            <p className="text-stone-500">Add your notes, then let AI write the listing in an enthusiast&apos;s voice.</p>
           </div>
 
           <div>
@@ -359,7 +359,7 @@ export default function SellForm() {
             {isGenerating ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                Writing in Chris&apos;s voice...
+                Writing your listing...
               </>
             ) : (
               <>
@@ -402,12 +402,12 @@ export default function SellForm() {
                 </div>
               )}
 
-              {form.chrisTake && (
+              {form.expertTake && (
                 <div>
-                  <label className={labelClass}>Chris&apos;s Take</label>
+                  <label className={labelClass}>Expert Take</label>
                   <div className="bg-amber-50 border-l-4 border-amber-500 px-4 py-3 rounded-r-lg">
-                    <p className="text-sm italic text-stone-700">&ldquo;{form.chrisTake}&rdquo;</p>
-                    <p className="text-xs text-amber-700 mt-1">— Chris Peterson, Fully Sorted</p>
+                    <p className="text-sm italic text-stone-700">&ldquo;{form.expertTake}&rdquo;</p>
+                    <p className="text-xs text-amber-700 mt-1">— Fully Sorted</p>
                   </div>
                 </div>
               )}
