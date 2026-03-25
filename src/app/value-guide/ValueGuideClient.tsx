@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import {
   Search,
   BarChart3,
@@ -10,75 +10,186 @@ import {
   DollarSign,
   Info,
   ArrowRight,
+  Loader2,
+  ExternalLink,
+  AlertCircle,
 } from "lucide-react";
 import { cn, formatPrice } from "@/lib/utils";
 import Link from "next/link";
 
-/* ---------- mock comparable data ---------- */
-interface Comparable {
+/* ---------- Types ---------- */
+interface Comp {
+  id: number;
   source: string;
-  title: string;
-  price: number;
-  date: string;
-  sold: boolean;
-  url: string;
-}
-
-interface ValuationResult {
+  lot_title: string;
   year: number;
   make: string;
   model: string;
-  variant: string;
-  avgPrice: number;
-  lowPrice: number;
-  highPrice: number;
-  trend: "up" | "down" | "flat";
-  trendPct: number;
-  compCount: number;
-  chrisTake: string;
-  recentComps: Comparable[];
+  trim?: string;
+  sale_price: number;
+  auction_date?: string;
+  auction_house?: string;
+  mileage?: number;
+  transmission?: string;
+  exterior_color?: string;
+  thumbnail_url?: string;
+  source_url?: string;
+  sold: boolean;
 }
 
-const mockResult: ValuationResult = {
-  year: 1973,
-  make: "Porsche",
-  model: "911T",
-  variant: "Targa",
-  avgPrice: 62800,
-  lowPrice: 44000,
-  highPrice: 89000,
-  trend: "down",
-  trendPct: 3.2,
-  compCount: 22,
-  chrisTake:
-    "Air-cooled 911s have cooled off about 12% from the 2023 peak. That's not a crash — that's the market catching its breath. If you've been waiting to get into a clean SC or a 3.2 Carrera, this is your window. They're not getting cheaper than this.",
-  recentComps: [
-    { source: "BaT", title: "1973 Porsche 911T Targa — Silver / Black", price: 58500, date: "Mar 12, 2026", sold: true, url: "#" },
-    { source: "BaT", title: "1973 Porsche 911T Targa — Sepia Brown", price: 64200, date: "Feb 28, 2026", sold: true, url: "#" },
-    { source: "BaT", title: "1972 Porsche 911T Targa — Signal Orange", price: 71000, date: "Feb 15, 2026", sold: true, url: "#" },
-    { source: "Classic.com", title: "1973 Porsche 911T Targa — Light Ivory", price: 55000, date: "Jan 30, 2026", sold: true, url: "#" },
-    { source: "BaT", title: "1974 Porsche 911 Targa — Bitter Chocolate", price: 48000, date: "Jan 18, 2026", sold: true, url: "#" },
-    { source: "Private", title: "1973 Porsche 911T Targa — Viper Green", price: 82000, date: "Jan 5, 2026", sold: true, url: "#" },
-  ],
-};
+interface ValuationResult {
+  comps: Comp[];
+  total: number;
+  avgPrice: number | null;
+  medianPrice: number | null;
+  highPrice: number | null;
+  lowPrice: number | null;
+  source: string;
+  error?: string;
+}
 
-/* ---------- popular searches ---------- */
+/* ---------- Popular Searches ---------- */
 const popularSearches = [
-  "Porsche 911", "Ford Mustang", "BMW M3 E30", "Datsun 240Z",
-  "Chevrolet Corvette C2", "Toyota Supra A80", "Mercedes-Benz 300SL",
-  "Ferrari 308", "Jaguar E-Type", "Chevrolet Camaro Z/28",
+  { label: "Porsche 911", year: "", make: "Porsche", model: "911" },
+  { label: "Ford Mustang", year: "1967", make: "Ford", model: "Mustang" },
+  { label: "BMW M3 E30", year: "1988", make: "BMW", model: "M3" },
+  { label: "Datsun 240Z", year: "1972", make: "Datsun", model: "240Z" },
+  { label: "Toyota Supra MK4", year: "1994", make: "Toyota", model: "Supra" },
+  { label: "Honda NSX", year: "1992", make: "Honda", model: "NSX" },
+  { label: "Ferrari 308", year: "1980", make: "Ferrari", model: "308" },
+  { label: "Jaguar E-Type", year: "1965", make: "Jaguar", model: "E-Type" },
+  { label: "Chevrolet Camaro", year: "1969", make: "Chevrolet", model: "Camaro" },
+  { label: "Mazda RX-7 FD", year: "1993", make: "Mazda", model: "RX-7" },
 ];
 
+/* ---------- Helper components ---------- */
+function TrendBadge({ trend, pct }: { trend: "up" | "down" | "flat"; pct: number }) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1 text-sm font-semibold",
+        trend === "up" && "text-green",
+        trend === "down" && "text-accent",
+        trend === "flat" && "text-text-secondary"
+      )}
+    >
+      {trend === "up" && <TrendingUp className="w-4 h-4" />}
+      {trend === "down" && <TrendingDown className="w-4 h-4" />}
+      {trend === "flat" && <Minus className="w-4 h-4" />}
+      {trend === "up" ? "+" : trend === "down" ? "-" : "±"}
+      {pct}%
+    </span>
+  );
+}
+
+function formatDate(dateStr?: string): string {
+  if (!dateStr) return "Unknown date";
+  try {
+    return new Date(dateStr).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  } catch {
+    return dateStr;
+  }
+}
+
+function chrisTake(year: number, make: string, model: string, avgPrice: number | null, total: number): string {
+  if (total < 3) {
+    return `There's limited sales data for the ${year} ${make} ${model} in our database. Try broadening the year range, or check back as we add more auction results daily.`;
+  }
+  if (!avgPrice) return "Not enough data to produce a valuation for this vehicle.";
+
+  const makes: Record<string, string> = {
+    porsche: "Air-cooled Porsches have softened from their 2022–23 peaks, but well-documented cars with no rust and matching numbers still command strong prices. Focus on service history and originality.",
+    bmw: "The BMW collector market rewards originality and documentation. E30 M3s and 2002tiis especially — any evidence of track use or modifications will hurt you significantly.",
+    ford: "First-gen Mustangs have the deepest buyer pool of any American classic. Condition is everything — a driver-quality car and a show car aren't even the same market.",
+    chevrolet: "The Chevy muscle market is bifurcated: numbers-matching concours cars and daily-driver restorations. Know which bucket you're in before you price it.",
+    toyota: "JDM Toyotas are on a sustained run. The MK4 Supra and AE86 especially — supply is constrained and enthusiast demand keeps climbing.",
+    honda: "The NSX market has matured. NA1s in original colors with clean history are the sweet spot. Modified cars take a real hit compared to stock examples.",
+    ferrari: "Ferraris require extra scrutiny on service records — a missed cam belt or clutch job can mean $20–40k in deferred costs. Price the car accordingly.",
+    mercedes: "SL Pagodas and W113s are steady earners, not speculative plays. Quality of restoration matters enormously — amateur work destroys value fast.",
+    jaguar: "E-Types remain the most beautiful cars ever made, but they're also maintenance-intensive. Buyers price in their mechanical complexity.",
+    datsun: "The Z-car market has been quietly strong. 240Zs still reward condition and originality — unrestored survivors are getting serious money.",
+    mazda: "The FD RX-7 is having its moment. Rotary reliability concerns mean buyers pay up for engine-refreshed examples with documentation.",
+    lamborghini: "Lamborghini values are institutional now. Countach and Diablo are blue-chip collectibles. Provenance and service history at official dealers is paramount.",
+  };
+
+  const makeLower = make.toLowerCase();
+  const specific = Object.keys(makes).find(k => makeLower.includes(k));
+  return specific ? makes[specific] : `The ${make} ${model} has ${total} comparable sales in our database. The data shows an average of ${formatPrice(avgPrice)}, with significant spread based on condition, mileage, and originality.`;
+}
+
+/* ---------- Main Component ---------- */
 export function ValueGuideClient() {
-  const [searched, setSearched] = useState(false);
   const [yearInput, setYearInput] = useState("");
   const [makeInput, setMakeInput] = useState("");
   const [modelInput, setModelInput] = useState("");
+  const [yearRange, setYearRange] = useState("3");
+  const [result, setResult] = useState<ValuationResult | null>(null);
+  const [searched, setSearched] = useState(false);
+  const [searchedFor, setSearchedFor] = useState({ year: "", make: "", model: "" });
+  const [isPending, startTransition] = useTransition();
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
+  async function doSearch(year: string, make: string, model: string) {
+    if (!make || !model) return;
+    setSearched(true);
+    setSearchedFor({ year, make, model });
+    setFetchError(null);
+    setResult(null);
+
+    startTransition(async () => {
+      try {
+        const params = new URLSearchParams({
+          make,
+          model,
+          yearRange,
+          ...(year ? { year } : {}),
+        });
+        if (!year) params.set("year", "0");
+
+        const res = await fetch(`/api/market/comps?${params}`);
+        const data = await res.json();
+        if (data.error && !data.comps) throw new Error(data.error);
+        setResult(data);
+      } catch (err: unknown) {
+        setFetchError(err instanceof Error ? err.message : "Failed to fetch comparables");
+      }
+    });
+  }
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
-    setSearched(true);
+    doSearch(yearInput, makeInput, modelInput);
   }
+
+  function handlePopularSearch(s: typeof popularSearches[0]) {
+    setYearInput(s.year);
+    setMakeInput(s.make);
+    setModelInput(s.model);
+    doSearch(s.year, s.make, s.model);
+  }
+
+  // Determine trend from comps (compare first 5 vs last 5 by date)
+  function deriveTrend(comps: Comp[]): { trend: "up" | "down" | "flat"; pct: number } {
+    const sorted = [...comps].sort((a, b) =>
+      new Date(a.auction_date || 0).getTime() - new Date(b.auction_date || 0).getTime()
+    );
+    if (sorted.length < 6) return { trend: "flat", pct: 0 };
+    const half = Math.floor(sorted.length / 2);
+    const older = sorted.slice(0, half).map(c => c.sale_price).filter(Boolean);
+    const newer = sorted.slice(half).map(c => c.sale_price).filter(Boolean);
+    if (!older.length || !newer.length) return { trend: "flat", pct: 0 };
+    const avgOlder = older.reduce((a, b) => a + b, 0) / older.length;
+    const avgNewer = newer.reduce((a, b) => a + b, 0) / newer.length;
+    const pct = Math.abs(((avgNewer - avgOlder) / avgOlder) * 100);
+    if (pct < 1.5) return { trend: "flat", pct: Math.round(pct * 10) / 10 };
+    return { trend: avgNewer > avgOlder ? "up" : "down", pct: Math.round(pct * 10) / 10 };
+  }
+
+  const trendInfo = result?.comps ? deriveTrend(result.comps) : null;
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -103,7 +214,7 @@ export function ValueGuideClient() {
         onSubmit={handleSearch}
         className="bg-white border border-border rounded-xl p-5 sm:p-6 mb-8"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
           <div>
             <label className="text-xs font-medium text-text-secondary uppercase tracking-wider block mb-1.5">
               Year
@@ -113,6 +224,8 @@ export function ValueGuideClient() {
               value={yearInput}
               onChange={(e) => setYearInput(e.target.value)}
               placeholder="e.g. 1973"
+              min="1900"
+              max="2020"
               className="w-full h-12 px-4 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
             />
           </div>
@@ -136,17 +249,38 @@ export function ValueGuideClient() {
               type="text"
               value={modelInput}
               onChange={(e) => setModelInput(e.target.value)}
-              placeholder="e.g. 911T"
+              placeholder="e.g. 911"
               className="w-full h-12 px-4 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
             />
           </div>
-          <div className="flex items-end">
+          <div>
+            <label className="text-xs font-medium text-text-secondary uppercase tracking-wider block mb-1.5">
+              ±Year Range
+            </label>
+            <select
+              value={yearRange}
+              onChange={(e) => setYearRange(e.target.value)}
+              className="w-full h-12 px-4 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
+            >
+              <option value="1">±1 year</option>
+              <option value="2">±2 years</option>
+              <option value="3">±3 years</option>
+              <option value="5">±5 years</option>
+              <option value="10">±10 years</option>
+            </select>
+          </div>
+          <div className="flex items-end col-span-2 sm:col-span-1">
             <button
               type="submit"
-              className="w-full h-12 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors flex items-center justify-center gap-2"
+              disabled={isPending || !makeInput || !modelInput}
+              className="w-full h-12 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
             >
-              <Search className="w-4 h-4" />
-              Get Valuation
+              {isPending ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Search className="w-4 h-4" />
+              )}
+              {isPending ? "Searching..." : "Get Valuation"}
             </button>
           </div>
         </div>
@@ -160,17 +294,12 @@ export function ValueGuideClient() {
             <div className="flex flex-wrap gap-2">
               {popularSearches.map((s) => (
                 <button
-                  key={s}
+                  key={s.label}
                   type="button"
-                  onClick={() => {
-                    const parts = s.split(" ");
-                    setMakeInput(parts[0]);
-                    setModelInput(parts.slice(1).join(" "));
-                    setSearched(true);
-                  }}
+                  onClick={() => handlePopularSearch(s)}
                   className="px-3 py-1.5 text-xs font-medium text-text-secondary border border-border rounded-full hover:border-accent hover:text-accent transition-colors"
                 >
-                  {s}
+                  {s.label}
                 </button>
               ))}
             </div>
@@ -178,126 +307,199 @@ export function ValueGuideClient() {
         )}
       </form>
 
+      {/* Loading */}
+      {isPending && (
+        <div className="flex items-center justify-center py-16 gap-3 text-text-secondary">
+          <Loader2 className="w-6 h-6 animate-spin text-accent" />
+          <span>Searching auction database…</span>
+        </div>
+      )}
+
+      {/* Error */}
+      {fetchError && !isPending && (
+        <div className="bg-red-50 border border-red-200 rounded-xl p-5 flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+          <div>
+            <p className="font-medium text-red-800 text-sm">Couldn&apos;t fetch comparables</p>
+            <p className="text-red-600 text-xs mt-1">{fetchError}</p>
+          </div>
+        </div>
+      )}
+
       {/* Results */}
-      {searched && (
+      {result && !isPending && (
         <div className="space-y-6">
           {/* Pricing Summary */}
           <div className="bg-white border border-border rounded-xl overflow-hidden">
             <div className="px-6 py-5 border-b border-border">
               <h2 className="text-xl font-bold text-foreground">
-                {mockResult.year} {mockResult.make} {mockResult.model}{" "}
-                {mockResult.variant}
+                {searchedFor.year && `${searchedFor.year} `}
+                {searchedFor.make} {searchedFor.model}
               </h2>
               <p className="text-sm text-text-secondary mt-0.5">
-                Based on {mockResult.compCount} comparable sales &middot; Last 18 months
+                Based on {result.total} comparable {result.total === 1 ? "sale" : "sales"}{" "}
+                {yearInput ? `· ${parseInt(yearInput) - parseInt(yearRange)} – ${parseInt(yearInput) + parseInt(yearRange)}` : ""}
+                {" · "}Bring a Trailer, RM Sotheby&apos;s &amp; more
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border">
-              <div className="px-6 py-5 text-center">
-                <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">
-                  Low
-                </p>
-                <p className="price-display text-xl text-foreground">
-                  {formatPrice(mockResult.lowPrice)}
-                </p>
-              </div>
-              <div className="px-6 py-5 text-center bg-accent-light/40">
-                <p className="text-xs font-medium text-accent uppercase tracking-wider mb-1">
-                  Average
-                </p>
-                <p className="price-display text-2xl text-accent font-bold">
-                  {formatPrice(mockResult.avgPrice)}
+            {result.total === 0 ? (
+              <div className="px-6 py-10 text-center">
+                <AlertCircle className="w-10 h-10 text-text-tertiary mx-auto mb-3" />
+                <p className="font-medium text-foreground">No comparable sales found</p>
+                <p className="text-sm text-text-secondary mt-1 max-w-sm mx-auto">
+                  Try broadening the year range or adjusting the make/model. We&apos;re adding
+                  auction data daily — check back soon.
                 </p>
               </div>
-              <div className="px-6 py-5 text-center">
-                <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">
-                  High
-                </p>
-                <p className="price-display text-xl text-foreground">
-                  {formatPrice(mockResult.highPrice)}
-                </p>
-              </div>
-              <div className="px-6 py-5 text-center">
-                <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">
-                  12-Mo Trend
-                </p>
-                <div className="flex items-center justify-center gap-1.5">
-                  {mockResult.trend === "up" && <TrendingUp className="w-5 h-5 text-green" />}
-                  {mockResult.trend === "down" && <TrendingDown className="w-5 h-5 text-accent" />}
-                  {mockResult.trend === "flat" && <Minus className="w-5 h-5 text-text-tertiary" />}
-                  <span
-                    className={cn(
-                      "price-display text-xl",
-                      mockResult.trend === "up" && "text-green",
-                      mockResult.trend === "down" && "text-accent",
-                      mockResult.trend === "flat" && "text-text-secondary"
-                    )}
-                  >
-                    {mockResult.trend === "down" ? "-" : mockResult.trend === "up" ? "+" : ""}
-                    {mockResult.trendPct}%
-                  </span>
+            ) : (
+              <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border">
+                <div className="px-6 py-5 text-center">
+                  <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">
+                    Low
+                  </p>
+                  <p className="price-display text-xl text-foreground">
+                    {result.lowPrice ? formatPrice(result.lowPrice) : "—"}
+                  </p>
+                </div>
+                <div className="px-6 py-5 text-center bg-accent-light/40">
+                  <p className="text-xs font-medium text-accent uppercase tracking-wider mb-1">
+                    Average
+                  </p>
+                  <p className="price-display text-2xl text-accent font-bold">
+                    {result.avgPrice ? formatPrice(result.avgPrice) : "—"}
+                  </p>
+                </div>
+                <div className="px-6 py-5 text-center">
+                  <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">
+                    Median
+                  </p>
+                  <p className="price-display text-xl text-foreground">
+                    {result.medianPrice ? formatPrice(result.medianPrice) : "—"}
+                  </p>
+                </div>
+                <div className="px-6 py-5 text-center">
+                  <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">
+                    High
+                  </p>
+                  <p className="price-display text-xl text-foreground">
+                    {result.highPrice ? formatPrice(result.highPrice) : "—"}
+                  </p>
                 </div>
               </div>
-            </div>
+            )}
+
+            {trendInfo && result.total >= 6 && (
+              <div className="px-6 py-3 border-t border-border bg-surface/30 flex items-center gap-3">
+                <span className="text-xs text-text-secondary">Price trend (older vs. newer sales):</span>
+                <TrendBadge trend={trendInfo.trend} pct={trendInfo.pct} />
+              </div>
+            )}
           </div>
 
           {/* Chris's Take */}
-          <div className="bg-surface border border-border rounded-xl p-6">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center text-sm font-bold shrink-0">
-                CP
-              </div>
-              <div>
-                <p className="font-semibold text-foreground text-sm">
-                  Chris&apos;s Take
-                </p>
-                <p className="text-text-secondary mt-1 leading-relaxed">
-                  &ldquo;{mockResult.chrisTake}&rdquo;
-                </p>
+          {result.total > 0 && (
+            <div className="bg-surface border border-border rounded-xl p-6">
+              <div className="flex items-start gap-3">
+                <div
+                  className="w-10 h-10 rounded-full text-white flex items-center justify-center text-sm font-bold shrink-0"
+                  style={{ backgroundColor: "#C1440E" }}
+                >
+                  CP
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground text-sm">
+                    Chris&apos;s Take
+                  </p>
+                  <p className="text-text-secondary mt-1 leading-relaxed">
+                    &ldquo;{chrisTake(
+                      parseInt(searchedFor.year) || 0,
+                      searchedFor.make,
+                      searchedFor.model,
+                      result.avgPrice,
+                      result.total
+                    )}&rdquo;
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Recent Comparables */}
-          <div className="bg-white border border-border rounded-xl overflow-hidden">
-            <div className="px-6 py-4 border-b border-border flex items-center justify-between">
-              <h3 className="font-semibold text-foreground">
-                Recent Comparable Sales
-              </h3>
-              <span className="text-xs text-text-secondary">
-                {mockResult.recentComps.length} results
-              </span>
-            </div>
-            <div className="divide-y divide-border">
-              {mockResult.recentComps.map((comp, i) => (
-                <div
-                  key={i}
-                  className="flex items-center justify-between px-6 py-4 hover:bg-surface/50 transition-colors"
-                >
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-foreground truncate">
-                      {comp.title}
-                    </p>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <span className="text-xs px-1.5 py-0.5 bg-surface rounded text-text-secondary font-medium">
-                        {comp.source}
-                      </span>
-                      <span className="text-xs text-text-tertiary">{comp.date}</span>
+          {result.comps.length > 0 && (
+            <div className="bg-white border border-border rounded-xl overflow-hidden">
+              <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+                <h3 className="font-semibold text-foreground">
+                  Recent Comparable Sales
+                </h3>
+                <span className="text-xs text-text-secondary">
+                  {result.total} results
+                </span>
+              </div>
+              <div className="divide-y divide-border">
+                {result.comps.map((comp) => (
+                  <div
+                    key={comp.id}
+                    className="flex items-center gap-4 px-6 py-4 hover:bg-surface/50 transition-colors"
+                  >
+                    {comp.thumbnail_url && (
+                      <div className="w-16 h-12 rounded-lg overflow-hidden shrink-0 bg-surface">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={comp.thumbnail_url}
+                          alt={comp.lot_title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-foreground truncate">
+                        {comp.lot_title}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-0.5">
+                        <span className="text-xs px-1.5 py-0.5 bg-surface rounded text-text-secondary font-medium">
+                          {comp.auction_house || comp.source}
+                        </span>
+                        <span className="text-xs text-text-tertiary">
+                          {formatDate(comp.auction_date)}
+                        </span>
+                        {comp.mileage && (
+                          <span className="text-xs text-text-tertiary">
+                            {comp.mileage.toLocaleString()} mi
+                          </span>
+                        )}
+                        {comp.exterior_color && (
+                          <span className="text-xs text-text-tertiary">
+                            {comp.exterior_color}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="text-right ml-2 shrink-0 flex flex-col items-end gap-1">
+                      <p className="price-display text-sm text-foreground font-semibold">
+                        {formatPrice(comp.sale_price)}
+                      </p>
+                      {comp.sold ? (
+                        <span className="text-xs text-green font-medium">Sold</span>
+                      ) : (
+                        <span className="text-xs text-text-tertiary">Listed</span>
+                      )}
+                      {comp.source_url && (
+                        <a
+                          href={comp.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-accent hover:underline flex items-center gap-0.5"
+                        >
+                          View <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
                     </div>
                   </div>
-                  <div className="text-right ml-4 shrink-0">
-                    <p className="price-display text-sm text-foreground">
-                      {formatPrice(comp.price)}
-                    </p>
-                    {comp.sold && (
-                      <span className="text-xs text-green font-medium">Sold</span>
-                    )}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Price Factors */}
           <div className="bg-white border border-border rounded-xl p-6">
@@ -313,19 +515,18 @@ export function ValueGuideClient() {
                 <div>
                   <p className="font-medium text-foreground">Increases value</p>
                   <p className="text-text-secondary">
-                    Matching numbers, rare colors, documented history, low mileage,
-                    original paint, desirable options (sunroof delete, sport seats)
+                    Matching numbers, rare factory colors, documented history, low mileage,
+                    original paint, desirable options, fresh professional service
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-2">
-                <DollarSign className="w-4 h-4 text-red mt-0.5 shrink-0" />
+                <DollarSign className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                 <div>
                   <p className="font-medium text-foreground">Decreases value</p>
                   <p className="text-text-secondary">
-                    Non-matching engine, repainted in non-original color, accident
-                    history, automatic transmission (in this model), high mileage,
-                    rust
+                    Non-matching engine or drivetrain, non-original color, accident history,
+                    modified (for most segments), high mileage, deferred maintenance, rust
                   </p>
                 </div>
               </div>
@@ -335,7 +536,8 @@ export function ValueGuideClient() {
           {/* CTA */}
           <div className="text-center py-4">
             <p className="text-sm text-text-secondary mb-3">
-              Have a {mockResult.year} {mockResult.make} {mockResult.model} to sell?
+              Have a {searchedFor.year && `${searchedFor.year} `}
+              {searchedFor.make} {searchedFor.model} to sell?
             </p>
             <Link
               href="/sell"

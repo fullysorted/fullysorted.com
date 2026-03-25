@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -310,6 +310,17 @@ function ContactForm({
 export function ListingDetail({ vehicle }: Props) {
   const [contactOpen, setContactOpen] = useState(false);
   const [shared, setShared] = useState(false);
+
+  // Track view on mount
+  useEffect(() => {
+    if (vehicle.slug) {
+      fetch(`/api/listings/view?slug=${encodeURIComponent(vehicle.slug)}`, {
+        method: "POST",
+      }).catch(() => {
+        // fail silently
+      });
+    }
+  }, [vehicle.slug]);
 
   const priceDiff = vehicle.price - vehicle.compAvg;
   const priceDiffPct = ((priceDiff / vehicle.compAvg) * 100).toFixed(1);
