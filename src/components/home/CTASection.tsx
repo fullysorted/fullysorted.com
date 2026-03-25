@@ -12,36 +12,61 @@ export function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#1A1A1A] via-[#1E3A52] to-[#1A1A1A] p-8 sm:p-12 lg:p-16"
+          className="relative overflow-hidden rounded-2xl p-8 sm:p-12 lg:p-16"
+          style={{ background: '#E8722A' }}
         >
+          {/* Speed lines texture */}
+          <div className="absolute inset-0 speed-lines opacity-30" />
+
+          {/* Checkered flag corner — bottom right */}
+          <div
+            className="absolute bottom-0 right-0 w-56 h-56 opacity-10"
+            style={{
+              backgroundImage: 'repeating-conic-gradient(#000 0% 25%, transparent 0% 50%)',
+              backgroundSize: '20px 20px',
+              maskImage: 'radial-gradient(circle at bottom right, black 40%, transparent 75%)',
+              WebkitMaskImage: 'radial-gradient(circle at bottom right, black 40%, transparent 75%)',
+            }}
+          />
+
+          {/* Dark diagonal overlay */}
+          <div
+            className="absolute top-0 right-0 h-full w-1/3 opacity-20"
+            style={{
+              background: 'linear-gradient(to left, rgba(0,0,0,0.4), transparent)',
+            }}
+          />
+
           <div className="max-w-2xl relative z-10">
-            <h2 className="text-2xl sm:text-4xl font-bold text-white leading-tight">
+            {/* Flag dots */}
+            <div className="flex gap-1.5 mb-5">
+              {['#fff', 'rgba(255,255,255,0.5)', 'rgba(255,255,255,0.25)'].map((c, i) => (
+                <span key={i} className="w-3 h-3 rounded-sm" style={{ background: c }} />
+              ))}
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
               Ready to list your car?
             </h2>
-            <p className="text-white/60 mt-4 text-lg leading-relaxed">
-              $3.99 gets you a listing with an AI-generated description that
-              sounds like a car person wrote it — because the AI was trained by one.
-              No commissions. No dealer fees. Just you and the buyer.
+            <p className="text-white/80 mt-4 text-lg leading-relaxed max-w-xl">
+              $3.99 gets you a listing with an AI-generated description that sounds like a car person wrote it — because it was trained by one.
+              No commissions. No dealer fees.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link
                 href="/sell"
-                className="inline-flex items-center justify-center px-6 py-3.5 bg-white text-foreground text-sm font-bold rounded-lg hover:bg-white/90 transition-colors"
+                className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-gray-900 text-sm font-bold rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
               >
                 List Your Car — $3.99
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center px-6 py-3.5 border border-white/30 text-white text-sm font-semibold rounded-lg hover:bg-white/10 transition-colors"
+                className="inline-flex items-center justify-center px-7 py-3.5 border-2 border-white/50 text-white text-sm font-semibold rounded-xl hover:border-white hover:bg-white/10 transition-colors"
               >
-                Learn About Chris
+                How It Works
               </Link>
             </div>
           </div>
-
-          {/* Decorative Elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-accent/5 rounded-full blur-2xl" />
         </motion.div>
       </div>
     </section>

@@ -35,11 +35,15 @@ function TrendBadge({ trend, percentage }: { trend: MarketMover["trend"]; percen
 
 export function MarketMovers() {
   return (
-    <section className="py-14 sm:py-20 bg-surface">
+    <section className="py-14 sm:py-20" style={{ background: '#EDE4D6' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex items-end justify-between mb-8">
           <div>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-1 h-5 rounded-full" style={{ background: '#E8722A' }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#E8722A' }}>Weekly</span>
+            </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
               Monday Market Movers
             </h2>
@@ -49,7 +53,8 @@ export function MarketMovers() {
           </div>
           <Link
             href="/research"
-            className="hidden sm:flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
+            className="hidden sm:flex items-center gap-1.5 text-sm font-semibold hover:opacity-70 transition-opacity"
+            style={{ color: '#E8722A' }}
           >
             Full Research
             <ArrowRight className="w-4 h-4" />
@@ -64,7 +69,7 @@ export function MarketMovers() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="bg-white rounded-xl border border-border p-5 hover:shadow-md transition-shadow"
+              className="bg-white rounded-xl border border-border p-5 hover:shadow-lg transition-shadow hover:-translate-y-0.5 duration-200"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-2.5">
@@ -85,7 +90,8 @@ export function MarketMovers() {
         <div className="sm:hidden mt-6 text-center">
           <Link
             href="/research"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold"
+            style={{ color: '#E8722A' }}
           >
             Full Market Research
             <ArrowRight className="w-4 h-4" />

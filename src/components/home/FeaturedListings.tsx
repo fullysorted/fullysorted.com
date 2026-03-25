@@ -14,16 +14,21 @@ export function FeaturedListings() {
         {/* Section Header */}
         <div className="flex items-end justify-between mb-8">
           <div>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-1 h-5 rounded-full" style={{ background: '#E8722A' }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#E8722A' }}>Hand-picked</span>
+            </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
               Featured Listings
             </h2>
             <p className="text-text-secondary mt-1">
-              Hand-picked by Chris — the ones worth your attention this week
+              The ones worth your attention this week
             </p>
           </div>
           <Link
             href="/browse"
-            className="hidden sm:flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
+            className="hidden sm:flex items-center gap-1.5 text-sm font-semibold hover:opacity-70 transition-opacity"
+            style={{ color: '#E8722A' }}
           >
             Browse All
             <ArrowRight className="w-4 h-4" />

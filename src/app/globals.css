@@ -1,28 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  /* The Sorted Look — Color System */
-  --bg-primary: #FAFAF8;
-  --bg-surface: #F5F0EB;
+  /* Fully Sorted — Racing Paddock Color System */
+  --bg-primary: #F5EFE6;          /* warm paper, like a vintage race programme */
+  --bg-surface: #EDE4D6;          /* slightly darker warm cream */
   --bg-white: #FFFFFF;
   --text-primary: #1A1A1A;
   --text-secondary: #6B7280;
   --text-tertiary: #9CA3AF;
+
+  /* Primary accent: bold orange (matches logo flag) */
+  --accent: #E8722A;
+  --accent-hover: #C85E1E;
+  --accent-light: #FEF0E6;
+
+  /* Secondary: logo blue */
   --accent-blue: #1E6091;
   --accent-blue-hover: #174B72;
   --accent-blue-light: #E8F0F8;
-  --accent-orange: #E8722A;
-  --accent-orange-light: #FEF3EC;
-  --sorted-green: #16A34A;
-  --sorted-green-light: #ECFDF5;
+
+  /* Brand green (matches logo flag) */
+  --sorted-green: #6ab04c;
+  --sorted-green-dark: #4a8a32;
+  --sorted-green-light: #EDF7E6;
+
+  /* Signal colors */
   --signal-red: #DC2626;
   --signal-red-light: #FEF2F2;
-  --border-light: #E5E7EB;
-  --border-medium: #D1D5DB;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
-  --shadow-lift: 0 12px 24px -4px rgba(0,0,0,0.1);
+
+  /* Borders */
+  --border-light: #DDD5C8;
+  --border-medium: #C8BDB0;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.05);
+  --shadow-lift: 0 12px 24px -4px rgba(0,0,0,0.12);
+
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -33,12 +48,14 @@
   --color-foreground: var(--text-primary);
   --color-surface: var(--bg-surface);
   --color-white: var(--bg-white);
-  --color-accent: var(--accent-blue);
-  --color-accent-hover: var(--accent-blue-hover);
-  --color-accent-light: var(--accent-blue-light);
-  --color-orange: var(--accent-orange);
-  --color-orange-light: var(--accent-orange-light);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-light: var(--accent-light);
+  --color-blue: var(--accent-blue);
+  --color-blue-hover: var(--accent-blue-hover);
+  --color-blue-light: var(--accent-blue-light);
   --color-green: var(--sorted-green);
+  --color-green-dark: var(--sorted-green-dark);
   --color-green-light: var(--sorted-green-light);
   --color-red: var(--signal-red);
   --color-red-light: var(--signal-red-light);
@@ -67,7 +84,7 @@ body {
   line-height: 1.6;
 }
 
-/* Scrollbar styling */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-medium); border-radius: 3px; }
@@ -78,7 +95,7 @@ body {
   .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
 }
 
-/* Price font styling */
+/* Price font */
 .price-display {
   font-family: var(--font-jetbrains-mono, 'JetBrains Mono', monospace);
   font-weight: 700;
@@ -86,17 +103,47 @@ body {
 }
 
 /* Image hover zoom */
-.listing-image-container {
-  overflow: hidden;
-}
+.listing-image-container { overflow: hidden; }
 .listing-image-container img {
   transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-.listing-image-container:hover img {
-  transform: scale(1.04);
-}
+.listing-image-container:hover img { transform: scale(1.04); }
 
 /* Gradient overlays */
 .gradient-fade-bottom {
   background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+}
+
+/* Racing checkered pattern — subtle background texture */
+.checkered-bg {
+  background-image: repeating-conic-gradient(
+    rgba(255,255,255,0.04) 0% 25%,
+    transparent 0% 50%
+  );
+  background-size: 24px 24px;
+}
+
+/* Speed lines — diagonal streak pattern */
+.speed-lines {
+  background-image: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 8px,
+    rgba(255,255,255,0.025) 8px,
+    rgba(255,255,255,0.025) 10px
+  );
+}
+
+/* Section stripe accent */
+.stripe-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 45%;
+  height: 100%;
+  background: var(--accent);
+  transform: skewX(-8deg);
+  opacity: 0.07;
+  pointer-events: none;
 }

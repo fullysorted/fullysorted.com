@@ -24,7 +24,11 @@ export function ValueGuidePreview() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-light text-accent text-xs font-semibold rounded-full mb-4">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-1 h-5 rounded-full" style={{ background: '#6ab04c' }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#6ab04c' }}>Value Guide</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-full mb-4" style={{ background: '#EDF7E6', color: '#4a8a32' }}>
               <BarChart3 className="w-3.5 h-3.5" />
               Powered by Real Auction Data
             </div>
@@ -40,7 +44,10 @@ export function ValueGuidePreview() {
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <Link
                 href="/value-guide"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 text-white text-sm font-semibold rounded-lg transition-colors"
+                style={{ background: '#E8722A' }}
+                onMouseEnter={e => (e.currentTarget.style.background = '#C85E1E')}
+                onMouseLeave={e => (e.currentTarget.style.background = '#E8722A')}
               >
                 Open Value Guide
                 <ArrowRight className="w-4 h-4" />
