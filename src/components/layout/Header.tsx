@@ -53,23 +53,19 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
-              src="/icon.svg"
-              alt=""
-              width={36}
+              src="/logo.png"
+              alt="Fully Sorted"
+              width={120}
               height={36}
               priority
-              className="h-9 w-9"
+              className="h-8 w-auto"
+              style={{ mixBlendMode: 'multiply' }}
             />
-            <div className="flex flex-col">
-              <span className="text-lg font-bold leading-tight tracking-tight text-foreground">
-                Fully Sorted
-              </span>
-              <span className="text-[10px] leading-none text-text-secondary tracking-wide uppercase hidden sm:block">
-                Collector Car Marketplace
-              </span>
-            </div>
+            <span className="text-[10px] leading-none text-text-secondary tracking-wide uppercase hidden sm:block self-end mb-1">
+              Collector Car Marketplace
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
