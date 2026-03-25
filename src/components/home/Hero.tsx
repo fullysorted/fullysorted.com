@@ -7,39 +7,29 @@ export function Hero() {
   return (
     <section className="relative bg-foreground overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] via-[#1E3A52] to-[#1A1A1A]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#111111] via-[#1a2e1a] to-[#111111]" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
         <div className="max-w-3xl">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-accent-light text-sm font-semibold uppercase tracking-widest mb-4"
-          >
-            Built by enthusiasts, for enthusiasts
-          </motion.p>
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight"
           >
-            The collector car{" "}
-            <span className="text-[#5BA3D9]">marketplace</span>{" "}
-            that gets it.
+            Where car people{" "}
+            <span className="text-[#6ab04c]">help car people.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-white/60 mt-6 max-w-2xl leading-relaxed"
+            className="text-lg sm:text-xl text-white/65 mt-6 max-w-2xl leading-relaxed"
           >
-            Real pricing data. Expert opinions. Vetted services. No dealers, no
-            commissions — just enthusiasts helping enthusiasts find, buy, and care
-            for the cars they love.
+            Real market data. Trusted experts. Vetted services. Everything you
+            need to find, buy, and care for collector cars — no dealers or
+            commissions involved.
           </motion.p>
 
           {/* Search Bar */}
