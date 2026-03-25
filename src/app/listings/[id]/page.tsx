@@ -41,6 +41,7 @@ function dbListingToVehicle(listing: any): Vehicle {
     category: listing.category ?? 'Other',
     photoCount: photos.length || 1,
     imageUrl,
+    photos,
     saves: 0,
     comments: 0,
     featured: listing.featured ?? false,

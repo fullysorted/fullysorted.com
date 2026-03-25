@@ -17,6 +17,7 @@ export interface Vehicle {
   category: string;
   photoCount: number;
   imageUrl: string;
+  photos?: string[]; // all photo URLs for gallery
   saves: number;
   comments: number;
   featured: boolean;
