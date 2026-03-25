@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { ListingCard } from "@/components/listings/ListingCard";
-import { sampleVehicles } from "@/lib/sample-data";
+import type { Vehicle } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 
 const categories = [
@@ -17,12 +17,17 @@ const categories = [
   "Barn Finds",
 ];
 
-export function BrowseClient() {
+interface BrowseClientProps {
+  initialListings: Vehicle[];
+  hasRealListings?: boolean;
+}
+
+export function BrowseClient({ initialListings, hasRealListings = false }: BrowseClientProps) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
 
-  const filtered = sampleVehicles.filter((v) => {
+  const filtered = initialListings.filter((v) => {
     const matchesCategory =
       activeCategory === "All" || v.category === activeCategory;
     const matchesSearch =
@@ -43,6 +48,7 @@ export function BrowseClient() {
         <p className="text-text-secondary mt-1">
           {filtered.length} {filtered.length === 1 ? "car" : "cars"} available
           &middot; No dealers, no commissions
+          {hasRealListings && <span className="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full" style={{ background: '#EDF7E6', color: '#4a8a32' }}>Live listings</span>}
         </p>
       </div>
 

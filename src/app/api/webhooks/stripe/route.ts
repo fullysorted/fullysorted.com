@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
   const sig = request.headers.get('stripe-signature');
 
   if (!sig || !process.env.STRIPE_WEBHOOK_SECRET) {
-    return NextResponse.json({ error: 'Missing signature' }, { status: 400 });
+    return NextResponse.json({ error: 'Missing signature or webhook secret' }, { status: 400 });
   }
 
   const stripe = getStripe();
@@ -24,11 +24,53 @@ export async function POST(request: NextRequest) {
     const session = event.data.object;
     const { listing_id, year, make, model } = session.metadata || {};
 
-    console.log('Payment received for listing:', year, make, model);
-    console.log('Listing ID:', listing_id);
-    console.log('Session ID:', session.id);
+    console.log(`Payment complete: ${year} ${make} ${model} (listing #${listing_id})`);
+    console.log('Stripe session ID:', session.id);
     console.log('Payment status:', session.payment_status);
-    // TODO: Mark listing as active in Neon database via Drizzle
+
+    // Mark listing as active in the database
+    if (listing_id && process.env.DATABASE_URL) {
+      try {
+        const { getDb, schema } = await import('@/lib/db');
+        const { eq } = await import('drizzle-orm');
+        const db = getDb();
+
+        await db
+          .update(schema.listings)
+          .set({
+            status: 'active',
+            publishedAt: new Date(),
+            updatedAt: new Date(),
+          })
+          .where(eq(schema.listings.id, parseInt(listing_id)));
+
+        console.log(`Listing #${listing_id} activated successfully`);
+      } catch (dbError: any) {
+        console.error('Failed to activate listing in DB:', dbError?.message || dbError);
+        // Don't return error — Stripe already got the payment, log and move on
+      }
+    }
+  }
+
+  if (event.type === 'checkout.session.expired') {
+    const session = event.data.object;
+    const { listing_id } = session.metadata || {};
+
+    // Mark listing as expired if payment never completed
+    if (listing_id && process.env.DATABASE_URL) {
+      try {
+        const { getDb, schema } = await import('@/lib/db');
+        const { eq } = await import('drizzle-orm');
+        const db = getDb();
+
+        await db
+          .update(schema.listings)
+          .set({ status: 'expired', updatedAt: new Date() })
+          .where(eq(schema.listings.id, parseInt(listing_id)));
+      } catch (dbError: any) {
+        console.error('Failed to expire listing in DB:', dbError?.message || dbError);
+      }
+    }
   }
 
   return NextResponse.json({ received: true });
