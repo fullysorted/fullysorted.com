@@ -59,8 +59,13 @@ export const listings = pgTable('listings', {
   heroPhoto: text('hero_photo'),
 
   // Status
-  status: varchar('status', { length: 50 }).default('draft').notNull(),
+  status: varchar('status', { length: 50 }).default('draft').notNull(), // draft, pending, active, sold, denied, expired
   featured: boolean('featured').default(false),
+
+  // Sales tracking
+  soldPrice: integer('sold_price'),
+  adminNotes: text('admin_notes'), // internal notes from Chris
+  deniedReason: text('denied_reason'),
 
   // Engagement
   views: integer('views').default(0).notNull(),
@@ -149,6 +154,27 @@ export const marketData = pgTable('market_data', {
   recordedAt: timestamp('recorded_at').defaultNow().notNull(),
 });
 
+// ─── Messages (contact form submissions) ─────────────────
+export const messages = pgTable('messages', {
+  id: serial('id').primaryKey(),
+  listingId: integer('listing_id').references(() => listings.id),
+  listingSlug: varchar('listing_slug', { length: 500 }),
+  listingTitle: text('listing_title'), // denormalized for easy display
+  senderName: varchar('sender_name', { length: 255 }).notNull(),
+  senderEmail: varchar('sender_email', { length: 255 }).notNull(),
+  senderPhone: varchar('sender_phone', { length: 50 }),
+  messageText: text('message_text').notNull(),
+  type: varchar('type', { length: 50 }).default('inquiry'), // inquiry, offer, general
+  offerAmount: integer('offer_amount'),
+  status: varchar('status', { length: 50 }).default('new'), // new, read, replied, archived
+  adminNotes: text('admin_notes'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+}, (t) => [
+  index('messages_listing_id_idx').on(t.listingId),
+  index('messages_status_idx').on(t.status),
+  index('messages_created_at_idx').on(t.createdAt),
+]);
+
 // ─── Deal Alerts (active listings from BaT RSS etc.) ────
 export const dealAlerts = pgTable('deal_alerts', {
   id: serial('id').primaryKey(),
@@ -169,6 +195,9 @@ export const dealAlerts = pgTable('deal_alerts', {
 });
 
 // Type exports
+export type Message = typeof messages.$inferSelect;
+export type NewMessage = typeof messages.$inferInsert;
+
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 export type Listing = typeof listings.$inferSelect;

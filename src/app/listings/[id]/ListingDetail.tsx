@@ -214,14 +214,32 @@ function ContactForm({
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
+
+    // Save to DB (async, non-blocking)
+    fetch("/api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        listingId: vehicle.id ?? null,
+        listingSlug: vehicle.slug,
+        listingTitle: vehicle.title,
+        senderName: name,
+        senderEmail: email,
+        messageText: message,
+        type: "inquiry",
+      }),
+    }).catch(() => {}); // fail silently — mailto still works
+
+    // Also open mailto as fallback
     const subject = `Inquiry: ${vehicle.title} — Fully Sorted`;
     const body = `Name: ${name}\nEmail: ${email}\n\n${message}\n\nListing: ${typeof window !== "undefined" ? window.location.href : ""}`;
     window.open(
       `mailto:chris@fullysorted.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     );
+
     setTimeout(() => {
       setSent(true);
       setSending(false);
