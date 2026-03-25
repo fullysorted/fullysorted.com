@@ -9,13 +9,19 @@ export function FeaturedListings() {
   const featured = sampleVehicles.filter((v) => v.featured);
 
   return (
-    <section className="py-14 sm:py-20">
+    <section className="relative py-14 sm:py-20" style={{ background: "#faf9f7" }}>
+      {/* Subtle top transition from dark services section */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: "linear-gradient(to right, transparent, rgba(232,114,42,0.18) 40%, rgba(106,176,76,0.18) 60%, transparent)" }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex items-end justify-between mb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-1 h-5 rounded-full" style={{ background: '#E8722A' }} />
+              <div className="w-8 h-px" style={{ background: '#E8722A' }} />
               <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#E8722A' }}>Hand-picked</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground">

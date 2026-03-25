@@ -1,157 +1,327 @@
 "use client";
 
-import { Search } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { Search, MapPin, Gauge, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { sampleVehicles } from "@/lib/sample-data";
+import { formatPrice, formatMileage } from "@/lib/utils";
+
+const showcaseVehicles = sampleVehicles.filter((v) => v.featured).slice(0, 6);
+
+const slideVariants = {
+  enter: (d: number) => ({ x: d > 0 ? 56 : -56, opacity: 0, scale: 0.97 }),
+  center: { x: 0, opacity: 1, scale: 1 },
+  exit: (d: number) => ({ x: d > 0 ? -56 : 56, opacity: 0, scale: 0.97 }),
+};
+
+function ListingShowcase() {
+  const [index, setIndex] = useState(0);
+  const [dir, setDir] = useState(1);
+  const [paused, setPaused] = useState(false);
+
+  const go = useCallback((next: number, d: number) => {
+    setDir(d);
+    setIndex((next + showcaseVehicles.length) % showcaseVehicles.length);
+  }, []);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => go(index + 1, 1), 4200);
+    return () => clearInterval(id);
+  }, [index, paused, go]);
+
+  const v = showcaseVehicles[index];
+  if (!v) return null;
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+          Live Listings
+        </span>
+        <span className="text-xs ml-auto" style={{ color: "rgba(255,255,255,0.2)" }}>
+          {index + 1} / {showcaseVehicles.length}
+        </span>
+      </div>
+
+      <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}>
+        {/* Photo */}
+        <div className="relative h-52 sm:h-60 overflow-hidden">
+          <AnimatePresence mode="wait" custom={dir}>
+            <motion.div
+              key={v.id}
+              custom={dir}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="absolute inset-0"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={v.imageUrl} alt={v.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%)" }} />
+              <div
+                className="absolute top-3 right-3 px-3 py-1.5 rounded-lg text-sm font-bold text-white shadow-lg"
+                style={{ background: "#E8722A" }}
+              >
+                {formatPrice(v.price)}
+              </div>
+              {v.sortedPrice && (
+                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-xs font-bold" style={{ background: "#6ab04c", color: "#fff" }}>
+                  ✓ Sorted Price
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Details */}
+        <div className="p-4 sm:p-5">
+          <AnimatePresence mode="wait" custom={dir}>
+            <motion.div
+              key={v.id + "-info"}
+              custom={dir}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.04 }}
+            >
+              <h3 className="font-bold text-white text-lg leading-snug">{v.title}</h3>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2" style={{ color: "rgba(255,255,255,0.42)" }}>
+                <span className="flex items-center gap-1 text-xs"><Gauge className="w-3 h-3" />{formatMileage(v.mileage)}</span>
+                <span className="text-xs">{v.transmission}</span>
+                <span className="flex items-center gap-1 text-xs"><MapPin className="w-3 h-3" />{v.location}</span>
+              </div>
+              <p className="text-xs mt-3 leading-relaxed line-clamp-2 italic" style={{ color: "rgba(255,255,255,0.3)" }}>
+                &ldquo;{v.chrisTake}&rdquo;
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex items-center justify-between mt-4 pt-3.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+            <Link
+              href={`/listings/${v.slug}`}
+              className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors"
+              style={{ color: "rgba(255,255,255,0.6)" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#E8722A")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
+            >
+              View listing <ArrowRight className="w-3 h-3" />
+            </Link>
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => go(index - 1, -1)}
+                className="w-7 h-7 rounded-full flex items-center justify-center transition-colors"
+                style={{ border: "1px solid rgba(255,255,255,0.15)" }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+              >
+                <ChevronLeft className="w-4 h-4 text-white/50" />
+              </button>
+              <button
+                onClick={() => go(index + 1, 1)}
+                className="w-7 h-7 rounded-full flex items-center justify-center transition-colors"
+                style={{ border: "1px solid rgba(255,255,255,0.15)" }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+              >
+                <ChevronRight className="w-4 h-4 text-white/50" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Progress dots */}
+      <div className="flex items-center justify-center gap-1.5 mt-3">
+        {showcaseVehicles.map((_, i) => (
+          <button key={i} onClick={() => go(i, i > index ? 1 : -1)}>
+            <span
+              className="block rounded-full transition-all duration-300"
+              style={{
+                width: i === index ? "18px" : "5px",
+                height: "5px",
+                background: i === index ? "#E8722A" : "rgba(255,255,255,0.2)",
+              }}
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden" style={{ background: '#111008' }}>
+    <section className="relative overflow-hidden" style={{ background: "#111008" }}>
+      {/* Texture */}
+      <div className="absolute inset-0 speed-lines opacity-40" />
 
-      {/* Speed lines texture */}
-      <div className="absolute inset-0 speed-lines" />
+      {/* Glow left */}
+      <div className="absolute -top-32 -left-32 w-[700px] h-[700px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(232,114,42,0.1) 0%, transparent 65%)" }} />
+      {/* Glow right */}
+      <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(106,176,76,0.07) 0%, transparent 65%)" }} />
 
-      {/* Bold diagonal orange accent stripe */}
-      <div
-        className="absolute top-0 right-0 w-[55%] h-full opacity-[0.07]"
-        style={{
-          background: 'linear-gradient(135deg, transparent 30%, #E8722A 30%, #E8722A 55%, transparent 55%)',
-        }}
-      />
+      {/* Top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+        style={{ background: "linear-gradient(to right, transparent 0%, #E8722A 35%, #6ab04c 65%, transparent 100%)" }} />
 
-      {/* Green accent stripe — thinner, offset */}
-      <div
-        className="absolute top-0 right-0 w-[55%] h-full opacity-[0.05]"
-        style={{
-          background: 'linear-gradient(135deg, transparent 55%, #6ab04c 55%, #6ab04c 60%, transparent 60%)',
-        }}
-      />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-      {/* Checkered flag corner — top right */}
-      <div
-        className="absolute top-0 right-0 w-40 h-40 opacity-[0.06]"
-        style={{
-          backgroundImage: 'repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%)',
-          backgroundSize: '20px 20px',
-          maskImage: 'radial-gradient(circle at top right, black 40%, transparent 75%)',
-          WebkitMaskImage: 'radial-gradient(circle at top right, black 40%, transparent 75%)',
-        }}
-      />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-28">
-        <div className="max-w-3xl">
-
-          {/* Eyebrow label */}
-          <motion.div
-            initial={{ opacity: 0, x: -12 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 mb-5"
-          >
-            <div className="flex gap-1">
-              <span className="w-3 h-3 rounded-sm" style={{ background: '#E8722A' }} />
-              <span className="w-3 h-3 rounded-sm" style={{ background: '#6ab04c' }} />
-              <span className="w-3 h-3 rounded-sm" style={{ background: '#29ABE2' }} />
-            </div>
-            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#E8722A' }}>
-              Collector Car Marketplace
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight"
-          >
-            Where car people{" "}
-            <span style={{ color: '#6ab04c' }}>help car people.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-white/60 mt-6 max-w-2xl leading-relaxed"
-          >
-            Real market data. Trusted experts. Vetted services. Find, buy, and care for
-            collector cars — no dealers, no commissions, no BS.
-          </motion.p>
-
-          {/* Search Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-8 sm:mt-10"
-          >
-            <form className="relative max-w-xl">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder='Try "1967 Mustang" or "Porsche under $60k"'
-                className="w-full h-14 pl-12 pr-36 bg-white rounded-xl text-gray-900 placeholder:text-gray-400 text-base focus:outline-none focus:ring-2 shadow-xl"
-                style={{ '--tw-ring-color': '#E8722A66' } as any}
-              />
-              <button
-                type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2.5 text-white text-sm font-bold rounded-lg transition-colors"
-                style={{ background: '#E8722A' }}
-                onMouseEnter={e => (e.currentTarget.style.background = '#C85E1E')}
-                onMouseLeave={e => (e.currentTarget.style.background = '#E8722A')}
-              >
-                Search
-              </button>
-            </form>
-
-            {/* Category pills */}
-            <div className="flex flex-wrap gap-2 mt-5">
-              {["Muscle", "European", "JDM", "Vintage", "Modern Classic", "Barn Finds"].map((cat) => (
-                <a
-                  key={cat}
-                  href={`/browse?category=${cat.toLowerCase().replace(" ", "-")}`}
-                  className="px-3.5 py-1.5 text-xs font-semibold border rounded-full transition-all"
-                  style={{
-                    color: 'rgba(255,255,255,0.55)',
-                    borderColor: 'rgba(255,255,255,0.15)',
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.color = '#fff';
-                    (e.currentTarget as HTMLElement).style.borderColor = '#E8722A';
-                    (e.currentTarget as HTMLElement).style.background = 'rgba(232,114,42,0.1)';
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)';
-                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.15)';
-                    (e.currentTarget as HTMLElement).style.background = 'transparent';
-                  }}
-                >
-                  {cat}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Stats row */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex gap-8 mt-10 pt-10 border-t border-white/10"
-          >
-            {[
-              { value: "$3.99", label: "Flat listing fee" },
-              { value: "0%", label: "Commission" },
-              { value: "25yr", label: "Market expertise" },
-            ].map(stat => (
-              <div key={stat.label}>
-                <div className="text-2xl font-bold text-white">{stat.value}</div>
-                <div className="text-xs text-white/40 mt-0.5 uppercase tracking-wide">{stat.label}</div>
+          {/* LEFT — Search + Headline */}
+          <div>
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, x: -14 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.45 }}
+              className="inline-flex items-center gap-2.5 mb-6 px-3.5 py-2 rounded-full"
+              style={{ border: "1px solid rgba(232,114,42,0.28)", background: "rgba(232,114,42,0.07)" }}
+            >
+              <div className="flex gap-1">
+                {["#E8722A", "#6ab04c", "#29ABE2"].map((c) => (
+                  <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
+                ))}
               </div>
-            ))}
-          </motion.div>
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#E8722A" }}>
+                Collector Car Services Hub &amp; Marketplace
+              </span>
+            </motion.div>
 
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-[2.6rem] sm:text-5xl lg:text-[3.2rem] font-bold text-white leading-[1.08] tracking-tight"
+            >
+              Built by{" "}
+              <span className="relative" style={{ color: "#E8722A" }}>
+                enthusiasts,
+                <svg className="absolute -bottom-1 left-0 w-full overflow-visible" viewBox="0 0 200 6" fill="none" preserveAspectRatio="none" style={{ height: "6px" }}>
+                  <path d="M0 5 Q25 1 50 5 Q75 9 100 5 Q125 1 150 5 Q175 9 200 5" stroke="#E8722A" strokeWidth="1.5" strokeOpacity="0.45" fill="none" />
+                </svg>
+              </span>
+              <br />
+              for{" "}
+              <span style={{ color: "#6ab04c" }}>enthusiasts.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-base sm:text-lg mt-5 max-w-lg leading-relaxed"
+              style={{ color: "rgba(255,255,255,0.48)" }}
+            >
+              The complete platform for collector car buyers, sellers, and owners —
+              real market data, vetted services, no dealers, no commissions.
+            </motion.p>
+
+            {/* Search bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-8"
+            >
+              <form action="/browse" className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none" style={{ color: "#9ca3af" }} />
+                <input
+                  type="text"
+                  name="q"
+                  placeholder='Try "1967 Mustang" or "air-cooled Porsche under $80k"'
+                  className="w-full h-[54px] pl-12 pr-32 rounded-xl text-sm font-medium focus:outline-none shadow-2xl"
+                  style={{ background: "rgba(255,255,255,0.97)", color: "#111827" }}
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5 text-white text-sm font-bold rounded-lg transition-all"
+                  style={{ background: "#E8722A" }}
+                  onMouseEnter={e => (e.currentTarget.style.background = "#C85E1E")}
+                  onMouseLeave={e => (e.currentTarget.style.background = "#E8722A")}
+                >
+                  Search
+                </button>
+              </form>
+
+              <div className="flex flex-wrap gap-2 mt-4">
+                {["Muscle", "European", "JDM", "Vintage", "Under $50k"].map((cat) => (
+                  <Link
+                    key={cat}
+                    href={`/browse?category=${encodeURIComponent(cat)}`}
+                    className="px-3.5 py-1 text-xs font-semibold rounded-full border transition-all"
+                    style={{ color: "rgba(255,255,255,0.4)", borderColor: "rgba(255,255,255,0.12)", background: "transparent" }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLElement).style.color = "#fff";
+                      (e.currentTarget as HTMLElement).style.borderColor = "#E8722A";
+                      (e.currentTarget as HTMLElement).style.background = "rgba(232,114,42,0.12)";
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.4)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)";
+                      (e.currentTarget as HTMLElement).style.background = "transparent";
+                    }}
+                  >
+                    {cat}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex gap-8 mt-10 pt-8"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              {[
+                { value: "$3.99", label: "Flat listing fee" },
+                { value: "0%", label: "Commission" },
+                { value: "25yr", label: "Market expertise" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="text-2xl font-bold text-white tracking-tight">{s.value}</div>
+                  <div className="text-[11px] mt-0.5 uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* RIGHT — Rotating listing */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.22 }}
+            className="relative"
+          >
+            <div
+              className="absolute -inset-8 rounded-3xl pointer-events-none"
+              style={{ background: "radial-gradient(ellipse, rgba(232,114,42,0.06) 0%, transparent 70%)" }}
+            />
+            <ListingShowcase />
+          </motion.div>
         </div>
       </div>
+
+      {/* Bottom feather */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, transparent, rgba(17,16,8,0.5))" }} />
     </section>
   );
 }
