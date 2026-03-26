@@ -76,12 +76,7 @@ export default async function ArticlePage({ params }: Props) {
           {/* Breadcrumb */}
           <Link
             href="/research"
-            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 transition-colors"
-            style={{ color: "rgba(255,255,255,0.4)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.color = "rgba(255,255,255,0.4)")
-            }
+            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 transition-colors text-white/40 hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Market Research
