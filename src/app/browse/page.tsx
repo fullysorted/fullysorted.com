@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BrowseClient } from "./BrowseClient";
-import { sampleVehicles, type Vehicle } from "@/lib/sample-data";
+import type { Vehicle } from "@/lib/sample-data";
 
 export const metadata: Metadata = {
   title: "Browse Collector Cars | Fully Sorted",
@@ -73,15 +73,9 @@ async function getRealListings(): Promise<Vehicle[]> {
 export default async function BrowsePage() {
   const realListings = await getRealListings();
 
-  // Real listings first, sample cars fill the rest until you have enough real ones
-  const allListings = [
-    ...realListings,
-    ...sampleVehicles.filter(v => v.status === 'active'),
-  ];
-
   return (
     <BrowseClient
-      initialListings={allListings}
+      initialListings={realListings}
       hasRealListings={realListings.length > 0}
     />
   );

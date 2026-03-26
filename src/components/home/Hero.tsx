@@ -4,10 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import { Search, MapPin, Gauge, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { sampleVehicles } from "@/lib/sample-data";
+import type { Vehicle } from "@/lib/sample-data";
 import { formatPrice, formatMileage } from "@/lib/utils";
-
-const showcaseVehicles = sampleVehicles.filter((v) => v.featured).slice(0, 6);
 
 const slideVariants = {
   enter: (d: number) => ({ x: d > 0 ? 56 : -56, opacity: 0, scale: 0.97 }),
@@ -15,23 +13,62 @@ const slideVariants = {
   exit: (d: number) => ({ x: d > 0 ? -56 : 56, opacity: 0, scale: 0.97 }),
 };
 
-function ListingShowcase() {
+function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
   const [paused, setPaused] = useState(false);
 
-  const go = useCallback((next: number, d: number) => {
-    setDir(d);
-    setIndex((next + showcaseVehicles.length) % showcaseVehicles.length);
-  }, []);
+  const go = useCallback(
+    (next: number, d: number) => {
+      setDir(d);
+      setIndex((next + vehicles.length) % vehicles.length);
+    },
+    [vehicles.length]
+  );
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || vehicles.length <= 1) return;
     const id = setInterval(() => go(index + 1, 1), 4200);
     return () => clearInterval(id);
-  }, [index, paused, go]);
+  }, [index, paused, go, vehicles.length]);
 
-  const v = showcaseVehicles[index];
+  // Empty state
+  if (vehicles.length === 0) {
+    return (
+      <div
+        className="rounded-2xl border overflow-hidden"
+        style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}
+      >
+        <div
+          className="h-52 sm:h-60 flex flex-col items-center justify-center gap-3"
+          style={{ background: "rgba(255,255,255,0.03)" }}
+        >
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background: "rgba(232,114,42,0.12)" }}>
+            <svg viewBox="0 0 48 48" className="w-9 h-9" fill="none">
+              <path d="M8 30l4-12h24l4 12" stroke="#E8722A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              <rect x="6" y="30" width="36" height="10" rx="3" stroke="#E8722A" strokeWidth="2.5" />
+              <circle cx="14" cy="42" r="3" fill="#E8722A" />
+              <circle cx="34" cy="42" r="3" fill="#E8722A" />
+            </svg>
+          </div>
+          <p className="text-white/30 text-sm font-medium">Listings coming soon</p>
+        </div>
+        <div className="p-4 sm:p-5">
+          <p className="font-bold text-white text-base">Be the first to list</p>
+          <p className="text-white/40 text-xs mt-1">$3.99 flat fee · No commissions · Real buyers</p>
+          <Link
+            href="/sell"
+            className="inline-flex items-center gap-1.5 mt-4 text-xs font-bold transition-colors"
+            style={{ color: "#E8722A" }}
+          >
+            List your car <ArrowRight className="w-3 h-3" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const v = vehicles[index];
   if (!v) return null;
 
   return (
@@ -46,7 +83,7 @@ function ListingShowcase() {
           Live Listings
         </span>
         <span className="text-xs ml-auto" style={{ color: "rgba(255,255,255,0.2)" }}>
-          {index + 1} / {showcaseVehicles.length}
+          {index + 1} / {vehicles.length}
         </span>
       </div>
 
@@ -100,9 +137,11 @@ function ListingShowcase() {
                 <span className="text-xs">{v.transmission}</span>
                 <span className="flex items-center gap-1 text-xs"><MapPin className="w-3 h-3" />{v.location}</span>
               </div>
-              <p className="text-xs mt-3 leading-relaxed line-clamp-2 italic" style={{ color: "rgba(255,255,255,0.3)" }}>
-                &ldquo;{v.chrisTake}&rdquo;
-              </p>
+              {v.chrisTake && (
+                <p className="text-xs mt-3 leading-relaxed line-clamp-2 italic" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  &ldquo;{v.chrisTake}&rdquo;
+                </p>
+              )}
             </motion.div>
           </AnimatePresence>
 
@@ -111,70 +150,90 @@ function ListingShowcase() {
               href={`/listings/${v.slug}`}
               className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors"
               style={{ color: "rgba(255,255,255,0.6)" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#E8722A")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#E8722A")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
             >
               View listing <ArrowRight className="w-3 h-3" />
             </Link>
-            <div className="flex items-center gap-1.5">
-              <button
-                onClick={() => go(index - 1, -1)}
-                className="w-7 h-7 rounded-full flex items-center justify-center transition-colors"
-                style={{ border: "1px solid rgba(255,255,255,0.15)" }}
-                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
-                onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
-              >
-                <ChevronLeft className="w-4 h-4 text-white/50" />
-              </button>
-              <button
-                onClick={() => go(index + 1, 1)}
-                className="w-7 h-7 rounded-full flex items-center justify-center transition-colors"
-                style={{ border: "1px solid rgba(255,255,255,0.15)" }}
-                onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
-                onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
-              >
-                <ChevronRight className="w-4 h-4 text-white/50" />
-              </button>
-            </div>
+            {vehicles.length > 1 && (
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => go(index - 1, -1)}
+                  className="w-7 h-7 rounded-full flex items-center justify-center transition-colors"
+                  style={{ border: "1px solid rgba(255,255,255,0.15)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  <ChevronLeft className="w-4 h-4 text-white/50" />
+                </button>
+                <button
+                  onClick={() => go(index + 1, 1)}
+                  className="w-7 h-7 rounded-full flex items-center justify-center transition-colors"
+                  style={{ border: "1px solid rgba(255,255,255,0.15)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       {/* Progress dots */}
-      <div className="flex items-center justify-center gap-1.5 mt-3">
-        {showcaseVehicles.map((_, i) => (
-          <button key={i} onClick={() => go(i, i > index ? 1 : -1)}>
-            <span
-              className="block rounded-full transition-all duration-300"
-              style={{
-                width: i === index ? "18px" : "5px",
-                height: "5px",
-                background: i === index ? "#E8722A" : "rgba(255,255,255,0.2)",
-              }}
-            />
-          </button>
-        ))}
-      </div>
+      {vehicles.length > 1 && (
+        <div className="flex items-center justify-center gap-1.5 mt-3">
+          {vehicles.map((_, i) => (
+            <button key={i} onClick={() => go(i, i > index ? 1 : -1)}>
+              <span
+                className="block rounded-full transition-all duration-300"
+                style={{
+                  width: i === index ? "18px" : "5px",
+                  height: "5px",
+                  background: i === index ? "#E8722A" : "rgba(255,255,255,0.2)",
+                }}
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-export function Hero() {
+interface HeroProps {
+  listings?: Vehicle[];
+}
+
+export function Hero({ listings = [] }: HeroProps) {
+  // Show up to 6 in the carousel; prefer featured ones first
+  const showcaseVehicles = [
+    ...listings.filter((v) => v.featured),
+    ...listings.filter((v) => !v.featured),
+  ].slice(0, 6);
+
   return (
     <section className="relative overflow-hidden" style={{ background: "#111008" }}>
       {/* Texture */}
       <div className="absolute inset-0 speed-lines opacity-40" />
 
       {/* Glow left */}
-      <div className="absolute -top-32 -left-32 w-[700px] h-[700px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(232,114,42,0.1) 0%, transparent 65%)" }} />
+      <div
+        className="absolute -top-32 -left-32 w-[700px] h-[700px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(232,114,42,0.1) 0%, transparent 65%)" }}
+      />
       {/* Glow right */}
-      <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(106,176,76,0.07) 0%, transparent 65%)" }} />
+      <div
+        className="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(106,176,76,0.07) 0%, transparent 65%)" }}
+      />
 
-      {/* Top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-px pointer-events-none"
-        style={{ background: "linear-gradient(to right, transparent 0%, #E8722A 35%, #6ab04c 65%, transparent 100%)" }} />
+      {/* Top accent line — hidden here since Header has one on homepage */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+        style={{ background: "linear-gradient(to right, transparent 0%, #E8722A 35%, #6ab04c 65%, transparent 100%)" }}
+      />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -209,8 +268,20 @@ export function Hero() {
               Built by{" "}
               <span className="relative" style={{ color: "#E8722A" }}>
                 enthusiasts,
-                <svg className="absolute -bottom-1 left-0 w-full overflow-visible" viewBox="0 0 200 6" fill="none" preserveAspectRatio="none" style={{ height: "6px" }}>
-                  <path d="M0 5 Q25 1 50 5 Q75 9 100 5 Q125 1 150 5 Q175 9 200 5" stroke="#E8722A" strokeWidth="1.5" strokeOpacity="0.45" fill="none" />
+                <svg
+                  className="absolute -bottom-1 left-0 w-full overflow-visible"
+                  viewBox="0 0 200 6"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  style={{ height: "6px" }}
+                >
+                  <path
+                    d="M0 5 Q25 1 50 5 Q75 9 100 5 Q125 1 150 5 Q175 9 200 5"
+                    stroke="#E8722A"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.45"
+                    fill="none"
+                  />
                 </svg>
               </span>
               <br />
@@ -237,7 +308,10 @@ export function Hero() {
               className="mt-8"
             >
               <form action="/browse" className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none" style={{ color: "#9ca3af" }} />
+                <Search
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
+                  style={{ color: "#9ca3af" }}
+                />
                 <input
                   type="text"
                   name="q"
@@ -249,8 +323,8 @@ export function Hero() {
                   type="submit"
                   className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5 text-white text-sm font-bold rounded-lg transition-all"
                   style={{ background: "#E8722A" }}
-                  onMouseEnter={e => (e.currentTarget.style.background = "#C85E1E")}
-                  onMouseLeave={e => (e.currentTarget.style.background = "#E8722A")}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#C85E1E")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#E8722A")}
                 >
                   Search
                 </button>
@@ -262,13 +336,17 @@ export function Hero() {
                     key={cat}
                     href={`/browse?category=${encodeURIComponent(cat)}`}
                     className="px-3.5 py-1 text-xs font-semibold rounded-full border transition-all"
-                    style={{ color: "rgba(255,255,255,0.4)", borderColor: "rgba(255,255,255,0.12)", background: "transparent" }}
-                    onMouseEnter={e => {
+                    style={{
+                      color: "rgba(255,255,255,0.4)",
+                      borderColor: "rgba(255,255,255,0.12)",
+                      background: "transparent",
+                    }}
+                    onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.color = "#fff";
                       (e.currentTarget as HTMLElement).style.borderColor = "#E8722A";
                       (e.currentTarget as HTMLElement).style.background = "rgba(232,114,42,0.12)";
                     }}
-                    onMouseLeave={e => {
+                    onMouseLeave={(e) => {
                       (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.4)";
                       (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)";
                       (e.currentTarget as HTMLElement).style.background = "transparent";
@@ -295,7 +373,10 @@ export function Hero() {
               ].map((s) => (
                 <div key={s.label}>
                   <div className="text-2xl font-bold text-white tracking-tight">{s.value}</div>
-                  <div className="text-[11px] mt-0.5 uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <div
+                    className="text-[11px] mt-0.5 uppercase tracking-widest"
+                    style={{ color: "rgba(255,255,255,0.3)" }}
+                  >
                     {s.label}
                   </div>
                 </div>
@@ -314,14 +395,16 @@ export function Hero() {
               className="absolute -inset-8 rounded-3xl pointer-events-none"
               style={{ background: "radial-gradient(ellipse, rgba(232,114,42,0.06) 0%, transparent 70%)" }}
             />
-            <ListingShowcase />
+            <ListingShowcase vehicles={showcaseVehicles} />
           </motion.div>
         </div>
       </div>
 
       {/* Bottom feather */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(17,16,8,0.5))" }} />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, transparent, rgba(17,16,8,0.5))" }}
+      />
     </section>
   );
 }

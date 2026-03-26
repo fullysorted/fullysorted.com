@@ -12,7 +12,6 @@ const footerLinks = {
     { href: "/value-guide", label: "Value Guide" },
     { href: "/research", label: "Market Research" },
     { href: "/services", label: "Services Directory" },
-    { href: "/events", label: "Events" },
   ],
   Company: [
     { href: "/about", label: "About Chris" },
@@ -24,32 +23,53 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="hidden md:block bg-foreground text-white/80 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer style={{ background: "#0f0e08" }}>
+      {/* Top accent line */}
+      <div
+        className="h-px"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, #E8722A 30%, #6ab04c 70%, transparent)",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand Column */}
-          <div className="md:col-span-1">
+          <div className="col-span-2 sm:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{ background: "#E8722A" }}
+              >
                 <span className="text-white font-bold text-sm">FS</span>
               </div>
-              <span className="text-lg font-bold text-white">Fully Sorted</span>
+              <span className="text-base font-bold text-white">Fully Sorted</span>
             </div>
-            <p className="text-sm text-white/60 leading-relaxed mb-4">
-              The first automotive services hub designed specifically for collector
-              cars and the passionate owners who cherish them.
+            <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.38)" }}>
+              The collector car services hub and marketplace built by enthusiasts,
+              for enthusiasts.
             </p>
-            <p className="text-sm text-white/60">
+            <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.22)" }}>
               Built by enthusiasts, for enthusiasts.
             </p>
-            <p className="text-sm text-white/40 mt-4">San Diego, CA</p>
-            <p className="text-sm text-white/40">(619) 823-2132</p>
+            <div className="mt-4 space-y-1">
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.22)" }}>
+                San Diego, CA
+              </p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.22)" }}>
+                (619) 823-2132
+              </p>
+            </div>
           </div>
 
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+              <h3
+                className="text-xs font-bold uppercase tracking-widest mb-4"
+                style={{ color: "#E8722A" }}
+              >
                 {title}
               </h3>
               <ul className="space-y-2.5">
@@ -57,7 +77,8 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/60 hover:text-white transition-colors"
+                      className="text-sm transition-colors hover:text-white"
+                      style={{ color: "rgba(255,255,255,0.38)" }}
                     >
                       {link.label}
                     </Link>
@@ -69,8 +90,11 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-white/40">
+        <div
+          className="mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
+        >
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.22)" }}>
             &copy; {new Date().getFullYear()} Fully Sorted. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
@@ -78,7 +102,8 @@ export function Footer() {
               href="https://www.instagram.com/fully.sorted/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-white/40 hover:text-white transition-colors"
+              className="text-xs transition-colors hover:text-white"
+              style={{ color: "rgba(255,255,255,0.3)" }}
             >
               Instagram
             </a>
@@ -86,7 +111,8 @@ export function Footer() {
               href="https://www.facebook.com/fullysorted/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-white/40 hover:text-white transition-colors"
+              className="text-xs transition-colors hover:text-white"
+              style={{ color: "rgba(255,255,255,0.3)" }}
             >
               Facebook
             </a>
