@@ -407,18 +407,28 @@ export default function ServicesDirectory() {
             </span>
             <div className="w-6 h-px" style={{ background: '#E8722A' }} />
           </div>
-          <h3 className="text-2xl font-bold text-white mb-3">Know a great specialist?</h3>
+          <h3 className="text-2xl font-bold text-white mb-3">Are you a specialist? Get listed.</h3>
           <p className="max-w-xl mx-auto mb-6 leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
-            If you work with someone amazing — a mechanic, a detailer, a transporter — we want to
-            know about them. Help us build the best directory in the collector car world.
+            If you do exceptional work with collector cars — detailing, mechanical, transport,
+            inspection, restoration — apply to join the vetted directory and get in front of
+            serious collectors who care about who touches their car.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold transition-opacity hover:opacity-90"
-            style={{ background: '#E8722A' }}
-          >
-            Recommend a Provider
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/services/apply"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold transition-opacity hover:opacity-90"
+              style={{ background: '#E8722A' }}
+            >
+              Apply to Be Listed
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-opacity hover:opacity-80"
+              style={{ color: 'rgba(255,255,255,0.6)', border: '1.5px solid rgba(255,255,255,0.15)' }}
+            >
+              Recommend a Provider
+            </Link>
+          </div>
         </div>
       </div>
     </div>
