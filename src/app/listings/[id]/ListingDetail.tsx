@@ -376,20 +376,16 @@ export function ListingDetail({ vehicle }: Props) {
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
-      {/* Dark top bar with breadcrumb */}
-      <div className="relative" style={{ background: "#0f0e08" }}>
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent, #E8722A 30%, #E8722A 70%, transparent)" }}
-        />
+      {/* Light top bar with breadcrumb */}
+      <div className="relative" style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <Link
               href="/browse"
               className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
-              style={{ color: "rgba(255,255,255,0.45)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
+              style={{ color: "#6b6b5e" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#1a1a18")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#6b6b5e")}
             >
               <ArrowLeft className="w-4 h-4" />
               Browse
@@ -398,14 +394,14 @@ export function ListingDetail({ vehicle }: Props) {
               <button
                 onClick={handleShare}
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
-                style={{ color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.1)" }}
+                style={{ color: "#6b6b5e", border: "1px solid rgba(0,0,0,0.12)" }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#fff";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.25)";
+                  (e.currentTarget as HTMLElement).style.color = "#1a1a18";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#E8722A";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
+                  (e.currentTarget as HTMLElement).style.color = "#6b6b5e";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.12)";
                 }}
               >
                 <Share2 className="w-3.5 h-3.5" />
@@ -413,14 +409,14 @@ export function ListingDetail({ vehicle }: Props) {
               </button>
               <button
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
-                style={{ color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.1)" }}
+                style={{ color: "#6b6b5e", border: "1px solid rgba(0,0,0,0.12)" }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#fff";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.25)";
+                  (e.currentTarget as HTMLElement).style.color = "#1a1a18";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#E8722A";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
+                  (e.currentTarget as HTMLElement).style.color = "#6b6b5e";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.12)";
                 }}
               >
                 <Heart className="w-3.5 h-3.5" />

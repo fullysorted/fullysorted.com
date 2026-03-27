@@ -37,29 +37,29 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen" style={{ background: "#faf9f7" }}>
 
-      {/* Dark header */}
-      <section style={{ background: "#0f0e08" }} className="text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
-          <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "#E8722A" }}>
+      {/* Light header */}
+      <section style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#E8722A" }}>
             Our Mission
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-6" style={{ color: "#1a1a18" }}>
             Make collector car ownership easier.
             <br />
             <span style={{ color: "#E8722A" }}>Keep the people who make it possible thriving.</span>
           </h1>
-          <p className="text-lg max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-lg max-w-2xl leading-relaxed" style={{ color: "#6b6b5e" }}>
             We're building the resource that connects serious collectors with the
             specialists, data, and tools they need — and gives the skilled
             tradespeople in this world a platform to grow their business.
           </p>
 
           {/* Stats */}
-          <div className="flex flex-wrap gap-10 mt-10 pt-8" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+          <div className="flex flex-wrap gap-10 mt-10 pt-8" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
             {STATS.map((s) => (
               <div key={s.label}>
-                <div className="text-2xl font-black text-white">{s.value}</div>
-                <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+                <div className="text-2xl font-black" style={{ color: "#1a1a18" }}>{s.value}</div>
+                <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: "#9a9a8a" }}>
                   {s.label}
                 </div>
               </div>

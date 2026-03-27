@@ -30,16 +30,16 @@ export default function ApplyPage() {
   return (
     <main className="min-h-screen" style={{ background: "#faf9f7" }}>
 
-      {/* Dark header */}
-      <section style={{ background: "#0f0e08" }} className="text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
-          <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "#E8722A" }}>
+      {/* Light header */}
+      <section style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#E8722A" }}>
             Services Directory
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4">
+          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4" style={{ color: "#1a1a18" }}>
             Apply to be listed.
           </h1>
-          <p className="text-lg max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-lg max-w-2xl leading-relaxed" style={{ color: "#6b6b5e" }}>
             We're building the go-to directory of vetted specialists for Southern
             California collector car owners. If you do exceptional work and want
             to be found by the people who will appreciate it, this is for you.
@@ -56,8 +56,8 @@ export default function ApplyPage() {
                   <Icon className="w-4 h-4" style={{ color: "#E8722A" }} />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-white">{title}</p>
-                  <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  <p className="text-sm font-bold" style={{ color: "#1a1a18" }}>{title}</p>
+                  <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "#6b6b5e" }}>
                     {body}
                   </p>
                 </div>

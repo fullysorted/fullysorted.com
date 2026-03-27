@@ -120,16 +120,16 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="relative py-16 sm:py-24" style={{ background: "#0f0e08" }}>
+    <section className="relative py-16 sm:py-24" style={{ background: "#faf9f7" }}>
       {/* Top border */}
       <div className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(232,114,42,0.3) 40%, rgba(106,176,76,0.3) 60%, transparent)" }} />
+        style={{ background: "linear-gradient(to right, transparent, rgba(232,114,42,0.15) 40%, rgba(106,176,76,0.15) 60%, transparent)" }} />
 
       {/* Subtle grid pattern */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.8) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
@@ -150,22 +150,24 @@ export function ServicesSection() {
                 Vetted Specialists
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold leading-tight" style={{ color: "#1a1a18" }}>
               Everything your car needs,<br />
-              <span style={{ color: "rgba(255,255,255,0.45)" }}>from people who get it.</span>
+              <span style={{ color: "#6b6b5e" }}>from people who get it.</span>
             </h2>
           </div>
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-white border transition-all shrink-0"
-            style={{ borderColor: "rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.04)" }}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold border transition-all shrink-0"
+            style={{ borderColor: "rgba(0,0,0,0.12)", background: "#ffffff", color: "#1a1a18" }}
             onMouseEnter={e => {
               (e.currentTarget as HTMLElement).style.borderColor = "#E8722A";
               (e.currentTarget as HTMLElement).style.background = "rgba(232,114,42,0.08)";
+              (e.currentTarget as HTMLElement).style.color = "#E8722A";
             }}
             onMouseLeave={e => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.15)";
-              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.12)";
+              (e.currentTarget as HTMLElement).style.background = "#ffffff";
+              (e.currentTarget as HTMLElement).style.color = "#1a1a18";
             }}
           >
             All Services <ArrowRight className="w-4 h-4" />
@@ -185,18 +187,18 @@ export function ServicesSection() {
               <Link
                 href={s.href}
                 className="group flex flex-col h-full p-5 rounded-2xl border transition-all duration-300"
-                style={{ borderColor: "rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}
+                style={{ borderColor: "rgba(0,0,0,0.08)", background: "#ffffff" }}
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = s.accent + "50";
-                  el.style.background = s.accent + "0A";
+                  el.style.borderColor = s.accent + "40";
+                  el.style.background = s.accent + "08";
                   el.style.transform = "translateY(-3px)";
-                  el.style.boxShadow = `0 20px 40px -12px ${s.accent}25`;
+                  el.style.boxShadow = `0 20px 40px -12px ${s.accent}15`;
                 }}
                 onMouseLeave={e => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(255,255,255,0.07)";
-                  el.style.background = "rgba(255,255,255,0.03)";
+                  el.style.borderColor = "rgba(0,0,0,0.08)";
+                  el.style.background = "#ffffff";
                   el.style.transform = "translateY(0)";
                   el.style.boxShadow = "none";
                 }}
@@ -210,14 +212,14 @@ export function ServicesSection() {
                 </div>
 
                 {/* Text */}
-                <h3 className="font-bold text-white text-sm leading-snug mb-2">{s.title}</h3>
-                <p className="text-xs leading-relaxed flex-1" style={{ color: "rgba(255,255,255,0.38)" }}>
+                <h3 className="font-bold text-sm leading-snug mb-2" style={{ color: "#1a1a18" }}>{s.title}</h3>
+                <p className="text-xs leading-relaxed flex-1" style={{ color: "#6b6b5e" }}>
                   {s.desc}
                 </p>
 
                 {/* Arrow */}
                 <div className="flex items-center gap-1 mt-4 text-xs font-bold transition-all duration-300"
-                  style={{ color: s.accent + "70" }}>
+                  style={{ color: s.accent }}>
                   <span>Learn more</span>
                   <ArrowRight className="w-3 h-3 translate-x-0 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -233,11 +235,11 @@ export function ServicesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl border"
-          style={{ borderColor: "rgba(232,114,42,0.2)", background: "rgba(232,114,42,0.05)" }}
+          style={{ borderColor: "rgba(232,114,42,0.15)", background: "rgba(232,114,42,0.08)" }}
         >
           <div>
-            <p className="text-sm font-bold text-white">Are you a specialist?</p>
-            <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <p className="text-sm font-bold" style={{ color: "#1a1a18" }}>Are you a specialist?</p>
+            <p className="text-xs mt-0.5" style={{ color: "#6b6b5e" }}>
               Apply to join the Fully Sorted vetted network and get in front of serious car people.
             </p>
           </div>
@@ -255,7 +257,7 @@ export function ServicesSection() {
 
       {/* Bottom border */}
       <div className="absolute bottom-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.06) 50%, transparent)" }} />
+        style={{ background: "linear-gradient(to right, transparent, rgba(0,0,0,0.06) 50%, transparent)" }} />
     </section>
   );
 }

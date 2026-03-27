@@ -37,7 +37,7 @@ function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
     return (
       <div
         className="rounded-2xl border overflow-hidden"
-        style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}
+        style={{ borderColor: "rgba(0,0,0,0.09)", background: "#fff" }}
       >
         <div
           className="h-52 sm:h-60 flex flex-col items-center justify-center gap-3"
@@ -51,11 +51,11 @@ function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
               <circle cx="34" cy="42" r="3" fill="#E8722A" />
             </svg>
           </div>
-          <p className="text-white/30 text-sm font-medium">Listings coming soon</p>
+          <p className="text-sm font-medium" style={{ color: "#9a9a8a" }}>Listings coming soon</p>
         </div>
         <div className="p-4 sm:p-5">
-          <p className="font-bold text-white text-base">Be the first to list</p>
-          <p className="text-white/40 text-xs mt-1">$3.99 flat fee · No commissions · Real buyers</p>
+          <p className="font-bold text-base" style={{ color: "#1a1a18" }}>Be the first to list</p>
+          <p className="text-xs mt-1" style={{ color: "#9a9a8a" }}>$3.99 flat fee · No commissions · Real buyers</p>
           <Link
             href="/sell"
             className="inline-flex items-center gap-1.5 mt-4 text-xs font-bold transition-colors"
@@ -79,15 +79,15 @@ function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
     >
       <div className="flex items-center gap-2 mb-3">
         <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#9a9a8a" }}>
           Live Listings
         </span>
-        <span className="text-xs ml-auto" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <span className="text-xs ml-auto" style={{ color: "#b0b0a0" }}>
           {index + 1} / {vehicles.length}
         </span>
       </div>
 
-      <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}>
+      <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "rgba(0,0,0,0.10)", background: "#ffffff" }}>
         {/* Photo */}
         <div className="relative h-52 sm:h-60 overflow-hidden">
           <AnimatePresence mode="wait" custom={dir}>
@@ -131,27 +131,25 @@ function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
               exit="exit"
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.04 }}
             >
-              <h3 className="font-bold text-white text-lg leading-snug">{v.title}</h3>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2" style={{ color: "rgba(255,255,255,0.42)" }}>
+              <h3 className="font-bold text-lg leading-snug" style={{ color: "#1a1a18" }}>{v.title}</h3>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2" style={{ color: "#9a9a8a" }}>
                 <span className="flex items-center gap-1 text-xs"><Gauge className="w-3 h-3" />{formatMileage(v.mileage)}</span>
                 <span className="text-xs">{v.transmission}</span>
                 <span className="flex items-center gap-1 text-xs"><MapPin className="w-3 h-3" />{v.location}</span>
               </div>
               {v.chrisTake && (
-                <p className="text-xs mt-3 leading-relaxed line-clamp-2 italic" style={{ color: "rgba(255,255,255,0.3)" }}>
+                <p className="text-xs mt-3 leading-relaxed line-clamp-2 italic" style={{ color: "#9a9a8a" }}>
                   &ldquo;{v.chrisTake}&rdquo;
                 </p>
               )}
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex items-center justify-between mt-4 pt-3.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+          <div className="flex items-center justify-between mt-4 pt-3.5" style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>
             <Link
               href={`/listings/${v.slug}`}
-              className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors"
-              style={{ color: "rgba(255,255,255,0.6)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#E8722A")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
+              className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors hover:opacity-70"
+              style={{ color: "#E8722A" }}
             >
               View listing <ArrowRight className="w-3 h-3" />
             </Link>
@@ -159,21 +157,17 @@ function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => go(index - 1, -1)}
-                  className="w-7 h-7 rounded-full flex items-center justify-center transition-colors"
-                  style={{ border: "1px solid rgba(255,255,255,0.15)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-stone-100"
+                  style={{ border: "1px solid rgba(0,0,0,0.12)" }}
                 >
-                  <ChevronLeft className="w-4 h-4 text-white/50" />
+                  <ChevronLeft className="w-4 h-4" style={{ color: "#9a9a8a" }} />
                 </button>
                 <button
                   onClick={() => go(index + 1, 1)}
-                  className="w-7 h-7 rounded-full flex items-center justify-center transition-colors"
-                  style={{ border: "1px solid rgba(255,255,255,0.15)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.1)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-stone-100"
+                  style={{ border: "1px solid rgba(0,0,0,0.12)" }}
                 >
-                  <ChevronRight className="w-4 h-4 text-white/50" />
+                  <ChevronRight className="w-4 h-4" style={{ color: "#9a9a8a" }} />
                 </button>
               </div>
             )}
@@ -191,7 +185,7 @@ function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
                 style={{
                   width: i === index ? "18px" : "5px",
                   height: "5px",
-                  background: i === index ? "#E8722A" : "rgba(255,255,255,0.2)",
+                  background: i === index ? "#E8722A" : "rgba(0,0,0,0.15)",
                 }}
               />
             </button>
@@ -214,9 +208,9 @@ export function Hero({ listings = [] }: HeroProps) {
   ].slice(0, 6);
 
   return (
-    <section className="relative overflow-hidden" style={{ background: "#111008" }}>
+    <section className="relative overflow-hidden" style={{ background: "#ffffff" }}>
       {/* Texture */}
-      <div className="absolute inset-0 speed-lines opacity-40" />
+      <div className="absolute inset-0 speed-lines opacity-4" />
 
       {/* Glow left */}
       <div
@@ -263,7 +257,8 @@ export function Hero({ listings = [] }: HeroProps) {
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-[2.6rem] sm:text-5xl lg:text-[3.2rem] font-bold text-white leading-[1.08] tracking-tight"
+              className="text-[2.6rem] sm:text-5xl lg:text-[3.2rem] font-bold leading-[1.08] tracking-tight"
+              style={{ color: "#1a1a18" }}
             >
               Built by{" "}
               <span className="relative" style={{ color: "#E8722A" }}>
@@ -294,7 +289,7 @@ export function Hero({ listings = [] }: HeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-base sm:text-lg mt-5 max-w-lg leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.48)" }}
+              style={{ color: "#6b6b5e" }}
             >
               The complete platform for collector car buyers, sellers, and owners —
               real market data, vetted services, no middlemen, no commissions.
@@ -317,7 +312,7 @@ export function Hero({ listings = [] }: HeroProps) {
                   name="q"
                   placeholder='Try "1967 Mustang" or "air-cooled Porsche under $80k"'
                   className="w-full h-[54px] pl-12 pr-32 rounded-xl text-sm font-medium focus:outline-none shadow-2xl"
-                  style={{ background: "rgba(255,255,255,0.97)", color: "#111827" }}
+                  style={{ background: "#ffffff", color: "#1a1a18", border: "1px solid rgba(0,0,0,0.12)" }}
                 />
                 <button
                   type="submit"
@@ -337,18 +332,18 @@ export function Hero({ listings = [] }: HeroProps) {
                     href={`/browse?category=${encodeURIComponent(cat)}`}
                     className="px-3.5 py-1 text-xs font-semibold rounded-full border transition-all"
                     style={{
-                      color: "rgba(255,255,255,0.4)",
-                      borderColor: "rgba(255,255,255,0.12)",
+                      color: "#6b6b5e",
+                      borderColor: "rgba(0,0,0,0.12)",
                       background: "transparent",
                     }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.color = "#fff";
                       (e.currentTarget as HTMLElement).style.borderColor = "#E8722A";
-                      (e.currentTarget as HTMLElement).style.background = "rgba(232,114,42,0.12)";
+                      (e.currentTarget as HTMLElement).style.background = "#E8722A";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.4)";
-                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)";
+                      (e.currentTarget as HTMLElement).style.color = "#6b6b5e";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.12)";
                       (e.currentTarget as HTMLElement).style.background = "transparent";
                     }}
                   >
@@ -364,7 +359,7 @@ export function Hero({ listings = [] }: HeroProps) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex gap-8 mt-10 pt-8"
-              style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+              style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
             >
               {[
                 { value: "$3.99", label: "Flat listing fee" },
@@ -372,10 +367,10 @@ export function Hero({ listings = [] }: HeroProps) {
                 { value: "25 years", label: "Market expertise" },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="text-2xl font-bold text-white tracking-tight">{s.value}</div>
+                  <div className="text-2xl font-bold tracking-tight" style={{ color: "#1a1a18" }}>{s.value}</div>
                   <div
                     className="text-[11px] mt-0.5 uppercase tracking-widest"
-                    style={{ color: "rgba(255,255,255,0.3)" }}
+                    style={{ color: "#9a9a8a" }}
                   >
                     {s.label}
                   </div>
@@ -402,8 +397,8 @@ export function Hero({ listings = [] }: HeroProps) {
 
       {/* Bottom feather */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(17,16,8,0.5))" }}
+        className="absolute bottom-0 left-0 right-0 h-12 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.04))" }}
       />
     </section>
   );

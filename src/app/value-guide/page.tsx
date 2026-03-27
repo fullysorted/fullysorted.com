@@ -18,23 +18,23 @@ export default function ValueGuidePage() {
   return (
     <main className="min-h-screen" style={{ background: "#faf9f7" }}>
 
-      {/* Dark header banner */}
-      <section style={{ background: "#0f0e08" }} className="text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+      {/* Light header banner */}
+      <section style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <p
-            className="text-xs font-bold uppercase tracking-widest mb-4"
+            className="text-xs font-bold uppercase tracking-widest mb-3"
             style={{ color: "#E8722A" }}
           >
             Value Guide
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4">
+          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4" style={{ color: "#1a1a18" }}>
             What is your
             <br />
             <span style={{ color: "#E8722A" }}>collector car worth?</span>
           </h1>
           <p
             className="text-lg max-w-2xl mb-10"
-            style={{ color: "rgba(255,255,255,0.6)" }}
+            style={{ color: "#6b6b5e" }}
           >
             Real auction results, not ask prices. Search by year, make, and
             model to see what cars like yours actually sell for.
@@ -46,17 +46,17 @@ export default function ValueGuidePage() {
               <div key={label} className="flex items-center gap-3">
                 <div
                   className="w-9 h-9 rounded-lg flex items-center justify-center"
-                  style={{ background: "rgba(232,114,42,0.15)" }}
+                  style={{ background: "rgba(232,114,42,0.1)" }}
                 >
                   <Icon className="w-4 h-4" style={{ color: "#E8722A" }} />
                 </div>
                 <div>
-                  <p className="text-lg font-black text-white leading-tight">
+                  <p className="text-lg font-black leading-tight" style={{ color: "#1a1a18" }}>
                     {value}
                   </p>
                   <p
                     className="text-xs"
-                    style={{ color: "rgba(255,255,255,0.45)" }}
+                    style={{ color: "#9a9a8a" }}
                   >
                     {label}
                   </p>

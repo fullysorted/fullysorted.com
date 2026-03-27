@@ -29,25 +29,25 @@ export default function SellPage() {
   return (
     <main className="min-h-screen" style={{ background: '#faf9f7' }}>
 
-      {/* Dark header banner — matches sitewide pattern */}
-      <section style={{ background: '#0f0e08' }} className="text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+      {/* Light header banner — matches sitewide pattern */}
+      <section style={{ background: '#fff', borderBottom: '1px solid rgba(0,0,0,0.07)' }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
 
           {/* Eyebrow */}
           <p
-            className="text-xs font-bold uppercase tracking-widest mb-4"
+            className="text-xs font-bold uppercase tracking-widest mb-3"
             style={{ color: '#E8722A' }}
           >
             List Your Car
           </p>
 
-          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4">
+          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4" style={{ color: '#1a1a18' }}>
             No middlemen.
             <br />
             <span style={{ color: '#E8722A' }}>No commissions.</span>
           </h1>
 
-          <p className="text-lg max-w-2xl" style={{ color: 'rgba(255,255,255,0.6)' }}>
+          <p className="text-lg max-w-2xl" style={{ color: '#6b6b5e' }}>
             $3.99 gets your car in front of serious collectors with an
             AI-generated description that actually sounds like a car person wrote
             it. You keep every dollar of the sale.
@@ -64,8 +64,8 @@ export default function SellPage() {
                   <Icon className="w-4.5 h-4.5" style={{ color: '#E8722A' }} />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white">{label}</p>
-                  <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                  <p className="text-sm font-semibold" style={{ color: '#1a1a18' }}>{label}</p>
+                  <p className="text-xs mt-0.5" style={{ color: '#6b6b5e' }}>
                     {desc}
                   </p>
                 </div>

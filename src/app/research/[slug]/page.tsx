@@ -64,19 +64,14 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
-      {/* Dark Header */}
-      <div className="relative" style={{ background: "#0f0e08" }}>
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{
-            background: `linear-gradient(to right, transparent, ${color} 40%, ${color} 60%, transparent)`,
-          }}
-        />
+      {/* Light Header */}
+      <div className="relative" style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           {/* Breadcrumb */}
           <Link
             href="/research"
-            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 transition-colors text-white/40 hover:text-white"
+            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 transition-colors hover:text-stone-900"
+            style={{ color: "#6b6b5e" }}
           >
             <ArrowLeft className="w-4 h-4" />
             Market Research
@@ -92,14 +87,14 @@ export default async function ArticlePage({ params }: Props) {
             </span>
             <span
               className="flex items-center gap-1 text-xs"
-              style={{ color: "rgba(255,255,255,0.3)" }}
+              style={{ color: "#9a9a8a" }}
             >
               <Calendar className="w-3 h-3" />
               {article.date}
             </span>
             <span
               className="flex items-center gap-1 text-xs"
-              style={{ color: "rgba(255,255,255,0.3)" }}
+              style={{ color: "#9a9a8a" }}
             >
               <Clock className="w-3 h-3" />
               {article.readTime} read
@@ -107,20 +102,20 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           {/* Title */}
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4" style={{ color: "#1a1a18" }}>
             {article.title}
           </h1>
 
           {/* Excerpt */}
           <p
             className="text-base sm:text-lg leading-relaxed max-w-2xl"
-            style={{ color: "rgba(255,255,255,0.45)" }}
+            style={{ color: "#6b6b5e" }}
           >
             {article.excerpt}
           </p>
 
           {/* Byline */}
-          <div className="flex items-center gap-3 mt-8 pt-6" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+          <div className="flex items-center gap-3 mt-8 pt-6" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center text-xs font-bold text-white shrink-0"
               style={{ background: "#E8722A" }}
@@ -128,8 +123,8 @@ export default async function ArticlePage({ params }: Props) {
               CP
             </div>
             <div>
-              <p className="text-sm font-semibold text-white">Chris Peterson</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+              <p className="text-sm font-semibold" style={{ color: "#1a1a18" }}>Chris Peterson</p>
+              <p className="text-xs" style={{ color: "#9a9a8a" }}>
                 Founder, Fully Sorted · 25 years in the collector car market
               </p>
             </div>
@@ -228,15 +223,19 @@ export default async function ArticlePage({ params }: Props) {
             {/* Sell CTA */}
             <div
               className="rounded-2xl p-5"
-              style={{ background: "#0f0e08" }}
+              style={{
+                background: "#fff",
+                border: "1px solid rgba(0,0,0,0.07)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.05)",
+              }}
             >
               <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#E8722A" }}>
                 List Your Car
               </p>
-              <p className="font-bold text-white text-sm mb-2">
+              <p className="font-bold text-sm mb-2" style={{ color: "#1a1a18" }}>
                 Reach serious buyers
               </p>
-              <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
+              <p className="text-xs mb-4" style={{ color: "#9a9a8a" }}>
                 $3.99 flat fee. No commissions. Fully Sorted audience.
               </p>
               <Link

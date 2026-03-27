@@ -14,7 +14,7 @@ const footerLinks = {
     { href: "/services", label: "Services Directory" },
   ],
   Company: [
-    { href: "/about", label: "About Chris" },
+    { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" },
     { href: "/privacy", label: "Privacy Policy" },
     { href: "/terms", label: "Terms of Service" },

@@ -11,21 +11,21 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen" style={{ background: "#faf9f7" }}>
 
-      {/* Dark header banner */}
-      <section style={{ background: "#0f0e08" }} className="text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+      {/* Light header banner */}
+      <section style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <p
-            className="text-xs font-bold uppercase tracking-widest mb-4"
+            className="text-xs font-bold uppercase tracking-widest mb-3"
             style={{ color: "#E8722A" }}
           >
             Get in Touch
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4">
+          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4" style={{ color: "#1a1a18" }}>
             We read every message
             <br />
             <span style={{ color: "#E8722A" }}>ourselves.</span>
           </h1>
-          <p className="text-lg max-w-2xl" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-lg max-w-2xl" style={{ color: "#6b6b5e" }}>
             Whether you have a question about a listing, need help with a
             valuation, or just want to talk cars — I&apos;d love to hear from you.
           </p>
@@ -209,10 +209,10 @@ export default function ContactPage() {
             {/* Social */}
             <div
               className="rounded-2xl p-6 border"
-              style={{ background: "#0f0e08", borderColor: "rgba(255,255,255,0.06)" }}
+              style={{ background: "#fff", borderColor: "rgba(0,0,0,0.08)" }}
             >
-              <h2 className="font-bold text-lg mb-1 text-white">Follow Along</h2>
-              <p className="text-sm mb-5" style={{ color: "rgba(255,255,255,0.5)" }}>
+              <h2 className="font-bold text-lg mb-1" style={{ color: "#1a1a18" }}>Follow Along</h2>
+              <p className="text-sm mb-5" style={{ color: "#6b6b5e" }}>
                 Car photos, market takes, and San Diego life.
               </p>
               <div className="space-y-3">

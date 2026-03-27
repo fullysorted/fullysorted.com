@@ -8,15 +8,10 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <div style={{ background: '#faf9f7' }} className="min-h-screen">
-      {/* Dark Header Banner */}
-      <div className="relative overflow-hidden" style={{ background: '#0f0e08' }}>
+      {/* Light Header Banner */}
+      <div className="relative overflow-hidden" style={{ background: '#fff', borderBottom: '1px solid rgba(0,0,0,0.07)' }}>
         {/* Speed-line texture */}
-        <div className="absolute inset-0 speed-lines opacity-30" />
-        {/* Orange top accent */}
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: 'linear-gradient(to right, transparent, #E8722A 35%, #6ab04c 65%, transparent)' }}
-        />
+        <div className="absolute inset-0 speed-lines opacity-4" />
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="flex items-center gap-2 mb-3">
@@ -25,17 +20,17 @@ export default function ServicesPage() {
               Vetted Specialists
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3" style={{ color: '#1a1a18' }}>
             Services Directory
           </h1>
-          <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: '#6b6b5e' }}>
             Every specialist here has been personally vetted by me or trusted members of the community.
             These are the people I call when my own cars need work.
           </p>
 
           <div
             className="flex flex-wrap gap-8 mt-8 pt-8"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}
+            style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}
           >
             {[
               { value: '8+', label: 'Categories' },
@@ -43,8 +38,8 @@ export default function ServicesPage() {
               { value: 'San Diego', label: 'Based' },
             ].map((s) => (
               <div key={s.label}>
-                <div className="text-2xl font-bold text-white">{s.value}</div>
-                <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: 'rgba(255,255,255,0.3)' }}>
+                <div className="text-2xl font-bold" style={{ color: '#1a1a18' }}>{s.value}</div>
+                <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: '#9a9a8a' }}>
                   {s.label}
                 </div>
               </div>

@@ -14,7 +14,7 @@ const popularSearches = [
 
 export function ValueGuidePreview() {
   return (
-    <section className="py-14 sm:py-20" style={{ background: "#161510" }}>
+    <section className="py-14 sm:py-20" style={{ background: "#f5f4f0" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
@@ -43,10 +43,10 @@ export function ValueGuidePreview() {
               Powered by Real Auction Data
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
+            <h2 className="text-2xl sm:text-3xl font-black mb-3" style={{ color: "#1a1a18" }}>
               Know what your car is worth
             </h2>
-            <p className="leading-relaxed text-sm sm:text-base" style={{ color: "rgba(255,255,255,0.55)" }}>
+            <p className="leading-relaxed text-sm sm:text-base" style={{ color: "#6b6b5e" }}>
               Our Value Guide pulls real results from Bring a Trailer, Classic.com,
               and private sales — not guesswork. Enter any year, make, and model
               to get a pricing verdict backed by actual comps, plus Chris&apos;s take
@@ -64,10 +64,10 @@ export function ValueGuidePreview() {
               </Link>
               <Link
                 href="/research"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold rounded-lg transition-colors hover:bg-stone-200"
                 style={{
-                  border: "1.5px solid rgba(255,255,255,0.15)",
-                  color: "rgba(255,255,255,0.7)",
+                  border: "1.5px solid rgba(0,0,0,0.14)",
+                  color: "#6b6b5e",
                 }}
               >
                 Market Research
@@ -82,27 +82,27 @@ export function ValueGuidePreview() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="rounded-2xl overflow-hidden"
-            style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+            style={{ border: "1px solid rgba(0,0,0,0.08)" }}
           >
             {/* Table header */}
             <div
               className="px-5 py-3.5 flex items-center justify-between"
               style={{
-                background: "rgba(255,255,255,0.04)",
-                borderBottom: "1px solid rgba(255,255,255,0.07)",
+                background: "#ffffff",
+                borderBottom: "1px solid rgba(0,0,0,0.06)",
               }}
             >
-              <h3 className="text-sm font-bold text-white">Popular Valuations</h3>
+              <h3 className="text-sm font-bold" style={{ color: "#1a1a18" }}>Popular Valuations</h3>
               <span
                 className="text-xs font-semibold"
-                style={{ color: "rgba(255,255,255,0.35)" }}
+                style={{ color: "#9a9a8a" }}
               >
                 Avg sale price
               </span>
             </div>
 
             {/* Rows */}
-            <div style={{ background: "rgba(255,255,255,0.02)" }}>
+            <div style={{ background: "#ffffff" }}>
               {popularSearches.map((item, i) => {
                 const isUp = item.trend.startsWith("+");
                 const isDown = item.trend.startsWith("-");
@@ -113,22 +113,22 @@ export function ValueGuidePreview() {
                     style={{
                       borderBottom:
                         i < popularSearches.length - 1
-                          ? "1px solid rgba(255,255,255,0.05)"
+                          ? "1px solid rgba(0,0,0,0.06)"
                           : undefined,
                     }}
                   >
-                    <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.8)" }}>
+                    <span className="text-sm font-medium" style={{ color: "#3a3a30" }}>
                       {item.label}
                     </span>
                     <div className="flex items-center gap-3 shrink-0 ml-4">
-                      <span className="text-sm font-bold text-white flex items-center gap-0.5">
-                        <DollarSign className="w-3 h-3" style={{ color: "rgba(255,255,255,0.35)" }} />
+                      <span className="text-sm font-bold flex items-center gap-0.5" style={{ color: "#1a1a18" }}>
+                        <DollarSign className="w-3 h-3" style={{ color: "#9a9a8a" }} />
                         {item.avgPrice.replace("$", "")}
                       </span>
                       <span
                         className="text-xs font-bold flex items-center gap-0.5"
                         style={{
-                          color: isUp ? "#6ab04c" : isDown ? "#E8722A" : "rgba(255,255,255,0.4)",
+                          color: isUp ? "#6ab04c" : isDown ? "#E8722A" : "#9a9a8a",
                         }}
                       >
                         {isUp ? <TrendingUp className="w-3 h-3" /> : isDown ? <TrendingDown className="w-3 h-3" /> : null}
@@ -144,8 +144,8 @@ export function ValueGuidePreview() {
             <div
               className="px-5 py-3"
               style={{
-                background: "rgba(255,255,255,0.03)",
-                borderTop: "1px solid rgba(255,255,255,0.07)",
+                background: "#faf9f7",
+                borderTop: "1px solid rgba(0,0,0,0.06)",
               }}
             >
               <Link

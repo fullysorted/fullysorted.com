@@ -17,7 +17,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
   ].slice(0, 8);
 
   return (
-    <section className="relative py-14 sm:py-20" style={{ background: "#0f0e08" }}>
+    <section className="relative py-14 sm:py-20" style={{ background: "#faf9f7" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex items-end justify-between mb-8">
@@ -31,10 +31,10 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
                 Hand-picked
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">
+            <h2 className="text-2xl sm:text-3xl font-black" style={{ color: "#1a1a18" }}>
               Featured Listings
             </h2>
-            <p className="mt-1 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <p className="mt-1 text-sm" style={{ color: "#6b6b5e" }}>
               {featured.length > 0
                 ? "The ones worth your attention this week"
                 : "Listings will appear here once approved"}
@@ -76,9 +76,9 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
         ) : (
           <div
             className="text-center py-16 rounded-2xl"
-            style={{ border: "1.5px dashed rgba(255,255,255,0.12)" }}
+            style={{ border: "1.5px dashed rgba(0,0,0,0.15)" }}
           >
-            <p className="mb-4" style={{ color: "rgba(255,255,255,0.35)" }}>
+            <p className="mb-4" style={{ color: "#9a9a8a" }}>
               No listings yet
             </p>
             <Link

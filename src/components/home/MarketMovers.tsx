@@ -9,7 +9,7 @@ function TrendBadge({ trend, percentage }: { trend: MarketMover["trend"]; percen
   const styles = {
     up:   { bg: "rgba(106,176,76,0.18)",  color: "#6ab04c" },
     down: { bg: "rgba(232,114,42,0.18)",  color: "#E8722A" },
-    flat: { bg: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.5)" },
+    flat: { bg: "rgba(0,0,0,0.06)", color: "#9a9a8a" },
   }[trend];
 
   const Icon = trend === "up" ? TrendingUp : trend === "down" ? TrendingDown : Minus;
@@ -28,7 +28,7 @@ function TrendBadge({ trend, percentage }: { trend: MarketMover["trend"]; percen
 
 export function MarketMovers() {
   return (
-    <section className="py-14 sm:py-20" style={{ background: "#0f0e08" }}>
+    <section className="py-14 sm:py-20" style={{ background: "#ffffff" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Section header */}
@@ -43,10 +43,10 @@ export function MarketMovers() {
                 Weekly
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">
+            <h2 className="text-2xl sm:text-3xl font-black" style={{ color: "#1a1a18" }}>
               Monday Market Movers
             </h2>
-            <p className="mt-1 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <p className="mt-1 text-sm" style={{ color: "#6b6b5e" }}>
               This week&apos;s collector car market at a glance — by Chris Peterson
             </p>
           </div>
@@ -70,15 +70,16 @@ export function MarketMovers() {
               transition={{ duration: 0.4, delay: i * 0.06 }}
               className="rounded-xl p-5 transition-colors"
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: "#ffffff",
+                border: "1px solid rgba(0,0,0,0.08)",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.08)"
               }}
             >
               <div className="flex items-start justify-between mb-3">
-                <h3 className="font-semibold text-white text-sm">{mover.segment}</h3>
+                <h3 className="font-semibold text-sm" style={{ color: "#1a1a18" }}>{mover.segment}</h3>
                 <TrendBadge trend={mover.trend} percentage={mover.percentage} />
               </div>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+              <p className="text-sm leading-relaxed" style={{ color: "#6b6b5e" }}>
                 {mover.insight}
               </p>
             </motion.div>
@@ -98,7 +99,7 @@ export function MarketMovers() {
         </div>
 
         {/* Disclaimer */}
-        <p className="mt-8 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.25)" }}>
+        <p className="mt-8 text-xs leading-relaxed" style={{ color: "#9a9a8a" }}>
           Market commentary reflects observed auction results and one analyst&apos;s perspective. It is not financial or investment advice. Past performance does not indicate future results.
         </p>
       </div>

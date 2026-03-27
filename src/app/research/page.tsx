@@ -158,13 +158,9 @@ export default async function ResearchPage() {
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
 
-      {/* ─── Dark Header ─────────────────────────────────────── */}
-      <div className="relative overflow-hidden" style={{ background: "#0f0e08" }}>
-        <div className="absolute inset-0 speed-lines opacity-30" />
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent, #E8722A 35%, #6ab04c 65%, transparent)" }}
-        />
+      {/* ─── Light Header ─────────────────────────────────────── */}
+      <div className="relative overflow-hidden" style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+        <div className="absolute inset-0 speed-lines opacity-4" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="flex items-center gap-2 mb-3">
@@ -173,24 +169,24 @@ export default async function ResearchPage() {
               Research Desk
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3" style={{ color: "#1a1a18" }}>
             Market Research
           </h1>
-          <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: "#6b6b5e" }}>
             Weekly analysis of the collector car market — auction results, price trends, and
             where the smart money is going. By Chris Peterson, 25 years in the industry.
           </p>
 
           {/* Quick stats row */}
-          <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+          <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
             {[
               { value: segments.length > 0 ? `${segments.length}` : "25+", label: "Segments Tracked" },
               { value: trendingData.hot.length > 0 ? `${trendingData.hot.length}` : "Live", label: "BaT Listings" },
               { value: "2×", label: "Daily Updates" },
             ].map((s) => (
               <div key={s.label}>
-                <div className="text-2xl font-bold text-white">{s.value}</div>
-                <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+                <div className="text-2xl font-bold" style={{ color: "#1a1a18" }}>{s.value}</div>
+                <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: "#9a9a8a" }}>
                   {s.label}
                 </div>
               </div>
@@ -213,7 +209,7 @@ export default async function ResearchPage() {
               >
                 <div
                   className="rounded-2xl overflow-hidden transition-all hover:shadow-xl"
-                  style={{ background: "#111008", border: "1px solid rgba(255,255,255,0.07)" }}
+                  style={{ background: "#ffffff", border: "1px solid rgba(0,0,0,0.08)" }}
                 >
                   <div className="p-7 sm:p-8">
                     <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -226,17 +222,17 @@ export default async function ResearchPage() {
                       >
                         {featuredArticle.category}
                       </span>
-                      <span className="flex items-center gap-1 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      <span className="flex items-center gap-1 text-xs" style={{ color: "#9a9a8a" }}>
                         <Calendar className="w-3 h-3" /> {featuredArticle.date}
                       </span>
-                      <span className="flex items-center gap-1 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      <span className="flex items-center gap-1 text-xs" style={{ color: "#9a9a8a" }}>
                         <Clock className="w-3 h-3" /> {featuredArticle.readTime} read
                       </span>
                     </div>
-                    <h2 className="text-xl sm:text-2xl font-bold text-white leading-snug group-hover:text-orange-400 transition-colors mb-3">
+                    <h2 className="text-xl sm:text-2xl font-bold leading-snug group-hover:text-orange-600 transition-colors mb-3" style={{ color: "#1a1a18" }}>
                       {featuredArticle.title}
                     </h2>
-                    <p className="leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
+                    <p className="leading-relaxed" style={{ color: "#6b6b5e" }}>
                       {featuredArticle.excerpt}
                     </p>
                     <div
@@ -404,7 +400,11 @@ export default async function ResearchPage() {
             {/* Newsletter */}
             <div
               className="rounded-2xl p-5"
-              style={{ background: "#0f0e08", border: "1px solid rgba(255,255,255,0.07)" }}
+              style={{
+                background: "#fff",
+                border: "1px solid rgba(0,0,0,0.07)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.05)",
+              }}
             >
               <div className="flex items-center gap-2 mb-1">
                 <div className="w-4 h-px" style={{ background: "#E8722A" }} />
@@ -412,19 +412,19 @@ export default async function ResearchPage() {
                   Free Newsletter
                 </p>
               </div>
-              <h3 className="font-bold text-white mb-2">Monday Market Movers</h3>
-              <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
+              <h3 className="font-bold mb-2" style={{ color: "#1a1a18" }}>Monday Market Movers</h3>
+              <p className="text-sm mb-4" style={{ color: "#6b6b5e" }}>
                 Weekly auction results, what moved, and where smart money is going.
               </p>
               <form className="space-y-2">
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="w-full h-10 px-3 text-sm rounded-xl focus:outline-none"
+                  className="w-full h-10 px-3 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-400"
                   style={{
-                    background: "rgba(255,255,255,0.07)",
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    color: "#fff",
+                    background: "#faf9f7",
+                    border: "1px solid rgba(0,0,0,0.12)",
+                    color: "#1a1a18",
                   }}
                 />
                 <button

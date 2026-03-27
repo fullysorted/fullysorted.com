@@ -41,24 +41,19 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
-      {/* Dark Header Banner */}
+      {/* Light Header Banner */}
       <div
         className="relative overflow-hidden py-12 sm:py-16"
-        style={{ background: "#0f0e08" }}
+        style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}
       >
         {/* Subtle grid texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+              "linear-gradient(rgba(0,0,0,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.8) 1px, transparent 1px)",
             backgroundSize: "48px 48px",
           }}
-        />
-        {/* Orange top accent line */}
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent, #E8722A 30%, #E8722A 70%, transparent)" }}
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
@@ -68,10 +63,10 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               Collector Car Marketplace
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-1">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-1" style={{ color: "#1a1a18" }}>
             Browse Listings
           </h1>
-          <p className="text-white/50 text-sm mb-8">
+          <p className="text-sm mb-8" style={{ color: "#6b6b5e" }}>
             {hasRealListings
               ? `${initialListings.length} ${initialListings.length === 1 ? "car" : "cars"} available · No dealers, no commissions`
               : "No listings yet · Be the first to list your car"}
@@ -80,23 +75,24 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
           {/* Search Bar */}
           <div className="flex gap-3 max-w-2xl">
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#9a9a8a" }} />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by make, model, year..."
-                className="w-full h-12 pl-11 pr-4 rounded-xl text-sm placeholder:text-white/30 focus:outline-none focus:ring-2 transition-colors"
+                className="w-full h-12 pl-11 pr-4 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition-colors"
                 style={{
-                  background: "rgba(255,255,255,0.07)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  color: "#fff",
+                  background: "#faf9f7",
+                  border: "1px solid rgba(0,0,0,0.12)",
+                  color: "#1a1a18",
                 }}
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-white/40 hover:text-white/70"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:opacity-70"
+                  style={{ color: "#9a9a8a" }}
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -108,11 +104,11 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
                 "flex items-center gap-2 px-4 h-12 rounded-xl text-sm font-medium transition-colors shrink-0",
                 showFilters
                   ? "text-white"
-                  : "text-white/60 hover:text-white"
+                  : "text-stone-600 hover:text-stone-900"
               )}
               style={{
-                background: showFilters ? "rgba(232,114,42,0.2)" : "rgba(255,255,255,0.07)",
-                border: showFilters ? "1px solid rgba(232,114,42,0.4)" : "1px solid rgba(255,255,255,0.12)",
+                background: showFilters ? "#E8722A" : "#faf9f7",
+                border: showFilters ? "1px solid #E8722A" : "1px solid rgba(0,0,0,0.12)",
               }}
             >
               <SlidersHorizontal className="w-4 h-4" />
@@ -130,10 +126,10 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={cn(
-                "px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-all shrink-0",
+                "px-4 py-2 text-sm font-medium rounded-full whitespace-nowrap transition-all shrink-0 border",
                 activeCategory === cat
                   ? "text-white shadow-sm"
-                  : "bg-white border border-stone-200 text-stone-500 hover:text-stone-800 hover:border-stone-300"
+                  : "bg-white border-stone-200 text-stone-500 hover:text-stone-800 hover:border-stone-300"
               )}
               style={
                 activeCategory === cat
