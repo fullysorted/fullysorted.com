@@ -96,6 +96,11 @@ export function MarketMovers() {
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
+
+        {/* Disclaimer */}
+        <p className="mt-8 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.25)" }}>
+          Market commentary reflects observed auction results and one analyst&apos;s perspective. It is not financial or investment advice. Past performance does not indicate future results.
+        </p>
       </div>
     </section>
   );

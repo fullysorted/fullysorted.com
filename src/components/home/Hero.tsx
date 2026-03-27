@@ -297,7 +297,7 @@ export function Hero({ listings = [] }: HeroProps) {
               style={{ color: "rgba(255,255,255,0.48)" }}
             >
               The complete platform for collector car buyers, sellers, and owners —
-              real market data, vetted services, no dealers, no commissions.
+              real market data, vetted services, no middlemen, no commissions.
             </motion.p>
 
             {/* Search bar */}
@@ -369,7 +369,7 @@ export function Hero({ listings = [] }: HeroProps) {
               {[
                 { value: "$3.99", label: "Flat listing fee" },
                 { value: "0%", label: "Commission" },
-                { value: "25yr", label: "Market expertise" },
+                { value: "25 years", label: "Market expertise" },
               ].map((s) => (
                 <div key={s.label}>
                   <div className="text-2xl font-bold text-white tracking-tight">{s.value}</div>

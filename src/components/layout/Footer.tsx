@@ -50,9 +50,6 @@ export function Footer() {
               The collector car services hub and marketplace built by enthusiasts,
               for enthusiasts.
             </p>
-            <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.22)" }}>
-              Built by enthusiasts, for enthusiasts.
-            </p>
             <div className="mt-4 space-y-1">
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.22)" }}>
                 San Diego, CA

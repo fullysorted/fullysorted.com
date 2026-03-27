@@ -49,8 +49,8 @@ export function CTASection() {
               Ready to list your car?
             </h2>
             <p className="text-white/80 mt-4 text-lg leading-relaxed max-w-xl">
-              $3.99 gets you a listing with an AI-generated description that sounds like a car person wrote it — because it was trained by one.
-              No commissions. No dealer fees.
+              $3.99 gets you a listing with a description that sounds like a car person wrote it — because one shaped every word.
+              No commissions. No dealer fees. Let&apos;s get it sorted.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link

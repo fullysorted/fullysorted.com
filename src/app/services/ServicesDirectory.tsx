@@ -54,7 +54,7 @@ const PROVIDERS = [
     id: 2,
     name: 'SoCal Concours Detailing',
     category: 'detailing',
-    description: 'Full paint correction, ceramic coating, and concours-level prep. They treat your car like it\'s headed to Pebble Beach.',
+    description: 'Full paint correction, ceramic coating, and concours-level prep. They treat your car like it\'s headed to Pebble Beach. I\'ve sent three of my own cars here.',
     location: 'Carlsbad, CA',
     rating: 5.0,
     reviewCount: 82,

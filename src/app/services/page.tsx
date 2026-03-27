@@ -39,8 +39,8 @@ export default function ServicesPage() {
           >
             {[
               { value: '8+', label: 'Categories' },
-              { value: '100%', label: 'Vetted' },
-              { value: 'SD', label: 'Based' },
+              { value: 'Every provider', label: 'Vetted' },
+              { value: 'San Diego', label: 'Based' },
             ].map((s) => (
               <div key={s.label}>
                 <div className="text-2xl font-bold text-white">{s.value}</div>
