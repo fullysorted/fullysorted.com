@@ -17,16 +17,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
   ].slice(0, 8);
 
   return (
-    <section className="relative py-14 sm:py-20" style={{ background: "#faf9f7" }}>
-      {/* Subtle top transition from dark services section */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(232,114,42,0.18) 40%, rgba(106,176,76,0.18) 60%, transparent)",
-        }}
-      />
-
+    <section className="relative py-14 sm:py-20" style={{ background: "#0f0e08" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex items-end justify-between mb-8">
@@ -40,10 +31,10 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
                 Hand-picked
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+            <h2 className="text-2xl sm:text-3xl font-black text-white">
               Featured Listings
             </h2>
-            <p className="text-text-secondary mt-1">
+            <p className="mt-1 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
               {featured.length > 0
                 ? "The ones worth your attention this week"
                 : "Listings will appear here once approved"}
@@ -83,8 +74,13 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
             </div>
           </>
         ) : (
-          <div className="text-center py-16 border border-dashed border-stone-200 rounded-2xl">
-            <p className="text-stone-400 mb-4">No listings yet</p>
+          <div
+            className="text-center py-16 rounded-2xl"
+            style={{ border: "1.5px dashed rgba(255,255,255,0.12)" }}
+          >
+            <p className="mb-4" style={{ color: "rgba(255,255,255,0.35)" }}>
+              No listings yet
+            </p>
             <Link
               href="/sell"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl hover:opacity-90 transition-opacity"
