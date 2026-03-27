@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -73,33 +72,17 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <Image
-              src="/fs-logo.png"
+          <Link href="/" className="flex items-center shrink-0">
+            {/* SVG is white — invert to dark on light header */}
+            <img
+              src="/fs-text-logo.svg"
               alt="Fully Sorted"
-              width={40}
-              height={40}
-              priority
-              className="w-9 h-9"
+              className={cn(
+                "h-8 w-auto",
+                !isHome && "invert"
+              )}
+              style={{ maxWidth: 180 }}
             />
-            <div className="flex flex-col">
-              <span
-                className={cn(
-                  "text-[15px] font-bold leading-tight tracking-tight",
-                  isHome ? "text-white" : "text-stone-900"
-                )}
-              >
-                Fully Sorted
-              </span>
-              <span
-                className={cn(
-                  "text-[9px] leading-none tracking-widest uppercase",
-                  isHome ? "text-white/40" : "text-stone-400"
-                )}
-              >
-                Collector Car Hub
-              </span>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}

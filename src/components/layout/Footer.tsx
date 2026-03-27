@@ -37,14 +37,13 @@ export function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand Column */}
           <div className="col-span-2 sm:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ background: "#E8722A" }}
-              >
-                <span className="text-white font-bold text-sm">FS</span>
-              </div>
-              <span className="text-base font-bold text-white">Fully Sorted</span>
+            <div className="mb-4">
+              {/* Logo is white — footer is always dark so no invert needed */}
+              <img
+                src="/fs-text-logo.svg"
+                alt="Fully Sorted"
+                style={{ height: 28, width: "auto", maxWidth: 160 }}
+              />
             </div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.38)" }}>
               The collector car services hub and marketplace built by enthusiasts,
