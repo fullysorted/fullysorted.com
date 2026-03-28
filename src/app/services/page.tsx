@@ -2,7 +2,7 @@ import ServicesDirectory from './ServicesDirectory';
 
 export const metadata = {
   title: 'Services Directory — Fully Sorted',
-  description: 'Vetted specialists for your collector car: photographers, detailers, mechanics, transporters, inspectors, restorers & more. San Diego and beyond.',
+  description: 'Find specialists for your collector car: photographers, detailers, mechanics, transporters, inspectors, restorers & more. SoCal and beyond.',
 };
 
 export default function ServicesPage() {
@@ -17,30 +17,32 @@ export default function ServicesPage() {
           <div className="flex items-center gap-2 mb-3">
             <div className="w-6 h-px" style={{ background: '#E8722A' }} />
             <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#E8722A' }}>
-              Trusted Network
+              Collector Car Community
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3" style={{ color: '#1a1a18' }}>
-            The go-to specialists<br className="hidden sm:block" /> for SoCal collectors.
+            Find specialists who<br className="hidden sm:block" /> actually get it.
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: '#6b6b5e' }}>
-            No sponsored slots. No pay-to-play. Every provider here earned their spot through
-            community referrals and direct experience — so you can skip the guesswork.
+            Whether you need a detailer who understands patina, a mechanic who knows your model,
+            or a transporter who treats every car like their own — this is the place to find them.
+            Open to anyone who loves collector cars.
           </p>
 
           <div
-            className="flex flex-wrap gap-8 mt-8 pt-8"
+            className="flex flex-wrap gap-6 mt-8 pt-8"
             style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}
           >
             {[
-              { value: 'No pay-to-play', label: 'You can\'t buy your way in' },
-              { value: 'Referral-sourced', label: 'How providers are found' },
-              { value: 'Ongoing', label: 'Review process' },
+              { value: 'Buyers & sellers', label: 'Free to browse' },
+              { value: 'Specialists', label: 'Apply to be listed' },
+              { value: 'Enthusiasts', label: 'All welcome' },
             ].map((s) => (
-              <div key={s.label}>
-                <div className="text-lg font-bold" style={{ color: '#1a1a18' }}>{s.value}</div>
-                <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: '#9a9a8a' }}>
-                  {s.label}
+              <div key={s.label} className="flex items-center gap-2.5">
+                <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#E8722A' }} />
+                <div>
+                  <span className="text-sm font-semibold" style={{ color: '#1a1a18' }}>{s.value}</span>
+                  <span className="text-sm" style={{ color: '#9a9a8a' }}> — {s.label}</span>
                 </div>
               </div>
             ))}
