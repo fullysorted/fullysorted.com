@@ -204,8 +204,8 @@ export function ValueGuideClient() {
         </h1>
         <p className="text-text-secondary mt-2 text-lg">
           What is your collector car worth? Enter any year, make, and model to
-          get a pricing verdict backed by real auction results and my 25 years of
-          market experience.
+          see what cars like yours actually sell for — real auction results,
+          not ask prices.
         </p>
       </div>
 

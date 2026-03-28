@@ -18,7 +18,7 @@ import { articles } from "@/lib/articles";
 export const metadata: Metadata = {
   title: "Market Research — Collector Car Trends & Analysis | Fully Sorted",
   description:
-    "Weekly collector car market analysis by Chris Peterson. Auction results, price trends, segment breakdowns, and expert commentary based on 25 years in the industry.",
+    "Weekly collector car market analysis by Chris Peterson. Auction results, price trends, segment breakdowns, and honest market commentary.",
 };
 
 export const revalidate = 300;
@@ -174,7 +174,7 @@ export default async function ResearchPage() {
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: "#6b6b5e" }}>
             Weekly analysis of the collector car market — auction results, price trends, and
-            where the smart money is going. By Chris Peterson, 25 years in the industry.
+            where the smart money is going. Written by Chris Peterson.
           </p>
 
           {/* Quick stats row */}

@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, PlusCircle, Heart, User } from "lucide-react";
+import { Home, Search, PlusCircle, Wrench, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/browse", label: "Browse", icon: Search },
   { href: "/sell", label: "Sell", icon: PlusCircle },
-  { href: "/saved", label: "Saved", icon: Heart },
-  { href: "/account", label: "Account", icon: User },
+  { href: "/services", label: "Services", icon: Wrench },
+  { href: "/contact", label: "Contact", icon: Mail },
 ];
 
 export function MobileNav() {

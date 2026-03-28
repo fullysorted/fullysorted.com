@@ -30,7 +30,7 @@ const STATS = [
   { value: "0%", label: "Commission on sales" },
   { value: "$3.99", label: "Flat listing fee" },
   { value: "8+", label: "Service categories" },
-  { value: "25 yrs", label: "Industry experience" },
+  { value: "SoCal", label: "Where we live & work" },
 ];
 
 export default function AboutPage() {
@@ -131,10 +131,10 @@ export default function AboutPage() {
               be found by the collectors who need them.
             </p>
             <p className="mt-4">
-              The services directory is the part we care about most. Every listing
-              is personally vetted — not algorithmic, not pay-to-play. The providers
-              in it are there because they do exceptional work and deserve to be
-              found by people who will appreciate it.
+              The services directory is the part we care about most — a place where
+              specialists who know collector cars can be found by the collectors who
+              need them. No pay-to-play. No sponsored slots. Just people who are
+              genuinely good at what they do.
             </p>
           </div>
 
@@ -160,9 +160,9 @@ export default function AboutPage() {
             <Heart className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "#E8722A" }} />
             <p className="text-sm leading-relaxed" style={{ color: "#3a3a30" }}>
               <strong style={{ color: "#1a1a18" }}>Built by enthusiasts, for enthusiasts.</strong>{" "}
-              We're a small team with deep roots in the collector car world. We drive
-              the cars we talk about. We use the specialists we list. We care about
-              getting this right — not cashing out.
+              This started because the tools didn&apos;t exist. The right marketplace,
+              the right directory, the right data — none of it was built for people
+              who actually care about these cars. So we built it.
             </p>
           </div>
 
