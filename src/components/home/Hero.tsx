@@ -362,14 +362,14 @@ export function Hero({ listings = [] }: HeroProps) {
               style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
             >
               {[
-                { value: "$3.99", label: "Flat listing fee" },
-                { value: "0%", label: "Commission" },
-                { value: "25 years", label: "Market expertise" },
+                { value: "No dealers.", label: "Direct from owner" },
+                { value: "No commission.", label: "Your price is your price" },
+                { value: "No fluff.", label: "Real cars, real people" },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="text-2xl font-bold tracking-tight" style={{ color: "#1a1a18" }}>{s.value}</div>
+                  <div className="text-base font-bold tracking-tight" style={{ color: "#1a1a18" }}>{s.value}</div>
                   <div
-                    className="text-[11px] mt-0.5 uppercase tracking-widest"
+                    className="text-[11px] mt-0.5"
                     style={{ color: "#9a9a8a" }}
                   >
                     {s.label}
