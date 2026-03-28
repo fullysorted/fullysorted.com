@@ -17,15 +17,15 @@ export default function ServicesPage() {
           <div className="flex items-center gap-2 mb-3">
             <div className="w-6 h-px" style={{ background: '#E8722A' }} />
             <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#E8722A' }}>
-              Vetted Specialists
+              Trusted Network
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3" style={{ color: '#1a1a18' }}>
-            Services Directory
+            The go-to specialists<br className="hidden sm:block" /> for SoCal collectors.
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: '#6b6b5e' }}>
-            Every specialist here has been personally vetted by me or trusted members of the community.
-            These are the people I call when my own cars need work.
+            No sponsored slots. No pay-to-play. Every provider here earned their spot through
+            community referrals and direct experience — so you can skip the guesswork.
           </p>
 
           <div
@@ -33,12 +33,12 @@ export default function ServicesPage() {
             style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}
           >
             {[
-              { value: '8+', label: 'Categories' },
-              { value: 'Every provider', label: 'Vetted' },
-              { value: 'San Diego', label: 'Based' },
+              { value: 'No pay-to-play', label: 'You can\'t buy your way in' },
+              { value: 'Referral-sourced', label: 'How providers are found' },
+              { value: 'Ongoing', label: 'Review process' },
             ].map((s) => (
               <div key={s.label}>
-                <div className="text-2xl font-bold" style={{ color: '#1a1a18' }}>{s.value}</div>
+                <div className="text-lg font-bold" style={{ color: '#1a1a18' }}>{s.value}</div>
                 <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: '#9a9a8a' }}>
                   {s.label}
                 </div>
