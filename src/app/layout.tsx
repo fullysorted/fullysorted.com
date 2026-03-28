@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { CookieBanner } from "@/components/layout/CookieBanner";
 
 // Conditionally import ClerkProvider only when configured
 const clerkEnabled = !!(
@@ -87,7 +88,7 @@ export default function RootLayout({
   const content = (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <meta name="theme-color" content="#1E6091" />
+        <meta name="theme-color" content="#E8722A" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -97,6 +98,7 @@ export default function RootLayout({
         <main className="flex-1 pb-20 md:pb-0">{children}</main>
         <Footer />
         <MobileNav />
+        <CookieBanner />
       </body>
     </html>
   );

@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
             currency: LISTING_FEE_CURRENCY,
             product_data: {
               name: `Fully Sorted Listing: ${vehicleTitle}`,
-              description: 'One-time listing fee with AI-generated description',
+              description: 'One-time flat listing fee. No commissions, no hidden charges.',
             },
             unit_amount: LISTING_FEE_AMOUNT,
           },

@@ -72,6 +72,22 @@ export async function POST(request: NextRequest) {
       specialties: specialties?.slice(0, 100),
     });
 
+    // Send email notification to Chris
+    const { notifyNewProviderApplication } = await import("@/lib/email");
+    await notifyNewProviderApplication({
+      businessName,
+      ownerName,
+      category,
+      location,
+      email,
+      phone,
+      website,
+      instagram,
+      specialties,
+      whyList,
+      referredBy,
+    });
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("apply-provider error:", err);

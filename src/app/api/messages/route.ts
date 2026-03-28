@@ -35,10 +35,28 @@ export async function POST(request: NextRequest) {
       RETURNING id
     `;
 
+    // Send email notification to Chris
+    const { notifyNewMessage } = await import('@/lib/email');
+    await notifyNewMessage({
+      senderName,
+      senderEmail,
+      senderPhone,
+      messageText,
+      listingTitle,
+      listingSlug,
+      type: type || 'inquiry',
+      offerAmount,
+    });
+
     return NextResponse.json({ success: true, saved: true, id: result[0]?.id });
   } catch (err) {
     console.error('Failed to save message:', err);
     // Don't expose DB errors to the public — just degrade
+    // Still attempt to send email notification even if DB fails
+    try {
+      const { notifyNewMessage } = await import('@/lib/email');
+      await notifyNewMessage({ senderName, senderEmail, senderPhone, messageText, listingTitle, listingSlug, type: type || 'inquiry', offerAmount });
+    } catch {}
     return NextResponse.json({ success: true, saved: false });
   }
 }

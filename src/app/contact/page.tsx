@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
+import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact — Fully Sorted",
@@ -37,103 +38,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           {/* Contact Form */}
-          <div
-            className="rounded-2xl p-6 sm:p-8 border"
-            style={{ background: "#fff", borderColor: "rgba(0,0,0,0.08)" }}
-          >
-            <h2 className="font-bold text-xl mb-1" style={{ color: "#1a1a18" }}>
-              Send a Message
-            </h2>
-            <p className="text-sm mb-6" style={{ color: "#6b6b5e" }}>
-              Usually a response within a few hours.
-            </p>
-            <form className="space-y-4">
-              <div>
-                <label
-                  className="block text-xs font-semibold uppercase tracking-wider mb-1.5"
-                  style={{ color: "#6b6b5e" }}
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  className="w-full h-11 px-4 text-sm rounded-lg outline-none transition-colors"
-                  style={{
-                    border: "1.5px solid rgba(0,0,0,0.12)",
-                    background: "#faf9f7",
-                    color: "#1a1a18",
-                  }}
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-xs font-semibold uppercase tracking-wider mb-1.5"
-                  style={{ color: "#6b6b5e" }}
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="you@example.com"
-                  className="w-full h-11 px-4 text-sm rounded-lg outline-none transition-colors"
-                  style={{
-                    border: "1.5px solid rgba(0,0,0,0.12)",
-                    background: "#faf9f7",
-                    color: "#1a1a18",
-                  }}
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-xs font-semibold uppercase tracking-wider mb-1.5"
-                  style={{ color: "#6b6b5e" }}
-                >
-                  Subject
-                </label>
-                <select
-                  className="w-full h-11 px-4 text-sm rounded-lg outline-none transition-colors"
-                  style={{
-                    border: "1.5px solid rgba(0,0,0,0.12)",
-                    background: "#faf9f7",
-                    color: "#1a1a18",
-                  }}
-                >
-                  <option>General Question</option>
-                  <option>Listing Inquiry</option>
-                  <option>Valuation Request</option>
-                  <option>Service Recommendation</option>
-                  <option>Partnership</option>
-                  <option>Press / Media</option>
-                </select>
-              </div>
-              <div>
-                <label
-                  className="block text-xs font-semibold uppercase tracking-wider mb-1.5"
-                  style={{ color: "#6b6b5e" }}
-                >
-                  Message
-                </label>
-                <textarea
-                  rows={5}
-                  placeholder="What's on your mind?"
-                  className="w-full px-4 py-3 text-sm rounded-lg outline-none transition-colors resize-none"
-                  style={{
-                    border: "1.5px solid rgba(0,0,0,0.12)",
-                    background: "#faf9f7",
-                    color: "#1a1a18",
-                  }}
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full h-11 text-sm font-bold rounded-lg transition-colors text-white"
-                style={{ background: "#E8722A" }}
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+          <ContactForm />
 
           {/* Info sidebar */}
           <div className="space-y-5">

@@ -45,10 +45,24 @@ export async function POST(request: NextRequest) {
           .where(eq(schema.listings.id, parseInt(listing_id)));
 
         console.log(`Listing #${listing_id} activated successfully`);
+
+        // Send email notification to Chris
+        try {
+          const { notifyNewListing } = await import('@/lib/email');
+          await notifyNewListing({ year, make, model, price: session.amount_total ? session.amount_total / 100 : 3.99, listingId: listing_id });
+        } catch (emailErr) {
+          console.error('Failed to send new listing email:', emailErr);
+        }
       } catch (dbError: any) {
         console.error('Failed to activate listing in DB:', dbError?.message || dbError);
         // Don't return error — Stripe already got the payment, log and move on
       }
+    } else {
+      // No DB — still send the email notification
+      try {
+        const { notifyNewListing } = await import('@/lib/email');
+        await notifyNewListing({ year, make, model, price: session.amount_total ? session.amount_total / 100 : 3.99, listingId: listing_id });
+      } catch {}
     }
   }
 

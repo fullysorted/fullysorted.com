@@ -91,7 +91,10 @@ export function Footer() {
           style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
         >
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.22)" }}>
-            &copy; {new Date().getFullYear()} Fully Sorted. All rights reserved.
+            &copy; {new Date().getFullYear()} Fully Sorted. All rights reserved. &nbsp;·&nbsp;{" "}
+            <Link href="/privacy" className="hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.22)" }}>
+              Do Not Sell My Info
+            </Link>
           </p>
           <div className="flex items-center gap-6">
             <a
