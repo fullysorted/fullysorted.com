@@ -8,7 +8,7 @@
  */
 
 const NOTIFY_TO = "chris@fullysorted.com";
-const FROM = "Fully Sorted <notifications@fullysorted.com>";
+const FROM = "Fully Sorted <notifications@updates.fullysorted.com>";
 
 type EmailPayload = {
   to?: string;
