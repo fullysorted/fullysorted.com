@@ -361,21 +361,13 @@ export function Hero({ listings = [] }: HeroProps) {
               className="flex gap-8 mt-10 pt-8"
               style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
             >
-              {[
-                { value: "No dealers.", label: "Direct from owner" },
-                { value: "No commission.", label: "Your price is your price" },
-                { value: "No fluff.", label: "Real cars, real people" },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className="text-base font-bold tracking-tight" style={{ color: "#1a1a18" }}>{s.value}</div>
-                  <div
-                    className="text-[11px] mt-0.5"
-                    style={{ color: "#9a9a8a" }}
-                  >
-                    {s.label}
-                  </div>
-                </div>
-              ))}
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="text-base font-bold tracking-tight" style={{ color: "#1a1a18" }}>Cool people.</span>
+                <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#E8722A" }} />
+                <span className="text-base font-bold tracking-tight" style={{ color: "#1a1a18" }}>Cool cars.</span>
+                <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#E8722A" }} />
+                <span className="text-base font-bold tracking-tight" style={{ color: "#1a1a18" }}>Cool community.</span>
+              </div>
             </motion.div>
           </div>
 
