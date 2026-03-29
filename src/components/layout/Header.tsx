@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 // Only import Clerk when publishable key is configured
 const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-let useAuth: (() => { isSignedIn: boolean | undefined; isLoaded: boolean }) | null = null;
+let useAuth: (() => { isSignedIn: boolean | undefined; isLoded: boolean }) | null = null;
 let UserButton: React.ComponentType<any> | null = null;
 let SignInButton: React.ComponentType<any> | null = null;
 
@@ -58,8 +58,7 @@ export function Header() {
           <Link href="/" className="flex items-center shrink-0">
             {/* brightness(0) forces all channels to black — more reliable than invert on SVG-filtered images */}
             <img
-              src="/fs-text-logo.svg"
-              alt="Fully Sorted"
+                            src="/fullysorted-logo.svg"
               className="h-8 w-auto"
               style={{ maxWidth: 180, filter: "brightness(0)" }}
             />
