@@ -40,7 +40,7 @@ export function Footer() {
             <div className="mb-4">
               {/* Logo is white — footer is always dark so no invert needed */}
               <img
-                src="/fs-text-logo.svg"
+                src="/fullysorted-logo.svg"
                 alt="Fully Sorted"
                 style={{ height: 28, width: "auto", maxWidth: 160 }}
               />
