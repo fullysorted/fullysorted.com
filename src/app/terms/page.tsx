@@ -40,7 +40,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-xl font-bold mb-3" style={{ color: "#1a1a18" }}>Listings</h2>
             <p>
-              The $3.99 listing fee is non-refundable and covers one vehicle listing until it is marked
+              Listing fees are non-refundable and cover one vehicle listing until it is marked
               sold or removed. You are responsible for the accuracy of your listing. Misrepresentation
               of a vehicle&apos;s condition, history, or title status is grounds for immediate removal
               and may be reported to relevant authorities.
