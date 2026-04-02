@@ -6,6 +6,8 @@ import { ValueGuidePreview } from "@/components/home/ValueGuidePreview";
 import { CTASection } from "@/components/home/CTASection";
 import type { Vehicle } from "@/lib/sample-data";
 
+export const dynamic = 'force-dynamic';
+
 async function getActiveListings(): Promise<Vehicle[]> {
   if (!process.env.DATABASE_URL) return [];
 
