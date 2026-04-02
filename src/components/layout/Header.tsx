@@ -56,11 +56,10 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
-            {/* brightness(0) forces all channels to black — more reliable than invert on SVG-filtered images */}
             <img
                             src="/fullysorted-logo.svg"
               className="h-8 w-auto"
-              style={{ maxWidth: 180, filter: "brightness(0)" }}
+              style={{ maxWidth: 180 }}
             />
           </Link>
 
