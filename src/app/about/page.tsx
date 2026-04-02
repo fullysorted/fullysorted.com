@@ -22,13 +22,13 @@ const PILLARS = [
   {
     icon: ShieldCheck,
     title: "No middlemen extracting value",
-    body: "We charge $3.99 to list a car. No commission. No percentage of sale. The money stays between the buyer and the seller, where it belongs.",
+    body: "We charge a simple one-time listing fee — from $9.99 depending on your package, with the first 100 listings free. No commission. No percentage of sale. The money stays between the buyer and the seller, where it belongs.",
   },
 ];
 
 const STATS = [
   { value: "0%", label: "Commission on sales" },
-  { value: "$3.99", label: "Flat listing fee" },
+  { value: "From $9.99", label: "Listing fee" },
   { value: "8+", label: "Service categories" },
   { value: "SoCal", label: "Where we live & work" },
 ];
@@ -126,7 +126,7 @@ export default function AboutPage() {
               Fully Sorted is a collector car marketplace and services directory.
               A place where buyers can find real pricing data — not ask prices, real
               auction comps — before they make a move. Where sellers can list a car
-              for $3.99 and keep every dollar of the sale. And where the mechanics,
+              for as little as $9.99 and keep every dollar of the sale. And where the mechanics,
               detailers, inspectors, and restorers who make this hobby possible can
               be found by the collectors who need them.
             </p>

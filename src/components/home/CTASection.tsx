@@ -49,15 +49,14 @@ export function CTASection() {
               Ready to list your car?
             </h2>
             <p className="text-white/80 mt-4 text-lg leading-relaxed max-w-xl">
-              $3.99 gets you a listing with a description that sounds like a car person wrote it — because one shaped every word.
-              No commissions. No dealer fees. Let&apos;s get it sorted.
+              Plans from $9.99 — and the first 100 listings are completely free. AI-powered descriptions that sound like a car person wrote them — because one shaped every word. No commissions. No dealer fees. Let&apos;s get it sorted.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link
                 href="/sell"
                 className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-gray-900 text-sm font-bold rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
               >
-                List Your Car — $3.99
+                List Your Car — From $9.99
               </Link>
               <Link
                 href="/about"

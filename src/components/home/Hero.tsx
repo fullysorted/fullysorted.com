@@ -55,7 +55,7 @@ function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
         </div>
         <div className="p-4 sm:p-5">
           <p className="font-bold text-base" style={{ color: "#1a1a18" }}>Be the first to list</p>
-          <p className="text-xs mt-1" style={{ color: "#9a9a8a" }}>$3.99 flat fee · No commissions · Real buyers</p>
+          <p className="text-xs mt-1" style={{ color: "#9a9a8a" }}>From $9.99 · No commissions · First 100 free</p>
           <Link
             href="/sell"
             className="inline-flex items-center gap-1.5 mt-4 text-xs font-bold transition-colors"

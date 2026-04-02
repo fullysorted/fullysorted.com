@@ -249,7 +249,7 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl hover:opacity-90 transition-opacity"
               style={{ background: "#E8722A" }}
             >
-              List Your Car — $3.99
+              List Your Car — From $9.99
             </Link>
           </div>
         ) : (
