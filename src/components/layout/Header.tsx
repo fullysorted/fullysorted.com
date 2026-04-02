@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
 
 // Only import Clerk when publishable key is configured
 const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-let useAuth: (() => { isSignedIn: boolean | undefined; isLoed: boolean }) | null = null;
+let useAuth: (() => { isSignedIn: boolean | undefined; isLoaded: boolean }) | null = null;
 let UserButton: React.ComponentType<any> | null = null;
 let SignInButton: React.ComponentType<any> | null = null;
 
@@ -34,7 +34,6 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
 
   // Use Clerk auth if available, otherwise default to not signed in
   let isSignedIn: boolean | undefined = false;
@@ -50,46 +49,45 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 transition-colors bg-white border-b border-stone-200 backdrop-blur-sm">
-
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
-            <img
-                            src="/fullysorted-logo.svg"
-              className="h-8 w-auto"
-              style={{ maxWidth: 180 }}
+            <Image
+              src="/fullysorted-logo.svg"
+              alt="Fully Sorted"
+              width={160}
+              height={48}
+              priority
+              className="h-10 w-auto"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-0.5">
-            {navLinks.map((link) => {
-              const active = pathname === link.href || pathname.startsWith(link.href + "/");
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
-                    active
-                      ? "text-stone-900 font-semibold bg-stone-100"
-                      : "text-stone-700 hover:text-stone-900 hover:bg-stone-50"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-2.5">
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              aria-label="Search"
+              className="p-2 rounded-lg text-text-secondary hover:text-foreground hover:bg-surface transition-colors"
+            >
+              <Search className="w-5 h-5" />
+            </button>
             <Link
               href="/sell"
-              className="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-all hover:opacity-90 active:scale-95"
-              style={{ background: "#E8722A" }}
+              className="px-4 py-2 text-sm font-semibold bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors"
             >
               Sell a Car
             </Link>
@@ -98,11 +96,15 @@ export function Header() {
             {isLoaded && isSignedIn && UserButton ? (
               <UserButton
                 signInUrl="/sign-in"
-                appearance={{ elements: { avatarBox: "w-8 h-8" } }}
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8",
+                  },
+                }}
               />
             ) : isLoaded && SignInButton ? (
               <SignInButton mode="modal">
-                <button className="px-4 py-2 text-sm font-medium rounded-lg border border-stone-200 text-stone-600 hover:text-stone-900 hover:border-stone-300 transition-colors">
+                <button className="px-4 py-2 text-sm font-medium text-accent border border-accent rounded-lg hover:bg-amber-50 transition-colors">
                   Sign In
                 </button>
               </SignInButton>
@@ -112,7 +114,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg transition-colors text-stone-500 hover:text-stone-900 hover:bg-stone-100"
+            className="md:hidden p-2 rounded-lg text-text-secondary hover:text-foreground hover:bg-surface transition-colors"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -120,39 +122,37 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "md:hidden fixed inset-0 top-16 z-40 transition-transform duration-300 ease-in-out bg-white",
+          "md:hidden fixed inset-0 top-16 z-40 bg-white transition-transform duration-300 ease-in-out",
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
-
-        <nav className="flex flex-col p-6 gap-1">
+        <nav className="flex flex-col p-6 gap-2">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-3.5 text-lg font-medium text-stone-700 rounded-xl hover:bg-stone-100 hover:text-stone-900 transition-colors"
+              className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
             >
               {link.label}
             </Link>
           ))}
-          <div className="h-px my-4" style={{ background: "rgba(0,0,0,0.08)" }} />
+          <div className="border-t border-border my-4" />
           <Link
             href="/sell"
             onClick={() => setMobileMenuOpen(false)}
-            className="px-4 py-3.5 text-lg font-semibold text-center text-white rounded-xl hover:opacity-90 transition-opacity"
-            style={{ background: "#E8722A" }}
+            className="px-4 py-3 text-lg font-semibold text-center bg-accent text-white rounded-xl hover:bg-accent-hover transition-colors"
           >
-            Sell a Car — $3.99
+            Sell a Car
           </Link>
           {isLoaded && !isSignedIn && SignInButton && (
             <SignInButton mode="modal">
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-2 px-4 py-3.5 text-lg font-medium text-center text-stone-600 rounded-xl border border-stone-200 hover:text-stone-900 hover:border-stone-300 transition-colors w-full"
+                className="px-4 py-3 text-lg font-medium text-center text-accent rounded-xl border border-accent hover:bg-amber-50 transition-colors"
               >
                 Sign In
               </button>
