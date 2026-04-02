@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Required to enable src/instrumentation.ts in Next.js 14
-  experimental: {
-    instrumentationHook: true,
-  },
   images: {
     remotePatterns: [
       {
