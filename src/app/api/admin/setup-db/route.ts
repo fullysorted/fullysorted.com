@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server';
 
 /**
- * One-time database setup endpoint.
- * Creates all tables if they don't exist.
- * Hit this once after adding DATABASE_URL to Vercel env vars.
+ * Database setup/migration endpoint.
+ * Creates all tables if they don't exist, and adds any missing columns.
  * Protected by ADMIN_SECRET env var.
+ * GET  → health check (no auth required)
+ * POST → create/migrate tables (requires x-admin-secret header)
  */
+
 export async function POST(request: Request) {
-  // Basic protection — require a secret header
   const secret = request.headers.get('x-admin-secret');
   if (!process.env.ADMIN_SECRET || secret !== process.env.ADMIN_SECRET) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -21,7 +22,7 @@ export async function POST(request: Request) {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(process.env.DATABASE_URL);
 
-    // Create all tables in order (respecting foreign key dependencies)
+    // ── Create base tables ──────────────────────────────────────────────
     await sql`
       CREATE TABLE IF NOT EXISTS users (
         id          SERIAL PRIMARY KEY,
@@ -74,6 +75,14 @@ export async function POST(request: Request) {
       )
     `;
 
+    // ── Add missing columns (safe — IF NOT EXISTS) ──────────────────────
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS tier VARCHAR(20) NOT NULL DEFAULT 'standard'`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS is_free_early_adopter BOOLEAN DEFAULT FALSE`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS video_url TEXT`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS admin_notes TEXT`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS denied_reason TEXT`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS sold_price INTEGER`;
+
     await sql`
       CREATE TABLE IF NOT EXISTS saved_listings (
         id          SERIAL PRIMARY KEY,
@@ -124,21 +133,55 @@ export async function POST(request: Request) {
       )
     `;
 
+    await sql`
+      CREATE TABLE IF NOT EXISTS provider_applications (
+        id                SERIAL PRIMARY KEY,
+        business_name     VARCHAR(255) NOT NULL,
+        owner_name        VARCHAR(255) NOT NULL,
+        category          VARCHAR(100) NOT NULL,
+        location          VARCHAR(255) NOT NULL,
+        email             VARCHAR(255) NOT NULL,
+        phone             VARCHAR(50),
+        website           TEXT,
+        instagram         VARCHAR(100),
+        years_in_business VARCHAR(50),
+        specialties       TEXT NOT NULL,
+        ideal_client      TEXT,
+        why_list          TEXT,
+        referred_by       VARCHAR(255),
+        status            VARCHAR(50) NOT NULL DEFAULT 'pending',
+        created_at        TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS messages (
+        id          SERIAL PRIMARY KEY,
+        listing_id  INTEGER REFERENCES listings(id),
+        sender_name VARCHAR(255),
+        sender_email VARCHAR(255),
+        content     TEXT NOT NULL,
+        read        BOOLEAN DEFAULT FALSE,
+        created_at  TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+
+    // Get current counts
+    const [{ listing_count }] = await sql`SELECT COUNT(*)::int AS listing_count FROM listings`;
+
     return NextResponse.json({
       success: true,
-      message: 'All tables created (or already existed). Database is ready.',
-      tables: ['users', 'listings', 'saved_listings', 'comments', 'market_data', 'deal_alerts'],
+      message: 'Database schema up to date. All tables and columns created.',
+      tables: ['users', 'listings', 'saved_listings', 'comments', 'market_data', 'deal_alerts', 'provider_applications', 'messages'],
+      stats: { listingCount: listing_count },
     });
-  } catch (error: any) {
-    console.error('DB setup error:', error?.message || error);
-    return NextResponse.json(
-      { error: error?.message || 'Failed to set up database' },
-      { status: 500 }
-    );
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.error('DB setup error:', msg);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
 
-// Also allow GET for a quick health check
 export async function GET() {
   if (!process.env.DATABASE_URL) {
     return NextResponse.json({ connected: false, message: 'DATABASE_URL not set' });
@@ -146,12 +189,10 @@ export async function GET() {
   try {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(process.env.DATABASE_URL);
-    const result = await sql`SELECT COUNT(*) as count FROM listings`;
-    return NextResponse.json({
-      connected: true,
-      listingCount: result[0]?.count ?? 0,
-    });
-  } catch (error: any) {
-    return NextResponse.json({ connected: false, error: error?.message });
+    const [{ count }] = await sql`SELECT COUNT(*)::int AS count FROM listings`;
+    return NextResponse.json({ connected: true, listingCount: count });
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    return NextResponse.json({ connected: false, error: msg });
   }
 }

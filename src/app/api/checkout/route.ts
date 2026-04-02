@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripe, LISTING_TIERS, LISTING_FEE_CURRENCY, type ListingTier } from '@/lib/stripe';
-import { getListingById } from '@/lib/listing-store';
+
+async function getDbSql() {
+  if (!process.env.DATABASE_URL) return null;
+  const { neon } = await import('@neondatabase/serverless');
+  return neon(process.env.DATABASE_URL);
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,17 +16,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Determine base URL for redirect
     const origin =
       request.headers.get('origin') ||
       process.env.NEXT_PUBLIC_SITE_URL ||
       'https://www.fullysorted.com';
 
     // Check if this listing qualifies for the early adopter free tier
-    const listing = listingId ? getListingById(Number(listingId)) : null;
-    if (listing?.isFreeEarlyAdopter) {
-      // Skip payment — early adopter gets it free
-      return NextResponse.json({ url: `${origin}/sell/success?free=true` });
+    if (listingId) {
+      try {
+        const sql = await getDbSql();
+        if (sql) {
+          const [listing] = await sql`
+            SELECT id, is_free_early_adopter FROM listings WHERE id = ${Number(listingId)} LIMIT 1
+          `;
+          if (listing?.is_free_early_adopter) {
+            return NextResponse.json({ url: `${origin}/sell/success?free=true` });
+          }
+        }
+      } catch {
+        // Proceed to payment if DB check fails
+      }
     }
 
     // Determine price from tier
