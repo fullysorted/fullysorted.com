@@ -125,6 +125,26 @@ export const dealAlerts = pgTable('deal_alerts', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
+// ─── Provider Applications ──────────────────────────────
+export const providerApplications = pgTable('provider_applications', {
+  id: serial('id').primaryKey(),
+  businessName: varchar('business_name', { length: 255 }).notNull(),
+  ownerName: varchar('owner_name', { length: 255 }).notNull(),
+  category: varchar('category', { length: 100 }).notNull(),
+  location: varchar('location', { length: 255 }).notNull(),
+  email: varchar('email', { length: 255 }).notNull(),
+  phone: varchar('phone', { length: 50 }),
+  website: text('website'),
+  instagram: varchar('instagram', { length: 100 }),
+  yearsInBusiness: varchar('years_in_business', { length: 50 }),
+  specialties: text('specialties').notNull(),
+  idealClient: text('ideal_client'),
+  whyList: text('why_list'),
+  referredBy: varchar('referred_by', { length: 255 }),
+  status: varchar('status', { length: 50 }).default('pending').notNull(), // pending, approved, rejected
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
 // Type exports for use in components
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
