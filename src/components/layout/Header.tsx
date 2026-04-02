@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 // Only import Clerk when publishable key is configured
 const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-let useAuth: (() => { isSignedIn: boolean | undefined; isLoded: boolean }) | null = null;
+let useAuth: (() => { isSignedIn: boolean | undefined; isLoed: boolean }) | null = null;
 let UserButton: React.ComponentType<any> | null = null;
 let SignInButton: React.ComponentType<any> | null = null;
 
