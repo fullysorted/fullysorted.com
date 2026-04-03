@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
@@ -15,9 +15,52 @@ const navLinks = [
   { href: "/about", label: "About" },
 ];
 
+// Separate components so useAuth is never called during SSR prerendering
+function DesktopAuthButtons() {
+  const { isSignedIn, isLoaded } = useAuth();
+  if (!isLoaded) return null;
+  return isSignedIn ? (
+    <UserButton appearance={{ elements: { avatarBox: "w-8 h-8" } }} />
+  ) : (
+    <SignInButton mode="modal">
+      <button className="px-4 py-2 text-sm font-medium text-accent border border-accent rounded-lg hover:bg-amber-50 transition-colors">
+        Sign In
+      </button>
+    </SignInButton>
+  );
+}
+
+function MobileAuthButtons({ onClose }: { onClose: () => void }) {
+  const { isSignedIn, isLoaded } = useAuth();
+  if (!isLoaded) return null;
+  return (
+    <>
+      {!isSignedIn && (
+        <SignInButton mode="modal">
+          <button
+            onClick={onClose}
+            className="px-4 py-3 text-lg font-medium text-center text-accent rounded-xl border border-accent hover:bg-amber-50 transition-colors"
+          >
+            Sign In
+          </button>
+        </SignInButton>
+      )}
+      {isSignedIn && (
+        <div className="flex items-center justify-center px-4 py-3">
+          <UserButton />
+        </div>
+      )}
+    </>
+  );
+}
+
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isSignedIn, isLoaded } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
@@ -62,23 +105,7 @@ export function Header() {
             >
               Sell a Car
             </Link>
-
-            {/* Auth */}
-            {isLoaded && isSignedIn ? (
-              <UserButton
-                appearance={{
-                  elements: {
-                    avatarBox: "w-8 h-8",
-                  },
-                }}
-              />
-            ) : isLoaded ? (
-              <SignInButton mode="modal">
-                <button className="px-4 py-2 text-sm font-medium text-accent border border-accent rounded-lg hover:bg-amber-50 transition-colors">
-                  Sign In
-                </button>
-              </SignInButton>
-            ) : null}
+            {mounted && <DesktopAuthButtons />}
           </div>
 
           {/* Mobile Menu Button */}
@@ -118,21 +145,7 @@ export function Header() {
           >
             Sell a Car
           </Link>
-          {isLoaded && !isSignedIn && (
-            <SignInButton mode="modal">
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 text-lg font-medium text-center text-accent rounded-xl border border-accent hover:bg-amber-50 transition-colors"
-              >
-                Sign In
-              </button>
-            </SignInButton>
-          )}
-          {isLoaded && isSignedIn && (
-            <div className="flex items-center justify-center px-4 py-3">
-              <UserButton />
-            </div>
-          )}
+          {mounted && <MobileAuthButtons onClose={() => setMobileMenuOpen(false)} />}
         </nav>
       </div>
     </header>
