@@ -1,21 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
-
-// Conditionally import ClerkProvider only when configured
-const clerkEnabled = !!(
-  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY &&
-  process.env.CLERK_SECRET_KEY
-);
-
-let ClerkProvider: React.ComponentType<{ children: React.ReactNode; appearance?: any }> | null = null;
-if (clerkEnabled) {
-  ClerkProvider = require("@clerk/nextjs").ClerkProvider;
-}
 
 const inter = Inter({
   variable: "--font-inter",
@@ -69,8 +59,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Fully Sorted — Collector Car Marketplace",
-    description:
-      "Expert pricing, vetted services, and a community that gets it.",
+    description: "Expert pricing, vetted services, and a community that gets it.",
   },
   robots: {
     index: true,
@@ -85,39 +74,31 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const content = (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        <meta name="theme-color" content="#E8722A" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
-      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
-        <Header />
-        <main className="flex-1 pb-20 md:pb-0">{children}</main>
-        <Footer />
-        <MobileNav />
-        <CookieBanner />
-      </body>
-    </html>
+  return (
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: "#d97706",
+          colorTextOnPrimaryBackground: "#ffffff",
+          borderRadius: "0.75rem",
+        },
+      }}
+    >
+      <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+        <head>
+          <meta name="theme-color" content="#E8722A" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+          <link rel="icon" href="/favicon.ico" sizes="any" />
+        </head>
+        <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
+          <Header />
+          <main className="flex-1 pb-20 md:pb-0">{children}</main>
+          <Footer />
+          <MobileNav />
+          <CookieBanner />
+        </body>
+      </html>
+    </ClerkProvider>
   );
-
-  if (ClerkProvider) {
-    return (
-      <ClerkProvider
-        appearance={{
-          variables: {
-            colorPrimary: '#d97706',
-            colorTextOnPrimaryBackground: '#ffffff',
-            borderRadius: '0.75rem',
-          },
-        }}
-      >
-        {content}
-      </ClerkProvider>
-    );
-  }
-
-  return content;
 }
