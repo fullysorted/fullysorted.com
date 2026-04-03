@@ -1,6 +1,6 @@
 import { pgTable, serial, text, integer, boolean, timestamp, decimal, jsonb, varchar } from 'drizzle-orm/pg-core';
 
-// ─── Users ───────────────────────────────────────────────
+// âââ Users âââââââââââââââââââââââââââââââââââââââââââââââ
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
   email: varchar('email', { length: 255 }).notNull().unique(),
@@ -11,7 +11,7 @@ export const users = pgTable('users', {
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
-// ─── Listings ────────────────────────────────────────────
+// âââ Listings ââââââââââââââââââââââââââââââââââââââââââââ
 export const listings = pgTable('listings', {
   id: serial('id').primaryKey(),
   slug: varchar('slug', { length: 500 }).notNull().unique(),
@@ -79,7 +79,7 @@ export const listings = pgTable('listings', {
   soldAt: timestamp('sold_at'),
 });
 
-// ─── Saved Listings (Favorites) ─────────────────────────
+// âââ Saved Listings (Favorites) âââââââââââââââââââââââââ
 export const savedListings = pgTable('saved_listings', {
   id: serial('id').primaryKey(),
   userId: integer('user_id').references(() => users.id).notNull(),
@@ -87,7 +87,7 @@ export const savedListings = pgTable('saved_listings', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// ─── Comments ────────────────────────────────────────────
+// âââ Comments ââââââââââââââââââââââââââââââââââââââââââââ
 export const comments = pgTable('comments', {
   id: serial('id').primaryKey(),
   listingId: integer('listing_id').references(() => listings.id).notNull(),
@@ -98,7 +98,7 @@ export const comments = pgTable('comments', {
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
-// ─── Market Data (for Value Guide & Monday Movers) ──────
+// âââ Market Data (for Value Guide & Monday Movers) ââââââ
 export const marketData = pgTable('market_data', {
   id: serial('id').primaryKey(),
   segment: varchar('segment', { length: 200 }).notNull(), // e.g., "Air-Cooled 911s"
@@ -110,7 +110,7 @@ export const marketData = pgTable('market_data', {
   recordedAt: timestamp('recorded_at').defaultNow().notNull(),
 });
 
-// ─── Deal Alerts (Early Bird Scraper Results) ────────────
+// âââ Deal Alerts (Early Bird Scraper Results) ââââââââââââ
 export const dealAlerts = pgTable('deal_alerts', {
   id: serial('id').primaryKey(),
   sourceUrl: text('source_url').notNull(),
@@ -125,7 +125,7 @@ export const dealAlerts = pgTable('deal_alerts', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// ─── Provider Applications ──────────────────────────────
+// âââ Provider Applications (Intake Queue) âââââââââââââââ
 export const providerApplications = pgTable('provider_applications', {
   id: serial('id').primaryKey(),
   businessName: varchar('business_name', { length: 255 }).notNull(),
@@ -145,6 +145,49 @@ export const providerApplications = pgTable('provider_applications', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
+// âââ Service Providers (Published Profiles) âââââââââââââ
+export const serviceProviders = pgTable('service_providers', {
+  id: serial('id').primaryKey(),
+  clerkUserId: varchar('clerk_user_id', { length: 255 }), // Linked Clerk account (nullable until claimed)
+
+  // Business info
+  businessName: varchar('business_name', { length: 255 }).notNull(),
+  ownerName: varchar('owner_name', { length: 255 }).notNull(),
+  slug: varchar('slug', { length: 300 }).notNull().unique(),
+  category: varchar('category', { length: 100 }).notNull(),
+  location: varchar('location', { length: 255 }).notNull(),
+
+  // Contact
+  email: varchar('email', { length: 255 }).notNull(),
+  phone: varchar('phone', { length: 50 }),
+  website: text('website'),
+  instagram: varchar('instagram', { length: 100 }),
+
+  // Profile (provider-written)
+  description: text('description').notNull(), // Provider writes their own description
+  specialties: jsonb('specialties').$type<string[]>().default([]),
+  yearsInBusiness: varchar('years_in_business', { length: 50 }),
+  priceRange: varchar('price_range', { length: 10 }).default('$$'), // $, $$, $$$, $$$$
+
+  // Trust signals
+  verified: boolean('verified').default(false),
+  foundingProvider: boolean('founding_provider').default(false),
+
+  // Ratings
+  rating: decimal('rating', { precision: 3, scale: 1 }).default('0'),
+  reviewCount: integer('review_count').default(0),
+
+  // Status
+  status: varchar('status', { length: 50 }).default('pending').notNull(), // pending, active, paused, rejected
+
+  // Source application (if created from an application)
+  applicationId: integer('application_id').references(() => providerApplications.id),
+
+  // Timestamps
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
 // Type exports for use in components
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -153,3 +196,6 @@ export type NewListing = typeof listings.$inferInsert;
 export type Comment = typeof comments.$inferSelect;
 export type MarketData = typeof marketData.$inferSelect;
 export type DealAlert = typeof dealAlerts.$inferSelect;
+export type ServiceProvider = typeof serviceProviders.$inferSelect;
+export type NewServiceProvider = typeof serviceProviders.$inferInsert;
+export type ProviderApplication = typeof providerApplications.$inferSelect;
