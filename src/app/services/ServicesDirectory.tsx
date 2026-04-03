@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Sparkles, Instagram, Loader2 } from 'lucide-react';
+import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Sparkles, AtSign, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
@@ -182,7 +182,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-amber-700 transition-colors"
             >
-              <Instagram className="w-4 h-4" /> {provider.instagram}
+              <AtSign className="w-4 h-4" /> {provider.instagram}
             </a>
           )}
         </div>
