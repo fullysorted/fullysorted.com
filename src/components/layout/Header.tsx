@@ -5,24 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-// Only import Clerk when publishable key is configured
-const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-
-let useAuth: (() => { isSignedIn: boolean | undefined; isLoaded: boolean }) | null = null;
-let UserButton: React.ComponentType<any> | null = null;
-let SignInButton: React.ComponentType<any> | null = null;
-
-if (clerkEnabled) {
-  try {
-    const clerk = require("@clerk/nextjs");
-    useAuth = clerk.useAuth;
-    UserButton = clerk.UserButton;
-    SignInButton = clerk.SignInButton;
-  } catch {
-    // Clerk not available
-  }
-}
+import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
 
 const navLinks = [
   { href: "/browse", label: "Browse" },
@@ -34,19 +17,7 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Use Clerk auth if available, otherwise default to not signed in
-  let isSignedIn: boolean | undefined = false;
-  let isLoaded = true;
-  if (useAuth) {
-    try {
-      const auth = useAuth();
-      isSignedIn = auth.isSignedIn;
-      isLoaded = auth.isLoaded;
-    } catch {
-      // ClerkProvider not mounted
-    }
-  }
+  const { isSignedIn, isLoaded } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
@@ -93,16 +64,15 @@ export function Header() {
             </Link>
 
             {/* Auth */}
-            {isLoaded && isSignedIn && UserButton ? (
+            {isLoaded && isSignedIn ? (
               <UserButton
-                signInUrl="/sign-in"
                 appearance={{
                   elements: {
                     avatarBox: "w-8 h-8",
                   },
                 }}
               />
-            ) : isLoaded && SignInButton ? (
+            ) : isLoaded ? (
               <SignInButton mode="modal">
                 <button className="px-4 py-2 text-sm font-medium text-accent border border-accent rounded-lg hover:bg-amber-50 transition-colors">
                   Sign In
@@ -148,7 +118,7 @@ export function Header() {
           >
             Sell a Car
           </Link>
-          {isLoaded && !isSignedIn && SignInButton && (
+          {isLoaded && !isSignedIn && (
             <SignInButton mode="modal">
               <button
                 onClick={() => setMobileMenuOpen(false)}
@@ -158,9 +128,9 @@ export function Header() {
               </button>
             </SignInButton>
           )}
-          {isLoaded && isSignedIn && UserButton && (
+          {isLoaded && isSignedIn && (
             <div className="flex items-center justify-center px-4 py-3">
-              <UserButton signInUrl="/sign-in" />
+              <UserButton />
             </div>
           )}
         </nav>
