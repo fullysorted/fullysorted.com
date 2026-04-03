@@ -7,14 +7,14 @@ import Link from 'next/link';
 import type { ServiceProvider } from '@/lib/db/schema';
 
 const CATEGORIES = [
+  { value: 'photography', label: 'Photography' },
   { value: 'detailing', label: 'Detailing & Paint Correction' },
   { value: 'mechanical', label: 'Mechanical & Repair' },
-  { value: 'restoration', label: 'Restoration' },
   { value: 'transport', label: 'Transport & Shipping' },
-  { value: 'inspection', label: 'Pre-Purchase Inspection' },
-  { value: 'bodywork', label: 'Body Work & Paint' },
+  { value: 'inspection', label: 'Pre-Purchase Inspections' },
+  { value: 'restoration', label: 'Restoration' },
+  { value: 'bodywork', label: 'Body & Paint' },
   { value: 'storage', label: 'Storage' },
-  { value: 'photography', label: 'Automotive Photography' },
   { value: 'finance', label: 'Financing & Insurance' },
   { value: 'other', label: 'Other' },
 ];
@@ -22,22 +22,23 @@ const CATEGORIES = [
 const PRICE_RANGES = ['$', '$$', '$$$', '$$$$'];
 
 function StatusBadge({ status }: { status: string }) {
-  const config: Record<string, { color: string; icon: typeof CheckCircle; label: string }> = {
-    active: { color: 'bg-emerald-50 text-emerald-700 border-emerald-200', icon: CheckCircle, label: 'Active' },
-    pending: { color: 'bg-amber-50 text-amber-700 border-amber-200', icon: Clock, label: 'Pending Review' },
-    paused: { color: 'bg-stone-50 text-stone-600 border-stone-200', icon: AlertCircle, label: 'Paused' },
-    rejected: { color: 'bg-red-50 text-red-700 border-red-200', icon: AlertCircle, label: 'Not Approved' },
-  };
-  const c = config[status] || config.pending;
-  const Icon = c.icon;
+  const config = {
+    active: { icon: CheckCircle, label: 'Active â Listed in Directory', bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
+    pending: { icon: Clock, label: 'Pending Review', bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' },
+    paused: { icon: AlertCircle, label: 'Paused', bg: 'bg-stone-50', text: 'text-stone-600', border: 'border-stone-200' },
+    rejected: { icon: AlertCircle, label: 'Not Approved', bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
+  }[status] || { icon: Clock, label: status, bg: 'bg-stone-50', text: 'text-stone-600', border: 'border-stone-200' };
+
+  const Icon = config.icon;
   return (
-    <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border ${c.color}`}>
-      <Icon className="w-4 h-4" /> {c.label}
+    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${config.bg} ${config.text} border ${config.border}`}>
+      <Icon className="w-4 h-4" />
+      {config.label}
     </span>
   );
 }
 
-export default function ProviderDashboardPage() {
+export default function ProviderDashboard() {
   const { userId, isLoaded } = useAuth();
   const [provider, setProvider] = useState<ServiceProvider | null>(null);
   const [loading, setLoading] = useState(true);
@@ -45,20 +46,22 @@ export default function ProviderDashboardPage() {
   const [saveMessage, setSaveMessage] = useState('');
   const [specialtyInput, setSpecialtyInput] = useState('');
 
+  // Form state
   const [form, setForm] = useState({
     businessName: '',
     ownerName: '',
     category: '',
     location: '',
-    yearsInBusiness: '',
     phone: '',
     website: '',
     instagram: '',
     description: '',
     specialties: [] as string[],
+    yearsInBusiness: '',
     priceRange: '$$',
   });
 
+  // Fetch provider profile
   useEffect(() => {
     if (!isLoaded || !userId) return;
     fetch('/api/providers/me')
@@ -66,19 +69,18 @@ export default function ProviderDashboardPage() {
       .then(data => {
         if (data.provider) {
           setProvider(data.provider);
-          const p = data.provider;
           setForm({
-            businessName: p.businessName || '',
-            ownerName: p.ownerName || '',
-            category: p.category || '',
-            location: p.location || '',
-            yearsInBusiness: p.yearsInBusiness || '',
-            phone: p.phone || '',
-            website: p.website || '',
-            instagram: p.instagram || '',
-            description: p.description || '',
-            specialties: Array.isArray(p.specialties) ? p.specialties : [],
-            priceRange: p.priceRange || '$$',
+            businessName: data.provider.businessName || '',
+            ownerName: data.provider.ownerName || '',
+            category: data.provider.category || '',
+            location: data.provider.location || '',
+            phone: data.provider.phone || '',
+            website: data.provider.website || '',
+            instagram: data.provider.instagram || '',
+            description: data.provider.description || '',
+            specialties: data.provider.specialties || [],
+            yearsInBusiness: data.provider.yearsInBusiness || '',
+            priceRange: data.provider.priceRange || '$$',
           });
         }
         setLoading(false);
@@ -86,19 +88,7 @@ export default function ProviderDashboardPage() {
       .catch(() => setLoading(false));
   }, [isLoaded, userId]);
 
-  const addSpecialty = () => {
-    const trimmed = specialtyInput.trim();
-    if (trimmed && form.specialties.length < 8 && !form.specialties.includes(trimmed)) {
-      setForm({ ...form, specialties: [...form.specialties, trimmed] });
-      setSpecialtyInput('');
-    }
-  };
-
-  const removeSpecialty = (spec: string) => {
-    setForm({ ...form, specialties: form.specialties.filter(s => s !== spec) });
-  };
-
-  const handleSave = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
     setSaveMessage('');
@@ -109,13 +99,13 @@ export default function ProviderDashboardPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-
       const data = await res.json();
       if (res.ok) {
         setProvider(data.provider);
-        setSaveMessage('Profile updated successfully!');
+        setSaveMessage('Profile saved successfully!');
+        setTimeout(() => setSaveMessage(''), 3000);
       } else {
-        setSaveMessage(data.error || 'Failed to save.');
+        setSaveMessage(data.error || 'Failed to save');
       }
     } catch {
       setSaveMessage('Failed to save. Please try again.');
@@ -124,22 +114,35 @@ export default function ProviderDashboardPage() {
     }
   };
 
+  const addSpecialty = () => {
+    const trimmed = specialtyInput.trim();
+    if (trimmed && !form.specialties.includes(trimmed) && form.specialties.length < 8) {
+      setForm({ ...form, specialties: [...form.specialties, trimmed] });
+      setSpecialtyInput('');
+    }
+  };
+
+  const removeSpecialty = (spec: string) => {
+    setForm({ ...form, specialties: form.specialties.filter(s => s !== spec) });
+  };
+
   if (!isLoaded || loading) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-24 flex items-center justify-center">
+      <div className="min-h-[60vh] flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-amber-600" />
       </div>
     );
   }
 
+  // No profile yet â prompt to apply
   if (!provider) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-24">
-        <div className="bg-white rounded-2xl border border-stone-200 p-12 text-center">
-          <Building2 className="w-16 h-16 text-stone-300 mx-auto mb-6" />
-          <h1 className="text-2xl font-bold text-stone-900 mb-3">No Provider Profile Yet</h1>
-          <p className="text-stone-600 mb-8">
-            Apply to join the vetted services directory and get in front of serious collectors.
+      <div className="max-w-2xl mx-auto px-4 py-16 text-center">
+        <div className="bg-white rounded-2xl border border-stone-200 p-12">
+          <Building2 className="w-16 h-16 text-amber-500 mx-auto mb-6" />
+          <h1 className="text-3xl font-bold text-stone-900 mb-4">Become a Service Provider</h1>
+          <p className="text-stone-600 mb-8 max-w-md mx-auto">
+            You don&apos;t have a provider profile yet. Apply to join the Fully Sorted Services Directory and get in front of serious collector car owners.
           </p>
           <Link
             href="/services/apply"
@@ -153,51 +156,45 @@ export default function ProviderDashboardPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
+    <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-stone-900 mb-1">Provider Dashboard</h1>
-          <p className="text-stone-500">Manage your services directory profile</p>
+          <h1 className="text-3xl font-bold text-stone-900">Your Provider Profile</h1>
+          <p className="text-stone-500 mt-1">Manage how you appear in the Services Directory</p>
         </div>
-        <div className="flex items-center gap-3">
-          <StatusBadge status={provider.status} />
-          {provider.foundingProvider && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-amber-50 text-amber-700 border border-amber-200">
-              <Sparkles className="w-4 h-4" /> Founding Provider
-            </span>
-          )}
-        </div>
+        <StatusBadge status={provider.status} />
       </div>
 
-      <form onSubmit={handleSave} className="space-y-8">
+      {provider.status === 'pending' && (
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-8">
+          <div className="flex items-start gap-3">
+            <Clock className="w-5 h-5 text-amber-600 mt-0.5" />
+            <div>
+              <p className="text-amber-800 font-medium">Your profile is under review</p>
+              <p className="text-amber-700 text-sm mt-1">
+                We review every application personally. You can update your profile while you wait â changes will be reflected once approved. Expect a response within 3â5 business days.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {provider.foundingProvider && (
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-5 mb-8">
+          <div className="flex items-center gap-3">
+            <Sparkles className="w-5 h-5 text-amber-600" />
+            <p className="text-amber-800 font-medium">Founding Provider â Thank you for being one of the first!</p>
+          </div>
+        </div>
+      )}
+
+      {/* Profile Form */}
+      <form onSubmit={handleSubmit} className="space-y-8">
         {/* Business Info */}
         <section className="bg-white rounded-xl border border-stone-200 p-6">
           <h2 className="text-lg font-bold text-stone-900 mb-6 flex items-center gap-2">
             <Building2 className="w-5 h-5 text-amber-600" /> Business Information
-          </h2>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label className="block text-sm font-medium text-stone-700 mb-1.5">Business Name *</label>
-              <input
-                type="text"
-                required
-                value={form.businessName}
-                onChange={e => setForm({ ...form, businessName: e.target.value })}
-                className="w-full px-3 py-2.5 bg-white border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-stone-700 mb-1.5">Owner / Contact Name</label>
-              <input
-                type="text"
-                value={form.ownerName}
-                onChange={e => setForm({ ...form, ownerName: e.target.value })}
-                className="w-full px-3 py-2.5 bg-white border border-stone-200 rounded-lg text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500"
-              />
-            </div>
-            <div>
-              00" /> Business Information
           </h2>
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
