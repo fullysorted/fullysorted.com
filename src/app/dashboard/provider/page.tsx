@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
-import { Building2, MapPin, Phone, Globe, Instagram, Save, Loader2, CheckCircle, Clock, AlertCircle, ArrowRight, Sparkles, Tag, DollarSign, Wrench } from 'lucide-react';
+import { Building2, MapPin, Phone, Globe, AtSign, Save, Loader2, CheckCircle, Clock, AlertCircle, ArrowRight, Sparkles, Tag, DollarSign, Wrench } from 'lucide-react';
 import Link from 'next/link';
 import type { ServiceProvider } from '@/lib/db/schema';
 
@@ -310,7 +310,7 @@ export default function ProviderDashboard() {
             </div>
             <div className="sm:col-span-2">
               <label className="block text-sm font-medium text-stone-700 mb-1.5">
-                <Instagram className="w-3.5 h-3.5 inline mr-1" /> Instagram
+                <AtSign className="w-3.5 h-3.5 inline mr-1" /> Instagram
               </label>
               <input
                 type="text"
