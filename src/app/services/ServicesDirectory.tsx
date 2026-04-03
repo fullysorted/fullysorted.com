@@ -304,5 +304,9 @@ export default function ServicesDirectory() {
             className="inline-flex items-center justify-center gap-2 bg-stone-700 hover:bg-stone-600 text-white font-medium px-6 py-3 rounded-xl transition-colors"
           >
             Recommend a Provider
-Ó[ÏÙ]Ù]Ù]
-NÂB
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
