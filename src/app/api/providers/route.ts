@@ -66,15 +66,37 @@ export async function POST(request: NextRequest) {
       status: 'pending',
     });
 
-ËÈÜX]HÝY\Ù[H
-[[È[[Ú\È\Ý\ÊBÛÛÝÜXÚX[Y\Ð\^HH\[ÙÜXÚX[Y\ÈOOH	ÜÝ[ÉÂÈÜXÚX[Y\ËÜ]
-	Ë	ÊKX\
+    // Create provider profile (pending until Chris approves)
+    const specialtiesArray = typeof specialties === 'string'
+      ? specialties.split(',').map((s: string) => s.trim()).filter(Boolean)
+      : (specialties || []);
 
-ÎÝ[ÊHOË[J
-JK[\ÛÛX[B
-ÜXÚX[Y\È×JNÂÛÛÝÜÝY\HH]ØZ][Ù\
-ØÚ[XKÙ\XÙTÝY\ÊK[Y\ÊÂÛ\Õ\Ù\YÛ\Õ\Ù\Y[\Ú[\ÜÓ[YKÝÛ\[YKÛYËØ]YÛÜKØØ][Û[XZ[ÛNÛH[ÙXÚ]NÙXÚ]H[[ÝYÜ[N[ÝYÜ[H[\ØÜ\[ÛÜXÚX[Y\ÎÜXÚX[Y\Ð\^KYX\Ò[\Ú[\ÜÎYX\Ò[\Ú[\ÜÈ[XÙT[ÙNXÙT[ÙH	É		Ë\YYY[ÙKÝ[[ÔÝY\[ÙKËÈÑÎÚXÚÈÛÝ[ÜÝ[[ÈYÙBÝ]\Î	Ü[[ÉËJK]\[Ê
-NÂ]\^\ÜÛÙKÛÛÈÝY\Y\ÜØYÙN	Ð\XØ][ÛÝXZ]YÝXØÙ\ÜÙ[HHÙW	Û]Y]È]Ú][ËMH\Ú[\ÜÈ^\ËÈKÈÝ]\ÎHB
-NÂHØ]Ú
-\ÜHÂÛÛÛÛK\Ü	ÐÜX]HÝY\\ÜË\ÜNÂ]\^\ÜÛÙKÛÛÈ\Ü	ÑZ[YÈÝXZ]\XØ][ÛÈKÈÝ]\Î
-LJNÂBB
+    const [provider] = await db.insert(schema.serviceProviders).values({
+      clerkUserId: clerkUserId || null,
+      businessName,
+      ownerName,
+      slug,
+      category,
+      location,
+      email,
+      phone: phone || null,
+      website: website || null,
+      instagram: instagram || null,
+      description,
+      specialties: specialtiesArray,
+      yearsInBusiness: yearsInBusiness || null,
+      priceRange: priceRange || '$$',
+      verified: false,
+      foundingProvider: false, // TODO: check count for founding badge
+      status: 'pending',
+    }).returning();
+
+    return NextResponse.json(
+      { provider, message: 'Application submitted successfully! We\'ll review it within 3-5 business days.' },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Create provider error:', error);
+    return NextResponse.json({ error: 'Failed to submit application' }, { status: 500 });
+  }
+}
