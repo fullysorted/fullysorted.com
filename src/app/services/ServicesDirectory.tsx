@@ -38,66 +38,6 @@ interface Provider {
   slug: string;
 }
 
-// âââ Fallback Providers (shown while DB is empty) âââââ
-const SEED_PROVIDERS: Provider[] = [
-  {
-    id: 1, businessName: 'Pacific Coast Auto Photography', category: 'photography', slug: 'pacific-coast-auto-photography',
-    description: 'Studio and on-location shoots that make your car look like it belongs in a magazine. Drone footage available.',
-    location: 'San Diego, CA', rating: 4.9, reviewCount: 47, phone: '(619) 555-0142', website: 'https://pacificcoastauto.photo',
-    verified: true, foundingProvider: true, instagram: null,
-    specialties: ['Studio Shoots', 'On-Location', 'Drone', 'Auction Prep'], priceRange: '$$',
-  },
-  {
-    id: 2, businessName: 'SoCal Concours Detailing', category: 'detailing', slug: 'socal-concours-detailing',
-    description: 'Full paint correction, ceramic coating, and concours-level prep. We treat your car like it\'s headed to Pebble Beach.',
-    location: 'Carlsbad, CA', rating: 5.0, reviewCount: 82, phone: '(760) 555-0198', website: 'https://socalconcours.com',
-    verified: true, foundingProvider: true, instagram: '@socalconcours',
-    specialties: ['Paint Correction', 'Ceramic Coating', 'Interior Restoration', 'Concours Prep'], priceRange: '$$$',
-  },
-  {
-    id: 3, businessName: 'Heritage Motor Works', category: 'mechanical', slug: 'heritage-motor-works',
-    description: 'European specialists with a focus on air-cooled Porsche, vintage Mercedes, and classic BMW. Factory-trained techs.',
-    location: 'Vista, CA', rating: 4.8, reviewCount: 63, phone: '(760) 555-0234', website: 'https://heritagemotorworks.com',
-    verified: true, foundingProvider: true, instagram: null,
-    specialties: ['Air-Cooled Porsche', 'Vintage Mercedes', 'Classic BMW', 'Pre-Purchase Inspections'], priceRange: '$$$',
-  },
-  {
-    id: 4, businessName: 'West Coast Collector Transport', category: 'transport', slug: 'west-coast-collector-transport',
-    description: 'Enclosed transport for collector vehicles. Coast-to-coast coverage with GPS tracking and full insurance.',
-    location: 'Escondido, CA', rating: 4.7, reviewCount: 35, phone: '(858) 555-0176', website: 'https://wccollectortransport.com',
-    verified: true, foundingProvider: true, instagram: null,
-    specialties: ['Enclosed Transport', 'Coast-to-Coast', 'Auction Pickup', 'GPS Tracking'], priceRange: '$$',
-  },
-  {
-    id: 5, businessName: 'AutoScope Inspections', category: 'inspection', slug: 'autoscope-inspections',
-    description: 'Comprehensive pre-purchase inspections with detailed reports and photos. Mobile service â we come to the car.',
-    location: 'San Diego, CA', rating: 4.9, reviewCount: 128, phone: '(619) 555-0211', website: 'https://autoscope.pro',
-    verified: true, foundingProvider: true, instagram: null,
-    specialties: ['Pre-Purchase Inspection', 'Condition Reports', 'Auction Previews', 'Mobile Service'], priceRange: '$',
-  },
-  {
-    id: 6, businessName: 'Rancho Santa Fe Restoration', category: 'restoration', slug: 'rancho-santa-fe-restoration',
-    description: 'Full frame-off restorations for American muscle and European classics. Concours-winning results.',
-    location: 'Rancho Santa Fe, CA', rating: 4.8, reviewCount: 22, phone: '(858) 555-0099', website: 'https://rsfrestoration.com',
-    verified: true, foundingProvider: true, instagram: null,
-    specialties: ['Frame-Off Restoration', 'American Muscle', 'European Classics', 'Concours Prep'], priceRange: '$$$$',
-  },
-  {
-    id: 7, businessName: 'Del Mar Collision & Customs', category: 'bodywork', slug: 'del-mar-collision-customs',
-    description: 'Classic car body and paint work. Color matching for vintage finishes. Rust repair and fabrication.',
-    location: 'Del Mar, CA', rating: 4.6, reviewCount: 41, phone: '(858) 555-0333', website: 'https://delmarcc.com',
-    verified: true, foundingProvider: true, instagram: null,
-    specialties: ['Color Matching', 'Rust Repair', 'Panel Fabrication', 'Vintage Finishes'], priceRange: '$$$',
-  },
-  {
-    id: 8, businessName: 'Garage Sixteen Mobile Mechanics', category: 'mechanical', slug: 'garage-sixteen-mobile-mechanics',
-    description: 'Mobile mechanic service for classic and muscle cars. We come to your garage for service, tuning, and diagnosis.',
-    location: 'San Diego County', rating: 4.7, reviewCount: 56, phone: '(619) 555-0456', website: 'https://garagesixteen.com',
-    verified: false, foundingProvider: false, instagram: '@garagesixteen',
-    specialties: ['Mobile Service', 'Carburetor Tuning', 'Brake Service', 'Classic American'], priceRange: '$$',
-  },
-];
-
 // âââ Provider Card ââââââââââââââââââââââââââââââââââââ
 function ProviderCard({ provider }: { provider: Provider }) {
   return (
@@ -195,18 +135,17 @@ function ProviderCard({ provider }: { provider: Provider }) {
 export default function ServicesDirectory() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [providers, setProviders] = useState<Provider[]>(SEED_PROVIDERS);
+  const [providers, setProviders] = useState<Provider[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch from API, fallback to seed data
+  // Fetch providers from API
   useEffect(() => {
     fetch('/api/providers')
       .then(res => res.json())
       .then(data => {
-        if (data.providers && data.providers.length > 0) {
+        if (data.providers) {
           setProviders(data.providers);
         }
-        // If no providers in DB yet, keep seed data
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -280,8 +219,12 @@ export default function ServicesDirectory() {
       {filtered.length === 0 && !loading && (
         <div className="text-center py-16">
           <Wrench className="w-12 h-12 text-stone-300 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-stone-700 mb-2">No providers found</h3>
-          <p className="text-stone-500">Try a different search or category. We&apos;re always adding new vetted providers.</p>
+          <h3 className="text-lg font-semibold text-stone-700 mb-2">No providers yet</h3>
+          <p className="text-stone-500">
+            {providers.length === 0
+              ? 'We\'re building the directory now. Apply below to be one of the first listed.'
+              : 'Try a different search or category. We\'re always adding new vetted providers.'}
+          </p>
         </div>
       )}
 
