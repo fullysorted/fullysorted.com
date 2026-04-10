@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { randomBytes } from 'crypto';
 
 function isAdmin(request: NextRequest): boolean {
   const secret = request.cookies.get('fs_admin')?.value;
@@ -10,6 +11,11 @@ function slugify(s: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
+}
+
+function makeClaimToken(): string {
+  // 32-byte URL-safe random — long enough that guessing is impossible
+  return randomBytes(24).toString('base64url');
 }
 
 // POST /api/admin/seed-providers
@@ -89,8 +95,24 @@ export async function POST(request: NextRequest) {
       updated_at TIMESTAMP NOT NULL DEFAULT NOW()
     )
   `;
+  // Outreach pipeline columns (added later — idempotent)
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_status VARCHAR(50)`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS claim_token VARCHAR(64) UNIQUE`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_sent_at TIMESTAMP`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_responded_at TIMESTAMP`;
+  // Suppression list — businesses that opted out, never re-seed
+  await sql`
+    CREATE TABLE IF NOT EXISTS outreach_suppression (
+      id SERIAL PRIMARY KEY,
+      business_name VARCHAR(255),
+      email VARCHAR(255),
+      domain VARCHAR(255),
+      reason TEXT,
+      created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    )
+  `;
 
-  const results: Array<{ businessName: string; ok: boolean; id?: number; error?: string }> = [];
+  const results: Array<{ businessName: string; ok: boolean; id?: number; claimUrl?: string; error?: string }> = [];
 
   for (const p of providers) {
     try {
@@ -107,23 +129,25 @@ export async function POST(request: NextRequest) {
         continue;
       }
 
-      const ownerName = 'Outreach Pending';
-      const email = `outreach+${slugify(businessName).slice(0, 30)}@fullysorted.com`;
+      const ownerName = (p.ownerName as string) || 'Outreach Pending';
+      const email = (p.email as string) || `outreach+${slugify(businessName).slice(0, 30)}@fullysorted.com`;
+      const phone = (p.phone as string) || null;
       const slug = `${slugify(businessName)}-${Math.random().toString(36).slice(2, 8)}`;
+      const claimToken = makeClaimToken();
 
       // 1) Insert into provider_applications
       const appRows = await sql`
         INSERT INTO provider_applications
-          (business_name, owner_name, category, location, email, website, years_in_business, specialties, why_list, status)
+          (business_name, owner_name, category, location, email, phone, website, years_in_business, specialties, why_list, status)
         VALUES
-          (${businessName}, ${ownerName}, ${category}, ${location}, ${email}, ${website}, ${years}, ${specialties},
-           ${'Seeded outreach lead from Fully Sorted SoCal provider research database. Pending direct contact and claim by the business owner.'},
+          (${businessName}, ${ownerName}, ${category}, ${location}, ${email}, ${phone}, ${website}, ${years}, ${specialties},
+           ${'Seeded outreach lead from Fully Sorted SoCal provider research database. Awaiting claim from business owner.'},
            'pending')
         RETURNING id
       `;
       const applicationId = appRows[0]?.id ?? null;
 
-      // 2) Insert into service_providers as pending
+      // 2) Insert into service_providers as pending with claim token + outreach status
       const specialtiesArray = specialties
         .split(',')
         .map((s: string) => s.trim())
@@ -131,15 +155,18 @@ export async function POST(request: NextRequest) {
 
       const provRows = await sql`
         INSERT INTO service_providers
-          (business_name, owner_name, slug, category, location, email, website, description,
-           specialties, years_in_business, price_range, verified, founding_provider, status, application_id)
+          (business_name, owner_name, slug, category, location, email, phone, website, description,
+           specialties, years_in_business, price_range, verified, founding_provider, status, application_id,
+           outreach_status, claim_token)
         VALUES
-          (${businessName}, ${ownerName}, ${slug}, ${category}, ${location}, ${email}, ${website}, ${description},
-           ${JSON.stringify(specialtiesArray)}::jsonb, ${years}, '$$', false, false, 'pending', ${applicationId})
+          (${businessName}, ${ownerName}, ${slug}, ${category}, ${location}, ${email}, ${phone}, ${website}, ${description},
+           ${JSON.stringify(specialtiesArray)}::jsonb, ${years}, '$$', false, false, 'pending', ${applicationId},
+           'staged', ${claimToken})
         RETURNING id
       `;
 
-      results.push({ businessName, ok: true, id: provRows[0]?.id });
+      const claimUrl = `https://www.fullysorted.com/services/claim/${claimToken}`;
+      results.push({ businessName, ok: true, id: provRows[0]?.id, claimUrl });
     } catch (e) {
       results.push({
         businessName: p.businessName || '(unknown)',

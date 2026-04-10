@@ -203,9 +203,27 @@ export const serviceProviders = pgTable('service_providers', {
   // Source application (if created from an application)
   applicationId: integer('application_id').references(() => providerApplications.id),
 
+  // Outreach pipeline (for staged providers we're contacting)
+  // outreachStatus: 'staged' | 'sent' | 'opened' | 'claimed' | 'opted_out' | null
+  outreachStatus: varchar('outreach_status', { length: 50 }),
+  claimToken: varchar('claim_token', { length: 64 }).unique(),
+  outreachSentAt: timestamp('outreach_sent_at'),
+  outreachRespondedAt: timestamp('outreach_responded_at'),
+
   // Timestamps
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+// ─── Outreach Suppression List ───────────────────────────
+// Businesses that have opted out — never re-seed these.
+export const outreachSuppression = pgTable('outreach_suppression', {
+  id: serial('id').primaryKey(),
+  businessName: varchar('business_name', { length: 255 }),
+  email: varchar('email', { length: 255 }),
+  domain: varchar('domain', { length: 255 }),
+  reason: text('reason'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
 // Type exports for use in components

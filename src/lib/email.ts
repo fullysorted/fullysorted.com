@@ -153,7 +153,7 @@ export async function notifyNewListing(data: {
         <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;">
           <p style="font-size:24px;font-weight:700;margin:0 0 8px;">${data.year} ${data.make} ${data.model}</p>
           <p style="font-size:20px;color:#E8722A;font-weight:700;margin:0 0 24px;">$${Number(data.price).toLocaleString()}</p>
-          <p style="margin:0 0 16px;font-size:14px;color:#6b6b5e;">A $3.99 payment was received and the listing is now active on the site. Review it and add a Chris's Take if you haven't already.</p>
+          <p style="margin:0 0 16px;font-size:14px;color:#6b6b5e;">Payment was received and the listing is now active on the site. Review it and add a Chris's Take if you haven't already.</p>
           <div style="margin-top:24px;">
             ${data.slug ? `<a href="https://fullysorted.com/listings/${data.slug}" style="display:inline-block;background:#E8722A;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;margin-right:8px;">View Listing</a>` : ""}
             <a href="https://fullysorted.com/admin/listings" style="display:inline-block;background:#faf9f7;color:#1a1a18;border:1px solid #e5e5e0;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">Admin Panel</a>

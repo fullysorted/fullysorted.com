@@ -236,7 +236,7 @@ export default async function ArticlePage({ params }: Props) {
                 Reach serious buyers
               </p>
               <p className="text-xs mb-4" style={{ color: "#9a9a8a" }}>
-                $3.99 flat fee. No commissions. Fully Sorted audience.
+                Listings from $9.99. No commissions. Fully Sorted audience.
               </p>
               <Link
                 href="/sell"

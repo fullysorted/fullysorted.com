@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
         // Send email notification to Chris
         try {
           const { notifyNewListing } = await import('@/lib/email');
-          await notifyNewListing({ year, make, model, price: session.amount_total ? session.amount_total / 100 : 3.99, listingId: listing_id });
+          await notifyNewListing({ year, make, model, price: session.amount_total ? session.amount_total / 100 : 9.99, listingId: listing_id });
         } catch (emailErr) {
           console.error('Failed to send new listing email:', emailErr);
         }
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
       // No DB — still send the email notification
       try {
         const { notifyNewListing } = await import('@/lib/email');
-        await notifyNewListing({ year, make, model, price: session.amount_total ? session.amount_total / 100 : 3.99, listingId: listing_id });
+        await notifyNewListing({ year, make, model, price: session.amount_total ? session.amount_total / 100 : 9.99, listingId: listing_id });
       } catch {}
     }
   }

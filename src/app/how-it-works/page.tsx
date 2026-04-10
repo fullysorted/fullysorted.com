@@ -93,7 +93,7 @@ const PROVIDER_STEPS = [
 const FAQS = [
   {
     q: "What does it cost to list a car?",
-    a: "Standard listings start at $3.99. Our first 100 listings are free for early adopters. There are no commissions, no percentages, and no back-end fees when your car sells.",
+    a: "Three tiers, all one-time: Standard $9.99, Featured $29.99, Premium $49.99. The first 100 listings are free for founding members. There are no commissions, no percentages, and no back-end fees when your car sells.",
   },
   {
     q: "How is this different from Bring a Trailer, Hemmings, or Cars & Bids?",
@@ -269,10 +269,10 @@ export default function HowItWorksPage() {
             Simple Pricing
           </p>
           <h2 className="text-3xl font-bold text-foreground mb-3">
-            Flat listing fee. Zero commission. Ever.
+            One-time listing fee. Zero commission. Ever.
           </h2>
           <p className="text-base text-text-secondary">
-            Standard listings start at $3.99. The first 100 sellers list free as founding members. When your car sells, you keep 100% of what the buyer pays.
+            Standard $9.99, Featured $29.99, Premium $49.99 — all one-time. The first 100 sellers list free as founding members. When your car sells, you keep 100% of what the buyer pays.
           </p>
           <div className="mt-8">
             <Link
