@@ -3,8 +3,16 @@
 import { CheckCircle2, ArrowRight, Home } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { trackMetaEvent } from '@/components/analytics/MetaPixel';
 
 export default function SuccessPage() {
+  // Fire Meta Pixel CompleteRegistration on success page mount
+  // (the actual Purchase event is server-side via webhook for accuracy)
+  useEffect(() => {
+    trackMetaEvent('CompleteRegistration', { content_category: 'seller_listing_paid' });
+  }, []);
+
   return (
     <main className="min-h-screen bg-stone-50 flex items-center justify-center px-4">
       <motion.div

@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
+import { MetaPixel } from "@/components/analytics/MetaPixel";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -92,6 +93,7 @@ export default function RootLayout({
           <link rel="icon" href="/favicon.ico" sizes="any" />
         </head>
         <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
+          <MetaPixel />
           <Header />
           <main className="flex-1 pb-20 md:pb-0">{children}</main>
           <Footer />

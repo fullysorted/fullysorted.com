@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { trackMetaEvent } from '@/components/analytics/MetaPixel';
 import {
   Sparkles, Loader2, CheckCircle2, ChevronRight, ChevronLeft,
   Car, DollarSign, FileText, Send, CreditCard, Star, Zap
@@ -156,6 +157,16 @@ export default function SellForm() {
       });
       if (!listingRes.ok) throw new Error('Failed to create listing');
       const listingData = await listingRes.json();
+
+      // Meta Pixel: fire Lead event when seller creates a listing
+      // (before payment, so we capture intent even on cart abandonment)
+      const tierValue = form.tier === 'premium' ? 49.99 : form.tier === 'featured' ? 29.99 : 9.99;
+      trackMetaEvent('Lead', {
+        content_category: 'seller_listing',
+        content_name: `${form.year} ${form.make} ${form.model}`.trim(),
+        value: tierValue,
+        currency: 'USD',
+      });
 
       // Step 2: Create checkout session (tier-aware, free check happens server-side)
       const checkoutRes = await fetch('/api/checkout', {

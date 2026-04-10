@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle, Loader2, Send } from "lucide-react";
+import { trackMetaEvent } from "@/components/analytics/MetaPixel";
 
 const CATEGORIES = [
   { value: "detailing", label: "Detailing & Paint Correction" },
@@ -64,6 +65,7 @@ export function ApplyForm() {
       });
 
       if (!res.ok) throw new Error("Submission failed");
+      trackMetaEvent("Lead", { content_category: "provider_application", value: 0, currency: "USD" });
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please email us directly at chris@fullysorted.com.");

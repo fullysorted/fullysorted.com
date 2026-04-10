@@ -121,12 +121,22 @@ export default function ApplyPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
-      {/* Hero */}
+      {/* Hero — founding-50 angle */}
       <div className="text-center mb-12">
-        <p className="text-amber-600 font-semibold text-sm uppercase tracking-wider mb-3">Services Directory</p>
-        <h1 className="text-4xl sm:text-5xl font-bold text-stone-900 mb-4">Apply to be listed.</h1>
-        <p className="text-lg text-stone-600 max-w-2xl mx-auto">
-          We&apos;re building the go-to directory of vetted specialists for Southern California collector car owners. If you do exceptional work and want to be found by the people who will appreciate it, this is for you.
+        <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-4 py-1.5 mb-5">
+          <span className="text-amber-800 text-xs font-bold uppercase tracking-wider">
+            Founding 50 — SoCal Directory
+          </span>
+        </div>
+        <h1 className="text-4xl sm:text-5xl font-black text-stone-900 mb-4 leading-tight">
+          Get found by the collectors<br />
+          <span className="text-amber-600">who actually pay.</span>
+        </h1>
+        <p className="text-lg text-stone-600 max-w-2xl mx-auto mb-4">
+          Fully Sorted is hand-picking the first 50 specialists in Southern California — detailers, restorers, mechanics, transporters, inspectors — to anchor the directory collectors actually trust.
+        </p>
+        <p className="text-sm text-stone-500 max-w-xl mx-auto">
+          Reviewed personally by Chris Peterson, founder of Fully Sorted and Vice Chairman of the La Jolla Concours d&apos;Elegance.
         </p>
       </div>
 
@@ -134,9 +144,9 @@ export default function ApplyPage() {
       <div className="grid md:grid-cols-3 gap-6 mb-12">
         <div className="bg-white rounded-xl border border-stone-200 p-6">
           <Shield className="w-8 h-8 text-amber-600 mb-3" />
-          <h3 className="text-stone-900 font-bold mb-2">Build your profile</h3>
+          <h3 className="text-stone-900 font-bold mb-2">Free for founding providers</h3>
           <p className="text-stone-500 text-sm">
-            Every listed provider manages their own profile â write your description, set your specialties, and control how collectors see you.
+            The first 50 specialists are listed free — no commission, no per-lead fee. Build your profile, control your story, keep every dollar.
           </p>
         </div>
         <div className="bg-white rounded-xl border border-stone-200 p-6">
@@ -279,7 +289,7 @@ export default function ApplyPage() {
                   Describe your business and what you specialize in *
                 </label>
                 <p className="text-xs text-stone-500 mb-2">
-                  This will become your listing description. Write it in your own voice â tell collectors what you do and why you&apos;re the right choice.
+                  This will become your listing description. Write it in your own voice — tell collectors what you do and why you&apos;re the right choice.
                 </p>
                 <textarea
                   required
@@ -338,7 +348,7 @@ export default function ApplyPage() {
               {submitting ? 'Submitting...' : 'Submit Application'}
             </button>
             <p className="text-stone-500 text-sm mt-4">
-              We review every application personally. Not everything is a fit â but if it is, you&apos;ll hear from us within 3â5 business days.
+              We review every application personally. Not everything is a fit — but if it is, you&apos;ll hear from us within 3â5 business days.
             </p>
           </div>
         </form>
