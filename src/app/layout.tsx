@@ -45,22 +45,17 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://fullysorted.com",
     siteName: "Fully Sorted",
-    title: "Fully Sorted — Collector Car Marketplace",
+    title: "Fully Sorted — The Collector Car Marketplace",
     description:
-      "The first automotive services hub for collector cars. Expert pricing, vetted services, and a community that gets it.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Fully Sorted — Built by enthusiasts, for enthusiasts",
-      },
-    ],
+      "List your collector car for $9.99. Keep 100% of the sale. No commission, ever. Built by enthusiasts, for enthusiasts.",
+    // Note: opengraph-image.png in src/app/ is auto-registered by Next.js
+    // metadata conventions — do NOT set images[] here or it will override.
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fully Sorted — Collector Car Marketplace",
-    description: "Expert pricing, vetted services, and a community that gets it.",
+    title: "Fully Sorted — The Collector Car Marketplace",
+    description: "List your collector car for $9.99. Keep 100% of the sale. No commission, ever.",
+    creator: "@fully_sorted",
   },
   robots: {
     index: true,
@@ -87,10 +82,12 @@ export default function RootLayout({
     >
       <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
         <head>
-          <meta name="theme-color" content="#E8722A" />
+          <meta name="theme-color" content="#0d2b0e" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-          <link rel="icon" href="/favicon.ico" sizes="any" />
+          {/* Favicon, apple-icon, opengraph-image, and twitter-image are
+              auto-registered by Next.js from files in src/app/ (file-based
+              metadata convention). Do not add manual <link rel="icon"> here. */}
         </head>
         <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
           <MetaPixel />
