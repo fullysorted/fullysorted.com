@@ -75,6 +75,22 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
+}
+
+/* Force native form controls to render with light styling so iOS/Android
+   users in system dark mode don't see dark, low-contrast picker popovers
+   on top of a light page. */
+select,
+select option,
+input,
+textarea {
+  color-scheme: light;
+}
+
+select option {
+  background-color: #ffffff;
+  color: #1a1a18;
 }
 
 body {

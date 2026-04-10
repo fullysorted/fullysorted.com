@@ -103,9 +103,10 @@ export function Header() {
       {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "md:hidden fixed inset-0 top-16 z-40 bg-white transition-transform duration-300 ease-in-out",
+          "md:hidden fixed inset-0 top-16 z-50 transition-transform duration-300 ease-in-out",
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
+        style={{ backgroundColor: "#FFFFFF" }}
       >
         <nav className="flex flex-col p-6 gap-2">
           {navLinks.map((link) => (
