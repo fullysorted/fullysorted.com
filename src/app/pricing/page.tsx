@@ -154,7 +154,8 @@ export default function PricingPage() {
         <div className="mt-12 bg-stone-900 rounded-2xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-2">Zero commissions. Always.</h3>
           <p className="text-stone-300 max-w-xl mx-auto">
-            Bring Your Trailer takes 5%. Classic.com takes 5%. Hemmings takes a cut.
+            Most collector-car listing sites charge a success fee of 4.5–5% when your car sells,
+            bolt a buyer&rsquo;s premium onto the final price, or do both.
             Fully Sorted takes <strong className="text-white">nothing</strong> on the sale.
             Your one-time listing fee is all you pay — ever.
           </p>

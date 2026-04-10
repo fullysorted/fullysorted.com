@@ -96,8 +96,8 @@ const FAQS = [
     a: "Three tiers, all one-time: Standard $9.99, Featured $29.99, Premium $49.99. The first 100 listings are free for founding members. There are no commissions, no percentages, and no back-end fees when your car sells.",
   },
   {
-    q: "How is this different from Bring a Trailer, Hemmings, or Cars & Bids?",
-    a: "Those are auction houses — they take a cut (usually 4.5–5%) from the buyer and the listing is time-limited. Fully Sorted is a flat-fee peer-to-peer marketplace: you pay once to list, you keep 100% of the sale price, and the listing stays up until the car sells.",
+    q: "How is Fully Sorted different from other collector-car listing sites?",
+    a: "Most listing sites in our category fall into two camps. Classifieds sites charge a flat listing fee (typically $50–$99) and leave you to handle the sale. Curated online-auction sites are time-limited and take a percentage of the sale price — usually 4.5–5% — either as a buyer's premium or a seller's success fee. Fully Sorted is a flat-fee peer-to-peer listing site: you pay once ($9.99, $29.99, or $49.99), your listing stays live until the car sells, and we never take a percentage of the sale.",
   },
   {
     q: "Do you handle payment or escrow?",

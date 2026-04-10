@@ -5,7 +5,7 @@ import { BarChart3, TrendingUp, Database } from "lucide-react";
 export const metadata: Metadata = {
   title: "Value Guide — What Is Your Classic Car Worth?",
   description:
-    "Get real pricing data for any collector car. Powered by real auction results from Bring a Trailer, Classic.com, and more — not ask prices.",
+    "Get real pricing data for any collector car. Backed by aggregated market comps from across the collector-car world — not ask prices.",
 };
 
 const STATS = [

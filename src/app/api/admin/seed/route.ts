@@ -6,8 +6,14 @@ function isAuthorized(request: NextRequest): boolean {
   return !!process.env.ADMIN_SECRET && secret === process.env.ADMIN_SECRET;
 }
 
-// Real auction results data — sources: BaT, RM Sotheby's, Bonhams, Gooding & Co, Mecum
-// Prices and dates reflect actual market activity through early 2026
+// Seed / illustrative market-comp data for development and demo use only.
+// Prices and dates are approximate representations of market activity and are
+// NOT verified, licensed, or sourced from any named auction house or marketplace.
+// The `auctionHouse` field on each row is retained for schema compatibility but
+// is NOT rendered to end users — the Value Guide UI displays a generic
+// "Market comp" label until a licensed data feed is in place.
+// Before going live with real traffic, replace this dataset with a licensed
+// feed from a real auction-data provider (Hagerty, Classic.com API, etc.).
 const AUCTION_RESULTS = [
   // ─── Air-Cooled Porsche 911 ─────────────────────────────────────
   { source: 'bat', year: 1973, make: 'Porsche', model: '911T', trim: 'Targa', salePrice: 58000, auctionDate: '2025-09-14', auctionHouse: 'Bring a Trailer', segment: 'Air-Cooled Porsche 911', category: 'European', mileage: 89000, transmission: 'Manual', exteriorColor: 'Sepia Brown' },

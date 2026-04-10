@@ -339,7 +339,7 @@ export function ValueGuideClient() {
               <p className="text-sm text-text-secondary mt-0.5">
                 Based on {result.total} comparable {result.total === 1 ? "sale" : "sales"}{" "}
                 {yearInput ? `· ${parseInt(yearInput) - parseInt(yearRange)} – ${parseInt(yearInput) + parseInt(yearRange)}` : ""}
-                {" · "}Bring a Trailer, RM Sotheby&apos;s &amp; more
+                {" · "}aggregated market comps
               </p>
             </div>
 
@@ -458,7 +458,7 @@ export function ValueGuideClient() {
                       </p>
                       <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-0.5">
                         <span className="text-xs px-1.5 py-0.5 bg-surface rounded text-text-secondary font-medium">
-                          {comp.auction_house || comp.source}
+                          Market comp
                         </span>
                         <span className="text-xs text-text-tertiary">
                           {formatDate(comp.auction_date)}

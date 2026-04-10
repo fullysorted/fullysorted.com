@@ -47,10 +47,11 @@ export function ValueGuidePreview() {
               Know what your car is worth
             </h2>
             <p className="leading-relaxed text-sm sm:text-base" style={{ color: "#6b6b5e" }}>
-              Our Value Guide pulls real results from Bring a Trailer, Classic.com,
-              and private sales — not guesswork. Enter any year, make, and model
-              to get a pricing verdict backed by actual comps, plus Chris&apos;s take
-              on where the market is heading.
+              Our Value Guide aggregates publicly available sale results from
+              across the collector-car market — online auction results, classified
+              listings, concours price guides, and Chris&apos;s own 25 years of
+              transaction notes — to give you a pricing verdict backed by actual
+              comps instead of asking prices.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mt-7">
