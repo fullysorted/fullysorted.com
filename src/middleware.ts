@@ -32,8 +32,11 @@ export default async function middleware(request: NextRequest) {
 
   const { clerkMiddleware, createRouteMatcher } = await import('@clerk/nextjs/server');
 
+  // /sell is intentionally PUBLIC: anonymous visitors can browse the
+  // landing page and start a listing. The /api/checkout flow captures
+  // payment + email at the moment of submission. Protecting /sell at the
+  // middleware level breaks paid ad traffic by 404'ing signed-out users.
   const isProtectedRoute = createRouteMatcher([
-    '/sell(.*)',
     '/dashboard(.*)',
     '/account(.*)',
   ]);
