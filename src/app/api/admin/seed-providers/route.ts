@@ -40,6 +40,56 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'No providers in body' }, { status: 400 });
   }
 
+  // Idempotently ensure both tables exist (drizzle schema has them, but
+  // production DB was never migrated). Safe to run repeatedly.
+  await sql`
+    CREATE TABLE IF NOT EXISTS provider_applications (
+      id SERIAL PRIMARY KEY,
+      business_name VARCHAR(255) NOT NULL,
+      owner_name VARCHAR(255) NOT NULL,
+      category VARCHAR(100) NOT NULL,
+      location VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      phone VARCHAR(50),
+      website TEXT,
+      instagram VARCHAR(100),
+      years_in_business VARCHAR(50),
+      specialties TEXT NOT NULL,
+      ideal_client TEXT,
+      why_list TEXT,
+      referred_by VARCHAR(255),
+      status VARCHAR(50) NOT NULL DEFAULT 'pending',
+      created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    )
+  `;
+  await sql`
+    CREATE TABLE IF NOT EXISTS service_providers (
+      id SERIAL PRIMARY KEY,
+      clerk_user_id VARCHAR(255),
+      business_name VARCHAR(255) NOT NULL,
+      owner_name VARCHAR(255) NOT NULL,
+      slug VARCHAR(300) NOT NULL UNIQUE,
+      category VARCHAR(100) NOT NULL,
+      location VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      phone VARCHAR(50),
+      website TEXT,
+      instagram VARCHAR(100),
+      description TEXT NOT NULL,
+      specialties JSONB DEFAULT '[]'::jsonb,
+      years_in_business VARCHAR(50),
+      price_range VARCHAR(10) DEFAULT '$$',
+      verified BOOLEAN DEFAULT FALSE,
+      founding_provider BOOLEAN DEFAULT FALSE,
+      rating NUMERIC(3,1) DEFAULT 0,
+      review_count INTEGER DEFAULT 0,
+      status VARCHAR(50) NOT NULL DEFAULT 'pending',
+      application_id INTEGER REFERENCES provider_applications(id),
+      created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+      updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+    )
+  `;
+
   const results: Array<{ businessName: string; ok: boolean; id?: number; error?: string }> = [];
 
   for (const p of providers) {
