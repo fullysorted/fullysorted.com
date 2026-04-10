@@ -42,9 +42,9 @@ export default function SellPage() {
 
           {/* The math anchor — this is the line the ads echo */}
           <p className="text-stone-300 text-sm max-w-xl mx-auto">
-            On a $50,000 car, an auction takes ~$4,000 in commission.
-            Fully Sorted takes <strong className="text-amber-300">$9.99</strong>.
-            Tiered upgrades available — never a percentage of your sale.
+            Most collector-car listing sites charge a 4.5–5% success fee when your car sells.
+            On a $50,000 sale, that&rsquo;s $2,250+ out of your pocket.
+            Fully Sorted is <strong className="text-amber-300">$9.99 flat</strong> &mdash; no success fee, ever.
           </p>
         </div>
       </section>
