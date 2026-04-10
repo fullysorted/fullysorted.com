@@ -59,7 +59,7 @@ export function CTASection() {
                 List Your Car — From $9.99
               </Link>
               <Link
-                href="/about"
+                href="/how-it-works"
                 className="inline-flex items-center justify-center px-7 py-3.5 border-2 border-white/50 text-white text-sm font-semibold rounded-xl hover:border-white hover:bg-white/10 transition-colors"
               >
                 How It Works

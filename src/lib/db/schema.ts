@@ -126,6 +126,26 @@ export const dealAlerts = pgTable('deal_alerts', {
 });
 
 // âââ Provider Applications (Intake Queue) âââââââââââââââ
+// Messages (Contact + Listing Inquiries)
+// Buyer-to-seller inquiries and offers on listings, plus generic contact form submissions.
+// Previously created via raw SQL in /api/messages — adding here so drizzle-kit keeps it in sync.
+export const messages = pgTable('messages', {
+  id: serial('id').primaryKey(),
+  listingId: integer('listing_id').references(() => listings.id),
+  listingSlug: varchar('listing_slug', { length: 500 }),
+  listingTitle: text('listing_title'),
+  senderName: varchar('sender_name', { length: 255 }).notNull(),
+  senderEmail: varchar('sender_email', { length: 255 }).notNull(),
+  senderPhone: varchar('sender_phone', { length: 50 }),
+  messageText: text('message_text').notNull(),
+  type: varchar('type', { length: 50 }).default('inquiry').notNull(), // inquiry, offer, contact
+  offerAmount: integer('offer_amount'),
+  status: varchar('status', { length: 50 }).default('new').notNull(), // new, read, replied, archived
+  adminNotes: text('admin_notes'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
 export const providerApplications = pgTable('provider_applications', {
   id: serial('id').primaryKey(),
   businessName: varchar('business_name', { length: 255 }).notNull(),
@@ -199,3 +219,5 @@ export type DealAlert = typeof dealAlerts.$inferSelect;
 export type ServiceProvider = typeof serviceProviders.$inferSelect;
 export type NewServiceProvider = typeof serviceProviders.$inferInsert;
 export type ProviderApplication = typeof providerApplications.$inferSelect;
+export type Message = typeof messages.$inferSelect;
+export type NewMessage = typeof messages.$inferInsert;

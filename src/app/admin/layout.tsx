@@ -8,6 +8,7 @@ import {
   Car,
   MessageSquare,
   BarChart3,
+  Wrench,
   LogOut,
   Menu,
   X,
@@ -19,6 +20,7 @@ import {
 const nav = [
   { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/listings", label: "Listings", icon: Car },
+  { href: "/admin/providers", label: "Providers", icon: Wrench },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
   { href: "/admin/market", label: "Market Data", icon: BarChart3 },
 ];
