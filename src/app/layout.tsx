@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
+import { JsonLd, organizationSchema, websiteSchema } from "@/components/seo/JsonLd";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,20 +27,23 @@ export const metadata: Metadata = {
     template: "%s | Fully Sorted",
   },
   description:
-    "The first automotive services hub designed specifically for collector cars and the passionate owners who cherish them. Built by enthusiasts, for enthusiasts.",
+    "List your collector car for $9.99. Keep 100% of the sale. The peer-to-peer marketplace built by enthusiasts, for enthusiasts — no commissions, no buyer's premiums, no success fees.",
   keywords: [
     "collector cars",
-    "classic cars",
+    "classic cars for sale",
     "vintage cars",
-    "car marketplace",
+    "collector car marketplace",
+    "sell my classic car",
     "collector car value",
     "classic car pricing",
-    "San Diego cars",
-    "bring a trailer",
+    "peer to peer car sale",
+    "San Diego collector cars",
   ],
   authors: [{ name: "Chris Peterson", url: "https://fullysorted.com" }],
   creator: "Chris Peterson",
   metadataBase: new URL("https://fullysorted.com"),
+  alternates: { canonical: "/" },
+  category: "Automotive Marketplace",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -88,6 +92,7 @@ export default function RootLayout({
           {/* Favicon, apple-icon, opengraph-image, and twitter-image are
               auto-registered by Next.js from files in src/app/ (file-based
               metadata convention). Do not add manual <link rel="icon"> here. */}
+          <JsonLd data={[organizationSchema, websiteSchema]} />
         </head>
         <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
           <MetaPixel />

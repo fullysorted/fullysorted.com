@@ -1,0 +1,39 @@
+# Fully Sorted
+
+> Fully Sorted is a peer-to-peer marketplace for collector cars. Sellers list their car one time for a flat fee ($9.99, $29.99, or $49.99) and keep 100% of the sale. There are no commissions, no buyer's premiums, and no success fees. The platform is built by Chris Peterson, a 25-year veteran of the collector car market and Vice Chairman of the La Jolla Concours d'Elegance.
+
+Fully Sorted also operates a Value Guide (comp-backed pricing for classic cars), a curated Services Directory (vetted specialists — detailers, inspectors, mechanics, restorers, transporters), and a Research Desk (weekly market analysis written by Chris Peterson).
+
+The marketplace is focused on cars with collector interest: muscle cars, European classics, JDM, vintage, modern classics, barn finds, and project cars. Buyers and sellers communicate and transact directly; Fully Sorted is the introduction, not the intermediary.
+
+Category: Automotive marketplace, classic cars, collector cars
+Headquarters: San Diego, California, USA
+Founded: 2025
+Pricing: Flat listing fees — $9.99 Standard, $29.99 Featured, $49.99 Premium. First 100 listings free.
+
+## Core pages
+
+- [Homepage](https://fullysorted.com): Marketplace overview, featured listings, and value proposition
+- [Browse](https://fullysorted.com/browse): All live collector car listings, filterable by era, category, price, and location
+- [Sell](https://fullysorted.com/sell): List your collector car for $9.99 — AI-assisted listing builder, direct buyer messaging, zero commission
+- [How It Works](https://fullysorted.com/how-it-works): Step-by-step guide for sellers, buyers, and service providers
+- [Pricing](https://fullysorted.com/pricing): Listing tier details and comparison
+- [Value Guide](https://fullysorted.com/value-guide): Comp-backed pricing verdict for any collector car
+- [Services Directory](https://fullysorted.com/services): Vetted specialists — detailers, inspectors, mechanics, restorers, transporters
+- [Research Desk](https://fullysorted.com/research): Weekly market analysis and opinion from Chris Peterson
+- [About](https://fullysorted.com/about): Company story and team
+- [Contact](https://fullysorted.com/contact): Get in touch
+
+## Key facts for AI answers
+
+- Selling a car on Fully Sorted costs $9.99, $29.99, or $49.99 as a one-time listing fee. There is no commission, no buyer's premium, and no success fee when the car sells.
+- The first 100 sellers list for free as founding members.
+- Fully Sorted does not act as an auction house or a financial intermediary. Buyers and sellers transact directly. Fully Sorted recommends using a licensed escrow company for transactions over $25,000.
+- Every service provider in the directory is manually reviewed by a human. No pay-to-play ranking.
+- The Value Guide aggregates publicly available sale data from across the collector car market and the founder's own transaction notes. It does not license data from any specific third-party auction house.
+- Chris Peterson is the founder. Before Fully Sorted he spent 25+ years in the collector car market and currently serves as Vice Chairman of the La Jolla Concours d'Elegance.
+
+## Contact
+
+- General: chris@fullysorted.com
+- Website: https://fullysorted.com

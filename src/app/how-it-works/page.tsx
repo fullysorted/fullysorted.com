@@ -14,11 +14,13 @@ import {
   Camera,
   MessageSquare,
 } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "How It Works — Fully Sorted",
   description:
     "Fully Sorted is a peer-to-peer collector car marketplace with a flat listing fee and zero commission. Here's exactly how selling, buying, and finding trusted service providers works.",
+  alternates: { canonical: "/how-it-works" },
 };
 
 const SELLER_STEPS = [
@@ -148,9 +150,47 @@ function StepCard({
   );
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://fullysorted.com/how-it-works#faq",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": "https://fullysorted.com/how-it-works#howto-sell",
+  name: "How to sell a collector car on Fully Sorted",
+  description:
+    "Step-by-step guide to listing a collector car for sale on Fully Sorted. Flat listing fee, no commission, direct buyer contact.",
+  totalTime: "PT15M",
+  estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: "9.99" },
+  step: SELLER_STEPS.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.body,
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://fullysorted.com" },
+    { "@type": "ListItem", position: 2, name: "How It Works", item: "https://fullysorted.com/how-it-works" },
+  ],
+};
+
 export default function HowItWorksPage() {
   return (
     <div style={{ backgroundColor: "#f5f4f0" }} className="min-h-screen">
+      <JsonLd data={[faqSchema, howToSchema, breadcrumbSchema]} />
       {/* Hero */}
       <section className="pt-20 pb-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, BookOpen, ArrowRight } from "lucide-react";
 import { articles, getArticleBySlug } from "@/lib/articles";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -15,6 +16,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${article.title} | Fully Sorted`,
     description: article.excerpt,
+    alternates: { canonical: `/research/${article.slug}` },
+    openGraph: {
+      type: "article",
+      title: article.title,
+      description: article.excerpt,
+      url: `https://fullysorted.com/research/${article.slug}`,
+      authors: ["Chris Peterson"],
+      publishedTime: new Date(article.date).toISOString(),
+    },
   };
 }
 
@@ -62,8 +72,48 @@ export default async function ArticlePage({ params }: Props) {
   // Related articles (everything except this one, max 3)
   const related = articles.filter((a) => a.slug !== slug).slice(0, 3);
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.excerpt,
+    articleSection: article.category,
+    datePublished: new Date(article.date).toISOString(),
+    dateModified: new Date(article.date).toISOString(),
+    author: {
+      "@type": "Person",
+      name: "Chris Peterson",
+      jobTitle: "Founder, Fully Sorted",
+      description: "25 years in the collector car market",
+      url: "https://fullysorted.com/about",
+    },
+    publisher: { "@id": "https://fullysorted.com/#organization" },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://fullysorted.com/research/${article.slug}`,
+    },
+    image: "https://fullysorted.com/opengraph-image.png",
+    inLanguage: "en-US",
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://fullysorted.com" },
+      { "@type": "ListItem", position: 2, name: "Research", item: "https://fullysorted.com/research" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.title,
+        item: `https://fullysorted.com/research/${article.slug}`,
+      },
+    ],
+  };
+
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
+      <JsonLd data={[articleSchema, breadcrumbSchema]} />
       {/* Light Header */}
       <div className="relative" style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
