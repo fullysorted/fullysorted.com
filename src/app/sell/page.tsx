@@ -14,7 +14,7 @@ export default function SellPage() {
           {/* Founder credibility line — instant trust signal */}
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
             <span className="text-stone-200 text-xs font-semibold uppercase tracking-wider">
-              Built by the Vice Chair of La Jolla Concours
+              Built by the Co-Chairman of La Jolla Concours
             </span>
           </div>
 
