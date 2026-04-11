@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Calendar, MapPin, ArrowRight } from "lucide-react";
+import { Calendar, MapPin, ArrowRight, Flag } from "lucide-react";
 import { events } from "@/lib/events";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -103,6 +103,53 @@ export default function EventsPage() {
 
       {/* Events list */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        {/* Live F1 calendar feature */}
+        <Link
+          href="/events/f1"
+          className="group block rounded-2xl overflow-hidden mb-6 transition-all hover:shadow-lg"
+          style={{ background: "#1a1a18", border: "1px solid #1a1a18" }}
+        >
+          <div className="grid md:grid-cols-[1fr_2fr] gap-0">
+            <div
+              className="p-6 sm:p-8 flex flex-col justify-center"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(232,114,42,0.18), rgba(232,114,42,0.04))",
+                borderRight: "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              <span
+                className="text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5"
+                style={{ color: "#E8722A" }}
+              >
+                <Flag className="w-3.5 h-3.5" />
+                Live · Updated daily
+              </span>
+              <p className="text-2xl sm:text-3xl font-black leading-tight mb-1 text-white">
+                2026 Season
+              </p>
+              <p className="text-sm text-white/60">24 rounds · 5 continents</p>
+            </div>
+            <div className="p-6 sm:p-8">
+              <h2 className="text-xl sm:text-2xl font-bold mb-2 leading-snug text-white">
+                Formula 1 World Championship
+              </h2>
+              <p className="text-sm sm:text-base leading-relaxed mb-4 text-white/70">
+                The complete 2026 F1 calendar with live status — every round,
+                every circuit, every date. Pulled from the official feed and
+                refreshed daily.
+              </p>
+              <div
+                className="inline-flex items-center gap-1.5 text-sm font-semibold"
+                style={{ color: "#E8722A" }}
+              >
+                Open the live calendar
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </div>
+          </div>
+        </Link>
+
         <div className="space-y-6">
           {sorted.map((event) => (
             <Link

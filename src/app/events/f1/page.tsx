@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { MapPin, Calendar, Flag, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { MapPin, Calendar, Flag, ExternalLink, ArrowLeft } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "2026 Formula 1 Calendar — Live",
   description:
     "The complete 2026 Formula 1 World Championship calendar — all 24 rounds, live status, circuits, and dates. The F1 season tracker for collector car enthusiasts.",
-  alternates: { canonical: "/f1" },
+  alternates: { canonical: "/events/f1" },
   openGraph: {
     type: "website",
     title: "2026 Formula 1 Calendar | Fully Sorted",
     description:
       "Live tracker for the 2026 F1 World Championship — every round, every circuit, every date.",
-    url: "https://fullysorted.com/f1",
+    url: "https://fullysorted.com/events/f1",
   },
   twitter: {
     card: "summary_large_image",
@@ -113,7 +114,8 @@ export default async function F1Page() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://fullysorted.com" },
-      { "@type": "ListItem", position: 2, name: "F1 Calendar", item: "https://fullysorted.com/f1" },
+      { "@type": "ListItem", position: 2, name: "Events", item: "https://fullysorted.com/events" },
+      { "@type": "ListItem", position: 3, name: "F1 Calendar", item: "https://fullysorted.com/events/f1" },
     ],
   };
 
@@ -124,6 +126,13 @@ export default async function F1Page() {
       {/* Hero */}
       <section style={{ background: "#1a1a18", borderBottom: "4px solid #E8722A" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <Link
+            href="/events"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold mb-6 text-white/60 hover:text-white transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            All events
+          </Link>
           <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#E8722A" }}>
             <Flag className="inline w-3.5 h-3.5 mr-1.5 -mt-0.5" />
             Live · Updated daily
