@@ -39,7 +39,7 @@ export const organizationSchema = {
     name: "Chris Peterson",
     jobTitle: "Founder",
     description:
-      "Collector car industry veteran with 25+ years in the market. Vice Chairman of the La Jolla Concours d'Elegance.",
+      "Collector car industry veteran with 25+ years in the market, including time at major automotive companies and major auction houses. Co-Chairman of the La Jolla Concours d'Elegance.",
   },
   address: {
     "@type": "PostalAddress",

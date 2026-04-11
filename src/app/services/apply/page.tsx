@@ -136,7 +136,7 @@ export default function ApplyPage() {
           Fully Sorted is hand-picking the first 50 specialists in Southern California — detailers, restorers, mechanics, transporters, inspectors — to anchor the directory collectors actually trust.
         </p>
         <p className="text-sm text-stone-500 max-w-xl mx-auto">
-          Reviewed personally by Chris Peterson, founder of Fully Sorted and Vice Chairman of the La Jolla Concours d&apos;Elegance.
+          Reviewed personally by Chris Peterson, founder of Fully Sorted, Co-Chairman of the La Jolla Concours d&apos;Elegance, and a 25-year veteran of the collector car market who has worked for major automotive companies and major auction houses.
         </p>
       </div>
 

@@ -75,7 +75,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
             We&apos;d like to list <span style={{ color: '#C1440E' }}>{provider.business_name}</span> on Fully Sorted.
           </h1>
           <p className="text-base text-text-secondary leading-relaxed">
-            Fully Sorted is a new directory for the people collectors actually trust with their cars — built by Chris Peterson, founder and Vice Chairman of the La Jolla Concours d&apos;Elegance. We&apos;re inviting you as a <strong>founding provider</strong>, which means free listing, founding badge, and priority placement. <strong>No fees. No commission. No catch.</strong>
+            Fully Sorted is a new directory for the people collectors actually trust with their cars — built by Chris Peterson, founder, Co-Chairman of the La Jolla Concours d&apos;Elegance, and a 25-year veteran of the collector car market with experience at major automotive companies and major auction houses. We&apos;re inviting you as a <strong>founding provider</strong>, which means free listing, founding badge, and priority placement. <strong>No fees. No commission. No catch.</strong>
           </p>
         </div>
 
