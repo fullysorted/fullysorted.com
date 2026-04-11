@@ -2,7 +2,7 @@ import ServicesDirectory from './ServicesDirectory';
 
 export const metadata = {
   title: 'Services Directory — Fully Sorted',
-  description: 'Find specialists for your collector car: photographers, detailers, mechanics, transporters, inspectors, restorers & more. SoCal and beyond.',
+  description: 'Find specialists for your collector car: photographers, detailers, mechanics, transporters, inspectors, restorers & more — vetted personally.',
 };
 
 export default function ServicesPage() {

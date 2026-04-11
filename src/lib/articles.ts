@@ -282,7 +282,7 @@ Not strictly a car show, but every serious collector in San Diego attends the pr
 **Lemons Rally — SoCal Edition**
 *May 9–11, 2026 | Various (starts in San Diego) | Participants only*
 
-If you have a running, driveable car worth under $500 (by the 24 Hours of Lemons ruleset), you should enter this. The SoCal Lemons Rally is three days of chaotic, joyful driving through some of the best back roads in Southern California. I've done it three times in increasingly terrible cars and it is genuinely one of the best experiences in automotive enthusiasm.
+If you have a running, driveable car worth under $500 (by the 24 Hours of Lemons ruleset), you should enter this. It's three days of chaotic, joyful driving through some of the best back roads in the region. I've done it three times in increasingly terrible cars and it is genuinely one of the best experiences in automotive enthusiasm.
 
 **Carlsbad Cars & Coffee**
 *May 17, 2026 | The Forum, Carlsbad | 8am–11am | Free*

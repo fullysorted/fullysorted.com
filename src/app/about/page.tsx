@@ -30,7 +30,6 @@ const STATS = [
   { value: "0%", label: "Commission on sales" },
   { value: "From $9.99", label: "Listing fee" },
   { value: "8+", label: "Service categories" },
-  { value: "SoCal", label: "Where we live & work" },
 ];
 
 export default function AboutPage() {

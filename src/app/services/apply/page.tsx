@@ -125,7 +125,7 @@ export default function ApplyPage() {
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-4 py-1.5 mb-5">
           <span className="text-amber-800 text-xs font-bold uppercase tracking-wider">
-            Founding 50 — SoCal Directory
+            Founding 50 — Services Directory
           </span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-black text-stone-900 mb-4 leading-tight">
@@ -133,7 +133,7 @@ export default function ApplyPage() {
           <span className="text-amber-600">who actually pay.</span>
         </h1>
         <p className="text-lg text-stone-600 max-w-2xl mx-auto mb-4">
-          Fully Sorted is hand-picking the first 50 specialists in Southern California — detailers, restorers, mechanics, transporters, inspectors — to anchor the directory collectors actually trust.
+          Fully Sorted is hand-picking the first 50 specialists — detailers, restorers, mechanics, transporters, inspectors — to anchor the directory collectors actually trust.
         </p>
         <p className="text-sm text-stone-500 max-w-xl mx-auto">
           Reviewed personally by Chris Peterson, founder of Fully Sorted, Co-Chairman of the La Jolla Concours d&apos;Elegance, and a 25-year veteran of the collector car market who has worked for major automotive companies and major auction houses.
