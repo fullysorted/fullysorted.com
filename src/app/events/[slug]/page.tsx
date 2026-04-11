@@ -7,6 +7,9 @@ import {
   MapPin,
   ExternalLink,
   ArrowRight,
+  Heart,
+  Ticket,
+  Clock,
 } from "lucide-react";
 import { events, getEventBySlug } from "@/lib/events";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -124,6 +127,38 @@ export default async function EventPage({ params }: Props) {
       name: "Fully Sorted",
       url: SITE,
     },
+    ...(event.tickets && event.tickets.length > 0
+      ? {
+          offers: event.tickets.map((t) => ({
+            "@type": "Offer",
+            name: t.name,
+            price: t.price.replace(/[^0-9.]/g, "") || "0",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+            url: event.url ?? url,
+            ...(t.note ? { description: t.note } : {}),
+          })),
+        }
+      : {}),
+    ...(event.schedule && event.schedule.length > 0
+      ? {
+          subEvent: event.schedule.map((s) => ({
+            "@type": "Event",
+            name: s.name,
+            ...(s.description ? { description: s.description } : {}),
+            location: {
+              "@type": "Place",
+              name: event.venueName,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: event.city,
+                addressRegion: event.region,
+                addressCountry: "US",
+              },
+            },
+          })),
+        }
+      : {}),
   };
 
   const breadcrumbSchema = {
@@ -187,11 +222,20 @@ export default async function EventPage({ params }: Props) {
           </span>
 
           <h1
-            className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-5"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-3"
             style={{ color: "#1a1a18" }}
           >
             {event.title}
           </h1>
+
+          {event.tagline && (
+            <p
+              className="text-base sm:text-lg font-semibold uppercase tracking-wider mb-5"
+              style={{ color: "#E8722A" }}
+            >
+              {event.tagline}
+            </p>
+          )}
 
           <p
             className="text-lg leading-relaxed max-w-3xl mb-6"
@@ -279,6 +323,138 @@ export default async function EventPage({ params }: Props) {
               dangerouslySetInnerHTML={{ __html: html }}
             />
 
+            {/* Weekend schedule */}
+            {event.schedule && event.schedule.length > 0 && (
+              <div className="mt-12">
+                <div className="flex items-center gap-2 mb-5">
+                  <Clock
+                    className="w-5 h-5"
+                    style={{ color: "#E8722A" }}
+                  />
+                  <h2
+                    className="text-xl sm:text-2xl font-bold"
+                    style={{ color: "#1a1a18" }}
+                  >
+                    Weekend schedule
+                  </h2>
+                </div>
+                <div className="space-y-4">
+                  {event.schedule.map((s) => (
+                    <div
+                      key={`${s.day}-${s.name}`}
+                      className="rounded-2xl p-5"
+                      style={{
+                        background: "#fff",
+                        border: "1px solid rgba(0,0,0,0.07)",
+                      }}
+                    >
+                      <p
+                        className="text-xs font-bold uppercase tracking-widest mb-1"
+                        style={{ color: "#E8722A" }}
+                      >
+                        {s.day}
+                      </p>
+                      <p
+                        className="font-bold text-base sm:text-lg leading-snug"
+                        style={{ color: "#1a1a18" }}
+                      >
+                        {s.name}
+                      </p>
+                      {s.time && (
+                        <p
+                          className="text-sm font-medium mt-1"
+                          style={{ color: "#6b6b5e" }}
+                        >
+                          {s.time}
+                        </p>
+                      )}
+                      {s.description && (
+                        <p
+                          className="text-sm mt-2 leading-relaxed"
+                          style={{ color: "#6b6b5e" }}
+                        >
+                          {s.description}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Tickets */}
+            {event.tickets && event.tickets.length > 0 && (
+              <div className="mt-12">
+                <div className="flex items-center gap-2 mb-5">
+                  <Ticket
+                    className="w-5 h-5"
+                    style={{ color: "#E8722A" }}
+                  />
+                  <h2
+                    className="text-xl sm:text-2xl font-bold"
+                    style={{ color: "#1a1a18" }}
+                  >
+                    Tickets
+                  </h2>
+                </div>
+                <div
+                  className="rounded-2xl overflow-hidden"
+                  style={{
+                    background: "#fff",
+                    border: "1px solid rgba(0,0,0,0.07)",
+                  }}
+                >
+                  {event.tickets.map((t, i) => (
+                    <div
+                      key={t.name}
+                      className="flex items-center justify-between px-5 py-4"
+                      style={{
+                        borderTop:
+                          i === 0
+                            ? "none"
+                            : "1px solid rgba(0,0,0,0.06)",
+                      }}
+                    >
+                      <div className="min-w-0 pr-3">
+                        <p
+                          className="font-semibold text-sm sm:text-base"
+                          style={{ color: "#1a1a18" }}
+                        >
+                          {t.name}
+                        </p>
+                        {t.note && (
+                          <p
+                            className="text-xs mt-0.5"
+                            style={{ color: "#9a9a8a" }}
+                          >
+                            {t.note}
+                          </p>
+                        )}
+                      </div>
+                      <p
+                        className="font-black text-base sm:text-lg shrink-0"
+                        style={{ color: "#E8722A" }}
+                      >
+                        {t.price}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                {event.url && (
+                  <a
+                    href={event.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-lg text-white transition-opacity hover:opacity-90"
+                    style={{ background: "#E8722A" }}
+                  >
+                    Buy tickets on lajollaconcours.com
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
+            )}
+
             <div
               className="mt-12 pt-8 flex items-center justify-between"
               style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
@@ -359,6 +535,26 @@ export default async function EventPage({ params }: Props) {
                     {event.category}
                   </dd>
                 </div>
+                {event.beneficiary && (
+                  <div>
+                    <dt
+                      className="text-xs uppercase tracking-wider mb-0.5"
+                      style={{ color: "#9a9a8a" }}
+                    >
+                      Benefiting
+                    </dt>
+                    <dd
+                      className="font-semibold flex items-center gap-1.5"
+                      style={{ color: "#1a1a18" }}
+                    >
+                      <Heart
+                        className="w-3.5 h-3.5"
+                        style={{ color: "#E8722A" }}
+                      />
+                      {event.beneficiary}
+                    </dd>
+                  </div>
+                )}
               </dl>
             </div>
 
