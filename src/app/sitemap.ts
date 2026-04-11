@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { articles } from "@/lib/articles";
+import { events } from "@/lib/events";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://fullysorted.com";
@@ -11,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/sell`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/value-guide`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/research`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
+    { url: `${base}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/services/apply`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
@@ -26,5 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...articlePages];
+  const eventPages: MetadataRoute.Sitemap = events.map((e) => ({
+    url: `${base}/events/${e.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...articlePages, ...eventPages];
 }
