@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 };
 
 const STATS = [
-  { icon: Database, label: "Auction results", value: "50,000+" },
-  { icon: TrendingUp, label: "Markets tracked", value: "12" },
-  { icon: BarChart3, label: "Updated", value: "Weekly" },
+  { icon: Database, label: "Sold prices, not ask prices", value: "Real comps" },
+  { icon: TrendingUp, label: "Across the collector market", value: "Aggregated data" },
+  { icon: BarChart3, label: "Refreshed regularly", value: "Up to date" },
 ];
 
 export default function ValueGuidePage() {

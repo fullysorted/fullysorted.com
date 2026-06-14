@@ -69,11 +69,15 @@ function ProviderCard({ provider }: { provider: Provider }) {
               <span className="flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5" /> {provider.location}
               </span>
-              <span className="text-stone-300">|</span>
-              <span className="flex items-center gap-1">
-                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                {Number(provider.rating).toFixed(1)} ({provider.reviewCount})
-              </span>
+              {Number(provider.rating) > 0 && provider.reviewCount > 0 && (
+                <>
+                  <span className="text-stone-300">|</span>
+                  <span className="flex items-center gap-1">
+                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    {Number(provider.rating).toFixed(1)} ({provider.reviewCount})
+                  </span>
+                </>
+              )}
               <span className="text-stone-300">|</span>
               <span className="text-stone-600 font-medium">{provider.priceRange}</span>
             </div>

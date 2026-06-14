@@ -188,26 +188,15 @@ async function refreshMarketSegments(): Promise<void> {
   }
 }
 
+// Kept for reference but never invoked while scraping is disabled.
+void scrapeBaTRSS;
+void refreshMarketSegments;
+
 // POST /api/scrape — protected, called by cron or admin
-export async function POST(request: NextRequest) {
-  const secret = request.headers.get('x-admin-secret') || request.headers.get('authorization')?.replace('Bearer ', '');
-
-  if (!process.env.ADMIN_SECRET || secret !== process.env.ADMIN_SECRET) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  try {
-    const [batResult] = await Promise.allSettled([scrapeBaTRSS()]);
-    await refreshMarketSegments();
-
-    return NextResponse.json({
-      success: true,
-      timestamp: new Date().toISOString(),
-      bat: batResult.status === 'fulfilled' ? batResult.value : { error: (batResult as PromiseRejectedResult).reason?.message },
-    });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
+export async function POST(_request: NextRequest) {
+  // Disabled — do not scrape third-party sources; pending licensed data partnership.
+  // The third-party RSS scraping helpers above are intentionally left unreachable.
+  return NextResponse.json({ disabled: true, inserted: 0 }, { status: 200 });
 }
 
 // GET — public health check

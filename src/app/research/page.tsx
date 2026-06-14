@@ -96,6 +96,11 @@ async function getTrending(): Promise<{ trending: TrendingListing[]; hot: DealAl
 
 /* ---------- Helpers ---------- */
 function normalize(seg: MarketSegment) {
+  const rawTrend = seg.trend_percent ?? seg.trendPercent;
+  const rawDir = seg.trend_direction ?? seg.trendDirection;
+  // Only treat trend as real when the data source actually provides it.
+  // Otherwise we'd render a fake "±0.0%" for every segment.
+  const hasTrend = rawTrend != null && rawDir != null;
   return {
     segment: seg.segment,
     segmentKey: seg.segment_key || seg.segment?.toLowerCase().replace(/\s+/g, "_"),
@@ -104,8 +109,9 @@ function normalize(seg: MarketSegment) {
     highPrice: seg.high_price ?? seg.highPrice,
     lowPrice: seg.low_price ?? seg.lowPrice,
     saleCount: seg.sale_count ?? seg.saleCount ?? 0,
-    trendPercent: Math.abs(seg.trend_percent ?? seg.trendPercent ?? 0),
-    trendDirection: (seg.trend_direction ?? seg.trendDirection ?? "flat") as "up" | "down" | "flat",
+    hasTrend,
+    trendPercent: Math.abs(rawTrend ?? 0),
+    trendDirection: (rawDir ?? "flat") as "up" | "down" | "flat",
     category: seg.category ?? "Other",
   };
 }
@@ -148,7 +154,7 @@ export default async function ResearchPage() {
   const [marketData, trendingData] = await Promise.all([getMarketData(), getTrending()]);
   const segments = marketData.segments.map(normalize);
   const topMovers = [...segments]
-    .filter((s) => s.trendDirection !== "flat" && s.trendPercent > 0)
+    .filter((s) => s.hasTrend && s.trendDirection !== "flat" && s.trendPercent > 0)
     .sort((a, b) => b.trendPercent - a.trendPercent)
     .slice(0, 5);
   const categories = [...new Set(segments.map((s) => s.category))].filter(Boolean);
@@ -177,12 +183,14 @@ export default async function ResearchPage() {
             where the smart money is going. Written by Chris Peterson.
           </p>
 
-          {/* Quick stats row */}
+          {/* Quick stats row — only honest, data-backed values */}
           <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
             {[
-              { value: segments.length > 0 ? `${segments.length}` : "25+", label: "Segments Tracked" },
-              { value: trendingData.hot.length > 0 ? `${trendingData.hot.length}` : "Live", label: "Live Listings" },
-              { value: "2×", label: "Daily Updates" },
+              ...(segments.length > 0
+                ? [{ value: `${segments.length}`, label: "Segments Tracked" }]
+                : []),
+              { value: "Real", label: "Auction Data" },
+              { value: "Weekly", label: "Analysis" },
             ].map((s) => (
               <div key={s.label}>
                 <div className="text-2xl font-bold" style={{ color: "#1a1a18" }}>{s.value}</div>
@@ -533,7 +541,7 @@ export default async function ResearchPage() {
                     : marketData.source === "live_aggregate"
                     ? "Live aggregated from auction results"
                     : "From market database"}{" "}
-                  · Updated twice daily
+                  · Updated regularly
                 </p>
               </div>
             </div>
@@ -609,7 +617,11 @@ export default async function ResearchPage() {
                                 {seg.saleCount > 0 ? seg.saleCount.toLocaleString() : "—"}
                               </td>
                               <td className="px-5 py-3.5 text-right">
-                                <TrendBadge trend={seg.trendDirection} pct={seg.trendPercent} />
+                                {seg.hasTrend ? (
+                                  <TrendBadge trend={seg.trendDirection} pct={seg.trendPercent} />
+                                ) : (
+                                  <span className="text-stone-300">—</span>
+                                )}
                               </td>
                             </tr>
                           ))}
@@ -640,7 +652,11 @@ export default async function ResearchPage() {
                           {seg.saleCount > 0 ? seg.saleCount.toLocaleString() : "—"}
                         </td>
                         <td className="px-5 py-3.5 text-right">
-                          <TrendBadge trend={seg.trendDirection} pct={seg.trendPercent} />
+                          {seg.hasTrend ? (
+                            <TrendBadge trend={seg.trendDirection} pct={seg.trendPercent} />
+                          ) : (
+                            <span className="text-stone-300">—</span>
+                          )}
                         </td>
                       </tr>
                     ))}

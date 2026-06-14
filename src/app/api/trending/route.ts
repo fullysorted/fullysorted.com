@@ -11,7 +11,7 @@ export async function GET() {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(process.env.DATABASE_URL);
 
-    // Most viewed active listings
+    // Most viewed active listings (first-party data)
     const trending = await sql`
       SELECT id, slug, year, make, model, trim, price, mileage,
              hero_photo, category, views, city, state, created_at
@@ -21,15 +21,9 @@ export async function GET() {
       LIMIT 10
     `;
 
-    // Hot deals from BaT RSS (recent, not yet expired)
-    const hot = await sql`
-      SELECT id, title, source_url, year, make, model, image_url, source_site, created_at
-      FROM deal_alerts
-      WHERE status IN ('new', 'hot')
-        AND created_at > NOW() - INTERVAL '14 days'
-      ORDER BY created_at DESC
-      LIMIT 20
-    `;
+    // Disabled — do not surface externally-scraped third-party (competitor) listings;
+    // pending licensed data partnership. Return first-party data only.
+    const hot: unknown[] = [];
 
     return NextResponse.json({ trending, hot });
   } catch (error: any) {
