@@ -45,8 +45,8 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
   // Already claimed/active
   if (provider.status === 'active' && provider.outreach_status === 'claimed') {
     return (
-      <main className="min-h-screen bg-[#f5f4f0] py-16 px-4">
-        <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-stone-200 p-10 text-center">
+      <main className="min-h-screen bg-background py-16 px-4">
+        <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-border p-10 text-center">
           <h1 className="text-3xl font-bold text-foreground mb-3">You&apos;re already listed</h1>
           <p className="text-base text-text-secondary mb-6">
             <strong>{provider.business_name}</strong> is live in the Fully Sorted directory. Thanks for being a founding provider.
@@ -54,7 +54,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
           <Link
             href={`/services/${provider.slug}`}
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl transition-colors"
-            style={{ background: '#C1440E' }}
+            style={{ background: '#E8722A' }}
           >
             View your public profile
           </Link>
@@ -64,15 +64,15 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
   }
 
   return (
-    <main className="min-h-screen bg-[#f5f4f0] py-12 px-4">
+    <main className="min-h-screen bg-background py-12 px-4">
       <div className="max-w-3xl mx-auto">
         {/* Intro */}
         <div className="mb-8">
-          <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#C1440E' }}>
+          <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#E8722A' }}>
             Founding Provider Invitation
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            We&apos;d like to list <span style={{ color: '#C1440E' }}>{provider.business_name}</span> on Fully Sorted.
+            We&apos;d like to list <span style={{ color: '#E8722A' }}>{provider.business_name}</span> on Fully Sorted.
           </h1>
           <p className="text-base text-text-secondary leading-relaxed">
             Fully Sorted is a new directory for the people collectors actually trust with their cars — built by Chris Peterson, founder and a 25-year veteran of the collector car market with experience at major automotive companies and major auction houses. We&apos;re inviting you as a <strong>founding provider</strong>, which means free listing, founding badge, and priority placement. <strong>No fees. No commission. No catch.</strong>
@@ -80,7 +80,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
         </div>
 
         {/* Staged listing preview */}
-        <div className="bg-white rounded-2xl border border-stone-200 p-6 md:p-8 mb-6">
+        <div className="bg-white rounded-2xl border border-border p-6 md:p-8 mb-6">
           <div className="flex items-start justify-between mb-4 flex-wrap gap-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1">
@@ -91,7 +91,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
             </div>
             <span
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
-              style={{ background: '#fef2ee', color: '#C1440E' }}
+              style={{ background: '#FEF0E6', color: '#E8722A' }}
             >
               ★ Founding Provider
             </span>
@@ -108,7 +108,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
               </p>
               <div className="flex flex-wrap gap-2">
                 {provider.specialties.map((s, i) => (
-                  <span key={i} className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-stone-100 text-foreground">
+                  <span key={i} className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-surface text-foreground">
                     {s}
                   </span>
                 ))}
@@ -116,7 +116,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
             </div>
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm pt-4 border-t border-stone-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm pt-4 border-t border-border">
             {provider.website && (
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-text-secondary">Website</p>

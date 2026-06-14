@@ -78,7 +78,7 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         variables: {
-          colorPrimary: "#d97706",
+          colorPrimary: "#E8722A",
           colorTextOnPrimaryBackground: "#ffffff",
           borderRadius: "0.75rem",
         },
@@ -86,7 +86,7 @@ export default function RootLayout({
     >
       <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
         <head>
-          <meta name="theme-color" content="#0d2b0e" />
+          <meta name="theme-color" content="#E8722A" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           {/* Favicon, apple-icon, opengraph-image, and twitter-image are

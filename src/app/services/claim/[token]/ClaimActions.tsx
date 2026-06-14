@@ -42,7 +42,7 @@ export default function ClaimActions({
   if (result) {
     if (result.action === 'removed') {
       return (
-        <div className="bg-white rounded-2xl border border-stone-200 p-8 text-center">
+        <div className="bg-white rounded-2xl border border-border p-8 text-center">
           <h3 className="text-xl font-bold text-foreground mb-2">Done — you&apos;re removed.</h3>
           <p className="text-sm text-text-secondary">
             We won&apos;t reach out again. If you change your mind, email{' '}
@@ -53,7 +53,7 @@ export default function ClaimActions({
     }
     if (result.action === 'list_only') {
       return (
-        <div className="bg-white rounded-2xl border border-stone-200 p-8 text-center">
+        <div className="bg-white rounded-2xl border border-border p-8 text-center">
           <h3 className="text-xl font-bold text-foreground mb-2">You&apos;re live in the directory.</h3>
           <p className="text-sm text-text-secondary mb-5">
             <strong>{businessName}</strong> is now visible to collectors browsing Fully Sorted. No account needed.
@@ -61,7 +61,7 @@ export default function ClaimActions({
           <Link
             href={`/services/${slug}`}
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl"
-            style={{ background: '#C1440E' }}
+            style={{ background: '#E8722A' }}
           >
             View your listing
           </Link>
@@ -70,7 +70,7 @@ export default function ClaimActions({
     }
     // claimed
     return (
-      <div className="bg-white rounded-2xl border border-stone-200 p-8 text-center">
+      <div className="bg-white rounded-2xl border border-border p-8 text-center">
         <h3 className="text-xl font-bold text-foreground mb-2">Welcome aboard.</h3>
         <p className="text-sm text-text-secondary mb-5">
           <strong>{businessName}</strong> is live as a founding provider. Create your account to manage your profile, respond to inquiries, and update your specialties.
@@ -78,7 +78,7 @@ export default function ClaimActions({
         <Link
           href="/sign-up"
           className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl"
-          style={{ background: '#C1440E' }}
+          style={{ background: '#E8722A' }}
         >
           Create your account
         </Link>
@@ -87,7 +87,7 @@ export default function ClaimActions({
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-stone-200 p-6 md:p-8">
+    <div className="bg-white rounded-2xl border border-border p-6 md:p-8">
       <h3 className="text-lg font-bold text-foreground mb-4">What would you like us to do?</h3>
 
       <button
@@ -95,7 +95,7 @@ export default function ClaimActions({
         disabled={submitting !== null}
         onClick={() => handle('claim')}
         className="block w-full text-left p-5 rounded-xl border-2 mb-3 transition-colors disabled:opacity-50"
-        style={{ borderColor: '#C1440E', background: '#fef2ee' }}
+        style={{ borderColor: '#E8722A', background: '#FEF0E6' }}
       >
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -106,7 +106,7 @@ export default function ClaimActions({
               Goes live immediately. You&apos;ll create a free account next so you can edit your profile, see who&apos;s reaching out, and add photos.
             </p>
           </div>
-          <span className="text-xl" style={{ color: '#C1440E' }}>→</span>
+          <span className="text-xl" style={{ color: '#E8722A' }}>→</span>
         </div>
       </button>
 
@@ -114,7 +114,7 @@ export default function ClaimActions({
         type="button"
         disabled={submitting !== null}
         onClick={() => handle('list_only')}
-        className="block w-full text-left p-5 rounded-xl border border-stone-200 mb-3 hover:border-stone-300 transition-colors disabled:opacity-50"
+        className="block w-full text-left p-5 rounded-xl border border-border mb-3 hover:border-border-medium transition-colors disabled:opacity-50"
       >
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -133,7 +133,7 @@ export default function ClaimActions({
         type="button"
         disabled={submitting !== null}
         onClick={() => handle('remove')}
-        className="block w-full text-left p-5 rounded-xl border border-stone-200 hover:border-stone-300 transition-colors disabled:opacity-50"
+        className="block w-full text-left p-5 rounded-xl border border-border hover:border-border-medium transition-colors disabled:opacity-50"
       >
         <div className="flex items-start justify-between gap-3">
           <div>

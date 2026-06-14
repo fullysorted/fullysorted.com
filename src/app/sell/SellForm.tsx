@@ -31,9 +31,9 @@ const STEPS: { key: Step; label: string; icon: React.ReactNode }[] = [
   { key: 'review', label: 'Review & Pay', icon: <Send className="w-5 h-5" /> },
 ];
 
-const inputClass = "w-full px-4 py-3 rounded-lg border border-stone-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 outline-none transition bg-white text-stone-900";
+const inputClass = "w-full px-4 py-3 rounded-lg border border-border focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition bg-white text-foreground";
 const selectClass = `${inputClass} bg-white`;
-const labelClass = "block text-sm font-medium text-stone-700 mb-1.5";
+const labelClass = "block text-sm font-medium text-foreground mb-1.5";
 
 const TIER_ICONS: Record<ListingTier, React.ReactNode> = {
   standard: <Car className="w-6 h-6" />,
@@ -215,17 +215,17 @@ export default function SellForm() {
               onClick={() => setStep(s.key)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition ${
                 s.key === step
-                  ? 'bg-amber-600 text-white'
+                  ? 'bg-accent text-white'
                   : i < currentStepIndex
-                  ? 'bg-emerald-500 text-white'
-                  : 'bg-stone-100 text-stone-400'
+                  ? 'bg-green text-white'
+                  : 'bg-surface text-text-tertiary'
               }`}
             >
               {i < currentStepIndex ? <CheckCircle2 className="w-4 h-4" /> : s.icon}
               <span className="hidden sm:inline">{s.label}</span>
             </button>
             {i < STEPS.length - 1 && (
-              <div className={`w-6 md:w-12 h-0.5 mx-1 ${i < currentStepIndex ? 'bg-emerald-500' : 'bg-stone-200'}`} />
+              <div className={`w-6 md:w-12 h-0.5 mx-1 ${i < currentStepIndex ? 'bg-green' : 'bg-border'}`} />
             )}
           </div>
         ))}
@@ -235,17 +235,17 @@ export default function SellForm() {
       {step === 'plan' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-stone-900 mb-1">Choose your listing package</h2>
-            <p className="text-stone-500">Pick the plan that fits your car. You can change your mind up until you pay.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-1">Choose your listing package</h2>
+            <p className="text-text-secondary">Pick the plan that fits your car. You can change your mind up until you pay.</p>
           </div>
 
           {/* Early adopter banner */}
           {isEarlyAdopter && (
-            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-start gap-3">
+            <div className="bg-green-light border border-green rounded-xl p-4 flex items-start gap-3">
               <span className="text-2xl">🎉</span>
               <div>
-                <p className="font-semibold text-emerald-900">Early Adopter — Your listing is FREE!</p>
-                <p className="text-emerald-700 text-sm mt-0.5">
+                <p className="font-semibold text-green-dark">Early Adopter — Your listing is FREE!</p>
+                <p className="text-green-dark text-sm mt-0.5">
                   You&apos;re one of our first sellers.{' '}
                   {earlyAdopterSpotsRemaining} spot{earlyAdopterSpotsRemaining !== 1 ? 's' : ''} remaining.
                   Choose any plan — we&apos;ll waive the fee.
@@ -269,13 +269,13 @@ export default function SellForm() {
                   }}
                   className={`relative text-left rounded-2xl border-2 p-6 transition-all ${
                     isSelected
-                      ? 'border-amber-500 bg-amber-50 shadow-lg shadow-amber-100'
-                      : 'border-stone-200 bg-white hover:border-amber-300 hover:shadow-md'
+                      ? 'border-accent bg-accent-light shadow-lg shadow-accent-light'
+                      : 'border-border bg-white hover:border-accent hover:shadow-md'
                   }`}
                 >
                   {tier.badge && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <span className="flex items-center gap-1 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <span className="flex items-center gap-1 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">
                         <Star className="w-3 h-3 fill-white" />
                         {tier.badge}
                       </span>
@@ -283,27 +283,27 @@ export default function SellForm() {
                   )}
 
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${
-                    isSelected ? 'bg-amber-500 text-white' : 'bg-stone-100 text-stone-500'
+                    isSelected ? 'bg-accent text-white' : 'bg-surface text-text-secondary'
                   }`}>
                     {TIER_ICONS[key]}
                   </div>
 
                   <div className="mb-1">
-                    <h3 className="font-bold text-stone-900">{tier.name}</h3>
+                    <h3 className="font-bold text-foreground">{tier.name}</h3>
                     <div className="flex items-baseline gap-1">
-                      <span className={`text-2xl font-bold font-mono ${isEarlyAdopter ? 'line-through text-stone-400' : 'text-stone-900'}`}>
+                      <span className={`text-2xl font-bold font-mono ${isEarlyAdopter ? 'line-through text-text-tertiary' : 'text-foreground'}`}>
                         {tier.displayPrice}
                       </span>
                       {isEarlyAdopter && (
-                        <span className="text-emerald-600 font-bold text-lg">FREE</span>
+                        <span className="text-green font-bold text-lg">FREE</span>
                       )}
                     </div>
                   </div>
 
                   <ul className="space-y-1.5 mt-3">
                     {tier.features.map((f) => (
-                      <li key={f} className="flex items-start gap-1.5 text-xs text-stone-600">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                      <li key={f} className="flex items-start gap-1.5 text-xs text-text-secondary">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-green shrink-0 mt-0.5" />
                         {f}
                       </li>
                     ))}
@@ -311,7 +311,7 @@ export default function SellForm() {
 
                   {isSelected && (
                     <div className="mt-4 text-center">
-                      <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-3 py-1 rounded-full">
+                      <span className="text-xs font-semibold text-accent bg-accent-light px-3 py-1 rounded-full">
                         Selected ✓
                       </span>
                     </div>
@@ -321,7 +321,7 @@ export default function SellForm() {
             })}
           </div>
 
-          <p className="text-xs text-stone-400 text-center">
+          <p className="text-xs text-text-tertiary text-center">
             Not sure? Featured is our most popular option — AI write-up, social share, and 60-day listing.
           </p>
         </div>
@@ -331,8 +331,8 @@ export default function SellForm() {
       {step === 'vehicle' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-stone-900 mb-1">Tell us about your car</h2>
-            <p className="text-stone-500">The basics — year, make, model.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-1">Tell us about your car</h2>
+            <p className="text-text-secondary">The basics — year, make, model.</p>
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div>
@@ -381,8 +381,8 @@ export default function SellForm() {
       {step === 'details' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-stone-900 mb-1">The specifics</h2>
-            <p className="text-stone-500">Mileage, colors, location, price, and photos.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-1">The specifics</h2>
+            <p className="text-text-secondary">Mileage, colors, location, price, and photos.</p>
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div>
@@ -431,7 +431,7 @@ export default function SellForm() {
           <div>
             <label className={labelClass}>Asking Price *</label>
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 font-mono text-lg">$</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary font-mono text-lg">$</span>
               <input type="number" value={form.price} onChange={(e) => updateField('price', e.target.value)} placeholder="74500" className={`${inputClass} pl-8 font-mono text-lg`} />
             </div>
           </div>
@@ -439,7 +439,7 @@ export default function SellForm() {
           <div>
             <label className={labelClass}>
               Photos{' '}
-              <span className="text-stone-400 font-normal">
+              <span className="text-text-tertiary font-normal">
                 (up to {getMaxPhotos(form.tier)} with {selectedTierConfig.name})
               </span>
             </label>
@@ -452,8 +452,8 @@ export default function SellForm() {
       {step === 'description' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-stone-900 mb-1">Tell the story</h2>
-            <p className="text-stone-500">Add your notes, then let AI write the listing in an enthusiast&apos;s voice.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-1">Tell the story</h2>
+            <p className="text-text-secondary">Add your notes, then let AI write the listing in an enthusiast&apos;s voice.</p>
           </div>
           <div>
             <label className={labelClass}>Your Notes</label>
@@ -470,7 +470,7 @@ export default function SellForm() {
             <button
               onClick={generateAIDescription}
               disabled={isGenerating || !form.year || !form.make || !form.model}
-              className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-amber-600 hover:to-amber-700 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+              className="flex items-center gap-2 bg-gradient-to-r from-accent to-accent-hover text-white px-6 py-3 rounded-xl font-semibold hover:from-accent-hover hover:to-accent-hover transition disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
             >
               {isGenerating ? (
                 <><Loader2 className="w-5 h-5 animate-spin" /> Writing your listing...</>
@@ -479,11 +479,11 @@ export default function SellForm() {
               )}
             </button>
           ) : (
-            <div className="bg-stone-100 rounded-xl p-4 flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-stone-400 mt-0.5 shrink-0" />
+            <div className="bg-surface rounded-xl p-4 flex items-start gap-3">
+              <Sparkles className="w-5 h-5 text-text-tertiary mt-0.5 shrink-0" />
               <div>
-                <p className="text-stone-600 text-sm font-medium">AI descriptions are included in Featured and Premium plans.</p>
-                <button onClick={() => setStep('plan')} className="text-amber-600 text-sm underline mt-1">
+                <p className="text-text-secondary text-sm font-medium">AI descriptions are included in Featured and Premium plans.</p>
+                <button onClick={() => setStep('plan')} className="text-accent text-sm underline mt-1">
                   Upgrade your plan →
                 </button>
               </div>
@@ -491,7 +491,7 @@ export default function SellForm() {
           )}
 
           {submitError && (
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-amber-800 text-sm">{submitError}</div>
+            <div className="bg-accent-light border border-accent rounded-xl p-4 text-accent text-sm">{submitError}</div>
           )}
 
           {form.description && (
@@ -499,16 +499,16 @@ export default function SellForm() {
               <div>
                 <label className={labelClass}>AI-Generated Description</label>
                 <textarea value={form.description} onChange={(e) => updateField('description', e.target.value)} rows={8} className={`${inputClass} resize-none`} />
-                <p className="text-xs text-stone-400 mt-1">Feel free to edit — this is your listing.</p>
+                <p className="text-xs text-text-tertiary mt-1">Feel free to edit — this is your listing.</p>
               </div>
               {form.highlights.length > 0 && (
                 <div>
                   <label className={labelClass}>Highlights</label>
                   <div className="space-y-2">
                     {form.highlights.map((h, i) => (
-                      <div key={i} className="flex items-start gap-2 bg-stone-50 px-4 py-2.5 rounded-lg">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
-                        <span className="text-sm text-stone-700">{h}</span>
+                      <div key={i} className="flex items-start gap-2 bg-surface px-4 py-2.5 rounded-lg">
+                        <CheckCircle2 className="w-4 h-4 text-green mt-0.5 shrink-0" />
+                        <span className="text-sm text-foreground">{h}</span>
                       </div>
                     ))}
                   </div>
@@ -517,9 +517,9 @@ export default function SellForm() {
               {form.expertTake && (
                 <div>
                   <label className={labelClass}>Expert Take</label>
-                  <div className="bg-amber-50 border-l-4 border-amber-500 px-4 py-3 rounded-r-lg">
-                    <p className="text-sm italic text-stone-700">&ldquo;{form.expertTake}&rdquo;</p>
-                    <p className="text-xs text-amber-700 mt-1">— Fully Sorted</p>
+                  <div className="bg-accent-light border-l-4 border-accent px-4 py-3 rounded-r-lg">
+                    <p className="text-sm italic text-foreground">&ldquo;{form.expertTake}&rdquo;</p>
+                    <p className="text-xs text-accent mt-1">— Fully Sorted</p>
                   </div>
                 </div>
               )}
@@ -545,37 +545,37 @@ export default function SellForm() {
       {step === 'review' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-stone-900 mb-1">Review your listing</h2>
-            <p className="text-stone-500">Make sure everything looks good, then complete your listing.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-1">Review your listing</h2>
+            <p className="text-text-secondary">Make sure everything looks good, then complete your listing.</p>
           </div>
 
           {/* Selected plan summary */}
-          <div className={`rounded-xl border-2 p-4 flex items-center justify-between ${selectedTierConfig.highlight ? 'border-amber-400 bg-amber-50' : 'border-stone-200 bg-stone-50'}`}>
+          <div className={`rounded-xl border-2 p-4 flex items-center justify-between ${selectedTierConfig.highlight ? 'border-accent bg-accent-light' : 'border-border bg-surface'}`}>
             <div className="flex items-center gap-3">
-              <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${selectedTierConfig.highlight ? 'bg-amber-500 text-white' : 'bg-stone-200 text-stone-600'}`}>
+              <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${selectedTierConfig.highlight ? 'bg-accent text-white' : 'bg-border-medium text-text-secondary'}`}>
                 {TIER_ICONS[form.tier]}
               </div>
               <div>
-                <p className="font-semibold text-stone-900">{selectedTierConfig.name} Plan</p>
-                <p className="text-xs text-stone-500">{selectedTierConfig.features.slice(0, 2).join(' · ')}</p>
+                <p className="font-semibold text-foreground">{selectedTierConfig.name} Plan</p>
+                <p className="text-xs text-text-secondary">{selectedTierConfig.features.slice(0, 2).join(' · ')}</p>
               </div>
             </div>
             <div className="text-right">
               {isEarlyAdopter ? (
                 <div>
-                  <span className="text-stone-400 line-through text-sm">{selectedTierConfig.displayPrice}</span>
-                  <p className="text-emerald-600 font-bold text-lg">FREE</p>
+                  <span className="text-text-tertiary line-through text-sm">{selectedTierConfig.displayPrice}</span>
+                  <p className="text-green font-bold text-lg">FREE</p>
                 </div>
               ) : (
-                <p className="text-xl font-bold font-mono text-stone-900">{selectedTierConfig.displayPrice}</p>
+                <p className="text-xl font-bold font-mono text-foreground">{selectedTierConfig.displayPrice}</p>
               )}
-              <button onClick={() => setStep('plan')} className="text-xs text-amber-600 underline">Change</button>
+              <button onClick={() => setStep('plan')} className="text-xs text-accent underline">Change</button>
             </div>
           </div>
 
           {/* Vehicle Summary */}
-          <div className="bg-white rounded-xl border border-stone-200 p-6 space-y-4">
-            <h3 className="text-xl font-bold text-stone-900">
+          <div className="bg-white rounded-xl border border-border p-6 space-y-4">
+            <h3 className="text-xl font-bold text-foreground">
               {form.year} {form.make} {form.model} {form.trim}
             </h3>
             {photos.length > 0 && (
@@ -585,34 +585,34 @@ export default function SellForm() {
                   <img key={photo.url} src={photo.url} alt={`Photo ${i + 1}`} className="w-24 h-18 object-cover rounded-lg shrink-0" />
                 ))}
                 {photos.length > 5 && (
-                  <div className="w-24 h-18 bg-stone-100 rounded-lg flex items-center justify-center shrink-0 text-stone-500 text-sm font-medium">
+                  <div className="w-24 h-18 bg-surface rounded-lg flex items-center justify-center shrink-0 text-text-secondary text-sm font-medium">
                     +{photos.length - 5} more
                   </div>
                 )}
               </div>
             )}
             <div className="grid grid-cols-2 gap-3 text-sm">
-              {form.mileage && <div><span className="text-stone-400">Mileage:</span> <span className="text-stone-700">{parseInt(form.mileage).toLocaleString()} mi</span></div>}
-              {form.transmission && <div><span className="text-stone-400">Transmission:</span> <span className="text-stone-700">{form.transmission}</span></div>}
-              {form.engine && <div><span className="text-stone-400">Engine:</span> <span className="text-stone-700">{form.engine}</span></div>}
-              {form.drivetrain && <div><span className="text-stone-400">Drivetrain:</span> <span className="text-stone-700">{form.drivetrain}</span></div>}
-              {form.exteriorColor && <div><span className="text-stone-400">Exterior:</span> <span className="text-stone-700">{form.exteriorColor}</span></div>}
-              {form.interiorColor && <div><span className="text-stone-400">Interior:</span> <span className="text-stone-700">{form.interiorColor}</span></div>}
-              {form.city && <div><span className="text-stone-400">Location:</span> <span className="text-stone-700">{form.city}, {form.state}</span></div>}
-              {form.category && <div><span className="text-stone-400">Category:</span> <span className="text-stone-700">{form.category}</span></div>}
+              {form.mileage && <div><span className="text-text-tertiary">Mileage:</span> <span className="text-foreground">{parseInt(form.mileage).toLocaleString()} mi</span></div>}
+              {form.transmission && <div><span className="text-text-tertiary">Transmission:</span> <span className="text-foreground">{form.transmission}</span></div>}
+              {form.engine && <div><span className="text-text-tertiary">Engine:</span> <span className="text-foreground">{form.engine}</span></div>}
+              {form.drivetrain && <div><span className="text-text-tertiary">Drivetrain:</span> <span className="text-foreground">{form.drivetrain}</span></div>}
+              {form.exteriorColor && <div><span className="text-text-tertiary">Exterior:</span> <span className="text-foreground">{form.exteriorColor}</span></div>}
+              {form.interiorColor && <div><span className="text-text-tertiary">Interior:</span> <span className="text-foreground">{form.interiorColor}</span></div>}
+              {form.city && <div><span className="text-text-tertiary">Location:</span> <span className="text-foreground">{form.city}, {form.state}</span></div>}
+              {form.category && <div><span className="text-text-tertiary">Category:</span> <span className="text-foreground">{form.category}</span></div>}
             </div>
             {form.price && (
-              <div className="pt-3 border-t border-stone-100">
-                <span className="text-stone-400 text-sm">Asking Price</span>
-                <p className="text-2xl font-bold font-mono text-stone-900">${parseInt(form.price).toLocaleString()}</p>
+              <div className="pt-3 border-t border-border">
+                <span className="text-text-tertiary text-sm">Asking Price</span>
+                <p className="text-2xl font-bold font-mono text-foreground">${parseInt(form.price).toLocaleString()}</p>
               </div>
             )}
           </div>
 
           {form.description && (
-            <div className="bg-white rounded-xl border border-stone-200 p-6">
-              <h4 className="font-semibold text-stone-900 mb-2">Description</h4>
-              <p className="text-sm text-stone-600 whitespace-pre-line">{form.description}</p>
+            <div className="bg-white rounded-xl border border-border p-6">
+              <h4 className="font-semibold text-foreground mb-2">Description</h4>
+              <p className="text-sm text-text-secondary whitespace-pre-line">{form.description}</p>
             </div>
           )}
 
@@ -647,7 +647,7 @@ export default function SellForm() {
             <button
               onClick={handleSubmitAndPay}
               disabled={isSubmitting || !form.year || !form.make || !form.model || !form.price}
-              className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-6 py-4 rounded-xl font-semibold text-lg transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+              className="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white px-6 py-4 rounded-xl font-semibold text-lg transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
             >
               {isSubmitting ? (
                 <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>
@@ -662,11 +662,11 @@ export default function SellForm() {
       )}
 
       {/* Navigation */}
-      <div className="flex items-center justify-between mt-10 pt-6 border-t border-stone-200">
+      <div className="flex items-center justify-between mt-10 pt-6 border-t border-border">
         <button
           onClick={goPrev}
           disabled={currentStepIndex === 0}
-          className="flex items-center gap-2 text-stone-400 hover:text-stone-700 transition disabled:opacity-30 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 text-text-tertiary hover:text-foreground transition disabled:opacity-30 disabled:cursor-not-allowed"
         >
           <ChevronLeft className="w-5 h-5" />
           Back
@@ -674,7 +674,7 @@ export default function SellForm() {
         {currentStepIndex < STEPS.length - 1 && step !== 'plan' && (
           <button
             onClick={goNext}
-            className="flex items-center gap-2 bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-amber-700 transition"
+            className="flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-xl font-semibold hover:bg-accent-hover transition"
           >
             Continue
             <ChevronRight className="w-5 h-5" />

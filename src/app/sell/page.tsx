@@ -7,9 +7,9 @@ export const metadata = {
 
 export default function SellPage() {
   return (
-    <main className="min-h-screen bg-stone-50">
+    <main className="min-h-screen bg-surface">
       {/* Hero — ad-traffic optimized */}
-      <section className="bg-gradient-to-br from-stone-900 via-stone-800 to-amber-900 text-white py-12 md:py-16">
+      <section className="bg-gradient-to-br from-stone-900 via-stone-800 to-accent text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           {/* Founder credibility line — instant trust signal */}
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
@@ -20,7 +20,7 @@ export default function SellPage() {
 
           <h1 className="text-4xl md:text-6xl font-black mb-4 leading-tight">
             Sell your collector car<br />
-            <span className="text-amber-300">for $9.99.</span>
+            <span className="text-accent">for $9.99.</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-stone-200 max-w-2xl mx-auto mb-6 font-medium">
@@ -44,7 +44,7 @@ export default function SellPage() {
           <p className="text-stone-300 text-sm max-w-xl mx-auto">
             Most collector-car listing sites charge a 4.5–5% success fee when your car sells.
             On a $50,000 sale, that&rsquo;s $2,250+ out of your pocket.
-            Fully Sorted is <strong className="text-amber-300">$9.99 flat</strong> &mdash; no success fee, ever.
+            Fully Sorted is <strong className="text-accent">$9.99 flat</strong> &mdash; no success fee, ever.
           </p>
         </div>
       </section>
