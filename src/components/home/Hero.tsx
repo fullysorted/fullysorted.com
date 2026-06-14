@@ -87,7 +87,7 @@ function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
         </span>
       </div>
 
-      <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "rgba(0,0,0,0.10)", background: "#ffffff" }}>
+      <div className="shine rounded-2xl overflow-hidden border shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)]" style={{ borderColor: "rgba(0,0,0,0.10)", background: "#ffffff" }}>
         {/* Photo */}
         <div className="relative h-52 sm:h-60 overflow-hidden">
           <AnimatePresence mode="wait" custom={dir}>
@@ -208,20 +208,11 @@ export function Hero({ listings = [] }: HeroProps) {
   ].slice(0, 6);
 
   return (
-    <section className="relative overflow-hidden" style={{ background: "#ffffff" }}>
-      {/* Texture */}
-      <div className="absolute inset-0 speed-lines opacity-4" />
-
-      {/* Glow left */}
-      <div
-        className="absolute -top-32 -left-32 w-[700px] h-[700px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(232,114,42,0.1) 0%, transparent 65%)" }}
-      />
-      {/* Glow right */}
-      <div
-        className="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(106,176,76,0.07) 0%, transparent 65%)" }}
-      />
+    <section className="relative overflow-hidden" style={{ background: "var(--bg-primary)" }}>
+      {/* Animated paddock-color mesh + editorial film grain */}
+      <div className="absolute inset-0 paddock-mesh pointer-events-none" />
+      <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
+      <div className="absolute inset-0 speed-lines opacity-[0.03] pointer-events-none" />
 
       {/* Top accent line — hidden here since Header has one on homepage */}
       <div
