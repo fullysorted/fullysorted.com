@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const { listing_id, year, make, model } = session.metadata || {};
+    const { listingId: listing_id, year, make, model } = session.metadata || {};
 
     console.log(`Payment complete: ${year} ${make} ${model} (listing #${listing_id})`);
     console.log('Stripe session ID:', session.id);
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
 
   if (event.type === 'checkout.session.expired') {
     const session = event.data.object;
-    const { listing_id } = session.metadata || {};
+    const { listingId: listing_id } = session.metadata || {};
 
     // Mark listing as expired if payment never completed
     if (listing_id && process.env.DATABASE_URL) {

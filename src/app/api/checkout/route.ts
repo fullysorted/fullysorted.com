@@ -30,6 +30,18 @@ export async function POST(request: NextRequest) {
             SELECT id, is_free_early_adopter FROM listings WHERE id = ${Number(listingId)} LIMIT 1
           `;
           if (listing?.is_free_early_adopter) {
+            // Free early-adopter listing: no payment means no Stripe webhook
+            // ever fires, so activate it right here or it would stay 'pending'
+            // forever and never appear in browse/home.
+            await sql`
+              UPDATE listings
+              SET status = 'active', published_at = NOW(), updated_at = NOW()
+              WHERE id = ${Number(listingId)}
+            `;
+            try {
+              const { notifyNewListing } = await import('@/lib/email');
+              await notifyNewListing({ year, make, model, price: 0, listingId: String(listingId) });
+            } catch {}
             return NextResponse.json({ url: `${origin}/sell/success?free=true` });
           }
         }
@@ -78,6 +90,9 @@ export async function POST(request: NextRequest) {
       cancel_url: `${origin}/sell`,
       metadata: {
         listingId: String(listingId || ''),
+        year: String(year || ''),
+        make: String(make).substring(0, 50),
+        model: String(model).substring(0, 50),
         tier: selectedTier,
         vehicle: vehicleTitle.substring(0, 100),
       },

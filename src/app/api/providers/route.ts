@@ -91,6 +91,26 @@ export async function POST(request: NextRequest) {
       status: 'pending',
     }).returning();
 
+    // Notify Chris of the new application
+    try {
+      const { notifyNewProviderApplication } = await import('@/lib/email');
+      await notifyNewProviderApplication({
+        businessName,
+        ownerName,
+        category,
+        location,
+        email,
+        phone: phone || undefined,
+        website: website || undefined,
+        instagram: instagram || undefined,
+        specialties: typeof specialties === 'string' ? specialties : (specialties || []).join(', '),
+        whyList: whyList || undefined,
+        referredBy: referredBy || undefined,
+      });
+    } catch (emailErr) {
+      console.error('Failed to send provider application email:', emailErr);
+    }
+
     return NextResponse.json(
       { provider, message: 'Application submitted successfully! We\'ll review it within 3-5 business days.' },
       { status: 201 }
