@@ -181,7 +181,7 @@ export default async function ResearchPage() {
           <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
             {[
               { value: segments.length > 0 ? `${segments.length}` : "25+", label: "Segments Tracked" },
-              { value: trendingData.hot.length > 0 ? `${trendingData.hot.length}` : "Live", label: "BaT Listings" },
+              { value: trendingData.hot.length > 0 ? `${trendingData.hot.length}` : "Live", label: "Live Listings" },
               { value: "2×", label: "Daily Updates" },
             ].map((s) => (
               <div key={s.label}>
@@ -303,7 +303,7 @@ export default async function ResearchPage() {
                   <div className="w-6 h-px" style={{ background: "#E8722A" }} />
                   <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest flex items-center gap-2">
                     <Flame className="w-4 h-4" style={{ color: "#E8722A" }} />
-                    Fresh on Bring a Trailer
+                    Fresh on the market
                   </h2>
                 </div>
                 <div
@@ -335,7 +335,7 @@ export default async function ResearchPage() {
                               className="text-xs px-2 py-0.5 rounded-full font-bold"
                               style={{ background: "rgba(232,114,42,0.1)", color: "#E8722A" }}
                             >
-                              BaT
+                              New
                             </span>
                           </div>
                         </div>
@@ -504,10 +504,10 @@ export default async function ResearchPage() {
                 Data Sources
               </p>
               <p className="text-xs text-stone-400 leading-relaxed">
-                Bring a Trailer · RM Sotheby&apos;s · Bonhams · Gooding & Co ·
-                Mecum · Barrett-Jackson · Classic.com · Hemmings
+                Aggregated from publicly available collector-car auction results
+                and market data from across the industry.
               </p>
-              <p className="text-xs text-stone-300 mt-2">Updated twice daily via automated scraping.</p>
+              <p className="text-xs text-stone-300 mt-2">Updated regularly.</p>
             </div>
           </div>
         </div>

@@ -598,7 +598,7 @@ export function ListingDetail({ vehicle }: Props) {
                   </p>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-stone-400">BaT Average</span>
+                      <span className="text-stone-400">Market Average</span>
                       <span className="font-semibold text-stone-800">
                         {formatPrice(vehicle.compAvg)}
                       </span>
