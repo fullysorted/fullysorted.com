@@ -3,9 +3,12 @@ import { seed964 } from '@/lib/data/model-seed-964';
 import { seed240z } from '@/lib/data/model-seed-240z';
 import { seed993 } from '@/lib/data/model-seed-993';
 import { seedE30M3 } from '@/lib/data/model-seed-e30-m3';
+import { seed308 } from '@/lib/data/model-seed-308';
+import { seedSupraA80 } from '@/lib/data/model-seed-supra-a80';
+import { seedNsx } from '@/lib/data/model-seed-nsx';
 
-// All hand/agent-researched model drafts to seed (status='draft' for human review).
-const SEEDS = [seed964, seed240z, seed993, seedE30M3];
+// All researched model drafts to seed (status='draft' for human review).
+const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {
@@ -207,6 +210,6 @@ export async function POST(request: NextRequest) {
     seeded: results,
     count: results.length,
     status: 'draft',
-    message: `Tables ready. ${results.length} model drafts seeded (964, 240Z, 993, E30 M3) — review them in /admin/models before publishing.`,
+    message: `Tables ready. ${results.length} model drafts seeded — review them in /admin/models before publishing.`,
   });
 }

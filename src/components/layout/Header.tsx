@@ -11,8 +11,9 @@ const navLinks = [
   { href: "/browse", label: "Browse" },
   { href: "/value-guide", label: "Value Guide" },
   { href: "/research", label: "Research" },
-  { href: "/events", label: "Events" },
   { href: "/services", label: "Services" },
+  { href: "/gigs", label: "Hire Pros" },
+  { href: "/events", label: "Events" },
   { href: "/about", label: "About" },
 ];
 

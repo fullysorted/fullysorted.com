@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { articles } from "@/lib/articles";
 import { events } from "@/lib/events";
 import { getPublishedModels } from "@/lib/data/models";
+import { getActiveGigs } from "@/lib/data/gigs";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://fullysorted.com";
@@ -14,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/value-guide`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/research`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/research/models`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${base}/gigs`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/vin`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/events/f1`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
@@ -55,5 +57,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     modelPages = [];
   }
 
-  return [...staticPages, ...articlePages, ...eventPages, ...modelPages];
+  // Active public gigs (empty at build with no DB — safe).
+  let gigPages: MetadataRoute.Sitemap = [];
+  try {
+    const gigs = await getActiveGigs();
+    gigPages = gigs.map((g) => ({
+      url: `${base}/gigs/${g.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
+  } catch {
+    gigPages = [];
+  }
+
+  return [...staticPages, ...articlePages, ...eventPages, ...modelPages, ...gigPages];
 }

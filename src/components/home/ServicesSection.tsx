@@ -147,12 +147,12 @@ export function ServicesSection() {
             <div className="flex items-center gap-2.5 mb-4">
               <div className="w-8 h-px" style={{ background: "#E8722A" }} />
               <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#E8722A" }}>
-                Vetted Specialists
+                The Car Services Marketplace
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold leading-tight" style={{ color: "#1a1a18" }}>
-              Everything your car needs,<br />
-              <span style={{ color: "#6b6b5e" }}>from people who get it.</span>
+              Everything your car needs —<br />
+              <span style={{ color: "#6b6b5e" }}>and a place to get paid doing it.</span>
             </h2>
           </div>
           <Link
@@ -228,29 +228,44 @@ export function ServicesSection() {
           ))}
         </div>
 
-        {/* Bottom CTA strip */}
+        {/* Two-door marketplace band — hire vs. earn */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl border"
-          style={{ borderColor: "rgba(232,114,42,0.15)", background: "rgba(232,114,42,0.08)" }}
+          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4"
         >
-          <div>
-            <p className="text-sm font-bold" style={{ color: "#1a1a18" }}>Are you a specialist?</p>
-            <p className="text-xs mt-0.5" style={{ color: "#6b6b5e" }}>
-              Apply to join the Fully Sorted vetted network and get in front of serious car people.
-            </p>
-          </div>
+          {/* Door 1 — hire */}
           <Link
-            href="/services/apply"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white shrink-0 transition-all"
-            style={{ background: "#E8722A" }}
-            onMouseEnter={e => (e.currentTarget.style.background = "#C85E1E")}
-            onMouseLeave={e => (e.currentTarget.style.background = "#E8722A")}
+            href="/services"
+            className="group flex items-center justify-between gap-4 p-6 rounded-2xl border transition-all"
+            style={{ borderColor: "rgba(0,0,0,0.08)", background: "#ffffff" }}
+            onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "rgba(0,0,0,0.18)"; el.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "rgba(0,0,0,0.08)"; el.style.transform = "translateY(0)"; }}
           >
-            Apply to List <ArrowRight className="w-4 h-4" />
+            <div>
+              <p className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: "#6b6b5e" }}>Need it done</p>
+              <p className="text-lg font-bold" style={{ color: "#1a1a18" }}>Hire a vetted pro</p>
+              <p className="text-xs mt-0.5" style={{ color: "#6b6b5e" }}>Inspectors, detailers, haulers, restorers — people who actually get it.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" style={{ color: "#1a1a18" }} />
+          </Link>
+
+          {/* Door 2 — earn (the gig side, the prominent one) */}
+          <Link
+            href="/services/apply/freelancer"
+            className="group flex items-center justify-between gap-4 p-6 rounded-2xl text-white transition-all"
+            style={{ background: "linear-gradient(135deg, #E8722A, #C85E1E)" }}
+            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.transform = "translateY(-2px)")}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.transform = "translateY(0)")}
+          >
+            <div>
+              <p className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.85)" }}>Got skills?</p>
+              <p className="text-lg font-extrabold">Get paid doing what you love</p>
+              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.9)" }}>List a gig in about 5 minutes. We’ll even write it for you. 0% commission to start.</p>
+            </div>
+            <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
       </div>

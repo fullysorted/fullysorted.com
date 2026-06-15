@@ -43,6 +43,36 @@ async function sendEmail({ to = NOTIFY_TO, subject, html }: EmailPayload): Promi
 // Notification templates
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Buyer requests a gig → notify Chris (and CC the provider when known).
+export async function notifyGigInquiry(data: {
+  gigTitle: string;
+  providerName: string;
+  providerEmail?: string;
+  tier?: string;
+  amount?: number;
+  buyerName: string;
+  buyerEmail: string;
+  message?: string;
+}) {
+  return sendEmail({
+    to: data.providerEmail || NOTIFY_TO,
+    subject: `🛠️ New gig request: ${data.gigTitle}`,
+    html: `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a18;">
+        <div style="background:#E8722A;padding:16px 24px;border-radius:12px 12px 0 0;">
+          <h2 style="color:#fff;margin:0;font-size:18px;">New Gig Request</h2>
+        </div>
+        <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;">
+          <p style="margin:0 0 8px;"><strong>Gig:</strong> ${data.gigTitle}</p>
+          <p style="margin:0 0 8px;"><strong>Provider:</strong> ${data.providerName}</p>
+          ${data.tier ? `<p style="margin:0 0 8px;"><strong>Package:</strong> ${data.tier}${data.amount ? ` — $${data.amount}` : ""}</p>` : ""}
+          <p style="margin:0 0 8px;"><strong>From:</strong> ${data.buyerName} (${data.buyerEmail})</p>
+          ${data.message ? `<p style="margin:12px 0 0;color:#6b6b5e;">${data.message}</p>` : ""}
+        </div>
+      </div>`,
+  });
+}
+
 export async function notifyNewProviderApplication(data: {
   businessName: string;
   ownerName: string;
