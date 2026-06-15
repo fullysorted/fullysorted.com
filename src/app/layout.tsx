@@ -8,6 +8,7 @@ import { MobileNav } from "@/components/layout/MobileNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { JsonLd, organizationSchema, websiteSchema } from "@/components/seo/JsonLd";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -101,6 +102,7 @@ export default function RootLayout({
           <Footer />
           <MobileNav />
           <CookieBanner />
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>

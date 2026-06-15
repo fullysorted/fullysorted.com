@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { seed964 } from '@/lib/data/model-seed-964';
+import { seed240z } from '@/lib/data/model-seed-240z';
+import { seed993 } from '@/lib/data/model-seed-993';
+import { seedE30M3 } from '@/lib/data/model-seed-e30-m3';
+
+// All hand/agent-researched model drafts to seed (status='draft' for human review).
+const SEEDS = [seed964, seed240z, seed993, seedE30M3];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {
@@ -115,8 +121,9 @@ export async function POST(request: NextRequest) {
     created_at TIMESTAMP NOT NULL DEFAULT NOW()
   )`;
 
-  // 2. Upsert the 964 pilot as a DRAFT (idempotent — re-running refreshes it).
-  const s = seed964;
+  // 2. Upsert each researched draft (idempotent — re-running refreshes them).
+  const results: { slug: string; sources: number; claims: number }[] = [];
+  for (const s of SEEDS) {
   const existing = (await sql`SELECT id FROM vehicle_models WHERE slug = ${s.slug} LIMIT 1`) as { id: number }[];
   let modelId: number;
 
@@ -176,6 +183,9 @@ export async function POST(request: NextRequest) {
     `;
   }
 
+    results.push({ slug: s.slug, sources: s.sources.length, claims: s.claims.length });
+  } // end for SEEDS
+
   // 5. Seed the starter queue (idempotent-ish: only add rows that aren't there).
   for (const q of STARTER_QUEUE) {
     const dupe = (await sql`
@@ -194,11 +204,9 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({
     success: true,
-    modelId,
-    slug: s.slug,
+    seeded: results,
+    count: results.length,
     status: 'draft',
-    sources: s.sources.length,
-    claims: s.claims.length,
-    message: 'Tables ready. 964 seeded as DRAFT — review it in /admin/models before publishing.',
+    message: `Tables ready. ${results.length} model drafts seeded (964, 240Z, 993, E30 M3) — review them in /admin/models before publishing.`,
   });
 }
