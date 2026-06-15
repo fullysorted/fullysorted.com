@@ -47,7 +47,7 @@ export function MarketMovers() {
               Monday Market Movers
             </h2>
             <p className="mt-1 text-sm" style={{ color: "#6b6b5e" }}>
-              This week&apos;s collector car market at a glance — by Chris Peterson
+              The collector car market at a glance — analysis by Chris Peterson
             </p>
           </div>
           <Link

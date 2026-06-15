@@ -78,9 +78,9 @@ function ListingShowcase({ vehicles }: { vehicles: Vehicle[] }) {
       onMouseLeave={() => setPaused(false)}
     >
       <div className="flex items-center gap-2 mb-3">
-        <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#6ab04c" }} />
         <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#9a9a8a" }}>
-          Live Listings
+          Featured Cars
         </span>
         <span className="text-xs ml-auto" style={{ color: "#b0b0a0" }}>
           {index + 1} / {vehicles.length}

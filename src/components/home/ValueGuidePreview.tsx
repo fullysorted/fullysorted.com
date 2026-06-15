@@ -98,7 +98,7 @@ export function ValueGuidePreview() {
                 className="text-xs font-semibold"
                 style={{ color: "#9a9a8a" }}
               >
-                Avg sale price
+                Representative figures
               </span>
             </div>
 
