@@ -161,6 +161,7 @@ export const providerApplications = pgTable('provider_applications', {
   idealClient: text('ideal_client'),
   whyList: text('why_list'),
   referredBy: varchar('referred_by', { length: 255 }),
+  providerType: varchar('provider_type', { length: 20 }).default('business').notNull(), // business | freelancer
   status: varchar('status', { length: 50 }).default('pending').notNull(), // pending, approved, rejected
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
@@ -210,7 +211,72 @@ export const serviceProviders = pgTable('service_providers', {
   outreachSentAt: timestamp('outreach_sent_at'),
   outreachRespondedAt: timestamp('outreach_responded_at'),
 
+  // ─── Provider type split (Phase 4: business vs freelancer) ──────
+  providerType: varchar('provider_type', { length: 20 }).default('business').notNull(), // business | freelancer
+  // Freelancer-specific
+  headline: varchar('headline', { length: 200 }),       // e.g. "Mobile detailer — air-cooled specialist"
+  hourlyRate: integer('hourly_rate'),                    // optional, USD
+  skills: jsonb('skills').$type<string[]>().default([]),
+  serviceArea: varchar('service_area', { length: 200 }),
+  avatarUrl: text('avatar_url'),
+  // Guided onboarding progress
+  onboardingStep: integer('onboarding_step').default(0),
+  onboardingComplete: boolean('onboarding_complete').default(false),
+  // Payments — SCAFFOLDING ONLY. Disabled until legal/accounting sign-off
+  // (1099/Stripe Connect). No money moves until payoutsEnabled is true AND a
+  // real Connect account is wired. See RESEARCH-AND-REGISTRY-ROADMAP.md Phase 5.
+  payoutsEnabled: boolean('payouts_enabled').default(false),
+  stripeConnectId: varchar('stripe_connect_id', { length: 255 }),
+
   // Timestamps
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+// ─── Gigs (Fiverr-style fixed-scope service packages) ──────────────
+export const gigs = pgTable('gigs', {
+  id: serial('id').primaryKey(),
+  providerId: integer('provider_id').references(() => serviceProviders.id).notNull(),
+  slug: varchar('slug', { length: 300 }).notNull().unique(),
+  title: varchar('title', { length: 200 }).notNull(),     // "I will do a concours-level pre-purchase inspection"
+  category: varchar('category', { length: 100 }),
+  description: text('description'),
+  images: jsonb('images').$type<string[]>().default([]),
+  faqs: jsonb('faqs').$type<{ q: string; a: string }[]>().default([]),
+  requirements: text('requirements'),                     // what the buyer must provide
+  status: varchar('status', { length: 20 }).default('draft').notNull(), // draft, active, paused
+  ordersCount: integer('orders_count').default(0),
+  rating: decimal('rating', { precision: 3, scale: 1 }).default('0'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+// Three-tier package pricing per gig (Basic / Standard / Premium).
+export const gigPackages = pgTable('gig_packages', {
+  id: serial('id').primaryKey(),
+  gigId: integer('gig_id').references(() => gigs.id).notNull(),
+  tier: varchar('tier', { length: 20 }).notNull(),        // basic, standard, premium
+  title: varchar('title', { length: 200 }),
+  description: text('description'),
+  price: integer('price').notNull(),                      // USD
+  deliveryDays: integer('delivery_days'),
+  revisions: integer('revisions'),
+  features: jsonb('features').$type<string[]>().default([]),
+});
+
+// Orders — earnings/ledger SCAFFOLDING. Payment capture & payout are NOT wired;
+// rows are created in a 'pending' state for tracking only until legal sign-off.
+export const gigOrders = pgTable('gig_orders', {
+  id: serial('id').primaryKey(),
+  gigId: integer('gig_id').references(() => gigs.id).notNull(),
+  packageId: integer('package_id').references(() => gigPackages.id),
+  providerId: integer('provider_id').references(() => serviceProviders.id).notNull(),
+  buyerName: varchar('buyer_name', { length: 255 }),
+  buyerEmail: varchar('buyer_email', { length: 255 }),
+  amount: integer('amount'),                              // USD, gross
+  platformFee: integer('platform_fee'),                  // computed, not charged yet
+  status: varchar('status', { length: 30 }).default('inquiry').notNull(), // inquiry, accepted, in_progress, delivered, completed, cancelled
+  requirementsText: text('requirements_text'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
@@ -337,3 +403,7 @@ export type NewServiceProvider = typeof serviceProviders.$inferInsert;
 export type ProviderApplication = typeof providerApplications.$inferSelect;
 export type Message = typeof messages.$inferSelect;
 export type NewMessage = typeof messages.$inferInsert;
+export type Gig = typeof gigs.$inferSelect;
+export type NewGig = typeof gigs.$inferInsert;
+export type GigPackage = typeof gigPackages.$inferSelect;
+export type GigOrder = typeof gigOrders.$inferSelect;

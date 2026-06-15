@@ -1,358 +1,83 @@
-'use client';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Building2, User, ArrowRight, Check } from "lucide-react";
 
-import { useState } from 'react';
-import { useAuth } from '@clerk/nextjs';
-import { Building2, Send, Loader2, CheckCircle, Shield, Star, Sparkles } from 'lucide-react';
-import Link from 'next/link';
+export const metadata: Metadata = {
+  title: "Join the Fully Sorted Services Directory",
+  description:
+    "List your collector-car services on Fully Sorted. Choose the path that fits — an established business/shop, or an independent freelancer offering gigs.",
+  alternates: { canonical: "/services/apply" },
+};
 
-const CATEGORIES = [
-  { value: '', label: 'Select your primary service category' },
-  { value: 'detailing', label: 'Detailing & Paint Correction' },
-  { value: 'mechanical', label: 'Mechanical & Repair' },
-  { value: 'restoration', label: 'Restoration' },
-  { value: 'transport', label: 'Transport & Shipping' },
-  { value: 'inspection', label: 'Pre-Purchase Inspection' },
-  { value: 'bodywork', label: 'Body Work & Paint' },
-  { value: 'storage', label: 'Storage' },
-  { value: 'photography', label: 'Automotive Photography' },
-  { value: 'finance', label: 'Financing & Insurance' },
-  { value: 'other', label: 'Other' },
-];
-
-export default function ApplyPage() {
-  const { userId } = useAuth();
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState('');
-
-  const [form, setForm] = useState({
-    businessName: '',
-    ownerName: '',
-    category: '',
-    location: '',
-    yearsInBusiness: '',
-    email: '',
-    phone: '',
-    website: '',
-    instagram: '',
-    description: '',
-    idealClient: '',
-    whyList: '',
-    referredBy: '',
-    priceRange: '$$',
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setError('');
-
-    try {
-      // Build specialties from description keywords (provider can refine in dashboard later)
-      const res = await fetch('/api/providers', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          clerkUserId: userId || null,
-          specialties: [],
-        }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        setSubmitted(true);
-      } else {
-        setError(data.error || 'Something went wrong. Please try again.');
-      }
-    } catch {
-      setError('Failed to submit. Please check your connection and try again.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  const update = (field: string, value: string) => setForm({ ...form, [field]: value });
-
-  if (submitted) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 py-24">
-        <div className="bg-white rounded-2xl border border-border p-12 text-center">
-          <CheckCircle className="w-16 h-16 text-green mx-auto mb-6" />
-          <h1 className="text-3xl font-bold text-foreground mb-4">Application Submitted!</h1>
-          <p className="text-text-secondary mb-2">
-            Thank you for applying to the Fully Sorted Services Directory.
-          </p>
-          <p className="text-text-secondary mb-8">
-            We review every application personally. You&apos;ll hear from us within 3â5 business days.
-          </p>
-          {userId && (
-            <div className="bg-accent-light border border-accent rounded-xl p-5 mb-8 text-left">
-              <p className="text-accent text-sm">
-                <strong>Next step:</strong> Visit your{' '}
-                <Link href="/dashboard/provider" className="text-accent underline font-semibold">
-                  Provider Dashboard
-                </Link>{' '}
-                to add specialties, set your price range, and fine-tune your profile while we review your application.
-              </p>
-            </div>
-          )}
-          <div className="flex gap-4 justify-center">
-            <Link
-              href="/services"
-              className="px-6 py-3 bg-surface hover:bg-surface text-foreground font-medium rounded-xl transition-colors"
-            >
-              View Directory
-            </Link>
-            {userId && (
-              <Link
-                href="/dashboard/provider"
-                className="px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-colors"
-              >
-                Go to Dashboard
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
+export default function ApplyChooserPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      {/* Hero — founding-50 angle */}
+    <div className="max-w-4xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-2 bg-accent-light border border-accent rounded-full px-4 py-1.5 mb-5">
-          <span className="text-accent text-xs font-bold uppercase tracking-wider">
-            Founding 50 — Services Directory
-          </span>
+          <span className="text-accent text-xs font-bold uppercase tracking-wider">Services Directory</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-black text-foreground mb-4 leading-tight">
-          Get found by the collectors<br />
-          <span className="text-accent">who actually pay.</span>
+        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 leading-tight">
+          How do you want to <span className="text-accent">get listed?</span>
         </h1>
-        <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-4">
-          Fully Sorted is hand-picking the first 50 specialists — detailers, restorers, mechanics, transporters, inspectors — to anchor the directory collectors actually trust.
-        </p>
-        <p className="text-sm text-text-secondary max-w-xl mx-auto">
-          Reviewed personally by Chris Peterson, founder of Fully Sorted and a 25-year veteran of the collector car market who has worked with major automotive companies and major auction houses.
+        <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+          Pick the path that fits you. Not sure? Most one-person operations should choose Freelancer — it’s
+          built to get you up and earning with the least friction.
         </p>
       </div>
 
-      {/* Benefits */}
-      <div className="grid md:grid-cols-3 gap-6 mb-12">
-        <div className="bg-white rounded-xl border border-border p-6">
-          <Shield className="w-8 h-8 text-accent mb-3" />
-          <h3 className="text-foreground font-bold mb-2">Free for founding providers</h3>
-          <p className="text-text-secondary text-sm">
-            The first 50 specialists are listed free — no commission, no per-lead fee. Build your profile, control your story, keep every dollar.
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Business */}
+        <Link
+          href="/services/apply/business"
+          className="group bg-white rounded-2xl border border-border p-8 hover:border-accent hover:shadow-lg transition-all flex flex-col"
+        >
+          <div className="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center mb-5">
+            <Building2 className="w-6 h-6 text-accent" />
+          </div>
+          <h2 className="text-2xl font-bold text-foreground mb-2">I’m a business or shop</h2>
+          <p className="text-text-secondary text-sm mb-5">
+            An established company with a storefront, team, or brand. Get a directory profile collectors trust.
           </p>
-        </div>
-        <div className="bg-white rounded-xl border border-border p-6">
-          <Star className="w-8 h-8 text-accent mb-3" />
-          <h3 className="text-foreground font-bold mb-2">In front of serious collectors</h3>
-          <p className="text-text-secondary text-sm">
-            The people searching this directory are actively buying, maintaining, and selling collector cars. No tire-kickers.
+          <ul className="space-y-2 text-sm text-text-secondary mb-6 flex-1">
+            {["Company directory listing", "Team & business details", "Founding Provider badge", "Reviewed personally by Chris"].map(f => (
+              <li key={f} className="flex items-start gap-2"><Check className="w-4 h-4 text-green mt-0.5 shrink-0" /> {f}</li>
+            ))}
+          </ul>
+          <span className="inline-flex items-center gap-1.5 font-semibold text-accent">
+            Apply as a business <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </span>
+        </Link>
+
+        {/* Freelancer */}
+        <Link
+          href="/services/apply/freelancer"
+          className="group bg-white rounded-2xl border-2 border-accent p-8 hover:shadow-lg transition-all flex flex-col relative"
+        >
+          <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-accent text-white px-2 py-1 rounded-full">
+            Most popular
+          </span>
+          <div className="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center mb-5">
+            <User className="w-6 h-6 text-accent" />
+          </div>
+          <h2 className="text-2xl font-bold text-foreground mb-2">I’m an independent / freelancer</h2>
+          <p className="text-text-secondary text-sm mb-5">
+            A solo specialist — mobile detailer, inspector, photographer, mechanic. Offer fixed-price gigs,
+            like Fiverr for the collector-car world.
           </p>
-        </div>
-        <div className="bg-white rounded-xl border border-border p-6">
-          <Sparkles className="w-8 h-8 text-accent mb-3" />
-          <h3 className="text-foreground font-bold mb-2">Founding provider status</h3>
-          <p className="text-text-secondary text-sm">
-            Early listings get a Founding Provider badge and priority placement. First in, best positioned.
-          </p>
-        </div>
+          <ul className="space-y-2 text-sm text-text-secondary mb-6 flex-1">
+            {["Guided, step-by-step setup", "Fixed-price gig packages", "Your own earnings dashboard", "We help you write everything"].map(f => (
+              <li key={f} className="flex items-start gap-2"><Check className="w-4 h-4 text-green mt-0.5 shrink-0" /> {f}</li>
+            ))}
+          </ul>
+          <span className="inline-flex items-center gap-1.5 font-semibold text-accent">
+            Start guided setup <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </span>
+        </Link>
       </div>
 
-      {/* Application Form */}
-      <div className="bg-white rounded-2xl border border-border p-8">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Tell us about your business</h2>
-          <p className="text-text-secondary">Takes about 5 minutes. We read every application ourselves.</p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Business info */}
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">Business Name *</label>
-              <input
-                type="text"
-                required
-                value={form.businessName}
-                onChange={e => update('businessName', e.target.value)}
-                className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">Your Name *</label>
-              <input
-                type="text"
-                required
-                value={form.ownerName}
-                onChange={e => update('ownerName', e.target.value)}
-                className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-              />
-            </div>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">Category *</label>
-              <select
-                required
-                value={form.category}
-                onChange={e => update('category', e.target.value)}
-                className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-              >
-                {CATEGORIES.map(c => (
-                  <option key={c.value} value={c.value}>{c.label}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">Location *</label>
-              <input
-                type="text"
-                required
-                placeholder="City, State"
-                value={form.location}
-                onChange={e => update('location', e.target.value)}
-                className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">Years in Business</label>
-            <input
-              type="text"
-              value={form.yearsInBusiness}
-              onChange={e => update('yearsInBusiness', e.target.value)}
-              className="w-full sm:w-1/2 px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-            />
-          </div>
-
-          {/* Contact */}
-          <div className="border-t border-border pt-6">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Contact & Links</h3>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">Email *</label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={e => update('email', e.target.value)}
-                  className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">Phone</label>
-                <input
-                  type="tel"
-                  value={form.phone}
-                  onChange={e => update('phone', e.target.value)}
-                  className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">Website</label>
-                <input
-                  type="url"
-                  placeholder="https://"
-                  value={form.website}
-                  onChange={e => update('website', e.target.value)}
-                  className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">Instagram</label>
-                <input
-                  type="text"
-                  placeholder="@handle"
-                  value={form.instagram}
-                  onChange={e => update('instagram', e.target.value)}
-                  className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* About Your Work */}
-          <div className="border-t border-border pt-6">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">About Your Work</h3>
-            <div className="space-y-5">
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">
-                  Describe your business and what you specialize in *
-                </label>
-                <p className="text-xs text-text-secondary mb-2">
-                  This will become your listing description. Write it in your own voice — tell collectors what you do and why you&apos;re the right choice.
-                </p>
-                <textarea
-                  required
-                  rows={4}
-                  value={form.description}
-                  onChange={e => update('description', e.target.value)}
-                  placeholder="Full paint correction, ceramic coating, and concours-level prep. We treat every car like it's headed to Pebble Beach..."
-                  className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent resize-none"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">Who is your ideal client?</label>
-                <textarea
-                  rows={2}
-                  value={form.idealClient}
-                  onChange={e => update('idealClient', e.target.value)}
-                  className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent resize-none"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">Why do you want to be listed on Fully Sorted?</label>
-                <textarea
-                  rows={2}
-                  value={form.whyList}
-                  onChange={e => update('whyList', e.target.value)}
-                  className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent resize-none"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">How did you hear about us?</label>
-                <input
-                  type="text"
-                  value={form.referredBy}
-                  onChange={e => update('referredBy', e.target.value)}
-                  className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Error */}
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">
-              {error}
-            </div>
-          )}
-
-          {/* Submit */}
-          <div className="pt-4">
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-3 rounded-xl transition-colors disabled:opacity-50"
-            >
-              {submitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
-              {submitting ? 'Submitting...' : 'Submit Application'}
-            </button>
-            <p className="text-text-secondary text-sm mt-4">
-              We review every application personally. Not everything is a fit — but if it is, you&apos;ll hear from us within 3â5 business days.
-            </p>
-          </div>
-        </form>
-      </div>
+      <p className="text-center text-sm text-text-secondary mt-8">
+        Either way, listing is free for founding providers. You can always switch later.
+      </p>
     </div>
   );
 }
