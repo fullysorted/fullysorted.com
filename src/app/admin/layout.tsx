@@ -9,6 +9,7 @@ import {
   MessageSquare,
   BarChart3,
   Wrench,
+  BookOpen,
   LogOut,
   Menu,
   X,
@@ -23,6 +24,7 @@ const nav = [
   { href: "/admin/providers", label: "Providers", icon: Wrench },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
   { href: "/admin/market", label: "Market Data", icon: BarChart3 },
+  { href: "/admin/models", label: "Research", icon: BookOpen },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

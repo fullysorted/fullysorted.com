@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { articles } from "@/lib/articles";
 import { events } from "@/lib/events";
+import { getPublishedModels } from "@/lib/data/models";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://fullysorted.com";
   const now = new Date();
 
@@ -12,10 +13,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/sell`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/value-guide`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/research`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
+    { url: `${base}/research/models`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${base}/vin`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/events/f1`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
     { url: `${base}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/services/apply`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/how-it-works`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/pricing`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
@@ -36,5 +41,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...articlePages, ...eventPages];
+  // Published model-history pages (empty at build with no DB — safe).
+  let modelPages: MetadataRoute.Sitemap = [];
+  try {
+    const models = await getPublishedModels();
+    modelPages = models.map((m) => ({
+      url: `${base}/research/models/${m.slug}`,
+      lastModified: m.updated_at ? new Date(m.updated_at) : now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }));
+  } catch {
+    modelPages = [];
+  }
+
+  return [...staticPages, ...articlePages, ...eventPages, ...modelPages];
 }

@@ -226,6 +226,104 @@ export const outreachSuppression = pgTable('outreach_suppression', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
+// ─── Vehicle Models (Research history database — Phase 1) ──────────
+// One row per collectible model / generation / trim. Narrative is drafted by
+// the AI generation agent from cross-checked public sources, then HUMAN-REVIEWED
+// before publish. Nothing is shown publicly until status = 'published'.
+export const vehicleModels = pgTable('vehicle_models', {
+  id: serial('id').primaryKey(),
+  slug: varchar('slug', { length: 300 }).notNull().unique(), // e.g. "porsche/911-964"
+  make: varchar('make', { length: 100 }).notNull(),
+  model: varchar('model', { length: 200 }).notNull(),
+  generation: varchar('generation', { length: 100 }),      // "964"
+  generationCode: varchar('generation_code', { length: 50 }),
+  trim: varchar('trim', { length: 200 }),
+  yearStart: integer('year_start'),
+  yearEnd: integer('year_end'),
+
+  // Structured facts
+  bodyStyles: jsonb('body_styles').$type<string[]>().default([]),
+  engines: jsonb('engines').$type<string[]>().default([]),
+  productionTotal: integer('production_total'),
+  productionNotes: text('production_notes'),
+  notableTrims: jsonb('notable_trims').$type<{ name: string; note: string }[]>().default([]),
+  specs: jsonb('specs').$type<Record<string, string>>().default({}),
+
+  // Narrative sections (lightweight markdown, rendered to HTML)
+  summary: text('summary'),
+  history: text('history'),
+  marketNotes: text('market_notes'),
+  whatToLookFor: text('what_to_look_for'),
+  commonProblems: text('common_problems'),
+  valueTrajectory: text('value_trajectory'),
+
+  heroPhoto: text('hero_photo'),
+
+  // Governance / truth-seeking
+  overallConfidence: varchar('overall_confidence', { length: 20 }).default('medium'), // high, medium, low
+  status: varchar('status', { length: 20 }).default('draft').notNull(),    // draft → reviewed → published
+  reviewedBy: varchar('reviewed_by', { length: 255 }),
+  reviewerNotes: text('reviewer_notes'),
+  aiModel: varchar('ai_model', { length: 100 }),     // provenance of the AI draft
+  generatedAt: timestamp('generated_at'),
+  reviewedAt: timestamp('reviewed_at'),
+  publishedAt: timestamp('published_at'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+// Citations — every non-obvious fact links back here.
+export const modelSources = pgTable('model_sources', {
+  id: serial('id').primaryKey(),
+  modelId: integer('model_id').references(() => vehicleModels.id).notNull(),
+  title: text('title').notNull(),
+  url: text('url'),
+  publisher: varchar('publisher', { length: 200 }),
+  // registry, factory-record, reference-book, journalism, club-forum, manufacturer
+  sourceType: varchar('source_type', { length: 50 }),
+  reliability: varchar('reliability', { length: 20 }).default('medium'),  // high, medium, low
+  accessedAt: timestamp('accessed_at').defaultNow(),
+  notes: text('notes'),
+});
+
+// Per-claim review queue. Conflicts are stored as 'disputed' with both sides
+// captured neutrally in conflictNote — never flattened into one story.
+export const modelClaims = pgTable('model_claims', {
+  id: serial('id').primaryKey(),
+  modelId: integer('model_id').references(() => vehicleModels.id).notNull(),
+  section: varchar('section', { length: 50 }),   // summary, history, production, specs, problems, market
+  claimText: text('claim_text').notNull(),
+  confidence: varchar('confidence', { length: 20 }).default('medium'),  // high, medium, low
+  status: varchar('status', { length: 20 }).default('unverified'),      // verified, unverified, disputed
+  sourceIds: jsonb('source_ids').$type<number[]>().default([]),
+  conflictNote: text('conflict_note'),  // when disputed: both accounts, neutral
+  reviewerNote: text('reviewer_note'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export const modelMedia = pgTable('model_media', {
+  id: serial('id').primaryKey(),
+  modelId: integer('model_id').references(() => vehicleModels.id).notNull(),
+  url: text('url').notNull(),
+  caption: text('caption'),
+  credit: varchar('credit', { length: 255 }),
+  sourceUrl: text('source_url'),
+  license: varchar('license', { length: 100 }),
+  sortOrder: integer('sort_order').default(0),
+});
+
+// What the generation agent should draft next.
+export const modelQueue = pgTable('model_queue', {
+  id: serial('id').primaryKey(),
+  make: varchar('make', { length: 100 }).notNull(),
+  model: varchar('model', { length: 200 }).notNull(),
+  generation: varchar('generation', { length: 100 }),
+  priority: integer('priority').default(0),
+  status: varchar('status', { length: 20 }).default('queued').notNull(), // queued, generating, drafted, failed
+  notes: text('notes'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
 // Type exports for use in components
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
