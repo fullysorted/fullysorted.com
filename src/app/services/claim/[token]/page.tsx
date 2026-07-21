@@ -47,14 +47,13 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
     return (
       <main className="min-h-screen bg-background py-16 px-4">
         <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-border p-10 text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-3">You&apos;re already listed</h1>
+          <h1 className="font-display font-semibold tracking-tight text-3xl text-foreground mb-3">You&apos;re already listed</h1>
           <p className="text-base text-text-secondary mb-6">
             <strong>{provider.business_name}</strong> is live in the Fully Sorted directory. Thanks for being a founding provider.
           </p>
           <Link
             href={`/services/${provider.slug}`}
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl transition-colors"
-            style={{ background: '#E8722A' }}
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
           >
             View your public profile
           </Link>
@@ -68,14 +67,19 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
       <div className="max-w-3xl mx-auto">
         {/* Intro */}
         <div className="mb-8">
-          <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#E8722A' }}>
+          <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#1E6091' }}>
+            <span className="flex gap-1" aria-hidden="true">
+              <span className="w-1.5 h-1.5" style={{ background: '#1E6091' }} />
+              <span className="w-1.5 h-1.5" style={{ background: '#1E6091' }} />
+              <span className="w-1.5 h-1.5" style={{ background: '#B08D3F' }} />
+            </span>
             Founding Provider Invitation
           </p>
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            We&apos;d like to list <span style={{ color: '#E8722A' }}>{provider.business_name}</span> on Fully Sorted.
+          <h1 className="font-display font-semibold tracking-tight text-3xl md:text-4xl text-foreground mb-3 leading-[1.1]">
+            We&apos;d like to list <span className="text-accent">{provider.business_name}</span> on Fully Sorted.
           </h1>
           <p className="text-base text-text-secondary leading-relaxed">
-            Fully Sorted is a new directory for the people collectors actually trust with their cars — built by Chris Peterson, founder and a 25-year veteran of the collector car market with experience at major automotive companies and major auction houses. We&apos;re inviting you as a <strong>founding provider</strong>, which means free listing, founding badge, and priority placement. <strong>No fees. No commission. No catch.</strong>
+            Fully Sorted is a new directory for the people collectors actually trust with their cars — built by Chris Peterson, founder and a 25-year veteran of the collector car market with experience at major automotive companies and major auction houses. We&apos;re inviting you as a <strong>founding provider</strong>, which means free listing, founding badge, and priority placement. <strong>Free listing for founding providers — no catch.</strong>
           </p>
         </div>
 
@@ -91,7 +95,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
             </div>
             <span
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
-              style={{ background: '#FEF0E6', color: '#E8722A' }}
+              style={{ background: '#F7F0DF', color: '#7A6029', border: '1px solid rgba(176,141,63,0.35)' }}
             >
               ★ Founding Provider
             </span>

@@ -17,7 +17,7 @@ const services = [
     title: "Pre-Purchase Inspection",
     desc: "A trusted inspector in your area before the wire goes. We can recommend certified specialists nationwide.",
     href: "/services?type=inspection",
-    accent: "#E8722A",
+    accent: "#1E6091",
   },
   {
     icon: (
@@ -32,7 +32,7 @@ const services = [
     title: "Enclosed Transport",
     desc: "Door-to-door enclosed hauling. Your car rides inside, not on top. Nationwide and cross-border.",
     href: "/services?type=transport",
-    accent: "#29ABE2",
+    accent: "#1E6091",
   },
   {
     icon: (
@@ -46,7 +46,7 @@ const services = [
     title: "Valuation & Appraisal",
     desc: "Written appraisals backed by real comps. For insurance, estates, financing, or just knowing what you have.",
     href: "/value-guide",
-    accent: "#6ab04c",
+    accent: "#B08D3F",
   },
   {
     icon: (
@@ -60,7 +60,7 @@ const services = [
     title: "Detailing & Paint Correction",
     desc: "Show-ready prep, ceramic coating, full paint correction. Specialists who treat your car like their own.",
     href: "/services?type=detailing",
-    accent: "#E8722A",
+    accent: "#1E6091",
   },
   {
     icon: (
@@ -74,7 +74,7 @@ const services = [
     title: "Collector Car Financing",
     desc: "Agreed-value loans for collector cars at rates that don't treat your 911 like a used Camry.",
     href: "/services?type=financing",
-    accent: "#29ABE2",
+    accent: "#1E6091",
   },
   {
     icon: (
@@ -87,7 +87,7 @@ const services = [
     title: "Agreed Value Insurance",
     desc: "Policies that actually pay out what your car is worth. Specialist brokers for collector vehicles.",
     href: "/services?type=insurance",
-    accent: "#6ab04c",
+    accent: "#B08D3F",
   },
   {
     icon: (
@@ -101,7 +101,7 @@ const services = [
     title: "Climate-Controlled Storage",
     desc: "Monitored, climate-controlled facilities that treat your investment the way it deserves.",
     href: "/services?type=storage",
-    accent: "#E8722A",
+    accent: "#1E6091",
   },
   {
     icon: (
@@ -114,7 +114,7 @@ const services = [
     title: "Title & Documentation",
     desc: "Provenance research, title recovery, build sheets, ownership history. Know what you have.",
     href: "/services?type=documentation",
-    accent: "#29ABE2",
+    accent: "#1E6091",
   },
 ];
 
@@ -123,7 +123,7 @@ export function ServicesSection() {
     <section className="relative py-16 sm:py-24" style={{ background: "#faf9f7" }}>
       {/* Top border */}
       <div className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(232,114,42,0.15) 40%, rgba(106,176,76,0.15) 60%, transparent)" }} />
+        style={{ background: "linear-gradient(to right, transparent, rgba(30,96,145,0.18) 40%, rgba(176,141,63,0.18) 60%, transparent)" }} />
 
       {/* Subtle grid pattern */}
       <div
@@ -145,12 +145,12 @@ export function ServicesSection() {
         >
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-px" style={{ background: "#E8722A" }} />
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#E8722A" }}>
-                The Car Services Marketplace
+              <div className="w-8 h-px" style={{ background: "#1E6091" }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#1E6091" }}>
+                Every Base Covered
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold leading-tight" style={{ color: "#1a1a18" }}>
+            <h2 className="font-display text-3xl sm:text-4xl font-semibold leading-tight tracking-tight" style={{ color: "#1a1a18" }}>
               Everything your car needs —<br />
               <span style={{ color: "#6b6b5e" }}>and a place to get paid doing it.</span>
             </h2>
@@ -160,9 +160,9 @@ export function ServicesSection() {
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold border transition-all shrink-0"
             style={{ borderColor: "rgba(0,0,0,0.12)", background: "#ffffff", color: "#1a1a18" }}
             onMouseEnter={e => {
-              (e.currentTarget as HTMLElement).style.borderColor = "#E8722A";
-              (e.currentTarget as HTMLElement).style.background = "rgba(232,114,42,0.08)";
-              (e.currentTarget as HTMLElement).style.color = "#E8722A";
+              (e.currentTarget as HTMLElement).style.borderColor = "#1E6091";
+              (e.currentTarget as HTMLElement).style.background = "rgba(30,96,145,0.08)";
+              (e.currentTarget as HTMLElement).style.color = "#1E6091";
             }}
             onMouseLeave={e => {
               (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.12)";
@@ -246,7 +246,7 @@ export function ServicesSection() {
           >
             <div>
               <p className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: "#6b6b5e" }}>Need it done</p>
-              <p className="text-lg font-bold" style={{ color: "#1a1a18" }}>Hire a vetted pro</p>
+              <p className="text-lg font-bold" style={{ color: "#1a1a18" }}>Hire a top-rated pro</p>
               <p className="text-xs mt-0.5" style={{ color: "#6b6b5e" }}>Inspectors, detailers, haulers, restorers — people who actually get it.</p>
             </div>
             <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" style={{ color: "#1a1a18" }} />
@@ -255,17 +255,29 @@ export function ServicesSection() {
           {/* Door 2 — earn (the gig side, the prominent one) */}
           <Link
             href="/services/apply/freelancer"
-            className="group flex items-center justify-between gap-4 p-6 rounded-2xl text-white transition-all"
-            style={{ background: "linear-gradient(135deg, #E8722A, #C85E1E)" }}
+            className="group relative overflow-hidden shine flex items-center justify-between gap-4 p-6 rounded-2xl text-white transition-all"
+            style={{ background: "linear-gradient(135deg, #1E6091, #174B72)" }}
             onMouseEnter={e => ((e.currentTarget as HTMLElement).style.transform = "translateY(-2px)")}
             onMouseLeave={e => ((e.currentTarget as HTMLElement).style.transform = "translateY(0)")}
           >
-            <div>
+            {/* Workshop photo under a racing-green wash */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: "linear-gradient(135deg, rgba(15,32,50,0.82), rgba(15,32,50,0.68))" }}
+            />
+            <div className="relative z-10">
               <p className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.85)" }}>Got skills?</p>
               <p className="text-lg font-extrabold">Get paid doing what you love</p>
-              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.9)" }}>List a gig in about 5 minutes. We’ll even write it for you. 0% commission to start.</p>
+              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.9)" }}>List a gig in about 5 minutes. We’ll even write it for you.</p>
             </div>
-            <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="relative z-10 w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
       </div>

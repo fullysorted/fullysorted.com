@@ -43,7 +43,7 @@ export function ValueGuidePreview() {
               Powered by Real Auction Data
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-black mb-3" style={{ color: "#1a1a18" }}>
+            <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight mb-3" style={{ color: "#1a1a18" }}>
               Know what your car is worth
             </h2>
             <p className="leading-relaxed text-sm sm:text-base" style={{ color: "#6b6b5e" }}>
@@ -58,7 +58,7 @@ export function ValueGuidePreview() {
               <Link
                 href="/value-guide"
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 text-white text-sm font-bold rounded-lg transition-opacity hover:opacity-80"
-                style={{ background: "#E8722A" }}
+                style={{ background: "#1E6091" }}
               >
                 Open Value Guide
                 <ArrowRight className="w-4 h-4" />
@@ -129,7 +129,7 @@ export function ValueGuidePreview() {
                       <span
                         className="text-xs font-bold flex items-center gap-0.5"
                         style={{
-                          color: isUp ? "#6ab04c" : isDown ? "#E8722A" : "#9a9a8a",
+                          color: isUp ? "#6ab04c" : isDown ? "#DC2626" : "#9a9a8a",
                         }}
                       >
                         {isUp ? <TrendingUp className="w-3 h-3" /> : isDown ? <TrendingDown className="w-3 h-3" /> : null}
@@ -152,7 +152,7 @@ export function ValueGuidePreview() {
               <Link
                 href="/value-guide"
                 className="text-xs font-bold flex items-center gap-1 transition-opacity hover:opacity-70"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#1E6091" }}
               >
                 Search any vehicle <ArrowRight className="w-3 h-3" />
               </Link>

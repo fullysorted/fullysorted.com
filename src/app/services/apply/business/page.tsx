@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth } from '@clerk/nextjs';
+import { motion } from 'framer-motion';
 import { Building2, Send, Loader2, CheckCircle, Shield, Star, Sparkles, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
@@ -58,7 +59,7 @@ export default function ApplyBusinessPage() {
       <div className="max-w-2xl mx-auto px-4 py-24">
         <div className="bg-white rounded-2xl border border-border p-12 text-center">
           <CheckCircle className="w-16 h-16 text-green mx-auto mb-6" />
-          <h1 className="text-3xl font-bold text-foreground mb-4">Application Submitted!</h1>
+          <h1 className="font-display font-semibold tracking-tight text-3xl text-foreground mb-4">Application Submitted!</h1>
           <p className="text-text-secondary mb-8">
             We review every application personally. You&apos;ll hear from us within 3–5 business days.
           </p>
@@ -75,40 +76,52 @@ export default function ApplyBusinessPage() {
       <Link href="/services/apply" className="inline-flex items-center gap-1.5 text-sm text-text-secondary mb-6 hover:text-foreground">
         <ArrowLeft className="w-4 h-4" /> Business or freelancer?
       </Link>
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 bg-accent-light border border-accent rounded-full px-4 py-1.5 mb-5">
+      <motion.div
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, ease: 'easeOut' }}
+      >
+        <div className="inline-flex items-center gap-2.5 bg-accent-light border border-accent rounded-full px-4 py-1.5 mb-5">
+          <span className="flex gap-1" aria-hidden="true">
+            <span className="w-1.5 h-1.5" style={{ background: '#1E6091' }} />
+            <span className="w-1.5 h-1.5" style={{ background: '#1E6091' }} />
+            <span className="w-1.5 h-1.5" style={{ background: '#B08D3F' }} />
+          </span>
           <Building2 className="w-4 h-4 text-accent" />
-          <span className="text-accent text-xs font-bold uppercase tracking-wider">Business / Shop — Services Directory</span>
+          <span className="text-accent text-xs font-bold uppercase tracking-widest">Business / Shop — Services Directory</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 leading-tight">
+        <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl text-foreground mb-4 leading-[1.08]">
           Get found by the collectors <span className="text-accent">who actually pay.</span>
         </h1>
         <p className="text-lg text-text-secondary max-w-2xl mx-auto">
           For established shops and companies — detailers, restorers, mechanics, transporters, inspectors. Reviewed personally by Chris Peterson.
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid md:grid-cols-3 gap-6 mb-12">
-        <div className="bg-white rounded-xl border border-border p-6">
-          <Shield className="w-8 h-8 text-accent mb-3" />
-          <h3 className="text-foreground font-bold mb-2">Free for founding providers</h3>
-          <p className="text-text-secondary text-sm">The first 50 specialists are listed free — no commission, no per-lead fee.</p>
-        </div>
-        <div className="bg-white rounded-xl border border-border p-6">
-          <Star className="w-8 h-8 text-accent mb-3" />
-          <h3 className="text-foreground font-bold mb-2">In front of serious collectors</h3>
-          <p className="text-text-secondary text-sm">The people searching this directory are actively buying and maintaining collector cars.</p>
-        </div>
-        <div className="bg-white rounded-xl border border-border p-6">
-          <Sparkles className="w-8 h-8 text-accent mb-3" />
-          <h3 className="text-foreground font-bold mb-2">Founding provider status</h3>
-          <p className="text-text-secondary text-sm">Early listings get a Founding Provider badge and priority placement.</p>
-        </div>
+        {[
+          { Icon: Shield, color: 'text-accent', title: 'Free for founding providers', body: 'The first 50 specialists are listed free, with founding-provider placement.' },
+          { Icon: Star, color: 'text-blue', title: 'In front of serious collectors', body: 'The people searching this directory are actively buying and maintaining collector cars.' },
+          { Icon: Sparkles, color: 'text-gold', title: 'Founding provider status', body: 'Early listings get a Founding Provider badge and priority placement.' },
+        ].map(({ Icon, color, title, body }, i) => (
+          <motion.div
+            key={title}
+            className="bg-white rounded-xl border border-border p-6 hover:-translate-y-0.5 hover:shadow-lg transition-all"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.12 + i * 0.1 }}
+          >
+            <Icon className={`w-8 h-8 ${color} mb-3`} />
+            <h3 className="text-foreground font-bold mb-2">{title}</h3>
+            <p className="text-text-secondary text-sm">{body}</p>
+          </motion.div>
+        ))}
       </div>
 
       <div className="bg-white rounded-2xl border border-border p-8">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Tell us about your business</h2>
+          <h2 className="font-display font-semibold tracking-tight text-2xl text-foreground mb-2">Tell us about your business</h2>
           <p className="text-text-secondary">Takes about 5 minutes. We read every application ourselves.</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">

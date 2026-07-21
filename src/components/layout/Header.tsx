@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils";
 import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
 
 const navLinks = [
-  { href: "/browse", label: "Browse" },
-  { href: "/value-guide", label: "Value Guide" },
-  { href: "/research", label: "Research" },
   { href: "/services", label: "Services" },
   { href: "/gigs", label: "Hire Pros" },
+  { href: "/browse", label: "Browse Cars" },
+  { href: "/value-guide", label: "Value Guide" },
+  { href: "/research", label: "Research" },
   { href: "/events", label: "Events" },
   { href: "/about", label: "About" },
 ];
@@ -23,6 +23,15 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
+      {/* Signature tricolor accent hairline */}
+      <div
+        aria-hidden
+        className="h-px"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, #1E6091 35%, #B08D3F 65%, transparent)",
+        }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -60,9 +69,15 @@ export function Header() {
             </button>
             <Link
               href="/sell"
-              className="px-4 py-2 text-sm font-semibold bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors"
+              className="px-4 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
             >
               Sell a Car
+            </Link>
+            <Link
+              href="/services"
+              className="px-4 py-2 text-sm font-semibold bg-accent text-white rounded-lg hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-8px_rgba(30,96,145,0.55)] transition-all duration-200"
+            >
+              Find a Pro
             </Link>
 
             {/* Auth */}
@@ -84,7 +99,7 @@ export function Header() {
               </div>
             ) : isLoaded ? (
               <SignInButton mode="modal">
-                <button className="px-4 py-2 text-sm font-medium text-accent border border-accent rounded-lg hover:bg-amber-50 transition-colors">
+                <button className="px-4 py-2 text-sm font-medium text-accent border border-accent rounded-lg hover:bg-accent-light transition-colors">
                   Sign In
                 </button>
               </SignInButton>
@@ -123,9 +138,16 @@ export function Header() {
           ))}
           <div className="border-t border-border my-4" />
           <Link
-            href="/sell"
+            href="/services"
             onClick={() => setMobileMenuOpen(false)}
             className="px-4 py-3 text-lg font-semibold text-center bg-accent text-white rounded-xl hover:bg-accent-hover transition-colors"
+          >
+            Find a Pro
+          </Link>
+          <Link
+            href="/sell"
+            onClick={() => setMobileMenuOpen(false)}
+            className="px-4 py-3 text-lg font-medium text-center text-foreground rounded-xl border border-border hover:bg-surface transition-colors"
           >
             Sell a Car
           </Link>
@@ -133,7 +155,7 @@ export function Header() {
             <SignInButton mode="modal">
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 text-lg font-medium text-center text-accent rounded-xl border border-accent hover:bg-amber-50 transition-colors"
+                className="px-4 py-3 text-lg font-medium text-center text-accent rounded-xl border border-accent hover:bg-accent-light transition-colors"
               >
                 Sign In
               </button>

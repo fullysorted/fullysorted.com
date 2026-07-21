@@ -21,7 +21,7 @@ async function getActiveListings(): Promise<Vehicle[]> {
       .from(schema.listings)
       .where(eq(schema.listings.status, "active"))
       .orderBy(desc(schema.listings.publishedAt))
-      .limit(20);
+      .limit(8);
 
     return rows.map((listing): Vehicle => {
       const trim = listing.trim ? ` ${listing.trim}` : "";
@@ -81,9 +81,12 @@ export default async function Home() {
 
   return (
     <>
-      <Hero listings={listings} />
+      {/* Services first — the hub is the front door */}
+      <Hero />
       <ServicesSection />
+      {/* Marketplace second — one strong section */}
       <FeaturedListings listings={listings} />
+      {/* Market intelligence — the data moat */}
       <ValueGuidePreview />
       <MarketMovers />
       <CTASection />

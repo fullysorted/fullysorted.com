@@ -66,7 +66,7 @@ export function ContactForm() {
             placeholder="Your name"
             value={fields.name}
             onChange={e => setFields(f => ({ ...f, name: e.target.value }))}
-            className="w-full h-11 px-4 text-sm rounded-lg outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition-colors"
+            className="w-full h-11 px-4 text-sm rounded-lg outline-none focus:ring-2 focus:ring-accent-light focus:border-accent transition-colors"
             style={inputStyle}
             required
           />
@@ -78,7 +78,7 @@ export function ContactForm() {
             placeholder="you@example.com"
             value={fields.email}
             onChange={e => setFields(f => ({ ...f, email: e.target.value }))}
-            className="w-full h-11 px-4 text-sm rounded-lg outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition-colors"
+            className="w-full h-11 px-4 text-sm rounded-lg outline-none focus:ring-2 focus:ring-accent-light focus:border-accent transition-colors"
             style={inputStyle}
             required
           />
@@ -88,7 +88,7 @@ export function ContactForm() {
           <select
             value={fields.subject}
             onChange={e => setFields(f => ({ ...f, subject: e.target.value }))}
-            className="w-full h-11 px-4 text-sm rounded-lg outline-none focus:ring-2 focus:ring-orange-200 transition-colors"
+            className="w-full h-11 px-4 text-sm rounded-lg outline-none focus:ring-2 focus:ring-accent-light transition-colors"
             style={inputStyle}
           >
             <option>General Question</option>
@@ -106,7 +106,7 @@ export function ContactForm() {
             placeholder="What's on your mind?"
             value={fields.message}
             onChange={e => setFields(f => ({ ...f, message: e.target.value }))}
-            className="w-full px-4 py-3 text-sm rounded-lg outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition-colors resize-none"
+            className="w-full px-4 py-3 text-sm rounded-lg outline-none focus:ring-2 focus:ring-accent-light focus:border-accent transition-colors resize-none"
             style={inputStyle}
             required
           />
@@ -117,8 +117,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="w-full h-11 text-sm font-bold rounded-lg transition-colors text-white disabled:opacity-60"
-          style={{ background: "#E8722A" }}
+          className="w-full h-11 text-sm font-bold rounded-lg bg-accent hover:bg-accent-hover transition-colors text-white disabled:opacity-60 shine"
         >
           {status === "loading" ? "Sending…" : "Send Message"}
         </button>

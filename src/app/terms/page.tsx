@@ -11,10 +11,15 @@ export default function TermsPage() {
     <main className="min-h-screen" style={{ background: "#faf9f7" }}>
       <section style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#E8722A" }}>
+          <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#1E6091" }}>
+            <span className="inline-flex gap-1" aria-hidden="true">
+              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
+            </span>
             Legal
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4" style={{ color: "#1a1a18" }}>
+          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-4" style={{ color: "#1a1a18" }}>
             Terms of Service
           </h1>
           <p className="text-sm" style={{ color: "#9a9a8a" }}>
@@ -31,7 +36,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-xl font-bold mb-3" style={{ color: "#1a1a18" }}>Using Fully Sorted</h2>
             <p>
-              Fully Sorted is a collector car marketplace and vetted services directory. By using this
+              Fully Sorted is a collector car marketplace and services directory. By using this
               platform, you agree to these terms. You must be 18 or older to list a vehicle or apply
               as a service provider.
             </p>
@@ -55,8 +60,8 @@ export default function TermsPage() {
           <div>
             <h2 className="text-xl font-bold mb-3" style={{ color: "#1a1a18" }}>Services Directory</h2>
             <p>
-              Service provider listings are personal endorsements based on our own experience and vetting
-              process. Inclusion in the directory does not constitute a warranty or guarantee of service
+              Service provider listings reflect community reviews, provider engagement, and our editorial
+              judgment. Inclusion in the directory does not constitute a warranty or guarantee of service
               quality. We reserve the right to remove any provider at our discretion.
             </p>
           </div>
@@ -103,7 +108,7 @@ export default function TermsPage() {
               <a
                 href="mailto:chris@fullysorted.com"
                 className="font-semibold hover:opacity-70 transition-opacity"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#1E6091" }}
               >
                 chris@fullysorted.com
               </a>
@@ -111,7 +116,7 @@ export default function TermsPage() {
               <Link
                 href="/contact"
                 className="font-semibold hover:opacity-70 transition-opacity"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#1E6091" }}
               >
                 contact form
               </Link>.

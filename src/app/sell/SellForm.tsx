@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { trackMetaEvent } from '@/components/analytics/MetaPixel';
 import {
   Sparkles, Loader2, CheckCircle2, ChevronRight, ChevronLeft,
@@ -231,11 +232,19 @@ export default function SellForm() {
         ))}
       </div>
 
+      {/* Animated step container — re-mounts (and fades up) on each step change */}
+      <motion.div
+        key={step}
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: 'easeOut' }}
+      >
+
       {/* ─── Step 1: Choose Plan ─────────────────────────────── */}
       {step === 'plan' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-1">Choose your listing package</h2>
+            <h2 className="font-display text-2xl font-bold tracking-tight text-foreground mb-1">Choose your listing package</h2>
             <p className="text-text-secondary">Pick the plan that fits your car. You can change your mind up until you pay.</p>
           </div>
 
@@ -267,9 +276,13 @@ export default function SellForm() {
                     // Auto-advance after a brief moment
                     setTimeout(goNext, 150);
                   }}
-                  className={`relative text-left rounded-2xl border-2 p-6 transition-all ${
+                  className={`relative text-left rounded-2xl border-2 p-6 transition-all duration-300 hover:-translate-y-0.5 ${
                     isSelected
-                      ? 'border-accent bg-accent-light shadow-lg shadow-accent-light'
+                      ? key === 'premium'
+                        ? 'border-gold bg-gold-light shadow-lg shadow-gold-light'
+                        : 'border-accent bg-accent-light shadow-lg shadow-accent-light'
+                      : key === 'premium'
+                      ? 'border-border bg-white hover:border-gold hover:shadow-md'
                       : 'border-border bg-white hover:border-accent hover:shadow-md'
                   }`}
                 >
@@ -283,7 +296,9 @@ export default function SellForm() {
                   )}
 
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${
-                    isSelected ? 'bg-accent text-white' : 'bg-surface text-text-secondary'
+                    isSelected
+                      ? key === 'premium' ? 'bg-gold text-white' : 'bg-accent text-white'
+                      : 'bg-surface text-text-secondary'
                   }`}>
                     {TIER_ICONS[key]}
                   </div>
@@ -331,7 +346,7 @@ export default function SellForm() {
       {step === 'vehicle' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-1">Tell us about your car</h2>
+            <h2 className="font-display text-2xl font-bold tracking-tight text-foreground mb-1">Tell us about your car</h2>
             <p className="text-text-secondary">The basics — year, make, model.</p>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -381,7 +396,7 @@ export default function SellForm() {
       {step === 'details' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-1">The specifics</h2>
+            <h2 className="font-display text-2xl font-bold tracking-tight text-foreground mb-1">The specifics</h2>
             <p className="text-text-secondary">Mileage, colors, location, price, and photos.</p>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -452,7 +467,7 @@ export default function SellForm() {
       {step === 'description' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-1">Tell the story</h2>
+            <h2 className="font-display text-2xl font-bold tracking-tight text-foreground mb-1">Tell the story</h2>
             <p className="text-text-secondary">Add your notes, then let AI write the listing in an enthusiast&apos;s voice.</p>
           </div>
           <div>
@@ -470,7 +485,7 @@ export default function SellForm() {
             <button
               onClick={generateAIDescription}
               disabled={isGenerating || !form.year || !form.make || !form.model}
-              className="flex items-center gap-2 bg-gradient-to-r from-accent to-accent-hover text-white px-6 py-3 rounded-xl font-semibold hover:from-accent-hover hover:to-accent-hover transition disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+              className="shine flex items-center gap-2 bg-gradient-to-r from-accent to-accent-hover text-white px-6 py-3 rounded-xl font-semibold hover:from-accent-hover hover:to-accent-hover transition disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
             >
               {isGenerating ? (
                 <><Loader2 className="w-5 h-5 animate-spin" /> Writing your listing...</>
@@ -491,7 +506,7 @@ export default function SellForm() {
           )}
 
           {submitError && (
-            <div className="bg-accent-light border border-accent rounded-xl p-4 text-accent text-sm">{submitError}</div>
+            <div className="bg-red-light border border-red/40 rounded-xl p-4 text-red text-sm">{submitError}</div>
           )}
 
           {form.description && (
@@ -545,14 +560,14 @@ export default function SellForm() {
       {step === 'review' && (
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-1">Review your listing</h2>
+            <h2 className="font-display text-2xl font-bold tracking-tight text-foreground mb-1">Review your listing</h2>
             <p className="text-text-secondary">Make sure everything looks good, then complete your listing.</p>
           </div>
 
           {/* Selected plan summary */}
-          <div className={`rounded-xl border-2 p-4 flex items-center justify-between ${selectedTierConfig.highlight ? 'border-accent bg-accent-light' : 'border-border bg-surface'}`}>
+          <div className={`rounded-xl border-2 p-4 flex items-center justify-between ${selectedTierConfig.highlight ? 'border-accent bg-accent-light' : form.tier === 'premium' ? 'border-gold bg-gold-light' : 'border-border bg-surface'}`}>
             <div className="flex items-center gap-3">
-              <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${selectedTierConfig.highlight ? 'bg-accent text-white' : 'bg-border-medium text-text-secondary'}`}>
+              <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${selectedTierConfig.highlight ? 'bg-accent text-white' : form.tier === 'premium' ? 'bg-gold text-white' : 'bg-border-medium text-text-secondary'}`}>
                 {TIER_ICONS[form.tier]}
               </div>
               <div>
@@ -626,7 +641,7 @@ export default function SellForm() {
                 <p className="text-stone-300 text-sm">
                   {isEarlyAdopter
                     ? "You're one of our first 100 sellers. This one's on us."
-                    : 'One-time payment. No commissions. No hidden fees. Ever.'}
+                    : 'One-time payment. No hidden fees.'}
                 </p>
               </div>
               <p className="text-3xl font-bold font-mono">
@@ -660,6 +675,8 @@ export default function SellForm() {
           </div>
         </div>
       )}
+
+      </motion.div>
 
       {/* Navigation */}
       <div className="flex items-center justify-between mt-10 pt-6 border-t border-border">

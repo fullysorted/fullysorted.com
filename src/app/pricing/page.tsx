@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { CheckCircle2, Star } from 'lucide-react';
 import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
 
 export const metadata = {
   title: 'Pricing — Fully Sorted',
-  description: `Simple, transparent pricing. First ${FREE_LISTINGS_THRESHOLD} listings are free. Standard from $9.99, Featured $29.99, Premium $49.99. No commissions ever.`,
+  description: `Simple, transparent pricing. First ${FREE_LISTINGS_THRESHOLD} listings are free. Standard from $9.99, Featured $29.99, Premium $49.99.`,
 };
 
 const TIER_KEYS = ['standard', 'featured', 'premium'] as const;
@@ -12,24 +13,50 @@ const TIER_KEYS = ['standard', 'featured', 'premium'] as const;
 export default function PricingPage() {
   return (
     <main className="min-h-screen bg-surface">
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-stone-900 via-stone-800 to-accent text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 bg-green/20 border border-green/40 rounded-full px-4 py-1.5 mb-6">
-            <span className="text-green-light text-sm font-semibold">
-              🎉 First {FREE_LISTINGS_THRESHOLD} listings are free
+      {/* Hero — classic sports car under a racing-green overlay */}
+      <section className="relative overflow-hidden text-white py-20">
+        {/* Top accent line */}
+        <div
+          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)' }}
+        />
+        <Image
+          src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80"
+          alt="Classic sports car in dramatic light"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        {/* Legibility overlay — deep racing green */}
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(rgba(15,32,50,0.62), rgba(15,32,50,0.82))' }}
+        />
+        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
+        <div className="absolute inset-0 speed-lines opacity-[0.03] pointer-events-none" />
+
+        <div className="relative max-w-4xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center gap-2.5 bg-white/10 border border-white/25 rounded-full px-4 py-1.5 mb-6">
+            <span className="flex gap-1" aria-hidden="true">
+              {['#6ab04c', '#29ABE2', '#B08D3F'].map((c) => (
+                <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
+              ))}
+            </span>
+            <span className="text-white/90 text-xs font-bold uppercase tracking-widest">
+              First {FREE_LISTINGS_THRESHOLD} listings are free
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Simple, Honest Pricing</h1>
+          <h1 className="font-display font-semibold tracking-tight text-4xl md:text-5xl mb-4 leading-[1.08]">Simple, Honest Pricing</h1>
           <p className="text-xl text-stone-300 max-w-2xl mx-auto">
-            No commissions. No hidden fees. No dealer markups. Just a one-time listing fee
+            No hidden fees. No dealer markups. Just a one-time listing fee
             to get your car in front of serious collectors.
           </p>
         </div>
       </section>
 
       {/* Early Adopter Banner */}
-      <section className="bg-green text-white py-5">
+      <section className="bg-accent text-white py-5">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <p className="text-lg font-semibold">
             🎉 Early Adopter Offer — The first {FREE_LISTINGS_THRESHOLD} providers to join and first{' '}
@@ -47,9 +74,11 @@ export default function PricingPage() {
             return (
               <div
                 key={key}
-                className={`relative rounded-2xl border-2 p-8 flex flex-col ${
+                className={`relative rounded-2xl border-2 p-8 flex flex-col transition-all duration-300 hover:-translate-y-0.5 ${
                   tier.highlight
                     ? 'border-accent bg-white shadow-xl shadow-accent-light'
+                    : key === 'premium'
+                    ? 'border-gold bg-white shadow-xl shadow-gold-light'
                     : 'border-border bg-white shadow-md'
                 }`}
               >
@@ -63,9 +92,12 @@ export default function PricingPage() {
                 )}
 
                 <div className="mb-6">
-                  <h3 className="text-xl font-bold text-foreground mb-1">{tier.name}</h3>
+                  <h3 className="font-display text-xl font-bold tracking-tight text-foreground mb-1 flex items-center gap-1.5">
+                    {tier.name}
+                    {key === 'premium' && <Star className="w-4 h-4 text-gold fill-gold" aria-hidden="true" />}
+                  </h3>
                   <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-4xl font-bold font-mono text-foreground">
+                    <span className={`text-4xl font-bold font-mono ${key === 'premium' ? 'text-gold' : 'text-foreground'}`}>
                       {tier.displayPrice}
                     </span>
                     <span className="text-text-tertiary text-sm">one-time</span>
@@ -89,9 +121,11 @@ export default function PricingPage() {
 
                 <Link
                   href="/sell"
-                  className={`block text-center py-3 rounded-xl font-semibold transition ${
+                  className={`shine block text-center py-3 rounded-xl font-semibold transition ${
                     tier.highlight
                       ? 'bg-accent hover:bg-accent-hover text-white'
+                      : key === 'premium'
+                      ? 'bg-gold hover:bg-[#C19E54] text-[#1a1a18]'
                       : 'bg-stone-900 hover:bg-stone-800 text-white'
                   }`}
                 >
@@ -104,7 +138,7 @@ export default function PricingPage() {
 
         {/* Feature comparison table */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-foreground text-center mb-8">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-foreground text-center mb-8">
             What&apos;s included
           </h2>
           <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-sm">
@@ -151,20 +185,23 @@ export default function PricingPage() {
         </div>
 
         {/* No commission callout */}
-        <div className="mt-12 bg-stone-900 rounded-2xl p-8 text-white text-center">
-          <h3 className="text-2xl font-bold mb-2">Zero commissions. Always.</h3>
+        <div className="mt-12 relative overflow-hidden bg-[#12291C] rounded-2xl p-8 text-white text-center">
+          <div className="absolute inset-0 paddock-mesh pointer-events-none" aria-hidden="true" />
+          <div className="absolute inset-0 speed-lines opacity-[0.03] pointer-events-none" aria-hidden="true" />
+          <div className="relative">
+          <h3 className="font-display text-2xl font-bold tracking-tight mb-2">One flat fee. No surprises.</h3>
           <p className="text-stone-300 max-w-xl mx-auto">
-            Most collector-car listing sites charge a success fee of 4.5–5% when your car sells,
-            bolt a buyer&rsquo;s premium onto the final price, or do both.
-            Fully Sorted takes <strong className="text-white">nothing</strong> on the sale.
-            Your one-time listing fee is all you pay — ever.
+            Most collector-car listing sites run an auction clock and layer fees onto the
+            final price. Fully Sorted keeps it simple: a <strong className="text-gold">one-time
+            flat listing fee</strong>, up front, with no hidden charges along the way.
           </p>
           <Link
             href="/sell"
-            className="inline-block mt-6 bg-accent hover:bg-accent-hover text-white px-8 py-3 rounded-xl font-semibold transition"
+            className="shine inline-block mt-6 bg-white hover:bg-accent-light text-accent px-8 py-3 rounded-xl font-semibold transition"
           >
             List Your Car →
           </Link>
+          </div>
         </div>
       </section>
     </main>

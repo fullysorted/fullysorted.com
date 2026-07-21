@@ -8,7 +8,7 @@ import { marketMovers, type MarketMover } from "@/lib/sample-data";
 function TrendBadge({ trend, percentage }: { trend: MarketMover["trend"]; percentage: number }) {
   const styles = {
     up:   { bg: "rgba(106,176,76,0.18)",  color: "#6ab04c" },
-    down: { bg: "rgba(232,114,42,0.18)",  color: "#E8722A" },
+    down: { bg: "rgba(220,38,38,0.12)",  color: "#DC2626" },
     flat: { bg: "rgba(0,0,0,0.06)", color: "#9a9a8a" },
   }[trend];
 
@@ -35,15 +35,15 @@ export function MarketMovers() {
         <div className="flex items-end justify-between mb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-1 h-4 rounded-full" style={{ background: "#E8722A" }} />
+              <div className="w-1 h-4 rounded-full" style={{ background: "#1E6091" }} />
               <span
                 className="text-xs font-bold tracking-widest uppercase"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#1E6091" }}
               >
                 Weekly
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black" style={{ color: "#1a1a18" }}>
+            <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
               Monday Market Movers
             </h2>
             <p className="mt-1 text-sm" style={{ color: "#6b6b5e" }}>
@@ -53,7 +53,7 @@ export function MarketMovers() {
           <Link
             href="/research"
             className="hidden sm:flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
-            style={{ color: "#E8722A" }}
+            style={{ color: "#1E6091" }}
           >
             Full Research
             <ArrowRight className="w-4 h-4" />
@@ -66,9 +66,10 @@ export function MarketMovers() {
             <motion.div
               key={mover.segment}
               initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="rounded-xl p-5 transition-colors"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.06 }}
+              className="rounded-xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
               style={{
                 background: "#ffffff",
                 border: "1px solid rgba(0,0,0,0.08)",
@@ -91,7 +92,7 @@ export function MarketMovers() {
           <Link
             href="/research"
             className="inline-flex items-center gap-1.5 text-sm font-semibold"
-            style={{ color: "#E8722A" }}
+            style={{ color: "#1E6091" }}
           >
             Full Market Research
             <ArrowRight className="w-4 h-4" />

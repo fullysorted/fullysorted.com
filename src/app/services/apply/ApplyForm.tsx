@@ -18,7 +18,7 @@ const CATEGORIES = [
 ];
 
 const fieldClass =
-  "w-full px-4 py-3 text-sm rounded-xl outline-none transition-colors";
+  "w-full px-4 py-3 text-sm rounded-xl outline-none transition-shadow focus:ring-2 focus:ring-accent/40";
 const fieldStyle = {
   border: "1.5px solid rgba(0,0,0,0.12)",
   background: "#fff",
@@ -82,18 +82,18 @@ export function ApplyForm() {
       >
         <div
           className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-          style={{ background: "rgba(232,114,42,0.1)" }}
+          style={{ background: "var(--accent-light)" }}
         >
-          <CheckCircle className="w-7 h-7" style={{ color: "#E8722A" }} />
+          <CheckCircle className="w-7 h-7" style={{ color: "var(--accent)" }} />
         </div>
-        <h2 className="text-2xl font-black mb-2" style={{ color: "#1a1a18" }}>
+        <h2 className="font-display text-2xl font-semibold tracking-tight mb-2" style={{ color: "#1a1a18" }}>
           Application received.
         </h2>
         <p className="text-sm leading-relaxed max-w-sm mx-auto" style={{ color: "#6b6b5e" }}>
           We review every application personally. If your work is a good fit,
           you&apos;ll hear from us within 3–5 business days with next steps.
         </p>
-        <p className="mt-4 text-sm font-semibold" style={{ color: "#E8722A" }}>
+        <p className="mt-4 text-sm font-semibold" style={{ color: "var(--accent)" }}>
           — The Fully Sorted Team
         </p>
       </div>
@@ -107,7 +107,7 @@ export function ApplyForm() {
       style={{ background: "#fff", borderColor: "rgba(0,0,0,0.08)" }}
     >
       <div>
-        <h2 className="text-xl font-black mb-1" style={{ color: "#1a1a18" }}>
+        <h2 className="font-display text-xl font-semibold tracking-tight mb-1" style={{ color: "#1a1a18" }}>
           Tell us about your business
         </h2>
         <p className="text-sm" style={{ color: "#9a9a8a" }}>
@@ -316,8 +316,7 @@ export function ApplyForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full h-12 text-sm font-bold rounded-xl text-white flex items-center justify-center gap-2 transition-opacity hover:opacity-80 disabled:opacity-60"
-        style={{ background: "#E8722A" }}
+        className="w-full h-12 text-sm font-bold rounded-xl text-white flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover transition-colors disabled:opacity-60"
       >
         {submitting ? (
           <><Loader2 className="w-4 h-4 animate-spin" /> Submitting…</>

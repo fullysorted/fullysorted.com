@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { motion } from "framer-motion";
 import {
   Search,
   BarChart3,
@@ -69,7 +70,7 @@ function TrendBadge({ trend, pct }: { trend: "up" | "down" | "flat"; pct: number
       className={cn(
         "inline-flex items-center gap-1 text-sm font-semibold",
         trend === "up" && "text-green",
-        trend === "down" && "text-accent",
+        trend === "down" && "text-red",
         trend === "flat" && "text-text-secondary"
       )}
     >
@@ -199,7 +200,7 @@ export function ValueGuideClient() {
           <BarChart3 className="w-3.5 h-3.5" />
           Powered by Real Auction Data
         </div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
+        <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl text-foreground">
           Value Guide
         </h1>
         <p className="text-text-secondary mt-2 text-lg">
@@ -328,7 +329,12 @@ export function ValueGuideClient() {
 
       {/* Results */}
       {result && !isPending && (
-        <div className="space-y-6">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-6"
+        >
           {/* Pricing Summary */}
           <div className="bg-white border border-border rounded-xl overflow-hidden">
             <div className="px-6 py-5 border-b border-border">
@@ -403,7 +409,7 @@ export function ValueGuideClient() {
               <div className="flex items-start gap-3">
                 <div
                   className="w-10 h-10 rounded-full text-white flex items-center justify-center text-sm font-bold shrink-0"
-                  style={{ backgroundColor: "#C1440E" }}
+                  style={{ backgroundColor: "#1E6091" }}
                 >
                   CP
                 </div>
@@ -521,7 +527,7 @@ export function ValueGuideClient() {
                 </div>
               </div>
               <div className="flex items-start gap-2">
-                <DollarSign className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                <DollarSign className="w-4 h-4 text-red mt-0.5 shrink-0" />
                 <div>
                   <p className="font-medium text-foreground">Decreases value</p>
                   <p className="text-text-secondary">
@@ -546,7 +552,7 @@ export function ValueGuideClient() {
               List It on Fully Sorted <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );

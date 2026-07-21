@@ -67,38 +67,50 @@ export default function EventsPage() {
 
       {/* Hero */}
       <section
+        className="relative overflow-hidden"
         style={{
-          background: "#fff",
+          backgroundImage:
+            "linear-gradient(rgba(15,32,50,0.58), rgba(15,32,50,0.78)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           borderBottom: "1px solid rgba(0,0,0,0.07)",
         }}
       >
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <p
-            className="text-xs font-bold uppercase tracking-widest mb-3"
-            style={{ color: "#E8722A" }}
-          >
+        <div
+          className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2 text-white/90">
+            <span className="flex gap-1" aria-hidden="true">
+              <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
+            </span>
             Events
           </p>
-          <h1
-            className="text-4xl sm:text-5xl font-black leading-tight mb-6"
-            style={{ color: "#1a1a18" }}
-          >
+          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-6 text-white">
             The events worth your weekend.
             <br />
-            <span style={{ color: "#E8722A" }}>
+            <span style={{ color: "#D9BC7A" }}>
               Curated personally.
             </span>
           </h1>
-          <p
-            className="text-lg sm:text-xl leading-relaxed max-w-3xl"
-            style={{ color: "#6b6b5e" }}
-          >
+          <p className="text-lg sm:text-xl leading-relaxed max-w-3xl text-white/85">
             Concours, auctions, tours, and cars-and-coffee meets that
             actually move the needle. Every event on this list is one
             I&apos;ve been to, am going to, or am directly involved
             with — no pay-to-list, no algorithmic filler.
           </p>
         </div>
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, #1E6091 35%, #B08D3F 65%, transparent)",
+          }}
+          aria-hidden="true"
+        />
       </section>
 
       {/* Events list */}
@@ -106,21 +118,23 @@ export default function EventsPage() {
         {/* Live F1 calendar feature */}
         <Link
           href="/events/f1"
-          className="group block rounded-2xl overflow-hidden mb-6 transition-all hover:shadow-lg"
+          className="group shine block rounded-2xl overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           style={{ background: "#1a1a18", border: "1px solid #1a1a18" }}
         >
           <div className="grid md:grid-cols-[1fr_2fr] gap-0">
             <div
               className="p-6 sm:p-8 flex flex-col justify-center"
               style={{
-                background:
-                  "linear-gradient(135deg, rgba(232,114,42,0.18), rgba(232,114,42,0.04))",
+                backgroundImage:
+                  "linear-gradient(135deg, rgba(15,32,50,0.7), rgba(30,96,145,0.55)), url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=80')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
                 borderRight: "1px solid rgba(255,255,255,0.08)",
               }}
             >
               <span
                 className="text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#6ab04c" }}
               >
                 <Flag className="w-3.5 h-3.5" />
                 Live · Updated daily
@@ -131,7 +145,7 @@ export default function EventsPage() {
               <p className="text-sm text-white/60">24 rounds · 5 continents</p>
             </div>
             <div className="p-6 sm:p-8">
-              <h2 className="text-xl sm:text-2xl font-bold mb-2 leading-snug text-white">
+              <h2 className="font-display font-semibold tracking-tight text-xl sm:text-2xl mb-2 leading-snug text-white">
                 Formula 1 World Championship
               </h2>
               <p className="text-sm sm:text-base leading-relaxed mb-4 text-white/70">
@@ -141,7 +155,7 @@ export default function EventsPage() {
               </p>
               <div
                 className="inline-flex items-center gap-1.5 text-sm font-semibold"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#D9BC7A" }}
               >
                 Open the live calendar
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -155,8 +169,8 @@ export default function EventsPage() {
             <Link
               key={event.slug}
               href={`/events/${event.slug}`}
-              className="group block rounded-2xl overflow-hidden bg-white hover:shadow-lg transition-all"
-              style={{ border: "1px solid rgba(0,0,0,0.07)" }}
+              className="group block rounded-2xl overflow-hidden bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+              style={{ border: "1px solid rgba(0,0,0,0.10)" }}
             >
               <div className="grid md:grid-cols-[1fr_2fr] gap-0">
                 {/* Date block */}
@@ -164,13 +178,12 @@ export default function EventsPage() {
                   className="p-6 sm:p-8 flex flex-col justify-center"
                   style={{
                     background:
-                      "linear-gradient(135deg, rgba(232,114,42,0.06), rgba(232,114,42,0.02))",
+                      "linear-gradient(135deg, rgba(30,96,145,0.07), rgba(30,96,145,0.02))",
                     borderRight: "1px solid rgba(0,0,0,0.05)",
                   }}
                 >
                   <span
-                    className="text-xs font-bold uppercase tracking-widest mb-2"
-                    style={{ color: "#E8722A" }}
+                    className="text-xs font-bold uppercase tracking-widest mb-2 text-accent"
                   >
                     {event.category}
                   </span>
@@ -192,7 +205,7 @@ export default function EventsPage() {
                 {/* Body */}
                 <div className="p-6 sm:p-8">
                   <h2
-                    className="text-xl sm:text-2xl font-bold mb-2 leading-snug group-hover:text-orange-600 transition-colors"
+                    className="font-display font-semibold tracking-tight text-xl sm:text-2xl mb-2 leading-snug group-hover:text-accent transition-colors"
                     style={{ color: "#1a1a18" }}
                   >
                     {event.title}
@@ -204,8 +217,7 @@ export default function EventsPage() {
                     {event.excerpt}
                   </p>
                   <div
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold"
-                    style={{ color: "#E8722A" }}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
                   >
                     Full event details
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -225,8 +237,7 @@ export default function EventsPage() {
           }}
         >
           <Calendar
-            className="w-8 h-8 mx-auto mb-3"
-            style={{ color: "#E8722A" }}
+            className="w-8 h-8 mx-auto mb-3 text-accent"
           />
           <h3
             className="text-xl font-bold mb-2"
@@ -243,8 +254,7 @@ export default function EventsPage() {
           </p>
           <a
             href="mailto:chris@fullysorted.com?subject=Event submission"
-            className="inline-flex items-center gap-1.5 text-sm font-bold px-5 py-2.5 rounded-lg text-white transition-opacity hover:opacity-90"
-            style={{ background: "#E8722A" }}
+            className="inline-flex items-center gap-1.5 text-sm font-bold px-5 py-2.5 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors"
           >
             Submit an event
           </a>

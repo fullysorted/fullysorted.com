@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   Loader2, CheckCircle2, Circle, DollarSign, Lock, Tag, Eye, EyeOff,
@@ -12,8 +13,8 @@ interface Gig { id: number; slug: string; title: string; description: string | n
 interface Provider { id: number; ownerName: string; headline: string | null; status: string; avatarUrl: string | null; category: string }
 
 const STATUS_BADGE: Record<string, string> = {
-  draft: "bg-orange-100 text-orange-700", active: "bg-green-100 text-green-700",
-  paused: "bg-stone-200 text-stone-600", pending: "bg-blue-100 text-blue-700",
+  draft: "bg-gold-light text-[#8a6d2f]", active: "bg-green-light text-green-dark",
+  paused: "bg-stone-200 text-stone-600", pending: "bg-blue-light text-blue",
 };
 
 export default function FreelancerDashboard() {
@@ -64,9 +65,19 @@ export default function FreelancerDashboard() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-3">
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="flex items-center justify-between flex-wrap gap-3"
+      >
         <div>
-          <h1 className="text-2xl font-bold text-foreground">
+          <div className="flex items-center gap-1.5 mb-2" aria-hidden="true">
+            <span className="w-2 h-2 rounded-[2px] bg-accent" />
+            <span className="w-2 h-2 rounded-[2px] bg-blue" />
+            <span className="w-2 h-2 rounded-[2px] bg-gold" />
+          </div>
+          <h1 className="text-2xl font-display font-semibold tracking-tight text-foreground">
             {provider ? `Welcome back, ${provider.ownerName.split(" ")[0]}` : "Your freelancer dashboard"}
           </h1>
           <p className="text-sm text-text-secondary mt-0.5">
@@ -78,30 +89,40 @@ export default function FreelancerDashboard() {
             {provider.status === "active" ? "Approved & live" : provider.status === "pending" ? "In review" : provider.status}
           </span>
         )}
-      </div>
+      </motion.div>
 
       {/* No profile yet → onboarding CTA */}
       {!provider && (
-        <div className="rounded-2xl border-2 border-accent bg-white p-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
+          className="rounded-2xl border-2 border-accent bg-white p-8 text-center shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)]"
+        >
           <Sparkles className="w-8 h-8 text-accent mx-auto mb-3" />
-          <h2 className="text-xl font-bold text-foreground mb-2">Let’s get you set up</h2>
+          <h2 className="text-xl font-display font-semibold tracking-tight text-foreground mb-2">Let’s get you set up</h2>
           <p className="text-text-secondary text-sm max-w-md mx-auto mb-5">
             Our guided setup walks you through everything — we’ll even draft your gig for you. Takes about five minutes.
           </p>
-          <Link href="/services/apply/freelancer" className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl">
+          <Link href="/services/apply/freelancer" className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">
             Start guided setup <ArrowRight className="w-4 h-4" />
           </Link>
-        </div>
+        </motion.div>
       )}
 
       {/* Getting started checklist */}
-      <div className="rounded-2xl border border-border bg-white p-6">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
+        className="rounded-2xl border border-border bg-white p-6"
+      >
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-bold text-foreground">Getting started</h2>
           <span className="text-sm text-text-secondary">{completed}/{checklist.length} done</span>
         </div>
         <div className="h-1.5 w-full rounded-full bg-surface mb-5 overflow-hidden">
-          <div className="h-full rounded-full transition-all" style={{ width: `${(completed / checklist.length) * 100}%`, background: "#6ab04c" }} />
+          <div className="h-full rounded-full bg-green transition-all duration-500" style={{ width: `${(completed / checklist.length) * 100}%` }} />
         </div>
         <ul className="space-y-2.5">
           {checklist.map((c) => (
@@ -114,25 +135,40 @@ export default function FreelancerDashboard() {
             </li>
           ))}
         </ul>
-      </div>
+      </motion.div>
 
       {/* Earnings — scaffolding, payments disabled */}
       <div className="grid sm:grid-cols-3 gap-4">
-        <div className="rounded-2xl border border-border bg-white p-5">
-          <div className="flex items-center gap-2 text-text-secondary mb-1"><Wallet className="w-4 h-4" /><span className="text-xs font-semibold uppercase tracking-wider">Earnings</span></div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.16, ease: "easeOut" }}
+          className="rounded-2xl border border-border bg-white p-5 border-t-2 border-t-accent transition-all hover:-translate-y-0.5 hover:shadow-lg"
+        >
+          <div className="flex items-center gap-2 text-text-secondary mb-1"><Wallet className="w-4 h-4 text-accent" /><span className="text-xs font-semibold uppercase tracking-widest">Earnings</span></div>
           <p className="text-2xl font-bold text-foreground price-display">$0.00</p>
           <p className="text-xs text-text-tertiary mt-1">Lifetime, paid out</p>
-        </div>
-        <div className="rounded-2xl border border-border bg-white p-5">
-          <div className="flex items-center gap-2 text-text-secondary mb-1"><DollarSign className="w-4 h-4" /><span className="text-xs font-semibold uppercase tracking-wider">Pending</span></div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.22, ease: "easeOut" }}
+          className="rounded-2xl border border-border bg-white p-5 border-t-2 border-t-blue transition-all hover:-translate-y-0.5 hover:shadow-lg"
+        >
+          <div className="flex items-center gap-2 text-text-secondary mb-1"><DollarSign className="w-4 h-4 text-blue" /><span className="text-xs font-semibold uppercase tracking-widest">Pending</span></div>
           <p className="text-2xl font-bold text-foreground price-display">$0.00</p>
           <p className="text-xs text-text-tertiary mt-1">In-progress orders</p>
-        </div>
-        <div className="rounded-2xl border border-border bg-white p-5">
-          <div className="flex items-center gap-2 text-text-secondary mb-1"><Inbox className="w-4 h-4" /><span className="text-xs font-semibold uppercase tracking-wider">Orders</span></div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.28, ease: "easeOut" }}
+          className="rounded-2xl border border-border bg-white p-5 border-t-2 border-t-gold transition-all hover:-translate-y-0.5 hover:shadow-lg"
+        >
+          <div className="flex items-center gap-2 text-text-secondary mb-1"><Inbox className="w-4 h-4 text-gold" /><span className="text-xs font-semibold uppercase tracking-widest">Orders</span></div>
           <p className="text-2xl font-bold text-foreground">0</p>
           <p className="text-xs text-text-tertiary mt-1">All time</p>
-        </div>
+        </motion.div>
       </div>
       <div className="rounded-xl p-4 flex items-start gap-3" style={{ background: "rgba(0,0,0,0.03)" }}>
         <Lock className="w-4 h-4 text-text-secondary mt-0.5 shrink-0" />
@@ -144,7 +180,13 @@ export default function FreelancerDashboard() {
       </div>
 
       {/* Gigs */}
-      <div id="gigs" className="rounded-2xl border border-border bg-white p-6">
+      <motion.div
+        id="gigs"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.32, ease: "easeOut" }}
+        className="rounded-2xl border border-border bg-white p-6"
+      >
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-bold text-foreground flex items-center gap-2"><Tag className="w-4 h-4 text-accent" /> Your gigs</h2>
           <Link href="/services/apply/freelancer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
@@ -178,7 +220,7 @@ export default function FreelancerDashboard() {
                       ) : (
                         <button onClick={() => setGigStatus(g, "active")} disabled={busy === g.id || provider?.status !== "active"}
                           title={provider?.status !== "active" ? "You can publish once your profile is approved" : ""}
-                          className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg text-white disabled:opacity-50" style={{ background: "#6ab04c" }}>
+                          className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg text-white bg-green hover:bg-green-dark transition-colors disabled:opacity-50">
                           {busy === g.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Eye className="w-3.5 h-3.5" />} Publish
                         </button>
                       )}
@@ -206,7 +248,7 @@ export default function FreelancerDashboard() {
             })}
           </div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

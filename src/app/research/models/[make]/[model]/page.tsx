@@ -51,8 +51,8 @@ function renderMarkdown(content: string): string {
 
 const CONFIDENCE_STYLE: Record<string, { bg: string; fg: string; label: string }> = {
   high: { bg: "rgba(106,176,76,0.12)", fg: "#3d7a2a", label: "Well documented" },
-  medium: { bg: "rgba(232,114,42,0.12)", fg: "#b4451f", label: "Reasonably documented" },
-  low: { bg: "rgba(180,69,31,0.12)", fg: "#8a3415", label: "Thin / uncertain" },
+  medium: { bg: "rgba(176,141,63,0.14)", fg: "#8a6d2f", label: "Reasonably documented" },
+  low: { bg: "rgba(220,38,38,0.10)", fg: "#a33224", label: "Thin / uncertain" },
 };
 
 function Section({
@@ -126,13 +126,13 @@ export default async function ModelPage({ params }: Props) {
             <ArrowLeft className="w-4 h-4" /> Model Histories
           </Link>
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#E8722A" }}>{m.make}</span>
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#1E6091" }}>{m.make}</span>
             {years && <span className="text-xs" style={{ color: "#9a9a8a" }}>{years}</span>}
             <span className="text-xs font-bold px-2.5 py-1 rounded-full inline-flex items-center gap-1" style={{ background: conf.bg, color: conf.fg }}>
               <ShieldCheck className="w-3 h-3" /> {conf.label}
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-3" style={{ color: "#1a1a18" }}>
+          <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-5xl leading-[1.1] mb-3" style={{ color: "#1a1a18" }}>
             {m.model} {m.generation && <span style={{ color: "#9a9a8a" }}>({m.generation})</span>}
           </h1>
           {m.production_total != null && (
@@ -151,10 +151,10 @@ export default async function ModelPage({ params }: Props) {
 
             {/* Where sources differ */}
             {disputed.length > 0 && (
-              <div className="mt-8 rounded-2xl p-5" style={{ background: "rgba(232,114,42,0.06)", border: "1px solid rgba(232,114,42,0.18)" }}>
+              <div className="mt-8 rounded-2xl p-5" style={{ background: "rgba(176,141,63,0.08)", border: "1px solid rgba(176,141,63,0.28)" }}>
                 <div className="flex items-center gap-2 mb-3">
-                  <Scale className="w-4 h-4" style={{ color: "#b4451f" }} />
-                  <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: "#b4451f" }}>Where sources differ</h2>
+                  <Scale className="w-4 h-4" style={{ color: "#8a6d2f" }} />
+                  <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: "#8a6d2f" }}>Where sources differ</h2>
                 </div>
                 <div className="space-y-3">
                   {disputed.map((c) => (
@@ -220,7 +220,7 @@ export default async function ModelPage({ params }: Props) {
             {m.specs && Object.keys(m.specs).length > 0 && (
               <div className="rounded-2xl bg-white overflow-hidden" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
                 <div className="px-5 py-3 flex items-center gap-2" style={{ borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-                  <Gauge className="w-4 h-4" style={{ color: "#E8722A" }} />
+                  <Gauge className="w-4 h-4" style={{ color: "#1E6091" }} />
                   <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#6b6b5e" }}>Key Specs</p>
                 </div>
                 <table className="w-full text-sm">
@@ -240,7 +240,7 @@ export default async function ModelPage({ params }: Props) {
             {m.notable_trims && m.notable_trims.length > 0 && (
               <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
                 <div className="flex items-center gap-2 mb-3">
-                  <Factory className="w-4 h-4" style={{ color: "#E8722A" }} />
+                  <Factory className="w-4 h-4" style={{ color: "#1E6091" }} />
                   <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#6b6b5e" }}>Notable Variants</p>
                 </div>
                 <div className="space-y-2.5">
@@ -263,10 +263,10 @@ export default async function ModelPage({ params }: Props) {
             )}
 
             {/* CTAs */}
-            <div className="rounded-2xl p-5" style={{ background: "rgba(232,114,42,0.06)", border: "1px solid rgba(232,114,42,0.15)" }}>
+            <div className="rounded-2xl p-5" style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.18)" }}>
               <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>What’s one worth today?</p>
               <p className="text-xs mb-3" style={{ color: "#6b6b5e" }}>Live comps in the Value Guide.</p>
-              <Link href="/value-guide" className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#E8722A" }}>
+              <Link href="/value-guide" className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
                 Open Value Guide <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
@@ -274,10 +274,10 @@ export default async function ModelPage({ params }: Props) {
               <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>Shopping for one?</p>
               <p className="text-xs mb-3" style={{ color: "#6b6b5e" }}>Browse {m.make} listings, or decode a VIN before you buy.</p>
               <div className="flex flex-col gap-2">
-                <Link href={`/browse?q=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#E8722A" }}>
+                <Link href={`/browse?q=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
                   Browse listings <ArrowRight className="w-3 h-3" />
                 </Link>
-                <Link href="/vin" className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#E8722A" }}>
+                <Link href="/vin" className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
                   Free VIN decoder <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>

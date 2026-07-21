@@ -60,7 +60,7 @@ export default async function GigDetailPage({ params }: Props) {
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
       <JsonLd data={[serviceSchema, breadcrumb]} />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-        <Link href="/gigs" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8" style={{ color: "#6b6b5e" }}>
+        <Link href="/gigs" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 hover:text-accent transition-colors" style={{ color: "#6b6b5e" }}>
           <ArrowLeft className="w-4 h-4" /> All gigs
         </Link>
 
@@ -68,17 +68,24 @@ export default async function GigDetailPage({ params }: Props) {
           {/* Main */}
           <div className="lg:col-span-2">
             {gig.category && (
-              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#E8722A" }}>{gig.category}</span>
+              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent">
+                <span aria-hidden className="inline-flex items-center gap-1">
+                  <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+                  <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+                  <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
+                </span>
+                {gig.category}
+              </span>
             )}
-            <h1 className="text-2xl sm:text-3xl font-bold leading-tight mt-2 mb-5" style={{ color: "#1a1a18" }}>{gig.title}</h1>
+            <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl mt-2 mb-5" style={{ color: "#1a1a18", lineHeight: 1.1 }}>{gig.title}</h1>
 
             {/* Provider chip */}
             <Link href={`/services/${gig.provider_slug}`} className="inline-flex items-center gap-3 mb-8 group">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-bold shrink-0" style={{ background: "#E8722A" }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-bold shrink-0 bg-accent">
                 {initials}
               </div>
               <div>
-                <p className="text-sm font-semibold inline-flex items-center gap-1.5 group-hover:text-orange-600 transition-colors" style={{ color: "#1a1a18" }}>
+                <p className="text-sm font-semibold inline-flex items-center gap-1.5 group-hover:text-accent transition-colors" style={{ color: "#1a1a18" }}>
                   {gig.provider_name}
                   {gig.provider_verified && <BadgeCheck className="w-4 h-4" style={{ color: "#29ABE2" }} />}
                 </p>

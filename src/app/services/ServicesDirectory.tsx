@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Sparkles, AtSign, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -18,6 +19,18 @@ const CATEGORIES = [
 ] as const;
 
 type CategoryKey = typeof CATEGORIES[number]['key'];
+
+// ─── Category photography (headers on provider cards) ──
+const CATEGORY_PHOTOS: Record<string, string> = {
+  photography: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=80',
+  detailing: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1200&q=80',
+  mechanical: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80',
+  transport: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1200&q=80',
+  inspection: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80',
+  restoration: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80',
+  bodywork: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1200&q=80',
+};
+const DEFAULT_PHOTO = 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80';
 
 // âââ Provider Type ââââââââââââââââââââââââââââââââââââ
 interface Provider {
@@ -40,14 +53,32 @@ interface Provider {
 
 // âââ Provider Card ââââââââââââââââââââââââââââââââââââ
 function ProviderCard({ provider }: { provider: Provider }) {
+  const categoryLabel = CATEGORIES.find((c) => c.key === provider.category)?.label ?? provider.category;
   return (
     <motion.div
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      className="bg-white rounded-xl border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow"
+      whileHover={{ y: -3 }}
+      className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)] transition-shadow"
     >
+      {/* Photographic category header */}
+      <div className="relative h-28 overflow-hidden listing-image-container">
+        <img
+          src={CATEGORY_PHOTOS[provider.category] ?? DEFAULT_PHOTO}
+          alt=""
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(rgba(15,32,50,0.30), rgba(15,32,50,0.62))' }}
+        />
+        <span className="absolute bottom-2.5 left-5 text-[11px] font-bold uppercase tracking-widest text-white/90">
+          {categoryLabel}
+        </span>
+      </div>
       <div className="p-6">
         {/* Header */}
         <div className="flex items-start justify-between mb-3">
@@ -60,7 +91,10 @@ function ProviderCard({ provider }: { provider: Provider }) {
                 </span>
               )}
               {provider.foundingProvider && (
-                <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 text-xs font-medium px-2 py-0.5 rounded-full">
+                <span
+                  className="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full"
+                  style={{ background: 'var(--accent-gold-light)', color: '#8A6E31' }}
+                >
                   <Sparkles className="w-3 h-3" /> Founding
                 </span>
               )}
@@ -73,7 +107,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
                 <>
                   <span className="text-stone-300">|</span>
                   <span className="flex items-center gap-1">
-                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <Star className="w-3.5 h-3.5 fill-gold text-gold" />
                     {Number(provider.rating).toFixed(1)} ({provider.reviewCount})
                   </span>
                 </>
@@ -104,7 +138,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
           {provider.phone && (
             <a
               href={`tel:${provider.phone}`}
-              className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-amber-700 transition-colors"
+              className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-accent transition-colors"
             >
               <Phone className="w-4 h-4" /> {provider.phone}
             </a>
@@ -114,7 +148,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
               href={provider.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-amber-700 transition-colors"
+              className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-accent transition-colors"
             >
               <Globe className="w-4 h-4" /> Website
             </a>
@@ -124,7 +158,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
               href={`https://instagram.com/${provider.instagram.replace('@', '')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-amber-700 transition-colors"
+              className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-accent transition-colors"
             >
               <AtSign className="w-4 h-4" /> {provider.instagram}
             </a>
@@ -137,8 +171,17 @@ function ProviderCard({ provider }: { provider: Provider }) {
 
 // âââ Main Directory Component ââââââââââââââââââââââââââ
 export default function ServicesDirectory() {
-  const [activeCategory, setActiveCategory] = useState<CategoryKey>('all');
-  const [searchQuery, setSearchQuery] = useState('');
+  // Initialize from URL params so homepage search + category chips deep-link
+  // into a pre-filtered directory (/services?q=... or /services?type=...).
+  const searchParams = useSearchParams();
+  const initialType = searchParams.get('type');
+  const initialQuery = searchParams.get('q') ?? '';
+  const validType = CATEGORIES.some((c) => c.key === initialType)
+    ? (initialType as CategoryKey)
+    : 'all';
+
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>(validType);
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [providers, setProviders] = useState<Provider[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -175,7 +218,7 @@ export default function ServicesDirectory() {
           placeholder="Search by name, specialty, or service type..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-12 pr-4 py-3 bg-white rounded-xl border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500"
+          className="w-full pl-12 pr-4 py-3 bg-white rounded-xl border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
         />
       </div>
 
@@ -187,8 +230,8 @@ export default function ServicesDirectory() {
             onClick={() => setActiveCategory(cat.key)}
             className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
               activeCategory === cat.key
-                ? 'bg-amber-600 text-white shadow-md'
-                : 'bg-white text-stone-600 border border-stone-200 hover:border-amber-300 hover:text-amber-700'
+                ? 'bg-accent text-white shadow-md'
+                : 'bg-white text-stone-600 border border-stone-200 hover:bg-accent hover:border-accent hover:text-white'
             }`}
           >
             {cat.icon}
@@ -227,31 +270,50 @@ export default function ServicesDirectory() {
           <p className="text-stone-500">
             {providers.length === 0
               ? 'We\'re building the directory now. Apply below to be one of the first listed.'
-              : 'Try a different search or category. We\'re always adding new vetted providers.'}
+              : 'Try a different search or category. We\'re always adding new providers.'}
           </p>
         </div>
       )}
 
       {/* CTA to Apply */}
-      <div className="mt-12 p-8 bg-gradient-to-br from-stone-800 to-stone-900 rounded-2xl text-center">
-        <h3 className="text-2xl font-bold text-white mb-3">Join the Directory</h3>
-        <p className="text-stone-300 mb-2 font-medium">Are you a specialist? Get listed.</p>
-        <p className="text-stone-400 mb-6 max-w-xl mx-auto">
-          If you do exceptional work with collector cars â detailing, mechanical, transport, inspection, restoration â apply to join the vetted directory and get in front of serious collectors who care about who touches their car.
+      <div className="mt-12 relative overflow-hidden rounded-2xl text-center">
+        {/* Photographic backdrop under a racing-green overlay */}
+        <img
+          src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1600&q=80"
+          alt=""
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(rgba(15,32,50,0.78), rgba(15,32,50,0.88))' }}
+        />
+        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
+        <div className="relative p-8">
+        <div className="flex justify-center gap-1.5 mb-4" aria-hidden>
+          {['#6ab04c', '#29ABE2', '#B08D3F'].map((c) => (
+            <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
+          ))}
+        </div>
+        <h3 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-white mb-3">Join the Directory</h3>
+        <p className="text-stone-200 mb-2 font-medium">Are you a specialist? Get listed.</p>
+        <p className="text-stone-300 mb-6 max-w-xl mx-auto">
+          If you do exceptional work with collector cars â detailing, mechanical, transport, inspection, restoration â apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/services/apply"
-            className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+            className="shine inline-flex items-center justify-center gap-2 bg-white hover:bg-accent-light text-accent font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5"
           >
             Apply to Be Listed
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 bg-stone-700 hover:bg-stone-600 text-white font-medium px-6 py-3 rounded-xl transition-colors"
+            className="inline-flex items-center justify-center gap-2 border border-white/35 hover:border-white/70 hover:bg-white/10 text-white font-medium px-6 py-3 rounded-xl transition-all"
           >
             Recommend a Provider
           </Link>
+        </div>
         </div>
       </div>
     </div>

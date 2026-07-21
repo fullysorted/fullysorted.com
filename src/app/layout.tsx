@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Header } from "@/components/layout/Header";
@@ -22,13 +22,20 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  display: "swap",
+  axes: ["SOFT", "WONK", "opsz"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Fully Sorted — Collector Car Marketplace",
     template: "%s | Fully Sorted",
   },
   description:
-    "List your collector car for $9.99. Keep 100% of the sale. The peer-to-peer marketplace built by enthusiasts, for enthusiasts — no commissions, no buyer's premiums, no success fees.",
+    "List your collector car for $9.99. The peer-to-peer marketplace built by enthusiasts, for enthusiasts — simple flat fees and straightforward pricing.",
   keywords: [
     "collector cars",
     "classic cars for sale",
@@ -52,14 +59,14 @@ export const metadata: Metadata = {
     siteName: "Fully Sorted",
     title: "Fully Sorted — The Collector Car Marketplace",
     description:
-      "List your collector car for $9.99. Keep 100% of the sale. No commission, ever. Built by enthusiasts, for enthusiasts.",
+      "List your collector car for $9.99. Simple flat fees. Built by enthusiasts, for enthusiasts.",
     // Note: opengraph-image.png in src/app/ is auto-registered by Next.js
     // metadata conventions — do NOT set images[] here or it will override.
   },
   twitter: {
     card: "summary_large_image",
     title: "Fully Sorted — The Collector Car Marketplace",
-    description: "List your collector car for $9.99. Keep 100% of the sale. No commission, ever.",
+    description: "List your collector car for $9.99. Simple flat fees, straightforward pricing.",
     creator: "@fully_sorted",
   },
   robots: {
@@ -79,15 +86,15 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         variables: {
-          colorPrimary: "#E8722A",
+          colorPrimary: "#1E6091",
           colorTextOnPrimaryBackground: "#ffffff",
           borderRadius: "0.75rem",
         },
       }}
     >
-      <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${fraunces.variable}`}>
         <head>
-          <meta name="theme-color" content="#E8722A" />
+          <meta name="theme-color" content="#1E6091" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           {/* Favicon, apple-icon, opengraph-image, and twitter-image are

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Building2, User, ArrowRight, Check } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -12,29 +13,49 @@ export const metadata: Metadata = {
 export default function ApplyChooserPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-16">
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 bg-accent-light border border-accent rounded-full px-4 py-1.5 mb-5">
-          <span className="text-accent text-xs font-bold uppercase tracking-wider">Services Directory</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 leading-tight">
-          How do you want to <span className="text-accent">get listed?</span>
+      <div className="relative overflow-hidden rounded-3xl mb-12 text-center">
+        <Image
+          src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80"
+          alt="Vintage garage workshop"
+          fill
+          priority
+          sizes="(max-width: 960px) 100vw, 896px"
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(rgba(15,32,50,0.55), rgba(15,32,50,0.78))" }}
+          aria-hidden="true"
+        />
+        <div className="relative px-6 py-14 sm:px-12 sm:py-16">
+          <div className="inline-flex items-center gap-2.5 border border-white/30 bg-white/10 rounded-full px-4 py-1.5 mb-5">
+            <span className="flex gap-1" aria-hidden="true">
+              <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#29ABE2" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
+            </span>
+            <span className="text-white text-xs font-bold uppercase tracking-widest">Services Directory</span>
+          </div>
+        <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl text-white mb-4 leading-[1.08]">
+          How do you want to <span style={{ color: "#D9C08A" }}>get listed?</span>
         </h1>
-        <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+        <p className="text-lg text-white/85 max-w-2xl mx-auto">
           Pick the path that fits you. Not sure? Most one-person operations should choose Freelancer — it’s
           built to get you up and earning with the least friction.
         </p>
+        </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Business */}
         <Link
           href="/services/apply/business"
-          className="group bg-white rounded-2xl border border-border p-8 hover:border-accent hover:shadow-lg transition-all flex flex-col"
+          className="group bg-white rounded-2xl border border-border p-8 hover:border-accent hover:shadow-lg hover:-translate-y-0.5 transition-all flex flex-col"
         >
-          <div className="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center mb-5">
-            <Building2 className="w-6 h-6 text-accent" />
+          <div className="w-12 h-12 rounded-xl bg-blue-light flex items-center justify-center mb-5">
+            <Building2 className="w-6 h-6 text-blue" />
           </div>
-          <h2 className="text-2xl font-bold text-foreground mb-2">I’m a business or shop</h2>
+          <h2 className="font-display font-semibold tracking-tight text-2xl text-foreground mb-2">I’m a business or shop</h2>
           <p className="text-text-secondary text-sm mb-5">
             An established company with a storefront, team, or brand. Get a directory profile collectors trust.
           </p>
@@ -51,7 +72,7 @@ export default function ApplyChooserPage() {
         {/* Freelancer */}
         <Link
           href="/services/apply/freelancer"
-          className="group bg-white rounded-2xl border-2 border-accent p-8 hover:shadow-lg transition-all flex flex-col relative"
+          className="group bg-white rounded-2xl border-2 border-accent p-8 hover:shadow-lg hover:-translate-y-0.5 transition-all flex flex-col relative"
         >
           <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-accent text-white px-2 py-1 rounded-full">
             Most popular
@@ -59,7 +80,7 @@ export default function ApplyChooserPage() {
           <div className="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center mb-5">
             <User className="w-6 h-6 text-accent" />
           </div>
-          <h2 className="text-2xl font-bold text-foreground mb-2">I’m an independent / freelancer</h2>
+          <h2 className="font-display font-semibold tracking-tight text-2xl text-foreground mb-2">I’m an independent / freelancer</h2>
           <p className="text-text-secondary text-sm mb-5">
             A solo specialist — mobile detailer, inspector, photographer, mechanic. Offer fixed-price gigs,
             like Fiverr for the collector-car world.

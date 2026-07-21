@@ -9,10 +9,14 @@
   --text-secondary: #6B7280;
   --text-tertiary: #9CA3AF;
 
-  /* Primary accent: bold orange (matches logo flag) */
-  --accent: #E8722A;
-  --accent-hover: #C85E1E;
-  --accent-light: #FEF0E6;
+  /* Primary accent: Heritage Racing Blue */
+  --accent: #1E6091;
+  --accent-hover: #174B72;
+  --accent-light: #E8F0F8;
+
+  /* Warm metallic pop — brass/trophy gold, used sparingly */
+  --accent-gold: #B08D3F;
+  --accent-gold-light: #F7F0DF;
 
   /* Secondary: logo blue */
   --accent-blue: #1E6091;
@@ -51,6 +55,8 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-light: var(--accent-light);
+  --color-gold: var(--accent-gold);
+  --color-gold-light: var(--accent-gold-light);
   --color-blue: var(--accent-blue);
   --color-blue-hover: var(--accent-blue-hover);
   --color-blue-light: var(--accent-blue-light);
@@ -65,6 +71,7 @@
   --color-text-tertiary: var(--text-tertiary);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-fraunces);
 }
 
 * {
@@ -173,12 +180,12 @@ body {
   font-weight: 700;
 }
 .article-body a {
-  color: #E8722A;
+  color: #1E6091;
   text-decoration: underline;
-  text-decoration-color: rgba(232,114,42,0.35);
+  text-decoration-color: rgba(30,96,145,0.35);
 }
 .article-body a:hover {
-  text-decoration-color: #E8722A;
+  text-decoration-color: #1E6091;
 }
 
 /* Section stripe accent */
@@ -203,9 +210,9 @@ body {
    Sits behind hero/section content; very low opacity, GPU-cheap. */
 .paddock-mesh {
   background:
-    radial-gradient(42% 55% at 12% 18%, rgba(232,114,42,0.16), transparent 60%),
-    radial-gradient(38% 50% at 88% 12%, rgba(30,96,145,0.13), transparent 60%),
-    radial-gradient(50% 60% at 72% 88%, rgba(106,176,76,0.13), transparent 62%);
+    radial-gradient(42% 55% at 12% 18%, rgba(30,96,145,0.15), transparent 60%),
+    radial-gradient(38% 50% at 88% 12%, rgba(106,176,76,0.10), transparent 60%),
+    radial-gradient(50% 60% at 72% 88%, rgba(176,141,63,0.10), transparent 62%);
   background-size: 180% 180%, 180% 180%, 180% 180%;
   animation: paddock-drift 26s ease-in-out infinite;
 }
@@ -234,7 +241,7 @@ body {
 .flag-border {
   position: relative;
   border-radius: var(--radius-lg);
-  background: linear-gradient(115deg, #E8722A, #f0a35f, #6ab04c, #1E6091, #E8722A);
+  background: linear-gradient(115deg, #1E6091, #6ab04c, #B08D3F, #174B72, #1E6091);
   background-size: 280% 280%;
   animation: paddock-drift 14s ease infinite;
   padding: 1.5px;

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Upload,
@@ -19,7 +20,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "How It Works — Fully Sorted",
   description:
-    "Fully Sorted is a peer-to-peer collector car marketplace with a flat listing fee and zero commission. Here's exactly how selling, buying, and finding trusted service providers works.",
+    "Fully Sorted is a peer-to-peer collector car marketplace with simple flat listing fees. Here's exactly how selling, buying, and finding trusted service providers works.",
   alternates: { canonical: "/how-it-works" },
 };
 
@@ -95,19 +96,19 @@ const PROVIDER_STEPS = [
 const FAQS = [
   {
     q: "What does it cost to list a car?",
-    a: "Three tiers, all one-time: Standard $9.99, Featured $29.99, Premium $49.99. The first 100 listings are free for founding members. There are no commissions, no percentages, and no back-end fees when your car sells.",
+    a: "Three tiers, all one-time: Standard $9.99, Featured $29.99, Premium $49.99. The first 100 listings are free for founding members. Your listing fee is one-time and paid up front.",
   },
   {
     q: "How is Fully Sorted different from other collector-car listing sites?",
-    a: "Most listing sites in our category fall into two camps. Classifieds sites charge a flat listing fee (typically $50–$99) and leave you to handle the sale. Curated online-auction sites are time-limited and take a percentage of the sale price — usually 4.5–5% — either as a buyer's premium or a seller's success fee. Fully Sorted is a flat-fee peer-to-peer listing site: you pay once ($9.99, $29.99, or $49.99), your listing stays live until the car sells, and we never take a percentage of the sale.",
+    a: "Most listing sites in our category fall into two camps. Classifieds sites charge a flat listing fee (typically $50–$99) and leave you to handle the sale. Curated online-auction sites are time-limited and take a percentage of the sale price — usually 4.5–5% — either as a buyer's premium or a seller's success fee. Fully Sorted is a flat-fee peer-to-peer listing site: you pay a one-time flat fee ($9.99, $29.99, or $49.99) with no auction clock running on your sale.",
   },
   {
     q: "Do you handle payment or escrow?",
     a: "No. We're a listing platform, not a financial intermediary. Buyers and sellers agree on their preferred payment method — bank wire, escrow service, cashier's check. We recommend using a licensed escrow company for transactions over $25,000.",
   },
   {
-    q: "How are service providers vetted?",
-    a: "Every application is reviewed manually. We check references, confirm the business is real, and look for a track record with collector cars specifically. If you've been approved, it's because we believe in your work.",
+    q: "How do I know a provider is good?",
+    a: "Trust is built in the open: every provider profile carries reviews and comments from real owners, and providers earn engagement levels as they complete work, respond to clients, and build up their track record on the platform. Applications are also reviewed before a profile goes live, but the community record is what tells you who's good.",
   },
   {
     q: "Can I edit or remove my listing?",
@@ -130,19 +131,20 @@ function StepCard({
   body: string;
   index: number;
 }) {
+  const tone = ["#1E6091", "#1E6091", "#B08D3F"][index % 3];
   return (
-    <div className="bg-white border border-border rounded-2xl p-6 relative">
+    <div className="bg-white border border-border rounded-2xl p-6 relative transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
       <div
         className="absolute -top-3 -left-3 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-        style={{ backgroundColor: "#C1440E" }}
+        style={{ backgroundColor: "#1E6091" }}
       >
         {index + 1}
       </div>
       <div
         className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-        style={{ backgroundColor: "#fef2ee" }}
+        style={{ backgroundColor: `${tone}14` }}
       >
-        <Icon className="w-5 h-5" style={{ color: "#C1440E" }} />
+        <Icon className="w-5 h-5" style={{ color: tone }} />
       </div>
       <h3 className="text-base font-bold text-foreground mb-1.5">{title}</h3>
       <p className="text-sm text-text-secondary leading-relaxed">{body}</p>
@@ -167,7 +169,7 @@ const howToSchema = {
   "@id": "https://fullysorted.com/how-it-works#howto-sell",
   name: "How to sell a collector car on Fully Sorted",
   description:
-    "Step-by-step guide to listing a collector car for sale on Fully Sorted. Flat listing fee, no commission, direct buyer contact.",
+    "Step-by-step guide to listing a collector car for sale on Fully Sorted. Flat listing fee, direct buyer contact.",
   totalTime: "PT15M",
   estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: "9.99" },
   step: SELLER_STEPS.map((s, i) => ({
@@ -195,17 +197,38 @@ export default function HowItWorksPage() {
       <section className="pt-20 pb-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p
-            className="inline-block text-xs font-bold uppercase tracking-wider mb-4 px-3 py-1 rounded-full"
-            style={{ color: "#C1440E", backgroundColor: "#fef2ee" }}
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-4 px-3 py-1 rounded-full"
+            style={{ color: "#1E6091", backgroundColor: "rgba(30,96,145,0.07)", border: "1px solid rgba(30,96,145,0.28)" }}
           >
+            <span className="inline-flex gap-1" aria-hidden="true">
+              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
+            </span>
             How Fully Sorted Works
           </p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-foreground leading-tight mb-4">
+          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl text-foreground leading-[1.08] mb-4">
             Sell your car, buy your next one, and find the specialists who keep it running.
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-            A peer-to-peer marketplace built for collectors — flat listing fee, zero commission, and a curated directory of vetted service providers.
+            A peer-to-peer marketplace built for collectors — flat listing fees and a community-reviewed directory of service providers.
           </p>
+
+          {/* Photo moment */}
+          <div className="relative mt-10 rounded-2xl overflow-hidden shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)]">
+            <Image
+              src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80"
+              alt="A classic sports car in editorial light"
+              width={1600}
+              height={640}
+              className="w-full h-56 sm:h-72 object-cover"
+              preload
+            />
+            <div className="absolute inset-0" aria-hidden="true" style={{ background: "linear-gradient(rgba(15,32,50,0.1), rgba(15,32,50,0.65))" }} />
+            <p className="absolute bottom-4 left-5 right-5 text-sm sm:text-base font-semibold text-white text-left">
+              Know before the wire goes — real comps, owner-reviewed specialists, and a deal you own end to end.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -214,12 +237,12 @@ export default function HowItWorksPage() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-10 text-center">
             <p
-              className="text-xs font-bold uppercase tracking-wider mb-2"
-              style={{ color: "#C1440E" }}
+              className="text-xs font-bold uppercase tracking-widest mb-2"
+              style={{ color: "#1E6091" }}
             >
               For Sellers
             </p>
-            <h2 className="text-3xl font-bold text-foreground">Selling a car on Fully Sorted</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Selling a car on Fully Sorted</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {SELLER_STEPS.map((s, i) => (
@@ -229,8 +252,7 @@ export default function HowItWorksPage() {
           <div className="mt-10 text-center">
             <Link
               href="/sell"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl transition-colors"
-              style={{ backgroundColor: "#C1440E" }}
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
               List Your Car <ArrowRight className="w-4 h-4" />
             </Link>
@@ -243,12 +265,12 @@ export default function HowItWorksPage() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-10 text-center">
             <p
-              className="text-xs font-bold uppercase tracking-wider mb-2"
-              style={{ color: "#C1440E" }}
+              className="text-xs font-bold uppercase tracking-widest mb-2"
+              style={{ color: "#1E6091" }}
             >
               For Buyers
             </p>
-            <h2 className="text-3xl font-bold text-foreground">Finding your next car</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Finding your next car</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {BUYER_STEPS.map((s, i) => (
@@ -258,8 +280,7 @@ export default function HowItWorksPage() {
           <div className="mt-10 text-center">
             <Link
               href="/browse"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl transition-colors"
-              style={{ backgroundColor: "#C1440E" }}
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
               Browse Listings <ArrowRight className="w-4 h-4" />
             </Link>
@@ -272,12 +293,12 @@ export default function HowItWorksPage() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-10 text-center">
             <p
-              className="text-xs font-bold uppercase tracking-wider mb-2"
-              style={{ color: "#C1440E" }}
+              className="text-xs font-bold uppercase tracking-widest mb-2"
+              style={{ color: "#1E6091" }}
             >
               For Service Providers
             </p>
-            <h2 className="text-3xl font-bold text-foreground">Joining the Fully Sorted directory</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Joining the Fully Sorted directory</h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
               Detailers, inspectors, mechanics, restorers, transporters — the skilled specialists who make collector car ownership possible.
             </p>
@@ -290,8 +311,7 @@ export default function HowItWorksPage() {
           <div className="mt-10 text-center">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl transition-colors"
-              style={{ backgroundColor: "#C1440E" }}
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
               Apply to List Your Business <ArrowRight className="w-4 h-4" />
             </Link>
@@ -303,16 +323,16 @@ export default function HowItWorksPage() {
       <section className="py-16 px-4 sm:px-6 bg-white border-y border-border">
         <div className="max-w-3xl mx-auto text-center">
           <p
-            className="text-xs font-bold uppercase tracking-wider mb-2"
-            style={{ color: "#C1440E" }}
+            className="text-xs font-bold uppercase tracking-widest mb-2"
+            style={{ color: "#1E6091" }}
           >
             Simple Pricing
           </p>
-          <h2 className="text-3xl font-bold text-foreground mb-3">
-            One-time listing fee. Zero commission. Ever.
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground mb-3">
+            One-time listing fee. Straightforward pricing.
           </h2>
           <p className="text-base text-text-secondary">
-            Standard $9.99, Featured $29.99, Premium $49.99 — all one-time. The first 100 sellers list free as founding members. When your car sells, you keep 100% of what the buyer pays.
+            Standard $9.99, Featured $29.99, Premium $49.99 — all one-time, paid up front. The first 100 sellers list free as founding members.
           </p>
           <div className="mt-8">
             <Link
@@ -330,12 +350,12 @@ export default function HowItWorksPage() {
         <div className="max-w-3xl mx-auto">
           <div className="mb-10 text-center">
             <p
-              className="text-xs font-bold uppercase tracking-wider mb-2"
-              style={{ color: "#C1440E" }}
+              className="text-xs font-bold uppercase tracking-widest mb-2"
+              style={{ color: "#1E6091" }}
             >
               Frequently Asked
             </p>
-            <h2 className="text-3xl font-bold text-foreground">Questions we hear a lot</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Questions we hear a lot</h2>
           </div>
           <div className="space-y-4">
             {FAQS.map((f, i) => (
@@ -351,8 +371,7 @@ export default function HowItWorksPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl transition-colors"
-              style={{ backgroundColor: "#C1440E" }}
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
               Get in Touch <ArrowRight className="w-4 h-4" />
             </Link>

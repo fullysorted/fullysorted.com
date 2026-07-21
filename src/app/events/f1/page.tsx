@@ -124,8 +124,21 @@ export default async function F1Page() {
       <JsonLd data={[breadcrumbSchema, ...eventSchema]} />
 
       {/* Hero */}
-      <section style={{ background: "#1a1a18", borderBottom: "4px solid #E8722A" }}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <section
+        className="relative overflow-hidden"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(15,32,50,0.62), rgba(15,32,50,0.82)), url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          borderBottom: "1px solid rgba(0,0,0,0.07)",
+        }}
+      >
+        <div
+          className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <Link
             href="/events"
             className="inline-flex items-center gap-1.5 text-xs font-semibold mb-6 text-white/60 hover:text-white transition-colors"
@@ -133,16 +146,21 @@ export default async function F1Page() {
             <ArrowLeft className="w-3.5 h-3.5" />
             All events
           </Link>
-          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#E8722A" }}>
-            <Flag className="inline w-3.5 h-3.5 mr-1.5 -mt-0.5" />
+          <p className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2" style={{ color: "#6ab04c" }}>
+            <span className="flex gap-1" aria-hidden="true">
+              <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
+            </span>
+            <Flag className="inline w-3.5 h-3.5" />
             Live · Updated daily
           </p>
-          <h1 className="text-4xl sm:text-6xl font-black leading-tight mb-4 text-white">
+          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-6xl leading-[1.08] mb-4 text-white">
             2026 Formula 1
             <br />
-            <span style={{ color: "#E8722A" }}>World Championship</span>
+            <span style={{ color: "#D9BC7A" }}>World Championship</span>
           </h1>
-          <p className="text-lg sm:text-xl leading-relaxed max-w-3xl text-white/70">
+          <p className="text-lg sm:text-xl leading-relaxed max-w-3xl text-white/85">
             The complete 2026 F1 calendar — all {races.length || 24} rounds, live status,
             and the circuits the modern championship runs on.
           </p>
@@ -151,14 +169,15 @@ export default async function F1Page() {
             <div
               className="mt-8 rounded-2xl p-6 sm:p-8"
               style={{
-                background: "rgba(232,114,42,0.12)",
-                border: "1px solid rgba(232,114,42,0.4)",
+                background: "rgba(30,96,145,0.35)",
+                border: "1px solid rgba(255,255,255,0.25)",
+                backdropFilter: "blur(6px)",
               }}
             >
-              <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#E8722A" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#D9BC7A" }}>
                 Next up — Round {nextRace.round}
               </p>
-              <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
+              <h2 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-white mb-2">
                 {nextRace.raceName}
               </h2>
               <p className="text-white/80 flex items-center gap-2 text-sm sm:text-base">
@@ -171,6 +190,14 @@ export default async function F1Page() {
             </div>
           )}
         </div>
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, #1E6091 35%, #B08D3F 65%, transparent)",
+          }}
+          aria-hidden="true"
+        />
       </section>
 
       {/* Race grid */}
@@ -197,7 +224,7 @@ export default async function F1Page() {
                   style={{
                     background: "#fff",
                     border: isNext
-                      ? "2px solid #E8722A"
+                      ? "2px solid #1E6091"
                       : "1px solid rgba(0,0,0,0.07)",
                     opacity: isPast ? 0.55 : 1,
                   }}
@@ -208,7 +235,7 @@ export default async function F1Page() {
                       className="p-4 sm:p-6 text-center"
                       style={{
                         background: isNext
-                          ? "rgba(232,114,42,0.1)"
+                          ? "rgba(30,96,145,0.08)"
                           : "rgba(0,0,0,0.02)",
                         borderRight: "1px solid rgba(0,0,0,0.05)",
                       }}
@@ -242,8 +269,7 @@ export default async function F1Page() {
                     <div className="p-4 sm:p-6">
                       {isNext && (
                         <span
-                          className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full text-white whitespace-nowrap"
-                          style={{ background: "#E8722A" }}
+                          className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full text-white whitespace-nowrap bg-accent"
                         >
                           Next Up
                         </span>
@@ -259,7 +285,7 @@ export default async function F1Page() {
                       {!isPast && !isNext && (
                         <span
                           className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full whitespace-nowrap"
-                          style={{ background: "rgba(232,114,42,0.08)", color: "#E8722A" }}
+                          style={{ background: "rgba(30,96,145,0.08)", color: "#1E6091" }}
                         >
                           Upcoming
                         </span>
@@ -282,7 +308,7 @@ export default async function F1Page() {
           className="mt-12 rounded-2xl p-8 text-center"
           style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)" }}
         >
-          <h3 className="text-xl font-bold mb-2" style={{ color: "#1a1a18" }}>
+          <h3 className="font-display font-semibold tracking-tight text-xl mb-2" style={{ color: "#1a1a18" }}>
             Like watching modern F1? You&apos;ll love historic racing.
           </h3>
           <p className="text-sm mb-4 max-w-xl mx-auto" style={{ color: "#6b6b5e" }}>
@@ -291,8 +317,7 @@ export default async function F1Page() {
           </p>
           <a
             href="/events/monaco-historique-2026"
-            className="inline-flex items-center gap-1.5 text-sm font-bold px-5 py-2.5 rounded-lg text-white transition-opacity hover:opacity-90"
-            style={{ background: "#E8722A" }}
+            className="inline-flex items-center gap-1.5 text-sm font-bold px-5 py-2.5 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors"
           >
             See Monaco Historique 2026
             <ExternalLink className="w-4 h-4" />

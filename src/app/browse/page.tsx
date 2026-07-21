@@ -4,7 +4,7 @@ import type { Vehicle } from "@/lib/sample-data";
 
 export const metadata: Metadata = {
   title: "Browse Collector Cars | Fully Sorted",
-  description: "Browse collector cars for sale — Muscle, European, JDM, Vintage, Modern Classic, and more. No dealers, no commissions. Peer-to-peer.",
+  description: "Browse collector cars for sale — Muscle, European, JDM, Vintage, Modern Classic, and more. Direct from owners. Peer-to-peer.",
 };
 
 async function getRealListings(): Promise<Vehicle[]> {

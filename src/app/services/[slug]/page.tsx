@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getDb, schema } from '@/lib/db';
 import { and, eq } from 'drizzle-orm';
 import type { ServiceProvider } from '@/lib/db/schema';
@@ -34,6 +35,18 @@ async function getProvider(slug: string): Promise<ServiceProvider | null> {
     return null;
   }
 }
+
+// ─── Category photography (profile header backdrop) ────
+const CATEGORY_PHOTOS: Record<string, string> = {
+  photography: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80',
+  detailing: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1600&q=80',
+  mechanical: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80',
+  transport: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80',
+  inspection: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80',
+  restoration: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80',
+  bodywork: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80',
+};
+const DEFAULT_PHOTO = 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80';
 
 // ─── Helpers ────────────────────────────────────────────
 function normalizeWebsite(url: string): string {
@@ -108,8 +121,7 @@ export default async function ProviderProfilePage({ params }: Props) {
         {/* Back link */}
         <Link
           href="/services"
-          className="inline-flex items-center gap-1.5 text-sm font-medium mb-6 transition-colors"
-          style={{ color: 'var(--text-secondary)' }}
+          className="inline-flex items-center gap-1.5 text-sm font-medium mb-6 transition-colors text-text-secondary hover:text-accent"
         >
           <span aria-hidden>←</span> Back to directory
         </Link>
@@ -123,31 +135,46 @@ export default async function ProviderProfilePage({ params }: Props) {
             boxShadow: 'var(--shadow-lg)',
           }}
         >
-          {/* Header band */}
+          {/* Header band — photographic backdrop under racing-green overlay */}
           <div
             className="relative overflow-hidden px-6 sm:px-10 py-8 sm:py-10"
             style={{ borderBottom: '1px solid var(--border-light)' }}
           >
-            <div className="speed-lines absolute inset-0 opacity-[0.04]" />
+            <Image
+              src={CATEGORY_PHOTOS[provider.category?.toLowerCase() ?? ''] ?? DEFAULT_PHOTO}
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 896px) 100vw, 896px"
+              className="object-cover"
+            />
+            <div
+              className="absolute inset-0"
+              style={{ background: 'linear-gradient(rgba(15,32,50,0.68), rgba(15,32,50,0.84))' }}
+            />
+            <div className="film-grain absolute inset-0 opacity-[0.05] pointer-events-none" />
+            <div className="speed-lines absolute inset-0 opacity-[0.04] pointer-events-none" />
+            {/* Top accent line */}
+            <div
+              className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+              style={{ background: 'linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)' }}
+            />
             <div className="relative">
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-px" style={{ background: 'var(--accent)' }} />
+                <div className="w-6 h-px" style={{ background: 'var(--accent-gold)' }} />
                 <span
                   className="text-xs font-bold tracking-widest uppercase"
-                  style={{ color: 'var(--accent)' }}
+                  style={{ color: 'rgba(245,239,230,0.9)' }}
                 >
                   {provider.category}
                 </span>
               </div>
 
-              <h1
-                className="text-3xl sm:text-4xl font-bold mb-2"
-                style={{ color: 'var(--text-primary)' }}
-              >
+              <h1 className="font-display font-semibold tracking-tight leading-[1.08] text-3xl sm:text-4xl lg:text-[2.75rem] mb-2 text-white">
                 {provider.businessName}
               </h1>
 
-              <p className="text-sm sm:text-base" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-sm sm:text-base" style={{ color: 'rgba(245,239,230,0.78)' }}>
                 {provider.ownerName} · {provider.location}
               </p>
 
@@ -164,7 +191,7 @@ export default async function ProviderProfilePage({ params }: Props) {
                 {provider.foundingProvider && (
                   <span
                     className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
-                    style={{ background: 'var(--accent-light)', color: 'var(--accent-hover)' }}
+                    style={{ background: 'var(--accent-gold-light)', color: '#8A6E31' }}
                   >
                     ★ Founding Provider
                   </span>
@@ -308,8 +335,7 @@ export default async function ProviderProfilePage({ params }: Props) {
               {/* Primary CTA */}
               <a
                 href={`mailto:${provider.email}?subject=${encodeURIComponent(`Inquiry via Fully Sorted — ${provider.businessName}`)}`}
-                className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-white px-6 py-3 rounded-xl transition-colors"
-                style={{ background: 'var(--accent)' }}
+                className="shine inline-flex items-center justify-center gap-2 text-sm font-semibold text-white px-6 py-3 rounded-xl transition-all bg-accent hover:bg-accent-hover hover:-translate-y-0.5"
               >
                 Contact {provider.businessName}
               </a>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   TrendingUp,
   TrendingDown,
@@ -127,15 +128,15 @@ function timeAgo(dateStr: string): string {
 
 // Per-category accent colors
 const categoryColors: Record<string, string> = {
-  "Weekly Report": "#E8722A",
+  "Weekly Report": "#1E6091",
   "What Would Chris Buy?": "#29ABE2",
   "Sorted or Not": "#6ab04c",
-  "The Long Game": "#8b5cf6",
-  "San Diego Car Culture": "#E8722A",
+  "The Long Game": "#1E6091",
+  "San Diego Car Culture": "#B08D3F",
 };
 
 function TrendBadge({ trend, pct }: { trend: "up" | "down" | "flat"; pct: number }) {
-  const color = trend === "up" ? "#6ab04c" : trend === "down" ? "#E8722A" : "#6b7280";
+  const color = trend === "up" ? "#6ab04c" : trend === "down" ? "#DC2626" : "#6b7280";
   return (
     <span
       className="inline-flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-lg"
@@ -164,27 +165,48 @@ export default async function ResearchPage() {
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
 
-      {/* ─── Light Header ─────────────────────────────────────── */}
-      <div className="relative overflow-hidden" style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
-        <div className="absolute inset-0 speed-lines opacity-4" />
+      {/* ─── Photo Hero — vintage garage under racing-green overlay ── */}
+      <div className="relative overflow-hidden text-white">
+        <div
+          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }}
+        />
+        <Image
+          src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80"
+          alt="Vintage garage workshop"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(rgba(15,32,50,0.62), rgba(15,32,50,0.82))" }}
+        />
+        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
+        <div className="absolute inset-0 speed-lines opacity-[0.03] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-6 h-px" style={{ background: "#E8722A" }} />
-            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#E8722A" }}>
+          <div className="inline-flex items-center gap-2.5 bg-white/10 border border-white/25 rounded-full px-4 py-1.5 mb-5">
+            <span className="flex gap-1" aria-hidden="true">
+              {["#1E6091", "#1E6091", "#B08D3F"].map((c) => (
+                <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
+              ))}
+            </span>
+            <span className="text-stone-200 text-xs font-bold tracking-widest uppercase">
               Research Desk
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3" style={{ color: "#1a1a18" }}>
+          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-4">
             Market Research
           </h1>
-          <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: "#6b6b5e" }}>
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed text-stone-200">
             Weekly analysis of the collector car market — auction results, price trends, and
             where the smart money is going. Written by Chris Peterson.
           </p>
 
           {/* Quick stats row — only honest, data-backed values */}
-          <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
+          <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}>
             {[
               ...(segments.length > 0
                 ? [{ value: `${segments.length}`, label: "Segments Tracked" }]
@@ -193,8 +215,8 @@ export default async function ResearchPage() {
               { value: "Weekly", label: "Analysis" },
             ].map((s) => (
               <div key={s.label}>
-                <div className="text-2xl font-bold" style={{ color: "#1a1a18" }}>{s.value}</div>
-                <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: "#9a9a8a" }}>
+                <div className="text-2xl font-bold text-white">{s.value}</div>
+                <div className="text-xs uppercase tracking-widest mt-0.5 text-stone-300">
                   {s.label}
                 </div>
               </div>
@@ -224,8 +246,8 @@ export default async function ResearchPage() {
                       <span
                         className="text-xs font-bold tracking-wider uppercase px-3 py-1.5 rounded-full"
                         style={{
-                          background: `${categoryColors[featuredArticle.category] ?? "#E8722A"}22`,
-                          color: categoryColors[featuredArticle.category] ?? "#E8722A",
+                          background: `${categoryColors[featuredArticle.category] ?? "#1E6091"}22`,
+                          color: categoryColors[featuredArticle.category] ?? "#1E6091",
                         }}
                       >
                         {featuredArticle.category}
@@ -237,7 +259,7 @@ export default async function ResearchPage() {
                         <Clock className="w-3 h-3" /> {featuredArticle.readTime} read
                       </span>
                     </div>
-                    <h2 className="text-xl sm:text-2xl font-bold leading-snug group-hover:text-orange-600 transition-colors mb-3" style={{ color: "#1a1a18" }}>
+                    <h2 className="font-display font-semibold tracking-tight text-xl sm:text-2xl leading-snug group-hover:text-accent transition-colors mb-3" style={{ color: "#1a1a18" }}>
                       {featuredArticle.title}
                     </h2>
                     <p className="leading-relaxed" style={{ color: "#6b6b5e" }}>
@@ -245,7 +267,7 @@ export default async function ResearchPage() {
                     </p>
                     <div
                       className="flex items-center gap-1.5 mt-5 text-sm font-bold transition-colors"
-                      style={{ color: "#E8722A" }}
+                      style={{ color: "#1E6091" }}
                     >
                       Read the full analysis <ArrowRight className="w-4 h-4" />
                     </div>
@@ -257,14 +279,14 @@ export default async function ResearchPage() {
             {/* Article grid */}
             <div>
               <div className="flex items-center gap-2 mb-5">
-                <div className="w-6 h-px" style={{ background: "#E8722A" }} />
+                <div className="w-6 h-px" style={{ background: "#1E6091" }} />
                 <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest">
                   Latest Analysis
                 </h2>
               </div>
               <div className="space-y-4">
                 {restArticles.map((article) => {
-                  const color = categoryColors[article.category] ?? "#E8722A";
+                  const color = categoryColors[article.category] ?? "#1E6091";
                   return (
                     <Link
                       key={article.slug}
@@ -290,14 +312,14 @@ export default async function ResearchPage() {
                           </span>
                           <span className="text-xs text-stone-400">· {article.readTime} read</span>
                         </div>
-                        <h3 className="font-bold text-stone-800 group-hover:text-orange-600 transition-colors leading-snug">
+                        <h3 className="font-bold text-stone-800 group-hover:text-accent transition-colors leading-snug">
                           {article.title}
                         </h3>
                         <p className="text-sm text-stone-500 mt-1 leading-relaxed line-clamp-2">
                           {article.excerpt}
                         </p>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-orange-500 transition-colors shrink-0 mt-1" />
+                      <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-accent transition-colors shrink-0 mt-1" />
                     </Link>
                   );
                 })}
@@ -308,9 +330,9 @@ export default async function ResearchPage() {
             {trendingData.hot.length > 0 && (
               <div>
                 <div className="flex items-center gap-2 mb-5">
-                  <div className="w-6 h-px" style={{ background: "#E8722A" }} />
+                  <div className="w-6 h-px" style={{ background: "#1E6091" }} />
                   <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest flex items-center gap-2">
-                    <Flame className="w-4 h-4" style={{ color: "#E8722A" }} />
+                    <Flame className="w-4 h-4" style={{ color: "#B08D3F" }} />
                     Fresh on the market
                   </h2>
                 </div>
@@ -334,20 +356,20 @@ export default async function ResearchPage() {
                           </div>
                         )}
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm font-semibold text-stone-800 group-hover:text-orange-600 transition-colors truncate">
+                          <p className="text-sm font-semibold text-stone-800 group-hover:text-accent transition-colors truncate">
                             {deal.title}
                           </p>
                           <div className="flex items-center gap-2 mt-0.5">
                             <span className="text-xs text-stone-400">{timeAgo(deal.created_at)}</span>
                             <span
                               className="text-xs px-2 py-0.5 rounded-full font-bold"
-                              style={{ background: "rgba(232,114,42,0.1)", color: "#E8722A" }}
+                              style={{ background: "rgba(176,141,63,0.14)", color: "#8a6d2f" }}
                             >
                               New
                             </span>
                           </div>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-orange-500 transition-colors shrink-0" />
+                        <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-accent transition-colors shrink-0" />
                       </a>
                     ))}
                   </div>
@@ -359,9 +381,9 @@ export default async function ResearchPage() {
             {trendingData.trending.length > 0 && (
               <div>
                 <div className="flex items-center gap-2 mb-5">
-                  <div className="w-6 h-px" style={{ background: "#E8722A" }} />
+                  <div className="w-6 h-px" style={{ background: "#1E6091" }} />
                   <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest flex items-center gap-2">
-                    <Eye className="w-4 h-4" style={{ color: "#E8722A" }} />
+                    <Eye className="w-4 h-4" style={{ color: "#1E6091" }} />
                     Most Viewed on Fully Sorted
                   </h2>
                 </div>
@@ -383,12 +405,12 @@ export default async function ResearchPage() {
                           />
                         </div>
                       )}
-                      <p className="text-sm font-bold text-stone-800 group-hover:text-orange-600 transition-colors">
+                      <p className="text-sm font-bold text-stone-800 group-hover:text-accent transition-colors">
                         {listing.year} {listing.make} {listing.model}
                         {listing.trim ? ` ${listing.trim}` : ""}
                       </p>
                       <div className="flex items-center justify-between mt-1">
-                        <span className="price-display text-sm font-bold" style={{ color: "#E8722A" }}>
+                        <span className="price-display text-sm font-bold" style={{ color: "#1E6091" }}>
                           {formatPrice(listing.price)}
                         </span>
                         <span className="text-xs text-stone-400 flex items-center gap-1">
@@ -415,8 +437,8 @@ export default async function ResearchPage() {
               }}
             >
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-4 h-px" style={{ background: "#E8722A" }} />
-                <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#E8722A" }}>
+                <div className="w-4 h-px" style={{ background: "#1E6091" }} />
+                <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#1E6091" }}>
                   Free Newsletter
                 </p>
               </div>
@@ -428,7 +450,7 @@ export default async function ResearchPage() {
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="w-full h-10 px-3 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-400"
+                  className="w-full h-10 px-3 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
                   style={{
                     background: "#faf9f7",
                     border: "1px solid rgba(0,0,0,0.12)",
@@ -438,7 +460,7 @@ export default async function ResearchPage() {
                 <button
                   type="submit"
                   className="w-full h-10 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
-                  style={{ background: "#E8722A" }}
+                  style={{ background: "#1E6091" }}
                 >
                   Subscribe — Free
                 </button>
@@ -453,7 +475,7 @@ export default async function ResearchPage() {
               >
                 <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
                   <div className="flex items-center gap-2 mb-0.5">
-                    <BarChart3 className="w-4 h-4" style={{ color: "#E8722A" }} />
+                    <BarChart3 className="w-4 h-4" style={{ color: "#1E6091" }} />
                     <h3 className="font-bold text-stone-800 text-sm">Biggest Movers</h3>
                   </div>
                   <p className="text-xs text-stone-400">12-month trend</p>
@@ -477,7 +499,7 @@ export default async function ResearchPage() {
                   <a
                     href="#segments"
                     className="text-xs font-bold flex items-center gap-1 transition-colors hover:opacity-75"
-                    style={{ color: "#E8722A" }}
+                    style={{ color: "#1E6091" }}
                   >
                     View all segments <ArrowRight className="w-3 h-3" />
                   </a>
@@ -488,7 +510,7 @@ export default async function ResearchPage() {
             {/* Value Guide CTA */}
             <div
               className="rounded-2xl p-5"
-              style={{ background: "rgba(232,114,42,0.06)", border: "1px solid rgba(232,114,42,0.15)" }}
+              style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.18)" }}
             >
               <p className="font-bold text-stone-800 text-sm mb-1">Check Your Car&apos;s Value</p>
               <p className="text-xs text-stone-500 mb-3">
@@ -497,7 +519,7 @@ export default async function ResearchPage() {
               <Link
                 href="/value-guide"
                 className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors hover:opacity-75"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#1E6091" }}
               >
                 Open Value Guide <ArrowRight className="w-3 h-3" />
               </Link>
@@ -524,7 +546,7 @@ export default async function ResearchPage() {
         {segments.length > 0 && (
           <section id="segments" className="mt-16">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-px" style={{ background: "#E8722A" }} />
+              <div className="w-8 h-px" style={{ background: "#1E6091" }} />
               <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest">
                 Market Segments
               </h2>
@@ -554,7 +576,7 @@ export default async function ResearchPage() {
                 return (
                   <div key={cat} className="mb-8">
                     <div className="flex items-center gap-2 mb-3">
-                      <div className="w-1 h-4 rounded-full" style={{ background: "#E8722A" }} />
+                      <div className="w-1 h-4 rounded-full" style={{ background: "#1E6091" }} />
                       <h3 className="text-sm font-bold text-stone-500 uppercase tracking-widest">
                         {cat}
                       </h3>

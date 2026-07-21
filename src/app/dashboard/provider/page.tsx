@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useAuth } from '@clerk/nextjs';
 import { Building2, MapPin, Phone, Globe, AtSign, Save, Loader2, CheckCircle, Clock, AlertCircle, ArrowRight, Sparkles, Tag, DollarSign, Wrench } from 'lucide-react';
 import Link from 'next/link';
@@ -138,19 +139,29 @@ export default function ProviderDashboard() {
   if (!provider) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
-        <div className="bg-white rounded-2xl border border-border p-12">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="bg-white rounded-2xl border border-border p-12 shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)]"
+        >
           <Building2 className="w-16 h-16 text-accent mx-auto mb-6" />
-          <h1 className="text-3xl font-bold text-foreground mb-4">Become a Service Provider</h1>
+          <div className="flex items-center justify-center gap-1.5 mb-4" aria-hidden="true">
+            <span className="w-2 h-2 rounded-[2px] bg-accent" />
+            <span className="w-2 h-2 rounded-[2px] bg-blue" />
+            <span className="w-2 h-2 rounded-[2px] bg-gold" />
+          </div>
+          <h1 className="text-3xl font-display font-semibold tracking-tight text-foreground mb-4">Become a Service Provider</h1>
           <p className="text-text-secondary mb-8 max-w-md mx-auto">
             You don&apos;t have a provider profile yet. Apply to join the Fully Sorted Services Directory and get in front of serious collector car owners.
           </p>
           <Link
             href="/services/apply"
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg"
           >
             Apply to Be Listed <ArrowRight className="w-5 h-5" />
           </Link>
-        </div>
+        </motion.div>
       </div>
     );
   }
@@ -158,13 +169,23 @@ export default function ProviderDashboard() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8"
+      >
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Your Provider Profile</h1>
+          <div className="flex items-center gap-1.5 mb-2" aria-hidden="true">
+            <span className="w-2 h-2 rounded-[2px] bg-accent" />
+            <span className="w-2 h-2 rounded-[2px] bg-blue" />
+            <span className="w-2 h-2 rounded-[2px] bg-gold" />
+          </div>
+          <h1 className="text-3xl font-display font-semibold tracking-tight text-foreground">Your Provider Profile</h1>
           <p className="text-text-secondary mt-1">Manage how you appear in the Services Directory</p>
         </div>
         <StatusBadge status={provider.status} />
-      </div>
+      </motion.div>
 
       {provider.status === 'pending' && (
         <div className="bg-accent-light border border-accent rounded-xl p-5 mb-8">
@@ -181,10 +202,10 @@ export default function ProviderDashboard() {
       )}
 
       {provider.foundingProvider && (
-        <div className="bg-accent-light border border-accent rounded-xl p-5 mb-8">
+        <div className="bg-gold-light border border-gold/40 rounded-xl p-5 mb-8 shine">
           <div className="flex items-center gap-3">
-            <Sparkles className="w-5 h-5 text-accent" />
-            <p className="text-accent font-medium">Founding Provider â Thank you for being one of the first!</p>
+            <Sparkles className="w-5 h-5 text-gold" />
+            <p className="text-[#8a6d2f] font-medium">Founding Provider â Thank you for being one of the first!</p>
           </div>
         </div>
       )}
@@ -192,7 +213,12 @@ export default function ProviderDashboard() {
       {/* Profile Form */}
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Business Info */}
-        <section className="bg-white rounded-xl border border-border p-6">
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.08, ease: 'easeOut' }}
+          className="bg-white rounded-xl border border-border p-6"
+        >
           <h2 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
             <Building2 className="w-5 h-5 text-accent" /> Business Information
           </h2>
@@ -276,10 +302,15 @@ export default function ProviderDashboard() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Contact */}
-        <section className="bg-white rounded-xl border border-border p-6">
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.16, ease: 'easeOut' }}
+          className="bg-white rounded-xl border border-border p-6"
+        >
           <h2 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
             <Phone className="w-5 h-5 text-accent" /> Contact Information
           </h2>
@@ -321,10 +352,15 @@ export default function ProviderDashboard() {
               />
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* About Your Work */}
-        <section className="bg-white rounded-xl border border-border p-6">
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.24, ease: 'easeOut' }}
+          className="bg-white rounded-xl border border-border p-6"
+        >
           <h2 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
             <Wrench className="w-5 h-5 text-accent" /> About Your Work
           </h2>
@@ -391,7 +427,7 @@ export default function ProviderDashboard() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Save */}
         <div className="flex items-center justify-between">
@@ -405,7 +441,7 @@ export default function ProviderDashboard() {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:hover:translate-y-0"
           >
             {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
             {saving ? 'Saving...' : 'Save Profile'}

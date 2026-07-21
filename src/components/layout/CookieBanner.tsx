@@ -30,17 +30,17 @@ export function CookieBanner() {
       <div
         className="max-w-2xl mx-auto rounded-2xl p-4 sm:p-5 shadow-2xl pointer-events-auto flex flex-col sm:flex-row items-start sm:items-center gap-4"
         style={{
-          background: "#1a1a18",
-          border: "1px solid rgba(255,255,255,0.08)",
+          background: "#0F2A1D",
+          border: "1px solid rgba(245,239,230,0.12)",
         }}
       >
-        <p className="text-sm leading-relaxed flex-1" style={{ color: "rgba(255,255,255,0.7)" }}>
+        <p className="text-sm leading-relaxed flex-1" style={{ color: "rgba(245,239,230,0.75)" }}>
           We use essential cookies to keep you signed in and remember your preferences.
           We don&apos;t serve ads or sell your data.{" "}
           <Link
             href="/privacy"
             className="underline hover:opacity-80 transition-opacity"
-            style={{ color: "#E8722A" }}
+            style={{ color: "#C6A85C" }}
           >
             Privacy Policy
           </Link>
@@ -48,8 +48,8 @@ export function CookieBanner() {
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={accept}
-            className="px-5 py-2 text-sm font-bold rounded-xl text-white transition-opacity hover:opacity-90"
-            style={{ background: "#E8722A" }}
+            className="px-5 py-2 text-sm font-bold rounded-xl transition-opacity hover:opacity-90"
+            style={{ background: "#F5EFE6", color: "#1E6091" }}
           >
             Got it
           </button>
@@ -57,8 +57,8 @@ export function CookieBanner() {
             href="/privacy"
             className="px-4 py-2 text-xs font-medium rounded-xl transition-colors"
             style={{
-              color: "rgba(255,255,255,0.45)",
-              border: "1px solid rgba(255,255,255,0.12)",
+              color: "rgba(245,239,230,0.6)",
+              border: "1px solid rgba(245,239,230,0.18)",
             }}
           >
             Learn more

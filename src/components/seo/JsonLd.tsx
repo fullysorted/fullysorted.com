@@ -32,7 +32,7 @@ export const organizationSchema = {
   },
   image: "https://fullysorted.com/opengraph-image.png",
   description:
-    "A peer-to-peer marketplace for collector cars. Flat listing fees from $9.99. No commissions, no buyer's premiums, no success fees.",
+    "A peer-to-peer marketplace for collector cars. Flat listing fees from $9.99. Transparent, straightforward pricing.",
   foundingDate: "2025",
   founder: {
     "@type": "Person",
@@ -72,7 +72,7 @@ export const websiteSchema = {
   url: "https://fullysorted.com",
   name: "Fully Sorted",
   description:
-    "The collector car marketplace. List for $9.99. Keep 100% of the sale.",
+    "The collector car marketplace. List for $9.99.",
   publisher: { "@id": "https://fullysorted.com/#organization" },
   potentialAction: {
     "@type": "SearchAction",

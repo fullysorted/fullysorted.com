@@ -27,10 +27,17 @@ export default function SuccessPage() {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
           >
-            <CheckCircle2 className="w-16 h-16 text-green mx-auto mb-6" />
+            <CheckCircle2 className="w-16 h-16 text-green mx-auto mb-5" />
           </motion.div>
 
-          <h1 className="text-3xl font-bold text-foreground mb-3">
+          {/* Tricolor motif — green / blue / gold */}
+          <div className="flex items-center justify-center gap-1.5 mb-4" aria-hidden="true">
+            <span className="w-2 h-2 rounded-sm bg-accent" />
+            <span className="w-2 h-2 rounded-sm bg-blue" />
+            <span className="w-2 h-2 rounded-sm bg-gold" />
+          </div>
+
+          <h1 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-3">
             You&apos;re Listed!
           </h1>
 
@@ -60,7 +67,7 @@ export default function SuccessPage() {
             </Link>
             <Link
               href="/"
-              className="inline-flex items-center justify-center gap-2 bg-surface hover:bg-surface text-foreground font-semibold px-6 py-3 rounded-xl transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-surface hover:bg-border text-foreground font-semibold px-6 py-3 rounded-xl transition-colors"
             >
               <Home className="w-4 h-4" /> Back Home
             </Link>

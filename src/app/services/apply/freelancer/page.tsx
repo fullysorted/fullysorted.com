@@ -126,8 +126,8 @@ export default function FreelancerWizard() {
   if (done) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-24 text-center">
-        <PartyPopper className="w-16 h-16 mx-auto mb-6" style={{ color: "#E8722A" }} />
-        <h1 className="text-3xl font-bold text-foreground mb-3">You’re in — nice work.</h1>
+        <PartyPopper className="w-16 h-16 mx-auto mb-6" style={{ color: "#B08D3F" }} />
+        <h1 className="font-display font-semibold tracking-tight text-3xl text-foreground mb-3">You’re in — nice work.</h1>
         <p className="text-text-secondary mb-2">Your profile and first gig are saved as a draft.</p>
         <p className="text-text-secondary mb-8">We review every applicant personally, usually within 3–5 business days. Meanwhile, you can polish everything in your dashboard.</p>
         <div className="flex gap-3 justify-center">
@@ -157,7 +157,7 @@ export default function FreelancerWizard() {
             <div key={s.id} className="flex items-center flex-1 last:flex-none">
               <div className="flex flex-col items-center gap-1">
                 <div className="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
-                  style={{ background: complete ? "#6ab04c" : active ? "#E8722A" : "rgba(0,0,0,0.06)", color: complete || active ? "#fff" : "#9a9a8a" }}>
+                  style={{ background: complete ? "#6ab04c" : active ? "#1E6091" : "rgba(0,0,0,0.06)", color: complete || active ? "#fff" : "#9a9a8a" }}>
                   {complete ? <Check className="w-4 h-4" /> : <Icon className="w-4 h-4" />}
                 </div>
                 <span className="text-[10px] font-semibold hidden sm:block" style={{ color: active ? "#1a1a18" : "#9a9a8a" }}>{s.label}</span>
@@ -171,7 +171,7 @@ export default function FreelancerWizard() {
       <div className="bg-white rounded-2xl border border-border p-6 sm:p-8">
         <div className="flex items-center gap-2 mb-1">
           <StepIcon className="w-5 h-5 text-accent" />
-          <h1 className="text-2xl font-bold text-foreground">
+          <h1 className="font-display font-semibold tracking-tight text-2xl text-foreground">
             {step === 0 && "Welcome — let’s set you up"}
             {step === 1 && "Tell us about you"}
             {step === 2 && "Create your first gig"}
@@ -197,7 +197,7 @@ export default function FreelancerWizard() {
                 </div>
               ))}
             </div>
-            <Help>It’s free for founding providers — no commission and no per-lead fees. Payments through the platform are coming soon; for now you’ll connect with buyers directly. You can edit anything later, so don’t overthink it.</Help>
+            <Help>It’s free for founding providers. Payments through the platform are coming soon; for now you’ll connect with buyers directly. You can edit anything later, so don’t overthink it.</Help>
           </div>
         )}
 
@@ -253,8 +253,8 @@ export default function FreelancerWizard() {
         {step === 2 && (
           <div className="mt-5 space-y-5">
             <button onClick={runAi} disabled={aiLoading}
-              className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-lg text-white disabled:opacity-60" style={{ background: "#E8722A" }}>
-              {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+              className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors disabled:opacity-60">
+              {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" style={{ color: "#E9D8A6" }} />}
               {aiLoading ? "Drafting for you…" : "Draft my gig with AI"}
             </button>
             <p className="text-xs text-text-secondary -mt-2">Uses what you entered to draft a title, description, and starter prices. You edit everything after.</p>
@@ -339,7 +339,7 @@ export default function FreelancerWizard() {
           </button>
           {step < STEPS.length - 1 ? (
             <button onClick={() => canAdvance() && setStep(s => s + 1)} disabled={!canAdvance()}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold px-5 py-2.5 rounded-lg text-white disabled:opacity-40" style={{ background: "#E8722A" }}>
+              className="inline-flex items-center gap-1.5 text-sm font-semibold px-5 py-2.5 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors disabled:opacity-40">
               Continue <ArrowRight className="w-4 h-4" />
             </button>
           ) : (

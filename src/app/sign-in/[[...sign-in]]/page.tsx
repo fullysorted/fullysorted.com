@@ -2,17 +2,27 @@ import { SignIn } from '@clerk/nextjs';
 
 export default function SignInPage() {
   return (
-    <div className="min-h-screen bg-stone-50 flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen bg-background flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-stone-900 mb-2">Welcome Back</h1>
-          <p className="text-stone-500">Sign in to manage your listings and favorites.</p>
+          {/* Tricolor motif */}
+          <div className="flex items-center justify-center gap-1.5 mb-4" aria-hidden>
+            <span className="w-2 h-2 bg-accent" />
+            <span className="w-2 h-2 bg-blue" />
+            <span className="w-2 h-2 bg-gold" />
+          </div>
+          <h1 className="font-display font-semibold tracking-tight text-3xl text-foreground mb-2">
+            Welcome Back
+          </h1>
+          <p className="text-text-secondary">Sign in to manage your listings and favorites.</p>
         </div>
         <SignIn
           appearance={{
             elements: {
               rootBox: 'mx-auto',
               card: 'shadow-xl rounded-2xl',
+              formButtonPrimary:
+                'bg-accent hover:bg-accent-hover text-white font-semibold',
             },
           }}
         />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Check, Clock, RefreshCw, Loader2, CheckCircle2 } from "lucide-react";
 
 interface Pkg {
@@ -42,14 +43,15 @@ export function OrderPanel({ gigSlug, packages }: { gigSlug: string; packages: P
   }
 
   return (
-    <div className="rounded-2xl bg-white overflow-hidden sticky top-6" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
+    <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: "easeOut" }}
+      className="rounded-2xl bg-white overflow-hidden sticky top-6" style={{ border: "1px solid rgba(0,0,0,0.10)", boxShadow: "0 24px 60px -20px rgba(26,26,24,0.35)" }}>
       {/* Tier tabs */}
       <div className="flex" style={{ borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         {packages.map((p, i) => (
           <button key={p.id} onClick={() => setSel(i)}
             className="flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors"
-            style={{ background: i === sel ? "rgba(232,114,42,0.08)" : "#fff", color: i === sel ? "#E8722A" : "#9a9a8a",
-              borderBottom: i === sel ? "2px solid #E8722A" : "2px solid transparent" }}>
+            style={{ background: i === sel ? "rgba(30,96,145,0.07)" : "#fff", color: i === sel ? "#1E6091" : "#9a9a8a",
+              borderBottom: i === sel ? "2px solid #1E6091" : "2px solid transparent" }}>
             {p.tier}
           </button>
         ))}
@@ -76,27 +78,28 @@ export function OrderPanel({ gigSlug, packages }: { gigSlug: string; packages: P
         )}
 
         {done ? (
-          <div className="rounded-xl p-4 text-center" style={{ background: "rgba(106,176,76,0.1)" }}>
+          <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.35, ease: "easeOut" }}
+            className="rounded-xl p-4 text-center" style={{ background: "rgba(106,176,76,0.1)" }}>
             <CheckCircle2 className="w-7 h-7 mx-auto mb-2" style={{ color: "#6ab04c" }} />
             <p className="text-sm font-bold" style={{ color: "#1a1a18" }}>Request sent!</p>
             <p className="text-xs mt-1" style={{ color: "#6b6b5e" }}>The provider will reach out to arrange details and payment directly.</p>
-          </div>
+          </motion.div>
         ) : !open ? (
           <button onClick={() => setOpen(true)}
-            className="w-full h-11 rounded-xl text-white text-sm font-bold transition-opacity hover:opacity-90" style={{ background: "#E8722A" }}>
+            className="w-full h-11 rounded-xl text-white text-sm font-bold bg-accent hover:bg-accent-hover transition-colors shine">
             Request this gig (${pkg.price.toLocaleString()})
           </button>
         ) : (
           <form onSubmit={submit} className="space-y-2.5">
             <input required placeholder="Your name" value={form.buyerName} onChange={e => setForm({ ...form, buyerName: e.target.value })}
-              className="w-full h-10 px-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-200" style={{ borderColor: "rgba(0,0,0,0.12)" }} />
+              className="w-full h-10 px-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-light focus:border-accent" style={{ borderColor: "rgba(0,0,0,0.12)" }} />
             <input required type="email" placeholder="Your email" value={form.buyerEmail} onChange={e => setForm({ ...form, buyerEmail: e.target.value })}
-              className="w-full h-10 px-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-200" style={{ borderColor: "rgba(0,0,0,0.12)" }} />
+              className="w-full h-10 px-3 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-light focus:border-accent" style={{ borderColor: "rgba(0,0,0,0.12)" }} />
             <textarea rows={3} placeholder="Tell them about your car and what you need…" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
-              className="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-200 resize-none" style={{ borderColor: "rgba(0,0,0,0.12)" }} />
-            {error && <p className="text-xs" style={{ color: "#b4451f" }}>{error}</p>}
+              className="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-light focus:border-accent resize-none" style={{ borderColor: "rgba(0,0,0,0.12)" }} />
+            {error && <p className="text-xs" style={{ color: "#DC2626" }}>{error}</p>}
             <button type="submit" disabled={submitting}
-              className="w-full h-11 rounded-xl text-white text-sm font-bold inline-flex items-center justify-center gap-2 disabled:opacity-60" style={{ background: "#E8722A" }}>
+              className="w-full h-11 rounded-xl text-white text-sm font-bold inline-flex items-center justify-center gap-2 disabled:opacity-60 bg-accent hover:bg-accent-hover transition-colors">
               {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
               {submitting ? "Sending…" : "Send request"}
             </button>
@@ -106,6 +109,6 @@ export function OrderPanel({ gigSlug, packages }: { gigSlug: string; packages: P
           </form>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

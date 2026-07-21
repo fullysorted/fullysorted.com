@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Search, Loader2, ShieldAlert, Car, ArrowRight, Info } from "lucide-react";
 
 interface Decoded {
@@ -18,7 +19,7 @@ interface Recall {
   consequence: string; remedy: string; reportDate: string;
 }
 
-const ACCENT = "#E8722A";
+const ACCENT = "#1E6091";
 
 export default function VinPage() {
   const [vin, setVin] = useState("");
@@ -54,12 +55,26 @@ export default function VinPage() {
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
       {/* Hero */}
-      <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+      <div className="relative" style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+        <div
+          className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+          style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }}
+        />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <span className="text-xs font-bold uppercase tracking-widest" style={{ color: ACCENT }}>
-            Free VIN Decoder
-          </span>
-          <h1 className="text-3xl sm:text-4xl font-bold mt-2 mb-3" style={{ color: "#1a1a18" }}>
+          <div
+            className="inline-flex items-center gap-2.5 rounded-full px-4 py-1.5"
+            style={{ border: "1px solid rgba(30,96,145,0.28)", background: "rgba(30,96,145,0.07)" }}
+          >
+            <span className="flex gap-1" aria-hidden="true">
+              {["#1E6091", "#1E6091", "#B08D3F"].map((c) => (
+                <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
+              ))}
+            </span>
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: ACCENT }}>
+              Free VIN Decoder
+            </span>
+          </div>
+          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-4 mb-3" style={{ color: "#1a1a18" }}>
             Decode any VIN
           </h1>
           <p className="text-base sm:text-lg leading-relaxed mb-8" style={{ color: "#6b6b5e" }}>
@@ -75,14 +90,14 @@ export default function VinPage() {
                 onChange={(e) => setVin(e.target.value.toUpperCase())}
                 placeholder="e.g. WP0AB2964KS123456"
                 maxLength={17}
-                className="w-full h-12 pl-11 pr-3 text-sm font-mono tracking-wider border rounded-xl focus:outline-none focus:ring-2"
+                className="w-full h-12 pl-11 pr-3 text-sm font-mono tracking-wider border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
                 style={{ borderColor: "rgba(0,0,0,0.12)", caretColor: ACCENT }}
               />
             </div>
             <button
               type="submit"
               disabled={loading || vin.trim().length < 11}
-              className="h-12 px-6 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 inline-flex items-center justify-center gap-2"
+              className="h-12 px-6 text-white text-sm font-bold rounded-xl transition-colors hover:bg-accent-hover disabled:opacity-50 inline-flex items-center justify-center gap-2"
               style={{ background: ACCENT }}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Car className="w-4 h-4" />}
@@ -100,9 +115,14 @@ export default function VinPage() {
 
       {/* Results */}
       {decoded && (
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-8">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-8"
+        >
           <div>
-            <h2 className="text-lg font-bold mb-1" style={{ color: "#1a1a18" }}>
+            <h2 className="font-display font-semibold tracking-tight text-xl mb-1" style={{ color: "#1a1a18" }}>
               {[decoded.modelYear, decoded.make, decoded.model].filter(Boolean).join(" ") || "Decoded vehicle"}
             </h2>
             <p className="text-xs font-mono" style={{ color: "#9a9a8a" }}>{decoded.vin}</p>
@@ -163,7 +183,7 @@ export default function VinPage() {
           >
             Explore model histories <ArrowRight className="w-4 h-4" />
           </Link>
-        </div>
+        </motion.div>
       )}
     </div>
   );

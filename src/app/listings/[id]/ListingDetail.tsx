@@ -65,7 +65,7 @@ function PhotoGallery({ vehicle }: { vehicle: Vehicle }) {
           {vehicle.featured && (
             <span
               className="px-3 py-1 text-xs font-bold text-white rounded-lg shadow-lg"
-              style={{ background: "#E8722A" }}
+              style={{ background: "var(--accent-gold)" }}
             >
               Featured
             </span>
@@ -124,7 +124,7 @@ function PhotoGallery({ vehicle }: { vehicle: Vehicle }) {
                   ? "opacity-100"
                   : "border-transparent opacity-45 hover:opacity-75"
               )}
-              style={i === activeIndex ? { borderColor: "#E8722A" } : {}}
+              style={i === activeIndex ? { borderColor: "var(--accent)" } : {}}
             >
               <Image
                 src={url}
@@ -255,7 +255,7 @@ function ContactForm({
   };
 
   const inputClass =
-    "w-full px-3 py-2.5 text-sm border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-400 transition-colors bg-white";
+    "w-full px-3 py-2.5 text-sm border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent transition-colors bg-white";
 
   if (sent) {
     return (
@@ -272,8 +272,7 @@ function ContactForm({
         </p>
         <button
           onClick={onClose}
-          className="mt-4 px-5 py-2.5 text-sm font-semibold text-white rounded-xl hover:opacity-90 transition-opacity"
-          style={{ background: "#E8722A" }}
+          className="mt-4 px-5 py-2.5 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
         >
           Done
         </button>
@@ -326,8 +325,7 @@ function ContactForm({
       <button
         type="submit"
         disabled={sending}
-        className="w-full h-12 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
-        style={{ background: "#E8722A" }}
+        className="w-full h-12 text-white text-sm font-bold rounded-xl bg-accent hover:bg-accent-hover transition-all disabled:opacity-60 flex items-center justify-center gap-2"
       >
         <MessageCircle className="w-4 h-4" />
         {sending ? "Opening email..." : "Send Message"}
@@ -397,7 +395,7 @@ export function ListingDetail({ vehicle }: Props) {
                 style={{ color: "#6b6b5e", border: "1px solid rgba(0,0,0,0.12)" }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.color = "#1a1a18";
-                  (e.currentTarget as HTMLElement).style.borderColor = "#E8722A";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#1E6091";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.color = "#6b6b5e";
@@ -412,7 +410,7 @@ export function ListingDetail({ vehicle }: Props) {
                 style={{ color: "#6b6b5e", border: "1px solid rgba(0,0,0,0.12)" }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.color = "#1a1a18";
-                  (e.currentTarget as HTMLElement).style.borderColor = "#E8722A";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#1E6091";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.color = "#6b6b5e";
@@ -438,7 +436,7 @@ export function ListingDetail({ vehicle }: Props) {
           <div className="lg:col-span-2 space-y-8">
             {/* Title & Location */}
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-stone-900">
+              <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl leading-[1.1] text-stone-900">
                 {vehicle.title}
               </h1>
               <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-stone-400">
@@ -461,12 +459,12 @@ export function ListingDetail({ vehicle }: Props) {
             {vehicle.chrisTake && (
               <div
                 className="rounded-2xl p-5"
-                style={{ background: "rgba(232,114,42,0.06)", border: "1px solid rgba(232,114,42,0.15)" }}
+                style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.16)" }}
               >
                 <div className="flex items-start gap-3">
                   <div
                     className="w-10 h-10 rounded-xl text-white flex items-center justify-center text-xs font-bold shrink-0"
-                    style={{ background: "#E8722A" }}
+                    style={{ background: "var(--accent)" }}
                   >
                     FS
                   </div>
@@ -485,7 +483,7 @@ export function ListingDetail({ vehicle }: Props) {
             {vehicle.description && (
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-6 h-px" style={{ background: "#E8722A" }} />
+                  <div className="w-6 h-px" style={{ background: "var(--accent)" }} />
                   <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest">
                     About This Car
                   </h2>
@@ -500,7 +498,7 @@ export function ListingDetail({ vehicle }: Props) {
             {vehicle.highlights.length > 0 && (
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-6 h-px" style={{ background: "#E8722A" }} />
+                  <div className="w-6 h-px" style={{ background: "var(--accent)" }} />
                   <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest">
                     Highlights
                   </h2>
@@ -525,7 +523,7 @@ export function ListingDetail({ vehicle }: Props) {
             {/* Specs Table */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-px" style={{ background: "#E8722A" }} />
+                <div className="w-6 h-px" style={{ background: "var(--accent)" }} />
                 <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest">
                   Specifications
                 </h2>
@@ -583,7 +581,7 @@ export function ListingDetail({ vehicle }: Props) {
               <p className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-1">
                 Asking Price
               </p>
-              <p className="text-3xl font-bold text-stone-900">
+              <p className="price-display text-3xl text-stone-900">
                 {formatPrice(vehicle.price)}
               </p>
 
@@ -607,7 +605,7 @@ export function ListingDetail({ vehicle }: Props) {
                       <span className="text-stone-400">vs. Market</span>
                       <span
                         className="font-bold flex items-center gap-1"
-                        style={{ color: isAbove ? "#E8722A" : "#6ab04c" }}
+                        style={{ color: isAbove ? "#8A6D2F" : "#6ab04c" }}
                       >
                         {isAbove ? (
                           <TrendingUp className="w-3.5 h-3.5" />
@@ -645,15 +643,15 @@ export function ListingDetail({ vehicle }: Props) {
                   ) : (
                     <div
                       className="mt-3 px-3 py-2.5 rounded-xl"
-                      style={{ background: "rgba(232,114,42,0.07)", border: "1px solid rgba(232,114,42,0.18)" }}
+                      style={{ background: "rgba(176,141,63,0.10)", border: "1px solid rgba(176,141,63,0.28)" }}
                     >
                       <p
                         className="text-xs font-bold"
-                        style={{ color: "#E8722A" }}
+                        style={{ color: "#8A6D2F" }}
                       >
                         Above Average
                       </p>
-                      <p className="text-xs mt-0.5" style={{ color: "rgba(232,114,42,0.7)" }}>
+                      <p className="text-xs mt-0.5" style={{ color: "rgba(120,95,41,0.85)" }}>
                         Condition or rarity may justify the premium
                       </p>
                     </div>
@@ -665,8 +663,7 @@ export function ListingDetail({ vehicle }: Props) {
               <div className="mt-5 space-y-2.5">
                 <button
                   onClick={() => setContactOpen(true)}
-                  className="w-full h-12 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-all flex items-center justify-center gap-2"
-                  style={{ background: "#E8722A" }}
+                  className="w-full h-12 text-white text-sm font-bold rounded-xl bg-accent hover:bg-accent-hover transition-all flex items-center justify-center gap-2"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Contact Seller

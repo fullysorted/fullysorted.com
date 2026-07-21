@@ -11,10 +11,15 @@ export default function PrivacyPage() {
     <main className="min-h-screen" style={{ background: "#faf9f7" }}>
       <section style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#E8722A" }}>
+          <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#1E6091" }}>
+            <span className="inline-flex gap-1" aria-hidden="true">
+              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
+            </span>
             Legal
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-4" style={{ color: "#1a1a18" }}>
+          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-4" style={{ color: "#1a1a18" }}>
             Privacy Policy
           </h1>
           <p className="text-sm" style={{ color: "#9a9a8a" }}>
@@ -91,7 +96,7 @@ export default function PrivacyPage() {
               <a
                 href="mailto:chris@fullysorted.com"
                 className="font-semibold hover:opacity-70 transition-opacity"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#1E6091" }}
               >
                 chris@fullysorted.com
               </a>
@@ -99,7 +104,7 @@ export default function PrivacyPage() {
               <Link
                 href="/contact"
                 className="font-semibold hover:opacity-70 transition-opacity"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#1E6091" }}
               >
                 contact form
               </Link>.

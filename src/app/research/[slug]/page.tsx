@@ -54,11 +54,11 @@ function renderContent(content: string): string {
 
 // Category badge colours
 const categoryColor: Record<string, string> = {
-  "Weekly Report": "#E8722A",
+  "Weekly Report": "#1E6091",
   "What Would Chris Buy?": "#29ABE2",
   "Sorted or Not": "#6ab04c",
-  "The Long Game": "#8b5cf6",
-  "San Diego Car Culture": "#E8722A",
+  "The Long Game": "#1E6091",
+  "San Diego Car Culture": "#B08D3F",
 };
 
 export default async function ArticlePage({ params }: Props) {
@@ -66,7 +66,7 @@ export default async function ArticlePage({ params }: Props) {
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
-  const color = categoryColor[article.category] ?? "#E8722A";
+  const color = categoryColor[article.category] ?? "#1E6091";
   const html = renderContent(article.content);
 
   // Related articles (everything except this one, max 3)
@@ -152,7 +152,7 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           {/* Title */}
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4" style={{ color: "#1a1a18" }}>
+          <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-[1.1] mb-4" style={{ color: "#1a1a18" }}>
             {article.title}
           </h1>
 
@@ -168,7 +168,7 @@ export default async function ArticlePage({ params }: Props) {
           <div className="flex items-center gap-3 mt-8 pt-6" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center text-xs font-bold text-white shrink-0"
-              style={{ background: "#E8722A" }}
+              style={{ background: "#1E6091" }}
             >
               CP
             </div>
@@ -200,7 +200,7 @@ export default async function ArticlePage({ params }: Props) {
               <Link
                 href="/research"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#1E6091" }}
               >
                 <ArrowLeft className="w-4 h-4" />
                 Back to Research
@@ -235,12 +235,12 @@ export default async function ArticlePage({ params }: Props) {
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="w-full h-10 px-3 text-sm border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-400"
+                  className="w-full h-10 px-3 text-sm border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
                 />
                 <button
                   type="submit"
                   className="w-full h-10 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
-                  style={{ background: "#E8722A" }}
+                  style={{ background: "#1E6091" }}
                 >
                   Subscribe — Free
                 </button>
@@ -251,8 +251,8 @@ export default async function ArticlePage({ params }: Props) {
             <div
               className="rounded-2xl p-5"
               style={{
-                background: "rgba(232,114,42,0.06)",
-                border: "1px solid rgba(232,114,42,0.15)",
+                background: "rgba(30,96,145,0.06)",
+                border: "1px solid rgba(30,96,145,0.18)",
               }}
             >
               <p className="font-bold text-stone-800 text-sm mb-1">
@@ -264,7 +264,7 @@ export default async function ArticlePage({ params }: Props) {
               <Link
                 href="/value-guide"
                 className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors"
-                style={{ color: "#E8722A" }}
+                style={{ color: "#1E6091" }}
               >
                 Open Value Guide <ArrowRight className="w-3 h-3" />
               </Link>
@@ -279,19 +279,19 @@ export default async function ArticlePage({ params }: Props) {
                 boxShadow: "0 4px 24px rgba(0,0,0,0.05)",
               }}
             >
-              <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#E8722A" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#1E6091" }}>
                 List Your Car
               </p>
               <p className="font-bold text-sm mb-2" style={{ color: "#1a1a18" }}>
                 Reach serious buyers
               </p>
               <p className="text-xs mb-4" style={{ color: "#9a9a8a" }}>
-                Listings from $9.99. No commissions. Fully Sorted audience.
+                Listings from $9.99. Fully Sorted audience.
               </p>
               <Link
                 href="/sell"
-                className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2.5 rounded-lg text-white transition-opacity hover:opacity-90"
-                style={{ background: "#E8722A" }}
+                className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2.5 rounded-lg transition-colors hover:bg-accent-light"
+                style={{ color: "#1E6091", border: "1px solid rgba(30,96,145,0.35)" }}
               >
                 Get Started
               </Link>
@@ -303,14 +303,14 @@ export default async function ArticlePage({ params }: Props) {
         {related.length > 0 && (
           <div className="mt-16">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-6 h-px" style={{ background: "#E8722A" }} />
+              <div className="w-6 h-px" style={{ background: "#1E6091" }} />
               <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest">
                 More from the Research Desk
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {related.map((rel) => {
-                const relColor = categoryColor[rel.category] ?? "#E8722A";
+                const relColor = categoryColor[rel.category] ?? "#1E6091";
                 return (
                   <Link
                     key={rel.slug}
@@ -324,7 +324,7 @@ export default async function ArticlePage({ params }: Props) {
                     >
                       {rel.category}
                     </span>
-                    <h3 className="font-bold text-stone-800 mt-2 leading-snug group-hover:text-orange-600 transition-colors text-sm">
+                    <h3 className="font-bold text-stone-800 mt-2 leading-snug group-hover:text-accent transition-colors text-sm">
                       {rel.title}
                     </h3>
                     <p className="text-xs text-stone-400 mt-2 line-clamp-2">

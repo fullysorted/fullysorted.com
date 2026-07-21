@@ -66,6 +66,20 @@ export function generateStaticParams() {
   return events.map((e) => ({ slug: e.slug }));
 }
 
+// Editorial hero photography — moody classics that sit well under the green overlay
+const HERO_PHOTOS = [
+  "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80",
+  "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80",
+  "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80",
+  "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80",
+];
+
+function heroPhotoFor(slug: string): string {
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) hash = (hash + slug.charCodeAt(i)) % 997;
+  return HERO_PHOTOS[hash % HERO_PHOTOS.length];
+}
+
 // Lightweight markdown → HTML for body
 function renderBody(content: string): string {
   return content
@@ -195,16 +209,22 @@ export default async function EventPage({ params }: Props) {
 
       {/* Hero header */}
       <section
+        className="relative overflow-hidden"
         style={{
-          background: "#fff",
+          backgroundImage: `linear-gradient(rgba(15,32,50,0.6), rgba(15,32,50,0.8)), url('${heroPhotoFor(event.slug)}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           borderBottom: "1px solid rgba(0,0,0,0.07)",
         }}
       >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+        <div
+          className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <Link
             href="/events"
-            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 transition-colors hover:text-stone-900"
-            style={{ color: "#6b6b5e" }}
+            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 transition-colors text-white/70 hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             All Events
@@ -212,66 +232,51 @@ export default async function EventPage({ params }: Props) {
 
           {/* Category badge */}
           <span
-            className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4 text-white"
             style={{
-              background: "rgba(232,114,42,0.12)",
-              color: "#E8722A",
+              background: "rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.3)",
             }}
           >
+            <span className="flex gap-1" aria-hidden="true">
+              <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
+              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
+            </span>
             {event.category}
           </span>
 
-          <h1
-            className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-3"
-            style={{ color: "#1a1a18" }}
-          >
+          <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-[1.08] mb-3 text-white">
             {event.title}
           </h1>
 
           {event.tagline && (
             <p
               className="text-base sm:text-lg font-semibold uppercase tracking-wider mb-5"
-              style={{ color: "#E8722A" }}
+              style={{ color: "#D9BC7A" }}
             >
               {event.tagline}
             </p>
           )}
 
-          <p
-            className="text-lg leading-relaxed max-w-3xl mb-6"
-            style={{ color: "#6b6b5e" }}
-          >
+          <p className="text-lg leading-relaxed max-w-3xl mb-6 text-white/85">
             {event.excerpt}
           </p>
 
           {/* Date + venue chips */}
           <div className="flex flex-wrap gap-3">
             <div
-              className="inline-flex items-center gap-2 text-sm font-semibold px-3.5 py-2 rounded-lg"
-              style={{
-                background: "#faf9f7",
-                border: "1px solid rgba(0,0,0,0.07)",
-                color: "#1a1a18",
-              }}
+              className="glass inline-flex items-center gap-2 text-sm font-semibold px-3.5 py-2 rounded-lg"
+              style={{ color: "#1a1a18" }}
             >
-              <Calendar
-                className="w-4 h-4"
-                style={{ color: "#E8722A" }}
-              />
+              <Calendar className="w-4 h-4 text-accent" />
               {event.dateLabel}
             </div>
             <div
-              className="inline-flex items-center gap-2 text-sm font-semibold px-3.5 py-2 rounded-lg"
-              style={{
-                background: "#faf9f7",
-                border: "1px solid rgba(0,0,0,0.07)",
-                color: "#1a1a18",
-              }}
+              className="glass inline-flex items-center gap-2 text-sm font-semibold px-3.5 py-2 rounded-lg"
+              style={{ color: "#1a1a18" }}
             >
-              <MapPin
-                className="w-4 h-4"
-                style={{ color: "#E8722A" }}
-              />
+              <MapPin className="w-4 h-4 text-accent" />
               {event.venueName}, {event.city}
             </div>
             {event.url && (
@@ -279,8 +284,7 @@ export default async function EventPage({ params }: Props) {
                 href={event.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-bold px-3.5 py-2 rounded-lg text-white transition-opacity hover:opacity-90"
-                style={{ background: "#E8722A" }}
+                className="inline-flex items-center gap-2 text-sm font-bold px-3.5 py-2 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors"
               >
                 Official Site
                 <ExternalLink className="w-4 h-4" />
@@ -288,6 +292,14 @@ export default async function EventPage({ params }: Props) {
             )}
           </div>
         </div>
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, #1E6091 35%, #B08D3F 65%, transparent)",
+          }}
+          aria-hidden="true"
+        />
       </section>
 
       {/* Body */}
@@ -299,13 +311,12 @@ export default async function EventPage({ params }: Props) {
               <div
                 className="rounded-2xl p-5 mb-8"
                 style={{
-                  background: "rgba(232,114,42,0.06)",
-                  border: "1px solid rgba(232,114,42,0.18)",
+                  background: "rgba(30,96,145,0.07)",
+                  border: "1px solid rgba(30,96,145,0.28)",
                 }}
               >
                 <p
-                  className="text-xs font-bold uppercase tracking-widest mb-2"
-                  style={{ color: "#E8722A" }}
+                  className="text-xs font-bold uppercase tracking-widest mb-2 text-accent"
                 >
                   Note from Chris
                 </p>
@@ -327,12 +338,9 @@ export default async function EventPage({ params }: Props) {
             {event.schedule && event.schedule.length > 0 && (
               <div className="mt-12">
                 <div className="flex items-center gap-2 mb-5">
-                  <Clock
-                    className="w-5 h-5"
-                    style={{ color: "#E8722A" }}
-                  />
+                  <Clock className="w-5 h-5 text-accent" />
                   <h2
-                    className="text-xl sm:text-2xl font-bold"
+                    className="font-display font-semibold tracking-tight text-xl sm:text-2xl"
                     style={{ color: "#1a1a18" }}
                   >
                     Weekend schedule
@@ -349,8 +357,7 @@ export default async function EventPage({ params }: Props) {
                       }}
                     >
                       <p
-                        className="text-xs font-bold uppercase tracking-widest mb-1"
-                        style={{ color: "#E8722A" }}
+                        className="text-xs font-bold uppercase tracking-widest mb-1 text-accent"
                       >
                         {s.day}
                       </p>
@@ -386,12 +393,9 @@ export default async function EventPage({ params }: Props) {
             {event.tickets && event.tickets.length > 0 && (
               <div className="mt-12">
                 <div className="flex items-center gap-2 mb-5">
-                  <Ticket
-                    className="w-5 h-5"
-                    style={{ color: "#E8722A" }}
-                  />
+                  <Ticket className="w-5 h-5 text-accent" />
                   <h2
-                    className="text-xl sm:text-2xl font-bold"
+                    className="font-display font-semibold tracking-tight text-xl sm:text-2xl"
                     style={{ color: "#1a1a18" }}
                   >
                     Tickets
@@ -432,8 +436,7 @@ export default async function EventPage({ params }: Props) {
                         )}
                       </div>
                       <p
-                        className="font-black text-base sm:text-lg shrink-0"
-                        style={{ color: "#E8722A" }}
+                        className="price-display text-base sm:text-lg shrink-0 text-accent"
                       >
                         {t.price}
                       </p>
@@ -445,8 +448,7 @@ export default async function EventPage({ params }: Props) {
                     href={event.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-lg text-white transition-opacity hover:opacity-90"
-                    style={{ background: "#E8722A" }}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors"
                   >
                     Buy tickets on lajollaconcours.com
                     <ExternalLink className="w-4 h-4" />
@@ -461,8 +463,7 @@ export default async function EventPage({ params }: Props) {
             >
               <Link
                 href="/events"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
-                style={{ color: "#E8722A" }}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors text-accent hover:text-accent-hover"
               >
                 <ArrowLeft className="w-4 h-4" />
                 All Events
@@ -547,10 +548,7 @@ export default async function EventPage({ params }: Props) {
                       className="font-semibold flex items-center gap-1.5"
                       style={{ color: "#1a1a18" }}
                     >
-                      <Heart
-                        className="w-3.5 h-3.5"
-                        style={{ color: "#E8722A" }}
-                      />
+                      <Heart className="w-3.5 h-3.5 text-gold" />
                       {event.beneficiary}
                     </dd>
                   </div>
@@ -561,8 +559,8 @@ export default async function EventPage({ params }: Props) {
             <div
               className="rounded-2xl p-5"
               style={{
-                background: "rgba(232,114,42,0.06)",
-                border: "1px solid rgba(232,114,42,0.15)",
+                background: "rgba(30,96,145,0.06)",
+                border: "1px solid rgba(30,96,145,0.18)",
               }}
             >
               <p
@@ -576,12 +574,11 @@ export default async function EventPage({ params }: Props) {
                 style={{ color: "#6b6b5e" }}
               >
                 Bringing a car to sell after the show? List it for $9.99
-                and keep 100% of the sale.
+                with a simple one-time flat fee.
               </p>
               <Link
                 href="/sell"
-                className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors"
-                style={{ color: "#E8722A" }}
+                className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors text-accent hover:text-accent-hover"
               >
                 List a Car <ArrowRight className="w-3 h-3" />
               </Link>
@@ -595,7 +592,7 @@ export default async function EventPage({ params }: Props) {
             <div className="flex items-center gap-2 mb-6">
               <div
                 className="w-6 h-px"
-                style={{ background: "#E8722A" }}
+                style={{ background: "#1E6091" }}
               />
               <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest">
                 More Events
@@ -606,24 +603,22 @@ export default async function EventPage({ params }: Props) {
                 <Link
                   key={rel.slug}
                   href={`/events/${rel.slug}`}
-                  className="block rounded-2xl p-5 bg-white hover:shadow-md transition-all group"
-                  style={{ border: "1px solid rgba(0,0,0,0.07)" }}
+                  className="block rounded-2xl p-5 bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group"
+                  style={{ border: "1px solid rgba(0,0,0,0.10)" }}
                 >
                   <span
-                    className="text-xs font-bold uppercase tracking-wider"
-                    style={{ color: "#E8722A" }}
+                    className="text-xs font-bold uppercase tracking-wider text-accent"
                   >
                     {rel.category}
                   </span>
-                  <h3 className="font-bold text-stone-800 mt-2 leading-snug group-hover:text-orange-600 transition-colors text-sm">
+                  <h3 className="font-bold text-stone-800 mt-2 leading-snug group-hover:text-accent transition-colors text-sm">
                     {rel.title}
                   </h3>
                   <p className="text-xs text-stone-400 mt-2 line-clamp-2">
                     {rel.excerpt}
                   </p>
                   <div
-                    className="flex items-center gap-1 mt-3 text-xs font-semibold"
-                    style={{ color: "#E8722A" }}
+                    className="flex items-center gap-1 mt-3 text-xs font-semibold text-accent"
                   >
                     <Calendar className="w-3 h-3" />
                     {rel.dateLabel}

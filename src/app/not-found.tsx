@@ -6,12 +6,12 @@ export default function NotFound() {
     <main className="min-h-[70vh] flex items-center justify-center px-4" style={{ background: "#faf9f7" }}>
       <div className="text-center max-w-md">
         <div
-          className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 text-2xl font-black"
-          style={{ background: "rgba(232,114,42,0.12)", color: "#E8722A" }}
+          className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 text-2xl font-black font-display"
+          style={{ background: "rgba(30,96,145,0.1)", color: "#1E6091" }}
         >
           404
         </div>
-        <h1 className="text-3xl font-black mb-3" style={{ color: "#1a1a18" }}>
+        <h1 className="font-display font-semibold tracking-tight text-3xl mb-3" style={{ color: "#1a1a18" }}>
           Page not found
         </h1>
         <p className="text-base mb-8 leading-relaxed" style={{ color: "#6b6b5e" }}>
@@ -21,8 +21,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/browse"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold rounded-xl text-white transition-opacity hover:opacity-90"
-            style={{ background: "#E8722A" }}
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold rounded-xl text-white bg-accent hover:bg-accent-hover transition-colors"
           >
             <Search className="w-4 h-4" />
             Browse Listings

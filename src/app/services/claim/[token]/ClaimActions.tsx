@@ -43,7 +43,7 @@ export default function ClaimActions({
     if (result.action === 'removed') {
       return (
         <div className="bg-white rounded-2xl border border-border p-8 text-center">
-          <h3 className="text-xl font-bold text-foreground mb-2">Done — you&apos;re removed.</h3>
+          <h3 className="font-display font-semibold tracking-tight text-xl text-foreground mb-2">Done — you&apos;re removed.</h3>
           <p className="text-sm text-text-secondary">
             We won&apos;t reach out again. If you change your mind, email{' '}
             <a href="mailto:chris@fullysorted.com" className="underline">chris@fullysorted.com</a>.
@@ -54,14 +54,13 @@ export default function ClaimActions({
     if (result.action === 'list_only') {
       return (
         <div className="bg-white rounded-2xl border border-border p-8 text-center">
-          <h3 className="text-xl font-bold text-foreground mb-2">You&apos;re live in the directory.</h3>
+          <h3 className="font-display font-semibold tracking-tight text-xl text-foreground mb-2">You&apos;re live in the directory.</h3>
           <p className="text-sm text-text-secondary mb-5">
             <strong>{businessName}</strong> is now visible to collectors browsing Fully Sorted. No account needed.
           </p>
           <Link
             href={`/services/${slug}`}
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl"
-            style={{ background: '#E8722A' }}
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
           >
             View your listing
           </Link>
@@ -71,14 +70,13 @@ export default function ClaimActions({
     // claimed
     return (
       <div className="bg-white rounded-2xl border border-border p-8 text-center">
-        <h3 className="text-xl font-bold text-foreground mb-2">Welcome aboard.</h3>
+        <h3 className="font-display font-semibold tracking-tight text-xl text-foreground mb-2">Welcome aboard.</h3>
         <p className="text-sm text-text-secondary mb-5">
           <strong>{businessName}</strong> is live as a founding provider. Create your account to manage your profile, respond to inquiries, and update your specialties.
         </p>
         <Link
           href="/sign-up"
-          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl"
-          style={{ background: '#E8722A' }}
+          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
         >
           Create your account
         </Link>
@@ -94,8 +92,8 @@ export default function ClaimActions({
         type="button"
         disabled={submitting !== null}
         onClick={() => handle('claim')}
-        className="block w-full text-left p-5 rounded-xl border-2 mb-3 transition-colors disabled:opacity-50"
-        style={{ borderColor: '#E8722A', background: '#FEF0E6' }}
+        className="block w-full text-left p-5 rounded-xl border-2 mb-3 transition-all hover:-translate-y-0.5 hover:shadow-md disabled:opacity-50"
+        style={{ borderColor: 'var(--accent)', background: 'var(--accent-light)' }}
       >
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -106,7 +104,7 @@ export default function ClaimActions({
               Goes live immediately. You&apos;ll create a free account next so you can edit your profile, see who&apos;s reaching out, and add photos.
             </p>
           </div>
-          <span className="text-xl" style={{ color: '#E8722A' }}>→</span>
+          <span className="text-xl" style={{ color: 'var(--accent)' }}>→</span>
         </div>
       </button>
 

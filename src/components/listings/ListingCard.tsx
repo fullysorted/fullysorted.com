@@ -21,7 +21,7 @@ export function ListingCard({ vehicle, index = 0 }: ListingCardProps) {
     >
       <Link
         href={`/listings/${vehicle.slug}`}
-        className="group block bg-white rounded-xl overflow-hidden border border-border hover:border-border-medium transition-all duration-300 hover:shadow-lg"
+        className="group block bg-white rounded-2xl overflow-hidden border border-border hover:border-border-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
       >
         {/* Image Container */}
         <div className="listing-image-container relative aspect-[16/10]">
@@ -37,7 +37,7 @@ export function ListingCard({ vehicle, index = 0 }: ListingCardProps) {
           {/* Badges */}
           <div className="absolute top-3 left-3 flex gap-2">
             {vehicle.featured && (
-              <span className="px-2.5 py-1 text-xs font-semibold bg-orange text-white rounded-md">
+              <span className="px-2.5 py-1 text-xs font-semibold bg-gold text-white rounded-md">
                 Featured
               </span>
             )}
