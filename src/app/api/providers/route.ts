@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDb, schema } from '@/lib/db';
 import { eq } from 'drizzle-orm';
 
-// âââ GET /api/providers âââââââââââââââââââââââââââââââââ
+// ─── GET /api/providers ─────────────────────────────────
 // Returns all active service providers for the directory
 export async function GET() {
   try {
@@ -20,7 +20,7 @@ export async function GET() {
   }
 }
 
-// âââ POST /api/providers ââââââââââââââââââââââââââââââââ
+// ─── POST /api/providers ────────────────────────────────
 // Submit a new provider application & create pending profile
 export async function POST(request: NextRequest) {
   try {

@@ -6,7 +6,7 @@ import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, Clip
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
-// âââ Service Categories ââââââââââââââââââââââââââââââââ
+// ─── Service Categories ────────────────────────────────
 const CATEGORIES = [
   { key: 'all', label: 'All Services', icon: <Sparkles className="w-5 h-5" /> },
   { key: 'photography', label: 'Photography', icon: <Camera className="w-5 h-5" /> },
@@ -32,7 +32,7 @@ const CATEGORY_PHOTOS: Record<string, string> = {
 };
 const DEFAULT_PHOTO = 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80';
 
-// âââ Provider Type ââââââââââââââââââââââââââââââââââââ
+// ─── Provider Type ────────────────────────────────────
 interface Provider {
   id: number;
   businessName: string;
@@ -51,7 +51,7 @@ interface Provider {
   slug: string;
 }
 
-// âââ Provider Card ââââââââââââââââââââââââââââââââââââ
+// ─── Provider Card ────────────────────────────────────
 function ProviderCard({ provider }: { provider: Provider }) {
   const categoryLabel = CATEGORIES.find((c) => c.key === provider.category)?.label ?? provider.category;
   return (
@@ -169,7 +169,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
   );
 }
 
-// âââ Main Directory Component ââââââââââââââââââââââââââ
+// ─── Main Directory Component ──────────────────────────
 export default function ServicesDirectory() {
   // Initialize from URL params so homepage search + category chips deep-link
   // into a pre-filtered directory (/services?q=... or /services?type=...).
@@ -298,7 +298,7 @@ export default function ServicesDirectory() {
         <h3 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-white mb-3">Join the Directory</h3>
         <p className="text-stone-200 mb-2 font-medium">Are you a specialist? Get listed.</p>
         <p className="text-stone-300 mb-6 max-w-xl mx-auto">
-          If you do exceptional work with collector cars â detailing, mechanical, transport, inspection, restoration â apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.
+          If you do exceptional work with collector cars — detailing, mechanical, transport, inspection, restoration — apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link

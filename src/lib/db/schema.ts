@@ -1,6 +1,6 @@
 import { pgTable, serial, text, integer, boolean, timestamp, decimal, jsonb, varchar } from 'drizzle-orm/pg-core';
 
-// âââ Users âââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Users ───────────────────────────────────────────────
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
   email: varchar('email', { length: 255 }).notNull().unique(),
@@ -11,7 +11,7 @@ export const users = pgTable('users', {
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
-// âââ Listings ââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Listings ────────────────────────────────────────────
 export const listings = pgTable('listings', {
   id: serial('id').primaryKey(),
   slug: varchar('slug', { length: 500 }).notNull().unique(),
@@ -79,7 +79,7 @@ export const listings = pgTable('listings', {
   soldAt: timestamp('sold_at'),
 });
 
-// âââ Saved Listings (Favorites) âââââââââââââââââââââââââ
+// ─── Saved Listings (Favorites) ─────────────────────────
 export const savedListings = pgTable('saved_listings', {
   id: serial('id').primaryKey(),
   userId: integer('user_id').references(() => users.id).notNull(),
@@ -87,7 +87,7 @@ export const savedListings = pgTable('saved_listings', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// âââ Comments ââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Comments ────────────────────────────────────────────
 export const comments = pgTable('comments', {
   id: serial('id').primaryKey(),
   listingId: integer('listing_id').references(() => listings.id).notNull(),
@@ -98,7 +98,7 @@ export const comments = pgTable('comments', {
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
-// âââ Market Data (for Value Guide & Monday Movers) ââââââ
+// ─── Market Data (for Value Guide & Monday Movers) ──────
 export const marketData = pgTable('market_data', {
   id: serial('id').primaryKey(),
   segment: varchar('segment', { length: 200 }).notNull(), // e.g., "Air-Cooled 911s"
@@ -110,7 +110,7 @@ export const marketData = pgTable('market_data', {
   recordedAt: timestamp('recorded_at').defaultNow().notNull(),
 });
 
-// âââ Deal Alerts (Early Bird Scraper Results) ââââââââââââ
+// ─── Deal Alerts (Early Bird Scraper Results) ────────────
 export const dealAlerts = pgTable('deal_alerts', {
   id: serial('id').primaryKey(),
   sourceUrl: text('source_url').notNull(),
@@ -125,7 +125,7 @@ export const dealAlerts = pgTable('deal_alerts', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// âââ Provider Applications (Intake Queue) âââââââââââââââ
+// ─── Provider Applications (Intake Queue) ───────────────
 // Messages (Contact + Listing Inquiries)
 // Buyer-to-seller inquiries and offers on listings, plus generic contact form submissions.
 // Previously created via raw SQL in /api/messages — adding here so drizzle-kit keeps it in sync.
@@ -166,7 +166,7 @@ export const providerApplications = pgTable('provider_applications', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// âââ Service Providers (Published Profiles) âââââââââââââ
+// ─── Service Providers (Published Profiles) ─────────────
 export const serviceProviders = pgTable('service_providers', {
   id: serial('id').primaryKey(),
   clerkUserId: varchar('clerk_user_id', { length: 255 }), // Linked Clerk account (nullable until claimed)

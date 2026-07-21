@@ -3,7 +3,7 @@ import { getDb, schema } from '@/lib/db';
 import { eq } from 'drizzle-orm';
 import { auth } from '@clerk/nextjs/server';
 
-// âââ GET /api/providers/me ââââââââââââââââââââââââââââââ
+// ─── GET /api/providers/me ──────────────────────────────
 // Get the current user's provider profile
 export async function GET() {
   try {
@@ -30,7 +30,7 @@ export async function GET() {
   }
 }
 
-// âââ PUT /api/providers/me ââââââââââââââââââââââââââââââ
+// ─── PUT /api/providers/me ──────────────────────────────
 // Update the current user's provider profile
 export async function PUT(request: NextRequest) {
   try {
