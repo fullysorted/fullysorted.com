@@ -22,6 +22,7 @@ export function Header() {
   const { isSignedIn, isLoaded } = useAuth();
 
   return (
+    <>
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
       {/* Signature tricolor accent hairline */}
       <div
@@ -117,7 +118,10 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+    </header>
+      {/* Mobile Menu Overlay — rendered OUTSIDE <header> so position:fixed
+          resolves to the viewport. The header's backdrop-blur creates a
+          containing block that would otherwise trap this fixed overlay. */}
       <div
         className={cn(
           "md:hidden fixed inset-0 top-16 z-50 transition-transform duration-300 ease-in-out",
@@ -177,6 +181,6 @@ export function Header() {
           )}
         </nav>
       </div>
-    </header>
+    </>
   );
 }
