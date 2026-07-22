@@ -58,16 +58,16 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://fullysorted.com",
     siteName: "Fully Sorted",
-    title: "Fully Sorted — The Collector Car Marketplace",
+    title: "Fully Sorted — The Collector Car Services Hub",
     description:
-      "List your collector car for $9.99. Simple flat fees. Built by enthusiasts, for enthusiasts.",
+      "Trusted specialists for everything your collector car needs — inspection, detailing, transport, restoration and more.",
     // Note: opengraph-image.png in src/app/ is auto-registered by Next.js
     // metadata conventions — do NOT set images[] here or it will override.
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fully Sorted — The Collector Car Marketplace",
-    description: "List your collector car for $9.99. Simple flat fees, straightforward pricing.",
+    title: "Fully Sorted — The Collector Car Services Hub",
+    description: "Trusted specialists for everything your collector car needs — inspection, detailing, transport, restoration and more.",
     creator: "@fully_sorted",
   },
   robots: {
