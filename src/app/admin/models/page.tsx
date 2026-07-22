@@ -59,6 +59,21 @@ export default function AdminModelsPage() {
     load();
   }
 
+  async function publishAll() {
+    const n = models.filter(m => m.status !== "published").length;
+    if (n === 0) { setGenMsg("All model pages are already published."); return; }
+    if (!confirm(`Publish all ${n} unpublished model ${n === 1 ? "page" : "pages"} live to the public site?`)) return;
+    setGenMsg("Publishing…");
+    const res = await fetch("/api/admin/models", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "publish-all" }),
+    });
+    const d = await res.json();
+    setGenMsg(res.ok ? `✓ Published ${d.published} page${d.published === 1 ? "" : "s"} — they are now live.` : `✗ ${d.error}`);
+    load();
+  }
+
   async function runGenerate(e: React.FormEvent) {
     e.preventDefault();
     setGenerating(true); setGenMsg("Researching across sources — this can take a minute…");
@@ -82,9 +97,18 @@ export default function AdminModelsPage() {
             {models.length} pages · {models.filter(m => m.status === "draft").length} awaiting review · {queue.filter(q => q.status === "queued").length} queued
           </p>
         </div>
-        <button onClick={load} className="p-2 border border-border rounded-lg hover:bg-surface transition-colors">
-          <RefreshCw className="w-4 h-4 text-text-secondary" />
-        </button>
+        <div className="flex items-center gap-2">
+          {models.some(m => m.status !== "published") && (
+            <button onClick={publishAll}
+              className="h-9 px-4 text-sm font-semibold text-white rounded-lg inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+              style={{ backgroundColor: "#3f7a2e" }}>
+              <CheckCircle2 className="w-4 h-4" /> Publish all ({models.filter(m => m.status !== "published").length})
+            </button>
+          )}
+          <button onClick={load} className="p-2 border border-border rounded-lg hover:bg-surface transition-colors">
+            <RefreshCw className="w-4 h-4 text-text-secondary" />
+          </button>
+        </div>
       </div>
 
       {noDb && (

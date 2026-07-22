@@ -48,6 +48,19 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json();
   const { action, make, model, generation } = body;
+
+  // Bulk publish every non-published model page (no make/model needed).
+  if (action === 'publish-all') {
+    const sqlp = await getSql();
+    const rows = (await sqlp`
+      UPDATE vehicle_models
+      SET status='published', published_at=COALESCE(published_at, NOW()), updated_at=NOW()
+      WHERE status != 'published'
+      RETURNING id
+    `) as { id: number }[];
+    return NextResponse.json({ success: true, published: rows.length });
+  }
+
   if (!make || !model) return NextResponse.json({ error: 'make and model required' }, { status: 400 });
 
   const sql = await getSql();
