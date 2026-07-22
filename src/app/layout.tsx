@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { JsonLd, organizationSchema, websiteSchema } from "@/components/seo/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -104,6 +105,7 @@ export default function RootLayout({
         </head>
         <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
           <MetaPixel />
+          <GoogleAnalytics />
           <Header />
           <main className="flex-1 pb-20 md:pb-0">{children}</main>
           <Footer />

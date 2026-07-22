@@ -6,9 +6,27 @@ import { seedE30M3 } from '@/lib/data/model-seed-e30-m3';
 import { seed308 } from '@/lib/data/model-seed-308';
 import { seedSupraA80 } from '@/lib/data/model-seed-supra-a80';
 import { seedNsx } from '@/lib/data/model-seed-nsx';
+import { seedCorvetteC2 } from '@/lib/data/model-seed-corvette-c2';
+import { seedMustang1stGen } from '@/lib/data/model-seed-mustang-1st-gen';
+import { seed930Turbo } from '@/lib/data/model-seed-930-turbo';
+import { seedRx7Fd } from '@/lib/data/model-seed-rx7-fd';
+import { seedETypeS1 } from '@/lib/data/model-seed-etype-s1';
+import { seedBronco1stGen } from '@/lib/data/model-seed-bronco-1st-gen';
+import { seedFj40 } from '@/lib/data/model-seed-fj40';
+import { seedW113Pagoda } from '@/lib/data/model-seed-w113-pagoda';
+import { seedBmw2002 } from '@/lib/data/model-seed-bmw-2002';
+import { seedSkylineR34 } from '@/lib/data/model-seed-skyline-r34';
+import { seedCountach } from '@/lib/data/model-seed-countach';
+import { seedTestarossa } from '@/lib/data/model-seed-testarossa';
+import { seedShelbyCobra } from '@/lib/data/model-seed-shelby-cobra';
+import { seedDeLoreanDmc12 } from '@/lib/data/model-seed-delorean-dmc12';
+import { seedBmwIsetta } from '@/lib/data/model-seed-bmw-isetta';
+import { seedAmphicar770 } from '@/lib/data/model-seed-amphicar-770';
+import { seed356 } from '@/lib/data/model-seed-porsche-356';
+import { seedCitroenDs } from '@/lib/data/model-seed-citroen-ds';
 
 // All researched model drafts to seed (status='draft' for human review).
-const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx];
+const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx, seedCorvetteC2, seedMustang1stGen, seed930Turbo, seedRx7Fd, seedETypeS1, seedBronco1stGen, seedFj40, seedW113Pagoda, seedBmw2002, seedSkylineR34, seedCountach, seedTestarossa, seedShelbyCobra, seedDeLoreanDmc12, seedBmwIsetta, seedAmphicar770, seed356, seedCitroenDs];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {

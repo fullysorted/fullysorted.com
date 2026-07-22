@@ -1,0 +1,75 @@
+/**
+ * Researched model draft — Chevrolet Corvette (C2 "Sting Ray"), 1963–1967.
+ * Cross-checked across independent sources; seeded as status='draft' for human
+ * review in /admin/models before publishing. Conflicts are recorded as
+ * 'disputed' claims with both sides. Synthesized in our own words.
+ */
+export const seedCorvetteC2 = {
+ "slug": "chevrolet/corvette-c2",
+ "make": "Chevrolet",
+ "model": "Corvette",
+ "generation": "C2 Sting Ray",
+ "generationCode": "C2",
+ "trim": null,
+ "yearStart": 1963,
+ "yearEnd": 1967,
+ "bodyStyles": ["Coupe", "Convertible"],
+ "engines": [
+  "327 cu in (5.4L) small-block V8, base ~250-300 hp (1963-65)",
+  "327 cu in L84 'Fuelie' with Rochester fuel injection, 360 hp (1963), 375 hp (1964-65)",
+  "396 cu in (6.5L) L78 big-block V8, 425 hp (mid-1965 only)",
+  "427 cu in (7.0L) big-block V8, 390/400/425 hp variants (1966-67)",
+  "427 cu in L71 Tri-Power big-block, 435 hp (1967)",
+  "427 cu in L88 aluminum-head big-block, advertised 430 hp / est. 500+ hp (1967, ~20 built)"
+ ],
+ "productionTotal": 117964,
+ "productionNotes": "Total C2 production is consistently cited as 117,964 cars across 1963-1967. Per-year figures (Corvette Central / Wikipedia): 1963 = 21,513 (10,594 coupes / 10,919 convertibles); 1964 = 22,229; 1965 = 23,562; 1966 = 27,720; 1967 = 22,940. The 1965 figure is minorly disputed: Corvette Central and Wikipedia give 23,562 while Hagerty's guide lists 23,564 (a two-unit discrepancy, likely a rounding/record variance rather than a substantive conflict). All 10,594 of the 1963 coupes were the one-year-only split-window design. 1965 fuel-injected (L84) production is cited by Hagerty at 771 units, its final year before the big-block eclipsed the option.",
+ "notableTrims": [
+  {"name": "1963 Split-Window Coupe", "note": "One-year-only divided rear window (Bill Mitchell styling signature); all 10,594 '63 coupes had it. Most collectible/valuable C2 body variant."},
+  {"name": "L84 'Fuelie' 327", "note": "Rochester mechanical fuel injection; 360 hp (1963) then 375 hp (1964-65). Rare, expensive when new, and hard to keep tuned—many were converted to carbs, boosting surviving-original values."},
+  {"name": "Z06 (1963)", "note": "Race-oriented performance package offered 1963 only; heavy-duty brakes/suspension, big tank. Very low production."},
+  {"name": "1963 Grand Sport", "note": "Just 5 built as a homologation special (125 planned) before GM's racing ban killed the program; aluminum ~377 cu in engine. Among the most valuable Corvettes ever."},
+  {"name": "L88 (1967)", "note": "Approximately 20 built. Aluminum-head 427, ~12.5:1 compression, deliberately underrated at 430 hp (widely estimated 500+ hp). A racing homologation engine, no radio/heater—extremely rare and valuable."}
+ ],
+ "specs": {
+  "Layout": "Front-engine, rear-wheel drive",
+  "Wheelbase": "98.0 in (2,489 mm)",
+  "Curb weight": "~3,150-3,400 lb depending on year/engine",
+  "Chassis": "Ladder frame with fiberglass body over steel 'bird-cage' structure",
+  "Front suspension": "Independent, unequal-length A-arms, coil springs",
+  "Rear suspension": "Independent (IRS)—frame-mounted differential, U-jointed half-shafts, transverse leaf spring (first for Corvette)",
+  "Brakes": "4-wheel drums (1963-64); 4-wheel discs standard from 1965, ~461 sq in swept area",
+  "Transmissions": "3- and 4-speed manual; 2-speed Powerglide automatic",
+  "0-60 mph": "~5.6-5.8 sec (fuel-injected 327); faster with 427",
+  "Top engine (1967)": "427 L71 Tri-Power 435 hp; L88 aluminum 427 (~20 built)"
+ },
+ "summary": "The second-generation Corvette (C2), sold 1963-1967 and named 'Sting Ray,' is one of the most revered American sports cars. Styled under Bill Mitchell and engineered with heavy input from Zora Arkus-Duntov, it introduced a fully independent rear suspension—a first for the Corvette—transforming its handling. The 1963 coupe's one-year-only split rear window is the generation's signature and its most collectible body. Early cars leaned on the small-block 327, including the fuel-injected 'Fuelie' L84 (up to 375 hp), while 1965 brought standard four-wheel disc brakes and, mid-year, the first big-block (396). The 427 followed for 1966-67, culminating in the legendary, ultra-rare 1967 L88. Just 117,964 C2s were built across five model years. Today the C2 is a blue-chip collector car, prized for its combination of landmark styling, engineering firsts, and a broad menu of small- and big-block powertrains.",
+ "history": "## Origins and styling\nThe C2 arrived for 1963 as a clean-sheet redesign. Its dramatic shape traced to Bill Mitchell's design studio and the earlier Sting Ray racer, with additional inspiration cited from the Jaguar E-Type and a mako shark. Mitchell adopted the 'Sting Ray' name for the production car. The most famous detail—the divided ('split') rear window on the 1963 coupe—was Mitchell's aesthetic insistence; visibility complaints led to its deletion after a single year, making the '63 uniquely collectible.\n\n## Engineering firsts\nUnder Arkus-Duntov, the C2 gained a fully independent rear suspension: a frame-mounted differential with U-jointed half-shafts located by a transverse leaf spring. This cut unsprung weight and sharply improved ride and handling over the solid-axle C1. For 1965, four-wheel disc brakes became standard, a major stopping-power upgrade over the previous drums.\n\n## Engines\nEarly C2s used the 327 small-block, topped by the Rochester fuel-injected L84 'Fuelie' (360 hp in 1963, 375 hp in 1964-65). Fuel injection was costly and finicky; the arrival of cheaper, more powerful big-blocks doomed it. Mid-1965 introduced the 396 big-block (425 hp), replaced for 1966 by the 427, offered in escalating states of tune through 1967, including the 435-hp Tri-Power L71.\n\n## The L88 and racing\nFor 1967 Chevrolet built roughly 20 examples of the L88—an aluminum-head 427 with very high compression, factory-rated at a deliberately conservative 430 hp but widely estimated well above 500. Aimed at racers, it remains among the rarest and most valuable Corvettes. Earlier, the 1963 Grand Sport (only 5 built) had been a homologation effort cut short by GM's corporate racing ban.\n\n## Legacy\nProduction rose each year to a 1966 peak before the C3 replaced it after 1967. The C2's short five-year run, engineering milestones, and iconic styling cemented its blue-chip status.",
+ "marketNotes": "As of late 2025, market listings (classic.com, sampled November 2025) show a broad C2 range roughly $50,000 to $380,000, with the bulk of driver-to-good examples clustering around $60,000-$100,000. Value is driven heavily by originality, numbers-matching drivetrain, documentation (tank sticker/build records), and engine: fuel-injected small-blocks and big-block 427s command clear premiums, and the 1963 split-window coupe is the standout—original Fuelie split-windows have transacted around $170,000-$225,000, with a documented Hagerty-reported sale near $224K. Modified or restomod C2s can trade below comparable originals despite high build costs, or far above for high-end customs. The rarest homologation cars (Grand Sport, L88) occupy a seven-figure tier and rarely surface. Figures here are directional mid-2020s indications, not appraisals; individual results vary widely by condition and provenance.",
+ "whatToLookFor": "- **1963 split-window authenticity**: the divided rear window and functional hood vents are '63-only; verify the car is genuine, not a later coupe modified.\n- **Numbers-matching drivetrain**: engine stamping, casting dates, and body/trim tags should agree with the VIN and build date. Big-block and Fuelie cars are frequently faked—demand documentation.\n- **Documentation**: original tank sticker, Protect-O-Plate, or NCRS/Bloomington judging records materially raise confidence and value.\n- **Fuel injection**: many original L84 Fuelies were converted to carburetors because the Rochester unit was hard to maintain; a correct, working FI setup is a premium.\n- **Correct year features**: functional front fender vents (1965+), 1967 stinger hood on big-blocks, correct wheels/hubcaps.\n- **Options that add value**: side-mount exhaust, 36-gallon tank, aluminum wheels, air conditioning (1963+ on some).",
+ "commonProblems": "- **Frame rust**: the steel ladder frame rusts, especially the section that arches over the rear suspension behind the doors; inspect thoroughly (repro frame sections exist).\n- **'Bird-cage' / body structure corrosion**: the steel structure supporting the fiberglass rusts around the windshield, doors, and A-pillars—costly and hidden even though the fiberglass itself doesn't rust.\n- **Fiberglass repairs**: look for poor prior bodywork, cracks, and filler, particularly at the nose and around panel edges.\n- **Hidden headlights**: the vacuum-actuated pop-up headlights stick and are labor-intensive to fix.\n- **Fuel injection tuning**: original Rochester FI is temperamental and expensive to service correctly.\n- **Cooling**: these cars run hot; correct aluminum radiators matter, particularly on high-output engines.\n- **Trim scarcity**: some 1963-specific moldings and hubcaps are not reproduced, making correct originals hard to source.",
+ "valueTrajectory": "C2 values climbed steadily from the 1990s and accelerated through the 2000s-2010s as the split-window '63, Fuelies, and 427 big-blocks became recognized blue-chip collectibles. After a mild cooling in the late 2010s for lesser examples, top-tier original and documented cars strengthened again into the 2020s. Entry small-block convertibles remain relatively attainable, while split-window coupes, Fuelies, and big-blocks have held or grown, and the rarest homologation cars (Grand Sport, L88) have appreciated into seven figures.",
+ "overallConfidence": "high",
+ "sources": [
+  {"ref": "wiki-c2", "title": "Chevrolet Corvette (C2)", "url": "https://en.wikipedia.org/wiki/Chevrolet_Corvette_(C2)", "publisher": "Wikipedia", "sourceType": "reference-book", "reliability": "medium", "notes": "Broad overview; production, engines, IRS, disc-brake swept area, L88 (~20), specs. Cross-checked against dedicated Corvette sources."},
+  {"ref": "cc-prod", "title": "C2 Production Numbers", "url": "https://tech.corvettecentral.com/2009/12/c2-production-numbers/", "publisher": "Corvette Central Tech Blog", "sourceType": "club-forum", "reliability": "high", "notes": "Per-year coupe/convertible split; total 117,964. Aligns with Wikipedia except minor 1965 variance."},
+  {"ref": "corvsport-63", "title": "1963 Corvette Production Numbers", "url": "https://www.corvsport.com/1963-corvette-production/", "publisher": "CorvSport", "sourceType": "journalism", "reliability": "medium", "notes": "Confirms 1963 total of 21,513; specialist Corvette site."},
+  {"ref": "classic-com", "title": "Chevrolet Corvette - C2 (1963 to 1967) market data", "url": "https://www.classic.com/m/chevrolet/corvette/c2/", "publisher": "classic.com", "sourceType": "journalism", "reliability": "high", "notes": "Aggregated listing/auction market data; sampled November 2025 for price ranges and split-window premium."},
+  {"ref": "hagerty-guide", "title": "1963-67 Corvette (C2) buyer's guide", "url": "https://www.hagerty.com/media/buying-and-selling/1963-1967-corvette-c2-buyers-guide/", "publisher": "Hagerty Media", "sourceType": "journalism", "reliability": "high", "notes": "Buyer guidance, 1965 FI count (771), L88 ~20, Grand Sport 5, year-specific features; lists 1965 production as 23,564."},
+  {"ref": "classicmotorsports", "title": "C2 Chevrolet Corvette: Buyer's Guide", "url": "https://classicmotorsports.com/articles/c2-chevrolet-corvette-buyers-guide/", "publisher": "Classic Motorsports", "sourceType": "journalism", "reliability": "high", "notes": "Common problems: frame rust, structural corrosion, headlights, cooling, FI maintenance, trim scarcity."}
+ ],
+ "claims": [
+  {"section": "production", "claimText": "Total C2 production across 1963-1967 was 117,964 cars.", "confidence": "high", "status": "verified", "sourceRefs": ["cc-prod", "wiki-c2"]},
+  {"section": "production", "claimText": "Model-year production was 1963: 21,513; 1964: 22,229; 1965: ~23,562-23,564; 1966: 27,720; 1967: 22,940.", "confidence": "high", "status": "disputed", "sourceRefs": ["cc-prod", "wiki-c2", "hagerty-guide", "corvsport-63"], "conflictNote": "1965 total is given as 23,562 by Corvette Central and Wikipedia but 23,564 by Hagerty's buyer's guide—a two-unit discrepancy likely reflecting differing source records rather than a substantive dispute; other years agree across sources."},
+  {"section": "history", "claimText": "The 1963 coupe's split (divided) rear window was a one-year-only feature; all 10,594 of the 1963 coupes had it, and it was deleted for 1964.", "confidence": "high", "status": "verified", "sourceRefs": ["cc-prod", "hagerty-guide", "wiki-c2"]},
+  {"section": "specs", "claimText": "The C2 introduced the first fully independent rear suspension on a Corvette—frame-mounted differential with U-jointed half-shafts located by a transverse leaf spring.", "confidence": "high", "status": "verified", "sourceRefs": ["wiki-c2"]},
+  {"section": "specs", "claimText": "The fuel-injected L84 327 ('Fuelie') was rated 360 hp in 1963 and 375 hp in 1964-65; 1965 was its final year with 771 built.", "confidence": "high", "status": "verified", "sourceRefs": ["wiki-c2", "hagerty-guide"]},
+  {"section": "history", "claimText": "The first big-block (396 cu in) arrived mid-1965 at 425 hp, replaced by the 427 for 1966-67 in multiple states of tune up to the 435-hp Tri-Power in 1967.", "confidence": "high", "status": "verified", "sourceRefs": ["wiki-c2"]},
+  {"section": "specs", "claimText": "Four-wheel disc brakes became standard for 1965 (~461 sq in swept area), replacing the prior four-wheel drums.", "confidence": "high", "status": "verified", "sourceRefs": ["wiki-c2"]},
+  {"section": "production", "claimText": "The 1967 L88 was built in roughly 20 examples, factory-rated at 430 hp but widely estimated at well over 500 hp.", "confidence": "high", "status": "verified", "sourceRefs": ["wiki-c2", "hagerty-guide"]},
+  {"section": "market", "claimText": "As of November 2025, C2 listings ranged roughly $50,000-$380,000 with most driver/good cars around $60,000-$100,000; original 1963 Fuelie split-window coupes reached roughly $170,000-$225,000.", "confidence": "medium", "status": "verified", "sourceRefs": ["classic-com"]},
+  {"section": "problems", "claimText": "Key C2 problem areas are steel frame rust (notably over the rear suspension), corrosion of the steel body structure around windshield/doors, sticking hidden headlights, cooling issues, and finicky original fuel injection.", "confidence": "high", "status": "verified", "sourceRefs": ["classicmotorsports"]},
+  {"section": "history", "claimText": "The 1963 Grand Sport was a homologation special of which only 5 were built before GM's racing ban ended the program.", "confidence": "medium", "status": "verified", "sourceRefs": ["hagerty-guide"]}
+ ]
+};
+export type SeedCorvetteC2 = typeof seedCorvetteC2;
