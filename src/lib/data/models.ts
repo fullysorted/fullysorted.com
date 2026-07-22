@@ -184,6 +184,41 @@ export async function getModelMarketSnapshot(make: string, model: string): Promi
   }
 }
 
+export interface SimilarListing {
+  slug: string;
+  year: number;
+  make: string;
+  model: string;
+  price: number;
+  hero_photo: string | null;
+  photos: string[] | null;
+  sorted_price: boolean | null;
+  mileage: number | null;
+  city: string | null;
+  state: string | null;
+}
+
+/** Active marketplace listings that match a model — the research-to-buy bridge. */
+export async function getActiveListingsForModel(make: string, model: string, limit = 4): Promise<SimilarListing[]> {
+  if (!hasDb()) return [];
+  try {
+    const sql = await sqlClient();
+    const rows = (await sql`
+      SELECT slug, year, make, model, price, hero_photo, photos, sorted_price, mileage, city, state
+      FROM listings
+      WHERE status = 'active'
+        AND LOWER(make) = ${make.toLowerCase()}
+        AND LOWER(model) LIKE ${`%${model.toLowerCase().split(' ')[0]}%`}
+      ORDER BY sorted_price DESC NULLS LAST, featured DESC, created_at DESC
+      LIMIT ${limit}
+    `) as unknown as SimilarListing[];
+    return rows;
+  } catch (e) {
+    console.error('getActiveListingsForModel failed:', (e as Error)?.message);
+    return [];
+  }
+}
+
 /** Split a stored slug "porsche/911-964" → { make: "porsche", modelSlug: "911-964" }. */
 export function parseModelSlug(slug: string): { make: string; modelSlug: string } {
   const [make, ...rest] = slug.split('/');

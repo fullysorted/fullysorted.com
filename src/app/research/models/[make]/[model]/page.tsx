@@ -5,7 +5,7 @@ import {
   ArrowLeft, ArrowRight, AlertTriangle, ShieldCheck, ExternalLink,
   Gauge, Factory, Wrench, TrendingUp, BookOpen, Scale,
 } from "lucide-react";
-import { getPublishedModelBySlug, modelDisplayName, getModelMarketSnapshot } from "@/lib/data/models";
+import { getPublishedModelBySlug, modelDisplayName, getModelMarketSnapshot, getActiveListingsForModel } from "@/lib/data/models";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 3600;
@@ -75,6 +75,7 @@ export default async function ModelPage({ params }: Props) {
   if (!m) notFound();
 
   const snapshot = await getModelMarketSnapshot(m.make, m.model);
+  const forSale = await getActiveListingsForModel(m.make, m.model);
 
   const name = modelDisplayName(m);
   const years = [m.year_start, m.year_end].filter(Boolean).join("–");
@@ -309,6 +310,39 @@ export default async function ModelPage({ params }: Props) {
                 {snapshot.count > 0 ? "See all comps & the price trend" : "Open Value Guide"} <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
+            {forSale.length > 0 && (
+              <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6b6b5e" }}>For sale now</p>
+                <div className="space-y-3">
+                  {forSale.map((l) => {
+                    const thumb = l.hero_photo || (l.photos && l.photos[0]) || null;
+                    return (
+                      <Link key={l.slug} href={`/listings/${l.slug}`} className="flex gap-3 group">
+                        {thumb ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={thumb} alt={`${l.year} ${l.make} ${l.model}`} className="w-16 h-12 rounded-lg object-cover shrink-0" style={{ background: "#eee" }} />
+                        ) : (
+                          <div className="w-16 h-12 rounded-lg shrink-0" style={{ background: "#eee" }} />
+                        )}
+                        <div className="min-w-0">
+                          <p className="text-sm font-semibold truncate group-hover:text-accent transition-colors" style={{ color: "#1a1a18" }}>{l.year} {l.make} {l.model}</p>
+                          <p className="text-sm font-bold" style={{ color: "#1E6091" }}>
+                            ${l.price.toLocaleString()}
+                            {l.sorted_price && <span className="ml-1.5 text-[10px] font-bold" style={{ color: "#3f7a2e" }}>SORTED PRICE</span>}
+                          </p>
+                          {(l.city || l.state) && (
+                            <p className="text-[11px]" style={{ color: "#9a9a8a" }}>{[l.city, l.state].filter(Boolean).join(", ")}</p>
+                          )}
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+                <Link href={`/browse?q=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold mt-3.5" style={{ color: "#1E6091" }}>
+                  See all for sale <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            )}
             <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
               <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>Shopping for one?</p>
               <p className="text-xs mb-3" style={{ color: "#6b6b5e" }}>Browse {m.make} listings, or decode a VIN before you buy.</p>
