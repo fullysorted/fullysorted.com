@@ -89,6 +89,33 @@ export async function getPublishedModels(): Promise<VehicleModelRow[]> {
   }
 }
 
+export interface VehicleModelRowMeta extends VehicleModelRow {
+  source_count: number;
+  claim_count: number;
+  disputed_count: number;
+}
+
+/** Published models + source/claim/disputed counts, for the browse directory. */
+export async function getPublishedModelsWithMeta(): Promise<VehicleModelRowMeta[]> {
+  if (!hasDb()) return [];
+  try {
+    const sql = await sqlClient();
+    const rows = (await sql`
+      SELECT m.*,
+        (SELECT COUNT(*) FROM model_sources s WHERE s.model_id = m.id)::int AS source_count,
+        (SELECT COUNT(*) FROM model_claims c WHERE c.model_id = m.id)::int AS claim_count,
+        (SELECT COUNT(*) FROM model_claims c WHERE c.model_id = m.id AND c.status = 'disputed')::int AS disputed_count
+      FROM vehicle_models m
+      WHERE m.status = 'published'
+      ORDER BY m.make ASC, m.model ASC, m.year_start ASC
+    `) as unknown as VehicleModelRowMeta[];
+    return rows;
+  } catch (e) {
+    console.error('getPublishedModelsWithMeta failed:', (e as Error)?.message);
+    return [];
+  }
+}
+
 /** A single PUBLISHED model by make + model-or-generation slug, with sources + claims. */
 export async function getPublishedModelBySlug(
   make: string,

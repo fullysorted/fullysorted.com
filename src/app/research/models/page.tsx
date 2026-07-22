@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, BookOpen, Database } from "lucide-react";
-import { getPublishedModels, parseModelSlug } from "@/lib/data/models";
+import { ArrowLeft, Database } from "lucide-react";
+import { getPublishedModelsWithMeta } from "@/lib/data/models";
+import { ModelsDirectory } from "./ModelsDirectory";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 3600;
@@ -15,7 +16,13 @@ export const metadata: Metadata = {
 };
 
 export default async function ModelsIndexPage() {
-  const models = await getPublishedModels();
+  const models = await getPublishedModelsWithMeta();
+  const items = models.map((m) => ({
+    id: m.id, slug: m.slug, make: m.make, model: m.model, generation: m.generation,
+    year_start: m.year_start, year_end: m.year_end, production_total: m.production_total,
+    summary: m.summary, overall_confidence: m.overall_confidence,
+    source_count: m.source_count, claim_count: m.claim_count, disputed_count: m.disputed_count,
+  }));
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -88,55 +95,18 @@ export default async function ModelsIndexPage() {
         </div>
       </div>
 
-      {/* Grid */}
+      {/* Directory */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        {models.length === 0 ? (
-          <div
-            className="rounded-2xl bg-white px-6 py-16 text-center"
-            style={{ border: "1px solid rgba(0,0,0,0.07)" }}
-          >
+        {items.length === 0 ? (
+          <div className="rounded-2xl bg-white px-6 py-16 text-center" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
             <Database className="w-8 h-8 mx-auto mb-4" style={{ color: "#cfcabb" }} />
-            <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>
-              The first model histories are in review
-            </p>
+            <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>The first model histories are in review</p>
             <p className="text-sm max-w-md mx-auto" style={{ color: "#9a9a8a" }}>
-              Pages are researched, cited, and human-reviewed before they go live. Check back shortly —
-              the collectibles are first in the queue.
+              Pages are researched, cited, and human-reviewed before they go live. Check back shortly — the collectibles are first in the queue.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {models.map((m) => {
-              const { make, modelSlug } = parseModelSlug(m.slug);
-              return (
-                <Link
-                  key={m.id}
-                  href={`/research/models/${make}/${modelSlug}`}
-                  className="block rounded-2xl p-5 bg-white hover:shadow-md hover:-translate-y-0.5 transition-all group"
-                  style={{ border: "1px solid rgba(0,0,0,0.07)" }}
-                >
-                  <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "#1E6091" }}>
-                    {m.make}
-                  </span>
-                  <h2 className="font-display font-semibold mt-1 leading-snug group-hover:text-accent transition-colors" style={{ color: "#1a1a18" }}>
-                    {m.model} {m.generation && <span style={{ color: "#9a9a8a" }}>({m.generation})</span>}
-                  </h2>
-                  <p className="text-xs mt-1" style={{ color: "#9a9a8a" }}>
-                    {[m.year_start, m.year_end].filter(Boolean).join("–")}
-                    {m.production_total ? ` · ${m.production_total.toLocaleString()} built` : ""}
-                  </p>
-                  {m.summary && (
-                    <p className="text-sm mt-3 line-clamp-3" style={{ color: "#6b6b5e" }}>
-                      {m.summary.replace(/[#*]/g, "").slice(0, 160)}…
-                    </p>
-                  )}
-                  <div className="flex items-center gap-1 mt-3 text-xs font-semibold" style={{ color: "#1E6091" }}>
-                    <BookOpen className="w-3 h-3" /> Read history <ArrowRight className="w-3 h-3" />
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          <ModelsDirectory items={items} />
         )}
       </div>
     </div>
