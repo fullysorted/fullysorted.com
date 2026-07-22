@@ -115,9 +115,28 @@ export default async function ModelPage({ params }: Props) {
     ],
   };
 
+  const stripMd = (t: string | null | undefined) =>
+    (t || "").replace(/[#*`_>]/g, "").replace(/^\s*[-\u2022]\s*/gm, "").replace(/\s+/g, " ").trim();
+  const faqItems = [];
+  if (m.production_total != null)
+    faqItems.push({ q: `How many ${name} were made?`, a: `Approximately ${m.production_total.toLocaleString()} were built${years ? ` (${years})` : ""}. See the production notes and sources on this page for details and any disputed figures.` });
+  if (m.what_to_look_for) faqItems.push({ q: `What should I look for when buying a ${name}?`, a: stripMd(m.what_to_look_for).slice(0, 900) });
+  if (m.common_problems) faqItems.push({ q: `What are the common problems with the ${name}?`, a: stripMd(m.common_problems).slice(0, 900) });
+  if (m.market_notes) faqItems.push({ q: `What is a ${name} worth?`, a: stripMd(m.market_notes).slice(0, 900) });
+  if (m.value_trajectory) faqItems.push({ q: `Are ${name} values going up or down?`, a: stripMd(m.value_trajectory).slice(0, 900) });
+  if (disputed.length)
+    faqItems.push({ q: `Are there disputed facts about the ${name}?`, a: `Yes. Fully Sorted flags claims where independent sources disagree rather than presenting one unverified number: ${disputed.map((c) => stripMd(c.claim_text)).join("; ").slice(0, 800)}.` });
+  const faqSchema = faqItems.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqItems.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+      }
+    : null;
+
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
-      <JsonLd data={[vehicleSchema, articleSchema, breadcrumbSchema]} />
+      <JsonLd data={[vehicleSchema, articleSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]} />
 
       {/* Header */}
       <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
