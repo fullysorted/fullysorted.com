@@ -96,30 +96,60 @@ function formatDate(dateStr?: string): string {
   }
 }
 
-function chrisTake(year: number, make: string, model: string, avgPrice: number | null, total: number): string {
-  if (total < 3) {
-    return `There's limited sales data for the ${year} ${make} ${model} in our database. Try broadening the year range, or check back as we add more auction results daily.`;
-  }
-  if (!avgPrice) return "Not enough data to produce a valuation for this vehicle.";
-
-  const makes: Record<string, string> = {
-    porsche: "Air-cooled Porsches have softened from their 2022–23 peaks, but well-documented cars with no rust and matching numbers still command strong prices. Focus on service history and originality.",
-    bmw: "The BMW collector market rewards originality and documentation. E30 M3s and 2002tiis especially — any evidence of track use or modifications will hurt you significantly.",
-    ford: "First-gen Mustangs have the deepest buyer pool of any American classic. Condition is everything — a driver-quality car and a show car aren't even the same market.",
-    chevrolet: "The Chevy muscle market is bifurcated: numbers-matching concours cars and daily-driver restorations. Know which bucket you're in before you price it.",
-    toyota: "JDM Toyotas are on a sustained run. The MK4 Supra and AE86 especially — supply is constrained and enthusiast demand keeps climbing.",
-    honda: "The NSX market has matured. NA1s in original colors with clean history are the sweet spot. Modified cars take a real hit compared to stock examples.",
-    ferrari: "Ferraris require extra scrutiny on service records — a missed cam belt or clutch job can mean $20–40k in deferred costs. Price the car accordingly.",
-    mercedes: "SL Pagodas and W113s are steady earners, not speculative plays. Quality of restoration matters enormously — amateur work destroys value fast.",
-    jaguar: "E-Types remain the most beautiful cars ever made, but they're also maintenance-intensive. Buyers price in their mechanical complexity.",
-    datsun: "The Z-car market has been quietly strong. 240Zs still reward condition and originality — unrestored survivors are getting serious money.",
-    mazda: "The FD RX-7 is having its moment. Rotary reliability concerns mean buyers pay up for engine-refreshed examples with documentation.",
-    lamborghini: "Lamborghini values are institutional now. Countach and Diablo are blue-chip collectibles. Provenance and service history at official dealers is paramount.",
+function makeWisdom(make: string): string {
+  const notes: Record<string, string> = {
+    porsche: "On air-cooled Porsches, service history and originality separate the strong sales from the average ones — matching numbers and a clean, rust-free body are what buyers pay up for.",
+    bmw: "The BMW market rewards originality and documentation; on the icons like the E30 M3 and 2002tii, any hint of hard track use or modification hurts.",
+    ford: "Condition is everything on first-gen Fords — a driver-quality car and a show car aren't the same market, and correct, documented drivetrains carry a premium.",
+    chevrolet: "The Chevy market splits sharply between numbers-matching cars and restorations — know which bucket a given car sits in before you price it.",
+    toyota: "Supply is tight on the collectible Toyotas and enthusiast demand keeps climbing; unmodified, original examples command the premium.",
+    honda: "Buyers prize original, unmodified cars with clean history — modified examples take a real hit versus stock.",
+    ferrari: "Scrutinize the service records — a missed cam-belt or clutch job can mean serious deferred cost, and the market prices that in.",
+    mercedes: "Quality of restoration matters enormously here; amateur work destroys value while documented, correct cars hold it.",
+    jaguar: "Beautiful but maintenance-intensive — buyers price in the mechanical complexity and reward rust-free, sorted cars.",
+    datsun: "The Z-car market rewards condition and originality; unrestored survivors are increasingly sought after.",
+    mazda: "Rotary reliability concerns mean buyers pay up for engine-refreshed, well-documented examples.",
+    lamborghini: "Provenance and documented service at official specialists are paramount at this level.",
   };
+  const key = Object.keys(notes).find((k) => make.toLowerCase().includes(k));
+  return key ? notes[key] : "";
+}
 
-  const makeLower = make.toLowerCase();
-  const specific = Object.keys(makes).find(k => makeLower.includes(k));
-  return specific ? makes[specific] : `The ${make} ${model} has ${total} comparable sales in our database. The data shows an average of ${formatPrice(avgPrice)}, with significant spread based on condition, mileage, and originality.`;
+function ourTake(
+  year: number,
+  make: string,
+  model: string,
+  r: ValuationResult,
+  trend: { trend: "up" | "down" | "flat"; pct: number } | null
+): string {
+  const car = `${year ? year + " " : ""}${make} ${model}`.trim();
+  if (r.total < 3) {
+    return `There's limited sales data for the ${car} in our database (${r.total} ${r.total === 1 ? "sale" : "sales"}), so treat any number as directional. Try broadening the year range, or check back as we add auction results.`;
+  }
+  const bits: string[] = [];
+  const median = r.medianPrice;
+  const avg = r.avgPrice;
+  if (median) {
+    let s0 = `Across ${r.total} comparable sales, the ${car} centers on about ${formatPrice(median)} (median)`;
+    if (avg) {
+      const skew = (avg - median) / median;
+      if (skew > 0.12) s0 += `, while the ${formatPrice(avg)} average sits higher — a few exceptional cars are pulling the top of the market up`;
+      else if (skew < -0.12) s0 += `, with the ${formatPrice(avg)} average below it — project-grade cars are dragging the mean down`;
+    }
+    bits.push(s0 + ".");
+  }
+  if (r.lowPrice && r.highPrice && r.highPrice > r.lowPrice) {
+    bits.push(`Recent results run from ${formatPrice(r.lowPrice)} to ${formatPrice(r.highPrice)}, so condition, originality, and documentation are doing most of the work.`);
+  }
+  if (trend && r.total >= 6) {
+    if (trend.trend === "up") bits.push(`Comparing older sales to newer, the trend is up roughly ${trend.pct}%.`);
+    else if (trend.trend === "down") bits.push(`Comparing older sales to newer, the trend is down roughly ${trend.pct}%.`);
+    else bits.push(`Older and newer sales have been essentially flat.`);
+  }
+  const wisdom = makeWisdom(make);
+  if (wisdom) bits.push(wisdom);
+  if (r.total < 6) bits.push(`With only ${r.total} comparable sales, treat this as directional rather than precise.`);
+  return bits.join(" ");
 }
 
 /* ---------- Main Component ---------- */
@@ -411,20 +441,14 @@ export function ValueGuideClient() {
                   className="w-10 h-10 rounded-full text-white flex items-center justify-center text-sm font-bold shrink-0"
                   style={{ backgroundColor: "#1E6091" }}
                 >
-                  CP
+                  FS
                 </div>
                 <div>
                   <p className="font-semibold text-foreground text-sm">
-                    Chris&apos;s Take
+                    Our Take
                   </p>
                   <p className="text-text-secondary mt-1 leading-relaxed">
-                    &ldquo;{chrisTake(
-                      parseInt(searchedFor.year) || 0,
-                      searchedFor.make,
-                      searchedFor.model,
-                      result.avgPrice,
-                      result.total
-                    )}&rdquo;
+                    &ldquo;{ourTake(parseInt(searchedFor.year) || 0, searchedFor.make, searchedFor.model, result, trendInfo)}&rdquo;
                   </p>
                 </div>
               </div>

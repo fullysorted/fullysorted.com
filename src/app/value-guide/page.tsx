@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ValueGuideClient } from "./ValueGuideClient";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { BarChart3, TrendingUp, Database } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -15,9 +16,34 @@ const STATS = [
   { icon: BarChart3, label: "Refreshed regularly", value: "Up to date" },
 ];
 
+const valueGuideSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Fully Sorted Value Guide",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  url: "https://fullysorted.com/value-guide",
+  description:
+    "Comp-backed valuations for collector cars. Enter a year, make, and model to see low, average, median, and high sale prices from real market comparables, with the underlying sales shown.",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  publisher: { "@id": "https://fullysorted.com/#organization" },
+};
+
+const datasetSchema = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  name: "Fully Sorted collector-car sale comparables",
+  description:
+    "Aggregated publicly available factual sale results (year, make, model, sale price, date, venue) for collector cars, used to produce comp-backed valuations. Factual data only; no third-party photos or descriptions are republished.",
+  url: "https://fullysorted.com/value-guide",
+  creator: { "@id": "https://fullysorted.com/#organization" },
+  isAccessibleForFree: true,
+};
+
 export default function ValueGuidePage() {
   return (
     <main className="min-h-screen" style={{ background: "#faf9f7" }}>
+      <JsonLd data={[valueGuideSchema, datasetSchema]} />
 
       {/* Photo hero — classic sports car under a racing-green overlay */}
       <section className="relative overflow-hidden text-white">
