@@ -147,6 +147,43 @@ export async function getPublishedModelBySlug(
   }
 }
 
+export interface ModelMarketSnapshot {
+  count: number;
+  median: number | null;
+  avg: number | null;
+  low: number | null;
+  high: number | null;
+}
+
+/** Live sold-price snapshot for a model, aggregated from public auction results. */
+export async function getModelMarketSnapshot(make: string, model: string): Promise<ModelMarketSnapshot> {
+  const empty: ModelMarketSnapshot = { count: 0, median: null, avg: null, low: null, high: null };
+  if (!hasDb()) return empty;
+  try {
+    const sql = await sqlClient();
+    const rows = (await sql`
+      SELECT sale_price FROM auction_results
+      WHERE LOWER(make) = ${make.toLowerCase()}
+        AND LOWER(model) LIKE ${`%${model.toLowerCase().split(' ')[0]}%`}
+        AND sold = true AND sale_price IS NOT NULL AND sale_price > 1000
+      ORDER BY auction_date DESC
+      LIMIT 80
+    `) as { sale_price: number }[];
+    const prices = rows.map((r) => r.sale_price).filter(Boolean).sort((a, b) => a - b);
+    if (!prices.length) return empty;
+    return {
+      count: prices.length,
+      median: prices[Math.floor(prices.length / 2)],
+      avg: Math.round(prices.reduce((a, b) => a + b, 0) / prices.length),
+      low: prices[0],
+      high: prices[prices.length - 1],
+    };
+  } catch (e) {
+    console.error('getModelMarketSnapshot failed:', (e as Error)?.message);
+    return empty;
+  }
+}
+
 /** Split a stored slug "porsche/911-964" → { make: "porsche", modelSlug: "911-964" }. */
 export function parseModelSlug(slug: string): { make: string; modelSlug: string } {
   const [make, ...rest] = slug.split('/');

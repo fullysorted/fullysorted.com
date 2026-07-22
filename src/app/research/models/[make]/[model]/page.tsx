@@ -5,7 +5,7 @@ import {
   ArrowLeft, ArrowRight, AlertTriangle, ShieldCheck, ExternalLink,
   Gauge, Factory, Wrench, TrendingUp, BookOpen, Scale,
 } from "lucide-react";
-import { getPublishedModelBySlug, modelDisplayName } from "@/lib/data/models";
+import { getPublishedModelBySlug, modelDisplayName, getModelMarketSnapshot } from "@/lib/data/models";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 3600;
@@ -73,6 +73,8 @@ export default async function ModelPage({ params }: Props) {
   const { make, model } = await params;
   const m = await getPublishedModelBySlug(make, model);
   if (!m) notFound();
+
+  const snapshot = await getModelMarketSnapshot(m.make, m.model);
 
   const name = modelDisplayName(m);
   const years = [m.year_start, m.year_end].filter(Boolean).join("–");
@@ -283,10 +285,28 @@ export default async function ModelPage({ params }: Props) {
 
             {/* CTAs */}
             <div className="rounded-2xl p-5" style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.18)" }}>
-              <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>What’s one worth today?</p>
-              <p className="text-xs mb-3" style={{ color: "#6b6b5e" }}>Live comps in the Value Guide.</p>
-              <Link href={`/value-guide?make=${encodeURIComponent(m.make)}&model=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
-                Open Value Guide <ArrowRight className="w-3 h-3" />
+              {snapshot.count > 0 ? (
+                <>
+                  <div className="flex items-center gap-2 mb-2">
+                    <TrendingUp className="w-4 h-4" style={{ color: "#1E6091" }} />
+                    <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#6b6b5e" }}>Market Snapshot</p>
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold" style={{ color: "#1a1a18" }}>{snapshot.median ? `$${snapshot.median.toLocaleString()}` : "\u2014"}</span>
+                    <span className="text-xs" style={{ color: "#9a9a8a" }}>median &middot; {snapshot.count} {snapshot.count === 1 ? "sale" : "sales"}</span>
+                  </div>
+                  {snapshot.low != null && snapshot.high != null && (
+                    <p className="text-xs mt-1" style={{ color: "#6b6b5e" }}>Range ${snapshot.low.toLocaleString()} &ndash; ${snapshot.high.toLocaleString()}</p>
+                  )}
+                </>
+              ) : (
+                <>
+                  <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>What&rsquo;s one worth today?</p>
+                  <p className="text-xs mb-1" style={{ color: "#6b6b5e" }}>Comp-backed pricing in the Value Guide.</p>
+                </>
+              )}
+              <Link href={`/value-guide?make=${encodeURIComponent(m.make)}&model=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold mt-3" style={{ color: "#1E6091" }}>
+                {snapshot.count > 0 ? "See all comps & the price trend" : "Open Value Guide"} <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
             <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
