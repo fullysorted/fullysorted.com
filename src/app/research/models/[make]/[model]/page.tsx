@@ -285,7 +285,7 @@ export default async function ModelPage({ params }: Props) {
             <div className="rounded-2xl p-5" style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.18)" }}>
               <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>What’s one worth today?</p>
               <p className="text-xs mb-3" style={{ color: "#6b6b5e" }}>Live comps in the Value Guide.</p>
-              <Link href="/value-guide" className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
+              <Link href={`/value-guide?make=${encodeURIComponent(m.make)}&model=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
                 Open Value Guide <ArrowRight className="w-3 h-3" />
               </Link>
             </div>

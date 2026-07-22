@@ -42,6 +42,18 @@ export async function GET(request: NextRequest) {
     const highPrice = prices.length > 0 ? Math.max(...prices) : null;
     const lowPrice = prices.length > 0 ? Math.min(...prices) : null;
 
+    // Best-effort link to a published Research model page for this make/model.
+    let researchSlug: string | null = null;
+    try {
+      const rs = (await sql`
+        SELECT slug FROM vehicle_models
+        WHERE status = 'published' AND LOWER(make) = ${make}
+          AND (LOWER(model) LIKE ${`%${model.split(' ')[0]}%`} OR LOWER(generation) LIKE ${`%${model.split(' ')[0]}%`})
+        ORDER BY (year_start IS NULL) LIMIT 1
+      `) as { slug: string }[];
+      researchSlug = rs[0]?.slug ?? null;
+    } catch { /* vehicle_models table may not exist yet */ }
+
     return NextResponse.json({
       comps,
       total: comps.length,
@@ -50,6 +62,7 @@ export async function GET(request: NextRequest) {
       highPrice,
       lowPrice,
       source: 'auction_results',
+      researchSlug,
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message, comps: [], total: 0 }, { status: 500 });

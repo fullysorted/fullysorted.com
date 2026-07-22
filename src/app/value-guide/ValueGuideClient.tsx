@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -46,6 +46,7 @@ interface ValuationResult {
   highPrice: number | null;
   lowPrice: number | null;
   source: string;
+  researchSlug?: string | null;
   error?: string;
 }
 
@@ -152,6 +153,59 @@ function ourTake(
   return bits.join(" ");
 }
 
+function PriceHistoryChart({ comps, median }: { comps: Comp[]; median: number | null }) {
+  const pts = comps
+    .filter((c) => c.sale_price && c.auction_date)
+    .map((c) => ({ t: new Date(c.auction_date as string).getTime(), p: c.sale_price, label: c.lot_title }))
+    .filter((d) => Number.isFinite(d.t))
+    .sort((a, b) => a.t - b.t);
+  if (pts.length < 5) return null;
+
+  const W = 720, H = 300, mL = 66, mR = 18, mT = 18, mB = 34;
+  const iw = W - mL - mR, ih = H - mT - mB;
+  const tMin = pts[0].t, tMax = pts[pts.length - 1].t;
+  const pMax = Math.max(...pts.map((d) => d.p));
+  const pMin = Math.min(...pts.map((d) => d.p));
+  const span = pMax - pMin || pMax || 1;
+  const yLo = Math.max(0, pMin - span * 0.12);
+  const yHi = pMax + span * 0.12;
+  const x = (t: number) => mL + (tMax === tMin ? iw / 2 : ((t - tMin) / (tMax - tMin)) * iw);
+  const y = (v: number) => mT + ih - ((v - yLo) / (yHi - yLo || 1)) * ih;
+  const fmtP = (v: number) => (v >= 1000 ? `$${Math.round(v / 1000)}k` : `$${Math.round(v)}`);
+  const fmtD = (t: number) => new Date(t).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+  const ticks = Array.from({ length: 4 }, (_, i) => yLo + ((yHi - yLo) * i) / 3);
+
+  return (
+    <div className="bg-white border border-border rounded-xl p-5 sm:p-6">
+      <h3 className="font-semibold text-foreground mb-1">Price over time</h3>
+      <p className="text-xs text-text-secondary mb-4">
+        Each dot is one comparable sale{median ? <>. The dashed line marks the median ({formatPrice(median)}).</> : "."}
+      </p>
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Comparable sale prices over time" style={{ display: "block" }}>
+        {ticks.map((tk, i) => (
+          <g key={i}>
+            <line x1={mL} x2={W - mR} y1={y(tk)} y2={y(tk)} stroke="#ecebe6" strokeWidth={1} />
+            <text x={mL - 8} y={y(tk) + 4} textAnchor="end" fontSize="12" fill="#9a9a8a">{fmtP(tk)}</text>
+          </g>
+        ))}
+        {median != null && median >= yLo && median <= yHi && (
+          <line x1={mL} x2={W - mR} y1={y(median)} y2={y(median)} stroke="#B08D3F" strokeWidth={2} strokeDasharray="5 4" />
+        )}
+        {[tMin, (tMin + tMax) / 2, tMax].map((t, i) => (
+          <text key={i} x={x(t)} y={H - 12} textAnchor={i === 0 ? "start" : i === 2 ? "end" : "middle"} fontSize="12" fill="#9a9a8a">
+            {fmtD(t)}
+          </text>
+        ))}
+        {pts.map((d, i) => (
+          <circle key={i} cx={x(d.t)} cy={y(d.p)} r={5} fill="#1E6091" fillOpacity={0.82} stroke="#ffffff" strokeWidth={1.5}>
+            <title>{`${d.label} — ${formatPrice(d.p)} (${fmtD(d.t)})`}</title>
+          </circle>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 /* ---------- Main Component ---------- */
 export function ValueGuideClient() {
   const [yearInput, setYearInput] = useState("");
@@ -190,6 +244,22 @@ export function ValueGuideClient() {
       }
     });
   }
+
+  // Prefill from URL params (?make=&model=&year=) and auto-search — enables
+  // shareable searches and deep links from Research model pages.
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    const qMake = sp.get("make");
+    const qModel = sp.get("model");
+    const qYear = sp.get("year") || "";
+    if (qMake && qModel) {
+      setYearInput(qYear);
+      setMakeInput(qMake);
+      setModelInput(qModel);
+      doSearch(qYear, qMake, qModel);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -433,6 +503,9 @@ export function ValueGuideClient() {
             )}
           </div>
 
+          {/* Price over time */}
+          <PriceHistoryChart comps={result.comps} median={result.medianPrice} />
+
           {/* Chris's Take */}
           {result.total > 0 && (
             <div className="bg-surface border border-border rounded-xl p-6">
@@ -453,6 +526,21 @@ export function ValueGuideClient() {
                 </div>
               </div>
             </div>
+          )}
+
+          {result.researchSlug && (
+            <Link
+              href={`/research/models/${result.researchSlug}`}
+              className="flex items-center justify-between gap-3 bg-white border border-border rounded-xl p-5 hover:border-accent transition-colors group"
+            >
+              <div>
+                <p className="font-semibold text-foreground text-sm">Read the full history &amp; buyer&apos;s guide</p>
+                <p className="text-xs text-text-secondary mt-0.5">
+                  Cited {searchedFor.make} {searchedFor.model} model history, specs, production numbers, and what to look for.
+                </p>
+              </div>
+              <ArrowRight className="w-5 h-5 text-accent shrink-0 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
           )}
 
           {/* Recent Comparables */}
