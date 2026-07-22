@@ -1,32 +1,26 @@
 "use client";
 
 import Script from "next/script";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 /**
  * Google Analytics 4 (gtag.js).
  *
- * Set NEXT_PUBLIC_GA_ID in your Vercel env vars to your GA4 Measurement ID
- * (looks like "G-XXXXXXXXXX"). If unset, this component renders nothing —
- * a safe no-op for local dev and preview builds.
+ * Resolves the Measurement ID from NEXT_PUBLIC_GA_ID if set (e.g. in Vercel),
+ * otherwise falls back to the Fully Sorted GA4 property. A GA4 Measurement ID
+ * is NOT a secret — it is exposed in client-side page source on every load by
+ * design — so a hardcoded fallback is safe and means analytics work without any
+ * environment configuration.
  *
- * The base snippet is configured with send_page_view:false; the effect below
- * fires a page_view on every route (including the first render), because gtag
- * does NOT auto-track client-side navigations in the Next.js App Router.
- * This mirrors the MetaPixel component's env-driven pattern.
+ * Pageview tracking, including client-side (SPA) route changes in the App
+ * Router, is handled by GA4 Enhanced Measurement (enabled on the property via
+ * "page changes based on browser history events"). We therefore use the
+ * standard gtag config and do NOT add a manual route listener, which would
+ * double-count navigations.
  */
+const DEFAULT_GA_ID = "G-02K9L5SRQ3";
+
 export function GoogleAnalytics() {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (!gaId) return;
-    const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
-    if (typeof gtag !== "function") return;
-    gtag("event", "page_view", { page_path: pathname });
-  }, [gaId, pathname]);
-
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || DEFAULT_GA_ID;
   if (!gaId) return null;
 
   return (
@@ -43,7 +37,7 @@ export function GoogleAnalytics() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${gaId}', { send_page_view: false });
+            gtag('config', '${gaId}');
           `,
         }}
       />
@@ -53,7 +47,7 @@ export function GoogleAnalytics() {
 
 /**
  * Type-safe helper for firing GA4 events anywhere in the app.
- * No-ops gracefully if GA is not loaded (e.g. NEXT_PUBLIC_GA_ID unset).
+ * No-ops gracefully if gtag has not loaded yet.
  */
 export function trackGaEvent(event: string, params?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
