@@ -19,6 +19,7 @@ const researchMenu: NavMenu = {
     { href: "/value-guide", label: "Value Guide", desc: "What any collector car is worth — real sold-price comps" },
     { href: "/research", label: "Model Encyclopedia", desc: "History, specs & cited production data by model" },
     { href: "/vin", label: "VIN Decoder", desc: "Decode any 1981+ VIN — specs & open recalls" },
+    { href: "/research/compare", label: "Compare Models", desc: "Two cars head to head — rarity, value & specs" },
   ],
 };
 

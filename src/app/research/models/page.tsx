@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Database } from "lucide-react";
+import { ArrowLeft, ArrowRight, Database } from "lucide-react";
 import { getPublishedModelsWithMeta } from "@/lib/data/models";
 import { ModelsDirectory } from "./ModelsDirectory";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -83,6 +83,9 @@ export default async function ModelsIndexPage() {
             problems, and market context. Every non-obvious fact is cross-checked and cited, with
             uncertainty called out rather than glossed over.
           </p>
+          <Link href="/research/compare" className="inline-flex items-center gap-1.5 text-sm font-bold mt-5 text-stone-100 hover:text-white transition-colors">
+            <span aria-hidden>⚖</span> Compare two models head to head <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
 
