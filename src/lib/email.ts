@@ -226,3 +226,110 @@ export async function notifyContactForm(data: {
     `,
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Gig order lifecycle (paid → delivered → released / refunded)
+// ─────────────────────────────────────────────────────────────────────────────
+
+function orderShell(opts: {
+  accent: string;
+  heading: string;
+  bodyHtml: string;
+  ctaLabel?: string;
+  ctaUrl?: string;
+}): string {
+  return `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a18;">
+      <div style="background:${opts.accent};padding:16px 24px;border-radius:12px 12px 0 0;">
+        <h2 style="color:#fff;margin:0;font-size:18px;">${opts.heading}</h2>
+      </div>
+      <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;font-size:14px;color:#3a3a34;line-height:1.6;">
+        ${opts.bodyHtml}
+        ${opts.ctaLabel && opts.ctaUrl ? `<div style="margin-top:24px;"><a href="${opts.ctaUrl}" style="display:inline-block;background:${opts.accent};color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">${opts.ctaLabel}</a></div>` : ""}
+      </div>
+      <p style="text-align:center;font-size:12px;color:#9a9a8a;margin-top:16px;">Fully Sorted · fullysorted.com</p>
+    </div>`;
+}
+
+// Provider: you have a new PAID order — funds are held, start the work.
+export async function notifyOrderPaidToProvider(d: { providerEmail?: string; gigTitle: string; buyerName?: string; netDisplay: string }) {
+  if (!d.providerEmail) return false;
+  return sendEmail({
+    to: d.providerEmail,
+    subject: `💳 New paid order: ${d.gigTitle}`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "You've got a paid order",
+      bodyHtml: `<p><strong>${d.gigTitle}</strong></p>
+        <p>${d.buyerName ? `${d.buyerName} ` : "A buyer "}has paid and the funds are held securely. Start the work, then mark it delivered from your dashboard. You'll receive <strong>${d.netDisplay}</strong> when the buyer accepts.</p>`,
+      ctaLabel: "Open your dashboard",
+      ctaUrl: "https://fullysorted.com/dashboard/provider",
+    }),
+  });
+}
+
+// Buyer: payment received (held) — here's your order link.
+export async function sendOrderReceiptToBuyer(d: { buyerEmail?: string; gigTitle: string; providerName: string; amountDisplay: string; orderUrl: string }) {
+  if (!d.buyerEmail) return false;
+  return sendEmail({
+    to: d.buyerEmail,
+    subject: `Order confirmed: ${d.gigTitle}`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "Payment received & held",
+      bodyHtml: `<p>Thanks for your order with <strong>${d.providerName}</strong>.</p>
+        <p><strong>${d.gigTitle}</strong> — ${d.amountDisplay}</p>
+        <p>Your payment is held securely by Fully Sorted and only released to the provider when you accept the completed work. You can check the status or release payment any time from your order page.</p>`,
+      ctaLabel: "View your order",
+      ctaUrl: d.orderUrl,
+    }),
+  });
+}
+
+// Buyer: provider marked it delivered — review & accept to release.
+export async function notifyOrderDeliveredToBuyer(d: { buyerEmail?: string; gigTitle: string; providerName: string; orderUrl: string }) {
+  if (!d.buyerEmail) return false;
+  return sendEmail({
+    to: d.buyerEmail,
+    subject: `✅ Delivered: ${d.gigTitle}`,
+    html: orderShell({
+      accent: "#B08D3F",
+      heading: "Your work has been delivered",
+      bodyHtml: `<p><strong>${d.providerName}</strong> has marked <strong>${d.gigTitle}</strong> as delivered.</p>
+        <p>Please review the work. When you're happy, release the payment from your order page. If you don't act, the payment auto-releases after the review window.</p>`,
+      ctaLabel: "Review & release payment",
+      ctaUrl: d.orderUrl,
+    }),
+  });
+}
+
+// Provider: payment released to you.
+export async function notifyOrderReleasedToProvider(d: { providerEmail?: string; gigTitle: string; netDisplay: string }) {
+  if (!d.providerEmail) return false;
+  return sendEmail({
+    to: d.providerEmail,
+    subject: `🎉 You've been paid: ${d.gigTitle}`,
+    html: orderShell({
+      accent: "#4b8b2e",
+      heading: "Payment released",
+      bodyHtml: `<p><strong>${d.netDisplay}</strong> for <strong>${d.gigTitle}</strong> is on its way to your connected account.</p>
+        <p>Payout timing follows your Stripe settings. Thanks for the great work.</p>`,
+      ctaLabel: "View your dashboard",
+      ctaUrl: "https://fullysorted.com/dashboard/provider",
+    }),
+  });
+}
+
+// Buyer: your order was refunded.
+export async function notifyOrderRefundedToBuyer(d: { buyerEmail?: string; gigTitle: string; amountDisplay: string }) {
+  if (!d.buyerEmail) return false;
+  return sendEmail({
+    to: d.buyerEmail,
+    subject: `Refunded: ${d.gigTitle}`,
+    html: orderShell({
+      accent: "#6b6b5e",
+      heading: "Your order was refunded",
+      bodyHtml: `<p>Your order <strong>${d.gigTitle}</strong> was cancelled and <strong>${d.amountDisplay}</strong> has been refunded to your original payment method. Refunds typically take 5–10 business days to appear.</p>`,
+    }),
+  });
+}

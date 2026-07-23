@@ -9,6 +9,13 @@ export const PLATFORM_FEE_BPS = (() => {
   return Number.isFinite(raw) && raw >= 0 && raw <= 5000 ? raw : 1000;
 })();
 
+// Days after a provider marks an order delivered before the held payment
+// auto-releases to them (so funds never get stuck if a buyer goes quiet).
+export const AUTO_RELEASE_DAYS = (() => {
+  const raw = parseInt(process.env.AUTO_RELEASE_DAYS || "", 10);
+  return Number.isFinite(raw) && raw > 0 && raw <= 60 ? raw : 14;
+})();
+
 export const PLATFORM_FEE_PCT_LABEL = `${(PLATFORM_FEE_BPS / 100).toFixed(PLATFORM_FEE_BPS % 100 === 0 ? 0 : 1)}%`;
 
 /** Platform fee, in cents, for a gross amount in cents. */

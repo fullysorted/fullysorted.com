@@ -21,6 +21,20 @@ export async function POST(_req: NextRequest, { params }: { params: Promise<{ id
     await db.update(schema.gigOrders)
       .set({ status: 'delivered', deliveredAt: new Date(), updatedAt: new Date() })
       .where(eq(schema.gigOrders.id, order.id));
+
+    // Notify the buyer with a link to review & release (best-effort).
+    try {
+      const [gig] = await db.select({ title: schema.gigs.title }).from(schema.gigs).where(eq(schema.gigs.id, order.gigId)).limit(1);
+      const origin = process.env.NEXT_PUBLIC_SITE_URL || 'https://fullysorted.com';
+      const { notifyOrderDeliveredToBuyer } = await import('@/lib/email');
+      await notifyOrderDeliveredToBuyer({
+        buyerEmail: order.buyerEmail || undefined,
+        gigTitle: gig?.title || 'your order',
+        providerName: provider.businessName || 'Your provider',
+        orderUrl: `${origin}/orders/${order.buyerAccessToken}`,
+      });
+    } catch (e) { console.error('delivered email failed', e); }
+
     return NextResponse.json({ ok: true, status: 'delivered' });
   } catch (e) {
     console.error('deliver error:', e);

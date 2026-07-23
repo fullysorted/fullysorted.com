@@ -25,12 +25,24 @@ export async function POST(_req: NextRequest, { params }: { params: Promise<{ id
     const stripe = getStripe();
     let refundId: string | null = null;
     if (order.stripePaymentIntentId) {
-      const refund = await stripe.refunds.create({ payment_intent: order.stripePaymentIntentId });
+      const refund = await stripe.refunds.create({ payment_intent: order.stripePaymentIntentId }, { idempotencyKey: `gig-refund-${order.id}` });
       refundId = refund.id;
     }
     await db.update(schema.gigOrders)
       .set({ status: 'refunded', refundedAt: new Date(), stripeRefundId: refundId, updatedAt: new Date() })
       .where(eq(schema.gigOrders.id, order.id));
+
+    try {
+      const [gig] = await db.select({ title: schema.gigs.title }).from(schema.gigs).where(eq(schema.gigs.id, order.gigId)).limit(1);
+      const { notifyOrderRefundedToBuyer } = await import('@/lib/email');
+      const { centsToDisplay } = await import('@/lib/payments');
+      await notifyOrderRefundedToBuyer({
+        buyerEmail: order.buyerEmail || undefined,
+        gigTitle: gig?.title || 'your order',
+        amountDisplay: centsToDisplay(order.amountCents ?? 0),
+      });
+    } catch (e) { console.error('refund email failed', e); }
+
     return NextResponse.json({ ok: true, status: 'refunded' });
   } catch (e) {
     console.error('cancel error:', e);
