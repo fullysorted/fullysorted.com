@@ -7,22 +7,38 @@ import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
 
+// "Research" unifies the encyclopedia and the market/valuation tools under one
+// entry — the strategy's "encyclopedia ↔ market, unified" wedge — instead of
+// exposing "Value Guide" and "Research" as two look-alike top-level tabs.
+type NavItem = { href: string; label: string; desc: string; divider?: boolean };
+type NavMenu = { label: string; items: NavItem[] };
+
+const researchMenu: NavMenu = {
+  label: "Research",
+  items: [
+    { href: "/value-guide", label: "Value Guide", desc: "What any collector car is worth — real sold-price comps" },
+    { href: "/research", label: "Model Encyclopedia", desc: "History, specs & cited production data by model" },
+    { href: "/vin", label: "VIN Decoder", desc: "Decode any 1981+ VIN — specs & open recalls" },
+  ],
+};
+
 // "Hire a Pro" consolidates the old redundant "Services" + "Hire Pros" items.
 // Following Upwork/Fiverr: never expose browse-vs-hire as rival top-level tabs —
 // nest them under one entry, differentiated by transaction model.
-const hireMenu = {
+const hireMenu: NavMenu = {
   label: "Hire a Pro",
   items: [
     { href: "/gigs", label: "Fixed-price gigs", desc: "Book a productized service, upfront pricing" },
     { href: "/services", label: "Services directory", desc: "Find a specialist business, request a quote" },
+    { href: "/services/guide", label: "Provider playbook", desc: "How to get booked, tailored by trade" },
     { href: "/services/apply", label: "List your services", desc: "Become a provider on Fully Sorted", divider: true },
   ],
 };
 
-const navLinks = [
-  { href: "/browse", label: "Browse Cars" },
-  { href: "/value-guide", label: "Value Guide" },
-  { href: "/research", label: "Research" },
+// Dropdowns render between the lead link (Browse) and the trailing links.
+const dropdownMenus = [researchMenu, hireMenu];
+const navLead = { href: "/browse", label: "Browse Cars" };
+const navTrail = [
   { href: "/events", label: "Events" },
   { href: "/about", label: "About" },
 ];
@@ -60,28 +76,38 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            {/* Hire a Pro dropdown */}
-            <div className="relative group">
-              <button className="px-3 py-2 text-sm font-medium text-text-secondary group-hover:text-foreground group-focus-within:text-foreground rounded-lg group-hover:bg-surface transition-colors inline-flex items-center gap-1">
-                {hireMenu.label}
-                <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
-              </button>
-              <div className="absolute left-0 top-full pt-2 w-72 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-150 z-50">
-                <div className="rounded-xl bg-white border border-border shadow-[0_16px_40px_-16px_rgba(26,26,24,0.28)] p-2">
-                  {hireMenu.items.map((it) => (
-                    <div key={it.href}>
-                      {it.divider && <div className="border-t border-border my-1.5" />}
-                      <Link href={it.href} className="block px-3 py-2 rounded-lg hover:bg-surface transition-colors">
-                        <p className="text-sm font-semibold text-foreground">{it.label}</p>
-                        <p className="text-xs text-text-secondary mt-0.5">{it.desc}</p>
-                      </Link>
-                    </div>
-                  ))}
+            {/* Browse first */}
+            <Link
+              href={navLead.href}
+              className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
+            >
+              {navLead.label}
+            </Link>
+
+            {/* Dropdown menus: Research, Hire a Pro */}
+            {dropdownMenus.map((menu) => (
+              <div key={menu.label} className="relative group">
+                <button className="px-3 py-2 text-sm font-medium text-text-secondary group-hover:text-foreground group-focus-within:text-foreground rounded-lg group-hover:bg-surface transition-colors inline-flex items-center gap-1">
+                  {menu.label}
+                  <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 top-full pt-2 w-72 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-150 z-50">
+                  <div className="rounded-xl bg-white border border-border shadow-[0_16px_40px_-16px_rgba(26,26,24,0.28)] p-2">
+                    {menu.items.map((it) => (
+                      <div key={it.href}>
+                        {it.divider && <div className="border-t border-border my-1.5" />}
+                        <Link href={it.href} className="block px-3 py-2 rounded-lg hover:bg-surface transition-colors">
+                          <p className="text-sm font-semibold text-foreground">{it.label}</p>
+                          <p className="text-xs text-text-secondary mt-0.5">{it.desc}</p>
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
 
-            {navLinks.map((link) => (
+            {navTrail.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -162,20 +188,35 @@ export function Header() {
         style={{ backgroundColor: "#FFFFFF" }}
       >
         <nav className="flex flex-col p-6 gap-2">
-          {/* Hire a Pro group */}
-          <p className="px-4 pt-1 pb-1 text-xs font-bold uppercase tracking-widest text-text-secondary">Hire a Pro</p>
-          {hireMenu.items.map((it) => (
-            <Link
-              key={it.href}
-              href={it.href}
-              onClick={close}
-              className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
-            >
-              {it.label}
-            </Link>
+          {/* Browse first */}
+          <Link
+            href={navLead.href}
+            onClick={close}
+            className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
+          >
+            {navLead.label}
+          </Link>
+
+          {/* Dropdown groups: Research, Hire a Pro */}
+          {dropdownMenus.map((menu) => (
+            <div key={menu.label}>
+              <div className="border-t border-border my-2" />
+              <p className="px-4 pt-1 pb-1 text-xs font-bold uppercase tracking-widest text-text-secondary">{menu.label}</p>
+              {menu.items.map((it) => (
+                <Link
+                  key={it.href}
+                  href={it.href}
+                  onClick={close}
+                  className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors block"
+                >
+                  {it.label}
+                </Link>
+              ))}
+            </div>
           ))}
-          <div className="border-t border-border my-3" />
-          {navLinks.map((link) => (
+
+          <div className="border-t border-border my-2" />
+          {navTrail.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -185,6 +226,7 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+
           <div className="border-t border-border my-4" />
           <Link
             href="/services"
