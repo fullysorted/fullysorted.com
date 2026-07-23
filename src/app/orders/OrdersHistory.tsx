@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useAuth, SignInButton } from "@clerk/nextjs";
-import { Loader2, Package, ArrowRight, ShieldCheck, PackageCheck, CheckCircle2, AlertTriangle } from "lucide-react";
+import { useAuth, useUser, SignInButton } from "@clerk/nextjs";
+import { Loader2, Package, ArrowRight, ShieldCheck, PackageCheck, CheckCircle2, AlertTriangle, Car, BarChart3, Wrench, Tag } from "lucide-react";
 
 interface Order {
   id: number;
@@ -29,8 +29,35 @@ const STATUS: Record<string, { label: string; bg: string; fg: string; icon: Reac
   pending_payment: { label: "Awaiting payment", bg: "rgba(0,0,0,0.05)", fg: "#6b6b5e", icon: Package },
 };
 
+const QUICK_ACTIONS = [
+  { href: "/browse", label: "Browse cars", icon: Car },
+  { href: "/value-guide", label: "Value a car", icon: BarChart3 },
+  { href: "/services", label: "Hire a pro", icon: Wrench },
+  { href: "/sell", label: "Sell a car", icon: Tag },
+];
+
+function QuickActions() {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+      {QUICK_ACTIONS.map((a) => {
+        const Icon = a.icon;
+        return (
+          <Link key={a.href} href={a.href}
+            className="group flex flex-col items-center justify-center gap-2 rounded-2xl bg-white border border-border p-4 hover:border-accent hover:-translate-y-0.5 transition-all">
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ backgroundColor: "rgba(30,96,145,0.08)" }}>
+              <Icon className="w-4.5 h-4.5" style={{ color: "#1E6091" }} />
+            </div>
+            <span className="text-xs font-semibold text-foreground text-center">{a.label}</span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
 export function OrdersHistory() {
   const { isSignedIn, isLoaded } = useAuth();
+  const { user } = useUser();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -55,17 +82,25 @@ export function OrdersHistory() {
     </div>
   );
 
+  const firstName = user?.firstName || "";
+
   if (orders.length === 0) return (
-    <div className="text-center py-16">
+    <div>
+      <QuickActions />
+      <div className="text-center py-16">
       <Package className="w-10 h-10 mx-auto mb-3" style={{ color: "#b7b7ab" }} />
       <p className="font-semibold text-foreground mb-1">No orders yet</p>
       <p className="text-sm text-text-secondary mb-5">When you book a service, it&rsquo;ll show up here.</p>
       <Link href="/gigs" className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors">Browse services <ArrowRight className="w-4 h-4" /></Link>
+      </div>
     </div>
   );
 
   return (
-    <div className="space-y-3">
+    <div>
+      <QuickActions />
+      <p className="text-xs font-bold uppercase tracking-widest text-text-secondary mb-3">{firstName ? `Welcome back, ${firstName}` : "Your orders"}</p>
+      <div className="space-y-3">
       {orders.map((o) => {
         const st = STATUS[o.status] || STATUS.pending_payment;
         const Icon = st.icon;
@@ -84,6 +119,7 @@ export function OrdersHistory() {
         );
         return o.buyerAccessToken ? <Link key={o.id} href={`/orders/${o.buyerAccessToken}`}>{inner}</Link> : <div key={o.id}>{inner}</div>;
       })}
+      </div>
     </div>
   );
 }
