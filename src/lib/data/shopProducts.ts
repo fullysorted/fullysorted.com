@@ -2,9 +2,10 @@ import type { Merchant } from "@/lib/affiliate";
 
 /**
  * Garage Essentials — a curated, editorial set of gear worth owning, not a
- * storefront. Each entry earns its place on the recommendation, not the SKU.
- * Swap in specific products (add an `asin`) or specialist/auction affiliate
- * links (set `url` + `merchant`) anytime; the shop renders them the same way.
+ * storefront. Each entry names a specific brand collectors actually respect and
+ * earns its place on the recommendation, not the SKU. Pin an exact product
+ * (add an `asin`) or drop in a specialist/auction affiliate link (`url` +
+ * `merchant`) anytime; the shop renders them the same way.
  */
 
 export type ShopCategoryKey =
@@ -44,7 +45,7 @@ export const SHOP_CATEGORIES: ShopCategory[] = [
     key: "garage",
     label: "Garage & Tools",
     icon: "Wrench",
-    intro: "The tools worth owning before you need them, and worth buying once — properly.",
+    intro: "The tools and fluids worth owning before you need them, and worth buying once — properly.",
   },
   {
     key: "storage",
@@ -69,143 +70,154 @@ export const SHOP_CATEGORIES: ShopCategory[] = [
 export const SHOP_PRODUCTS: ShopProduct[] = [
   // ---- Detailing & Paint Care ----
   {
-    slug: "ph-neutral-shampoo",
-    name: "pH-neutral car shampoo",
+    slug: "adams-car-shampoo",
+    name: "Adam's Polishes Car Shampoo",
     blurb:
-      "A pH-neutral shampoo lifts dirt without stripping wax or attacking soft, original paint. The safest possible first step in any wash.",
+      "Adam's pH-balanced shampoo is the enthusiast default — it lifts dirt and cuts grime without stripping wax or attacking soft, original paint. The safest first step in any wash.",
     category: "detailing",
     merchant: "amazon",
-    amazonSearch: "pH neutral car shampoo detailing",
-  },
-  {
-    slug: "clay-decontamination-kit",
-    name: "Clay decontamination kit",
-    blurb:
-      "Bonded contaminants dull even a clean car. A clay treatment brings paint back to glass-smooth before any polish or coating — you'll feel the difference with your eyes closed.",
-    category: "detailing",
-    merchant: "amazon",
-    amazonSearch: "clay bar decontamination kit auto detailing",
-  },
-  {
-    slug: "dual-action-polisher",
-    name: "Dual-action polisher",
-    blurb:
-      "A random-orbital (dual-action) polisher corrects swirls far more safely than a rotary — the forgiving choice for irreplaceable collector paint. Buy once, cry once.",
-    category: "detailing",
-    merchant: "amazon",
-    amazonSearch: "dual action random orbital car polisher",
+    amazonSearch: "Adam's Polishes car wash shampoo",
     editorsPick: true,
   },
   {
-    slug: "plush-microfiber-towels",
-    name: "Plush microfiber towels",
+    slug: "adams-clay-kit",
+    name: "Adam's Polishes Clay Bar Kit",
     blurb:
-      "Cheap towels put the swirls right back in. A set of deep, plush microfiber is the least glamorous upgrade that matters most.",
+      "Bonded contaminants dull even a clean car. Adam's clay kit brings paint back to glass-smooth before any polish or coating — you'll feel the difference with your eyes closed.",
     category: "detailing",
     merchant: "amazon",
-    amazonSearch: "plush microfiber detailing towels",
+    amazonSearch: "Adam's Polishes clay bar kit",
   },
   {
-    slug: "quick-detailer",
-    name: "Quick detailer spray",
+    slug: "griots-polisher",
+    name: "Griot's Garage Random-Orbital Polisher",
     blurb:
-      "For between-show dust and fingerprints, a quick detailer keeps a car presentable without a full wash. Keep one in the trunk before every event.",
+      "The Griot's 6-inch random-orbital is the machine that made paint correction safe for weekend owners — far more forgiving on collector paint than a rotary. Buy once, cry once.",
     category: "detailing",
     merchant: "amazon",
-    amazonSearch: "quick detailer spray waterless wash",
+    amazonSearch: "Griot's Garage random orbital polisher",
+    editorsPick: true,
+  },
+  {
+    slug: "rag-company-towels",
+    name: "The Rag Company Microfiber Towels",
+    blurb:
+      "Cheap towels put the swirls right back in. The Rag Company's plush microfiber is the least glamorous upgrade that matters most — buy a stack and never look back.",
+    category: "detailing",
+    merchant: "amazon",
+    amazonSearch: "The Rag Company microfiber detailing towels",
+  },
+  {
+    slug: "adams-detail-spray",
+    name: "Adam's Polishes Detail Spray",
+    blurb:
+      "For between-show dust and fingerprints, Adam's Detail Spray keeps a car presentable without a full wash. Keep a bottle in the trunk before every event.",
+    category: "detailing",
+    merchant: "amazon",
+    amazonSearch: "Adam's Polishes detail spray",
   },
 
   // ---- Garage & Tools ----
   {
-    slug: "low-profile-floor-jack",
-    name: "Low-profile aluminum floor jack",
+    slug: "royal-purple-oil",
+    name: "Royal Purple High-Performance Motor Oil",
     blurb:
-      "A low-profile jack slides under lowered and vintage cars that a standard jack simply can't reach. Aluminum saves your back on the way in and out of the garage.",
+      "Royal Purple's synthetic is a garage favorite for cars that sit and then get driven hard — strong film strength and additive package for older engines. Match the grade to your marque's spec.",
     category: "garage",
     merchant: "amazon",
-    amazonSearch: "low profile aluminum floor jack",
+    amazonSearch: "Royal Purple high performance synthetic motor oil",
+    editorsPick: true,
   },
   {
-    slug: "jack-stands",
-    name: "Rated jack stands",
+    slug: "arcan-floor-jack",
+    name: "Arcan Low-Profile Aluminum Floor Jack",
     blurb:
-      "Never trust a jack alone. A pair of properly rated stands is the cheapest insurance in the garage — use them every single time.",
+      "The Arcan aluminum low-profile jack slides under lowered and vintage cars a standard jack can't reach — and won't wreck your back getting there.",
     category: "garage",
     merchant: "amazon",
-    amazonSearch: "jack stands 3 ton pair",
+    amazonSearch: "Arcan low profile aluminum floor jack",
   },
   {
-    slug: "torque-wrench",
-    name: "Calibrated torque wrench",
+    slug: "esco-jack-stands",
+    name: "ESCO Jack Stands",
     blurb:
-      "Original fasteners and alloy castings don't forgive over-torquing. A calibrated torque wrench protects the parts you can't easily replace.",
+      "Never trust a jack alone. A pair of properly rated ESCO stands is the cheapest insurance in the garage — use them every single time.",
     category: "garage",
     merchant: "amazon",
-    amazonSearch: "digital torque wrench 1/2 inch",
+    amazonSearch: "ESCO jack stands pair",
   },
   {
-    slug: "obd2-scanner",
-    name: "Bluetooth OBD-II scanner",
+    slug: "tekton-torque-wrench",
+    name: "Tekton Torque Wrench",
     blurb:
-      "For anything 1996-on, a scanner turns a mystery warning light into a specific answer — before you hand the car (and a blank check) to a shop.",
+      "Original fasteners and alloy castings don't forgive over-torquing. A calibrated Tekton torque wrench protects the parts you can't easily replace.",
     category: "garage",
     merchant: "amazon",
-    amazonSearch: "obd2 bluetooth scanner",
+    amazonSearch: "Tekton torque wrench 1/2 inch drive",
+  },
+  {
+    slug: "bluedriver-scanner",
+    name: "BlueDriver Bluetooth OBD-II Scanner",
+    blurb:
+      "For anything 1996-on, BlueDriver turns a mystery warning light into a specific answer — before you hand the car (and a blank check) to a shop.",
+    category: "garage",
+    merchant: "amazon",
+    amazonSearch: "BlueDriver bluetooth OBD2 scanner",
   },
 
   // ---- Storage & Preservation ----
   {
-    slug: "battery-tender",
-    name: "Battery tender / trickle charger",
+    slug: "battery-tender-jr",
+    name: "Battery Tender Junior",
     blurb:
-      "The single most important thing for a stored car. A quality tender keeps the battery healthy and the electronics happy through the whole off-season.",
+      "The single most important thing for a stored car. The Deltran Battery Tender Junior keeps the battery healthy and the electronics happy through the whole off-season.",
     category: "storage",
     merchant: "amazon",
-    amazonSearch: "battery tender trickle charger",
+    amazonSearch: "Battery Tender Junior 800",
     editorsPick: true,
   },
   {
-    slug: "fuel-stabilizer",
-    name: "Fuel stabilizer",
+    slug: "stabil-fuel-stabilizer",
+    name: "STA-BIL Fuel Stabilizer",
     blurb:
-      "Modern ethanol fuel starts degrading in months. Stabilizer keeps the fuel system clean and varnish-free while the car sleeps.",
+      "Modern ethanol fuel starts degrading in months. STA-BIL keeps the fuel system clean and varnish-free while the car sleeps — a few ounces saves a carburetor rebuild.",
     category: "storage",
     merchant: "amazon",
-    amazonSearch: "fuel stabilizer ethanol treatment",
+    amazonSearch: "STA-BIL fuel stabilizer",
   },
   {
-    slug: "indoor-car-cover",
-    name: "Breathable indoor car cover",
+    slug: "covercraft-car-cover",
+    name: "Covercraft Indoor Car Cover",
     blurb:
-      "A soft, breathable indoor cover keeps dust off without trapping moisture against the paint. The indoor-specific weave is the detail that matters.",
+      "A soft, breathable Covercraft indoor cover keeps dust off without trapping moisture against the paint. The indoor-specific weave is the detail that matters.",
     category: "storage",
     merchant: "amazon",
-    amazonSearch: "indoor car cover breathable soft",
+    amazonSearch: "Covercraft indoor car cover",
   },
   {
-    slug: "tire-cradles",
-    name: "Tire cradles",
+    slug: "race-ramps-flatstoppers",
+    name: "Race Ramps FlatStoppers",
     blurb:
-      "Tires flat-spot under a stationary car over a long winter. Cradles spread the load and save your rubber — cheaper than a set of tires you didn't need to buy.",
+      "Tires flat-spot under a stationary car over a long winter. Race Ramps FlatStoppers spread the load and save your rubber — cheaper than a set of tires you didn't need to buy.",
     category: "storage",
     merchant: "amazon",
-    amazonSearch: "tire cradles flat spot prevention storage",
+    amazonSearch: "Race Ramps FlatStoppers tire cradles",
   },
 
   // ---- The Library ----
   {
     slug: "workshop-manual",
-    name: "Factory / workshop manual",
+    name: "Haynes / Bentley Workshop Manual",
     blurb:
-      "Nothing beats the correct manual for torque specs, sequences, and wiring diagrams. Find the one for your marque — it pays for itself the first afternoon.",
+      "Nothing beats the correct manual for torque specs, sequences, and wiring diagrams. Find the Haynes or Bentley for your marque — it pays for itself the first afternoon.",
     category: "library",
     merchant: "amazon",
-    amazonSearch: "classic car workshop manual haynes",
+    amazonSearch: "Haynes Bentley workshop manual classic car",
     editorsPick: true,
   },
   {
     slug: "buyers-guide",
-    name: "Marque buyer's guides",
+    name: "Marque Buyer's Guides",
     blurb:
       "The definitive buyer's guide for your model steers you away from one bad car and it has paid for a shelf of books.",
     category: "library",
@@ -214,7 +226,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     slug: "originality-guide",
-    name: "Originality & restoration references",
+    name: "Originality & Restoration References",
     blurb:
       "Concours judging hinges on details. Originality guides document the correct finishes, date codes, and part numbers most owners never learn.",
     category: "library",
@@ -223,7 +235,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     slug: "coffee-table-book",
-    name: "The coffee-table books",
+    name: "The Coffee-Table Books",
     blurb:
       "The books that make the case for why you own the thing at all. Great photography, better company on a slow evening.",
     category: "library",
@@ -233,17 +245,17 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
 
   // ---- For the Enthusiast ----
   {
-    slug: "scale-model",
-    name: "1:18 scale model",
+    slug: "autoart-scale-model",
+    name: "AUTOart 1:18 Scale Model",
     blurb:
-      "The right 1:18 die-cast of your car is the gift every enthusiast quietly wants and never buys for themselves.",
+      "The right AUTOart 1:18 of your car — opening panels, detailed engine, the works — is the gift every enthusiast quietly wants and never buys for themselves.",
     category: "enthusiast",
     merchant: "amazon",
-    amazonSearch: "1:18 diecast classic car model",
+    amazonSearch: "AUTOart 1:18 diecast model car",
   },
   {
     slug: "garage-art",
-    name: "Garage signs & marque art",
+    name: "Garage Signs & Marque Art",
     blurb:
       "Period signage and marque art turn a garage into a room you actually want to spend time in.",
     category: "enthusiast",
@@ -252,7 +264,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     slug: "driving-gloves",
-    name: "Leather driving gloves",
+    name: "Leather Driving Gloves",
     blurb:
       "String-back driving gloves: entirely unnecessary, completely correct, and quietly wonderful.",
     category: "enthusiast",
@@ -261,7 +273,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
   },
   {
     slug: "art-print",
-    name: "Automotive art prints",
+    name: "Automotive Art Prints",
     blurb:
       "A good print of the right car beats another poster every time — the finishing touch for an office or a hallway.",
     category: "enthusiast",
