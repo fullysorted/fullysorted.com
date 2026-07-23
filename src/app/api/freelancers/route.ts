@@ -25,6 +25,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!process.env.DATABASE_URL) {
+      return NextResponse.json({ error: 'The database isn\u2019t connected yet. Please try again shortly.' }, { status: 503 });
+    }
     const db = getDb();
     const skillsArr: string[] = Array.isArray(skills) ? skills : [];
     const slug = slugify(ownerName);
@@ -64,8 +67,10 @@ export async function POST(request: NextRequest) {
       status: 'pending',
     }).returning();
 
-    // Optional first gig (draft) + packages.
+    // Optional first gig (draft) + packages — best-effort: never block the
+    // application/profile if gig tables have an issue.
     let gigSlug: string | null = null;
+    try {
     if (gig && gig.title) {
       gigSlug = slugify(gig.title);
       const [createdGig] = await db.insert(schema.gigs).values({
@@ -93,6 +98,9 @@ export async function POST(request: NextRequest) {
         }
       }
     }
+    } catch (gigErr) {
+      console.error('freelancer gig creation failed (application still saved):', gigErr);
+    }
 
     // Notify Chris (best-effort).
     try {
@@ -113,6 +121,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Create freelancer error:', error);
-    return NextResponse.json({ error: 'Failed to submit. Please try again.' }, { status: 500 });
+    const detail = error instanceof Error ? error.message : String(error);
+    return NextResponse.json({ error: 'Failed to submit. Please try again.', detail }, { status: 500 });
   }
 }
