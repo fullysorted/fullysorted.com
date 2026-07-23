@@ -289,6 +289,7 @@ export const gigOrders = pgTable('gig_orders', {
   stripeTransferId: varchar('stripe_transfer_id', { length: 255 }),
   stripeRefundId: varchar('stripe_refund_id', { length: 255 }),
   buyerAccessToken: varchar('buyer_access_token', { length: 64 }), // buyer views/accepts without an account
+  buyerClerkUserId: varchar('buyer_clerk_user_id', { length: 255 }), // links the order to a signed-in buyer, if any
   paidAt: timestamp('paid_at'),
   deliveredAt: timestamp('delivered_at'),
   completedAt: timestamp('completed_at'),

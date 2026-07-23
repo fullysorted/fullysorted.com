@@ -144,6 +144,12 @@ export function Header() {
             {isLoaded && isSignedIn ? (
               <div className="flex items-center gap-3">
                 <Link
+                  href="/orders"
+                  className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
+                >
+                  My Orders
+                </Link>
+                <Link
                   href="/dashboard/provider"
                   className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
                 >
@@ -255,6 +261,13 @@ export function Header() {
           )}
           {isLoaded && isSignedIn && (
             <>
+              <Link
+                href="/orders"
+                onClick={close}
+                className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
+              >
+                My Orders
+              </Link>
               <Link
                 href="/dashboard/provider"
                 onClick={close}

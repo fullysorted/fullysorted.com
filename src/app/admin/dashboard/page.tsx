@@ -208,6 +208,21 @@ export default function AdminDashboard() {
         />
       </div>
 
+      {/* Orders & disputes quick link */}
+      <Link
+        href="/admin/orders"
+        className="flex items-center gap-3 p-4 rounded-xl border border-border bg-white hover:border-accent transition-colors"
+      >
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: "rgba(30,96,145,0.08)" }}>
+          <DollarSign className="w-4 h-4" style={{ color: "#1E6091" }} />
+        </div>
+        <div className="flex-1">
+          <p className="text-sm font-semibold text-foreground">Orders &amp; Disputes</p>
+          <p className="text-xs text-text-secondary">Every gig transaction across the marketplace — resolve disputes, release or refund.</p>
+        </div>
+        <ArrowRight className="w-4 h-4 text-accent" />
+      </Link>
+
       {/* Pending Approvals Banner */}
       {listings.pending > 0 && (
         <Link

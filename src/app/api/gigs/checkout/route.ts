@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
+import { auth } from '@clerk/nextjs/server';
 import { getStripe } from '@/lib/stripe';
 import { getDb, schema } from '@/lib/db';
 import { and, eq } from 'drizzle-orm';
@@ -12,6 +13,7 @@ import { dollarsToCents, platformFeeCents, providerPayoutCents } from '@/lib/pay
 // flow instead of taking money we can't pay out.
 export async function POST(request: NextRequest) {
   try {
+    const { userId } = await auth();
     const body = await request.json();
     const { gigSlug, packageId, buyerName, buyerEmail, message } = body;
     if (!gigSlug || !packageId || !buyerName || !buyerEmail) {
@@ -63,6 +65,7 @@ export async function POST(request: NextRequest) {
       status: 'pending_payment',
       requirementsText: message || null,
       buyerAccessToken: token,
+      buyerClerkUserId: userId || null,
     }).returning();
 
     const origin =
