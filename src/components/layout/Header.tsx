@@ -39,6 +39,7 @@ const hireMenu: NavMenu = {
 const dropdownMenus = [researchMenu, hireMenu];
 const navLead = { href: "/browse", label: "Browse Cars" };
 const navTrail = [
+  { href: "/shop", label: "Shop" },
   { href: "/events", label: "Events" },
   { href: "/about", label: "About" },
 ];

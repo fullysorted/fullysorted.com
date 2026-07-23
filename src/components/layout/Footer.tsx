@@ -17,8 +17,8 @@ const footerLinks = {
     { href: "/browse", label: "Browse All Cars" },
     { href: "/browse?category=muscle", label: "Muscle Cars" },
     { href: "/browse?category=european", label: "European" },
-    { href: "/browse?category=jdm", label: "JDM" },
     { href: "/sell", label: "Sell a Car" },
+    { href: "/shop", label: "Garage Essentials" },
   ],
   Company: [
     { href: "/about", label: "About Us" },
