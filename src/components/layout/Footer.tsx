@@ -1,11 +1,17 @@
 import Link from "next/link";
 
 const footerLinks = {
-  Services: [
-    { href: "/services", label: "Services Directory" },
-    { href: "/gigs", label: "Hire Pros" },
+  Research: [
     { href: "/value-guide", label: "Value Guide" },
-    { href: "/research", label: "Market Research" },
+    { href: "/research", label: "Model Encyclopedia" },
+    { href: "/research/models", label: "Model Directory" },
+    { href: "/vin", label: "VIN Decoder" },
+  ],
+  "Hire a Pro": [
+    { href: "/gigs", label: "Fixed-price Gigs" },
+    { href: "/services", label: "Services Directory" },
+    { href: "/services/guide", label: "Provider Playbook" },
+    { href: "/services/apply", label: "List Your Services" },
   ],
   Marketplace: [
     { href: "/browse", label: "Browse All Cars" },
@@ -24,8 +30,8 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer style={{ background: "#0F2A1D" }}>
-      {/* Top accent line — green to trophy gold */}
+    <footer style={{ background: "linear-gradient(180deg, #10233b 0%, #0b1a2e 100%)" }}>
+      {/* Top accent line — signature tricolor, matching the header hairline */}
       <div
         className="h-px"
         style={{
@@ -35,9 +41,9 @@ export function Footer() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
           {/* Brand Column */}
-          <div className="col-span-2 sm:col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <div className="mb-4">
               {/* Logo is white — footer is always dark so no invert needed */}
               <img
@@ -46,9 +52,9 @@ export function Footer() {
                 style={{ height: 28, width: "auto", maxWidth: 160 }}
               />
             </div>
-            <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(245,239,230,0.55)" }}>
-              The collector car services hub and marketplace built by enthusiasts,
-              for enthusiasts.
+            <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(230,238,247,0.55)" }}>
+              The collector car research hub, marketplace, and services network —
+              built by enthusiasts, for enthusiasts.
             </p>
             {/* Tricolor motif */}
             <div className="flex items-center gap-1.5 mt-4" aria-hidden>
@@ -57,10 +63,10 @@ export function Footer() {
               <span className="w-2 h-2" style={{ background: "#B08D3F" }} />
             </div>
             <div className="mt-4 space-y-1">
-              <p className="text-xs" style={{ color: "rgba(245,239,230,0.38)" }}>
+              <p className="text-xs" style={{ color: "rgba(230,238,247,0.38)" }}>
                 San Diego, CA
               </p>
-              <p className="text-xs" style={{ color: "rgba(245,239,230,0.38)" }}>
+              <p className="text-xs" style={{ color: "rgba(230,238,247,0.38)" }}>
                 (619) 823-2132
               </p>
             </div>
@@ -81,7 +87,7 @@ export function Footer() {
                     <Link
                       href={link.href}
                       className="text-sm transition-colors hover:text-white"
-                      style={{ color: "rgba(245,239,230,0.55)" }}
+                      style={{ color: "rgba(230,238,247,0.55)" }}
                     >
                       {link.label}
                     </Link>
@@ -95,11 +101,11 @@ export function Footer() {
         {/* Bottom Bar */}
         <div
           className="mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
-          <p className="text-xs" style={{ color: "rgba(245,239,230,0.38)" }}>
+          <p className="text-xs" style={{ color: "rgba(230,238,247,0.38)" }}>
             &copy; {new Date().getFullYear()} Fully Sorted. All rights reserved. &nbsp;·&nbsp;{" "}
-            <Link href="/privacy" className="hover:text-white transition-colors" style={{ color: "rgba(245,239,230,0.38)" }}>
+            <Link href="/privacy" className="hover:text-white transition-colors" style={{ color: "rgba(230,238,247,0.38)" }}>
               Do Not Sell My Info
             </Link>
           </p>
@@ -109,7 +115,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs transition-colors hover:text-white"
-              style={{ color: "rgba(245,239,230,0.45)" }}
+              style={{ color: "rgba(230,238,247,0.45)" }}
             >
               Instagram
             </a>
@@ -118,7 +124,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs transition-colors hover:text-white"
-              style={{ color: "rgba(245,239,230,0.45)" }}
+              style={{ color: "rgba(230,238,247,0.45)" }}
             >
               Facebook
             </a>
