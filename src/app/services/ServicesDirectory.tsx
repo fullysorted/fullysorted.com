@@ -20,17 +20,17 @@ const CATEGORIES = [
 
 type CategoryKey = typeof CATEGORIES[number]['key'];
 
-// ─── Category photography (headers on provider cards) ──
-const CATEGORY_PHOTOS: Record<string, string> = {
-  photography: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=80',
-  detailing: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1200&q=80',
-  mechanical: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80',
-  transport: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1200&q=80',
-  inspection: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80',
-  restoration: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80',
-  bodywork: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1200&q=80',
+// ─── Category header tints (distinct, brand-harmonious; no stock photos) ──
+const CATEGORY_TINT: Record<string, string> = {
+  photography: '#1E6091',
+  detailing: '#29ABE2',
+  mechanical: '#5a6b74',
+  transport: '#3f6f8a',
+  inspection: '#4b8b2e',
+  restoration: '#B08D3F',
+  bodywork: '#9a5a33',
 };
-const DEFAULT_PHOTO = 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80';
+const DEFAULT_TINT = '#1E6091';
 
 // ─── Provider Type ────────────────────────────────────
 interface Provider {
@@ -65,16 +65,11 @@ function ProviderCard({ provider }: { provider: Provider }) {
     >
       {/* Photographic category header */}
       <div className="relative h-28 overflow-hidden listing-image-container">
-        <img
-          src={CATEGORY_PHOTOS[provider.category] ?? DEFAULT_PHOTO}
-          alt=""
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(rgba(15,32,50,0.30), rgba(15,32,50,0.62))' }}
+          style={{ background: `linear-gradient(135deg, ${CATEGORY_TINT[provider.category] ?? DEFAULT_TINT} 0%, #0b1a2e 92%)` }}
         />
+        <div className="absolute inset-0 film-grain opacity-[0.07] pointer-events-none" />
         <span className="absolute bottom-2.5 left-5 text-[11px] font-bold uppercase tracking-widest text-white/90">
           {categoryLabel}
         </span>
@@ -278,15 +273,9 @@ export default function ServicesDirectory() {
       {/* CTA to Apply */}
       <div className="mt-12 relative overflow-hidden rounded-2xl text-center">
         {/* Photographic backdrop under a racing-green overlay */}
-        <img
-          src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1600&q=80"
-          alt=""
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(rgba(15,32,50,0.78), rgba(15,32,50,0.88))' }}
+          style={{ background: 'radial-gradient(900px 500px at 80% -10%, rgba(30,96,145,0.38) 0%, rgba(14,33,54,0) 60%), linear-gradient(160deg, #10233b 0%, #0b1a2e 55%, #0a1626 100%)' }}
         />
         <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
         <div className="relative p-8">

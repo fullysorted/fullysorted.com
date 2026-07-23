@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowLeft, Database } from "lucide-react";
 import { getPublishedModelsWithMeta } from "@/lib/data/models";
 import { ModelsDirectory } from "./ModelsDirectory";
@@ -54,17 +53,9 @@ export default async function ModelsIndexPage() {
           className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
           style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }}
         />
-        <Image
-          src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80"
-          alt="Classic car front end"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(rgba(15,32,50,0.62), rgba(15,32,50,0.82))" }}
+          style={{ background: "radial-gradient(1100px 600px at 80% -10%, rgba(30,96,145,0.38) 0%, rgba(14,33,54,0) 60%), linear-gradient(160deg, #10233b 0%, #0b1a2e 55%, #0a1626 100%)" }}
         />
         <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
