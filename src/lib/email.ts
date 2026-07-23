@@ -333,3 +333,27 @@ export async function notifyOrderRefundedToBuyer(d: { buyerEmail?: string; gigTi
     }),
   });
 }
+
+// Buyer reported a problem — notify the provider and Chris (admin).
+export async function notifyOrderDisputed(d: { providerEmail?: string; gigTitle: string; buyerName?: string; buyerEmail?: string; reason: string; orderId: number }) {
+  const bodyHtml = `<p><strong>${d.gigTitle}</strong></p>
+    <p>${d.buyerName ? `${d.buyerName}` : "The buyer"}${d.buyerEmail ? ` (${d.buyerEmail})` : ""} reported a problem with this order. The held payment is paused — it will not auto-release until this is resolved.</p>
+    <div style="margin-top:12px;padding:16px;background:#faf9f7;border-radius:8px;">
+      <p style="margin:0 0 6px;font-weight:600;">What they said</p>
+      <p style="margin:0;color:#6b6b5e;white-space:pre-line;">${d.reason}</p>
+    </div>
+    <p style="margin-top:12px;">Reach out to the buyer to resolve it. You can refund from your dashboard, or the buyer can release payment once it's sorted.</p>`;
+  // Provider
+  if (d.providerEmail) {
+    await sendEmail({
+      to: d.providerEmail,
+      subject: `⚠️ A problem was reported on order #${d.orderId}`,
+      html: orderShell({ accent: "#B0553F", heading: "A buyer reported a problem", bodyHtml, ctaLabel: "Open your dashboard", ctaUrl: "https://fullysorted.com/dashboard/provider" }),
+    });
+  }
+  // Admin (Chris)
+  return sendEmail({
+    subject: `⚠️ Dispute reported — order #${d.orderId}: ${d.gigTitle}`,
+    html: orderShell({ accent: "#B0553F", heading: "Order dispute reported", bodyHtml, ctaLabel: "Review orders", ctaUrl: "https://fullysorted.com/admin/messages" }),
+  });
+}

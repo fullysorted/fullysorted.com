@@ -31,6 +31,8 @@ export async function POST(request: NextRequest) {
   await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS completed_at TIMESTAMP`;
   await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS cancelled_at TIMESTAMP`;
   await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS refunded_at TIMESTAMP`;
+  await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS dispute_reason TEXT`;
+  await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS disputed_at TIMESTAMP`;
   await sql`CREATE INDEX IF NOT EXISTS idx_gig_orders_token ON gig_orders(buyer_access_token)`;
   await sql`CREATE INDEX IF NOT EXISTS idx_gig_orders_session ON gig_orders(stripe_session_id)`;
 

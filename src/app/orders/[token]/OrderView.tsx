@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { Loader2, ShieldCheck, CheckCircle2, Clock, PackageCheck, AlertCircle } from "lucide-react";
+import { Loader2, ShieldCheck, CheckCircle2, Clock, PackageCheck, AlertCircle, AlertTriangle } from "lucide-react";
 
 interface OrderData {
   id: number;
@@ -14,6 +14,8 @@ interface OrderData {
   paidAt: string | null;
   deliveredAt: string | null;
   completedAt: string | null;
+  disputedAt: string | null;
+  disputeReason: string | null;
   gigTitle: string;
   gigSlug: string | null;
   providerName: string;
@@ -27,6 +29,8 @@ export function OrderView({ token }: { token: string }) {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
   const [acting, setActing] = useState(false);
+  const [reporting, setReporting] = useState(false);
+  const [reason, setReason] = useState("");
 
   const load = useCallback(async () => {
     try {
@@ -55,6 +59,21 @@ export function OrderView({ token }: { token: string }) {
     setActing(false);
   }
 
+  async function report() {
+    if (!order || !reason.trim()) return;
+    setActing(true); setErr("");
+    try {
+      const res = await fetch(`/api/gigs/orders/${order.id}/dispute`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, reason }),
+      });
+      const d = await res.json();
+      if (res.ok) { setReporting(false); setReason(""); await load(); }
+      else setErr(d.error || "Could not submit.");
+    } catch { setErr("Network error — try again."); }
+    setActing(false);
+  }
+
   if (loading) return <div className="flex justify-center py-20"><Loader2 className="w-6 h-6 animate-spin" style={{ color: "#1E6091" }} /></div>;
   if (err && !order) return (
     <div className="max-w-lg mx-auto text-center py-20">
@@ -64,7 +83,8 @@ export function OrderView({ token }: { token: string }) {
   );
   if (!order) return null;
 
-  const canAccept = order.status === "paid" || order.status === "delivered";
+  const isDisputed = order.status === "disputed";
+  const canAct = order.status === "paid" || order.status === "delivered" || isDisputed;
   const steps = [
     { key: "paid", label: "Payment held", done: !!order.paidAt, icon: ShieldCheck },
     { key: "delivered", label: "Work delivered", done: !!order.deliveredAt || order.status === "completed", icon: PackageCheck },
@@ -104,22 +124,58 @@ export function OrderView({ token }: { token: string }) {
           <div className="rounded-xl p-4 text-center" style={{ background: "rgba(0,0,0,0.04)" }}>
             <p className="text-sm font-semibold" style={{ color: "#1a1a18" }}>This order was {order.status} and refunded.</p>
           </div>
-        ) : canAccept ? (
+        ) : canAct ? (
           <>
-            <div className="rounded-xl p-4 mb-4 flex items-start gap-2.5" style={{ background: "rgba(30,96,145,0.05)", border: "1px solid rgba(30,96,145,0.16)" }}>
-              <Clock className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#1E6091" }} />
-              <p className="text-xs leading-relaxed" style={{ color: "#6b6b5e" }}>
-                Your payment is held securely. {order.deliveredAt
-                  ? "The provider has marked the work delivered — review it, then release payment below."
-                  : "Once you're happy with the completed work, release the payment to the provider."}
-              </p>
-            </div>
+            {isDisputed ? (
+              <div className="rounded-xl p-4 mb-4 flex items-start gap-2.5" style={{ background: "rgba(176,85,63,0.08)", border: "1px solid rgba(176,85,63,0.25)" }}>
+                <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#B0553F" }} />
+                <div>
+                  <p className="text-xs font-semibold mb-0.5" style={{ color: "#8a3f2f" }}>Problem reported — we&rsquo;re on it</p>
+                  <p className="text-xs leading-relaxed" style={{ color: "#6b6b5e" }}>
+                    Your payment stays held while you and {order.providerName} sort it out — it won&rsquo;t auto-release. If it gets resolved, you can release payment below; otherwise the provider can refund you.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-xl p-4 mb-4 flex items-start gap-2.5" style={{ background: "rgba(30,96,145,0.05)", border: "1px solid rgba(30,96,145,0.16)" }}>
+                <Clock className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#1E6091" }} />
+                <p className="text-xs leading-relaxed" style={{ color: "#6b6b5e" }}>
+                  Your payment is held securely. {order.deliveredAt
+                    ? "The provider has marked the work delivered — review it, then release payment below."
+                    : "Once you're happy with the completed work, release the payment to the provider."}
+                </p>
+              </div>
+            )}
             {err && <p className="text-xs mb-2" style={{ color: "#DC2626" }}>{err}</p>}
             <button onClick={accept} disabled={acting}
               className="w-full h-11 rounded-xl text-white text-sm font-bold inline-flex items-center justify-center gap-2 disabled:opacity-60 bg-accent hover:bg-accent-hover transition-colors">
-              {acting ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle2 className="w-4 h-4" />}
-              {acting ? "Releasing…" : "Accept work & release payment"}
+              {acting && !reporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle2 className="w-4 h-4" />}
+              {isDisputed ? "It's resolved — release payment" : "Accept work & release payment"}
             </button>
+
+            {/* Report a problem */}
+            {!isDisputed && !reporting && (
+              <button onClick={() => setReporting(true)} className="w-full mt-3 text-xs font-semibold" style={{ color: "#9a3f2f" }}>
+                Something wrong? Report a problem
+              </button>
+            )}
+            {reporting && (
+              <div className="mt-4 rounded-xl p-4" style={{ border: "1px solid rgba(0,0,0,0.1)" }}>
+                <p className="text-sm font-semibold mb-2" style={{ color: "#1a1a18" }}>Report a problem</p>
+                <p className="text-xs mb-3" style={{ color: "#6b6b5e" }}>Tell us what&rsquo;s wrong. This pauses the payment and notifies the provider and our team.</p>
+                <textarea rows={4} value={reason} onChange={(e) => setReason(e.target.value)}
+                  placeholder="e.g. The work delivered doesn't match what was agreed…"
+                  className="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-light focus:border-accent resize-none" style={{ borderColor: "rgba(0,0,0,0.12)" }} />
+                <div className="flex gap-2 mt-2">
+                  <button onClick={report} disabled={acting || !reason.trim()}
+                    className="flex-1 h-10 rounded-lg text-white text-sm font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-60"
+                    style={{ backgroundColor: "#B0553F" }}>
+                    {acting ? <Loader2 className="w-4 h-4 animate-spin" /> : <AlertTriangle className="w-4 h-4" />} Submit report
+                  </button>
+                  <button onClick={() => { setReporting(false); setReason(""); }} className="px-4 h-10 rounded-lg text-sm font-semibold" style={{ color: "#6b6b5e", border: "1px solid rgba(0,0,0,0.12)" }}>Cancel</button>
+                </div>
+              </div>
+            )}
           </>
         ) : (
           <div className="rounded-xl p-4 text-center" style={{ background: "rgba(0,0,0,0.04)" }}>

@@ -294,6 +294,8 @@ export const gigOrders = pgTable('gig_orders', {
   completedAt: timestamp('completed_at'),
   cancelledAt: timestamp('cancelled_at'),
   refundedAt: timestamp('refunded_at'),
+  disputeReason: text('dispute_reason'),
+  disputedAt: timestamp('disputed_at'),
 
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),

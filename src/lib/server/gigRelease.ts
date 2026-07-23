@@ -15,7 +15,7 @@ export async function releaseGigOrder(orderId: number): Promise<{ ok: boolean; s
   const [order] = await db.select().from(schema.gigOrders).where(eq(schema.gigOrders.id, orderId)).limit(1);
   if (!order) return { ok: false, status: 'not_found', error: 'Order not found' };
   if (order.status === 'completed') return { ok: true, status: 'completed' };
-  if (order.status !== 'paid' && order.status !== 'delivered') {
+  if (order.status !== 'paid' && order.status !== 'delivered' && order.status !== 'disputed') {
     return { ok: false, status: order.status, error: `Cannot release from '${order.status}'` };
   }
 

@@ -18,7 +18,7 @@ export async function POST(_req: NextRequest, { params }: { params: Promise<{ id
     const db = getDb();
     const [order] = await db.select().from(schema.gigOrders).where(eq(schema.gigOrders.id, Number(id))).limit(1);
     if (!order || order.providerId !== provider.id) return NextResponse.json({ error: 'Order not found' }, { status: 404 });
-    if (order.status !== 'paid' && order.status !== 'delivered') {
+    if (order.status !== 'paid' && order.status !== 'delivered' && order.status !== 'disputed') {
       return NextResponse.json({ error: `Can't cancel an order in '${order.status}'` }, { status: 409 });
     }
 

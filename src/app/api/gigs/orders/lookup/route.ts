@@ -27,6 +27,8 @@ export async function GET(req: NextRequest) {
         paidAt: order.paidAt,
         deliveredAt: order.deliveredAt,
         completedAt: order.completedAt,
+        disputedAt: order.disputedAt,
+        disputeReason: order.disputeReason,
         gigTitle: gig?.title ?? 'Service',
         gigSlug: gig?.slug ?? null,
         providerName: provider?.businessName ?? 'Provider',
