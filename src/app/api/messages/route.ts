@@ -2,8 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // POST /api/messages — public endpoint, saves contact form to DB
 export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const { listingId, listingSlug, listingTitle, senderName, senderEmail, senderPhone, messageText, type, offerAmount } = body;
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
+  }
+  const { listingId, listingSlug, listingTitle, senderName, senderEmail, senderPhone, messageText, type, offerAmount } = body as {
+    listingId?: number; listingSlug?: string; listingTitle?: string;
+    senderName?: string; senderEmail?: string; senderPhone?: string;
+    messageText?: string; type?: string; offerAmount?: number;
+  };
 
   if (!senderName || !senderEmail || !messageText) {
     return NextResponse.json({ error: 'Name, email, and message are required' }, { status: 400 });

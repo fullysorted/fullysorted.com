@@ -2,22 +2,23 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, subject, message } = await request.json();
+    let body: { name?: string; email?: string; subject?: string; message?: string };
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+    }
+    const { name, email, subject, message } = body;
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: "Name, email, and message are required" }, { status: 400 });
     }
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
 
-    // Send notification email to Chris
-    const { notifyContactForm } = await import("@/lib/email");
-    await notifyContactForm({ name, email, subject: subject || "General Question", message });
-
-    // Optional: save to DB if available
+    // Save first (if a DB is available) so a message is never lost to an email hiccup.
     if (process.env.DATABASE_URL) {
       try {
         const { neon } = await import("@neondatabase/serverless");
@@ -26,9 +27,17 @@ export async function POST(request: NextRequest) {
           INSERT INTO messages (sender_name, sender_email, message_text, type, status)
           VALUES (${name}, ${email}, ${message}, 'contact', 'new')
         `;
-      } catch {
-        // Non-fatal — email already sent
+      } catch (dbErr) {
+        console.error("contact DB save failed (email still sent):", dbErr);
       }
+    }
+
+    // Notify Chris — best-effort, never blocks the submit.
+    try {
+      const { notifyContactForm } = await import("@/lib/email");
+      await notifyContactForm({ name, email, subject: subject || "General Question", message });
+    } catch (emailErr) {
+      console.error("contact email failed (message still handled):", emailErr);
     }
 
     return NextResponse.json({ success: true });

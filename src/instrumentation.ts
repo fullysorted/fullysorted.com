@@ -135,6 +135,117 @@ export async function register() {
       )
     `;
 
+    // ─── Services marketplace: providers, gigs, orders (idempotent) ───
+    await sql`ALTER TABLE provider_applications ADD COLUMN IF NOT EXISTS provider_type VARCHAR(20) NOT NULL DEFAULT 'business'`;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS service_providers (
+        id SERIAL PRIMARY KEY,
+        clerk_user_id VARCHAR(255),
+        business_name VARCHAR(255) NOT NULL,
+        owner_name VARCHAR(255) NOT NULL,
+        slug VARCHAR(300) NOT NULL UNIQUE,
+        category VARCHAR(100) NOT NULL,
+        location VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(50),
+        website TEXT,
+        instagram VARCHAR(100),
+        description TEXT NOT NULL,
+        specialties JSONB DEFAULT '[]',
+        years_in_business VARCHAR(50),
+        price_range VARCHAR(10) DEFAULT '$$',
+        verified BOOLEAN DEFAULT FALSE,
+        founding_provider BOOLEAN DEFAULT FALSE,
+        rating DECIMAL(3,1) DEFAULT 0,
+        review_count INTEGER DEFAULT 0,
+        status VARCHAR(50) NOT NULL DEFAULT 'pending',
+        application_id INTEGER,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+    // Provider columns added over time (freelancer + payouts)
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS provider_type VARCHAR(20) NOT NULL DEFAULT 'business'`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS headline VARCHAR(200)`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS hourly_rate INTEGER`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS skills JSONB DEFAULT '[]'`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS service_area VARCHAR(200)`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS avatar_url TEXT`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS onboarding_step INTEGER DEFAULT 0`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS onboarding_complete BOOLEAN DEFAULT false`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS payouts_enabled BOOLEAN DEFAULT false`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS stripe_connect_id VARCHAR(255)`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_status VARCHAR(50)`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS claim_token VARCHAR(64)`;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS gigs (
+        id SERIAL PRIMARY KEY,
+        provider_id INTEGER NOT NULL REFERENCES service_providers(id) ON DELETE CASCADE,
+        slug VARCHAR(300) NOT NULL UNIQUE,
+        title VARCHAR(200) NOT NULL,
+        category VARCHAR(100),
+        description TEXT,
+        images JSONB DEFAULT '[]',
+        faqs JSONB DEFAULT '[]',
+        requirements TEXT,
+        status VARCHAR(20) NOT NULL DEFAULT 'draft',
+        orders_count INTEGER DEFAULT 0,
+        rating DECIMAL(3,1) DEFAULT 0,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+    await sql`
+      CREATE TABLE IF NOT EXISTS gig_packages (
+        id SERIAL PRIMARY KEY,
+        gig_id INTEGER NOT NULL REFERENCES gigs(id) ON DELETE CASCADE,
+        tier VARCHAR(20) NOT NULL,
+        title VARCHAR(200),
+        description TEXT,
+        price INTEGER NOT NULL,
+        delivery_days INTEGER,
+        revisions INTEGER,
+        features JSONB DEFAULT '[]'
+      )
+    `;
+    await sql`
+      CREATE TABLE IF NOT EXISTS gig_orders (
+        id SERIAL PRIMARY KEY,
+        gig_id INTEGER NOT NULL REFERENCES gigs(id) ON DELETE CASCADE,
+        package_id INTEGER REFERENCES gig_packages(id),
+        provider_id INTEGER NOT NULL REFERENCES service_providers(id) ON DELETE CASCADE,
+        buyer_name VARCHAR(255),
+        buyer_email VARCHAR(255),
+        amount INTEGER,
+        platform_fee INTEGER,
+        status VARCHAR(30) NOT NULL DEFAULT 'inquiry',
+        requirements_text TEXT,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+    // gig_orders payment/escrow + dispute + buyer-account columns
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS amount_cents INTEGER`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS platform_fee_cents INTEGER`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS provider_amount_cents INTEGER`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS currency VARCHAR(10) DEFAULT 'usd'`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS stripe_session_id VARCHAR(255)`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS stripe_payment_intent_id VARCHAR(255)`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS stripe_charge_id VARCHAR(255)`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS stripe_transfer_id VARCHAR(255)`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS stripe_refund_id VARCHAR(255)`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS buyer_access_token VARCHAR(64)`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS buyer_clerk_user_id VARCHAR(255)`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS paid_at TIMESTAMP`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS delivered_at TIMESTAMP`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS completed_at TIMESTAMP`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS cancelled_at TIMESTAMP`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS refunded_at TIMESTAMP`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS dispute_reason TEXT`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS disputed_at TIMESTAMP`;
+
     console.log('[Fully Sorted] DB schema verified/migrated on startup.');
   } catch (err) {
     // Never crash the server over a migration — just log
