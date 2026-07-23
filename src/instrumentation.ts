@@ -246,6 +246,43 @@ export async function register() {
     await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS dispute_reason TEXT`;
     await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS disputed_at TIMESTAMP`;
 
+    // ─── Auction results (market comps) — table + ingest columns ───
+    await sql`
+      CREATE TABLE IF NOT EXISTS auction_results (
+        id SERIAL PRIMARY KEY,
+        source VARCHAR(80) NOT NULL DEFAULT 'import',
+        source_url TEXT,
+        lot_title TEXT,
+        year INTEGER,
+        make VARCHAR(100),
+        model VARCHAR(200),
+        trim VARCHAR(200),
+        mileage INTEGER,
+        transmission VARCHAR(50),
+        engine TEXT,
+        exterior_color VARCHAR(100),
+        sale_price INTEGER,
+        estimate_high INTEGER,
+        estimate_low INTEGER,
+        sold BOOLEAN DEFAULT TRUE,
+        auction_date TIMESTAMP,
+        auction_house VARCHAR(200),
+        thumbnail_url TEXT,
+        segment VARCHAR(100),
+        category VARCHAR(50),
+        notes TEXT,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+    await sql`ALTER TABLE auction_results ADD COLUMN IF NOT EXISTS external_id VARCHAR(255)`;
+    await sql`ALTER TABLE auction_results ADD COLUMN IF NOT EXISTS dedupe_key TEXT`;
+    await sql`ALTER TABLE auction_results ADD COLUMN IF NOT EXISTS vin VARCHAR(32)`;
+    await sql`ALTER TABLE auction_results ADD COLUMN IF NOT EXISTS currency VARCHAR(10) DEFAULT 'usd'`;
+    await sql`ALTER TABLE auction_results ADD COLUMN IF NOT EXISTS location VARCHAR(200)`;
+    await sql`ALTER TABLE auction_results ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP NOT NULL DEFAULT NOW()`;
+    await sql`CREATE UNIQUE INDEX IF NOT EXISTS auction_results_dedupe ON auction_results(dedupe_key)`;
+    await sql`CREATE INDEX IF NOT EXISTS auction_results_make_model ON auction_results(make, model)`;
+
     console.log('[Fully Sorted] DB schema verified/migrated on startup.');
   } catch (err) {
     // Never crash the server over a migration — just log
