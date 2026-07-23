@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
 import {
@@ -56,6 +56,15 @@ export default function FreelancerWizard() {
   });
   const [pkgs, setPkgs] = useState<Record<Tier, Pkg>>(EMPTY_PKG);
   const set = (k: string, v: string) => setF((p) => ({ ...p, [k]: v }));
+
+  // Preselect the primary category when arriving from a tailored track guide
+  // (e.g. /services/guide/photography -> ?category=Automotive%20Photography).
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("category");
+    if (q && CATEGORIES.includes(q)) {
+      setF((p) => (p.category ? p : { ...p, category: q }));
+    }
+  }, []);
   const setPkg = (tier: Tier, k: keyof Pkg, v: string) => setPkgs((p) => ({ ...p, [tier]: { ...p[tier], [k]: v } }));
 
   function canAdvance(): boolean {

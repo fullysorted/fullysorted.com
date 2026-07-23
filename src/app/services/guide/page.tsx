@@ -21,8 +21,15 @@ import {
   Wrench,
   Building2,
   User,
+  ClipboardCheck,
+  Truck,
+  Camera,
+  Hammer,
+  PaintBucket,
+  Warehouse,
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PROVIDER_TRACKS } from "@/lib/data/providerTracks";
 
 export const metadata: Metadata = {
   title: "The Provider Playbook — How to Get Booked on Fully Sorted",
@@ -394,6 +401,17 @@ function BuyerCard({ step, index }: { step: Step; index: number }) {
   );
 }
 
+const TRACK_ICONS: Record<string, React.ElementType> = {
+  Sparkles,
+  ClipboardCheck,
+  Truck,
+  Camera,
+  Wrench,
+  Hammer,
+  PaintBucket,
+  Warehouse,
+};
+
 export default function ProviderGuidePage() {
   return (
     <div style={{ backgroundColor: "#f5f4f0" }} className="min-h-screen">
@@ -493,6 +511,46 @@ export default function ProviderGuidePage() {
                     {p.cta.label} <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Tailored tracks by trade */}
+      <section className="pb-4 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-8 text-center">
+            <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#1E6091" }}>
+              Tailored by trade
+            </p>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
+              Guides built for your specialism
+            </h2>
+            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
+              A detailer, an inspector, and a photographer need different gigs, pricing, and portfolios. Pick your trade for a guide tuned to exactly what wins bookings in it.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {PROVIDER_TRACKS.map((t) => {
+              const TIcon = TRACK_ICONS[t.icon] ?? Wrench;
+              return (
+                <Link
+                  key={t.slug}
+                  href={`/services/guide/${t.slug}`}
+                  className="group bg-white border border-border rounded-2xl p-5 flex items-start gap-4 hover:border-accent hover:-translate-y-0.5 hover:shadow-lg transition-all"
+                >
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: "rgba(30,96,145,0.09)" }}>
+                    <TIcon className="w-5 h-5" style={{ color: "#1E6091" }} />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-base font-bold text-foreground mb-0.5 flex items-center gap-1.5">
+                      {t.label}
+                      <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" style={{ color: "#1E6091" }} />
+                    </h3>
+                    <p className="text-xs text-text-secondary leading-relaxed">{t.hiredFor}</p>
+                  </div>
+                </Link>
               );
             })}
           </div>
