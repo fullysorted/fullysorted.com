@@ -8,6 +8,7 @@ import {
 import { getPublishedModelBySlug, modelDisplayName, getModelMarketSnapshot, getActiveListingsForModel } from "@/lib/data/models";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { RarityScale } from "@/components/research/RarityScale";
+import { ProductionBreakdown } from "@/components/research/ProductionBreakdown";
 
 export const revalidate = 3600;
 
@@ -193,6 +194,12 @@ export default async function ModelPage({ params }: Props) {
             {m.production_total != null && m.production_total > 0 && (
               <div className="mt-8">
                 <RarityScale total={m.production_total} make={m.make} model={m.model} notes={m.production_notes} />
+              </div>
+            )}
+
+            {m.notable_trims && m.notable_trims.length > 1 && (
+              <div className="mt-6">
+                <ProductionBreakdown variants={m.notable_trims} total={m.production_total} make={m.make} model={m.model} />
               </div>
             )}
 
