@@ -35,7 +35,7 @@ const showcaseServices: ShowcaseService[] = [
     tagline: "Know before the wire goes",
     desc: "A trusted set of eyes on the car before you commit. Compression numbers, panel gaps, the stuff sellers don't photograph.",
     accent: "#1E6091",
-    photo: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80",
+    photo: "/images/archive/porsche-904-engine-bay.jpg",
     href: "/services?type=inspection",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
@@ -51,7 +51,7 @@ const showcaseServices: ShowcaseService[] = [
     tagline: "Show-ready, garage-proud",
     desc: "Ceramic coating, full correction, concours prep — specialists who treat your car like their own.",
     accent: "#1E6091",
-    photo: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1600&q=80",
+    photo: "/images/archive/porsche-911-rs.jpg",
     href: "/services?type=detailing",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
@@ -67,7 +67,7 @@ const showcaseServices: ShowcaseService[] = [
     tagline: "Your car rides inside",
     desc: "Door-to-door enclosed hauling, nationwide. Liftgates, soft straps, and drivers who know what they're carrying.",
     accent: "#B08D3F",
-    photo: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80",
+    photo: "/images/archive/mc12-transporter.jpg",
     href: "/services?type=transport",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
@@ -84,7 +84,7 @@ const showcaseServices: ShowcaseService[] = [
     tagline: "Wrenches you can trust",
     desc: "Carbs, points, cam chains, cooling systems — mechanics who know your model, not just modern diagnostics ports.",
     accent: "#1E6091",
-    photo: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80",
+    photo: "/images/archive/race-engine-stand.jpg",
     href: "/services?type=mechanical",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
@@ -98,7 +98,7 @@ const showcaseServices: ShowcaseService[] = [
     tagline: "Done right, documented",
     desc: "From sympathetic refresh to rotisserie rebuild — craftsmen with the photos, invoices and references to prove it.",
     accent: "#1E6091",
-    photo: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80",
+    photo: "/images/archive/restoration-shop.jpg",
     href: "/services?type=restoration",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
@@ -114,7 +114,7 @@ const showcaseServices: ShowcaseService[] = [
     tagline: "Panel-fit perfectionists",
     desc: "Metal shaping, color matching, factory-correct finishes. The shops other shops recommend.",
     accent: "#B08D3F",
-    photo: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1600&q=80",
+    photo: "/images/archive/jaguar-ctype.jpg",
     href: "/services?type=bodywork",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
@@ -290,12 +290,12 @@ function ServiceShowcase() {
 }
 
 const quickPicks = [
-  { label: "Inspection", type: "inspection" },
-  { label: "Detailing", type: "detailing" },
-  { label: "Transport", type: "transport" },
-  { label: "Mechanics", type: "mechanical" },
+  { label: "Pre-purchase inspection", type: "inspection" },
+  { label: "Ceramic coating", type: "detailing" },
+  { label: "Enclosed transport", type: "transport" },
+  { label: "Marque specialist", type: "mechanical" },
   { label: "Restoration", type: "restoration" },
-  { label: "Body & Paint", type: "bodywork" },
+  { label: "Body & paint", type: "bodywork" },
 ];
 
 export function Hero() {
@@ -353,7 +353,7 @@ export function Hero() {
             >
               Get your car{" "}
               <span className="relative whitespace-nowrap" style={{ color: "#1E6091" }}>
-                fully sorted.
+                fully sorted<span style={{ color: "#B08D3F" }}>.</span>
                 <svg
                   className="absolute -bottom-1 left-0 w-full overflow-visible"
                   viewBox="0 0 200 6"
@@ -379,9 +379,8 @@ export function Hero() {
               className="text-base sm:text-lg mt-5 max-w-lg leading-relaxed"
               style={{ color: "#6b6b5e" }}
             >
-              Trusted specialists for everything your collector car needs — inspection,
-              detailing, transport, restoration and more. And when it&apos;s time to buy
-              or sell: a marketplace that puts owners first.
+              The right specialist for whatever your car needs, found in minutes —
+              built by people who&apos;ve spent their lives around these cars.
             </motion.p>
 
             {/* Service search */}
@@ -438,6 +437,19 @@ export function Hero() {
                   >
                     {cat.label}
                   </Link>
+                ))}
+              </div>
+
+              {/* Trust row — Upwork/Fiverr-style reassurance, one quiet line */}
+              <div
+                className="flex flex-wrap items-center gap-x-5 gap-y-1.5 mt-6 text-xs font-medium"
+                style={{ color: "#8a8a7c" }}
+              >
+                {["Built by collectors", "Owner-reviewed specialists", "Free to browse"].map((t) => (
+                  <span key={t} className="inline-flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5" style={{ color: "#1E6091" }} />
+                    {t}
+                  </span>
                 ))}
               </div>
             </motion.div>

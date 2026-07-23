@@ -45,6 +45,14 @@ interface ValuationResult {
   medianPrice: number | null;
   highPrice: number | null;
   lowPrice: number | null;
+  typicalAvgPrice?: number | null;
+  typicalLow?: number | null;
+  typicalHigh?: number | null;
+  outliersExcluded?: number;
+  latestSaleDate?: string | null;
+  oldestSaleDate?: string | null;
+  matchTier?: "exact_model" | "model_family" | "widened_years";
+  yearRangeUsed?: number;
   source: string;
   researchSlug?: string | null;
   error?: string;
@@ -639,9 +647,25 @@ export function ValueGuideClient() {
               </h2>
               <p className="text-sm text-text-secondary mt-0.5">
                 Based on {result.total} comparable {result.total === 1 ? "sale" : "sales"}{" "}
-                {yearInput ? `· ${parseInt(yearInput) - parseInt(yearRange)} – ${parseInt(yearInput) + parseInt(yearRange)}` : ""}
+                {yearInput
+                  ? `· ${parseInt(yearInput) - (result.yearRangeUsed ?? parseInt(yearRange))} – ${parseInt(yearInput) + (result.yearRangeUsed ?? parseInt(yearRange))}`
+                  : ""}
                 {" · "}aggregated market comps
+                {result.latestSaleDate
+                  ? ` · data through ${formatDate(result.latestSaleDate)}`
+                  : ""}
               </p>
+              {result.matchTier === "widened_years" && (
+                <p className="text-xs text-text-tertiary mt-1">
+                  Exact-year sales were thin, so we widened the window to ±{result.yearRangeUsed} years to give you a usable read.
+                </p>
+              )}
+              {typeof result.outliersExcluded === "number" && result.outliersExcluded > 0 && result.typicalAvgPrice && (
+                <p className="text-xs text-text-tertiary mt-1">
+                  {result.outliersExcluded} outlier {result.outliersExcluded === 1 ? "sale" : "sales"} set aside — the typical market runs{" "}
+                  {formatPrice(result.typicalLow!)} – {formatPrice(result.typicalHigh!)} (avg {formatPrice(result.typicalAvgPrice)}).
+                </p>
+              )}
             </div>
 
             {result.total === 0 ? (

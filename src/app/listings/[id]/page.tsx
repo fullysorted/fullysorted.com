@@ -59,7 +59,9 @@ function dbListingToVehicle(listing: any): Vehicle {
 }
 
 async function getListing(slug: string): Promise<Vehicle | null> {
-  // 1. Try DB first (real listings)
+  // In production (DATABASE_URL set) the DB is the ONLY source of truth. A miss
+  // or transient error must return null → notFound(), never a fabricated sample
+  // listing (fake price / fake "Chris's Take" / fake comps shown to real buyers).
   if (process.env.DATABASE_URL) {
     try {
       const { getDb, schema } = await import('@/lib/db');
@@ -70,13 +72,14 @@ async function getListing(slug: string): Promise<Vehicle | null> {
         .from(schema.listings)
         .where(eq(schema.listings.slug, slug))
         .limit(1);
-      if (dbListing) return dbListingToVehicle(dbListing);
+      return dbListing ? dbListingToVehicle(dbListing) : null;
     } catch (e) {
-      console.error('DB lookup failed, falling back to sample data:', e);
+      console.error('DB lookup failed:', e);
+      return null;
     }
   }
 
-  // 2. Fall back to sample data
+  // Local dev only (no DB configured): fall back to sample data.
   return sampleVehicles.find((v) => v.slug === slug) ?? null;
 }
 

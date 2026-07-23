@@ -16,8 +16,9 @@ function authorized(req: NextRequest): boolean {
   if (cronSecret && auth === `Bearer ${cronSecret}`) return true;
   const admin = process.env.ADMIN_SECRET;
   if (admin && (req.headers.get('x-admin-secret') === admin || req.cookies.get('fs_admin')?.value === admin)) return true;
-  // If no CRON_SECRET is configured, allow (still gated by obscure path); tighten by setting CRON_SECRET.
-  return !cronSecret && !admin;
+  // SECURITY: default DENY. A misconfigured deploy must not leave an endpoint
+  // that moves money (releases held funds) open to the public.
+  return false;
 }
 
 export async function GET(req: NextRequest) {

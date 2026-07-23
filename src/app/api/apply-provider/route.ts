@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
+  const limited = rateLimit(request, "apply-provider", 5, 60_000);
+  if (limited) return limited;
   try {
     const body = await request.json();
     const {
@@ -72,21 +75,26 @@ export async function POST(request: NextRequest) {
       specialties: specialties?.slice(0, 100),
     });
 
-    // Send email notification to Chris
-    const { notifyNewProviderApplication } = await import("@/lib/email");
-    await notifyNewProviderApplication({
-      businessName,
-      ownerName,
-      category,
-      location,
-      email,
-      phone,
-      website,
-      instagram,
-      specialties,
-      whyList,
-      referredBy,
-    });
+    // Send email notification to Chris — best-effort. The application is already
+    // saved above, so a mail hiccup must NOT turn into a 500 for the applicant.
+    try {
+      const { notifyNewProviderApplication } = await import("@/lib/email");
+      await notifyNewProviderApplication({
+        businessName,
+        ownerName,
+        category,
+        location,
+        email,
+        phone,
+        website,
+        instagram,
+        specialties,
+        whyList,
+        referredBy,
+      });
+    } catch (emailErr) {
+      console.error("apply-provider email failed (application still saved):", emailErr);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {

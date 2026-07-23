@@ -101,7 +101,7 @@ export function MarketMovers() {
 
         {/* Disclaimer */}
         <p className="mt-8 text-xs leading-relaxed" style={{ color: "#9a9a8a" }}>
-          Market commentary reflects observed auction results and one analyst&apos;s perspective. It is not financial or investment advice. Past performance does not indicate future results.
+          Figures shown are illustrative sample data. Market commentary reflects observed auction results and one analyst&apos;s perspective — it is not financial or investment advice, and past performance does not indicate future results.
         </p>
       </div>
     </section>

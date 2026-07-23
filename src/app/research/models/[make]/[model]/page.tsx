@@ -38,11 +38,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // Lightweight markdown → HTML (## headings, **bold**, paragraphs).
+// SECURITY: this content is AI-generated and later rendered via
+// dangerouslySetInnerHTML, so we HTML-escape every block BEFORE applying the
+// markdown transforms. Without this, any raw HTML (e.g. <img onerror=…>) that
+// slipped past review would execute as stored XSS.
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function renderMarkdown(content: string): string {
   return content
     .split("\n\n")
     .map((block) => {
-      const t = block.trim();
+      const t = escapeHtml(block.trim());
       if (!t) return "";
       if (t.startsWith("## ")) return `<h2>${t.slice(3)}</h2>`;
       const withBold = t.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");

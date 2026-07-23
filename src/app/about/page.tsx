@@ -28,8 +28,8 @@ const PILLARS = [
 ];
 
 const STATS = [
-  { value: "0%", label: "Commission on sales" },
-  { value: "From $9.99", label: "Listing fee" },
+  { value: "$0", label: "Buyer's premium" },
+  { value: "From $9.99", label: "Flat listing fee" },
   { value: "8+", label: "Service categories" },
 ];
 
@@ -77,17 +77,32 @@ export default function AboutPage() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-12">
         <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)]">
           <Image
-            src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80"
-            alt="A vintage workshop where collector cars are kept alive"
+            src="/images/archive/pebble-concours.jpg"
+            alt="A Ferrari Testa Rossa on the concours lawn at Pebble Beach, ocean beyond"
             width={1600}
             height={700}
             className="w-full h-64 sm:h-80 object-cover"
           />
           <div className="absolute inset-0" aria-hidden="true" style={{ background: "linear-gradient(rgba(15,32,50,0.15), rgba(15,32,50,0.72))" }} />
           <p className="absolute bottom-5 left-6 right-6 text-sm sm:text-base font-semibold text-white">
-            Wrenches you can trust — the specialists who keep these cars on the road are why this platform exists.
+            Twenty-five years on lawns, in paddocks, and around auction tents — this platform comes from inside the hobby, not outside it.
           </p>
         </div>
+        {/* From the archive — founder's own photographs */}
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-3 sm:mt-4">
+          {[
+            { src: "/images/archive/porsche-906-retna.jpg", alt: "Porsche 906 in front of a large pink RETNA canvas" },
+            { src: "/images/archive/alfa-8c.jpg", alt: "Pre-war Alfa Romeo 8C, head on" },
+            { src: "/images/archive/mille-miglia-722.jpg", alt: "Mercedes 300 SLR wearing number 722" },
+          ].map((p) => (
+            <div key={p.src} className="relative rounded-xl overflow-hidden h-28 sm:h-40">
+              <Image src={p.src} alt={p.alt} fill sizes="(max-width: 640px) 33vw, 320px" className="object-cover transition-transform duration-500 hover:scale-105" />
+            </div>
+          ))}
+        </div>
+        <p className="text-xs mt-2 text-right" style={{ color: "#9a9a8a" }}>
+          Photographed by our founder — from the collections and events we call home.
+        </p>
       </section>
 
       {/* Three pillars */}

@@ -184,7 +184,7 @@ export default function PricingPage() {
           </div>
         </div>
 
-        {/* No commission callout */}
+        {/* Flat-fee callout */}
         <div className="mt-12 relative overflow-hidden bg-[#12291C] rounded-2xl p-8 text-white text-center">
           <div className="absolute inset-0 paddock-mesh pointer-events-none" aria-hidden="true" />
           <div className="absolute inset-0 speed-lines opacity-[0.03] pointer-events-none" aria-hidden="true" />

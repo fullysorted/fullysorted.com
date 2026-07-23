@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { trackMetaEvent } from '@/components/analytics/MetaPixel';
 import {
   Sparkles, Loader2, CheckCircle2, ChevronRight, ChevronLeft,
-  Car, DollarSign, FileText, Send, CreditCard, Star, Zap
+  Car, DollarSign, FileText, Send, CreditCard, Star, Zap, Lock
 } from 'lucide-react';
 import PhotoUploader from '@/components/upload/PhotoUploader';
 import { LISTING_TIERS, type ListingTier, getMaxPhotos } from '@/lib/listing-tiers';
@@ -672,6 +672,10 @@ export default function SellForm() {
                 <><Send className="w-5 h-5" /> Submit &amp; Pay {selectedTierConfig.displayPrice}</>
               )}
             </button>
+            <p className="flex items-center justify-center gap-1.5 text-stone-400 text-xs mt-3">
+              <Lock className="w-3.5 h-3.5" />
+              256-bit SSL encrypted · payments processed securely by Stripe · we never store your card details
+            </p>
           </div>
         </div>
       )}

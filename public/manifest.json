@@ -1,7 +1,7 @@
 {
   "name": "Fully Sorted — Collector Car Marketplace",
   "short_name": "Fully Sorted",
-  "description": "The first automotive services hub for collector cars. Expert pricing, vetted services, and a community that gets it.",
+  "description": "The first automotive services hub for collector cars. Expert pricing, owner-reviewed services, and a community that gets it.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FAFAF8",

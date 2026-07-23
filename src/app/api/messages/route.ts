@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit } from '@/lib/rate-limit';
 
 // POST /api/messages — public endpoint, saves contact form to DB
 export async function POST(request: NextRequest) {
+  const limited = rateLimit(request, 'messages', 8, 60_000);
+  if (limited) return limited;
   let body: Record<string, unknown>;
   try {
     body = await request.json();

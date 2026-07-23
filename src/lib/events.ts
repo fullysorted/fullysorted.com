@@ -108,7 +108,7 @@ If you've never been to this event before, this is the year. Twenty years in, wo
     ogImage: "/events/la-jolla-concours-og.png",
     featured: true,
     founderNote:
-      "Full disclosure: I'm Co-Chairman of the La Jolla Concours d'Elegance. I've been involved in shaping the program and I'll be on the lawn all three days. If you're coming, find me — I'd rather meet you in person than over email.",
+      "Full disclosure: I'm closely involved with the La Jolla Concours d'Elegance and I'll be on the lawn all three days. If you're coming, find me — I'd rather meet you in person than over email.",
     schedule: [
       {
         day: "Friday, April 24",

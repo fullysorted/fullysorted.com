@@ -66,11 +66,14 @@ export async function POST(request: NextRequest) {
   // claim or list_only → activate the listing
   const newOutreachStatus = action === 'claim' ? 'claimed' : 'list_only';
 
+  // SECURITY: clear the claim_token once the listing is activated so a leaked
+  // token can't later be replayed to hijack or remove the (now public) profile.
   await sql`
     UPDATE service_providers
     SET status = 'active',
         outreach_status = ${newOutreachStatus},
         outreach_responded_at = NOW(),
+        claim_token = NULL,
         updated_at = NOW()
     WHERE id = ${provider.id}
   `;

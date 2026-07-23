@@ -189,10 +189,12 @@ export async function GET() {
   try {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(process.env.DATABASE_URL);
-    const [{ count }] = await sql`SELECT COUNT(*)::int AS count FROM listings`;
-    return NextResponse.json({ connected: true, listingCount: count });
+    // Connectivity probe only — do not leak row counts on this public route.
+    await sql`SELECT 1`;
+    return NextResponse.json({ connected: true });
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
-    return NextResponse.json({ connected: false, error: msg });
+    console.error('setup-db health check failed:', msg);
+    return NextResponse.json({ connected: false });
   }
 }

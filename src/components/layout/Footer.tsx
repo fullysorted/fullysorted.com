@@ -23,10 +23,19 @@ const footerLinks = {
   Company: [
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" },
+    { href: "/trust", label: "Trust & Safety" },
     { href: "/privacy", label: "Privacy Policy" },
     { href: "/terms", label: "Terms of Service" },
   ],
 };
+
+// Trust signals shown site-wide in the footer.
+const trustBadges = [
+  { label: "Secure payments by Stripe" },
+  { label: "256-bit SSL encrypted" },
+  { label: "Rated by real owners" },
+  { label: "$0 buyer's premium" },
+];
 
 export function Footer() {
   return (
@@ -45,9 +54,9 @@ export function Footer() {
           {/* Brand Column */}
           <div className="col-span-2 lg:col-span-1">
             <div className="mb-4">
-              {/* Logo is white — footer is always dark so no invert needed */}
+              {/* Cream wordmark variant — footer is always dark */}
               <img
-                src="/fullysorted-logo.svg"
+                src="/fullysorted-logo-cream.svg"
                 alt="Fully Sorted"
                 style={{ height: 28, width: "auto", maxWidth: 160 }}
               />
@@ -98,9 +107,34 @@ export function Footer() {
           ))}
         </div>
 
+        {/* Trust strip */}
+        <div
+          className="mt-12 pt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+        >
+          {trustBadges.map((b) => (
+            <span
+              key={b.label}
+              className="inline-flex items-center gap-2 text-xs font-medium"
+              style={{ color: "rgba(230,238,247,0.6)" }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 2l7 3v6c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V5l7-3z"
+                  stroke="#6ab04c"
+                  strokeWidth="1.8"
+                  strokeLinejoin="round"
+                />
+                <path d="M8.5 12l2.5 2.5L15.5 10" stroke="#6ab04c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {b.label}
+            </span>
+          ))}
+        </div>
+
         {/* Bottom Bar */}
         <div
-          className="mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
           style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
           <p className="text-xs" style={{ color: "rgba(230,238,247,0.38)" }}>

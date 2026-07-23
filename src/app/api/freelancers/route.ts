@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@clerk/nextjs/server';
 import { getDb, schema } from '@/lib/db';
 
 function slugify(s: string): string {
@@ -15,7 +16,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const {
       ownerName, email, phone, headline, location, serviceArea,
-      category, skills, bio, avatarUrl, clerkUserId, gig,
+      category, skills, bio, avatarUrl, gig,
     } = body;
 
     if (!ownerName || !email || !category || !bio) {
@@ -24,6 +25,11 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // SECURITY: bind ownership to the authenticated session only. Never trust a
+    // client-supplied clerkUserId — it could be set to a victim's id to pre-claim
+    // a profile. Falls back to null for anonymous applications.
+    const { userId } = await auth();
 
     if (!process.env.DATABASE_URL) {
       return NextResponse.json({ error: 'The database isn\u2019t connected yet. Please try again shortly.' }, { status: 503 });
@@ -48,7 +54,7 @@ export async function POST(request: NextRequest) {
 
     // Pending freelancer profile.
     const [provider] = await db.insert(schema.serviceProviders).values({
-      clerkUserId: clerkUserId || null,
+      clerkUserId: userId || null,
       businessName: headline || ownerName,
       ownerName,
       slug,
@@ -121,7 +127,6 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Create freelancer error:', error);
-    const detail = error instanceof Error ? error.message : String(error);
-    return NextResponse.json({ error: 'Failed to submit. Please try again.', detail }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to submit. Please try again.' }, { status: 500 });
   }
 }

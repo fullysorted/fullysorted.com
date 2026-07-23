@@ -195,7 +195,7 @@ const BUYER_STEPS: Step[] = [
     icon: Sparkles,
     title: "Two ways to hire",
     body:
-      "Book a fixed-price gig instantly when the job is well-defined — a detail, an inspection, a transport run. Or contact a vetted business for a custom quote when the work is bespoke — a restoration, a respray, a rebuild. Fast and fixed, or custom and quoted.",
+      "Book a fixed-price gig instantly when the job is well-defined — a detail, an inspection, a transport run. Or contact an owner-reviewed business for a custom quote when the work is bespoke — a restoration, a respray, a rebuild. Fast and fixed, or custom and quoted.",
   },
   {
     icon: UserCircle,
@@ -231,7 +231,7 @@ const BUYER_STEPS: Step[] = [
     icon: ShieldCheck,
     title: "Trust & protection",
     body:
-      "Every provider is vetted before going live, and the open review record tells you who consistently delivers. Revisions and dispute handling are there to protect you if a job does not land the way it should.",
+      "Every provider is rated and reviewed by the owners who hire them, and the open review record tells you who consistently delivers. Revisions and dispute handling are there to protect you if a job does not land the way it should.",
   },
   {
     icon: Star,
@@ -420,8 +420,8 @@ export default function ProviderGuidePage() {
       {/* Hero */}
       <section className="relative overflow-hidden text-white">
         <Image
-          src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80"
-          alt="Specialist at work in a collector-car workshop"
+          src="/images/archive/porsche-904-engine-detail.jpg"
+          alt="Porsche 904 with its engine exposed, mid-service"
           fill
           priority
           sizes="100vw"

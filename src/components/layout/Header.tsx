@@ -69,8 +69,8 @@ export function Header() {
             <Image
               src="/fullysorted-logo.svg"
               alt="Fully Sorted"
-              width={160}
-              height={48}
+              width={178}
+              height={40}
               priority
               className="h-10 w-auto"
             />

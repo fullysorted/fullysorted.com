@@ -217,8 +217,8 @@ export default function HowItWorksPage() {
           {/* Photo moment */}
           <div className="relative mt-10 rounded-2xl overflow-hidden shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)]">
             <Image
-              src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80"
-              alt="A classic sports car in editorial light"
+              src="/images/archive/auction-preview.jpg"
+              alt="A competition Ferrari on the block at a major auction preview"
               width={1600}
               height={640}
               className="w-full h-56 sm:h-72 object-cover"

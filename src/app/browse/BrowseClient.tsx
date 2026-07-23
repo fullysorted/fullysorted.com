@@ -254,8 +254,8 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               No listings yet
             </h2>
             <p className="text-stone-400 max-w-sm mx-auto mb-8">
-              Be the first to list your collector car on Fully Sorted. Zero
-              commissions, serious buyers only.
+              Be the first to list your collector car on Fully Sorted. One flat
+              listing fee, serious buyers only.
             </p>
             <Link
               href="/sell"

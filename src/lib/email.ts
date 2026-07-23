@@ -7,6 +7,8 @@
  * Add to Vercel: Settings → Environment Variables → RESEND_API_KEY
  */
 
+import { escapeHtml as esc, safeUrl } from "./escape-html";
+
 const NOTIFY_TO = "chris@fullysorted.com";
 const FROM = "Fully Sorted <notifications@updates.fullysorted.com>";
 
@@ -63,11 +65,11 @@ export async function notifyGigInquiry(data: {
           <h2 style="color:#fff;margin:0;font-size:18px;">New Gig Request</h2>
         </div>
         <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;">
-          <p style="margin:0 0 8px;"><strong>Gig:</strong> ${data.gigTitle}</p>
-          <p style="margin:0 0 8px;"><strong>Provider:</strong> ${data.providerName}</p>
-          ${data.tier ? `<p style="margin:0 0 8px;"><strong>Package:</strong> ${data.tier}${data.amount ? ` — $${data.amount}` : ""}</p>` : ""}
-          <p style="margin:0 0 8px;"><strong>From:</strong> ${data.buyerName} (${data.buyerEmail})</p>
-          ${data.message ? `<p style="margin:12px 0 0;color:#6b6b5e;">${data.message}</p>` : ""}
+          <p style="margin:0 0 8px;"><strong>Gig:</strong> ${esc(data.gigTitle)}</p>
+          <p style="margin:0 0 8px;"><strong>Provider:</strong> ${esc(data.providerName)}</p>
+          ${data.tier ? `<p style="margin:0 0 8px;"><strong>Package:</strong> ${esc(data.tier)}${data.amount ? ` — $${esc(data.amount)}` : ""}</p>` : ""}
+          <p style="margin:0 0 8px;"><strong>From:</strong> ${esc(data.buyerName)} (${esc(data.buyerEmail)})</p>
+          ${data.message ? `<p style="margin:12px 0 0;color:#6b6b5e;">${esc(data.message)}</p>` : ""}
         </div>
       </div>`,
   });
@@ -95,21 +97,21 @@ export async function notifyNewProviderApplication(data: {
         </div>
         <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;">
           <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;width:140px;">Business</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${data.businessName}</td></tr>
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Owner</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${data.ownerName}</td></tr>
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Category</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${data.category}</td></tr>
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Location</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${data.location}</td></tr>
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Email</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="mailto:${data.email}" style="color:#1E6091;">${data.email}</a></td></tr>
-            ${data.phone ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Phone</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${data.phone}</td></tr>` : ""}
-            ${data.website ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Website</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="${data.website}" style="color:#1E6091;">${data.website}</a></td></tr>` : ""}
-            ${data.instagram ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Instagram</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">@${data.instagram.replace("@", "")}</td></tr>` : ""}
-            ${data.referredBy ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Referred by</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${data.referredBy}</td></tr>` : ""}
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;width:140px;">Business</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${esc(data.businessName)}</td></tr>
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Owner</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${esc(data.ownerName)}</td></tr>
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Category</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${esc(data.category)}</td></tr>
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Location</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${esc(data.location)}</td></tr>
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Email</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="mailto:${esc(data.email)}" style="color:#1E6091;">${esc(data.email)}</a></td></tr>
+            ${data.phone ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Phone</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${esc(data.phone)}</td></tr>` : ""}
+            ${data.website ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Website</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="${safeUrl(data.website)}" style="color:#1E6091;">${esc(data.website)}</a></td></tr>` : ""}
+            ${data.instagram ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Instagram</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">@${esc(data.instagram.replace("@", ""))}</td></tr>` : ""}
+            ${data.referredBy ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Referred by</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${esc(data.referredBy)}</td></tr>` : ""}
           </table>
           <div style="margin-top:16px;padding:16px;background:#faf9f7;border-radius:8px;">
             <p style="margin:0 0 8px;font-weight:600;font-size:14px;">Specialties</p>
-            <p style="margin:0;font-size:14px;color:#6b6b5e;">${data.specialties}</p>
+            <p style="margin:0;font-size:14px;color:#6b6b5e;">${esc(data.specialties)}</p>
           </div>
-          ${data.whyList ? `<div style="margin-top:12px;padding:16px;background:#faf9f7;border-radius:8px;"><p style="margin:0 0 8px;font-weight:600;font-size:14px;">Why they want to list</p><p style="margin:0;font-size:14px;color:#6b6b5e;">${data.whyList}</p></div>` : ""}
+          ${data.whyList ? `<div style="margin-top:12px;padding:16px;background:#faf9f7;border-radius:8px;"><p style="margin:0 0 8px;font-weight:600;font-size:14px;">Why they want to list</p><p style="margin:0;font-size:14px;color:#6b6b5e;">${esc(data.whyList)}</p></div>` : ""}
           <div style="margin-top:24px;text-align:center;">
             <a href="https://fullysorted.com/admin/listings" style="display:inline-block;background:#1E6091;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">Review in Admin Panel</a>
           </div>
@@ -143,19 +145,19 @@ export async function notifyNewMessage(data: {
           <h2 style="color:#fff;margin:0;font-size:20px;">${isOffer ? `New Offer — $${data.offerAmount?.toLocaleString()}` : "New Inquiry"}</h2>
         </div>
         <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;">
-          ${data.listingTitle ? `<p style="margin:0 0 16px;padding:12px;background:#EEF4FA;border:1px solid #CFE0EF;border-radius:8px;font-size:14px;"><strong>Listing:</strong> ${data.listingTitle}</p>` : ""}
+          ${data.listingTitle ? `<p style="margin:0 0 16px;padding:12px;background:#EEF4FA;border:1px solid #CFE0EF;border-radius:8px;font-size:14px;"><strong>Listing:</strong> ${esc(data.listingTitle)}</p>` : ""}
           <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;width:120px;">From</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${data.senderName}</td></tr>
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Email</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="mailto:${data.senderEmail}" style="color:#1E6091;">${data.senderEmail}</a></td></tr>
-            ${data.senderPhone ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Phone</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="tel:${data.senderPhone}" style="color:#1E6091;">${data.senderPhone}</a></td></tr>` : ""}
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;width:120px;">From</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${esc(data.senderName)}</td></tr>
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Email</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="mailto:${esc(data.senderEmail)}" style="color:#1E6091;">${esc(data.senderEmail)}</a></td></tr>
+            ${data.senderPhone ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Phone</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="tel:${esc(data.senderPhone)}" style="color:#1E6091;">${esc(data.senderPhone)}</a></td></tr>` : ""}
             ${isOffer ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Offer</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-size:18px;font-weight:700;color:#6ab04c;">$${data.offerAmount?.toLocaleString()}</td></tr>` : ""}
           </table>
           <div style="margin-top:16px;padding:16px;background:#faf9f7;border-radius:8px;">
             <p style="margin:0 0 8px;font-weight:600;font-size:14px;">Message</p>
-            <p style="margin:0;font-size:14px;color:#6b6b5e;white-space:pre-line;">${data.messageText}</p>
+            <p style="margin:0;font-size:14px;color:#6b6b5e;white-space:pre-line;">${esc(data.messageText)}</p>
           </div>
           <div style="margin-top:24px;">
-            <a href="mailto:${data.senderEmail}?subject=Re: ${encodeURIComponent(data.listingTitle || "Your Fully Sorted inquiry")}" style="display:inline-block;background:#1E6091;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;margin-right:8px;">Reply to ${data.senderName}</a>
+            <a href="mailto:${esc(data.senderEmail)}?subject=Re: ${encodeURIComponent(data.listingTitle || "Your Fully Sorted inquiry")}" style="display:inline-block;background:#1E6091;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;margin-right:8px;">Reply to ${esc(data.senderName)}</a>
             <a href="https://fullysorted.com/admin/messages" style="display:inline-block;background:#faf9f7;color:#1a1a18;border:1px solid #e5e5e0;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">View in Admin</a>
           </div>
         </div>
@@ -181,7 +183,7 @@ export async function notifyNewListing(data: {
           <h2 style="color:#1E6091;margin:0;font-size:20px;">New Listing Live</h2>
         </div>
         <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;">
-          <p style="font-size:24px;font-weight:700;margin:0 0 8px;">${data.year} ${data.make} ${data.model}</p>
+          <p style="font-size:24px;font-weight:700;margin:0 0 8px;">${esc(data.year)} ${esc(data.make)} ${esc(data.model)}</p>
           <p style="font-size:20px;color:#1E6091;font-weight:700;margin:0 0 24px;">$${Number(data.price).toLocaleString()}</p>
           <p style="margin:0 0 16px;font-size:14px;color:#6b6b5e;">Payment was received and the listing is now active on the site. Review it and add a Chris's Take if you haven't already.</p>
           <div style="margin-top:24px;">
@@ -210,15 +212,15 @@ export async function notifyContactForm(data: {
         </div>
         <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;">
           <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;width:100px;">From</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${data.name}</td></tr>
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Email</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="mailto:${data.email}" style="color:#1E6091;">${data.email}</a></td></tr>
-            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Subject</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${data.subject}</td></tr>
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;width:100px;">From</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${esc(data.name)}</td></tr>
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Email</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;"><a href="mailto:${esc(data.email)}" style="color:#1E6091;">${esc(data.email)}</a></td></tr>
+            <tr><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;font-weight:600;">Subject</td><td style="padding:8px 0;border-bottom:1px solid #f0f0ea;">${esc(data.subject)}</td></tr>
           </table>
           <div style="margin-top:16px;padding:16px;background:#faf9f7;border-radius:8px;">
-            <p style="margin:0;font-size:14px;color:#6b6b5e;white-space:pre-line;">${data.message}</p>
+            <p style="margin:0;font-size:14px;color:#6b6b5e;white-space:pre-line;">${esc(data.message)}</p>
           </div>
           <div style="margin-top:24px;">
-            <a href="mailto:${data.email}?subject=Re: ${encodeURIComponent(data.subject)}" style="display:inline-block;background:#1E6091;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">Reply to ${data.name}</a>
+            <a href="mailto:${esc(data.email)}?subject=Re: ${encodeURIComponent(data.subject)}" style="display:inline-block;background:#1E6091;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">Reply to ${esc(data.name)}</a>
           </div>
         </div>
         <p style="text-align:center;font-size:12px;color:#9a9a8a;margin-top:16px;">Fully Sorted · fullysorted.com</p>
@@ -260,8 +262,8 @@ export async function notifyOrderPaidToProvider(d: { providerEmail?: string; gig
     html: orderShell({
       accent: "#1E6091",
       heading: "You've got a paid order",
-      bodyHtml: `<p><strong>${d.gigTitle}</strong></p>
-        <p>${d.buyerName ? `${d.buyerName} ` : "A buyer "}has paid and the funds are held securely. Start the work, then mark it delivered from your dashboard. You'll receive <strong>${d.netDisplay}</strong> when the buyer accepts.</p>`,
+      bodyHtml: `<p><strong>${esc(d.gigTitle)}</strong></p>
+        <p>${d.buyerName ? `${esc(d.buyerName)} ` : "A buyer "}has paid and the funds are held securely. Start the work, then mark it delivered from your dashboard. You'll receive <strong>${esc(d.netDisplay)}</strong> when the buyer accepts.</p>`,
       ctaLabel: "Open your dashboard",
       ctaUrl: "https://fullysorted.com/dashboard/provider",
     }),
@@ -277,8 +279,8 @@ export async function sendOrderReceiptToBuyer(d: { buyerEmail?: string; gigTitle
     html: orderShell({
       accent: "#1E6091",
       heading: "Payment received & held",
-      bodyHtml: `<p>Thanks for your order with <strong>${d.providerName}</strong>.</p>
-        <p><strong>${d.gigTitle}</strong> — ${d.amountDisplay}</p>
+      bodyHtml: `<p>Thanks for your order with <strong>${esc(d.providerName)}</strong>.</p>
+        <p><strong>${esc(d.gigTitle)}</strong> — ${esc(d.amountDisplay)}</p>
         <p>Your payment is held securely by Fully Sorted and only released to the provider when you accept the completed work. You can check the status or release payment any time from your order page.</p>`,
       ctaLabel: "View your order",
       ctaUrl: d.orderUrl,
@@ -295,7 +297,7 @@ export async function notifyOrderDeliveredToBuyer(d: { buyerEmail?: string; gigT
     html: orderShell({
       accent: "#B08D3F",
       heading: "Your work has been delivered",
-      bodyHtml: `<p><strong>${d.providerName}</strong> has marked <strong>${d.gigTitle}</strong> as delivered.</p>
+      bodyHtml: `<p><strong>${esc(d.providerName)}</strong> has marked <strong>${esc(d.gigTitle)}</strong> as delivered.</p>
         <p>Please review the work. When you're happy, release the payment from your order page. If you don't act, the payment auto-releases after the review window.</p>`,
       ctaLabel: "Review & release payment",
       ctaUrl: d.orderUrl,
@@ -312,7 +314,7 @@ export async function notifyOrderReleasedToProvider(d: { providerEmail?: string;
     html: orderShell({
       accent: "#4b8b2e",
       heading: "Payment released",
-      bodyHtml: `<p><strong>${d.netDisplay}</strong> for <strong>${d.gigTitle}</strong> is on its way to your connected account.</p>
+      bodyHtml: `<p><strong>${esc(d.netDisplay)}</strong> for <strong>${esc(d.gigTitle)}</strong> is on its way to your connected account.</p>
         <p>Payout timing follows your Stripe settings. Thanks for the great work.</p>`,
       ctaLabel: "View your dashboard",
       ctaUrl: "https://fullysorted.com/dashboard/provider",
@@ -329,18 +331,18 @@ export async function notifyOrderRefundedToBuyer(d: { buyerEmail?: string; gigTi
     html: orderShell({
       accent: "#6b6b5e",
       heading: "Your order was refunded",
-      bodyHtml: `<p>Your order <strong>${d.gigTitle}</strong> was cancelled and <strong>${d.amountDisplay}</strong> has been refunded to your original payment method. Refunds typically take 5–10 business days to appear.</p>`,
+      bodyHtml: `<p>Your order <strong>${esc(d.gigTitle)}</strong> was cancelled and <strong>${esc(d.amountDisplay)}</strong> has been refunded to your original payment method. Refunds typically take 5–10 business days to appear.</p>`,
     }),
   });
 }
 
 // Buyer reported a problem — notify the provider and Chris (admin).
 export async function notifyOrderDisputed(d: { providerEmail?: string; gigTitle: string; buyerName?: string; buyerEmail?: string; reason: string; orderId: number }) {
-  const bodyHtml = `<p><strong>${d.gigTitle}</strong></p>
-    <p>${d.buyerName ? `${d.buyerName}` : "The buyer"}${d.buyerEmail ? ` (${d.buyerEmail})` : ""} reported a problem with this order. The held payment is paused — it will not auto-release until this is resolved.</p>
+  const bodyHtml = `<p><strong>${esc(d.gigTitle)}</strong></p>
+    <p>${d.buyerName ? `${esc(d.buyerName)}` : "The buyer"}${d.buyerEmail ? ` (${esc(d.buyerEmail)})` : ""} reported a problem with this order. The held payment is paused — it will not auto-release until this is resolved.</p>
     <div style="margin-top:12px;padding:16px;background:#faf9f7;border-radius:8px;">
       <p style="margin:0 0 6px;font-weight:600;">What they said</p>
-      <p style="margin:0;color:#6b6b5e;white-space:pre-line;">${d.reason}</p>
+      <p style="margin:0;color:#6b6b5e;white-space:pre-line;">${esc(d.reason)}</p>
     </div>
     <p style="margin-top:12px;">Reach out to the buyer to resolve it. You can refund from your dashboard, or the buyer can release payment once it's sorted.</p>`;
   // Provider
@@ -366,13 +368,71 @@ export async function notifySaleSubmission(d: { make: string; model: string; yea
     html: orderShell({
       accent: "#1E6091",
       heading: "New sold-price submission",
-      bodyHtml: `<p><strong>${car}</strong>${d.salePrice ? ` — $${d.salePrice.toLocaleString()}` : ""}</p>
-        ${d.venue ? `<p>Venue: ${d.venue}</p>` : ""}
-        ${d.submitter ? `<p>From: ${d.submitter}</p>` : ""}
-        ${d.sourceUrl ? `<p>Proof: <a href="${d.sourceUrl}">${d.sourceUrl}</a></p>` : ""}
+      bodyHtml: `<p><strong>${esc(car)}</strong>${d.salePrice ? ` — $${d.salePrice.toLocaleString()}` : ""}</p>
+        ${d.venue ? `<p>Venue: ${esc(d.venue)}</p>` : ""}
+        ${d.submitter ? `<p>From: ${esc(d.submitter)}</p>` : ""}
+        ${d.sourceUrl ? `<p>Proof: <a href="${safeUrl(d.sourceUrl)}">${esc(d.sourceUrl)}</a></p>` : ""}
         <p>Review and approve it into the market database.</p>`,
       ctaLabel: "Review submissions",
       ctaUrl: "https://fullysorted.com/admin/submissions",
     }),
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Provider onboarding — claim invite + reminder (sent from the /team console)
+// ─────────────────────────────────────────────────────────────────────────────
+
+type ProviderInviteData = {
+  to: string;
+  businessName: string;
+  ownerName?: string;
+  category: string;
+  location: string;
+  claimUrl: string;
+};
+
+// First invite: "we built your listing — one click to approve it."
+export async function sendProviderInvite(d: ProviderInviteData) {
+  const firstName = (d.ownerName || "").split(" ")[0];
+  return sendEmail({
+    to: d.to,
+    subject: `Your Fully Sorted listing is ready to approve — ${d.businessName}`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "Your founding-provider listing is ready",
+      bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
+        <p>Thanks for talking with us. As promised, we've set up a <strong>free founding-provider listing</strong> for <strong>${esc(d.businessName)}</strong> in the Fully Sorted ${esc(d.category)} directory for the ${esc(d.location)} area.</p>
+        <p>One click to review it — then choose whichever suits you:</p>
+        <p style="margin:12px 0 0 0;"><strong>Approve &amp; manage</strong> — go live and keep your profile up to date yourself.<br/>
+        <strong>Just list me</strong> — go live as-is, nothing to maintain.<br/>
+        <strong>Remove me</strong> — we take you off and never contact you again.</p>
+        <p>No fees, no contract — collectors near you simply find and contact you directly.</p>`,
+      ctaLabel: "Review your listing",
+      ctaUrl: d.claimUrl,
+    }).replace(
+      "Fully Sorted · fullysorted.com",
+      "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>Questions? Just reply to this email.",
+    ),
+  });
+}
+
+// Gentle nudge if the invite hasn't been acted on.
+export async function sendProviderInviteReminder(d: ProviderInviteData) {
+  const firstName = (d.ownerName || "").split(" ")[0];
+  return sendEmail({
+    to: d.to,
+    subject: `Quick reminder — your ${d.businessName} listing is waiting`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "Your listing is one click away",
+      bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
+        <p>Just a quick nudge — your free founding-provider listing for <strong>${esc(d.businessName)}</strong> is built and waiting for your OK. It takes about 30 seconds to review, and you can choose to manage it, have us list you as-is, or remove it entirely.</p>`,
+      ctaLabel: "Review your listing",
+      ctaUrl: d.claimUrl,
+    }).replace(
+      "Fully Sorted · fullysorted.com",
+      "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>Questions? Just reply to this email.",
+    ),
   });
 }

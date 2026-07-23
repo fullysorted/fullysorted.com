@@ -207,11 +207,11 @@ export async function GET() {
   try {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(process.env.DATABASE_URL);
-    const [{ count }] = await sql`SELECT COUNT(*)::int as count FROM deal_alerts`;
-    const [{ segments }] = await sql`SELECT COUNT(DISTINCT segment)::int as segments FROM auction_results WHERE segment IS NOT NULL`;
-    const [{ results }] = await sql`SELECT COUNT(*)::int as results FROM auction_results`;
-    return NextResponse.json({ status: 'ok', dealAlerts: count, auctionResults: results, segments });
+    // Connectivity probe only — do not leak table row counts on this public route.
+    await sql`SELECT 1`;
+    return NextResponse.json({ status: 'ok' });
   } catch (e: any) {
-    return NextResponse.json({ status: 'error', error: e.message });
+    console.error('scrape health check failed:', e?.message || e);
+    return NextResponse.json({ status: 'error' });
   }
 }

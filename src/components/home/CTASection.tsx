@@ -19,8 +19,8 @@ export function CTASection() {
           {/* Full-bleed classic-car photo under a racing-green wash */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80"
-            alt=""
+            src="/images/archive/porsche-906-gallery.jpg"
+            alt="Porsche 906 race car in a gallery beside large-scale artwork"
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
           />

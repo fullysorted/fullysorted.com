@@ -21,6 +21,12 @@ export async function GET(
       .where(eq(schema.listings.slug, slug))
       .limit(1);
 
+    // SECURITY: never expose internal moderation fields on a public route.
+    if (listing) {
+      delete (listing as Record<string, unknown>).adminNotes;
+      delete (listing as Record<string, unknown>).deniedReason;
+    }
+
     return NextResponse.json({ listing: listing ?? null });
   } catch (error: any) {
     console.error('Get listing error:', error?.message || error);

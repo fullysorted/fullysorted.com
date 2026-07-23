@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit } from '@/lib/rate-limit';
 
 // POST /api/sales/submit — public. A user reports a sale they know about. Stored
 // as 'pending' and never touches comps until an admin approves it.
 export async function POST(req: NextRequest) {
+  const limited = rateLimit(req, 'sales-submit', 6, 60_000);
+  if (limited) return limited;
   try {
     let body: Record<string, unknown>;
     try { body = await req.json(); } catch { return NextResponse.json({ error: 'Invalid request.' }, { status: 400 }); }

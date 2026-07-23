@@ -19,8 +19,8 @@ export default function ServicesPage() {
         />
 
         <Image
-          src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80"
-          alt="Vintage garage workshop with classic cars"
+          src="/images/archive/porsche-904-workshop.jpg"
+          alt="Porsche 904 in a workshop with its race engine on a stand"
           fill
           priority
           sizes="100vw"

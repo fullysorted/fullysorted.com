@@ -17,8 +17,8 @@ export default function SellPage() {
           style={{ background: 'linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)' }}
         />
         <Image
-          src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80"
-          alt="Classic Porsche 911 on an open road"
+          src="/images/archive/concours-lawn.jpg"
+          alt="A row of Ferraris on a concours lawn"
           fill
           priority
           sizes="100vw"

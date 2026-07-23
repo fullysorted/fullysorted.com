@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
+import { rateLimit } from '@/lib/rate-limit';
+
+// Cap free-text input to prevent abuse / DB bloat / content-injection payloads.
+const cap = (v: unknown, n: number): string | null => {
+  if (v === null || v === undefined) return null;
+  const s = String(v).trim();
+  return s ? s.slice(0, n) : null;
+};
 
 function slugify(year: number, make: string, model: string): string {
   const base = `${year}-${make}-${model}`
@@ -21,11 +29,17 @@ export async function GET() {
     const sql = await getDbSql();
 
     // Fetch active listings
-    const listings = await sql`
+    const rawListings = await sql`
       SELECT * FROM listings
       WHERE status = 'active'
       ORDER BY featured DESC, created_at DESC
     `;
+    // SECURITY: strip internal moderation columns from the public payload.
+    const listings = rawListings.map((row: Record<string, unknown>) => {
+      const { admin_notes, denied_reason, ...pub } = row;
+      void admin_notes; void denied_reason;
+      return pub;
+    });
 
     // Get total count for early adopter tracking
     const [{ total }] = await sql`SELECT COUNT(*)::int AS total FROM listings`;
@@ -51,6 +65,9 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  // Abuse control: cap listing-creation rate per client (spam / content injection).
+  const limited = rateLimit(request, 'listings', 10, 60_000);
+  if (limited) return limited;
   try {
     const body = await request.json();
     const {
@@ -87,15 +104,15 @@ export async function POST(request: NextRequest) {
         status, featured, sorted_price
       ) VALUES (
         ${slug}, ${selectedTier}, ${isFreeEarlyAdopter},
-        ${parseInt(year)}, ${make}, ${model}, ${trim ?? null},
+        ${parseInt(year)}, ${cap(make, 60)}, ${cap(model, 60)}, ${cap(trim, 60)},
         ${parseInt(price)}, ${mileage ? parseInt(mileage) : null},
-        ${transmission ?? null}, ${engine ?? null}, ${drivetrain ?? null},
-        ${exteriorColor ?? null}, ${interiorColor ?? null},
-        ${bodyStyle ?? null}, ${category ?? null},
-        ${city ?? null}, ${state ?? null}, ${zipCode ?? null},
-        ${description ?? null}, ${aiDescription ?? null},
-        ${JSON.stringify(highlights ?? [])}, ${chrisTake ?? null},
-        ${JSON.stringify(photos ?? [])}, ${photos?.[0] ?? null},
+        ${cap(transmission, 40)}, ${cap(engine, 80)}, ${cap(drivetrain, 40)},
+        ${cap(exteriorColor, 40)}, ${cap(interiorColor, 40)},
+        ${cap(bodyStyle, 40)}, ${cap(category, 40)},
+        ${cap(city, 80)}, ${cap(state, 40)}, ${cap(zipCode, 12)},
+        ${cap(description, 8000)}, ${cap(aiDescription, 8000)},
+        ${JSON.stringify((Array.isArray(highlights) ? highlights : []).slice(0, 20).map((h: unknown) => String(h).slice(0, 200)))}, ${cap(chrisTake, 4000)},
+        ${JSON.stringify((Array.isArray(photos) ? photos : []).slice(0, 40).map((p: unknown) => String(p).slice(0, 500)))}, ${photos?.[0] ? String(photos[0]).slice(0, 500) : null},
         'pending', ${isFeatured}, false
       )
       RETURNING *

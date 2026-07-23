@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateListingDescription } from '@/lib/ai/generate-description';
+import { rateLimit } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,6 +11,10 @@ export async function POST(request: NextRequest) {
         { status: 503 }
       );
     }
+
+    // Abuse control: throttle paid AI calls per client.
+    const limited = rateLimit(request, 'ai', 8, 60_000);
+    if (limited) return limited;
 
     const body = await request.json();
     const { year, make, model, trim, mileage, transmission, engine, exteriorColor, interiorColor, bodyStyle, condition, sellerNotes } = body;
@@ -41,7 +46,7 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error('AI description error:', error?.message || error);
     return NextResponse.json(
-      { error: error?.message || 'Failed to generate description' },
+      { error: 'Failed to generate description. Please try again.' },
       { status: 500 }
     );
   }
