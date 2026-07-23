@@ -37,6 +37,7 @@ export interface PublicGig {
   provider_headline: string | null;
   provider_avatar: string | null;
   provider_verified: boolean | null;
+  provider_payouts_enabled: boolean | null;
   from_price: number | null;
 }
 
@@ -93,7 +94,8 @@ export async function getGigBySlug(slug: string): Promise<PublicGigDetail | null
         g.requirements, g.status, g.rating, g.orders_count,
         p.id AS provider_id, p.business_name AS provider_name, p.slug AS provider_slug,
         p.location AS provider_location, p.headline AS provider_headline,
-        p.avatar_url AS provider_avatar, p.verified AS provider_verified
+        p.avatar_url AS provider_avatar, p.verified AS provider_verified,
+        p.payouts_enabled AS provider_payouts_enabled
       FROM gigs g
       JOIN service_providers p ON p.id = g.provider_id
       WHERE LOWER(g.slug) = ${slug.toLowerCase()} AND g.status = 'active' AND p.status = 'active'

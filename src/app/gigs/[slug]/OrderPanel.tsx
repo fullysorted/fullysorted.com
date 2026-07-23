@@ -2,14 +2,24 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Clock, RefreshCw, Loader2, CheckCircle2 } from "lucide-react";
+import { Check, Clock, RefreshCw, Loader2, CheckCircle2, ShieldCheck } from "lucide-react";
 
 interface Pkg {
   id: number; tier: string; title: string | null; description: string | null;
   price: number; delivery_days: number | null; revisions: number | null; features: string[] | null;
 }
 
-export function OrderPanel({ gigSlug, packages }: { gigSlug: string; packages: Pkg[] }) {
+export function OrderPanel({
+  gigSlug,
+  packages,
+  payEnabled = false,
+  providerName,
+}: {
+  gigSlug: string;
+  packages: Pkg[];
+  payEnabled?: boolean;
+  providerName?: string;
+}) {
   const [sel, setSel] = useState(0);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({ buyerName: "", buyerEmail: "", message: "" });
@@ -19,17 +29,34 @@ export function OrderPanel({ gigSlug, packages }: { gigSlug: string; packages: P
 
   const pkg = packages[sel];
 
+  async function sendInquiry() {
+    const res = await fetch("/api/gigs/order", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ gigSlug, packageId: pkg?.id, ...form }),
+    });
+    const d = await res.json();
+    if (res.ok) { setDone(true); return true; }
+    setError(d.error || "Something went wrong.");
+    return false;
+  }
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true); setError("");
     try {
-      const res = await fetch("/api/gigs/order", {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ gigSlug, packageId: pkg?.id, ...form }),
-      });
-      const d = await res.json();
-      if (res.ok) setDone(true);
-      else setError(d.error || "Something went wrong.");
+      if (payEnabled) {
+        const res = await fetch("/api/gigs/checkout", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ gigSlug, packageId: pkg?.id, ...form }),
+        });
+        const d = await res.json();
+        if (res.ok && d.url) { window.location.href = d.url; return; }
+        // Provider not payable → gracefully fall back to an inquiry.
+        if (d.fallback === "inquiry") { await sendInquiry(); }
+        else setError(d.error || "Could not start checkout.");
+      } else {
+        await sendInquiry();
+      }
     } catch { setError("Network error — try again."); }
     setSubmitting(false);
   }
@@ -87,7 +114,7 @@ export function OrderPanel({ gigSlug, packages }: { gigSlug: string; packages: P
         ) : !open ? (
           <button onClick={() => setOpen(true)}
             className="w-full h-11 rounded-xl text-white text-sm font-bold bg-accent hover:bg-accent-hover transition-colors shine">
-            Request this gig (${pkg.price.toLocaleString()})
+            {payEnabled ? `Book & pay ($${pkg.price.toLocaleString()})` : `Request this gig ($${pkg.price.toLocaleString()})`}
           </button>
         ) : (
           <form onSubmit={submit} className="space-y-2.5">
@@ -101,11 +128,18 @@ export function OrderPanel({ gigSlug, packages }: { gigSlug: string; packages: P
             <button type="submit" disabled={submitting}
               className="w-full h-11 rounded-xl text-white text-sm font-bold inline-flex items-center justify-center gap-2 disabled:opacity-60 bg-accent hover:bg-accent-hover transition-colors">
               {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-              {submitting ? "Sending…" : "Send request"}
+              {submitting ? (payEnabled ? "Redirecting…" : "Sending…") : (payEnabled ? "Continue to secure checkout" : "Send request")}
             </button>
-            <p className="text-[11px] text-center" style={{ color: "#9a9a8a" }}>
-              No payment now — you’ll arrange payment with the provider directly.
-            </p>
+            {payEnabled ? (
+              <p className="text-[11px] text-center inline-flex items-center justify-center gap-1 w-full" style={{ color: "#6b6b5e" }}>
+                <ShieldCheck className="w-3.5 h-3.5" style={{ color: "#1E6091" }} />
+                Paid securely with Stripe. Held until you accept the work{providerName ? ` from ${providerName}` : ""}.
+              </p>
+            ) : (
+              <p className="text-[11px] text-center" style={{ color: "#9a9a8a" }}>
+                No payment now — you’ll arrange payment with the provider directly.
+              </p>
+            )}
           </form>
         )}
       </div>

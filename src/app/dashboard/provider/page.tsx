@@ -6,6 +6,7 @@ import { useAuth } from '@clerk/nextjs';
 import { Building2, MapPin, Phone, Globe, AtSign, Save, Loader2, CheckCircle, Clock, AlertCircle, ArrowRight, Sparkles, Tag, DollarSign, Wrench } from 'lucide-react';
 import Link from 'next/link';
 import type { ServiceProvider } from '@/lib/db/schema';
+import { PayoutsPanel } from './PayoutsPanel';
 
 const CATEGORIES = [
   { value: 'photography', label: 'Photography' },
@@ -211,6 +212,9 @@ export default function ProviderDashboard() {
       )}
 
       {/* Profile Form */}
+      {/* Payments, payouts & orders */}
+      <PayoutsPanel />
+
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Business Info */}
         <motion.section

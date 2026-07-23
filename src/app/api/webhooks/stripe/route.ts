@@ -20,6 +20,56 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: `Webhook Error: ${message}` }, { status: 400 });
   }
 
+  // ── Paid gig order: funds captured to platform, HELD until buyer accepts ──
+  if (event.type === 'checkout.session.completed' && (event.data.object as { metadata?: Record<string, string> }).metadata?.kind === 'gig') {
+    const session = event.data.object;
+    const orderId = Number(session.metadata?.orderId || 0);
+    if (orderId && process.env.DATABASE_URL) {
+      try {
+        const { getDb, schema } = await import('@/lib/db');
+        const { eq } = await import('drizzle-orm');
+        const db = getDb();
+        const piId = typeof session.payment_intent === 'string'
+          ? session.payment_intent
+          : session.payment_intent?.id ?? null;
+        let chargeId: string | null = null;
+        if (piId) {
+          try {
+            const pi = await stripe.paymentIntents.retrieve(piId);
+            chargeId = typeof pi.latest_charge === 'string' ? pi.latest_charge : pi.latest_charge?.id ?? null;
+          } catch (e) { console.error('PI retrieve failed', e); }
+        }
+        await db.update(schema.gigOrders).set({
+          status: 'paid',
+          paidAt: new Date(),
+          stripePaymentIntentId: piId,
+          stripeChargeId: chargeId,
+          updatedAt: new Date(),
+        }).where(eq(schema.gigOrders.id, orderId));
+        console.log(`Gig order #${orderId} paid — funds held pending delivery/accept.`);
+      } catch (e) {
+        console.error('Gig paid handler failed:', e);
+      }
+    }
+    return NextResponse.json({ received: true });
+  }
+
+  if (event.type === 'checkout.session.expired' && (event.data.object as { metadata?: Record<string, string> }).metadata?.kind === 'gig') {
+    const session = event.data.object;
+    const orderId = Number(session.metadata?.orderId || 0);
+    if (orderId && process.env.DATABASE_URL) {
+      try {
+        const { getDb, schema } = await import('@/lib/db');
+        const { eq } = await import('drizzle-orm');
+        const db = getDb();
+        await db.update(schema.gigOrders)
+          .set({ status: 'cancelled', cancelledAt: new Date(), updatedAt: new Date() })
+          .where(eq(schema.gigOrders.id, orderId));
+      } catch (e) { console.error('Gig expire handler failed:', e); }
+    }
+    return NextResponse.json({ received: true });
+  }
+
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     const { listingId: listing_id, year, make, model } = session.metadata || {};

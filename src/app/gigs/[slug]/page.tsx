@@ -127,7 +127,7 @@ export default async function GigDetailPage({ params }: Props) {
 
           {/* Order panel */}
           <div className="lg:col-span-1">
-            <OrderPanel gigSlug={gig.slug} packages={gig.packages} />
+            <OrderPanel gigSlug={gig.slug} packages={gig.packages} payEnabled={!!gig.provider_payouts_enabled} providerName={gig.provider_name} />
           </div>
         </div>
       </div>

@@ -277,6 +277,24 @@ export const gigOrders = pgTable('gig_orders', {
   platformFee: integer('platform_fee'),                  // computed, not charged yet
   status: varchar('status', { length: 30 }).default('inquiry').notNull(), // inquiry, accepted, in_progress, delivered, completed, cancelled
   requirementsText: text('requirements_text'),
+
+  // ─── Paid-order rail (Stripe escrow: hold on checkout, release on accept) ──
+  amountCents: integer('amount_cents'),                  // gross the buyer paid
+  platformFeeCents: integer('platform_fee_cents'),       // our take, computed at checkout
+  providerAmountCents: integer('provider_amount_cents'), // net transferred to provider
+  currency: varchar('currency', { length: 10 }).default('usd'),
+  stripeSessionId: varchar('stripe_session_id', { length: 255 }),
+  stripePaymentIntentId: varchar('stripe_payment_intent_id', { length: 255 }),
+  stripeChargeId: varchar('stripe_charge_id', { length: 255 }),
+  stripeTransferId: varchar('stripe_transfer_id', { length: 255 }),
+  stripeRefundId: varchar('stripe_refund_id', { length: 255 }),
+  buyerAccessToken: varchar('buyer_access_token', { length: 64 }), // buyer views/accepts without an account
+  paidAt: timestamp('paid_at'),
+  deliveredAt: timestamp('delivered_at'),
+  completedAt: timestamp('completed_at'),
+  cancelledAt: timestamp('cancelled_at'),
+  refundedAt: timestamp('refunded_at'),
+
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
