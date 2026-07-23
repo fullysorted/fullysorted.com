@@ -66,9 +66,12 @@ export default async function GigsPage() {
             Fixed-price gigs from top-rated pros — inspections, detailing, transport, photography, and more.
             See exactly what you get and what it costs. No agency markup.
           </p>
-          <div className="mt-7">
+          <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link href="/services/apply/freelancer" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold bg-white text-accent shadow-sm hover:-translate-y-0.5 hover:shadow-lg transition-all">
               <Sparkles className="w-4 h-4" style={{ color: "#B08D3F" }} /> Offer your own gig <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="/services/guide" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold border border-white/40 text-white hover:bg-white/10 transition-all">
+              How to get booked
             </Link>
           </div>
         </div>

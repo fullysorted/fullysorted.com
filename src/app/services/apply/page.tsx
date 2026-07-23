@@ -99,6 +99,26 @@ export default function ApplyChooserPage() {
       <p className="text-center text-sm text-text-secondary mt-8">
         Either way, listing is free for founding providers. You can always switch later.
       </p>
+
+      <div className="mt-10 rounded-2xl border border-border bg-white p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+        <div className="flex-1">
+          <p className="text-xs font-bold uppercase tracking-widest mb-1.5" style={{ color: "#1E6091" }}>
+            New here?
+          </p>
+          <h2 className="font-display font-semibold tracking-tight text-xl text-foreground mb-1">
+            Read the Provider Playbook first
+          </h2>
+          <p className="text-sm text-text-secondary">
+            A step-by-step guide to building a profile owners trust, pricing your work in tiers, and turning first jobs into steady bookings.
+          </p>
+        </div>
+        <Link
+          href="/services/guide"
+          className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl border-2 border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors"
+        >
+          Open the playbook <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
     </div>
   );
 }
