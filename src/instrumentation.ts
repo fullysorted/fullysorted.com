@@ -283,6 +283,33 @@ export async function register() {
     await sql`CREATE UNIQUE INDEX IF NOT EXISTS auction_results_dedupe ON auction_results(dedupe_key)`;
     await sql`CREATE INDEX IF NOT EXISTS auction_results_make_model ON auction_results(make, model)`;
 
+    // ─── User-submitted sold prices (first-party data, reviewed before publish) ───
+    await sql`
+      CREATE TABLE IF NOT EXISTS sale_submissions (
+        id SERIAL PRIMARY KEY,
+        make VARCHAR(100) NOT NULL,
+        model VARCHAR(200) NOT NULL,
+        year INTEGER,
+        trim VARCHAR(200),
+        vin VARCHAR(32),
+        sale_price INTEGER,
+        currency VARCHAR(10) DEFAULT 'usd',
+        sale_date TIMESTAMP,
+        venue VARCHAR(200),
+        mileage INTEGER,
+        exterior_color VARCHAR(100),
+        location VARCHAR(200),
+        source_url TEXT,
+        notes TEXT,
+        submitter_name VARCHAR(255),
+        submitter_email VARCHAR(255),
+        status VARCHAR(20) NOT NULL DEFAULT 'pending',
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        reviewed_at TIMESTAMP
+      )
+    `;
+    await sql`CREATE INDEX IF NOT EXISTS sale_submissions_status ON sale_submissions(status)`;
+
     console.log('[Fully Sorted] DB schema verified/migrated on startup.');
   } catch (err) {
     // Never crash the server over a migration — just log

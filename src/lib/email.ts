@@ -357,3 +357,22 @@ export async function notifyOrderDisputed(d: { providerEmail?: string; gigTitle:
     html: orderShell({ accent: "#B0553F", heading: "Order dispute reported", bodyHtml, ctaLabel: "Review orders", ctaUrl: "https://fullysorted.com/admin/messages" }),
   });
 }
+
+// A user submitted a sold price — notify Chris to review.
+export async function notifySaleSubmission(d: { make: string; model: string; year: number | null; salePrice: number | null; venue: string | null; submitter: string | null; sourceUrl: string | null }) {
+  const car = `${d.year || ""} ${d.make} ${d.model}`.trim();
+  return sendEmail({
+    subject: `📥 New sold-price submission: ${car}`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "New sold-price submission",
+      bodyHtml: `<p><strong>${car}</strong>${d.salePrice ? ` — $${d.salePrice.toLocaleString()}` : ""}</p>
+        ${d.venue ? `<p>Venue: ${d.venue}</p>` : ""}
+        ${d.submitter ? `<p>From: ${d.submitter}</p>` : ""}
+        ${d.sourceUrl ? `<p>Proof: <a href="${d.sourceUrl}">${d.sourceUrl}</a></p>` : ""}
+        <p>Review and approve it into the market database.</p>`,
+      ctaLabel: "Review submissions",
+      ctaUrl: "https://fullysorted.com/admin/submissions",
+    }),
+  });
+}

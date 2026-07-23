@@ -15,7 +15,7 @@ import {
   BarChart3,
   RefreshCw,
   Loader2,
-  ArrowRight, Database } from "lucide-react";
+  ArrowRight, Database, Inbox } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 
 interface Stats {
@@ -233,6 +233,21 @@ export default function AdminDashboard() {
         <div className="flex-1">
           <p className="text-sm font-semibold text-foreground">Import market data</p>
           <p className="text-xs text-text-secondary">Bulk-import auction results (CSV/JSON) or wire a licensed feed to the ingest API.</p>
+        </div>
+        <ArrowRight className="w-4 h-4 text-accent" />
+      </Link>
+
+      {/* Sale submissions review */}
+      <Link
+        href="/admin/submissions"
+        className="flex items-center gap-3 p-4 rounded-xl border border-border bg-white hover:border-accent transition-colors"
+      >
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: "rgba(30,96,145,0.08)" }}>
+          <Inbox className="w-4 h-4" style={{ color: "#1E6091" }} />
+        </div>
+        <div className="flex-1">
+          <p className="text-sm font-semibold text-foreground">Sale submissions</p>
+          <p className="text-xs text-text-secondary">Review user-reported sold prices and approve them into the market data.</p>
         </div>
         <ArrowRight className="w-4 h-4 text-accent" />
       </Link>

@@ -103,6 +103,20 @@ export default function ValueGuidePage() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <ValueGuideClient />
       </section>
+
+      {/* Crowdsource CTA */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-14">
+        <a href="/submit-sale" className="flex items-center gap-4 rounded-2xl bg-white border border-border p-5 hover:border-accent transition-colors group">
+          <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: "rgba(30,96,145,0.08)" }}>
+            <Database className="w-5 h-5" style={{ color: "#1E6091" }} />
+          </div>
+          <div className="flex-1">
+            <p className="font-semibold text-foreground">Know a sale we&rsquo;re missing?</p>
+            <p className="text-sm text-text-secondary">Add a real sold price and make the data sharper for everyone. We verify before it goes live.</p>
+          </div>
+          <span className="text-sm font-bold shrink-0 inline-flex items-center gap-1" style={{ color: "#1E6091" }}>Report a sale <span aria-hidden>→</span></span>
+        </a>
+      </section>
     </main>
   );
 }
