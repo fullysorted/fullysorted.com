@@ -206,6 +206,201 @@ function PriceHistoryChart({ comps, median }: { comps: Comp[]; median: number | 
   );
 }
 
+/* ---------- Glass-box Condition Estimator ----------
+   No black box: we read the real distribution of comparable sold prices and map
+   the standard collector condition ladder (#1 concours → project) onto where
+   cars in each condition actually land in that distribution. Everything shown. */
+function percentile(sortedAsc: number[], pct: number): number {
+  const n = sortedAsc.length;
+  if (n === 0) return 0;
+  if (n === 1) return sortedAsc[0];
+  const idx = (pct / 100) * (n - 1);
+  const lo = Math.floor(idx);
+  const hi = Math.ceil(idx);
+  if (lo === hi) return sortedAsc[lo];
+  return sortedAsc[lo] + (sortedAsc[hi] - sortedAsc[lo]) * (idx - lo);
+}
+
+const CONDITION_GRADES = [
+  { key: "concours", label: "Concours", tag: "#1", desc: "Show-winning, better-than-factory. Best cars in the market.", lo: 78, mid: 88, hi: 96 },
+  { key: "excellent", label: "Excellent", tag: "#2", desc: "Beautifully restored or a stunning preserved original.", lo: 60, mid: 72, hi: 82 },
+  { key: "good", label: "Good", tag: "#3", desc: "A sorted, honest, usable driver — the heart of the market.", lo: 40, mid: 50, hi: 62 },
+  { key: "fair", label: "Fair", tag: "#4", desc: "Presentable but needs work — deferred maintenance or cosmetics.", lo: 20, mid: 32, hi: 44 },
+  { key: "project", label: "Project", tag: "#5", desc: "Incomplete or needs full restoration. Priced on potential.", lo: 6, mid: 15, hi: 26 },
+] as const;
+
+function ConditionEstimator({ comps, car }: { comps: Comp[]; car: string }) {
+  const [grade, setGrade] = useState<string>("good");
+  const [showMethod, setShowMethod] = useState(false);
+
+  const prices = comps
+    .map((c) => c.sale_price)
+    .filter((v): v is number => typeof v === "number" && v > 0)
+    .sort((a, b) => a - b);
+
+  if (prices.length < 5) return null;
+
+  const g = CONDITION_GRADES.find((x) => x.key === grade) ?? CONDITION_GRADES[2];
+  const est = Math.round(percentile(prices, g.mid));
+  const bandLo = Math.round(percentile(prices, g.lo));
+  const bandHi = Math.round(percentile(prices, g.hi));
+  const median = Math.round(percentile(prices, 50));
+
+  // Clip the axis to p2–p98 so a single outlier doesn't squash the strip.
+  const axLo = percentile(prices, 2);
+  const axHi = percentile(prices, 98);
+  const axSpan = axHi - axLo || axHi || 1;
+  const pos = (v: number) => Math.max(0, Math.min(100, ((v - axLo) / axSpan) * 100));
+  const thin = prices.length < 8;
+
+  return (
+    <div className="bg-white border border-border rounded-xl p-5 sm:p-6">
+      <div className="flex items-start justify-between gap-3 mb-4">
+        <div>
+          <h3 className="font-semibold text-foreground">Value by condition</h3>
+          <p className="text-xs text-text-secondary mt-0.5 max-w-md">
+            Not a black-box estimate — pick a condition and see where {car || "cars"} in that shape
+            actually land across {prices.length} real sales.
+          </p>
+        </div>
+        <span
+          className="shrink-0 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full"
+          style={{ color: "#1E6091", backgroundColor: "rgba(30,96,145,0.08)", border: "1px solid rgba(30,96,145,0.25)" }}
+        >
+          Glass-box
+        </span>
+      </div>
+
+      {/* Grade selector */}
+      <div className="grid grid-cols-5 gap-1.5">
+        {CONDITION_GRADES.map((x) => {
+          const active = x.key === grade;
+          return (
+            <button
+              key={x.key}
+              type="button"
+              onClick={() => setGrade(x.key)}
+              className={cn(
+                "flex flex-col items-center gap-0.5 py-2 px-1 rounded-lg border text-center transition-all",
+                active ? "border-transparent text-white" : "border-border text-text-secondary hover:border-accent hover:text-accent"
+              )}
+              style={active ? { backgroundColor: "#1E6091" } : undefined}
+            >
+              <span className="text-[11px] font-bold tabular-nums">{x.tag}</span>
+              <span className="text-[11px] font-semibold leading-tight">{x.label}</span>
+            </button>
+          );
+        })}
+      </div>
+      <p className="text-xs text-text-secondary mt-2 min-h-[2.5em]">{g.desc}</p>
+
+      {/* Estimate */}
+      <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <p className="text-xs font-medium text-text-secondary uppercase tracking-wider">
+          {g.label} ({g.tag})
+        </p>
+        <p className="price-display text-3xl font-bold" style={{ color: "#1E6091" }}>{formatPrice(est)}</p>
+        <p className="text-sm text-text-secondary">
+          typical range <span className="font-semibold text-foreground">{formatPrice(bandLo)} – {formatPrice(bandHi)}</span>
+        </p>
+      </div>
+
+      {/* Distribution strip */}
+      <div className="mt-5">
+        <div className="relative h-20">
+          {/* band highlight */}
+          <div
+            className="absolute top-6 bottom-6 rounded-md"
+            style={{
+              left: `${pos(bandLo)}%`,
+              width: `${Math.max(1.5, pos(bandHi) - pos(bandLo))}%`,
+              backgroundColor: "rgba(176,141,63,0.16)",
+              border: "1px solid rgba(176,141,63,0.5)",
+            }}
+          />
+          {/* baseline */}
+          <div className="absolute left-0 right-0 top-1/2 h-px" style={{ backgroundColor: "#e6e2da" }} />
+          {/* comp ticks */}
+          {prices.map((v, i) => (
+            <div
+              key={i}
+              className="absolute w-px"
+              style={{
+                left: `${pos(v)}%`,
+                top: "calc(50% - 9px)",
+                height: "18px",
+                backgroundColor: "#1E6091",
+                opacity: 0.35,
+              }}
+            />
+          ))}
+          {/* median marker */}
+          <div className="absolute top-4 bottom-4 w-px" style={{ left: `${pos(median)}%`, backgroundColor: "#9a9a8a" }} />
+          <span
+            className="absolute text-[10px] font-medium"
+            style={{ left: `${pos(median)}%`, top: 0, transform: "translateX(-50%)", color: "#9a9a8a" }}
+          >
+            median
+          </span>
+          {/* estimate marker */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              left: `${pos(est)}%`,
+              top: "calc(50% - 7px)",
+              width: 14,
+              height: 14,
+              backgroundColor: "#1E6091",
+              border: "2.5px solid #ffffff",
+              boxShadow: "0 2px 6px rgba(30,96,145,0.5)",
+              transform: "translateX(-50%)",
+            }}
+          />
+          <span
+            className="absolute text-[10px] font-bold"
+            style={{ left: `${pos(est)}%`, bottom: 0, transform: "translateX(-50%)", color: "#1E6091" }}
+          >
+            {g.label}
+          </span>
+        </div>
+        <div className="flex justify-between text-[11px] text-text-tertiary mt-1">
+          <span>{formatPrice(Math.round(axLo))}</span>
+          <span>Each tick = one real sale</span>
+          <span>{formatPrice(Math.round(axHi))}</span>
+        </div>
+      </div>
+
+      {/* Methodology + honesty */}
+      <div className="mt-4 pt-4 border-t border-border">
+        <button
+          type="button"
+          onClick={() => setShowMethod((v) => !v)}
+          className="text-xs font-semibold flex items-center gap-1"
+          style={{ color: "#1E6091" }}
+        >
+          <Info className="w-3.5 h-3.5" /> How this works
+        </button>
+        {showMethod && (
+          <p className="text-xs text-text-secondary mt-2 leading-relaxed">
+            We take the {prices.length} comparable sold prices, sort them, and read the distribution directly.
+            Condition maps to where cars in that shape land: Concours (#1) to the top of the market, Good (#3)
+            around the median, Project (#5) to the bottom. The point estimate is the middle of that band and the
+            range is its edges — computed live from the real sales you can see listed below, never a hidden model.
+          </p>
+        )}
+        {thin && (
+          <p className="text-xs mt-2 leading-relaxed" style={{ color: "#8a6d2f" }}>
+            Only {prices.length} comparable sales here — treat this as directional. Broaden the year range for a firmer read.
+          </p>
+        )}
+        <p className="text-[11px] text-text-tertiary mt-2">
+          An estimate from recent comparable sales, not a formal appraisal. Options, originality, and documentation move individual cars within these bands.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- Main Component ---------- */
 export function ValueGuideClient() {
   const [yearInput, setYearInput] = useState("");
@@ -502,6 +697,11 @@ export function ValueGuideClient() {
               </div>
             )}
           </div>
+
+          {/* Glass-box condition estimator */}
+          {result.total >= 5 && (
+            <ConditionEstimator comps={result.comps} car={`${searchedFor.make} ${searchedFor.model}`.trim()} />
+          )}
 
           {/* Price over time */}
           <PriceHistoryChart comps={result.comps} median={result.medianPrice} />
