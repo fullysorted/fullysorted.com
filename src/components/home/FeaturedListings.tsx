@@ -60,8 +60,8 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
               When it&apos;s time to buy or sell
             </h2>
             <p className="mt-1 text-sm max-w-xl" style={{ color: "#6b6b5e" }}>
-              Peer-to-peer listings with simple flat fees — because the
-              platform that services your car shouldn&apos;t take a cut when you sell it.
+              Once your car is sorted, sell it the direct way — owner to owner,
+              simple flat listing fees, no auction clock and no buyer&apos;s premium.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">

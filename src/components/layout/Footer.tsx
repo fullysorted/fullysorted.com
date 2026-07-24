@@ -1,15 +1,11 @@
 import Link from "next/link";
 
+// Column order mirrors the site flow: Services → Marketplace → Research →
+// Company. Keep in sync with Header.tsx navEntries and the homepage sections.
 const footerLinks = {
-  Research: [
-    { href: "/value-guide", label: "Value Guide" },
-    { href: "/research", label: "Model Encyclopedia" },
-    { href: "/research/models", label: "Model Directory" },
-    { href: "/vin", label: "VIN Decoder" },
-  ],
-  "Hire a Pro": [
-    { href: "/gigs", label: "Fixed-price Gigs" },
+  Services: [
     { href: "/services", label: "Services Directory" },
+    { href: "/gigs", label: "Fixed-price Gigs" },
     { href: "/services/guide", label: "Provider Playbook" },
     { href: "/services/apply", label: "List Your Services" },
   ],
@@ -19,6 +15,12 @@ const footerLinks = {
     { href: "/browse?category=european", label: "European" },
     { href: "/sell", label: "Sell a Car" },
     { href: "/shop", label: "Garage Essentials" },
+  ],
+  Research: [
+    { href: "/value-guide", label: "Value Guide" },
+    { href: "/research", label: "Model Encyclopedia" },
+    { href: "/research/models", label: "Model Directory" },
+    { href: "/vin", label: "VIN Decoder" },
   ],
   Company: [
     { href: "/about", label: "About Us" },
@@ -62,7 +64,7 @@ export function Footer() {
               />
             </div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(230,238,247,0.55)" }}>
-              The collector car research hub, marketplace, and services network —
+              The collector car services network, marketplace, and research hub —
               built by enthusiasts, for enthusiasts.
             </p>
             {/* Tricolor motif */}

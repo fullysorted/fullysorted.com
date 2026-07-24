@@ -3,6 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRight,
+  ClipboardList,
+  BarChart3,
+  BookOpen,
+  Star,
   Upload,
   Sparkles,
   Eye,
@@ -20,9 +24,33 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "How It Works — Fully Sorted",
   description:
-    "Fully Sorted is a peer-to-peer collector car marketplace with simple flat listing fees. Here's exactly how selling, buying, and finding trusted service providers works.",
+    "Fully Sorted is a collector car services hub with a peer-to-peer marketplace and a research center. Here's exactly how hiring a specialist, buying and selling, and using the Value Guide work.",
   alternates: { canonical: "/how-it-works" },
 };
+
+// 1. SERVICES — the hub is the front door and the lead product.
+const HIRE_STEPS = [
+  {
+    icon: Search,
+    title: "Tell us what the car needs",
+    body: "Search by what you need — pre-purchase inspection, ceramic coating, enclosed transport, a marque specialist — or browse fixed-price gigs with upfront pricing.",
+  },
+  {
+    icon: Star,
+    title: "Read the owner record",
+    body: "Every provider profile carries reviews and comments from the owners who actually hired them, plus an engagement level earned through real work on the platform.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Request a quote or book a gig",
+    body: "Message a shop directly for custom work, or book a fixed-price gig when you already know what you need. You talk to the person doing the work.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Leave your own review",
+    body: "When the job's done, your review becomes part of the record the next owner reads. That's how the directory gets better — collectively, in the open.",
+  },
+];
 
 const SELLER_STEPS = [
   {
@@ -43,7 +71,7 @@ const SELLER_STEPS = [
   {
     icon: Handshake,
     title: "You own the deal",
-    body: "Buyers message and make offers directly. You decide who to respond to and how to structure the sale. We never take a cut of the transaction.",
+    body: "Buyers message and make offers directly. You decide who to respond to and how to structure the sale, and you close it on your own terms.",
   },
 ];
 
@@ -78,8 +106,8 @@ const PROVIDER_STEPS = [
   },
   {
     icon: ShieldCheck,
-    title: "Get verified",
-    body: "We check references and confirm you're the real deal. Approved providers get a verified badge and a spot in our curated directory.",
+    title: "Get your profile live",
+    body: "Applications are reviewed by a human before a profile goes live. From there your reputation is built in the open — by the owners you work for.",
   },
   {
     icon: Camera,
@@ -89,11 +117,38 @@ const PROVIDER_STEPS = [
   {
     icon: DollarSign,
     title: "Get found by owners who care",
-    body: "Collectors searching for detailers, inspectors, mechanics, restorers, and transporters find you. No lead fees, no pay-to-play ranking.",
+    body: "Collectors searching for detailers, inspectors, mechanics, restorers, and transporters find you — ranked by the work you've done and the owners who vouch for it.",
+  },
+];
+
+// 3. RESEARCH — the data layer behind both.
+const RESEARCH_STEPS = [
+  {
+    icon: BarChart3,
+    title: "Check the Value Guide",
+    body: "Real sold-price comps from auction results and reported private sales — so you know what a car actually trades for, not what someone hopes to get.",
+  },
+  {
+    icon: BookOpen,
+    title: "Read the model encyclopedia",
+    body: "History, specs, production numbers and known trouble spots, model by model, with sources cited so you can check the work yourself.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Decode a VIN, compare two cars",
+    body: "Decode any 1981-or-newer VIN for factory specs and open recalls, or put two models head to head on rarity, value and running costs.",
   },
 ];
 
 const FAQS = [
+  {
+    q: "How do I know a provider is good?",
+    a: "Trust is built in the open: every provider profile carries reviews and comments from real owners, and providers earn engagement levels as they complete work, respond to clients, and build up their track record on the platform. Applications are also reviewed before a profile goes live, but the community record is what tells you who's good.",
+  },
+  {
+    q: "What does it cost to hire someone through Fully Sorted?",
+    a: "Browsing the directory and requesting quotes is free. Fixed-price gigs show the provider's price upfront before you book — no hidden markups on the quote you're given.",
+  },
   {
     q: "What does it cost to list a car?",
     a: "Three tiers, all one-time: Standard $9.99, Featured $29.99, Premium $49.99. The first 100 listings are free for founding members. Your listing fee is one-time and paid up front.",
@@ -105,10 +160,6 @@ const FAQS = [
   {
     q: "Do you handle payment or escrow?",
     a: "No. We're a listing platform, not a financial intermediary. Buyers and sellers agree on their preferred payment method — bank wire, escrow service, cashier's check. We recommend using a licensed escrow company for transactions over $25,000.",
-  },
-  {
-    q: "How do I know a provider is good?",
-    a: "Trust is built in the open: every provider profile carries reviews and comments from real owners, and providers earn engagement levels as they complete work, respond to clients, and build up their track record on the platform. Applications are also reviewed before a profile goes live, but the community record is what tells you who's good.",
   },
   {
     q: "Can I edit or remove my listing?",
@@ -163,6 +214,22 @@ const faqSchema = {
   })),
 };
 
+const howToHireSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": "https://fullysorted.com/how-it-works#howto-hire",
+  name: "How to hire a collector car specialist on Fully Sorted",
+  description:
+    "Step-by-step guide to finding and booking an owner-reviewed specialist for your collector car — inspection, detailing, transport, mechanical, restoration and body work.",
+  totalTime: "PT10M",
+  step: HIRE_STEPS.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.body,
+  })),
+};
+
 const howToSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
@@ -192,7 +259,7 @@ const breadcrumbSchema = {
 export default function HowItWorksPage() {
   return (
     <div style={{ backgroundColor: "#f5f4f0" }} className="min-h-screen">
-      <JsonLd data={[faqSchema, howToSchema, breadcrumbSchema]} />
+      <JsonLd data={[faqSchema, howToHireSchema, howToSchema, breadcrumbSchema]} />
       {/* Hero */}
       <section className="pt-20 pb-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -208,10 +275,13 @@ export default function HowItWorksPage() {
             How Fully Sorted Works
           </p>
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl text-foreground leading-[1.08] mb-4">
-            Sell your car, buy your next one, and find the specialists who keep it running.
+            Find the specialists who keep your car running — then buy, sell and research it in one place.
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-            A peer-to-peer marketplace built for collectors — flat listing fees and a community-reviewed directory of service providers.
+            Fully Sorted is a collector car services hub first: an owner-reviewed
+            directory of the people who do the work. Alongside it sits a
+            direct owner-to-owner marketplace with flat listing fees, and a
+            research center built on real sold prices.
           </p>
 
           {/* Photo moment */}
@@ -232,7 +302,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      {/* Sellers */}
+      {/* 1. SERVICES — hiring a pro. The hub is the front door. */}
       <section className="py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="mb-10 text-center">
@@ -240,56 +310,32 @@ export default function HowItWorksPage() {
               className="text-xs font-bold uppercase tracking-widest mb-2"
               style={{ color: "#1E6091" }}
             >
-              For Sellers
+              For Owners
             </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Selling a car on Fully Sorted</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Getting work done on your car</h2>
+            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
+              Inspection, detailing, transport, mechanical, restoration, body and
+              paint — the specialists collectors actually use, rated by the owners
+              who hired them.
+            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {SELLER_STEPS.map((s, i) => (
+            {HIRE_STEPS.map((s, i) => (
               <StepCard key={i} index={i} {...s} />
             ))}
           </div>
           <div className="mt-10 text-center">
             <Link
-              href="/sell"
+              href="/services"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
-              List Your Car <ArrowRight className="w-4 h-4" />
+              Find a Pro <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </section>
-
-      {/* Buyers */}
+      {/* 1b. SERVICES — the supply side. */}
       <section className="py-16 px-4 sm:px-6 bg-white border-y border-border">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-10 text-center">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-2"
-              style={{ color: "#1E6091" }}
-            >
-              For Buyers
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Finding your next car</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {BUYER_STEPS.map((s, i) => (
-              <StepCard key={i} index={i} {...s} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/browse"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              Browse Listings <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Providers */}
-      <section className="py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="mb-10 text-center">
             <p
@@ -318,7 +364,91 @@ export default function HowItWorksPage() {
           </div>
         </div>
       </section>
-
+      {/* 2. MARKETPLACE — selling. */}
+      <section className="py-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10 text-center">
+            <p
+              className="text-xs font-bold uppercase tracking-widest mb-2"
+              style={{ color: "#1E6091" }}
+            >
+              For Sellers
+            </p>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Selling a car on Fully Sorted</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {SELLER_STEPS.map((s, i) => (
+              <StepCard key={i} index={i} {...s} />
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/sell"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
+            >
+              List Your Car <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+      {/* 2b. MARKETPLACE — buying. */}
+      <section className="py-16 px-4 sm:px-6 bg-white border-y border-border">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10 text-center">
+            <p
+              className="text-xs font-bold uppercase tracking-widest mb-2"
+              style={{ color: "#1E6091" }}
+            >
+              For Buyers
+            </p>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Finding your next car</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {BUYER_STEPS.map((s, i) => (
+              <StepCard key={i} index={i} {...s} />
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/browse"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
+            >
+              Browse Listings <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+      {/* 3. RESEARCH — the data layer under both. */}
+      <section className="py-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10 text-center">
+            <p
+              className="text-xs font-bold uppercase tracking-widest mb-2"
+              style={{ color: "#1E6091" }}
+            >
+              Research &amp; Value Guide
+            </p>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Knowing what a car is really worth</h2>
+            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
+              The same data sits under every listing and every quote — so nobody
+              in the transaction is guessing.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {RESEARCH_STEPS.map((s, i) => (
+              <StepCard key={i} index={i} {...s} />
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/value-guide"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
+            >
+              Open the Value Guide <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
       {/* Pricing summary */}
       <section className="py-16 px-4 sm:px-6 bg-white border-y border-border">
         <div className="max-w-3xl mx-auto text-center">

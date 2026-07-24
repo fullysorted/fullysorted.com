@@ -32,12 +32,18 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: {
-    default: "Fully Sorted — Collector Car Marketplace",
+    default: "Fully Sorted — The Collector Car Services Hub",
     template: "%s | Fully Sorted",
   },
   description:
-    "List your collector car for $9.99. The peer-to-peer marketplace built by enthusiasts, for enthusiasts — simple flat fees and straightforward pricing.",
+    "Find owner-reviewed specialists for everything your collector car needs — inspection, detailing, transport, restoration and more. Plus a direct owner-to-owner marketplace and a research center built on real sold prices.",
   keywords: [
+    "collector car services",
+    "classic car specialists",
+    "pre-purchase inspection collector car",
+    "classic car detailing",
+    "enclosed car transport",
+    "classic car restoration shop",
     "collector cars",
     "classic cars for sale",
     "vintage cars",
@@ -52,7 +58,7 @@ export const metadata: Metadata = {
   creator: "Chris Peterson",
   metadataBase: new URL("https://fullysorted.com"),
   alternates: { canonical: "/" },
-  category: "Automotive Marketplace",
+  category: "Automotive Services",
   openGraph: {
     type: "website",
     locale: "en_US",

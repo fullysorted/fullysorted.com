@@ -22,8 +22,8 @@ const PILLARS = [
   },
   {
     icon: ShieldCheck,
-    title: "No middlemen extracting value",
-    body: "We charge a simple one-time listing fee — from $9.99 depending on your package, with the first 100 listings free. Straightforward pricing, no dealer games.",
+    title: "Straightforward, up-front pricing",
+    body: "Listing a car is a simple one-time fee — from $9.99 depending on your package, with the first 100 listings free. You see the price before you commit, on every side of the platform.",
   },
 ];
 
@@ -163,18 +163,19 @@ export default function AboutPage() {
               What we're building
             </h2>
             <p>
-              Fully Sorted is a collector car marketplace and services directory.
-              A place where buyers can find real pricing data — not ask prices, real
-              auction comps — before they make a move. Where sellers can list a car
-              for as little as $9.99 and keep every dollar of the sale. And where the mechanics,
-              detailers, inspectors, and restorers who make this hobby possible can
-              be found by the collectors who need them.
+              Fully Sorted is a collector car services hub — a place where the
+              mechanics, detailers, inspectors, transporters and restorers who make
+              this hobby possible can be found by the collectors who need them.
+              Alongside it sits a direct owner-to-owner marketplace where a car can
+              be listed for as little as $9.99, and a research center where buyers
+              can find real pricing data — not ask prices, real auction comps —
+              before they make a move.
             </p>
             <p className="mt-4">
-              The services directory is the part we care about most — a place where
-              specialists who know collector cars can be found by the collectors who
-              need them. No pay-to-play. No sponsored slots. Just people who are
-              genuinely good at what they do.
+              The directory is the part we care about most, and it's ranked the way
+              it should be: by the reviews owners leave after the work is done and
+              the track record a shop builds on the platform. Not by who paid the
+              most to sit at the top.
             </p>
           </div>
 

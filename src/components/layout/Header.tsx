@@ -23,26 +23,35 @@ const researchMenu: NavMenu = {
   ],
 };
 
-// "Hire a Pro" consolidates the old redundant "Services" + "Hire Pros" items.
-// Following Upwork/Fiverr: never expose browse-vs-hire as rival top-level tabs —
-// nest them under one entry, differentiated by transaction model.
-const hireMenu: NavMenu = {
-  label: "Hire a Pro",
+// "Services" is the lead product — the hub is the front door, so it sits first
+// in the bar. Following Upwork/Fiverr: never expose browse-vs-hire as rival
+// top-level tabs — nest them under one entry, differentiated by transaction
+// model.
+const servicesMenu: NavMenu = {
+  label: "Services",
   items: [
-    { href: "/gigs", label: "Fixed-price gigs", desc: "Book a productized service, upfront pricing" },
     { href: "/services", label: "Services directory", desc: "Find a specialist business, request a quote" },
+    { href: "/gigs", label: "Fixed-price gigs", desc: "Book a productized service, upfront pricing" },
     { href: "/services/guide", label: "Provider playbook", desc: "How to get booked, tailored by trade" },
     { href: "/services/apply", label: "List your services", desc: "Become a provider on Fully Sorted", divider: true },
   ],
 };
 
-// Dropdowns render between the lead link (Browse) and the trailing links.
-const dropdownMenus = [researchMenu, hireMenu];
-const navLead = { href: "/browse", label: "Browse Cars" };
-const navTrail = [
-  { href: "/shop", label: "Shop" },
-  { href: "/events", label: "Events" },
-  { href: "/about", label: "About" },
+// THE SITE FLOW, left to right: Services (the hub) → Marketplace → Research.
+// Keep this order in sync with the homepage sections (src/app/page.tsx), the
+// footer columns, and /how-it-works. Everything after Research is a trailing
+// secondary destination.
+type NavEntry =
+  | { kind: "link"; href: string; label: string }
+  | { kind: "menu"; label: string; items: NavItem[] };
+
+const navEntries: NavEntry[] = [
+  { kind: "menu", ...servicesMenu },
+  { kind: "link", href: "/browse", label: "Browse Cars" },
+  { kind: "menu", ...researchMenu },
+  { kind: "link", href: "/shop", label: "Shop" },
+  { kind: "link", href: "/events", label: "Events" },
+  { kind: "link", href: "/about", label: "About" },
 ];
 
 export function Header() {
@@ -78,24 +87,24 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            {/* Browse first */}
-            <Link
-              href={navLead.href}
-              className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
-            >
-              {navLead.label}
-            </Link>
-
-            {/* Dropdown menus: Research, Hire a Pro */}
-            {dropdownMenus.map((menu) => (
-              <div key={menu.label} className="relative group">
+            {/* Services → Browse Cars → Research → trailing links */}
+            {navEntries.map((entry) => entry.kind === "link" ? (
+              <Link
+                key={entry.href}
+                href={entry.href}
+                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
+              >
+                {entry.label}
+              </Link>
+            ) : (
+              <div key={entry.label} className="relative group">
                 <button className="px-3 py-2 text-sm font-medium text-text-secondary group-hover:text-foreground group-focus-within:text-foreground rounded-lg group-hover:bg-surface transition-colors inline-flex items-center gap-1">
-                  {menu.label}
+                  {entry.label}
                   <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
                 </button>
                 <div className="absolute left-0 top-full pt-2 w-72 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-150 z-50">
                   <div className="rounded-xl bg-white border border-border shadow-[0_16px_40px_-16px_rgba(26,26,24,0.28)] p-2">
-                    {menu.items.map((it) => (
+                    {entry.items.map((it) => (
                       <div key={it.href}>
                         {it.divider && <div className="border-t border-border my-1.5" />}
                         <Link href={it.href} className="block px-3 py-2 rounded-lg hover:bg-surface transition-colors">
@@ -107,16 +116,6 @@ export function Header() {
                   </div>
                 </div>
               </div>
-            ))}
-
-            {navTrail.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
-              >
-                {link.label}
-              </Link>
             ))}
           </nav>
 
@@ -196,21 +195,20 @@ export function Header() {
         style={{ backgroundColor: "#FFFFFF" }}
       >
         <nav className="flex flex-col p-6 gap-2">
-          {/* Browse first */}
-          <Link
-            href={navLead.href}
-            onClick={close}
-            className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
-          >
-            {navLead.label}
-          </Link>
-
-          {/* Dropdown groups: Research, Hire a Pro */}
-          {dropdownMenus.map((menu) => (
-            <div key={menu.label}>
-              <div className="border-t border-border my-2" />
-              <p className="px-4 pt-1 pb-1 text-xs font-bold uppercase tracking-widest text-text-secondary">{menu.label}</p>
-              {menu.items.map((it) => (
+          {/* Same flow as desktop: Services → Browse Cars → Research → rest */}
+          {navEntries.map((entry) => entry.kind === "link" ? (
+            <Link
+              key={entry.href}
+              href={entry.href}
+              onClick={close}
+              className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
+            >
+              {entry.label}
+            </Link>
+          ) : (
+            <div key={entry.label}>
+              <p className="px-4 pt-3 pb-1 text-xs font-bold uppercase tracking-widest text-text-secondary">{entry.label}</p>
+              {entry.items.map((it) => (
                 <Link
                   key={it.href}
                   href={it.href}
@@ -220,19 +218,8 @@ export function Header() {
                   {it.label}
                 </Link>
               ))}
+              <div className="border-t border-border mt-2" />
             </div>
-          ))}
-
-          <div className="border-t border-border my-2" />
-          {navTrail.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={close}
-              className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
-            >
-              {link.label}
-            </Link>
           ))}
 
           <div className="border-t border-border my-4" />

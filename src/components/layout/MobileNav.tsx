@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, PlusCircle, Wrench, Mail } from "lucide-react";
+import { Home, Search, PlusCircle, Wrench, LineChart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// Services first — mirrors the header and homepage flow.
 const navItems = [
   { href: "/", label: "Home", icon: Home },
+  { href: "/services", label: "Services", icon: Wrench },
   { href: "/browse", label: "Browse", icon: Search },
   { href: "/sell", label: "Sell", icon: PlusCircle },
-  { href: "/services", label: "Services", icon: Wrench },
-  { href: "/contact", label: "Contact", icon: Mail },
+  { href: "/value-guide", label: "Values", icon: LineChart },
 ];
 
 export function MobileNav() {

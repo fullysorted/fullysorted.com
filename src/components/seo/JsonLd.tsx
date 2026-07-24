@@ -22,7 +22,7 @@ export const organizationSchema = {
   "@type": "Organization",
   "@id": "https://fullysorted.com/#organization",
   name: "Fully Sorted",
-  alternateName: "Fully Sorted Marketplace",
+  alternateName: "Fully Sorted — Collector Car Services Hub",
   url: "https://fullysorted.com",
   logo: {
     "@type": "ImageObject",
@@ -32,7 +32,7 @@ export const organizationSchema = {
   },
   image: "https://fullysorted.com/opengraph-image.png",
   description:
-    "A peer-to-peer marketplace for collector cars. Flat listing fees from $9.99. Transparent, straightforward pricing.",
+    "A collector car services hub: an owner-reviewed directory of specialists for inspection, detailing, transport, mechanical, restoration and body work — alongside a direct owner-to-owner marketplace with flat listing fees and a research center built on real sold prices.",
   foundingDate: "2025",
   founder: {
     "@type": "Person",
@@ -72,13 +72,13 @@ export const websiteSchema = {
   url: "https://fullysorted.com",
   name: "Fully Sorted",
   description:
-    "The collector car marketplace. List for $9.99.",
+    "The collector car services hub — specialists, marketplace and research in one place.",
   publisher: { "@id": "https://fullysorted.com/#organization" },
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://fullysorted.com/browse?q={search_term_string}",
+      urlTemplate: "https://fullysorted.com/services?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
