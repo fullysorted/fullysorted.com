@@ -40,8 +40,12 @@ export async function GET(request: NextRequest) {
   const model = searchParams.get('model')?.toLowerCase().trim() || '';
   const yearRange = Math.min(parseInt(searchParams.get('yearRange') || '3'), 10);
 
-  if (!year || !make || !model) {
-    return NextResponse.json({ error: 'year, make, and model are required' }, { status: 400 });
+  // A missing year is a legitimate query ("what does a 911 go for?"), and both
+  // the research model pages and the bare search form link here without one.
+  // Treat it as an all-years search rather than an error.
+  const allYears = !year;
+  if (!make || !model) {
+    return NextResponse.json({ error: 'make and model are required' }, { status: 400 });
   }
 
   try {
@@ -64,7 +68,7 @@ export async function GET(request: NextRequest) {
         WHERE
           LOWER(make) = ${make}
           AND LOWER(model) LIKE ${modelPattern}
-          AND year BETWEEN ${year - range} AND ${year + range}
+          AND year BETWEEN ${allYears ? 1900 : year - range} AND ${allYears ? 2100 : year + range}
           AND sold = true
           AND sale_price IS NOT NULL
           AND sale_price > 1000

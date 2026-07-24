@@ -17,7 +17,7 @@ interface FeaturedListingsProps {
 }
 
 const valueProps = [
-  { stat: "$9.99", label: "Flat listing fee — not 5–10% of your car" },
+  { stat: "$9.99", label: "Flat listing fee — one time, paid up front" },
   { stat: "P2P", label: "Direct owner-to-owner — no dealers in the middle" },
   { stat: "$0", label: "Buyer's premium — the price you see is the price you pay" },
 ];

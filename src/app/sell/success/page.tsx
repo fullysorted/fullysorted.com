@@ -3,10 +3,14 @@
 import { CheckCircle2, ArrowRight, Home } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { trackMetaEvent } from '@/components/analytics/MetaPixel';
 
-export default function SuccessPage() {
+function SuccessInner() {
+  const sp = useSearchParams();
+  const isFree = sp.get('free') === 'true';
+  const isDev = sp.get('dev') === 'true';
   // Fire Meta Pixel CompleteRegistration on success page mount
   // (the actual Purchase event is server-side via webhook for accuracy)
   useEffect(() => {
@@ -38,12 +42,15 @@ export default function SuccessPage() {
           </div>
 
           <h1 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-3">
-            You&apos;re Listed!
+            {isDev ? 'Listing submitted' : "You're Listed!"}
           </h1>
 
           <p className="text-text-secondary mb-6 text-lg">
-            Your listing has been submitted and payment received. I&apos;ll review it
-            personally and get it live within 24 hours.
+            {isDev
+              ? "Your listing has been submitted. Payments aren't configured on this deployment, so nothing was charged — I'll review it and follow up."
+              : isFree
+              ? "Your listing has been submitted as a founding-member free listing — nothing to pay. I'll review it personally and get it live within one business day."
+              : "Your listing has been submitted and payment received. I'll review it personally and get it live within one business day."}
           </p>
 
           <div className="bg-accent-light rounded-xl p-4 mb-8 text-left">
@@ -79,5 +86,13 @@ export default function SuccessPage() {
         </p>
       </motion.div>
     </main>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-surface" />}>
+      <SuccessInner />
+    </Suspense>
   );
 }

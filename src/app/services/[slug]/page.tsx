@@ -61,7 +61,7 @@ function instagramHandle(raw: string): string {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const provider = await getProvider(slug);
-  if (!provider) return { title: 'Provider Not Found — Fully Sorted' };
+  if (!provider) return { title: 'Provider Not Found' };
 
   const title = `${provider.businessName} — ${provider.category} | Fully Sorted`;
   const description =
@@ -185,7 +185,7 @@ export default async function ProviderProfilePage({ params }: Props) {
                     className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
                     style={{ background: 'var(--sorted-green-light)', color: 'var(--sorted-green-dark)' }}
                   >
-                    ✓ Verified
+                    ★ Top-rated
                   </span>
                 )}
                 {provider.foundingProvider && (

@@ -22,7 +22,7 @@ import {
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "How It Works — Fully Sorted",
+  title: "How It Works",
   description:
     "Fully Sorted is a collector car services hub with a peer-to-peer marketplace and a research center. Here's exactly how hiring a specialist, buying and selling, and using the Value Guide work.",
   alternates: { canonical: "/how-it-works" },
@@ -43,7 +43,7 @@ const HIRE_STEPS = [
   {
     icon: MessageSquare,
     title: "Request a quote or book a gig",
-    body: "Message a shop directly for custom work, or book a fixed-price gig when you already know what you need. You talk to the person doing the work.",
+    body: "Message a shop or specialist directly for custom work, or book a fixed-price gig when you already know what you need. You talk to the person doing the work.",
   },
   {
     icon: CheckCircle2,
@@ -66,7 +66,7 @@ const SELLER_STEPS = [
   {
     icon: Eye,
     title: "Real buyers see it",
-    body: "Your listing goes live on the Fully Sorted marketplace, the daily browse feed, and is indexed for search. No surprise fees, no bumped-to-the-back-page games.",
+    body: "Your listing goes live on the Fully Sorted marketplace, the daily browse feed, and is indexed for search. What you pay is what you saw before you clicked.",
   },
   {
     icon: Handshake,
@@ -102,7 +102,7 @@ const PROVIDER_STEPS = [
   {
     icon: Wrench,
     title: "Apply to be listed",
-    body: "Tell us about your shop, specialties, and the kind of work you do best. Applications are reviewed by a human — no bots, no algorithms.",
+    body: "Tell us about your shop or practice, specialties, and the kind of work you do best. Applications are reviewed by a human — no bots, no algorithms.",
   },
   {
     icon: ShieldCheck,
@@ -356,10 +356,10 @@ export default function HowItWorksPage() {
           </div>
           <div className="mt-10 text-center">
             <Link
-              href="/services"
+              href="/services/apply"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
-              Apply to List Your Business <ArrowRight className="w-4 h-4" />
+              Apply to be listed <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -485,7 +485,7 @@ export default function HowItWorksPage() {
             >
               Frequently Asked
             </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Questions we hear a lot</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Questions worth answering up front</h2>
           </div>
           <div className="space-y-4">
             {FAQS.map((f, i) => (

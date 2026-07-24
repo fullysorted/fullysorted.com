@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Fully Sorted",
+  title: "Privacy Policy",
   description: "How Fully Sorted collects, uses, and protects your information.",
 };
 

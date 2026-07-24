@@ -30,7 +30,7 @@ const PILLARS = [
 const STATS = [
   { value: "$0", label: "Buyer's premium" },
   { value: "From $9.99", label: "Flat listing fee" },
-  { value: "8+", label: "Service categories" },
+  { value: "7", label: "Service categories" },
 ];
 
 export default function AboutPage() {
@@ -174,8 +174,7 @@ export default function AboutPage() {
             <p className="mt-4">
               The directory is the part we care about most, and it's ranked the way
               it should be: by the reviews owners leave after the work is done and
-              the track record a shop builds on the platform. Not by who paid the
-              most to sit at the top.
+              the track record a shop or specialist builds on the platform. The review record is the ranking.
             </p>
           </div>
 

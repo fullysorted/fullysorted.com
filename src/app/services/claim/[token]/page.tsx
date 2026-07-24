@@ -33,7 +33,7 @@ async function getProvider(token: string): Promise<Provider | null> {
 }
 
 export const metadata = {
-  title: 'Claim Your Listing — Fully Sorted',
+  title: 'Claim Your Listing',
   description: 'Review and claim your free founding-provider listing on Fully Sorted.',
 };
 
@@ -79,7 +79,7 @@ export default async function ClaimPage({ params }: { params: Promise<{ token: s
             We&apos;d like to list <span className="text-accent">{provider.business_name}</span> on Fully Sorted.
           </h1>
           <p className="text-base text-text-secondary leading-relaxed">
-            Fully Sorted is a new directory for the people collectors actually trust with their cars — built by Chris Peterson, founder and a 25-year veteran of the collector car market with experience at major automotive companies and major auction houses. We&apos;re inviting you as a <strong>founding provider</strong>, which means free listing, founding badge, and priority placement. <strong>Free listing for founding providers — no catch.</strong>
+            Fully Sorted is a new directory for the people collectors actually trust with their cars — built by Chris Peterson, founder and a 25-year veteran of the collector car market with experience at major automotive companies and major auction houses. We&apos;re inviting you as a <strong>founding provider</strong>, which means free listing, founding badge, and priority placement. <strong>Your listing is free while we are getting started.</strong> Your ranking after that comes from owner reviews and your engagement level, same as everyone&apos;s.
           </p>
         </div>
 

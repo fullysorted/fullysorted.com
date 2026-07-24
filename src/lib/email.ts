@@ -407,7 +407,7 @@ export async function sendProviderInvite(d: ProviderInviteData) {
         <p style="margin:12px 0 0 0;"><strong>Approve &amp; manage</strong> — go live and keep your profile up to date yourself.<br/>
         <strong>Just list me</strong> — go live as-is, nothing to maintain.<br/>
         <strong>Remove me</strong> — we take you off and never contact you again.</p>
-        <p>No fees, no contract — collectors near you simply find and contact you directly.</p>`,
+        <p>Your founding-provider listing is free and there is no contract — collectors near you find and contact you directly.</p>`,
       ctaLabel: "Review your listing",
       ctaUrl: d.claimUrl,
     }).replace(

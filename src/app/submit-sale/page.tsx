@@ -3,7 +3,7 @@ import { Database } from "lucide-react";
 import { SubmitSaleForm } from "./SubmitSaleForm";
 
 export const metadata: Metadata = {
-  title: "Report a Sale — Help Build the Best Collector-Car Data | Fully Sorted",
+  title: "Report a Sale — Help Build the Best Collector-Car Data",
   description: "Know a collector-car sale price? Add it to Fully Sorted's market data. Reviewed before publishing; we only use the factual sale details.",
   alternates: { canonical: "/submit-sale" },
 };

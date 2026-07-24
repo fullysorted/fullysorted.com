@@ -4,19 +4,13 @@ import { put } from '@vercel/blob';
 export async function POST(request: NextRequest) {
   try {
     if (!process.env.BLOB_READ_WRITE_TOKEN) {
-      // Dev fallback: return a placeholder URL
-      const formData = await request.formData();
-      const file = formData.get('file') as File;
-      if (!file) {
-        return NextResponse.json({ error: 'No file provided' }, { status: 400 });
-      }
-      // In development without Vercel Blob, return a placeholder
-      return NextResponse.json({
-        url: `/api/upload/placeholder?name=${encodeURIComponent(file.name)}`,
-        pathname: file.name,
-        size: file.size,
-        dev: true,
-      });
+      // Previously this returned a placeholder URL pointing at /api/upload/placeholder,
+      // a route that does not exist. The uploader treated it as success and those
+      // dead URLs were written permanently into listings.photos. Fail visibly instead.
+      return NextResponse.json(
+        { error: 'Photo uploads are not configured on this deployment.' },
+        { status: 503 }
+      );
     }
 
     const formData = await request.formData();

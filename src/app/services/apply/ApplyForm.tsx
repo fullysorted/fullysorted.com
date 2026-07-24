@@ -10,7 +10,7 @@ const CATEGORIES = [
   { value: "restoration", label: "Restoration" },
   { value: "transport", label: "Transport & Shipping" },
   { value: "inspection", label: "Pre-Purchase Inspection" },
-  { value: "body-paint", label: "Body Work & Paint" },
+  { value: "bodywork", label: "Body Work & Paint" },
   { value: "storage", label: "Storage" },
   { value: "photography", label: "Automotive Photography" },
   { value: "financing", label: "Financing & Insurance" },

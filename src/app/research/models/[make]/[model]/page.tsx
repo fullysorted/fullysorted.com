@@ -19,7 +19,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { make, model } = await params;
   const m = await getPublishedModelBySlug(make, model);
-  if (!m) return { title: "Model Not Found | Fully Sorted" };
+  if (!m) return { title: "Model Not Found" };
   const name = modelDisplayName(m);
   const desc =
     (m.summary || "").replace(/[#*]/g, "").slice(0, 155) ||

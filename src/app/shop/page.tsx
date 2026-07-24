@@ -7,7 +7,7 @@ import { AFFILIATE_DISCLOSURE, affiliateHref } from "@/lib/affiliate";
 import { ShopClient } from "./ShopClient";
 
 export const metadata: Metadata = {
-  title: "Garage Essentials — Gear Worth Owning | Fully Sorted",
+  title: "Garage Essentials — Gear Worth Owning",
   description:
     "A curated, editorial pick of the detailing, tools, storage, and reference gear serious collector-car owners actually use. Chosen for the recommendation, not the catalog.",
   alternates: { canonical: "/shop" },

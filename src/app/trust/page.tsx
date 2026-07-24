@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ShieldCheck, Lock, CreditCard, Star, RefreshCw, Clock, Search, Eye } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Trust & Safety — Fully Sorted",
+  title: "Trust & Safety",
   description:
     "How Fully Sorted keeps buyers, sellers, and service providers safe: secure Stripe payments with held funds, owner reviews, fraud protection, clear refund and dispute policies, and a commitment to your privacy.",
   alternates: { canonical: "/trust" },
@@ -26,7 +26,7 @@ const PILLARS = [
     icon: Star,
     title: "Rated by real owners",
     body:
-      "Our services directory is built on transparency, not pay-to-play. Providers earn their reputation through reviews from the actual owners who hired them and through engagement levels earned by real activity on the platform. You always see the open review record before you book.",
+      "Our services directory runs on the open record. Providers earn their reputation through reviews from the actual owners who hired them and through engagement levels earned by real activity on the platform. You always see the open review record before you book.",
   },
   {
     icon: RefreshCw,

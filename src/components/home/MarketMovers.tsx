@@ -1,9 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { TrendingUp, TrendingDown, Minus, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { marketMovers, type MarketMover } from "@/lib/sample-data";
+import type { MarketMover } from "@/lib/sample-data";
+
+interface Segment {
+  segment: string;
+  avg_price?: number;
+  sale_count?: number;
+  trend_percent?: number | null;
+  trend_direction?: string | null;
+}
 
 function TrendBadge({ trend, percentage }: { trend: MarketMover["trend"]; percentage: number }) {
   const styles = {
@@ -27,6 +36,42 @@ function TrendBadge({ trend, percentage }: { trend: MarketMover["trend"]; percen
 }
 
 export function MarketMovers() {
+  // Previously rendered a hardcoded array of segments, percentages and
+  // "insights" attributed by name to the founder. Now driven by real market
+  // data; if there is none yet, the section does not render at all.
+  const [movers, setMovers] = useState<MarketMover[] | null>(null);
+
+  useEffect(() => {
+    let live = true;
+    fetch("/api/market?limit=6")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!live) return;
+        const segs: Segment[] = d?.segments ?? [];
+        setMovers(
+          segs
+            .filter((s) => s.segment && (s.sale_count ?? 0) > 0)
+            .map((s) => {
+              const pct = Number(s.trend_percent ?? 0);
+              const dir = s.trend_direction as MarketMover["trend"] | undefined;
+              return {
+                segment: s.segment,
+                trend: dir ?? (pct > 0.5 ? "up" : pct < -0.5 ? "down" : "flat"),
+                percentage: Math.abs(Math.round(pct * 10) / 10),
+                insight: `${s.sale_count} recorded ${s.sale_count === 1 ? "sale" : "sales"}${
+                  s.avg_price ? ` · avg $${Number(s.avg_price).toLocaleString()}` : ""
+                }`,
+              };
+            })
+        );
+      })
+      .catch(() => live && setMovers([]));
+    return () => { live = false; };
+  }, []);
+
+  // Nothing verified to show yet — stay off the homepage rather than fill it.
+  if (!movers || movers.length === 0) return null;
+
   return (
     <section className="py-14 sm:py-20" style={{ background: "#ffffff" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -40,14 +85,14 @@ export function MarketMovers() {
                 className="text-xs font-bold tracking-widest uppercase"
                 style={{ color: "#1E6091" }}
               >
-                Weekly
+                Market Data
               </span>
             </div>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
               Monday Market Movers
             </h2>
             <p className="mt-1 text-sm" style={{ color: "#6b6b5e" }}>
-              The collector car market at a glance — analysis by Chris Peterson
+              Segment averages computed from recorded sales in our comp database
             </p>
           </div>
           <Link
@@ -62,7 +107,7 @@ export function MarketMovers() {
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {marketMovers.map((mover, i) => (
+          {movers.map((mover, i) => (
             <motion.div
               key={mover.segment}
               initial={{ opacity: 0, y: 16 }}

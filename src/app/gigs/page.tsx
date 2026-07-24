@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Hire Car Specialists — Gigs Marketplace | Fully Sorted",
+  title: "Hire Car Specialists — Gigs Marketplace",
   description:
     "Browse fixed-price gigs from owner-reviewed collector-car specialists — inspections, detailing, transport, photography, and more. Hire a pro who actually gets it.",
   alternates: { canonical: "/gigs" },
@@ -64,7 +64,7 @@ export default async function GigsPage() {
           </h1>
           <p className="text-base sm:text-lg leading-relaxed max-w-2xl" style={{ color: "rgba(255,255,255,0.88)" }}>
             Fixed-price gigs from top-rated pros — inspections, detailing, transport, photography, and more.
-            See exactly what you get and what it costs. No agency markup.
+            See exactly what you get and what it costs, before you book.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link href="/services/apply/freelancer" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold bg-white text-accent shadow-sm hover:-translate-y-0.5 hover:shadow-lg transition-all">

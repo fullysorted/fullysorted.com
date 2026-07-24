@@ -11,14 +11,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/events" },
   openGraph: {
     type: "website",
-    title: "Collector Car Events | Fully Sorted",
+    title: "Collector Car Events",
     description:
       "The collector car events Chris Peterson actually attends — curated personally.",
     url: "https://fullysorted.com/events",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Collector Car Events | Fully Sorted",
+    title: "Collector Car Events",
     description:
       "The collector car events Chris Peterson actually attends — curated personally.",
   },
@@ -100,7 +100,7 @@ export default function EventsPage() {
             Concours, auctions, tours, and cars-and-coffee meets that
             actually move the needle. Every event on this list is one
             I&apos;ve been to, am going to, or am directly involved
-            with — no pay-to-list, no algorithmic filler.
+            with — chosen because they are worth the drive, not because anyone asked.
           </p>
         </div>
         <div

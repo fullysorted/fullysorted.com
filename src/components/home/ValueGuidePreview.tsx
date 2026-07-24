@@ -1,15 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BarChart3, DollarSign, TrendingUp, TrendingDown } from "lucide-react";
+import { ArrowRight, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 
+// Deliberately no prices here. These are entry points into the live Value
+// Guide, which computes from real comps — hardcoding average prices and trend
+// percentages on the homepage under a "Real Auction Data" badge was inventing
+// the exact numbers the product exists to get right.
 const popularSearches = [
-  { label: "Porsche 911 (1970–1989)",         avgPrice: "$68,400", trend: "+2.1%" },
-  { label: "Ford Mustang (1965–1970)",         avgPrice: "$42,800", trend: "-1.4%" },
-  { label: "BMW M3 E30 (1986–1991)",           avgPrice: "$79,200", trend: "+1.8%" },
-  { label: "Datsun 240Z (1970–1973)",          avgPrice: "$44,600", trend: "+5.6%" },
-  { label: "Chevrolet Corvette C2 (1963–67)",  avgPrice: "$88,500", trend: "-0.8%" },
+  { label: "Porsche 911",         year: "1973", make: "Porsche",   model: "911" },
+  { label: "Ford Mustang",        year: "1967", make: "Ford",      model: "Mustang" },
+  { label: "BMW M3 E30",          year: "1988", make: "BMW",       model: "M3" },
+  { label: "Datsun 240Z",         year: "1972", make: "Datsun",    model: "240Z" },
+  { label: "Chevrolet Corvette",  year: "1965", make: "Chevrolet", model: "Corvette" },
 ];
 
 export function ValueGuidePreview() {
@@ -47,11 +51,10 @@ export function ValueGuidePreview() {
               Know what your car is worth
             </h2>
             <p className="leading-relaxed text-sm sm:text-base" style={{ color: "#6b6b5e" }}>
-              Our Value Guide aggregates publicly available sale results from
-              across the collector-car market — online auction results, classified
-              listings, concours price guides, and Chris&apos;s own 25 years of
-              transaction notes — to give you a pricing verdict backed by actual
-              comps instead of asking prices.
+              Our Value Guide aggregates publicly available sale results —
+              auction results and reported private sales — into a pricing verdict
+              backed by actual comps instead of asking prices. Every figure traces
+              back to a dated sale you can see.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mt-7">
@@ -93,52 +96,37 @@ export function ValueGuidePreview() {
                 borderBottom: "1px solid rgba(0,0,0,0.06)",
               }}
             >
-              <h3 className="text-sm font-bold" style={{ color: "#1a1a18" }}>Popular Valuations</h3>
-              <span
-                className="text-xs font-semibold"
-                style={{ color: "#9a9a8a" }}
-              >
-                Representative figures
+              <h3 className="text-sm font-bold" style={{ color: "#1a1a18" }}>Popular valuations</h3>
+              <span className="text-xs font-semibold" style={{ color: "#9a9a8a" }}>
+                Priced live from comps
               </span>
             </div>
 
             {/* Rows */}
             <div style={{ background: "#ffffff" }}>
-              {popularSearches.map((item, i) => {
-                const isUp = item.trend.startsWith("+");
-                const isDown = item.trend.startsWith("-");
-                return (
-                  <div
-                    key={item.label}
-                    className="flex items-center justify-between px-5 py-3.5"
-                    style={{
-                      borderBottom:
-                        i < popularSearches.length - 1
-                          ? "1px solid rgba(0,0,0,0.06)"
-                          : undefined,
-                    }}
+              {popularSearches.map((item, i) => (
+                <Link
+                  key={item.label}
+                  href={`/value-guide?year=${item.year}&make=${encodeURIComponent(item.make)}&model=${encodeURIComponent(item.model)}`}
+                  className="flex items-center justify-between px-5 py-3.5 transition-colors hover:bg-stone-50"
+                  style={{
+                    borderBottom:
+                      i < popularSearches.length - 1
+                        ? "1px solid rgba(0,0,0,0.06)"
+                        : undefined,
+                  }}
+                >
+                  <span className="text-sm font-medium" style={{ color: "#3a3a30" }}>
+                    {item.label}
+                  </span>
+                  <span
+                    className="text-xs font-bold flex items-center gap-1 shrink-0 ml-4"
+                    style={{ color: "#1E6091" }}
                   >
-                    <span className="text-sm font-medium" style={{ color: "#3a3a30" }}>
-                      {item.label}
-                    </span>
-                    <div className="flex items-center gap-3 shrink-0 ml-4">
-                      <span className="text-sm font-bold flex items-center gap-0.5" style={{ color: "#1a1a18" }}>
-                        <DollarSign className="w-3 h-3" style={{ color: "#9a9a8a" }} />
-                        {item.avgPrice.replace("$", "")}
-                      </span>
-                      <span
-                        className="text-xs font-bold flex items-center gap-0.5"
-                        style={{
-                          color: isUp ? "#6ab04c" : isDown ? "#DC2626" : "#9a9a8a",
-                        }}
-                      >
-                        {isUp ? <TrendingUp className="w-3 h-3" /> : isDown ? <TrendingDown className="w-3 h-3" /> : null}
-                        {item.trend}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
+                    See comps <ArrowRight className="w-3 h-3" />
+                  </span>
+                </Link>
+              ))}
             </div>
 
             {/* Footer */}

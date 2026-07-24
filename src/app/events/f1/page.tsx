@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/events/f1" },
   openGraph: {
     type: "website",
-    title: "2026 Formula 1 Calendar | Fully Sorted",
+    title: "2026 Formula 1 Calendar",
     description:
       "Live tracker for the 2026 F1 World Championship — every round, every circuit, every date.",
     url: "https://fullysorted.com/events/f1",
   },
   twitter: {
     card: "summary_large_image",
-    title: "2026 Formula 1 Calendar | Fully Sorted",
+    title: "2026 Formula 1 Calendar",
     description:
       "Live tracker for the 2026 F1 World Championship — every round, every circuit, every date.",
   },

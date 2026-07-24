@@ -16,7 +16,7 @@ import { cn, formatPrice } from "@/lib/utils";
 import { articles } from "@/lib/articles";
 
 export const metadata: Metadata = {
-  title: "Market Research — Collector Car Trends & Analysis | Fully Sorted",
+  title: "Market Research — Collector Car Trends & Analysis",
   description:
     "Weekly collector car market analysis by Chris Peterson. Auction results, price trends, segment breakdowns, and honest market commentary.",
 };

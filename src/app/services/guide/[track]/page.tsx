@@ -46,7 +46,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { track: slug } = await params;
   const track = getTrack(slug);
-  if (!track) return { title: "Provider Guide — Fully Sorted" };
+  if (!track) return { title: "Provider Guide" };
   const title = `${track.label} on Fully Sorted — Provider Guide`;
   return {
     title,

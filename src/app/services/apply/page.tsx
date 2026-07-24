@@ -83,7 +83,7 @@ export default function ApplyChooserPage() {
           <h2 className="font-display font-semibold tracking-tight text-2xl text-foreground mb-2">I’m an independent / freelancer</h2>
           <p className="text-text-secondary text-sm mb-5">
             A solo specialist — mobile detailer, inspector, photographer, mechanic. Offer fixed-price gigs,
-            like Fiverr for the collector-car world.
+            Package what you do at a fixed price so owners can book it in a couple of clicks.
           </p>
           <ul className="space-y-2 text-sm text-text-secondary mb-6 flex-1">
             {["Guided, step-by-step setup", "Fixed-price gig packages", "Your own earnings dashboard", "We help you write everything"].map(f => (

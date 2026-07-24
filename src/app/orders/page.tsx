@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { OrdersHistory } from "./OrdersHistory";
 
-export const metadata: Metadata = { title: "Your Account — Fully Sorted", robots: { index: false } };
+export const metadata: Metadata = { title: "Your Account", robots: { index: false } };
 
 export default function OrdersIndexPage() {
   return (

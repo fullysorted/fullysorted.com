@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Search, SlidersHorizontal, X, Car } from "lucide-react";
 import { ListingCard } from "@/components/listings/ListingCard";
@@ -24,21 +25,55 @@ interface BrowseClientProps {
   hasRealListings?: boolean;
 }
 
-export function BrowseClient({ initialListings, hasRealListings = false }: BrowseClientProps) {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
+const EMPTY_FILTERS = {
+  yearMin: "", yearMax: "", priceMin: "", priceMax: "",
+  transmission: "Any", condition: "Any", location: "Anywhere",
+};
 
-  const filtered = initialListings.filter((v) => {
+export function BrowseClient({ initialListings, hasRealListings = false }: BrowseClientProps) {
+  // Seed from the URL so /browse?category=muscle and /browse?q=mustang actually
+  // land pre-filtered — the footer and every research model page link that way.
+  const searchParams = useSearchParams();
+  const paramCategory = searchParams.get("category");
+  const initialCategory =
+    categories.find((c) => c.toLowerCase() === (paramCategory ?? "").toLowerCase()) ?? "All";
+
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") ?? "");
+  const [showFilters, setShowFilters] = useState(false);
+  const [filters, setFilters] = useState(EMPTY_FILTERS);
+  const setFilter = (k: keyof typeof EMPTY_FILTERS, v: string) =>
+    setFilters((f) => ({ ...f, [k]: v }));
+  const filtersActive = Object.keys(EMPTY_FILTERS).some(
+    (k) => filters[k as keyof typeof EMPTY_FILTERS] !== EMPTY_FILTERS[k as keyof typeof EMPTY_FILTERS]
+  );
+
+  const filtered = useMemo(() => initialListings.filter((v) => {
     const matchesCategory =
       activeCategory === "All" || v.category === activeCategory;
+    const q = searchQuery.toLowerCase();
     const matchesSearch =
       searchQuery === "" ||
-      v.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      v.make.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      v.model.toLowerCase().includes(searchQuery.toLowerCase());
+      v.title.toLowerCase().includes(q) ||
+      v.make.toLowerCase().includes(q) ||
+      v.model.toLowerCase().includes(q);
+
+    const yearMin = parseInt(filters.yearMin), yearMax = parseInt(filters.yearMax);
+    const priceMin = parseInt(filters.priceMin), priceMax = parseInt(filters.priceMax);
+    if (!isNaN(yearMin) && v.year < yearMin) return false;
+    if (!isNaN(yearMax) && v.year > yearMax) return false;
+    if (!isNaN(priceMin) && v.price < priceMin) return false;
+    if (!isNaN(priceMax) && v.price > priceMax) return false;
+    if (filters.transmission !== "Any" &&
+        !(v.transmission ?? "").toLowerCase().includes(filters.transmission.toLowerCase())) return false;
+    if (filters.condition !== "Any" && v.condition !== filters.condition) return false;
+    if (filters.location !== "Anywhere" &&
+        !(v.location ?? "").toLowerCase().includes(
+          filters.location === "California" ? "ca" : filters.location.toLowerCase()
+        )) return false;
+
     return matchesCategory && matchesSearch;
-  });
+  }), [initialListings, activeCategory, searchQuery, filters]);
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
@@ -164,13 +199,13 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               </label>
               <div className="flex gap-2">
                 <input
-                  type="number"
-                  placeholder="Min"
+                  type="number" placeholder="Min" value={filters.yearMin}
+                  onChange={(e) => setFilter("yearMin", e.target.value)}
                   className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent"
                 />
                 <input
-                  type="number"
-                  placeholder="Max"
+                  type="number" placeholder="Max" value={filters.yearMax}
+                  onChange={(e) => setFilter("yearMax", e.target.value)}
                   className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent"
                 />
               </div>
@@ -181,13 +216,13 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               </label>
               <div className="flex gap-2">
                 <input
-                  type="number"
-                  placeholder="Min"
+                  type="number" placeholder="Min" value={filters.priceMin}
+                  onChange={(e) => setFilter("priceMin", e.target.value)}
                   className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent"
                 />
                 <input
-                  type="number"
-                  placeholder="Max"
+                  type="number" placeholder="Max" value={filters.priceMax}
+                  onChange={(e) => setFilter("priceMax", e.target.value)}
                   className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent"
                 />
               </div>
@@ -196,7 +231,8 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider block mb-1.5">
                 Transmission
               </label>
-              <select className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent bg-white">
+              <select value={filters.transmission} onChange={(e) => setFilter("transmission", e.target.value)}
+                className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent bg-white">
                 <option>Any</option>
                 <option>Manual</option>
                 <option>Automatic</option>
@@ -206,7 +242,8 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider block mb-1.5">
                 Condition
               </label>
-              <select className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent bg-white">
+              <select value={filters.condition} onChange={(e) => setFilter("condition", e.target.value)}
+                className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent bg-white">
                 <option>Any</option>
                 <option>Excellent</option>
                 <option>Good</option>
@@ -218,13 +255,24 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider block mb-1.5">
                 Location
               </label>
-              <select className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent bg-white">
+              <select value={filters.location} onChange={(e) => setFilter("location", e.target.value)}
+                className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent bg-white">
                 <option>Anywhere</option>
                 <option>San Diego, CA</option>
                 <option>Los Angeles, CA</option>
                 <option>California</option>
               </select>
             </div>
+            {filtersActive && (
+              <div className="col-span-2 sm:col-span-3 lg:col-span-5 flex justify-end">
+                <button
+                  onClick={() => setFilters(EMPTY_FILTERS)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline"
+                >
+                  <X className="w-3.5 h-3.5" /> Clear filters
+                </button>
+              </div>
+            )}
           </div>
         )}
 

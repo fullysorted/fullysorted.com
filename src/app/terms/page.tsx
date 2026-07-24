@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Fully Sorted",
-  description: "The terms governing your use of the Fully Sorted marketplace and services directory.",
+  title: "Terms of Service",
+  description: "The terms governing your use of the Fully Sorted services directory and marketplace.",
 };
 
 export default function TermsPage() {
@@ -36,7 +36,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-xl font-bold mb-3" style={{ color: "#1a1a18" }}>Using Fully Sorted</h2>
             <p>
-              Fully Sorted is a collector car marketplace and services directory. By using this
+              Fully Sorted is a collector car services directory and peer-to-peer marketplace. By using this
               platform, you agree to these terms. You must be 18 or older to list a vehicle or apply
               as a service provider.
             </p>

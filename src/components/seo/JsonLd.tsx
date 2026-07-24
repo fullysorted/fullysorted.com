@@ -49,7 +49,7 @@ export const organizationSchema = {
   },
   sameAs: [
     "https://x.com/fully_sorted",
-    "https://www.instagram.com/fullysorted",
+    "https://www.instagram.com/fully.sorted/",
   ],
   knowsAbout: [
     "collector cars",

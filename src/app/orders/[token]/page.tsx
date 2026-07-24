@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { OrderView } from "./OrderView";
 
-export const metadata: Metadata = { title: "Your Order — Fully Sorted", robots: { index: false } };
+export const metadata: Metadata = { title: "Your Order", robots: { index: false } };
 
 export default async function OrderPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;

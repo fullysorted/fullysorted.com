@@ -13,7 +13,7 @@ interface Props { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const gig = await getGigBySlug(slug);
-  if (!gig) return { title: "Gig Not Found | Fully Sorted" };
+  if (!gig) return { title: "Gig Not Found" };
   const desc = (gig.description || "").slice(0, 155) || `${gig.title} by ${gig.provider_name} on Fully Sorted.`;
   return {
     title: `${gig.title} | Fully Sorted`,

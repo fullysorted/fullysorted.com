@@ -7,7 +7,7 @@ import { CompareSelector } from "./CompareSelector";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Compare Collector Cars — Side by Side | Fully Sorted",
+  title: "Compare Collector Cars — Side by Side",
   description: "Compare any two collector cars head to head — production numbers and rarity, market values, specs, and buyer confidence. Cited, honest data.",
   alternates: { canonical: "/research/compare" },
 };

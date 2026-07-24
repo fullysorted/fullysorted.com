@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact — Fully Sorted",
+  title: "Contact",
   description:
     "Get in touch with Chris Peterson and the Fully Sorted team. Questions about listings, valuations, or just want to talk cars — we're here.",
 };

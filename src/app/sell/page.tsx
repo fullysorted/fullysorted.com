@@ -2,7 +2,7 @@ import Image from 'next/image';
 import SellForm from './SellForm';
 
 export const metadata = {
-  title: 'Sell Your Collector Car for $9.99 — Fully Sorted',
+  title: 'Sell Your Collector Car for $9.99',
   description: 'List your collector car for $9.99. Simple flat-fee listings. AI-assisted listings, full-resolution photos, and direct buyer messaging. Built by collectors, for collectors.',
 };
 
@@ -63,7 +63,7 @@ export default function SellPage() {
               ✓ AI-assisted listing
             </span>
             <span className="bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-stone-100">
-              ✓ Direct buyer messaging
+              ✓ $0 buyer&apos;s premium
             </span>
           </div>
 
@@ -71,7 +71,7 @@ export default function SellPage() {
           <p className="text-stone-300 text-sm max-w-xl mx-auto">
             Most collector-car listing sites charge a 4.5–5% success fee when your car sells.
             On a $50,000 sale, that&rsquo;s $2,250+ out of your pocket.
-            Fully Sorted is <strong className="text-gold">$9.99 flat</strong> &mdash; no success fee, ever.
+            Fully Sorted is <strong className="text-gold">$9.99 flat</strong> &mdash; one listing fee, paid up front.
           </p>
         </div>
       </section>

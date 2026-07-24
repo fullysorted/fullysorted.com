@@ -4,7 +4,7 @@ import { CheckCircle2, Star } from 'lucide-react';
 import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
 
 export const metadata = {
-  title: 'Pricing — Fully Sorted',
+  title: 'Pricing',
   description: `Simple, transparent pricing. First ${FREE_LISTINGS_THRESHOLD} listings are free. Standard from $9.99, Featured $29.99, Premium $49.99.`,
 };
 
@@ -59,7 +59,7 @@ export default function PricingPage() {
       <section className="bg-accent text-white py-5">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <p className="text-lg font-semibold">
-            🎉 Early Adopter Offer — The first {FREE_LISTINGS_THRESHOLD} providers to join and first{' '}
+            Early on purpose — the first {FREE_LISTINGS_THRESHOLD} providers to join and first{' '}
             {FREE_LISTINGS_THRESHOLD} cars listed are <strong>completely free</strong>.
             Get in early.
           </p>

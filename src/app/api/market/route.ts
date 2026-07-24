@@ -33,9 +33,11 @@ export async function GET(request: NextRequest) {
 
   try {
     if (!process.env.DATABASE_URL) {
-      let segments = FALLBACK_SEGMENTS;
-      if (category) segments = segments.filter(s => s.category === category);
-      return NextResponse.json({ segments: segments.slice(0, limit), source: 'fallback' });
+      // Previously returned FALLBACK_SEGMENTS — hardcoded prices and trend
+      // percentages that the UI presented to the public as market research.
+      // Return nothing rather than invent figures on a site whose pitch is
+      // honest comps.
+      return NextResponse.json({ segments: [], source: 'no_db' });
     }
 
     const { neon } = await import('@neondatabase/serverless');
@@ -74,10 +76,9 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ segments: live, source: 'live_aggregate' });
       }
 
-      // Use fallback
-      let segments = FALLBACK_SEGMENTS;
-      if (category) segments = segments.filter(s => s.category === category);
-      return NextResponse.json({ segments: segments.slice(0, limit), source: 'fallback' });
+      // No snapshots and nothing aggregatable yet — say so rather than serving
+      // hardcoded prices as market research.
+      return NextResponse.json({ segments: [], source: 'insufficient_data' });
     }
 
     let segments = rows;

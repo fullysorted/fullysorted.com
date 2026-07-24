@@ -46,6 +46,7 @@ interface Provider {
   instagram: string | null;
   verified: boolean;
   foundingProvider: boolean;
+  providerType?: string; // 'business' (a shop) | 'freelancer' (an independent)
   specialties: string[];
   priceRange: string;
   slug: string;
@@ -82,7 +83,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
               <h3 className="text-lg font-bold text-stone-900">{provider.businessName}</h3>
               {provider.verified && (
                 <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-0.5 rounded-full">
-                  <Shield className="w-3 h-3" /> Verified
+                  <Star className="w-3 h-3" /> Top-rated
                 </span>
               )}
               {provider.foundingProvider && (
@@ -164,6 +165,56 @@ function ProviderCard({ provider }: { provider: Provider }) {
   );
 }
 
+// ─── One labelled band of the directory ───────────────
+function ProviderSection({
+  title, blurb, icon, providers, categorySuffix, emptyLine, footerLink,
+}: {
+  title: string;
+  blurb: string;
+  icon: React.ReactNode;
+  providers: Provider[];
+  categorySuffix: string;
+  emptyLine: string;
+  footerLink?: { href: string; label: string };
+}) {
+  return (
+    <section className="mb-12">
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+        <h2 className="flex items-center gap-2 font-display text-xl font-semibold tracking-tight text-stone-900">
+          <span className="text-accent">{icon}</span>
+          {title}
+        </h2>
+        <span className="text-sm text-stone-500">
+          {providers.length} {providers.length === 1 ? 'listed' : 'listed'}{categorySuffix}
+        </span>
+      </div>
+      <p className="text-sm text-stone-500 mb-5 max-w-2xl">{blurb}</p>
+
+      {providers.length > 0 ? (
+        <div className="grid gap-6 md:grid-cols-2">
+          <AnimatePresence mode="popLayout">
+            {providers.map((provider) => (
+              <ProviderCard key={provider.id} provider={provider} />
+            ))}
+          </AnimatePresence>
+        </div>
+      ) : (
+        <div className="rounded-2xl border border-dashed border-stone-300 bg-white/60 px-6 py-10 text-center">
+          <p className="text-sm text-stone-500 max-w-md mx-auto">{emptyLine}</p>
+        </div>
+      )}
+
+      {footerLink && providers.length === 0 && (
+        <div className="mt-3 text-center">
+          <Link href={footerLink.href} className="text-sm font-semibold text-accent hover:underline">
+            {footerLink.label} →
+          </Link>
+        </div>
+      )}
+    </section>
+  );
+}
+
 // ─── Main Directory Component ──────────────────────────
 export default function ServicesDirectory() {
   // Initialize from URL params so homepage search + category chips deep-link
@@ -193,7 +244,11 @@ export default function ServicesDirectory() {
       .catch(() => setLoading(false));
   }, []);
 
-  const filtered = providers.filter((p) => {
+  // The directory holds two genuinely different kinds of supply: established
+  // shops with premises, and independent specialists who travel to the car.
+  // Owners shop for them differently, so they get their own sections rather
+  // than being blended into one grid.
+  const matches = (p: Provider) => {
     const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
     const matchesSearch =
       searchQuery === '' ||
@@ -201,7 +256,15 @@ export default function ServicesDirectory() {
       p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.specialties.some((s) => s.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
-  });
+  };
+
+  const filtered = providers.filter(matches);
+  const shops = filtered.filter((p) => (p.providerType ?? 'business') !== 'freelancer');
+  const freelancers = filtered.filter((p) => (p.providerType ?? 'business') === 'freelancer');
+  const categorySuffix =
+    activeCategory !== 'all'
+      ? ` in ${CATEGORIES.find((c) => c.key === activeCategory)?.label}`
+      : '';
 
   return (
     <div>
@@ -235,39 +298,41 @@ export default function ServicesDirectory() {
         ))}
       </div>
 
-      {/* Results Count */}
-      <p className="text-sm text-stone-500 mb-6">
-        {loading ? (
-          <span className="flex items-center gap-2">
-            <Loader2 className="w-4 h-4 animate-spin" /> Loading providers...
-          </span>
-        ) : (
-          <>
-            {filtered.length} {filtered.length === 1 ? 'provider' : 'providers'} found
-            {activeCategory !== 'all' && ` in ${CATEGORIES.find((c) => c.key === activeCategory)?.label}`}
-          </>
-        )}
-      </p>
+      {loading && (
+        <p className="text-sm text-stone-500 mb-6 flex items-center gap-2">
+          <Loader2 className="w-4 h-4 animate-spin" /> Loading providers...
+        </p>
+      )}
 
-      {/* Listings Grid */}
-      <div className="grid gap-6 md:grid-cols-2">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((provider) => (
-            <ProviderCard key={provider.id} provider={provider} />
-          ))}
-        </AnimatePresence>
-      </div>
+      {!loading && (
+        <>
+          <ProviderSection
+            title="Shops & businesses"
+            blurb="Established workshops, detailers and specialists with a premises you can visit."
+            icon={<Wrench className="w-4 h-4" />}
+            providers={shops}
+            categorySuffix={categorySuffix}
+            emptyLine={
+              providers.length === 0
+                ? "We're building the directory now — apply below to be one of the first shops listed."
+                : 'No shops match this search yet.'
+            }
+          />
 
-      {filtered.length === 0 && !loading && (
-        <div className="text-center py-16">
-          <Wrench className="w-12 h-12 text-stone-300 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-stone-700 mb-2">No providers yet</h3>
-          <p className="text-stone-500">
-            {providers.length === 0
-              ? 'We\'re building the directory now. Apply below to be one of the first listed.'
-              : 'Try a different search or category. We\'re always adding new providers.'}
-          </p>
-        </div>
+          <ProviderSection
+            title="Independent specialists"
+            blurb="One-person operations and mobile pros who come to the car — often with fixed-price gigs you can book outright."
+            icon={<Sparkles className="w-4 h-4" />}
+            providers={freelancers}
+            categorySuffix={categorySuffix}
+            emptyLine={
+              providers.length === 0
+                ? "None listed yet. If you work on collector cars solo, this is your section."
+                : 'No independent specialists match this search yet.'
+            }
+            footerLink={{ href: '/gigs', label: 'Browse fixed-price gigs' }}
+          />
+        </>
       )}
 
       {/* CTA to Apply */}
@@ -294,7 +359,7 @@ export default function ServicesDirectory() {
             href="/services/apply"
             className="shine inline-flex items-center justify-center gap-2 bg-white hover:bg-accent-light text-accent font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5"
           >
-            Apply to Be Listed
+            Apply to be listed
           </Link>
           <Link
             href="/contact"

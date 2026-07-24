@@ -138,7 +138,21 @@ export default function AdminDashboard() {
     );
   }
 
-  if (!stats) return null;
+  if (!stats)
+    return (
+      <div className="max-w-md mx-auto mt-20 rounded-2xl border border-stone-200 bg-white p-8 text-center">
+        <p className="font-semibold text-stone-800">Couldn&apos;t load dashboard stats</p>
+        <p className="text-sm text-stone-500 mt-1.5">
+          The stats endpoint failed &mdash; usually a missing DATABASE_URL on this deployment.
+        </p>
+        <button
+          onClick={() => loadStats()}
+          className="mt-5 px-4 py-2 rounded-lg bg-accent text-white text-sm font-semibold"
+        >
+          Retry
+        </button>
+      </div>
+    );
   const { listings, messages, auctionResults, recentMessages, recentListings, topListings } = stats;
 
   return (
