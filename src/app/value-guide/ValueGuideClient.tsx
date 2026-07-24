@@ -60,7 +60,7 @@ interface ValuationResult {
 
 /* ---------- Popular Searches ---------- */
 const popularSearches = [
-  { label: "Porsche 911", year: "", make: "Porsche", model: "911" },
+  { label: "Porsche 911", year: "1973", make: "Porsche", model: "911" },
   { label: "Ford Mustang", year: "1967", make: "Ford", model: "Mustang" },
   { label: "BMW M3 E30", year: "1988", make: "BMW", model: "M3" },
   { label: "Datsun 240Z", year: "1972", make: "Datsun", model: "240Z" },
@@ -473,6 +473,10 @@ export function ValueGuideClient() {
     setYearInput(s.year);
     setMakeInput(s.make);
     setModelInput(s.model);
+    // The comps API requires all three fields. If a preset is ever missing a
+    // year, focus the field instead of firing a request that is certain to
+    // come back as a red "year, make, and model are required" error.
+    if (!s.year) return;
     doSearch(s.year, s.make, s.model);
   }
 
@@ -655,6 +659,21 @@ export function ValueGuideClient() {
                   ? ` · data through ${formatDate(result.latestSaleDate)}`
                   : ""}
               </p>
+              {(() => {
+                if (!result.latestSaleDate) return null;
+                const ageDays = Math.floor(
+                  (Date.now() - new Date(result.latestSaleDate).getTime()) / 86400000
+                );
+                if (ageDays < 120) return null;
+                const months = Math.floor(ageDays / 30);
+                return (
+                  <p className="text-xs mt-2 inline-flex items-center gap-1.5 px-2 py-1 rounded-md"
+                     style={{ color: "#8a6d1f", background: "rgba(176,141,63,0.12)", border: "1px solid rgba(176,141,63,0.28)" }}>
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                    Newest comparable sale is about {months} months old — treat this as directional.
+                  </p>
+                );
+              })()}
               {result.matchTier === "widened_years" && (
                 <p className="text-xs text-text-tertiary mt-1">
                   Exact-year sales were thin, so we widened the window to ±{result.yearRangeUsed} years to give you a usable read.
@@ -689,18 +708,19 @@ export function ValueGuideClient() {
                 </div>
                 <div className="px-6 py-5 text-center bg-accent-light/40">
                   <p className="text-xs font-medium text-accent uppercase tracking-wider mb-1">
-                    Average
+                    Median
                   </p>
                   <p className="price-display text-2xl text-accent font-bold">
-                    {result.avgPrice ? formatPrice(result.avgPrice) : "—"}
+                    {result.medianPrice ? formatPrice(result.medianPrice) : "—"}
                   </p>
+                  <p className="text-[10px] text-text-tertiary mt-1">Typical sale</p>
                 </div>
                 <div className="px-6 py-5 text-center">
                   <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">
-                    Median
+                    Average
                   </p>
                   <p className="price-display text-xl text-foreground">
-                    {result.medianPrice ? formatPrice(result.medianPrice) : "—"}
+                    {result.avgPrice ? formatPrice(result.avgPrice) : "—"}
                   </p>
                 </div>
                 <div className="px-6 py-5 text-center">
