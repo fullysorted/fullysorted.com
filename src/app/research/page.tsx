@@ -14,11 +14,12 @@ import {
 } from "lucide-react";
 import { cn, formatPrice } from "@/lib/utils";
 import { articles } from "@/lib/articles";
+import { ResearchNav } from "@/components/research/ResearchNav";
 
 export const metadata: Metadata = {
   title: "Market Research — Collector Car Trends & Analysis",
   description:
-    "Weekly collector car market analysis by Chris Peterson. Auction results, price trends, segment breakdowns, and honest market commentary.",
+    "Collector car market analysis by Chris Peterson — auction results, price trends, segment breakdowns and honest market commentary.",
 };
 
 export const revalidate = 300;
@@ -98,9 +99,12 @@ async function getTrending(): Promise<{ trending: TrendingListing[]; hot: DealAl
 function normalize(seg: MarketSegment) {
   const rawTrend = seg.trend_percent ?? seg.trendPercent;
   const rawDir = seg.trend_direction ?? seg.trendDirection;
-  // Only treat trend as real when the data source actually provides it.
-  // Otherwise we'd render a fake "±0.0%" for every segment.
-  const hasTrend = rawTrend != null && rawDir != null;
+  // Only treat trend as real when the data source provides it AND there is a
+  // measurable movement. With one price snapshot per segment there is nothing
+  // to compare against, so the API returns a non-null zero — which rendered as
+  // "±0.0%" on every row and read as broken. A trend needs two observations.
+  const hasTrend =
+    rawTrend != null && rawDir != null && Math.abs(rawTrend) >= 0.05;
   return {
     segment: seg.segment,
     segmentKey: seg.segment_key || seg.segment?.toLowerCase().replace(/\s+/g, "_"),
@@ -163,6 +167,7 @@ export default async function ResearchPage() {
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
+      <ResearchNav active="market" />
 
       {/* ─── Photo Hero — vintage garage under racing-green overlay ── */}
       <div className="relative overflow-hidden text-white">
@@ -192,7 +197,7 @@ export default async function ResearchPage() {
             Market Research
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed text-stone-200">
-            Weekly analysis of the collector car market — auction results, price trends, and
+            Analysis of the collector car market — auction results, price trends, and
             where the smart money is going. Written by Chris Peterson.
           </p>
 
@@ -203,7 +208,7 @@ export default async function ResearchPage() {
                 ? [{ value: `${segments.length}`, label: "Segments Tracked" }]
                 : []),
               { value: "Real", label: "Auction Data" },
-              { value: "Weekly", label: "Analysis" },
+              { value: "Written", label: "By Chris" },
             ].map((s) => (
               <div key={s.label}>
                 <div className="text-2xl font-bold text-white">{s.value}</div>
@@ -435,7 +440,7 @@ export default async function ResearchPage() {
               </div>
               <h3 className="font-bold mb-2" style={{ color: "#1a1a18" }}>Monday Market Movers</h3>
               <p className="text-sm mb-4" style={{ color: "#6b6b5e" }}>
-                Weekly auction results, what moved, and where smart money is going.
+                Auction results, what moved, and where the smart money is going — straight to your inbox.
               </p>
               <form className="space-y-2">
                 <input

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Search, Loader2, ShieldAlert, Car, ArrowRight, Info } from "lucide-react";
+import { ResearchNav } from "@/components/research/ResearchNav";
 
 interface Decoded {
   vin: string;
@@ -54,6 +55,7 @@ export default function VinPage() {
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
+      <ResearchNav active="vin" />
       {/* Hero */}
       <div className="relative" style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div

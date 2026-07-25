@@ -4,11 +4,12 @@ import { ArrowLeft, ArrowRight, Database } from "lucide-react";
 import { getPublishedModelsWithMeta } from "@/lib/data/models";
 import { ModelsDirectory } from "./ModelsDirectory";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ResearchNav } from "@/components/research/ResearchNav";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Model Histories | Fully Sorted Research",
+  title: "Model Histories",
   description:
     "Deeply researched, cited histories of collectible cars — production numbers, specs, what to look for, and honest market context. Built to be the most useful page on the internet for each model.",
   alternates: { canonical: "/research/models" },
@@ -45,6 +46,7 @@ export default async function ModelsIndexPage() {
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
+      <ResearchNav active="models" />
       <JsonLd data={itemListSchema} />
 
       {/* Header — classic metal under a racing-green overlay */}

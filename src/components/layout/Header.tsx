@@ -13,13 +13,19 @@ import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
 type NavItem = { href: string; label: string; desc: string; divider?: boolean };
 type NavMenu = { label: string; items: NavItem[] };
 
+// Order mirrors how an owner actually uses the area: what is this car, what is
+// it worth, how does it compare, verify the VIN, then the wider market.
+// NOTE: "Model Encyclopedia" used to point at /research — the editorial desk —
+// while the actual model histories sat unlinked at /research/models. Every
+// entry below now points where its label says.
 const researchMenu: NavMenu = {
   label: "Research",
   items: [
+    { href: "/research/models", label: "Model Histories", desc: "Cited history, specs & production, model by model" },
     { href: "/value-guide", label: "Value Guide", desc: "What any collector car is worth — real sold-price comps" },
-    { href: "/research", label: "Model Encyclopedia", desc: "History, specs & cited production data by model" },
-    { href: "/vin", label: "VIN Decoder", desc: "Decode any 1981+ VIN — specs & open recalls" },
     { href: "/research/compare", label: "Compare Models", desc: "Two cars head to head — rarity, value & specs" },
+    { href: "/vin", label: "VIN Decoder", desc: "Decode any 1981+ VIN — specs & open recalls" },
+    { href: "/research", label: "Market Analysis", desc: "Segment prices & written market analysis", divider: true },
   ],
 };
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, GitCompareArrows, ShieldCheck } from "lucide-react";
 import { getPublishedModels, getPublishedModelBySlug, getModelMarketSnapshot, modelDisplayName, parseModelSlug } from "@/lib/data/models";
 import { CompareSelector } from "./CompareSelector";
+import { ResearchNav } from "@/components/research/ResearchNav";
 
 export const revalidate = 3600;
 
@@ -72,12 +73,13 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
+      <ResearchNav active="compare" />
       {/* Hero */}
       <div className="relative overflow-hidden text-white" style={{ background: "linear-gradient(160deg, #10233b 0%, #0b1a2e 60%, #0a1626 100%)" }}>
         <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }} />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-14">
           <Link href="/research/models" className="inline-flex items-center gap-1.5 text-sm text-white/70 hover:text-white transition-colors mb-6">
-            <ArrowLeft className="w-4 h-4" /> Model Directory
+            <ArrowLeft className="w-4 h-4" /> Model Histories
           </Link>
           <div className="flex items-center gap-2 mb-2">
             <GitCompareArrows className="w-5 h-5" style={{ color: "#D9C08A" }} />

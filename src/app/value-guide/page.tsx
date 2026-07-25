@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ValueGuideClient } from "./ValueGuideClient";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { BarChart3, TrendingUp, Database } from "lucide-react";
+import { ResearchNav } from "@/components/research/ResearchNav";
 
 export const metadata: Metadata = {
   title: "Value Guide — What Is Your Classic Car Worth?",
@@ -42,6 +43,7 @@ const datasetSchema = {
 export default function ValueGuidePage() {
   return (
     <main className="min-h-screen" style={{ background: "#faf9f7" }}>
+      <ResearchNav active="value" />
       <JsonLd data={[valueGuideSchema, datasetSchema]} />
 
       {/* Photo hero — classic sports car under a racing-green overlay */}

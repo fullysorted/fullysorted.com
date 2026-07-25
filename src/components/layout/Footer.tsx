@@ -17,10 +17,11 @@ const footerLinks = {
     { href: "/shop", label: "Garage Essentials" },
   ],
   Research: [
+    { href: "/research/models", label: "Model Histories" },
     { href: "/value-guide", label: "Value Guide" },
-    { href: "/research", label: "Model Encyclopedia" },
-    { href: "/research/models", label: "Model Directory" },
+    { href: "/research/compare", label: "Compare Models" },
     { href: "/vin", label: "VIN Decoder" },
+    { href: "/research", label: "Market Analysis" },
   ],
   Company: [
     { href: "/about", label: "About Us" },
