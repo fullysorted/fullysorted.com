@@ -4,6 +4,24 @@
  * Ensures the database schema is always up to date.
  */
 export async function register() {
+  // Public forms reach Chris by two routes: a database row and a notification
+  // email. If BOTH are unconfigured, every submission is silently lost, so say
+  // so loudly at boot rather than discovering it from a missing enquiry.
+  {
+    const hasDb = !!process.env.DATABASE_URL;
+    const hasEmail = !!process.env.RESEND_API_KEY;
+    if (!hasDb && !hasEmail) {
+      console.error(
+        "[startup] CRITICAL: neither DATABASE_URL nor RESEND_API_KEY is set — " +
+          "public form submissions cannot be delivered by any route."
+      );
+    } else if (!hasDb) {
+      console.warn("[startup] DATABASE_URL not set — submissions rely on email only.");
+    } else if (!hasEmail) {
+      console.warn("[startup] RESEND_API_KEY not set — submissions are stored but no notifications will be sent.");
+    }
+  }
+
   // Only run in Node.js runtime (not Edge), and only on server
   if (process.env.NEXT_RUNTIME !== 'nodejs') return;
   if (!process.env.DATABASE_URL) return;

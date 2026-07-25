@@ -13,13 +13,14 @@ export function SubmitSaleForm() {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+  const [mailto, setMailto] = useState<string | null>(null);
   const set = (k: string, v: string) => setF((p) => ({ ...p, [k]: v }));
   const input = "w-full h-11 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent";
   const label = "block text-xs font-bold uppercase tracking-wider text-text-secondary mb-1.5";
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    setBusy(true); setError("");
+    setBusy(true); setError(""); setMailto(null);
     try {
       const res = await fetch("/api/sales/submit", {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -27,8 +28,12 @@ export function SubmitSaleForm() {
       });
       const d = await res.json();
       if (res.ok) setDone(true);
-      else setError(d.error || "Something went wrong.");
-    } catch { setError("Network error — try again."); }
+      else if (d?.undelivered && d?.mailto) {
+        // Neither stored nor emailed — give the submission back as an email.
+        setMailto(d.mailto);
+        setError(d.error);
+      } else setError(d.error || "Something went wrong.");
+    } catch { setError("Couldn't reach the server — check your connection and try again."); }
     setBusy(false);
   }
 
@@ -69,7 +74,26 @@ export function SubmitSaleForm() {
         <span>This is accurate to the best of my knowledge, and I agree to let Fully Sorted use the <strong className="text-foreground">factual sale data</strong> (price, date, vehicle, venue) in its market data.</span>
       </label>
 
-      {error && <p className="text-sm mt-3" style={{ color: "#DC2626" }}>{error}</p>}
+      {error && (
+        <div
+          className="rounded-xl px-3.5 py-3 mt-3"
+          style={{
+            background: mailto ? "rgba(176,141,63,0.10)" : "rgba(220,38,38,0.07)",
+            border: `1px solid ${mailto ? "rgba(176,141,63,0.28)" : "rgba(220,38,38,0.2)"}`,
+          }}
+        >
+          <p className="text-sm" style={{ color: mailto ? "#8a6d1f" : "#DC2626" }}>{error}</p>
+          {mailto && (
+            <a
+              href={mailto}
+              className="mt-2.5 inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white rounded-lg"
+              style={{ background: "#1E6091" }}
+            >
+              Open email with your submission
+            </a>
+          )}
+        </div>
+      )}
 
       <button type="submit" disabled={busy || !f.make || !f.model || !consent}
         className="mt-5 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors disabled:opacity-60">

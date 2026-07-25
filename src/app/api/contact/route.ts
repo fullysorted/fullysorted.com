@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rate-limit";
+import { deliver, undeliverableResponse } from "@/lib/submissions";
 
 export async function POST(request: NextRequest) {
   const limited = rateLimit(request, "contact", 5, 60_000);
@@ -26,26 +27,33 @@ export async function POST(request: NextRequest) {
     subject = subject ? String(subject).slice(0, 300) : subject;
     message = String(message).slice(0, 5000);
 
-    // Save first (if a DB is available) so a message is never lost to an email hiccup.
-    if (process.env.DATABASE_URL) {
-      try {
-        const { neon } = await import("@neondatabase/serverless");
-        const sql = neon(process.env.DATABASE_URL);
-        await sql`
-          INSERT INTO messages (sender_name, sender_email, message_text, type, status)
-          VALUES (${name}, ${email}, ${message}, 'contact', 'new')
-        `;
-      } catch (dbErr) {
-        console.error("contact DB save failed (email still sent):", dbErr);
-      }
-    }
+    // Save and notify are independent — either one reaching us means the
+    // message is safe. Success is reported only if at least one did.
+    const result = await deliver({
+      label: "contact form",
+      save: process.env.DATABASE_URL
+        ? async () => {
+            const { neon } = await import("@neondatabase/serverless");
+            const sql = neon(process.env.DATABASE_URL!);
+            await sql`
+              INSERT INTO messages (sender_name, sender_email, message_text, type, status)
+              VALUES (${name}, ${email}, ${message}, 'contact', 'new')
+            `;
+          }
+        : undefined,
+      notify: async () => {
+        const { notifyContactForm } = await import("@/lib/email");
+        return notifyContactForm({ name, email, subject: subject || "General Question", message });
+      },
+    });
 
-    // Notify Chris — best-effort, never blocks the submit.
-    try {
-      const { notifyContactForm } = await import("@/lib/email");
-      await notifyContactForm({ name, email, subject: subject || "General Question", message });
-    } catch (emailErr) {
-      console.error("contact email failed (message still handled):", emailErr);
+    if (!result.delivered) {
+      return undeliverableResponse(subject || "Question for Fully Sorted", {
+        Name: name,
+        Email: email,
+        Subject: subject,
+        Message: message,
+      });
     }
 
     return NextResponse.json({ success: true });

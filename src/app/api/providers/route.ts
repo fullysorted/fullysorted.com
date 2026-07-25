@@ -134,10 +134,11 @@ export async function POST(request: NextRequest) {
       status: 'pending',
     }).returning();
 
-    // Notify Chris of the new application
+    // The application row above is already durable and shows in /admin/providers,
+    // so a failed notification is not data loss — but it must not be invisible.
     try {
       const { notifyNewProviderApplication } = await import('@/lib/email');
-      await notifyNewProviderApplication({
+      const emailed = await notifyNewProviderApplication({
         businessName,
         ownerName,
         category,
@@ -150,8 +151,11 @@ export async function POST(request: NextRequest) {
         whyList: whyList || undefined,
         referredBy: referredBy || undefined,
       });
+      if (!emailed) {
+        console.error('[submission] provider application: notification not sent (application IS stored)');
+      }
     } catch (emailErr) {
-      console.error('Failed to send provider application email:', emailErr);
+      console.error('[submission] provider application: notification threw (application IS stored)', emailErr);
     }
 
     return NextResponse.json(

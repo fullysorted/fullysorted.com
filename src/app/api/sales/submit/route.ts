@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
+import { deliver, undeliverableResponse } from '@/lib/submissions';
 
 // POST /api/sales/submit — public. A user reports a sale they know about. Stored
 // as 'pending' and never touches comps until an admin approves it.
@@ -21,9 +22,11 @@ export async function POST(req: NextRequest) {
     if (year == null && salePrice == null) return NextResponse.json({ error: 'Add at least the year or the sale price.' }, { status: 400 });
     if (!consent) return NextResponse.json({ error: 'Please confirm you agree to share this factual sale data.' }, { status: 400 });
 
-    if (process.env.DATABASE_URL) {
+    const result = await deliver({
+      label: 'reported sale',
+      save: process.env.DATABASE_URL ? async () => {
       const { neon } = await import('@neondatabase/serverless');
-      const sql = neon(process.env.DATABASE_URL);
+      const sql = neon(process.env.DATABASE_URL!);
       const saleDate = body.saleDate ? new Date(String(body.saleDate)) : null;
       await sql`
         INSERT INTO sale_submissions (make, model, year, trim, vin, sale_price, currency, sale_date, venue, mileage, exterior_color, location, source_url, notes, submitter_name, submitter_email, status)
@@ -33,13 +36,23 @@ export async function POST(req: NextRequest) {
           ${s(body.sourceUrl ?? body.source_url)}, ${s(body.notes)}, ${s(body.submitterName ?? body.name)},
           ${s(body.submitterEmail ?? body.email)}, 'pending')
       `;
-    }
+      } : undefined,
+      notify: async () => {
+        const { notifySaleSubmission } = await import('@/lib/email');
+        return notifySaleSubmission({ make, model, year, salePrice, venue: s(body.venue), submitter: s(body.submitterName ?? body.name), sourceUrl: s(body.sourceUrl ?? body.source_url) });
+      },
+    });
 
-    // Notify Chris (best-effort).
-    try {
-      const { notifySaleSubmission } = await import('@/lib/email');
-      await notifySaleSubmission({ make, model, year, salePrice, venue: s(body.venue), submitter: s(body.submitterName ?? body.name), sourceUrl: s(body.sourceUrl ?? body.source_url) });
-    } catch (e) { console.error('sale submission notify failed', e); }
+    if (!result.delivered) {
+      return undeliverableResponse(`Reported sale: ${year ?? ''} ${make} ${model}`.trim(), {
+        Year: year, Make: make, Model: model,
+        'Sale price': salePrice, Venue: s(body.venue),
+        'Source URL': s(body.sourceUrl ?? body.source_url),
+        Notes: s(body.notes),
+        'Your name': s(body.submitterName ?? body.name),
+        'Your email': s(body.submitterEmail ?? body.email),
+      });
+    }
 
     return NextResponse.json({ success: true, message: 'Thanks! We review every submission before it goes live.' });
   } catch (e) {

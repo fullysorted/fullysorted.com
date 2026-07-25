@@ -18,6 +18,7 @@ import {
   ChevronRight,
   X,
   Camera,
+  Mail,
 } from "lucide-react";
 import { formatPrice, formatMileage, cn } from "@/lib/utils";
 import type { Vehicle } from "@/lib/sample-data";
@@ -221,41 +222,81 @@ function ContactForm({
   );
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  // Set only when the server could neither store nor email the message. Carries
+  // a mailto pre-filled with what the buyer typed so nothing is retyped.
+  const [fallback, setFallback] = useState<{ mailto: string; error: string } | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
+    setError(null);
+    setFallback(null);
 
-    // Save to DB (async, non-blocking)
-    fetch("/api/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        listingId: vehicle.id ?? null,
-        listingSlug: vehicle.slug,
-        listingTitle: vehicle.title,
-        senderName: name,
-        senderEmail: email,
-        messageText: message,
-        type: "inquiry",
-      }),
-    }).catch(() => {});
+    // Previously this fired the request without awaiting it, opened a mailto via
+    // window.open (which Safari blocks), and reported "Message sent!" after a
+    // 400ms timer regardless of what happened. Now the outcome decides.
+    try {
+      const res = await fetch("/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          listingId: vehicle.id ?? null,
+          listingSlug: vehicle.slug,
+          listingTitle: vehicle.title,
+          senderName: name,
+          senderEmail: email,
+          messageText: message,
+          type: "inquiry",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
 
-    // Also open mailto as fallback
-    const subject = `Inquiry: ${vehicle.title} — Fully Sorted`;
-    const body = `Name: ${name}\nEmail: ${email}\n\n${message}\n\nListing: ${typeof window !== "undefined" ? window.location.href : ""}`;
-    window.open(
-      `mailto:chris@fullysorted.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    );
-
-    setTimeout(() => {
-      setSent(true);
+      if (res.ok) {
+        setSent(true);
+      } else if (data?.undelivered && data?.mailto) {
+        setFallback({ mailto: data.mailto, error: data.error });
+      } else {
+        setError(data?.error || "Couldn't send that. Please try again.");
+      }
+    } catch {
+      setError("Couldn't reach the server — check your connection and try again.");
+    } finally {
       setSending(false);
-    }, 400);
+    }
   };
 
   const inputClass =
     "w-full px-3 py-2.5 text-sm border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent transition-colors bg-white";
+
+  if (fallback) {
+    return (
+      <div className="text-center py-6">
+        <div
+          className="w-14 h-14 rounded-2xl mx-auto mb-3 flex items-center justify-center"
+          style={{ background: "rgba(176,141,63,0.14)" }}
+        >
+          <Mail className="w-7 h-7" style={{ color: "#B08D3F" }} />
+        </div>
+        <p className="font-bold text-stone-800 text-lg">Send this as an email</p>
+        <p className="text-sm text-stone-500 mt-1.5 max-w-sm mx-auto leading-relaxed">
+          {fallback.error}
+        </p>
+        <a
+          href={fallback.mailto}
+          className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
+        >
+          <Mail className="w-4 h-4" /> Open email
+        </a>
+        <button
+          onClick={() => setFallback(null)}
+          className="mt-3 block mx-auto text-xs font-semibold text-stone-400 hover:text-stone-600 transition-colors"
+        >
+          Try sending again instead
+        </button>
+      </div>
+    );
+  }
 
   if (sent) {
     return (
@@ -266,9 +307,9 @@ function ContactForm({
         >
           <CheckCircle className="w-8 h-8" style={{ color: "#6ab04c" }} />
         </div>
-        <p className="font-bold text-stone-800 text-lg">Message sent!</p>
+        <p className="font-bold text-stone-800 text-lg">Message sent</p>
         <p className="text-sm text-stone-400 mt-1 max-w-xs mx-auto">
-          Your email client opened with the message pre-filled.
+          It&apos;s with the seller. You&apos;ll usually hear back within a day.
         </p>
         <button
           onClick={onClose}
@@ -322,16 +363,24 @@ function ContactForm({
           className={`${inputClass} resize-none`}
         />
       </div>
+      {error && (
+        <p
+          className="text-sm rounded-xl px-3.5 py-2.5"
+          style={{ color: "#b91c1c", background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.2)" }}
+        >
+          {error}
+        </p>
+      )}
       <button
         type="submit"
         disabled={sending}
         className="w-full h-12 text-white text-sm font-bold rounded-xl bg-accent hover:bg-accent-hover transition-all disabled:opacity-60 flex items-center justify-center gap-2"
       >
         <MessageCircle className="w-4 h-4" />
-        {sending ? "Opening email..." : "Send Message"}
+        {sending ? "Sending…" : "Send Message"}
       </button>
       <p className="text-xs text-stone-400 text-center">
-        Your message will be sent via email to connect you with the seller.
+        Goes straight to the seller. We never share your email with anyone else.
       </p>
     </form>
   );

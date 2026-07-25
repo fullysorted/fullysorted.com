@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Mail } from "lucide-react";
 
 export function ContactForm() {
   const [fields, setFields] = useState({ name: "", email: "", subject: "General Question", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
+  const [mailto, setMailto] = useState<string | null>(null);
 
   const inputStyle = {
     border: "1.5px solid rgba(0,0,0,0.12)",
@@ -28,11 +29,23 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(fields),
       });
-      if (!res.ok) throw new Error("Failed");
-      setStatus("success");
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setStatus("success");
+        return;
+      }
+      if (data?.undelivered && data?.mailto) {
+        // Nothing reached us — hand the message back rather than losing it.
+        setMailto(data.mailto);
+        setStatus("error");
+        setError(data.error);
+        return;
+      }
+      setStatus("error");
+      setError(data?.error || "Something went wrong. Please try again.");
     } catch {
       setStatus("error");
-      setError("Something went wrong. Please email chris@fullysorted.com directly.");
+      setError("Couldn't reach the server — check your connection and try again.");
     }
   }
 
@@ -112,7 +125,26 @@ export function ContactForm() {
           />
         </div>
 
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && (
+          <div
+            className="rounded-xl px-3.5 py-3"
+            style={{
+              background: mailto ? "rgba(176,141,63,0.10)" : "rgba(220,38,38,0.07)",
+              border: `1px solid ${mailto ? "rgba(176,141,63,0.28)" : "rgba(220,38,38,0.2)"}`,
+            }}
+          >
+            <p className="text-sm" style={{ color: mailto ? "#8a6d1f" : "#b91c1c" }}>{error}</p>
+            {mailto && (
+              <a
+                href={mailto}
+                className="mt-2.5 inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white rounded-lg"
+                style={{ background: "#1E6091" }}
+              >
+                <Mail className="w-4 h-4" /> Open email with your message
+              </a>
+            )}
+          </div>
+        )}
 
         <button
           type="submit"

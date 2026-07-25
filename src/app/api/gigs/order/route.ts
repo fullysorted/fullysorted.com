@@ -50,9 +50,11 @@ export async function POST(request: NextRequest) {
       requirementsText: message || null,
     });
 
+    // The gig_orders row above is durable and shows in /admin/orders, so a failed
+    // notification is not data loss — but the provider needs to know it happened.
     try {
       const { notifyGigInquiry } = await import('@/lib/email');
-      await notifyGigInquiry({
+      const emailed = await notifyGigInquiry({
         gigTitle: gig.title,
         providerName: provider?.businessName || 'Provider',
         providerEmail: provider?.email,
@@ -62,8 +64,11 @@ export async function POST(request: NextRequest) {
         buyerEmail,
         message,
       });
+      if (!emailed) {
+        console.error('[submission] gig inquiry: notification not sent (order IS stored)');
+      }
     } catch (e) {
-      console.error('gig inquiry notify failed:', e);
+      console.error('[submission] gig inquiry: notification threw (order IS stored)', e);
     }
 
     return NextResponse.json({
