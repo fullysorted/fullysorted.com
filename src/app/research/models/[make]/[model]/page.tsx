@@ -9,6 +9,7 @@ import { getPublishedModelBySlug, modelDisplayName, getModelMarketSnapshot, getA
 import { JsonLd } from "@/components/seo/JsonLd";
 import { RarityScale } from "@/components/research/RarityScale";
 import { ProductionBreakdown } from "@/components/research/ProductionBreakdown";
+import { ContributeBox } from "@/components/research/ContributeBox";
 
 export const revalidate = 3600;
 
@@ -152,6 +153,8 @@ export default async function ModelPage({ params }: Props) {
       }
     : null;
 
+  const contributions = m.contributions ?? [];
+
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
       <JsonLd data={[vehicleSchema, articleSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]} />
@@ -257,10 +260,55 @@ export default async function ModelPage({ params }: Props) {
                 </ol>
                 <p className="text-xs mt-4" style={{ color: "#9a9a8a" }}>
                   Synthesized from the sources above and cross-checked. We cite and link out; we don’t
-                  republish other databases verbatim. Spotted an error? <a href="mailto:chris@fullysorted.com" className="underline">chris@fullysorted.com</a>.
+                  republish other databases verbatim.
                 </p>
               </Section>
             )}
+
+            {/* ── Nerd Notes ────────────────────────────────────────────────
+                Owner contributions, approved by Chris. Rendered after the
+                sources and in a visually distinct card so they never read as
+                part of the cited research above — the pages promise
+                cross-checked facts, and community input is a different kind
+                of claim with a different warrant. */}
+            <section className="mt-10">
+              <div className="flex items-baseline gap-2.5 mb-1">
+                <h2 className="font-display text-xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
+                  Nerd Notes
+                </h2>
+                {contributions.length > 0 && (
+                  <span className="text-xs" style={{ color: "#9a9a8a" }}>
+                    {contributions.length} from owners
+                  </span>
+                )}
+              </div>
+              <p className="text-sm mb-4" style={{ color: "#6b6b5e" }}>
+                What owners know that the sources don&apos;t. Every note is read and checked before it appears here.
+              </p>
+
+              {contributions.length > 0 && (
+                <ul className="space-y-3 mb-4">
+                  {contributions.map((c) => (
+                    <li
+                      key={c.id}
+                      className="rounded-2xl p-4"
+                      style={{ background: "#F5EFE6", border: "1px solid rgba(176,141,63,0.28)" }}
+                    >
+                      <p className="text-sm leading-relaxed" style={{ color: "#3a3a30" }}>
+                        {c.body}
+                      </p>
+                      <p className="text-xs mt-2.5" style={{ color: "#8a6d1f" }}>
+                        — {c.submitter_name || "Anonymous"}
+                        {c.submitter_credential ? `, ${c.submitter_credential}` : ""}
+                        {c.kind === "correction" ? " · correction accepted" : ""}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <ContributeBox modelId={m.id} modelName={`${m.make} ${m.model}`} />
+            </section>
           </div>
 
           {/* Sidebar */}

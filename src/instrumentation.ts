@@ -328,6 +328,33 @@ export async function register() {
     `;
     await sql`CREATE INDEX IF NOT EXISTS sale_submissions_status ON sale_submissions(status)`;
 
+    // ─── Owner contributions to model histories ──────────────────────────────
+    // Corrections and stories submitted against an encyclopedia page. Always
+    // reviewed before anything appears publicly: these pages carry Chris's name
+    // and promise cited research, so unreviewed text must never render beside it.
+    // `kind` distinguishes a factual correction from a personal story so the two
+    // can be surfaced differently (stories stay dark until there is traffic).
+    await sql`
+      CREATE TABLE IF NOT EXISTS model_contributions (
+        id SERIAL PRIMARY KEY,
+        model_id INTEGER NOT NULL REFERENCES vehicle_models(id) ON DELETE CASCADE,
+        kind VARCHAR(20) NOT NULL DEFAULT 'correction',
+        section VARCHAR(40),
+        body TEXT NOT NULL,
+        source_url TEXT,
+        submitter_name VARCHAR(255),
+        submitter_email VARCHAR(255),
+        submitter_credential VARCHAR(255),
+        status VARCHAR(20) NOT NULL DEFAULT 'pending',
+        admin_note TEXT,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        reviewed_at TIMESTAMP,
+        published_at TIMESTAMP
+      )
+    `;
+    await sql`CREATE INDEX IF NOT EXISTS model_contributions_status ON model_contributions(status)`;
+    await sql`CREATE INDEX IF NOT EXISTS model_contributions_model ON model_contributions(model_id, status)`;
+
     console.log('[Fully Sorted] DB schema verified/migrated on startup.');
   } catch (err) {
     // Never crash the server over a migration — just log

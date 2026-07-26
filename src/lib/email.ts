@@ -436,3 +436,32 @@ export async function sendProviderInviteReminder(d: ProviderInviteData) {
     ),
   });
 }
+
+// An owner submits a correction or a story against a model history page.
+export async function notifyModelContribution(d: {
+  modelName: string;
+  kind: string;
+  section: string;
+  body: string;
+  sourceUrl?: string | null;
+  name?: string | null;
+  email?: string | null;
+  credential?: string | null;
+}) {
+  const isCorrection = d.kind === "correction";
+  return sendEmail({
+    subject: `${isCorrection ? "Correction" : "Owner story"}: ${d.modelName}`,
+    html: `
+      <h2>${isCorrection ? "Suggested correction" : "Owner story"}</h2>
+      <p><strong>Page:</strong> ${esc(d.modelName)}<br/>
+         <strong>Section:</strong> ${esc(d.section)}</p>
+      <blockquote style="border-left:3px solid #1E6091;padding-left:12px;color:#333">
+        ${esc(d.body).replace(/\n/g, "<br/>")}
+      </blockquote>
+      ${d.sourceUrl ? `<p><strong>Source given:</strong> <a href="${safeUrl(d.sourceUrl)}">${esc(d.sourceUrl)}</a></p>` : "<p><em>No source supplied.</em></p>"}
+      <p><strong>From:</strong> ${esc(d.name || "anonymous")}${d.email ? ` &lt;${esc(d.email)}&gt;` : ""}<br/>
+         ${d.credential ? `<strong>Says they are:</strong> ${esc(d.credential)}` : ""}</p>
+      <p style="color:#6b6b5e;font-size:13px">Nothing is public until you approve it in /admin/contributions.</p>
+    `,
+  });
+}

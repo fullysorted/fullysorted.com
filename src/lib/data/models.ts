@@ -29,6 +29,16 @@ export interface ModelClaim {
   conflict_note: string | null;
 }
 
+export interface ModelContribution {
+  id: number;
+  kind: string;
+  section: string | null;
+  body: string;
+  submitter_name: string | null;
+  submitter_credential: string | null;
+  published_at: string | null;
+}
+
 export interface VehicleModelRow {
   id: number;
   slug: string;
@@ -61,6 +71,7 @@ export interface VehicleModelRow {
 export interface ModelPage extends VehicleModelRow {
   sources: ModelSource[];
   claims: ModelClaim[];
+  contributions?: ModelContribution[];
 }
 
 function hasDb(): boolean {
@@ -133,14 +144,19 @@ export async function getPublishedModelBySlug(
     const m = rows[0];
     if (!m) return null;
 
-    const [sources, claims] = await Promise.all([
+    const [sources, claims, contributions] = await Promise.all([
       sql`SELECT id, title, url, publisher, source_type, reliability
           FROM model_sources WHERE model_id = ${m.id} ORDER BY id ASC` as unknown as Promise<ModelSource[]>,
       sql`SELECT id, section, claim_text, confidence, status, source_ids, conflict_note
           FROM model_claims WHERE model_id = ${m.id} ORDER BY id ASC` as unknown as Promise<ModelClaim[]>,
+      // Approved owner contributions only — pending text must never render.
+      sql`SELECT id, kind, section, body, submitter_name, submitter_credential, published_at
+          FROM model_contributions
+          WHERE model_id = ${m.id} AND status = 'approved'
+          ORDER BY published_at DESC NULLS LAST, id DESC` as unknown as Promise<ModelContribution[]>,
     ]);
 
-    return { ...m, sources, claims };
+    return { ...m, sources, claims, contributions };
   } catch (e) {
     console.error('getPublishedModelBySlug failed:', (e as Error)?.message);
     return null;
