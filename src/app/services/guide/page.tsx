@@ -89,11 +89,11 @@ const PROVIDER_STEPS: Step[] = [
     icon: ShieldCheck,
     title: "Create your account & get verified",
     body:
-      "Sign up, then verify your email and phone. Verification is what earns your profile the trust badge buyers look for, and it protects your account. Add your business credentials — licenses, insurance, workshop accreditations — so we can confirm you are the real deal before you go live.",
+      "Sign up, then confirm your email and phone — that part is account security, not a rating. Add your business credentials: licenses, insurance, workshop accreditations. Owners can see what you have listed and decide for themselves. We do not hand out a stamp of approval; your standing here is built from reviews by the owners who actually hired you.",
     checklist: [
       "Verify email and phone",
       "Add business license / registration number",
-      "Upload proof of insurance and any workshop accreditations",
+      "Add your insurance details and any workshop accreditations, so owners can see them",
     ],
     tip: "A verified, insured profile converts far better than an anonymous one. Collectors are handing over six-figure cars — signal that you are safe to trust.",
   },
@@ -248,7 +248,7 @@ const BUYER_STEPS: Step[] = [
 const FAQS = [
   {
     q: "Do I need a registered business to list?",
-    a: "You can list as an independent specialist offering fixed-price gigs, or as a registered business in the directory. Either way, verifying your identity, insurance, and any relevant credentials is what earns the trust badge that wins bookings.",
+    a: "You can list as an independent specialist offering fixed-price gigs, or as a registered business in the directory. Either way, a complete profile — real credentials, clear pricing, honest scope — is what wins the first booking. After that it is the reviews from owners who hired you that do the work.",
   },
   {
     q: "How should I price my services?",

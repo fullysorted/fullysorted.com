@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   ArrowRight, Camera, ClipboardCheck, Paintbrush, Warehouse, Truck, Wrench,
-  Hammer, Shield,
+  Hammer, Shield, ShieldCheck,
 } from "lucide-react";
-import { SERVICE_CATEGORIES } from "@/lib/service-categories";
+import { SERVICE_CATEGORIES, REFERRAL_SERVICES } from "@/lib/service-categories";
 
 /**
  * Homepage services section.
@@ -133,6 +133,62 @@ export function ServicesSection() {
             </motion.div>
           ))}
         </div>
+
+        {/*
+          Referral services. Not directory categories — there is nobody local to
+          review or book — so they get their own card and their own page rather
+          than a /services?type= link that would return nothing.
+        */}
+        {REFERRAL_SERVICES.map((r, i) => (
+          <motion.div
+            key={r.key}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-5"
+          >
+            <Link
+              href={r.href}
+              className="group relative flex flex-col sm:flex-row sm:items-center gap-5 overflow-hidden rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1"
+              style={{ background: "#0F2032" }}
+            >
+              <span
+                className="absolute -bottom-8 right-4 font-display font-semibold leading-none select-none pointer-events-none"
+                style={{ fontSize: "8rem", color: "rgba(255,255,255,0.05)" }}
+                aria-hidden
+              >
+                {String(SERVICE_CATEGORIES.length + i + 1).padStart(2, "0")}
+              </span>
+              <div
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+                style={{ background: r.tint, color: "#fff" }}
+              >
+                <ShieldCheck className="w-7 h-7" />
+              </div>
+              <div className="flex-1 relative">
+                <span
+                  className="text-[11px] font-bold uppercase tracking-widest"
+                  style={{ color: "#D9BC72" }}
+                >
+                  {r.verb}
+                </span>
+                <h3 className="font-display text-xl font-semibold tracking-tight mt-1" style={{ color: "#fff" }}>
+                  {r.longLabel}
+                </h3>
+                <p className="mt-1.5 text-sm leading-relaxed max-w-2xl" style={{ color: "#9fb5cd" }}>
+                  {r.blurb}
+                </p>
+              </div>
+              <span
+                className="relative inline-flex items-center gap-1.5 text-sm font-bold shrink-0 transition-transform group-hover:translate-x-0.5"
+                style={{ color: "#8FBBDF" }}
+              >
+                What to ask for <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+          </motion.div>
+        ))}
 
         <motion.div
           initial={{ opacity: 0 }}

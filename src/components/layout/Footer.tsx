@@ -7,6 +7,7 @@ const footerLinks = {
     { href: "/services", label: "Services Directory" },
     { href: "/gigs", label: "Fixed-price Gigs" },
     { href: "/services/guide", label: "Provider Playbook" },
+    { href: "/insurance", label: "Collector Car Insurance" },
     { href: "/services/apply", label: "List Your Services" },
   ],
   Marketplace: [

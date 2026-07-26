@@ -159,3 +159,37 @@ export function isServiceCategory(v: unknown): v is ServiceCategoryKey {
 export function categoryLabel(key: string): string {
   return ALL_CATEGORIES.find((c) => c.key === key)?.label ?? key;
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * Services we point at rather than list.
+ *
+ * Insurance has no local providers to review, book or pay through escrow, so
+ * it must never become a directory category — `/services?type=insurance`
+ * would return an empty result, which is exactly the bug the old homepage
+ * had. These render as their own card and go to their own page.
+ * ───────────────────────────────────────────────────────────────────────── */
+export interface ReferralService {
+  key: string;
+  label: string;
+  longLabel: string;
+  verb: string;
+  blurb: string;
+  askedFor: string;
+  /** Internal route. Never link straight out from the homepage. */
+  href: string;
+  tint: string;
+}
+
+export const REFERRAL_SERVICES: ReferralService[] = [
+  {
+    key: 'insurance',
+    label: 'Insurance',
+    longLabel: 'Collector Car Insurance',
+    verb: 'Insure it',
+    blurb:
+      'A standard policy pays what the car depreciated to. A collector policy pays the number you agreed up front — which is worth understanding before you need it.',
+    askedFor: 'Agreed-value cover',
+    href: '/insurance',
+    tint: '#6B4E71',
+  },
+];
