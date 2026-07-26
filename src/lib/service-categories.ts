@@ -4,20 +4,28 @@
  * These lists used to be hardcoded separately in the hero, the homepage
  * services section, the directory, both apply forms and two dashboards — which
  * is how the homepage ended up advertising "financing", "insurance" and
- * "storage" that the directory cannot filter for, and why promoting a category
- * meant editing six files.
+ * "valuation" that the directory cannot filter for, and why promoting a
+ * category meant editing six files.
  *
  * LAUNCH PRIORITY: `featured` marks the categories being pushed first —
- * detailing, inspection and photography. They lead the homepage and sort first
- * in the directory. Everything else keeps working exactly as before. To promote
- * a different category later, move the flag; nothing else needs touching.
+ * detailing, inspection, photography, transport and storage. They lead the
+ * homepage and sort first in the directory. Everything else keeps working
+ * exactly as before. To promote a different category later, move the flag;
+ * nothing else needs touching.
+ *
+ * The five featured categories are the ones an owner needs *while they own the
+ * car* rather than when something has gone wrong — which is why they can be
+ * sold to somebody who has no current problem. Mechanical, restoration and
+ * body work are bigger tickets on longer referral cycles and are deliberately
+ * not the cold-start pitch.
  */
 export type ServiceCategoryKey =
   | 'detailing'
   | 'inspection'
   | 'photography'
-  | 'mechanical'
   | 'transport'
+  | 'storage'
+  | 'mechanical'
   | 'restoration'
   | 'bodywork';
 
@@ -66,6 +74,24 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     tint: '#B08D3F',
   },
   {
+    key: 'transport',
+    label: 'Transport',
+    longLabel: 'Enclosed Transport & Shipping',
+    blurb: 'Door-to-door enclosed hauling, in state or across the country. Your car rides inside, with drivers who know what they are carrying.',
+    askedFor: 'Enclosed transport',
+    featured: true,
+    tint: '#2C4A63',
+  },
+  {
+    key: 'storage',
+    label: 'Storage',
+    longLabel: 'Climate-Controlled Storage',
+    blurb: 'Somewhere secure between drives. Climate control, battery tending, and someone who will actually start it.',
+    askedFor: 'Somewhere safe to keep it',
+    featured: true,
+    tint: '#3D6B6B',
+  },
+  {
     key: 'mechanical',
     label: 'Mechanics',
     longLabel: 'Service & Mechanical',
@@ -73,15 +99,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     askedFor: 'A marque specialist',
     featured: false,
     tint: '#5a6b74',
-  },
-  {
-    key: 'transport',
-    label: 'Transport',
-    longLabel: 'Enclosed Transport',
-    blurb: 'Door-to-door enclosed hauling. Your car rides inside, with drivers who know what they are carrying.',
-    askedFor: 'Enclosed transport',
-    featured: false,
-    tint: '#3f6f8a',
   },
   {
     key: 'restoration',
@@ -110,6 +127,8 @@ export const CATEGORIES_BY_PRIORITY: ServiceCategory[] = [
 ];
 
 export const FEATURED_CATEGORIES = SERVICE_CATEGORIES.filter((c) => c.featured);
+
+export const OTHER_CATEGORIES = SERVICE_CATEGORIES.filter((c) => !c.featured);
 
 /** Option list for apply forms and dashboards. */
 export const CATEGORY_OPTIONS = CATEGORIES_BY_PRIORITY.map((c) => ({

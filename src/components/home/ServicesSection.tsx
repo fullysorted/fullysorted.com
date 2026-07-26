@@ -2,33 +2,50 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Paintbrush, ClipboardCheck, Camera, Wrench, Truck, Hammer, Shield } from "lucide-react";
-import { FEATURED_CATEGORIES, SERVICE_CATEGORIES } from "@/lib/service-categories";
+import {
+  ArrowRight, Paintbrush, ClipboardCheck, Camera, Truck, Warehouse,
+  Wrench, Hammer, Shield,
+} from "lucide-react";
+import { FEATURED_CATEGORIES, OTHER_CATEGORIES } from "@/lib/service-categories";
 
 /**
  * Homepage services section.
  *
- * Built around the three launch categories rather than listing everything.
- * The previous version advertised financing, insurance, storage, valuation and
+ * Built around the five launch categories rather than listing everything. The
+ * previous version advertised financing, insurance, valuation and
  * documentation — none of which are real directory categories, so those links
  * silently fell back to an unfiltered list.
  *
  * Order and membership come from lib/service-categories; to promote a
- * different category, move its `featured` flag.
+ * different category, move its `featured` flag. The layout below reads the
+ * featured list length rather than assuming a count, so promoting a sixth
+ * does not break the grid.
  */
-const ICONS: Record<string, React.ReactNode> = {
-  detailing: <Paintbrush className="w-7 h-7" />,
-  inspection: <ClipboardCheck className="w-7 h-7" />,
-  photography: <Camera className="w-7 h-7" />,
-  mechanical: <Wrench className="w-4 h-4" />,
-  transport: <Truck className="w-4 h-4" />,
-  restoration: <Hammer className="w-4 h-4" />,
-  bodywork: <Shield className="w-4 h-4" />,
+const ICONS: Record<string, (cls: string) => React.ReactNode> = {
+  detailing: (c) => <Paintbrush className={c} />,
+  inspection: (c) => <ClipboardCheck className={c} />,
+  photography: (c) => <Camera className={c} />,
+  transport: (c) => <Truck className={c} />,
+  storage: (c) => <Warehouse className={c} />,
+  mechanical: (c) => <Wrench className={c} />,
+  restoration: (c) => <Hammer className={c} />,
+  bodywork: (c) => <Shield className={c} />,
 };
 
-const rest = SERVICE_CATEGORIES.filter((c) => !c.featured);
+/**
+ * Five cards on a six-column grid: three across the first row, two wider ones
+ * across the second. Balanced without leaving a hole.
+ */
+function spanFor(index: number, total: number): string {
+  const firstRow = total >= 5 ? 3 : total;
+  if (index < firstRow) return "lg:col-span-2";
+  const remainder = total - firstRow;
+  return remainder === 2 ? "lg:col-span-3" : remainder === 1 ? "lg:col-span-6" : "lg:col-span-2";
+}
 
 export function ServicesSection() {
+  const featured = FEATURED_CATEGORIES;
+
   return (
     <section className="relative py-16 sm:py-24" style={{ background: "#faf9f7" }}>
       <div
@@ -55,28 +72,30 @@ export function ServicesSection() {
           <div className="flex items-center gap-2.5 mb-4">
             <div className="w-8 h-px" style={{ background: "#1E6091" }} />
             <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#1E6091" }}>
-              Starting with three
+              The ownership year
             </span>
           </div>
           <h2 className="font-display text-3xl sm:text-[2.6rem] font-semibold leading-[1.1] tracking-tight max-w-3xl" style={{ color: "#1a1a18" }}>
-            The three things owners ask us for{" "}
-            <span style={{ color: "#6b6b5e" }}>before anything else.</span>
+            Five things every car needs{" "}
+            <span style={{ color: "#6b6b5e" }}>when nothing is broken.</span>
           </h2>
           <p className="mt-4 text-base max-w-2xl leading-relaxed" style={{ color: "#6b6b5e" }}>
-            We&apos;re building this category by category, in Southern California first, so the
-            people you find are people we can actually vouch for.
+            Cleaned, checked, photographed, moved, kept. We&apos;re building these out
+            category by category in Southern California first, so the directory is deep
+            where you actually need it rather than thin everywhere.
           </p>
         </motion.div>
 
-        {/* Featured three */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {FEATURED_CATEGORIES.map((c, i) => (
+        {/* Featured */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5">
+          {featured.map((c, i) => (
             <motion.div
               key={c.key}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              transition={{ duration: 0.5, delay: i * 0.07 }}
+              className={spanFor(i, featured.length)}
             >
               <Link
                 href={`/services?type=${c.key}`}
@@ -97,7 +116,7 @@ export function ServicesSection() {
                     className="absolute bottom-3 left-4 flex h-12 w-12 items-center justify-center rounded-xl"
                     style={{ background: "rgba(255,255,255,0.94)", color: c.tint }}
                   >
-                    {ICONS[c.key]}
+                    {ICONS[c.key]?.("w-7 h-7")}
                   </div>
                 </div>
 
@@ -132,16 +151,16 @@ export function ServicesSection() {
           className="mt-8 flex flex-wrap items-center gap-2.5"
         >
           <span className="text-sm mr-1" style={{ color: "#9a9a8a" }}>
-            Also on the platform:
+            When something does need fixing:
           </span>
-          {rest.map((c) => (
+          {OTHER_CATEGORIES.map((c) => (
             <Link
               key={c.key}
               href={`/services?type=${c.key}`}
               className="inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all hover:-translate-y-0.5"
               style={{ borderColor: "rgba(0,0,0,0.12)", background: "#fff", color: "#6b6b5e" }}
             >
-              <span style={{ color: c.tint }}>{ICONS[c.key]}</span>
+              <span style={{ color: c.tint }}>{ICONS[c.key]?.("w-4 h-4")}</span>
               {c.longLabel}
             </Link>
           ))}

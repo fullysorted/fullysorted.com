@@ -63,6 +63,23 @@ const showcaseServices: ShowcaseService[] = [
     ),
   },
   {
+    key: "photography",
+    title: "Automotive Photography",
+    tagline: "Twelve pictures decide the price",
+    desc: "Listing shoots, editorial and event work — photographers who wait for the light and show the flaws honestly.",
+    accent: "#B08D3F",
+    photo: "/images/archive/porsche-906-gallery.jpg",
+    href: "/services?type=photography",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
+        <rect x="4" y="14" width="40" height="26" rx="4" stroke="currentColor" strokeWidth="2.5" />
+        <path d="M17 14l3-5h8l3 5" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+        <circle cx="24" cy="27" r="8" stroke="currentColor" strokeWidth="2.5" />
+        <circle cx="24" cy="27" r="3" fill="currentColor" fillOpacity="0.9" />
+      </svg>
+    ),
+  },
+  {
     key: "transport",
     title: "Enclosed Transport",
     tagline: "Your car rides inside",
@@ -76,6 +93,22 @@ const showcaseServices: ShowcaseService[] = [
         <path d="M32 20h8l4 6v8h-12" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
         <circle cx="13" cy="36" r="4" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="2.5" />
         <circle cx="37" cy="36" r="4" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="2.5" />
+      </svg>
+    ),
+  },
+  {
+    key: "storage",
+    title: "Climate-Controlled Storage",
+    tagline: "A safe home between drives",
+    desc: "Climate, security, battery tending and someone who will actually start it. Storing a car well is active, not passive.",
+    accent: "#1E6091",
+    photo: "/images/archive/porsche-904-workshop.jpg",
+    href: "/services?type=storage",
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
+        <path d="M6 20 24 8l18 12v20H6V20Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+        <rect x="15" y="26" width="18" height="14" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M15 32h18M15 36h18" stroke="currentColor" strokeWidth="2" strokeOpacity="0.6" />
       </svg>
     ),
   },
@@ -293,7 +326,6 @@ function ServiceShowcase() {
 // Featured launch categories lead; the rest still reachable from the directory.
 const quickPicks = [
   ...FEATURED_CATEGORIES.map((c) => ({ label: c.askedFor, type: c.key as string })),
-  { label: "Enclosed transport", type: "transport" },
   { label: "Marque specialist", type: "mechanical" },
 ];
 

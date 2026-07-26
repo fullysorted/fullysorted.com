@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Sparkles, AtSign, Loader2 } from 'lucide-react';
+import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { CATEGORIES_BY_PRIORITY, CATEGORY_TINTS } from '@/lib/service-categories';
@@ -16,6 +16,7 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   photography: <Camera className="w-5 h-5" />,
   mechanical: <Wrench className="w-5 h-5" />,
   transport: <Truck className="w-5 h-5" />,
+  storage: <Warehouse className="w-5 h-5" />,
   restoration: <Hammer className="w-5 h-5" />,
   bodywork: <Shield className="w-5 h-5" />,
 };

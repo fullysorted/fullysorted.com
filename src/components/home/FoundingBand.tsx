@@ -23,7 +23,7 @@ export function FoundingBand() {
         </span>
         <span className="text-sm" style={{ color: "#C9D4E2" }}>
           We&apos;re signing our first specialists across Southern California — detailing,
-          inspection and photography.
+          inspection, photography, transport and storage.
         </span>
         <Link
           href="/services/apply"

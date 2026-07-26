@@ -42,6 +42,7 @@ const CATEGORY_PHOTOS: Record<string, string> = {
   detailing: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1600&q=80',
   mechanical: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80',
   transport: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80',
+  storage: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=1600&q=80',
   inspection: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80',
   restoration: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80',
   bodywork: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80',
