@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PROVIDER_TRACKS } from "@/lib/data/providerTracks";
+import { isServiceCategory } from "@/lib/service-categories";
 
 export const metadata: Metadata = {
   title: "The Provider Playbook — How to Get Booked on Fully Sorted",
@@ -55,7 +56,7 @@ const PATHS = [
     tag: "Directory business",
     title: "Get-a-quote listing",
     body:
-      "List your shop or business in the specialist directory. Owners find you by marque, service, and location, then send an inquiry for a custom quote. Best for bespoke, high-value work — a full restoration, a bare-metal respray, an engine rebuild — that needs a conversation before a number.",
+      "List your shop or business in the specialist directory. Owners find you by marque, service, and location, then send an inquiry for a custom quote. Best for bespoke, high-value work — an engine rebuild, collection management, a complex multi-car move — that needs a conversation before a number.",
     cta: { href: "/services/apply/business", label: "List your business" },
   },
 ];
@@ -129,7 +130,7 @@ const PROVIDER_STEPS: Step[] = [
       "Give the service a clear, descriptive title, put it in the right category, and tag it with the keywords owners actually search — marque, service, location. A precise title and correct category are how buyers and search engines find you.",
     checklist: [
       "Descriptive title ('Multi-stage paint correction & ceramic coating')",
-      "Correct category: detailing, mechanical, transport, inspection, restoration, photography",
+      "Correct category: photography, inspection, detailing, storage, transport, mechanical",
       "Tags/keywords: marques, services, city/region",
     ],
     tip: "Write the title a buyer would type into search, not the one that sounds clever. Clarity outranks cleverness every time.",
@@ -195,7 +196,7 @@ const BUYER_STEPS: Step[] = [
     icon: Sparkles,
     title: "Two ways to hire",
     body:
-      "Book a fixed-price gig instantly when the job is well-defined — a detail, an inspection, a transport run. Or contact an owner-reviewed business for a custom quote when the work is bespoke — a restoration, a respray, a rebuild. Fast and fixed, or custom and quoted.",
+      "Book a fixed-price gig instantly when the job is well-defined — a detail, an inspection, a transport run. Or contact an owner-reviewed business for a custom quote when the work is bespoke — an engine rebuild, a long-term storage plan, a multi-car move. Fast and fixed, or custom and quoted.",
   },
   {
     icon: UserCircle,
@@ -532,7 +533,7 @@ export default function ProviderGuidePage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {PROVIDER_TRACKS.map((t) => {
+            {PROVIDER_TRACKS.filter((t) => isServiceCategory(t.slug)).map((t) => {
               const TIcon = TRACK_ICONS[t.icon] ?? Wrench;
               return (
                 <Link

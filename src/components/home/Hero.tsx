@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Search, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, BadgeCheck, Wrench } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { FEATURED_CATEGORIES } from "@/lib/service-categories";
+import { SERVICE_CATEGORIES } from "@/lib/service-categories";
 
 /* ─────────────────────────────────────────────────────────────
    Services-first hero.
@@ -123,38 +123,6 @@ const showcaseServices: ShowcaseService[] = [
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
         <path d="M30 8a10 10 0 0 0-9.6 12.8L8 33.2a4 4 0 1 0 5.7 5.7l12.4-12.4A10 10 0 0 0 40 17l-6 6-5-1-1-5 6-6a10 10 0 0 0-4-3Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    key: "restoration",
-    title: "Restoration",
-    tagline: "Done right, documented",
-    desc: "From sympathetic refresh to rotisserie rebuild — craftsmen with the photos, invoices and references to prove it.",
-    accent: "#1E6091",
-    photo: "/images/archive/restoration-shop.jpg",
-    href: "/services?type=restoration",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
-        <path d="M10 38 38 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M8 28l12 12M28 8l12 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M6 42l6-2-4-4-2 6Z" fill="currentColor" fillOpacity="0.9" />
-      </svg>
-    ),
-  },
-  {
-    key: "bodywork",
-    title: "Body & Paint",
-    tagline: "Panel-fit perfectionists",
-    desc: "Metal shaping, color matching, factory-correct finishes. The shops other shops recommend.",
-    accent: "#B08D3F",
-    photo: "/images/archive/jaguar-ctype.jpg",
-    href: "/services?type=bodywork",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
-        <path d="M8 30l4-12h24l4 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        <rect x="6" y="30" width="36" height="10" rx="3" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M14 12l2-4 2 4M30 12l2-4 2 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.6" />
       </svg>
     ),
   },
@@ -323,11 +291,12 @@ function ServiceShowcase() {
   );
 }
 
-// Featured launch categories lead; the rest still reachable from the directory.
-const quickPicks = [
-  ...FEATURED_CATEGORIES.map((c) => ({ label: c.askedFor, type: c.key as string })),
-  { label: "Marque specialist", type: "mechanical" },
-];
+// Every live category, in the canonical order. Adding one here is a
+// one-line change in lib/service-categories, not a change to this file.
+const quickPicks = SERVICE_CATEGORIES.map((c) => ({
+  label: c.askedFor,
+  type: c.key as string,
+}));
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);

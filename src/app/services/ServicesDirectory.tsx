@@ -5,11 +5,12 @@ import { useSearchParams } from 'next/navigation';
 import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { CATEGORIES_BY_PRIORITY, CATEGORY_TINTS } from '@/lib/service-categories';
+import { SERVICE_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
 
 // ─── Service Categories ────────────────────────────────
-// Order and labels come from the canonical list so featured categories lead
-// here exactly as they do on the homepage.
+// Order and labels come from the canonical list so the directory matches the
+// homepage exactly. Inactive categories keep an icon so an existing provider
+// row never renders without one.
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   detailing: <Paintbrush className="w-5 h-5" />,
   inspection: <ClipboardCheck className="w-5 h-5" />,
@@ -21,9 +22,9 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   bodywork: <Shield className="w-5 h-5" />,
 };
 const CATEGORIES = [
-  { key: 'all', label: 'All Services', icon: <Sparkles className="w-5 h-5" />, featured: false },
-  ...CATEGORIES_BY_PRIORITY.map((c) => ({
-    key: c.key, label: c.label, icon: CATEGORY_ICONS[c.key], featured: c.featured,
+  { key: 'all', label: 'All Services', icon: <Sparkles className="w-5 h-5" /> },
+  ...SERVICE_CATEGORIES.map((c) => ({
+    key: c.key, label: c.label, icon: CATEGORY_ICONS[c.key],
   })),
 ];
 
@@ -352,7 +353,7 @@ export default function ServicesDirectory() {
         <h3 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-white mb-3">Join the Directory</h3>
         <p className="text-stone-200 mb-2 font-medium">Are you a specialist? Get listed.</p>
         <p className="text-stone-300 mb-6 max-w-xl mx-auto">
-          If you do exceptional work with collector cars — detailing, mechanical, transport, inspection, restoration — apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.
+          If you do exceptional work with collector cars — photography, inspection, detailing, storage, transport, mechanical — apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
