@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Search, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, BadgeCheck, Wrench } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import { FEATURED_CATEGORIES } from "@/lib/service-categories";
 
 /* ─────────────────────────────────────────────────────────────
    Services-first hero.
@@ -289,13 +290,11 @@ function ServiceShowcase() {
   );
 }
 
+// Featured launch categories lead; the rest still reachable from the directory.
 const quickPicks = [
-  { label: "Pre-purchase inspection", type: "inspection" },
-  { label: "Ceramic coating", type: "detailing" },
+  ...FEATURED_CATEGORIES.map((c) => ({ label: c.askedFor, type: c.key as string })),
   { label: "Enclosed transport", type: "transport" },
   { label: "Marque specialist", type: "mechanical" },
-  { label: "Restoration", type: "restoration" },
-  { label: "Body & paint", type: "bodywork" },
 ];
 
 export function Hero() {

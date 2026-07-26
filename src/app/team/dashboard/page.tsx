@@ -7,6 +7,7 @@ import {
   Send, BellRing, XCircle, LogOut, ChevronDown, ChevronUp, ExternalLink,
   StickyNote, Pencil,
 } from "lucide-react";
+import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 
 /* ─── Types ─────────────────────────────────────────────── */
 interface PipelineProvider {
@@ -29,18 +30,7 @@ interface PipelineProvider {
   created_at: string;
 }
 
-const CATEGORIES = [
-  { value: "detailing", label: "Detailing & Paint Correction" },
-  { value: "mechanical", label: "Mechanical & Repair" },
-  { value: "restoration", label: "Restoration" },
-  { value: "transport", label: "Transport & Shipping" },
-  { value: "inspection", label: "Pre-Purchase Inspection" },
-  { value: "bodywork", label: "Body Work & Paint" },
-  { value: "storage", label: "Storage" },
-  { value: "photography", label: "Automotive Photography" },
-  { value: "finance", label: "Financing & Insurance" },
-  { value: "other", label: "Other" },
-];
+const CATEGORIES = CATEGORY_OPTIONS;
 
 const STAGES: Array<{ key: string; label: string; color: string; bg: string }> = [
   { key: "staged", label: "To invite", color: "#d97706", bg: "#fef3c7" },

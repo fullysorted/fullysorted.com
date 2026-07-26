@@ -5,20 +5,9 @@ import { useAuth } from '@clerk/nextjs';
 import { motion } from 'framer-motion';
 import { Building2, Send, Loader2, CheckCircle, Shield, Star, Sparkles, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 
-const CATEGORIES = [
-  { value: '', label: 'Select your primary service category' },
-  { value: 'detailing', label: 'Detailing & Paint Correction' },
-  { value: 'mechanical', label: 'Mechanical & Repair' },
-  { value: 'restoration', label: 'Restoration' },
-  { value: 'transport', label: 'Transport & Shipping' },
-  { value: 'inspection', label: 'Pre-Purchase Inspection' },
-  { value: 'bodywork', label: 'Body Work & Paint' },
-  { value: 'storage', label: 'Storage' },
-  { value: 'photography', label: 'Automotive Photography' },
-  { value: 'finance', label: 'Financing & Insurance' },
-  { value: 'other', label: 'Other' },
-];
+const CATEGORIES = CATEGORY_OPTIONS;
 
 export default function ApplyBusinessPage() {
   const { userId } = useAuth();

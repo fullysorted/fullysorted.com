@@ -5,31 +5,30 @@ import { useSearchParams } from 'next/navigation';
 import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Sparkles, AtSign, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { CATEGORIES_BY_PRIORITY, CATEGORY_TINTS } from '@/lib/service-categories';
 
 // ─── Service Categories ────────────────────────────────
-const CATEGORIES = [
-  { key: 'all', label: 'All Services', icon: <Sparkles className="w-5 h-5" /> },
-  { key: 'photography', label: 'Photography', icon: <Camera className="w-5 h-5" /> },
-  { key: 'detailing', label: 'Detailing', icon: <Paintbrush className="w-5 h-5" /> },
-  { key: 'mechanical', label: 'Mechanics', icon: <Wrench className="w-5 h-5" /> },
-  { key: 'transport', label: 'Transport', icon: <Truck className="w-5 h-5" /> },
-  { key: 'inspection', label: 'Inspections', icon: <ClipboardCheck className="w-5 h-5" /> },
-  { key: 'restoration', label: 'Restoration', icon: <Hammer className="w-5 h-5" /> },
-  { key: 'bodywork', label: 'Body & Paint', icon: <Shield className="w-5 h-5" /> },
-] as const;
-
-type CategoryKey = typeof CATEGORIES[number]['key'];
-
-// ─── Category header tints (distinct, brand-harmonious; no stock photos) ──
-const CATEGORY_TINT: Record<string, string> = {
-  photography: '#1E6091',
-  detailing: '#29ABE2',
-  mechanical: '#5a6b74',
-  transport: '#3f6f8a',
-  inspection: '#4b8b2e',
-  restoration: '#B08D3F',
-  bodywork: '#9a5a33',
+// Order and labels come from the canonical list so featured categories lead
+// here exactly as they do on the homepage.
+const CATEGORY_ICONS: Record<string, React.ReactNode> = {
+  detailing: <Paintbrush className="w-5 h-5" />,
+  inspection: <ClipboardCheck className="w-5 h-5" />,
+  photography: <Camera className="w-5 h-5" />,
+  mechanical: <Wrench className="w-5 h-5" />,
+  transport: <Truck className="w-5 h-5" />,
+  restoration: <Hammer className="w-5 h-5" />,
+  bodywork: <Shield className="w-5 h-5" />,
 };
+const CATEGORIES = [
+  { key: 'all', label: 'All Services', icon: <Sparkles className="w-5 h-5" />, featured: false },
+  ...CATEGORIES_BY_PRIORITY.map((c) => ({
+    key: c.key, label: c.label, icon: CATEGORY_ICONS[c.key], featured: c.featured,
+  })),
+];
+
+type CategoryKey = string;
+
+const CATEGORY_TINT = CATEGORY_TINTS;
 const DEFAULT_TINT = '#1E6091';
 
 // ─── Provider Type ────────────────────────────────────

@@ -3,19 +3,9 @@
 import { useState } from "react";
 import { CheckCircle, Loader2, Send } from "lucide-react";
 import { trackMetaEvent } from "@/components/analytics/MetaPixel";
+import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 
-const CATEGORIES = [
-  { value: "detailing", label: "Detailing & Paint Correction" },
-  { value: "mechanical", label: "Mechanical & Repair" },
-  { value: "restoration", label: "Restoration" },
-  { value: "transport", label: "Transport & Shipping" },
-  { value: "inspection", label: "Pre-Purchase Inspection" },
-  { value: "bodywork", label: "Body Work & Paint" },
-  { value: "storage", label: "Storage" },
-  { value: "photography", label: "Automotive Photography" },
-  { value: "financing", label: "Financing & Insurance" },
-  { value: "other", label: "Other" },
-];
+const CATEGORIES = CATEGORY_OPTIONS;
 
 const fieldClass =
   "w-full px-4 py-3 text-sm rounded-xl outline-none transition-shadow focus:ring-2 focus:ring-accent/40";

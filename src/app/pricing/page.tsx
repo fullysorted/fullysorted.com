@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CheckCircle2, Star } from 'lucide-react';
 import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
+import { PLATFORM_FEE_PCT_LABEL } from '@/lib/payments';
 
 export const metadata = {
   title: 'Pricing',
@@ -66,8 +67,75 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Pricing Cards */}
-      <section className="max-w-5xl mx-auto px-4 py-16">
+      {/* ── Hiring a specialist ─────────────────────────────────────────
+          Services lead the platform, so they lead the pricing page. This
+          section did not exist: /pricing covered listing a car only. */}
+      <section className="max-w-5xl mx-auto px-4 pt-16 pb-4">
+        <div className="text-center mb-10">
+          <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#1E6091" }}>
+            Hiring a specialist
+          </p>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground mb-3">
+            Browsing is free. You pay the person who does the work.
+          </h2>
+          <p className="text-base text-text-secondary max-w-2xl mx-auto">
+            Fully Sorted is where you find them and, on fixed-price gigs, how you pay them safely.
+            We are not a middleman on the quote.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              title: "Browse & request quotes",
+              price: "Free",
+              body: "Search the directory, read the owner reviews, and message any specialist directly. No account needed to look, and nothing to pay to make contact.",
+              highlight: false,
+            },
+            {
+              title: "Book a fixed-price gig",
+              price: "The listed price",
+              body: "What the provider publishes is what you pay — no platform markup on top. Your money is held in escrow and released once the work is delivered.",
+              highlight: true,
+            },
+            {
+              title: "What the provider pays",
+              price: PLATFORM_FEE_PCT_LABEL,
+              body: `We take ${PLATFORM_FEE_PCT_LABEL} of a completed gig, deducted from the provider payout. Listing a business and receiving quote requests is free.`,
+              highlight: false,
+            },
+          ].map((c) => (
+            <div
+              key={c.title}
+              className="rounded-2xl p-6 bg-white"
+              style={{ border: c.highlight ? "2px solid #1E6091" : "1px solid rgba(0,0,0,0.09)" }}
+            >
+              <h3 className="text-base font-bold text-foreground">{c.title}</h3>
+              <p className="font-display text-2xl font-semibold tracking-tight mt-2 mb-3" style={{ color: "#1E6091" }}>
+                {c.price}
+              </p>
+              <p className="text-sm text-text-secondary leading-relaxed">{c.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-sm text-text-secondary text-center mt-6 max-w-2xl mx-auto">
+          Custom work quoted directly between you and the shop is settled between you and the shop.
+          We only sit in the middle when you book a fixed-price gig, and that is so your money is
+          protected until the job is done.
+        </p>
+      </section>
+
+      {/* Selling a car — listing tiers */}
+      <section className="max-w-5xl mx-auto px-4 pt-10 pb-16">
+        <div className="text-center mb-10">
+          <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#B08D3F" }}>
+            Selling a car
+          </p>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
+            One flat fee, paid up front.
+          </h2>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {TIER_KEYS.map((key) => {
             const tier = LISTING_TIERS[key];

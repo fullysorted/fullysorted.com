@@ -1,3 +1,4 @@
+import { FoundingBand } from "@/components/home/FoundingBand";
 import { Hero } from "@/components/home/Hero";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { FeaturedListings } from "@/components/home/FeaturedListings";
@@ -81,6 +82,8 @@ export default async function Home() {
 
   return (
     <>
+      {/* Honest about being early, without telling anyone to come back later */}
+      <FoundingBand />
       {/* Services first — the hub is the front door */}
       <Hero />
       <ServicesSection />

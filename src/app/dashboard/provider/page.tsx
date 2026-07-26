@@ -7,19 +7,9 @@ import { Building2, MapPin, Phone, Globe, AtSign, Save, Loader2, CheckCircle, Cl
 import Link from 'next/link';
 import type { ServiceProvider } from '@/lib/db/schema';
 import { PayoutsPanel } from './PayoutsPanel';
+import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 
-const CATEGORIES = [
-  { value: 'photography', label: 'Photography' },
-  { value: 'detailing', label: 'Detailing & Paint Correction' },
-  { value: 'mechanical', label: 'Mechanical & Repair' },
-  { value: 'transport', label: 'Transport & Shipping' },
-  { value: 'inspection', label: 'Pre-Purchase Inspections' },
-  { value: 'restoration', label: 'Restoration' },
-  { value: 'bodywork', label: 'Body & Paint' },
-  { value: 'storage', label: 'Storage' },
-  { value: 'finance', label: 'Financing & Insurance' },
-  { value: 'other', label: 'Other' },
-];
+const CATEGORIES = CATEGORY_OPTIONS;
 
 const PRICE_RANGES = ['$', '$$', '$$$', '$$$$'];
 

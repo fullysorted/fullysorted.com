@@ -2,289 +2,158 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Paintbrush, ClipboardCheck, Camera, Wrench, Truck, Hammer, Shield } from "lucide-react";
+import { FEATURED_CATEGORIES, SERVICE_CATEGORIES } from "@/lib/service-categories";
 
-const services = [
-  {
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <circle cx="24" cy="24" r="10" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M24 8V4M24 44v-4M8 24H4M44 24h-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M18 24a6 6 0 1 0 12 0 6 6 0 0 0-12 0Z" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="2" />
-        <path d="M24 18v2M24 28v2M18 24h2M28 24h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-    title: "Pre-Purchase Inspection",
-    desc: "A trusted inspector in your area before the wire goes. We can recommend certified specialists nationwide.",
-    href: "/services?type=inspection",
-    accent: "#1E6091",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect x="4" y="20" width="40" height="16" rx="3" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M4 28h40" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3" strokeOpacity="0.4" />
-        <circle cx="12" cy="36" r="5" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="2.5" />
-        <circle cx="36" cy="36" r="5" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M17 24l5-8h8l5 8" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-      </svg>
-    ),
-    title: "Enclosed Transport",
-    desc: "Door-to-door enclosed hauling. Your car rides inside, not on top. Nationwide and cross-border.",
-    href: "/services?type=transport",
-    accent: "#1E6091",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <path d="M24 6L8 16v16l16 10 16-10V16L24 6Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-        <path d="M8 16l16 10 16-10" stroke="currentColor" strokeWidth="2" strokeOpacity="0.5" />
-        <path d="M24 26V42" stroke="currentColor" strokeWidth="2" strokeOpacity="0.5" />
-        <path d="M17 21l7 4 7-4" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.12" strokeLinejoin="round" />
-      </svg>
-    ),
-    title: "Valuation & Appraisal",
-    desc: "Written appraisals backed by real comps. For insurance, estates, financing, or just knowing what you have.",
-    href: "/value-guide",
-    accent: "#B08D3F",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <ellipse cx="24" cy="32" rx="18" ry="6" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M6 32V20c0-4 8-8 18-8s18 4 18 8v12" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M14 28c0-2.5 4.5-5 10-5s10 2.5 10 5" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.5" />
-        <circle cx="24" cy="20" r="3" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-    ),
-    title: "Detailing & Paint Correction",
-    desc: "Show-ready prep, ceramic coating, full paint correction. Specialists who treat your car like their own.",
-    href: "/services?type=detailing",
-    accent: "#1E6091",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect x="8" y="12" width="32" height="28" rx="3" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M8 20h32" stroke="currentColor" strokeWidth="2" strokeOpacity="0.4" />
-        <path d="M16 8v8M32 8v8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M16 28h4v6h-4zM28 26h4v8h-4z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      </svg>
-    ),
-    title: "Collector Car Financing",
-    desc: "Agreed-value loans for collector cars at rates that don't treat your 911 like a used Camry.",
-    href: "/services?type=financing",
-    accent: "#1E6091",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <path d="M24 6L6 14v12c0 10 8 18 18 20 10-2 18-10 18-20V14L24 6Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-        <path d="M24 6L6 14v12c0 10 8 18 18 20 10-2 18-10 18-20V14L24 6Z" fill="currentColor" fillOpacity="0.06" />
-        <path d="M16 24l5 5 11-10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    title: "Agreed Value Insurance",
-    desc: "Policies that actually pay out what your car is worth. Specialist brokers for collector vehicles.",
-    href: "/services?type=insurance",
-    accent: "#B08D3F",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect x="8" y="20" width="32" height="22" rx="3" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M16 20V14a8 8 0 0 1 16 0v6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <circle cx="24" cy="31" r="3.5" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="2" />
-        <path d="M24 34.5V37" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    ),
-    title: "Climate-Controlled Storage",
-    desc: "Monitored, climate-controlled facilities that treat your investment the way it deserves.",
-    href: "/services?type=storage",
-    accent: "#1E6091",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <path d="M12 10h24v4l4 4v16H8V18l4-4V10Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-        <path d="M8 34h32" stroke="currentColor" strokeWidth="2" />
-        <path d="M20 18h8M16 24h16M18 30h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6" />
-      </svg>
-    ),
-    title: "Title & Documentation",
-    desc: "Provenance research, title recovery, build sheets, ownership history. Know what you have.",
-    href: "/services?type=documentation",
-    accent: "#1E6091",
-  },
-];
+/**
+ * Homepage services section.
+ *
+ * Built around the three launch categories rather than listing everything.
+ * The previous version advertised financing, insurance, storage, valuation and
+ * documentation — none of which are real directory categories, so those links
+ * silently fell back to an unfiltered list.
+ *
+ * Order and membership come from lib/service-categories; to promote a
+ * different category, move its `featured` flag.
+ */
+const ICONS: Record<string, React.ReactNode> = {
+  detailing: <Paintbrush className="w-7 h-7" />,
+  inspection: <ClipboardCheck className="w-7 h-7" />,
+  photography: <Camera className="w-7 h-7" />,
+  mechanical: <Wrench className="w-4 h-4" />,
+  transport: <Truck className="w-4 h-4" />,
+  restoration: <Hammer className="w-4 h-4" />,
+  bodywork: <Shield className="w-4 h-4" />,
+};
+
+const rest = SERVICE_CATEGORIES.filter((c) => !c.featured);
 
 export function ServicesSection() {
   return (
     <section className="relative py-16 sm:py-24" style={{ background: "#faf9f7" }}>
-      {/* Top border */}
-      <div className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(30,96,145,0.18) 40%, rgba(176,141,63,0.18) 60%, transparent)" }} />
-
-      {/* Subtle grid pattern */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: "linear-gradient(to right, transparent, rgba(30,96,145,0.18) 40%, rgba(176,141,63,0.18) 60%, transparent)" }}
+      />
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.8) 1px, transparent 1px)",
+          backgroundImage:
+            "linear-gradient(rgba(0,0,0,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.8) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12"
+          className="mb-10"
         >
-          <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-px" style={{ background: "#1E6091" }} />
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#1E6091" }}>
-                Every Base Covered
-              </span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold leading-tight tracking-tight" style={{ color: "#1a1a18" }}>
-              Everything your car needs —<br />
-              <span style={{ color: "#6b6b5e" }}>and a place to get paid doing it.</span>
-            </h2>
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="w-8 h-px" style={{ background: "#1E6091" }} />
+            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#1E6091" }}>
+              Starting with three
+            </span>
           </div>
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold border transition-all shrink-0"
-            style={{ borderColor: "rgba(0,0,0,0.12)", background: "#ffffff", color: "#1a1a18" }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLElement).style.borderColor = "#1E6091";
-              (e.currentTarget as HTMLElement).style.background = "rgba(30,96,145,0.08)";
-              (e.currentTarget as HTMLElement).style.color = "#1E6091";
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.12)";
-              (e.currentTarget as HTMLElement).style.background = "#ffffff";
-              (e.currentTarget as HTMLElement).style.color = "#1a1a18";
-            }}
-          >
-            All Services <ArrowRight className="w-4 h-4" />
-          </Link>
+          <h2 className="font-display text-3xl sm:text-[2.6rem] font-semibold leading-[1.1] tracking-tight max-w-3xl" style={{ color: "#1a1a18" }}>
+            The three things owners ask us for{" "}
+            <span style={{ color: "#6b6b5e" }}>before anything else.</span>
+          </h2>
+          <p className="mt-4 text-base max-w-2xl leading-relaxed" style={{ color: "#6b6b5e" }}>
+            We&apos;re building this category by category, in Southern California first, so the
+            people you find are people we can actually vouch for.
+          </p>
         </motion.div>
 
-        {/* Services grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {services.map((s, i) => (
+        {/* Featured three */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {FEATURED_CATEGORIES.map((c, i) => (
             <motion.div
-              key={s.title}
+              key={c.key}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.055 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
             >
               <Link
-                href={s.href}
-                className="group flex flex-col h-full p-5 rounded-2xl border transition-all duration-300"
-                style={{ borderColor: "rgba(0,0,0,0.08)", background: "#ffffff" }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = s.accent + "40";
-                  el.style.background = s.accent + "08";
-                  el.style.transform = "translateY(-3px)";
-                  el.style.boxShadow = `0 20px 40px -12px ${s.accent}15`;
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(0,0,0,0.08)";
-                  el.style.background = "#ffffff";
-                  el.style.transform = "translateY(0)";
-                  el.style.boxShadow = "none";
-                }}
+                href={`/services?type=${c.key}`}
+                className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1"
+                style={{ border: "1px solid rgba(0,0,0,0.09)", boxShadow: "0 1px 2px rgba(26,26,24,0.04)" }}
               >
-                {/* Icon */}
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300"
-                  style={{ background: s.accent + "18", color: s.accent }}
-                >
-                  {s.icon}
+                {/* Colour block header with oversized numeral */}
+                <div className="relative h-28 overflow-hidden" style={{ background: c.tint }}>
+                  <span
+                    className="absolute -bottom-5 right-3 font-display font-semibold leading-none select-none"
+                    style={{ fontSize: "6rem", color: "rgba(255,255,255,0.16)" }}
+                    aria-hidden
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="absolute inset-0 speed-lines opacity-20" aria-hidden />
+                  <div
+                    className="absolute bottom-3 left-4 flex h-12 w-12 items-center justify-center rounded-xl"
+                    style={{ background: "rgba(255,255,255,0.94)", color: c.tint }}
+                  >
+                    {ICONS[c.key]}
+                  </div>
                 </div>
 
-                {/* Text */}
-                <h3 className="font-bold text-sm leading-snug mb-2" style={{ color: "#1a1a18" }}>{s.title}</h3>
-                <p className="text-xs leading-relaxed flex-1" style={{ color: "#6b6b5e" }}>
-                  {s.desc}
-                </p>
-
-                {/* Arrow */}
-                <div className="flex items-center gap-1 mt-4 text-xs font-bold transition-all duration-300"
-                  style={{ color: s.accent }}>
-                  <span>Learn more</span>
-                  <ArrowRight className="w-3 h-3 translate-x-0 group-hover:translate-x-1 transition-transform" />
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-display text-xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
+                    {c.longLabel}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed flex-1" style={{ color: "#6b6b5e" }}>
+                    {c.blurb}
+                  </p>
+                  <p className="mt-4 text-sm italic" style={{ color: "#9a9a8a" }}>
+                    &ldquo;{c.askedFor}&rdquo;
+                  </p>
+                  <span
+                    className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold transition-transform group-hover:translate-x-0.5"
+                    style={{ color: c.tint }}
+                  >
+                    Find one near you <ArrowRight className="w-4 h-4" />
+                  </span>
                 </div>
               </Link>
             </motion.div>
           ))}
         </div>
 
-        {/* Two-door marketplace band — hire vs. earn */}
+        {/* Everything else — still live, deliberately quieter */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-8 flex flex-wrap items-center gap-2.5"
         >
-          {/* Door 1 — hire */}
+          <span className="text-sm mr-1" style={{ color: "#9a9a8a" }}>
+            Also on the platform:
+          </span>
+          {rest.map((c) => (
+            <Link
+              key={c.key}
+              href={`/services?type=${c.key}`}
+              className="inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all hover:-translate-y-0.5"
+              style={{ borderColor: "rgba(0,0,0,0.12)", background: "#fff", color: "#6b6b5e" }}
+            >
+              <span style={{ color: c.tint }}>{ICONS[c.key]}</span>
+              {c.longLabel}
+            </Link>
+          ))}
           <Link
             href="/services"
-            className="group flex items-center justify-between gap-4 p-6 rounded-2xl border transition-all"
-            style={{ borderColor: "rgba(0,0,0,0.08)", background: "#ffffff" }}
-            onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "rgba(0,0,0,0.18)"; el.style.transform = "translateY(-2px)"; }}
-            onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "rgba(0,0,0,0.08)"; el.style.transform = "translateY(0)"; }}
+            className="inline-flex items-center gap-1.5 text-xs font-bold ml-1"
+            style={{ color: "#1E6091" }}
           >
-            <div>
-              <p className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: "#6b6b5e" }}>Need it done</p>
-              <p className="text-lg font-bold" style={{ color: "#1a1a18" }}>Hire a top-rated pro</p>
-              <p className="text-xs mt-0.5" style={{ color: "#6b6b5e" }}>Inspectors, detailers, haulers, restorers — people who actually get it.</p>
-            </div>
-            <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" style={{ color: "#1a1a18" }} />
-          </Link>
-
-          {/* Door 2 — earn (the gig side, the prominent one) */}
-          <Link
-            href="/services/apply/freelancer"
-            className="group relative overflow-hidden shine flex items-center justify-between gap-4 p-6 rounded-2xl text-white transition-all"
-            style={{ background: "linear-gradient(135deg, #1E6091, #174B72)" }}
-            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.transform = "translateY(-2px)")}
-            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.transform = "translateY(0)")}
-          >
-            {/* Workshop photo under a racing-green wash */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80"
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{ background: "linear-gradient(135deg, rgba(15,32,50,0.82), rgba(15,32,50,0.68))" }}
-            />
-            <div className="relative z-10">
-              <p className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.85)" }}>Got skills?</p>
-              <p className="text-lg font-extrabold">Get paid doing what you love</p>
-              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.9)" }}>List a gig in about 5 minutes. We’ll even write it for you.</p>
-            </div>
-            <ArrowRight className="relative z-10 w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
+            See the whole directory <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </motion.div>
       </div>
-
-      {/* Bottom border */}
-      <div className="absolute bottom-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(0,0,0,0.06) 50%, transparent)" }} />
     </section>
   );
 }
