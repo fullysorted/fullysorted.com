@@ -130,44 +130,13 @@ const RESEARCH_STEPS = [
   },
   {
     icon: BookOpen,
-    title: "Read the model encyclopedia",
+    title: "Read the model histories",
     body: "History, specs, production numbers and known trouble spots, model by model, with sources cited so you can check the work yourself.",
   },
   {
     icon: ClipboardList,
     title: "Decode a VIN, compare two cars",
     body: "Decode any 1981-or-newer VIN for factory specs and open recalls, or put two models head to head on rarity, value and running costs.",
-  },
-];
-
-const FAQS = [
-  {
-    q: "How do I know a provider is good?",
-    a: "Trust is built in the open: every provider profile carries reviews and comments from real owners, and providers earn engagement levels as they complete work, respond to clients, and build up their track record on the platform. Applications are also reviewed before a profile goes live, but the community record is what tells you who's good.",
-  },
-  {
-    q: "What does it cost to hire someone through Fully Sorted?",
-    a: "Browsing the directory and requesting quotes is free. Fixed-price gigs show the provider's price upfront before you book — no hidden markups on the quote you're given.",
-  },
-  {
-    q: "What does it cost to list a car?",
-    a: "Three tiers, all one-time: Standard $9.99, Featured $29.99, Premium $49.99. The first 100 listings are free for founding members. Your listing fee is one-time and paid up front.",
-  },
-  {
-    q: "How is Fully Sorted different from other collector-car listing sites?",
-    a: "Most listing sites in our category fall into two camps. Classifieds sites charge a flat listing fee (typically $50–$99) and leave you to handle the sale. Curated online-auction sites are time-limited and take a percentage of the sale price — usually 4.5–5% — either as a buyer's premium or a seller's success fee. Fully Sorted is a flat-fee peer-to-peer listing site: you pay a one-time flat fee ($9.99, $29.99, or $49.99) with no auction clock running on your sale.",
-  },
-  {
-    q: "Do you handle payment or escrow?",
-    a: "No. We're a listing platform, not a financial intermediary. Buyers and sellers agree on their preferred payment method — bank wire, escrow service, cashier's check. We recommend using a licensed escrow company for transactions over $25,000.",
-  },
-  {
-    q: "Can I edit or remove my listing?",
-    a: "Yes — log into your dashboard any time. You can update photos, change the price, mark the car as sold, or pull the listing entirely.",
-  },
-  {
-    q: "What kinds of cars belong on Fully Sorted?",
-    a: "Anything with collector interest — muscle cars, European classics, JDM, vintage, modern classics, barn finds, and project cars. If it has a story, it belongs here.",
   },
 ];
 
@@ -202,17 +171,6 @@ function StepCard({
     </div>
   );
 }
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": "https://fullysorted.com/how-it-works#faq",
-  mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
 
 const howToHireSchema = {
   "@context": "https://schema.org",
@@ -259,7 +217,7 @@ const breadcrumbSchema = {
 export default function HowItWorksPage() {
   return (
     <div style={{ backgroundColor: "#f5f4f0" }} className="min-h-screen">
-      <JsonLd data={[faqSchema, howToHireSchema, howToSchema, breadcrumbSchema]} />
+      <JsonLd data={[howToHireSchema, howToSchema, breadcrumbSchema]} />
       {/* Hero */}
       <section className="pt-20 pb-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -487,24 +445,25 @@ export default function HowItWorksPage() {
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Questions worth answering up front</h2>
           </div>
-          <div className="space-y-4">
-            {FAQS.map((f, i) => (
-              <div key={i} className="bg-white border border-border rounded-2xl p-6">
-                <h3 className="text-base font-bold text-foreground mb-2">{f.q}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{f.a}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <p className="text-sm text-text-secondary mb-4">
-              Still have questions? We read every message.
+          <div className="bg-white border border-border rounded-2xl p-8 text-center">
+            <p className="text-sm text-text-secondary leading-relaxed max-w-xl mx-auto">
+              What things cost, how trust works, where our valuation numbers come from,
+              and what we deliberately don&apos;t do — answered in full, in one place.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              Get in Touch <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+              <Link
+                href="/faq"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
+              >
+                Read the FAQ <ArrowRight className="w-4 h-4" aria-hidden />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-xl border border-border text-foreground hover:bg-stone-50 transition-colors"
+              >
+                Ask us directly
+              </Link>
+            </div>
           </div>
         </div>
       </section>

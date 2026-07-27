@@ -69,6 +69,9 @@ export const LISTING_TIERS: Record<ListingTier, TierConfig> = {
     daysListed: 9999,
     socialShare: true,
     priorityPlacement: true,
+    // We do NOT hold funds on car sales and have no escrow rail for them.
+    // What this tier actually buys is help arranging escrow with a licensed
+    // third party — which is a referral, and is named as one.
     escrow: true,
     features: [
       'Unlimited photos & video',
@@ -76,7 +79,7 @@ export const LISTING_TIERS: Record<ListingTier, TierConfig> = {
       'Social media promotion',
       'Top browse placement',
       'Listed until sold',
-      'Escrow coordination',
+      'Introduction to a licensed escrow company',
     ],
   },
 };

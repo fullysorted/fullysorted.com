@@ -17,7 +17,9 @@ interface FeaturedListingsProps {
 }
 
 const valueProps = [
-  { stat: "$9.99", label: "Flat listing fee — one time, paid up front" },
+  // "From", not a flat "$9.99" — there are three tiers and an early-adopter
+  // free window, and the CTA band and /pricing both already say "from".
+  { stat: "From $9.99", label: "One-time listing fee, paid up front — first 100 cars free" },
   { stat: "P2P", label: "Direct owner-to-owner — no dealers in the middle" },
   { stat: "$0", label: "Buyer's premium — the price you see is the price you pay" },
 ];
@@ -105,7 +107,20 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
         {/* Grid or Empty State */}
         {featured.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {/* Never stretch a four-column grid across one or two cars — an
+                early marketplace looks emptier in a wide grid than it does in
+                a tight one. Columns track the number of listings we have. */}
+            <div
+              className={
+                featured.length >= 4
+                  ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+                  : featured.length === 3
+                  ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+                  : featured.length === 2
+                  ? "grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl"
+                  : "grid grid-cols-1 gap-5 max-w-sm"
+              }
+            >
               {featured.map((vehicle, i) => (
                 <ListingCard key={vehicle.id} vehicle={vehicle} index={i} />
               ))}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { isServiceCategory } from "@/lib/service-categories";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
@@ -36,7 +37,11 @@ const ICONS: Record<string, React.ElementType> = {
 };
 
 export function generateStaticParams() {
-  return trackSlugs().map((track) => ({ track }));
+  // Only live categories get a page. Restoration and body-and-paint are
+  // `active: false` in service-categories, so building them produced full
+  // playbooks whose hero CTA was "Set up a restoration gig" for a trade the
+  // directory cannot list or filter.
+  return trackSlugs().filter(isServiceCategory).map((track) => ({ track }));
 }
 
 export async function generateMetadata({
@@ -63,11 +68,13 @@ export default async function TrackPage({
 }) {
   const { track: slug } = await params;
   const track = getTrack(slug);
-  if (!track) notFound();
+  if (!track || !isServiceCategory(slug)) notFound();
 
   const Icon = ICONS[track.icon] ?? Wrench;
-  const applyHref = `/services/apply/freelancer?category=${encodeURIComponent(track.category)}`;
-  const others = PROVIDER_TRACKS.filter((t) => t.slug !== track.slug);
+  // The apply form stores category KEYS. `track.slug` is the key; `track.category`
+  // is the old human label, which the form no longer accepts.
+  const applyHref = `/services/apply/freelancer?category=${encodeURIComponent(track.slug)}`;
+  const others = PROVIDER_TRACKS.filter((t) => t.slug !== track.slug && isServiceCategory(t.slug));
 
   const howToSchema = {
     "@context": "https://schema.org",

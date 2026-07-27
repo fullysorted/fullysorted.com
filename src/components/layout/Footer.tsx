@@ -11,11 +11,15 @@ const footerLinks = {
     { href: "/services/apply", label: "List Your Services" },
   ],
   Marketplace: [
-    { href: "/browse", label: "Browse All Cars" },
+    // Labels match the header exactly — the same destination was called
+    // "Browse All Cars" here, "Browse Cars" in the header and "Browse" in the
+    // mobile bar, which reads as three different places.
+    { href: "/browse", label: "Browse Cars" },
     { href: "/browse?category=muscle", label: "Muscle Cars" },
     { href: "/browse?category=european", label: "European" },
     { href: "/sell", label: "Sell a Car" },
-    { href: "/shop", label: "Garage Essentials" },
+    { href: "/pricing", label: "Listing Pricing" },
+    { href: "/shop", label: "Shop" },
   ],
   Research: [
     { href: "/research/models", label: "Model Histories" },
@@ -25,7 +29,10 @@ const footerLinks = {
     { href: "/research", label: "Market Analysis" },
   ],
   Company: [
-    { href: "/about", label: "About Us" },
+    { href: "/about", label: "About" },
+    { href: "/how-it-works", label: "How It Works" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/events", label: "Events" },
     { href: "/contact", label: "Contact" },
     { href: "/trust", label: "Trust & Safety" },
     { href: "/privacy", label: "Privacy Policy" },
@@ -33,11 +40,15 @@ const footerLinks = {
   ],
 };
 
-// Trust signals shown site-wide in the footer.
-const trustBadges = [
-  { label: "Secure payments by Stripe" },
+// Plain factual assurances shown site-wide in the footer. Deliberately NOT
+// "trust badges" — no stamp of approval, nothing we cannot point at.
+// "Secure payments by Stripe" was removed: it appeared on every page while
+// card payment only applies to fixed-price gigs from providers who have
+// completed payouts setup, which implied the whole site takes your money.
+const assurances = [
   { label: "256-bit SSL encrypted" },
-  { label: "Rated by real owners" },
+  { label: "Owner-reviewed specialists" },
+  { label: "Flat listing fees" },
   { label: "$0 buyer's premium" },
 ];
 
@@ -116,7 +127,7 @@ export function Footer() {
           className="mt-12 pt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
           style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
-          {trustBadges.map((b) => (
+          {assurances.map((b) => (
             <span
               key={b.label}
               className="inline-flex items-center gap-2 text-xs font-medium"

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { categoryLabel } from '@/lib/service-categories';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -167,7 +168,7 @@ export default async function ProviderProfilePage({ params }: Props) {
                   className="text-xs font-bold tracking-widest uppercase"
                   style={{ color: 'rgba(245,239,230,0.9)' }}
                 >
-                  {provider.category}
+                  {categoryLabel(provider.category)}
                 </span>
               </div>
 
@@ -181,7 +182,7 @@ export default async function ProviderProfilePage({ params }: Props) {
 
               {/* Badges */}
               <div className="flex flex-wrap items-center gap-2 mt-4">
-                {provider.verified && (
+                {hasRating && ratingNum >= 4.5 && reviewCount >= 3 && (
                   <span
                     className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
                     style={{ background: 'var(--sorted-green-light)', color: 'var(--sorted-green-dark)' }}

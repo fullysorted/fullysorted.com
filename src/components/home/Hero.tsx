@@ -141,8 +141,12 @@ function ServiceShowcase() {
     []
   );
 
+  // WCAG 2.2.2: auto-advancing content must be pausable, and must not move at
+  // all for anyone who has asked the OS for reduced motion.
   useEffect(() => {
     if (paused) return;
+    if (typeof window !== "undefined" &&
+        window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => go(index + 1, 1), 4200);
     return () => clearInterval(id);
   }, [index, paused, go]);
@@ -154,6 +158,11 @@ function ServiceShowcase() {
       className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Featured services"
     >
       <div className="flex items-center gap-2 mb-3">
         <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#6ab04c" }} />
@@ -187,7 +196,11 @@ function ServiceShowcase() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={s.photo}
-                alt={s.title}
+                alt=""
+                width={640}
+                height={416}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover"
               />
               {/* Legibility overlay — racing-green wash */}
@@ -262,8 +275,14 @@ function ServiceShowcase() {
 
       {/* Progress dots */}
       <div className="flex items-center justify-center gap-1.5 mt-3">
-        {showcaseServices.map((_, i) => (
-          <button key={i} onClick={() => go(i, i > index ? 1 : -1)} aria-label={`Go to service ${i + 1}`}>
+        {showcaseServices.map((svc, i) => (
+          <button
+            key={svc.key}
+            onClick={() => go(i, i > index ? 1 : -1)}
+            aria-label={`Show ${svc.title}`}
+            aria-current={i === index ? "true" : undefined}
+            className="p-1"
+          >
             <span
               className="block rounded-full transition-all duration-300"
               style={{
@@ -293,8 +312,14 @@ function ServiceShowcase() {
 
 // Every live category, in the canonical order. Adding one here is a
 // one-line change in lib/service-categories, not a change to this file.
+//
+// These use the SHORT label, not `askedFor`. Sitting directly under a search
+// box they read as filters, and the long conversational forms ("Ceramic
+// coating or a proper correction") wrapped to three rows on a phone and
+// pushed the showcase below the fold. The conversational phrasing still does
+// its job in the cards further down the page.
 const quickPicks = SERVICE_CATEGORIES.map((c) => ({
-  label: c.askedFor,
+  label: c.label,
   type: c.key as string,
 }));
 
@@ -440,21 +465,15 @@ export function Hero() {
                 ))}
               </div>
 
-              {/* Trust row — Upwork/Fiverr-style reassurance, one quiet line */}
-              <div
-                className="flex flex-wrap items-center gap-x-5 gap-y-1.5 mt-6 text-xs font-medium"
-                style={{ color: "#8a8a7c" }}
-              >
-                {["Built by collectors", "Owner-reviewed specialists", "Free to browse"].map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5" style={{ color: "#1E6091" }} />
-                    {t}
-                  </span>
-                ))}
-              </div>
             </motion.div>
 
-            {/* Trust row */}
+            {/*
+              One trust row, not two. There used to be a pair stacked ~60px
+              apart, and they said the same thing twice: "Owner-reviewed
+              specialists" directly above "Rated by real owners", with three
+              identical ShieldCheck icons in the top row. One row, three
+              distinct claims, three distinct icons.
+            */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -463,9 +482,9 @@ export function Hero() {
               style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
             >
               {[
-                { icon: <BadgeCheck className="w-4 h-4" />, text: "Rated by real owners", accent: "#6ab04c" },
-                { icon: <ShieldCheck className="w-4 h-4" />, text: "Transparent flat fees", accent: "#1E6091" },
-                { icon: <Wrench className="w-4 h-4" />, text: "25 years in the paddock", accent: "#1E6091" },
+                { icon: <BadgeCheck className="w-4 h-4" aria-hidden />, text: "Owner-reviewed specialists", accent: "#6ab04c" },
+                { icon: <Wrench className="w-4 h-4" aria-hidden />, text: "25 years in the paddock", accent: "#1E6091" },
+                { icon: <ShieldCheck className="w-4 h-4" aria-hidden />, text: "Free to browse", accent: "#1E6091" },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-2">
                   <span style={{ color: item.accent }}>{item.icon}</span>

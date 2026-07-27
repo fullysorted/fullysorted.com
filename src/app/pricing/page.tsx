@@ -60,8 +60,8 @@ export default function PricingPage() {
       <section className="bg-accent text-white py-5">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <p className="text-lg font-semibold">
-            Early on purpose — the first {FREE_LISTINGS_THRESHOLD} providers to join and first{' '}
-            {FREE_LISTINGS_THRESHOLD} cars listed are <strong>completely free</strong>.
+            Early on purpose — founding specialists are listed <strong>free</strong>, and the
+            first {FREE_LISTINGS_THRESHOLD} cars listed are <strong>free</strong> too.
             Get in early.
           </p>
         </div>
@@ -95,7 +95,7 @@ export default function PricingPage() {
             {
               title: "Book a fixed-price gig",
               price: "The listed price",
-              body: "What the provider publishes is what you pay — no platform markup on top. Your money is held in escrow and released once the work is delivered.",
+              body: "What the provider publishes is what you pay — no platform markup on top. Where a provider has card payment switched on, your payment is held and only released to them once the work is delivered. Card payment is still rolling out; until a provider is set up, a booking reaches them as an enquiry and you settle directly.",
               highlight: true,
             },
             {
@@ -173,7 +173,7 @@ export default function PricingPage() {
                   <p className="text-text-secondary text-sm">
                     {key === 'standard' && 'Get your car listed and in front of buyers.'}
                     {key === 'featured' && 'The full Fully Sorted experience — AI write-up, social promo, priority placement.'}
-                    {key === 'premium' && 'Maximum exposure, listed until sold, with escrow support.'}
+                    {key === 'premium' && 'Maximum exposure, listed until sold, plus an introduction to a licensed escrow company.'}
                   </p>
                 </div>
 
@@ -228,7 +228,7 @@ export default function PricingPage() {
                   { label: 'Days Listed', values: ['30', '60', 'Until sold'] },
                   { label: 'Social Share', values: ['—', '✓', '✓'] },
                   { label: 'Priority Placement', values: ['—', '✓', '✓'] },
-                  { label: 'Escrow Coordination', values: ['—', '—', '✓'] },
+                  { label: 'Licensed escrow introduction', values: ['—', '—', '✓'] },
                 ].map((row, i) => (
                   <tr
                     key={row.label}

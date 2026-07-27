@@ -117,11 +117,20 @@ export async function GET(request: NextRequest) {
     const lowPrice = prices.length ? prices[0] : null;
 
     // IQR filter — the "typical" market once outliers are set aside.
+    //
+    // This used to require eight comps before it would run, which is exactly
+    // backwards: a small set is where one outlier does the most damage. A
+    // four-comp 1965 Corvette set containing a $3.85M L88 returned a mean of
+    // $1,039,500 against a median of $118,000 — and that search is linked
+    // straight off the homepage. Four is enough to identify a car that does
+    // not belong with the others.
     let typicalAvgPrice: number | null = null;
     let typicalLow: number | null = null;
     let typicalHigh: number | null = null;
     let outliersExcluded = 0;
-    if (prices.length >= 8) {
+    /** Mean is unsafe to show when one lot has dragged it away from the median. */
+    let meanSkewed = false;
+    if (prices.length >= 4) {
       const q1 = quartile(prices, 0.25);
       const q3 = quartile(prices, 0.75);
       const iqr = q3 - q1;
@@ -134,6 +143,13 @@ export async function GET(request: NextRequest) {
         typicalLow = typical[0];
         typicalHigh = typical[typical.length - 1];
       }
+    }
+
+    // Even after the IQR pass, flag any set where the raw mean is more than
+    // 1.8x the median so the UI can lead with the median and label the mean
+    // honestly rather than printing "Average $1,039,500" with a straight face.
+    if (avgPrice && medianPrice && medianPrice > 0) {
+      meanSkewed = avgPrice / medianPrice >= 1.8;
     }
 
     // Freshness stamp
@@ -167,6 +183,7 @@ export async function GET(request: NextRequest) {
       typicalLow,
       typicalHigh,
       outliersExcluded,
+      meanSkewed,
       latestSaleDate,
       oldestSaleDate,
       matchTier,

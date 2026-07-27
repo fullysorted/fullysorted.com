@@ -51,7 +51,10 @@ export default function SellForm() {
   const [earlyAdopterSpotsRemaining, setEarlyAdopterSpotsRemaining] = useState<number | null>(null);
 
   const [form, setForm] = useState({
-    tier: 'featured' as ListingTier,
+    // Defaults to the tier the page advertises. This was 'featured', so a
+    // seller who arrived on a hero reading "$9.99 flat" and accepted every
+    // default was shown "Submit & Pay $29.99" at the review step.
+    tier: 'standard' as ListingTier,
     year: '',
     make: '',
     model: '',

@@ -49,6 +49,7 @@ interface ValuationResult {
   typicalLow?: number | null;
   typicalHigh?: number | null;
   outliersExcluded?: number;
+  meanSkewed?: boolean;
   latestSaleDate?: string | null;
   oldestSaleDate?: string | null;
   matchTier?: "exact_model" | "model_family" | "widened_years";
@@ -92,6 +93,56 @@ function TrendBadge({ trend, pct }: { trend: "up" | "down" | "flat"; pct: number
   );
 }
 
+/**
+ * How much this page is willing to claim, given how many comps stand behind it.
+ *
+ * The point of a value guide is to be right, and a confident-looking number
+ * drawn from three sales is worse than no number — it is the exact failure the
+ * product exists to fix. So what we publish is gated on n:
+ *
+ *   n = 0      nothing
+ *   n 1–2      the raw sales only, no estimate at all
+ *   n 3–5      a range, explicitly no point estimate
+ *   n 6–8      a median plus the full range (n=6 is the smallest sample with a
+ *              ≥95% distribution-free confidence interval for the median)
+ *   n ≥ 9      a median we are willing to stand on
+ *   n ≥ 20     median plus trend
+ *
+ * No incumbent publishes a minimum-n rule. Publishing ours is the point.
+ */
+type Confidence = "none" | "raw" | "range" | "median" | "solid";
+
+function confidenceOf(n: number): Confidence {
+  if (n <= 0) return "none";
+  if (n <= 2) return "raw";
+  if (n <= 5) return "range";
+  if (n <= 8) return "median";
+  return "solid";
+}
+
+const CONFIDENCE_COPY: Record<Exclude<Confidence, "none">, { label: string; body: string; tone: string; bg: string; border: string }> = {
+  raw: {
+    label: "Not enough sales for an estimate",
+    body: "One or two recorded sales cannot describe a market. The sales themselves are below — read them as anecdotes, not as a value.",
+    tone: "#8a6d1f", bg: "rgba(176,141,63,0.12)", border: "rgba(176,141,63,0.28)",
+  },
+  range: {
+    label: "Directional — range only",
+    body: "Too few sales to put a single number on this car honestly, so we are showing what the range looked like rather than a midpoint.",
+    tone: "#8a6d1f", bg: "rgba(176,141,63,0.12)", border: "rgba(176,141,63,0.28)",
+  },
+  median: {
+    label: "Reasonable read",
+    body: "Enough sales for a median worth using, but not enough to be precise. Use it to frame an offer, not to settle one.",
+    tone: "#1E6091", bg: "rgba(30,96,145,0.08)", border: "rgba(30,96,145,0.24)",
+  },
+  solid: {
+    label: "Well supported",
+    body: "Enough comparable sales for a median we will stand behind.",
+    tone: "#4b8b2e", bg: "rgba(106,176,76,0.12)", border: "rgba(106,176,76,0.30)",
+  },
+};
+
 function formatDate(dateStr?: string): string {
   if (!dateStr) return "Unknown date";
   try {
@@ -132,32 +183,42 @@ function ourTake(
   trend: { trend: "up" | "down" | "flat"; pct: number } | null
 ): string {
   const car = `${year ? year + " " : ""}${make} ${model}`.trim();
-  if (r.total < 3) {
-    return `There's limited sales data for the ${car} in our database (${r.total} ${r.total === 1 ? "sale" : "sales"}), so treat any number as directional. Try broadening the year range, or check back as we add auction results.`;
+  // Mirror the confidence rule — the prose must not assert a midpoint the
+  // stat row has just refused to print.
+  const conf = confidenceOf(r.total);
+  if (conf === "raw") {
+    return `We have ${r.total} recorded ${r.total === 1 ? "sale" : "sales"} for the ${car}, which is not a market — it is an anecdote. Read the ${r.total === 1 ? "sale" : "sales"} below on its own terms, and treat any figure you derive from it with suspicion.`;
   }
   const bits: string[] = [];
   const median = r.medianPrice;
   const avg = r.avgPrice;
-  if (median) {
+  if (conf === "range") {
+    if (r.lowPrice && r.highPrice) {
+      bits.push(`Across ${r.total} comparable sales, the ${car} changed hands between ${formatPrice(r.lowPrice)} and ${formatPrice(r.highPrice)}. That is too few results to put a single number on the car honestly, so we are not going to.`);
+    }
+  } else if (median) {
     let s0 = `Across ${r.total} comparable sales, the ${car} centers on about ${formatPrice(median)} (median)`;
-    if (avg) {
+    if (avg && !r.meanSkewed) {
       const skew = (avg - median) / median;
       if (skew > 0.12) s0 += `, while the ${formatPrice(avg)} average sits higher — a few exceptional cars are pulling the top of the market up`;
       else if (skew < -0.12) s0 += `, with the ${formatPrice(avg)} average below it — project-grade cars are dragging the mean down`;
     }
     bits.push(s0 + ".");
+    if (r.meanSkewed) {
+      bits.push(`We're leaving the average out: one result in this set sits far enough above the rest to drag the mean somewhere no ordinary example trades.`);
+    }
   }
-  if (r.lowPrice && r.highPrice && r.highPrice > r.lowPrice) {
+  if (conf !== "range" && r.lowPrice && r.highPrice && r.highPrice > r.lowPrice) {
     bits.push(`Recent results run from ${formatPrice(r.lowPrice)} to ${formatPrice(r.highPrice)}, so condition, originality, and documentation are doing most of the work.`);
   }
-  if (trend && r.total >= 6) {
+  if (trend && r.total >= 20) {
     if (trend.trend === "up") bits.push(`Comparing older sales to newer, the trend is up roughly ${trend.pct}%.`);
     else if (trend.trend === "down") bits.push(`Comparing older sales to newer, the trend is down roughly ${trend.pct}%.`);
     else bits.push(`Older and newer sales have been essentially flat.`);
   }
   const wisdom = makeWisdom(make);
   if (wisdom) bits.push(wisdom);
-  if (r.total < 6) bits.push(`With only ${r.total} comparable sales, treat this as directional rather than precise.`);
+  if (conf === "median") bits.push(`With ${r.total} comparable sales this is a reasonable read, not a precise one — use it to frame an offer rather than to settle one.`);
   return bits.join(" ");
 }
 
@@ -674,6 +735,22 @@ export function ValueGuideClient() {
                   </p>
                 );
               })()}
+              {(() => {
+                const c = confidenceOf(result.total);
+                if (c === "none") return null;
+                const copy = CONFIDENCE_COPY[c];
+                return (
+                  <div
+                    className="mt-3 px-3 py-2 rounded-lg"
+                    style={{ background: copy.bg, border: `1px solid ${copy.border}` }}
+                  >
+                    <p className="text-xs font-bold" style={{ color: copy.tone }}>
+                      {copy.label} · {result.total} {result.total === 1 ? "sale" : "sales"}
+                    </p>
+                    <p className="text-xs mt-0.5 text-text-secondary">{copy.body}</p>
+                  </div>
+                );
+              })()}
               {result.matchTier === "widened_years" && (
                 <p className="text-xs text-text-tertiary mt-1">
                   Exact-year sales were thin, so we widened the window to ±{result.yearRangeUsed} years to give you a usable read.
@@ -690,11 +767,27 @@ export function ValueGuideClient() {
             {result.total === 0 ? (
               <div className="px-6 py-10 text-center">
                 <AlertCircle className="w-10 h-10 text-text-tertiary mx-auto mb-3" />
-                <p className="font-medium text-foreground">No comparable sales found</p>
-                <p className="text-sm text-text-secondary mt-1 max-w-sm mx-auto">
-                  Try broadening the year range or adjusting the make/model. We&apos;re adding
-                  auction data daily — check back soon.
+                <p className="font-medium text-foreground">No comparable sales on record</p>
+                <p className="text-sm text-text-secondary mt-1 max-w-md mx-auto">
+                  Our comp database doesn&apos;t cover this car yet. It is deep on some
+                  segments and thin on others, and we would rather tell you that than
+                  produce a number from nothing.
                 </p>
+                <div className="flex flex-wrap gap-3 justify-center mt-5">
+                  <Link
+                    href="/submit-sale"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-white rounded-lg"
+                    style={{ background: "#1E6091" }}
+                  >
+                    Know a sale we&apos;ve missed? Add it
+                  </Link>
+                  <Link
+                    href="/research/models"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg border border-border text-text-secondary"
+                  >
+                    Read the model history instead
+                  </Link>
+                </div>
               </div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border">
@@ -710,18 +803,41 @@ export function ValueGuideClient() {
                   <p className="text-xs font-medium text-accent uppercase tracking-wider mb-1">
                     Median
                   </p>
-                  <p className="price-display text-2xl text-accent font-bold">
-                    {result.medianPrice ? formatPrice(result.medianPrice) : "—"}
-                  </p>
-                  <p className="text-[10px] text-text-tertiary mt-1">Typical sale</p>
+                  {/* Below six comps there is no honest midpoint to print. */}
+                  {confidenceOf(result.total) === "raw" || confidenceOf(result.total) === "range" ? (
+                    <>
+                      <p className="price-display text-2xl text-text-tertiary font-bold">—</p>
+                      <p className="text-[10px] text-text-tertiary mt-1">Too few sales</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="price-display text-2xl text-accent font-bold">
+                        {result.medianPrice ? formatPrice(result.medianPrice) : "—"}
+                      </p>
+                      <p className="text-[10px] text-text-tertiary mt-1">Typical sale</p>
+                    </>
+                  )}
                 </div>
                 <div className="px-6 py-5 text-center">
                   <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">
                     Average
                   </p>
-                  <p className="price-display text-xl text-foreground">
-                    {result.avgPrice ? formatPrice(result.avgPrice) : "—"}
-                  </p>
+                  {/* One exceptional car wrecks a mean. A four-comp 1965 Corvette
+                      set holding a $3.85M L88 printed "Average $1,039,500" against
+                      a median of $118,000. When the API flags the mean as dragged,
+                      say so instead of showing it. */}
+                  {result.meanSkewed ? (
+                    <>
+                      <p className="price-display text-xl text-text-tertiary">—</p>
+                      <p className="text-[10px] text-text-tertiary mt-1 leading-tight">
+                        Skewed by an outlier
+                      </p>
+                    </>
+                  ) : (
+                    <p className="price-display text-xl text-foreground">
+                      {result.avgPrice ? formatPrice(result.avgPrice) : "—"}
+                    </p>
+                  )}
                 </div>
                 <div className="px-6 py-5 text-center">
                   <p className="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">
@@ -734,7 +850,7 @@ export function ValueGuideClient() {
               </div>
             )}
 
-            {trendInfo && result.total >= 6 && (
+            {trendInfo && result.total >= 20 && (
               <div className="px-6 py-3 border-t border-border bg-surface/30 flex items-center gap-3">
                 <span className="text-xs text-text-secondary">Price trend (older vs. newer sales):</span>
                 <TrendBadge trend={trendInfo.trend} pct={trendInfo.pct} />

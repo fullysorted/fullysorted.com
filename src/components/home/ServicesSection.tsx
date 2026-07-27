@@ -198,8 +198,11 @@ export function ServicesSection() {
           className="mt-8 flex flex-wrap items-center justify-between gap-4"
         >
           <p className="text-sm" style={{ color: "#9a9a8a" }}>
+            {/* Was /services/apply — an owner recommending their mechanic was
+                dropped into a provider self-application form. /contact is the
+                same route the directory already uses for "Recommend a Provider". */}
             Can&apos;t find the trade you need?{" "}
-            <Link href="/services/apply" className="font-bold" style={{ color: "#1E6091" }}>
+            <Link href="/contact" className="font-bold" style={{ color: "#1E6091" }}>
               Tell us who should be on here
             </Link>
             .

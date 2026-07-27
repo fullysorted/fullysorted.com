@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2 } from 'lucide-react';
+import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { SERVICE_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
@@ -45,7 +45,6 @@ interface Provider {
   phone: string | null;
   website: string | null;
   instagram: string | null;
-  verified: boolean;
   foundingProvider: boolean;
   providerType?: string; // 'business' (a shop) | 'freelancer' (an independent)
   specialties: string[];
@@ -81,10 +80,20 @@ function ProviderCard({ provider }: { provider: Provider }) {
         <div className="flex items-start justify-between mb-3">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-lg font-bold text-stone-900">{provider.businessName}</h3>
-              {provider.verified && (
+              <h3 className="text-lg font-bold text-stone-900">
+                <Link
+                  href={`/services/${provider.slug}`}
+                  className="transition-colors hover:text-accent focus-visible:underline"
+                >
+                  {provider.businessName}
+                </Link>
+              </h3>
+              {/* Earned by the review record, not by an admin flag. This was
+                  gated on `provider.verified` — a retired trust badge that
+                  /api/providers never even selected, so it never rendered. */}
+              {Number(provider.rating) >= 4.5 && provider.reviewCount >= 3 && (
                 <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-0.5 rounded-full">
-                  <Star className="w-3 h-3" /> Top-rated
+                  <Star className="w-3 h-3" aria-hidden /> Top-rated
                 </span>
               )}
               {provider.foundingProvider && (
@@ -130,8 +139,16 @@ function ProviderCard({ provider }: { provider: Provider }) {
           ))}
         </div>
 
-        {/* Contact Row */}
-        <div className="flex items-center gap-4 pt-4 border-t border-stone-100">
+        {/* Contact Row — the profile comes first; phone, website and Instagram
+            are secondary, because sending someone straight off-site is the
+            one thing a directory should not do. */}
+        <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-stone-100">
+          <Link
+            href={`/services/${provider.slug}`}
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-accent transition-transform hover:translate-x-0.5"
+          >
+            View profile <ArrowRight className="w-4 h-4" aria-hidden />
+          </Link>
           {provider.phone && (
             <a
               href={`tel:${provider.phone}`}
@@ -186,7 +203,7 @@ function ProviderSection({
           {title}
         </h2>
         <span className="text-sm text-stone-500">
-          {providers.length} {providers.length === 1 ? 'listed' : 'listed'}{categorySuffix}
+          {providers.length} {providers.length === 1 ? 'specialist listed' : 'specialists listed'}{categorySuffix}
         </span>
       </div>
       <p className="text-sm text-stone-500 mb-5 max-w-2xl">{blurb}</p>
@@ -274,6 +291,7 @@ export default function ServicesDirectory() {
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400" />
         <input
           type="text"
+          aria-label="Search specialists by name, specialty or service type"
           placeholder="Search by name, specialty, or service type..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

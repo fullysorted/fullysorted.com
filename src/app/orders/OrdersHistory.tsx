@@ -32,7 +32,7 @@ const STATUS: Record<string, { label: string; bg: string; fg: string; icon: Reac
 const QUICK_ACTIONS = [
   { href: "/browse", label: "Browse cars", icon: Car },
   { href: "/value-guide", label: "Value a car", icon: BarChart3 },
-  { href: "/services", label: "Hire a pro", icon: Wrench },
+  { href: "/services", label: "Services", icon: Wrench },
   { href: "/sell", label: "Sell a car", icon: Tag },
 ];
 

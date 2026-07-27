@@ -25,6 +25,9 @@ const nav = [
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
   { href: "/admin/market", label: "Market Data", icon: BarChart3 },
   { href: "/admin/models", label: "Research", icon: BookOpen },
+  // The model-contribution review queue. It is the destination the provider
+  // notification email points at, and it was in no nav.
+  { href: "/admin/contributions", label: "Contributions", icon: MessageSquare },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

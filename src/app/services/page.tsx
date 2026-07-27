@@ -4,7 +4,7 @@ import ServicesDirectory from './ServicesDirectory';
 
 export const metadata = {
   title: 'Services Directory',
-  description: 'Find specialists for your collector car: photographers, detailers, mechanics, transporters, inspectors, restorers & more — backed by owner reviews.',
+  description: 'Find specialists for your collector car: photographers, detailers, mechanics, transporters, inspectors and storage — backed by owner reviews.',
 };
 
 export default function ServicesPage() {

@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     template: "%s | Fully Sorted",
   },
   description:
-    "Find owner-reviewed specialists for everything your collector car needs — inspection, detailing, transport, restoration and more. Plus a direct owner-to-owner marketplace and a research center built on real sold prices.",
+    "Find owner-reviewed specialists for everything your collector car needs — inspection, detailing, transport, storage, photography and mechanical work. Plus a direct owner-to-owner marketplace and a research center built on real sold prices.",
   keywords: [
     "collector car services",
     "classic car specialists",
     "pre-purchase inspection collector car",
     "classic car detailing",
     "enclosed car transport",
-    "classic car restoration shop",
+    "collector car storage",
     "collector cars",
     "classic cars for sale",
     "vintage cars",
@@ -66,14 +66,14 @@ export const metadata: Metadata = {
     siteName: "Fully Sorted",
     title: "Fully Sorted — The Collector Car Services Hub",
     description:
-      "Trusted specialists for everything your collector car needs — inspection, detailing, transport, restoration and more.",
+      "Specialists for everything your collector car needs — inspection, detailing, transport, storage and more.",
     // Note: opengraph-image.png in src/app/ is auto-registered by Next.js
     // metadata conventions — do NOT set images[] here or it will override.
   },
   twitter: {
     card: "summary_large_image",
     title: "Fully Sorted — The Collector Car Services Hub",
-    description: "Trusted specialists for everything your collector car needs — inspection, detailing, transport, restoration and more.",
+    description: "Specialists for everything your collector car needs — inspection, detailing, transport, storage and more.",
     creator: "@fully_sorted",
   },
   robots: {

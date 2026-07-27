@@ -7,12 +7,20 @@ import {
   ArrowLeft, ArrowRight, Check, Loader2, Sparkles, Info, PartyPopper,
   User, Tag, DollarSign, ClipboardCheck, Lightbulb,
 } from "lucide-react";
+import { CATEGORY_OPTIONS } from "@/lib/service-categories";
 
-const CATEGORIES = [
-  "Detailing & Paint Correction", "Mechanical & Repair", "Restoration",
-  "Transport & Shipping", "Pre-Purchase Inspection", "Body Work & Paint",
-  "Storage", "Automotive Photography", "Other",
-];
+/**
+ * Categories come from the canonical list, not a hardcoded copy.
+ *
+ * The old array here caused two live bugs. It offered Restoration, Body Work
+ * & Paint and "Other" — none of which are live directory categories — and it
+ * submitted the human LABEL ("Detailing & Paint Correction") where every
+ * consumer expects the KEY ("detailing"). The result was that freelancers
+ * saved through this form matched no category filter in the directory, fell
+ * back to the default tint, and printed the raw long string as their card
+ * kicker.
+ */
+const CATEGORIES = CATEGORY_OPTIONS;
 
 type Tier = "basic" | "standard" | "premium";
 interface Pkg { title: string; price: string; deliveryDays: string; revisions: string; features: string }
@@ -61,7 +69,7 @@ export default function FreelancerWizard() {
   // (e.g. /services/guide/photography -> ?category=Automotive%20Photography).
   useEffect(() => {
     const q = new URLSearchParams(window.location.search).get("category");
-    if (q && CATEGORIES.includes(q)) {
+    if (q && CATEGORIES.some((c) => c.value === q)) {
       setF((p) => (p.category ? p : { ...p, category: q }));
     }
   }, []);
@@ -206,7 +214,7 @@ export default function FreelancerWizard() {
                 </div>
               ))}
             </div>
-            <Help>It’s free for founding providers. Payments through the platform are coming soon; for now you’ll connect with buyers directly. You can edit anything later, so don’t overthink it.</Help>
+            <Help>It’s free for founding providers. Card payment is rolling out provider by provider — until yours is switched on, bookings reach you as enquiries and you invoice the owner directly. You can edit anything later, so don’t overthink it.</Help>
           </div>
         )}
 
@@ -241,7 +249,7 @@ export default function FreelancerWizard() {
                 <label className="block text-sm font-medium text-foreground mb-1.5">Primary category *</label>
                 <select className={input} value={f.category} onChange={e => set("category", e.target.value)}>
                   <option value="">Choose one…</option>
-                  {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                  {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
                 </select>
               </div>
               <div>

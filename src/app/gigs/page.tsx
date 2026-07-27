@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Sparkles, ArrowRight, MapPin, BadgeCheck, Star } from "lucide-react";
+import { Sparkles, ArrowRight, MapPin, Star } from "lucide-react";
 import { getActiveGigs } from "@/lib/data/gigs";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -102,7 +102,7 @@ export default async function GigsPage() {
                   </h2>
                   <div className="flex items-center gap-2 mt-3 text-xs" style={{ color: "#6b6b5e" }}>
                     <span className="font-semibold" style={{ color: "#1a1a18" }}>{g.provider_name}</span>
-                    {g.provider_verified && <BadgeCheck className="w-3.5 h-3.5" style={{ color: "#29ABE2" }} />}
+                    
                   </div>
                   {g.provider_location && (
                     <div className="flex items-center gap-1 mt-1 text-xs" style={{ color: "#9a9a8a" }}>

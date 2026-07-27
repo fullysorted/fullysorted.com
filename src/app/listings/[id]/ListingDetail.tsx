@@ -19,6 +19,7 @@ import {
   X,
   Camera,
   Mail,
+  ClipboardCheck,
 } from "lucide-react";
 import { formatPrice, formatMileage, cn } from "@/lib/utils";
 import type { Vehicle } from "@/lib/sample-data";
@@ -635,7 +636,7 @@ export function ListingDetail({ vehicle }: Props) {
               </p>
 
               {/* Pricing Verdict */}
-              {vehicle.compAvg > 0 && (
+              {vehicle.compCount > 0 && vehicle.compAvg > 0 && vehicle.compAvg !== vehicle.price && (
                 <div
                   className="mt-4 pt-4"
                   style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}
@@ -673,7 +674,7 @@ export function ListingDetail({ vehicle }: Props) {
                     )}
                   </div>
 
-                  {vehicle.sortedPrice ? (
+                  {!isAbove ? (
                     <div
                       className="mt-3 px-3 py-2.5 rounded-xl"
                       style={{ background: "rgba(106,176,76,0.08)", border: "1px solid rgba(106,176,76,0.2)" }}
@@ -682,11 +683,11 @@ export function ListingDetail({ vehicle }: Props) {
                         className="text-xs font-bold flex items-center gap-1"
                         style={{ color: "#6ab04c" }}
                       >
-                        <CheckCircle className="w-3.5 h-3.5" />
-                        Fair Market Price
+                        <CheckCircle className="w-3.5 h-3.5" aria-hidden />
+                        At or below comparable sales
                       </p>
                       <p className="text-xs mt-0.5" style={{ color: "rgba(106,176,76,0.8)" }}>
-                        Within range of recent comparable sales
+                        Based on {vehicle.compCount} recorded {vehicle.compCount === 1 ? "sale" : "sales"} — not an appraisal
                       </p>
                     </div>
                   ) : (
@@ -701,12 +702,32 @@ export function ListingDetail({ vehicle }: Props) {
                         Above Average
                       </p>
                       <p className="text-xs mt-0.5" style={{ color: "rgba(120,95,41,0.85)" }}>
-                        Condition or rarity may justify the premium
+                        Condition, originality or rarity may well justify it — {vehicle.compCount} recorded {vehicle.compCount === 1 ? "sale" : "sales"}
                       </p>
                     </div>
                   )}
                 </div>
               )}
+
+              {/*
+                The single most useful thing we can put in front of a buyer on
+                this page, and the reason the services hub and the marketplace
+                belong on the same site. A few hundred dollars against a
+                five-figure decision on a car you have not seen.
+              */}
+              <Link
+                href={`/services?type=inspection${vehicle.location && vehicle.location !== "Location not specified" ? `&q=${encodeURIComponent(vehicle.location.split(",")[0])}` : ""}`}
+                className="group mt-4 flex items-start gap-3 px-3.5 py-3 rounded-xl transition-colors"
+                style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.20)" }}
+              >
+                <ClipboardCheck className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#1E6091" }} aria-hidden />
+                <span className="text-xs leading-relaxed" style={{ color: "#3a3a30" }}>
+                  <span className="font-bold" style={{ color: "#1E6091" }}>
+                    Get it inspected before you wire anything.
+                  </span>{" "}
+                  Find an inspector near the car — they go and look at it for you.
+                </span>
+              </Link>
 
               {/* Contact Seller */}
               <div className="mt-5 space-y-2.5">
@@ -717,13 +738,17 @@ export function ListingDetail({ vehicle }: Props) {
                   <MessageCircle className="w-4 h-4" />
                   Contact Seller
                 </button>
-                <a
-                  href={`mailto:chris@fullysorted.com?subject=${encodeURIComponent(`Offer: ${vehicle.title}`)}&body=${encodeURIComponent(`Hi,\n\nI'd like to make an offer on your ${vehicle.title} listed at $${vehicle.price.toLocaleString()}.\n\nMy offer: $\n\n[Your message here]`)}`}
+                {/* Was a mailto: to the founder, with a body reading "an offer
+                    on YOUR car" as though it were reaching the seller. Offers
+                    now run through the same delivery path as any other
+                    message. */}
+                <button
+                  onClick={() => setContactOpen(true)}
                   className="w-full h-12 border text-sm font-medium rounded-xl hover:bg-stone-50 transition-colors flex items-center justify-center"
                   style={{ borderColor: "rgba(0,0,0,0.1)", color: "#555" }}
                 >
                   Make an Offer
-                </a>
+                </button>
               </div>
             </div>
           </div>

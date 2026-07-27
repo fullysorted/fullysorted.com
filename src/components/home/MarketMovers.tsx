@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TrendingUp, TrendingDown, Minus, ArrowRight } from "lucide-react";
+import { TrendingUp, TrendingDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { MarketMover } from "@/lib/sample-data";
@@ -14,22 +14,33 @@ interface Segment {
   trend_direction?: string | null;
 }
 
+/**
+ * A segment only earns a trend badge when there is a second price snapshot to
+ * compare against. With a single snapshot every segment returns a non-null
+ * zero, which used to render "0%" on all six cards and read as broken. Same
+ * guard as /research — see the note there.
+ */
+const MIN_TREND = 0.05;
+
+/** Thin segments are noise on a homepage. Show the ones with real depth. */
+const MIN_SALES = 3;
+
 function TrendBadge({ trend, percentage }: { trend: MarketMover["trend"]; percentage: number }) {
   const styles = {
-    up:   { bg: "rgba(106,176,76,0.18)",  color: "#6ab04c" },
+    up:   { bg: "rgba(106,176,76,0.18)", color: "#4b8b2e" },
     down: { bg: "rgba(220,38,38,0.12)",  color: "#DC2626" },
-    flat: { bg: "rgba(0,0,0,0.06)", color: "#9a9a8a" },
+    flat: { bg: "rgba(0,0,0,0.06)",      color: "#9a9a8a" },
   }[trend];
 
-  const Icon = trend === "up" ? TrendingUp : trend === "down" ? TrendingDown : Minus;
+  const Icon = trend === "down" ? TrendingDown : TrendingUp;
 
   return (
     <span
-      className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded-md"
+      className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded-md shrink-0"
       style={{ background: styles.bg, color: styles.color }}
     >
-      <Icon className="w-3 h-3" />
-      {trend === "up" ? "+" : trend === "down" ? "-" : ""}
+      <Icon className="w-3 h-3" aria-hidden />
+      {trend === "up" ? "+" : "-"}
       {percentage}%
     </span>
   );
@@ -37,27 +48,32 @@ function TrendBadge({ trend, percentage }: { trend: MarketMover["trend"]; percen
 
 export function MarketMovers() {
   // Previously rendered a hardcoded array of segments, percentages and
-  // "insights" attributed by name to the founder. Now driven by real market
-  // data; if there is none yet, the section does not render at all.
+  // "insights" attributed by name to the founder. Now driven by the comp
+  // database; if there is nothing worth showing, the section does not render.
   const [movers, setMovers] = useState<MarketMover[] | null>(null);
+  const [asOf, setAsOf] = useState<string | null>(null);
 
   useEffect(() => {
     let live = true;
-    fetch("/api/market?limit=6")
+    fetch("/api/market?limit=24")
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (!live) return;
         const segs: Segment[] = d?.segments ?? [];
+        setAsOf(typeof d?.as_of === "string" ? d.as_of : null);
         setMovers(
           segs
-            .filter((s) => s.segment && (s.sale_count ?? 0) > 0)
+            .filter((s) => s.segment && (s.sale_count ?? 0) >= MIN_SALES)
+            // Deepest data first — an alphabetical slice is not a story.
+            .sort((a, b) => (b.sale_count ?? 0) - (a.sale_count ?? 0))
+            .slice(0, 6)
             .map((s) => {
-              const pct = Number(s.trend_percent ?? 0);
-              const dir = s.trend_direction as MarketMover["trend"] | undefined;
+              const raw = Number(s.trend_percent ?? 0);
+              const hasTrend = Number.isFinite(raw) && Math.abs(raw) >= MIN_TREND;
               return {
                 segment: s.segment,
-                trend: dir ?? (pct > 0.5 ? "up" : pct < -0.5 ? "down" : "flat"),
-                percentage: Math.abs(Math.round(pct * 10) / 10),
+                trend: hasTrend ? (raw > 0 ? "up" : "down") : "flat",
+                percentage: hasTrend ? Math.abs(Math.round(raw * 10) / 10) : 0,
                 insight: `${s.sale_count} recorded ${s.sale_count === 1 ? "sale" : "sales"}${
                   s.avg_price ? ` · avg $${Number(s.avg_price).toLocaleString()}` : ""
                 }`,
@@ -69,7 +85,7 @@ export function MarketMovers() {
     return () => { live = false; };
   }, []);
 
-  // Nothing verified to show yet — stay off the homepage rather than fill it.
+  // Nothing solid to show yet — stay off the homepage rather than fill it.
   if (!movers || movers.length === 0) return null;
 
   return (
@@ -89,19 +105,20 @@ export function MarketMovers() {
               </span>
             </div>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
-              Monday Market Movers
+              What the segments are doing
             </h2>
             <p className="mt-1 text-sm" style={{ color: "#6b6b5e" }}>
-              Segment averages computed from recorded sales in our comp database
+              Average sale prices by segment, computed from the sales recorded in our comp database
+              {asOf ? ` · data through ${asOf}` : ""}
             </p>
           </div>
           <Link
             href="/research"
-            className="hidden sm:flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
+            className="hidden sm:flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70 shrink-0"
             style={{ color: "#1E6091" }}
           >
-            Full Research
-            <ArrowRight className="w-4 h-4" />
+            Market Analysis
+            <ArrowRight className="w-4 h-4" aria-hidden />
           </Link>
         </div>
 
@@ -121,9 +138,12 @@ export function MarketMovers() {
                 boxShadow: "0 1px 3px rgba(0,0,0,0.08)"
               }}
             >
-              <div className="flex items-start justify-between mb-3">
+              <div className="flex items-start justify-between gap-3 mb-3">
                 <h3 className="font-semibold text-sm" style={{ color: "#1a1a18" }}>{mover.segment}</h3>
-                <TrendBadge trend={mover.trend} percentage={mover.percentage} />
+                {/* No badge until there are two snapshots to compare. */}
+                {mover.trend !== "flat" && (
+                  <TrendBadge trend={mover.trend} percentage={mover.percentage} />
+                )}
               </div>
               <p className="text-sm leading-relaxed" style={{ color: "#6b6b5e" }}>
                 {mover.insight}
@@ -139,14 +159,18 @@ export function MarketMovers() {
             className="inline-flex items-center gap-1.5 text-sm font-semibold"
             style={{ color: "#1E6091" }}
           >
-            Full Market Research
-            <ArrowRight className="w-4 h-4" />
+            Full Market Analysis
+            <ArrowRight className="w-4 h-4" aria-hidden />
           </Link>
         </div>
 
-        {/* Disclaimer */}
+        {/* Disclaimer. Must stay truthful about what is behind these numbers:
+            the comp database is still being built and is not yet a licensed
+            feed. Tighten this wording the day it is. */}
         <p className="mt-8 text-xs leading-relaxed" style={{ color: "#9a9a8a" }}>
-          Figures shown are illustrative sample data. Market commentary reflects observed auction results and one analyst&apos;s perspective — it is not financial or investment advice, and past performance does not indicate future results.
+          Our comp database is early and still being built out, so these averages are indicative
+          rather than a complete picture of the market. Nothing here is financial or investment
+          advice, and past results do not indicate future values.
         </p>
       </div>
     </section>

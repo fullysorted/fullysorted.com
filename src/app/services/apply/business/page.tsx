@@ -84,13 +84,13 @@ export default function ApplyBusinessPage() {
           Get found by the collectors <span className="text-accent">who actually pay.</span>
         </h1>
         <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-          For established shops and companies — detailers, restorers, mechanics, transporters, inspectors. Reviewed personally by Chris Peterson.
+          For established shops and companies — detailers, mechanics, inspectors, transporters, photographers and storage. Reviewed personally by Chris Peterson.
         </p>
       </motion.div>
 
       <div className="grid md:grid-cols-3 gap-6 mb-12">
         {[
-          { Icon: Shield, color: 'text-accent', title: 'Free for founding providers', body: 'The first 50 specialists are listed free, with founding-provider placement.' },
+          { Icon: Shield, color: 'text-accent', title: 'Free for founding providers', body: 'Founding specialists are listed free while we build out the directory, with founding-provider placement.' },
           { Icon: Star, color: 'text-blue', title: 'In front of serious collectors', body: 'The people searching this directory are actively buying and maintaining collector cars.' },
           { Icon: Sparkles, color: 'text-gold', title: 'Founding provider status', body: 'Early listings get a Founding Provider badge and priority placement.' },
         ].map(({ Icon, color, title, body }, i) => (

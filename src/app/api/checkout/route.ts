@@ -31,11 +31,17 @@ export async function POST(request: NextRequest) {
           `;
           if (listing?.is_free_early_adopter) {
             // Free early-adopter listing: no payment means no Stripe webhook
-            // ever fires, so activate it right here or it would stay 'pending'
-            // forever and never appear in browse/home.
+            // ever fires, so the row has to be moved on from here or it would
+            // sit at 'pending' forever and never reach browse/home.
+            //
+            // It moves to 'pending_review', NOT 'active'. This endpoint takes
+            // an unauthenticated, caller-supplied listingId, so publishing
+            // straight from here meant anyone could push a listing live on the
+            // public marketplace — and it contradicted /sell/success, which
+            // promises every listing is read by a person first.
             await sql`
               UPDATE listings
-              SET status = 'active', published_at = NOW(), updated_at = NOW()
+              SET status = 'pending', updated_at = NOW()
               WHERE id = ${Number(listingId)}
             `;
             try {
@@ -62,6 +68,18 @@ export async function POST(request: NextRequest) {
     try {
       stripe = getStripe();
     } catch {
+      // Payments aren't live yet. The listing is already saved as 'pending';
+      // without this the row simply sat there and nobody was ever told a car
+      // had been submitted — the seller saw a success screen and the
+      // submission was only findable by opening /admin/listings by hand.
+      if (listingId) {
+        try {
+          const { notifyNewListing } = await import('@/lib/email');
+          await notifyNewListing({ year, make, model, price: 0, listingId: String(listingId) });
+        } catch (e) {
+          console.error('Failed to notify for unpaid listing', listingId, e);
+        }
+      }
       return NextResponse.json(
         { error: 'Payment service not configured' },
         { status: 503 }

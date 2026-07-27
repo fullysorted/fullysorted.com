@@ -43,8 +43,8 @@ export function ValueGuidePreview() {
               className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-full mb-4"
               style={{ background: "rgba(106,176,76,0.15)", color: "#6ab04c" }}
             >
-              <BarChart3 className="w-3.5 h-3.5" />
-              Powered by Real Auction Data
+              <BarChart3 className="w-3.5 h-3.5" aria-hidden />
+              Sold prices, not asking prices
             </div>
 
             <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight mb-3" style={{ color: "#1a1a18" }}>
@@ -53,8 +53,9 @@ export function ValueGuidePreview() {
             <p className="leading-relaxed text-sm sm:text-base" style={{ color: "#6b6b5e" }}>
               Our Value Guide aggregates publicly available sale results —
               auction results and reported private sales — into a pricing verdict
-              backed by actual comps instead of asking prices. Every figure traces
-              back to a dated sale you can see.
+              backed by what cars actually sold for, not what sellers hoped for.
+              Every figure comes from a dated sale, and the comp set behind it is
+              shown alongside the number.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mt-7">
@@ -74,7 +75,7 @@ export function ValueGuidePreview() {
                   color: "#6b6b5e",
                 }}
               >
-                Market Research
+                Market Analysis
               </Link>
             </div>
           </motion.div>
@@ -98,7 +99,7 @@ export function ValueGuidePreview() {
             >
               <h3 className="text-sm font-bold" style={{ color: "#1a1a18" }}>Popular valuations</h3>
               <span className="text-xs font-semibold" style={{ color: "#9a9a8a" }}>
-                Priced live from comps
+                Priced from our comp set
               </span>
             </div>
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, MapPin, BadgeCheck } from "lucide-react";
+import { ArrowLeft, MapPin } from "lucide-react";
 import { getGigBySlug } from "@/lib/data/gigs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { OrderPanel } from "./OrderPanel";
@@ -87,7 +87,7 @@ export default async function GigDetailPage({ params }: Props) {
               <div>
                 <p className="text-sm font-semibold inline-flex items-center gap-1.5 group-hover:text-accent transition-colors" style={{ color: "#1a1a18" }}>
                   {gig.provider_name}
-                  {gig.provider_verified && <BadgeCheck className="w-4 h-4" style={{ color: "#29ABE2" }} />}
+                  
                 </p>
                 <p className="text-xs inline-flex items-center gap-1" style={{ color: "#9a9a8a" }}>
                   {gig.provider_location && <><MapPin className="w-3 h-3" /> {gig.provider_location}</>}

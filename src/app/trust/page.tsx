@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Lock, CreditCard, Star, RefreshCw, Clock, Search, Eye } from "lucide-react";
+import { ShieldCheck, Lock, CreditCard, Star, RefreshCw, Clock, Search, Eye, Wallet, HandCoins } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Trust & Safety",
   description:
-    "How Fully Sorted keeps buyers, sellers, and service providers safe: secure Stripe payments with held funds, owner reviews, fraud protection, clear refund and dispute policies, and a commitment to your privacy.",
+    "How Fully Sorted keeps buyers, sellers and service providers safe — what we check, what we don't, how we make money, and where our responsibility ends.",
   alternates: { canonical: "/trust" },
 };
 
@@ -14,7 +14,7 @@ const PILLARS = [
     icon: CreditCard,
     title: "Secure payments, powered by Stripe",
     body:
-      "Every service payment on Fully Sorted is processed by Stripe, a PCI-DSS Level 1 certified payment provider trusted by millions of businesses worldwide. Card details are handled directly by Stripe and are never stored on our servers. When you book a fixed-price gig, your payment is held securely and only released to the provider once the work is delivered and you're satisfied.",
+      "This applies to fixed-price service gigs, and only to those. Card payments are processed by Stripe, a PCI-DSS Level 1 provider; card details go straight to Stripe and are never stored on our servers. Where a provider has card payment switched on, your payment is held and only released once the work is delivered. Card payment is still rolling out provider by provider. A car sale is different and always will be: the money never passes through Fully Sorted at all — see below.",
   },
   {
     icon: Lock,
@@ -32,13 +32,25 @@ const PILLARS = [
     icon: RefreshCw,
     title: "Clear refunds & dispute handling",
     body:
-      "If a job doesn't land the way it should, held funds stay paused until it's resolved. You can report a problem from your order page, and refunds are issued to your original payment method. Listing fees are covered by a good-faith review window — see the policy details below.",
+      "On a fixed-price gig paid through the site, held funds stay paused until the problem is resolved, and refunds go back to your original payment method. On quoted work we never held your money, so your recourse is the agreement you made with the specialist — plus the review you leave, which we do act on. Listing fees are covered by a good-faith review window; policy details below.",
   },
   {
     icon: Search,
     title: "Fraud protection",
     body:
       "We use automated checks and human review to watch for suspicious listings and activity. For any vehicle purchase, we strongly recommend a professional pre-purchase inspection and a licensed escrow company for significant transactions — Fully Sorted is the introduction, not a party to the sale.",
+  },
+  {
+    icon: Wallet,
+    title: "How we make money",
+    body:
+      "Two ways, and you should know both. Sellers pay a one-time flat fee to list a car. Providers pay a platform fee on fixed-price gigs booked through the site. That is the entire list — we take no commission on a car sale, there is no buyer's premium, we take no cut of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. Nobody pays us to rank higher; if that ever changes, promoted placement will be labelled as such on the page. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
+  },
+  {
+    icon: HandCoins,
+    title: "Where our responsibility ends",
+    body:
+      "Being straight about this is part of being trustworthy. On a car sale we are the introduction, not a party to it — we do not hold the money, inspect the car, or guarantee either side. On service work, the contract is between you and the specialist; ask for their certificate of insurance, and specifically for garage-keepers cover, before anyone takes your keys. What we do own is who we let list, what the public record says about them, and acting on it when someone lets an owner down.",
   },
   {
     icon: Clock,

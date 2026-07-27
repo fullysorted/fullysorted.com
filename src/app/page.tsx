@@ -7,7 +7,11 @@ import { ValueGuidePreview } from "@/components/home/ValueGuidePreview";
 import { CTASection } from "@/components/home/CTASection";
 import type { Vehicle } from "@/lib/sample-data";
 
-export const dynamic = 'force-dynamic';
+// Was `force-dynamic`, which re-queried the database on every single homepage
+// hit and opted the most-visited page on the site out of every caching layer.
+// Nothing here is per-user; a five-minute window is plenty fresh for a
+// marketing page that shows at most eight listings.
+export const revalidate = 300;
 
 async function getActiveListings(): Promise<Vehicle[]> {
   if (!process.env.DATABASE_URL) return [];
