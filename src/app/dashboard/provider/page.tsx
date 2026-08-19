@@ -185,7 +185,7 @@ export default function ProviderDashboard() {
             <div>
               <p className="text-accent font-medium">Your profile is under review</p>
               <p className="text-accent text-sm mt-1">
-                We review every application personally. You can update your profile while you wait — changes will be reflected once approved. Expect a response within 3–5 business days.
+                Lightly curated. You can update your profile while you wait — changes will be reflected once approved. Expect a response within 3–5 business days.
               </p>
             </div>
           </div>

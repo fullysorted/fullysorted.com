@@ -75,18 +75,17 @@ export default function ApplyChooserPage() {
           className="group bg-white rounded-2xl border-2 border-accent p-8 hover:shadow-lg hover:-translate-y-0.5 transition-all flex flex-col relative"
         >
           <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-accent text-white px-2 py-1 rounded-full">
-            Most popular
+            Recommended for solo operators
           </span>
           <div className="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center mb-5">
             <User className="w-6 h-6 text-accent" />
           </div>
           <h2 className="font-display font-semibold tracking-tight text-2xl text-foreground mb-2">I’m an independent / freelancer</h2>
           <p className="text-text-secondary text-sm mb-5">
-            A solo specialist — mobile detailer, inspector, photographer, mechanic. Offer fixed-price gigs,
-            Package what you do at a fixed price so owners can book it in a couple of clicks.
+            A solo specialist — mobile detailer, inspector, photographer, mechanic. Package what you do at a fixed price so owners can book it in a couple of clicks.
           </p>
           <ul className="space-y-2 text-sm text-text-secondary mb-6 flex-1">
-            {["Guided, step-by-step setup", "Fixed-price gig packages", "Your own earnings dashboard", "We help you write everything"].map(f => (
+            {["Guided, step-by-step setup", "Fixed-price gig packages", "Edit your gigs any time", "We help you write everything"].map(f => (
               <li key={f} className="flex items-start gap-2"><Check className="w-4 h-4 text-green mt-0.5 shrink-0" /> {f}</li>
             ))}
           </ul>
@@ -97,7 +96,7 @@ export default function ApplyChooserPage() {
       </div>
 
       <p className="text-center text-sm text-text-secondary mt-8">
-        Either way, listing is free for founding providers. You can always switch later.
+        Either way, listing is free for founding providers, and you can switch later. The only fee is 10% of a completed fixed-price gig, deducted from the provider payout.
       </p>
 
       <div className="mt-10 rounded-2xl border border-border bg-white p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center gap-5">

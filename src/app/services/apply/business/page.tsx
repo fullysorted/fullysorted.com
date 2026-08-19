@@ -50,7 +50,7 @@ export default function ApplyBusinessPage() {
           <CheckCircle className="w-16 h-16 text-green mx-auto mb-6" />
           <h1 className="font-display font-semibold tracking-tight text-3xl text-foreground mb-4">Application Submitted!</h1>
           <p className="text-text-secondary mb-8">
-            We review every application personally. You&apos;ll hear from us within 3–5 business days.
+            Lightly curated. You&apos;ll hear from us within 3–5 business days.
           </p>
           <Link href="/services" className="px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-colors">
             View Directory
@@ -111,7 +111,7 @@ export default function ApplyBusinessPage() {
       <div className="bg-white rounded-2xl border border-border p-8">
         <div className="mb-8">
           <h2 className="font-display font-semibold tracking-tight text-2xl text-foreground mb-2">Tell us about your business</h2>
-          <p className="text-text-secondary">Takes about 5 minutes. We read every application ourselves.</p>
+          <p className="text-text-secondary">Takes about 5 minutes. Lightly curated before it goes live. Listing your business and receiving quote requests is free — the 10% platform fee applies only to fixed-price gigs booked through the site.</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid gap-5 sm:grid-cols-2">
@@ -131,6 +131,7 @@ export default function ApplyBusinessPage() {
               <label className="block text-sm font-medium text-foreground mb-1.5">Category *</label>
               <select required value={form.category} onChange={e => update('category', e.target.value)}
                 className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent">
+                <option value="">Choose one…</option>
                 {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
               </select>
             </div>

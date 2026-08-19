@@ -36,11 +36,21 @@ const ICONS: Record<string, React.ElementType> = {
   Warehouse,
 };
 
+/**
+ * Trades that are priced by quote rather than as a fixed-price gig. These route
+ * to the business directory application: the freelancer wizard cannot be
+ * submitted without a Basic price, and these playbooks explicitly tell the
+ * provider never to give a single fixed number.
+ */
+const QUOTE_BASED = new Set(["restoration", "bodywork"]);
+
+/** "a inspection" -> "an inspection" */
+const article = (word: string) => (/^[aeiou]/i.test(word) ? "an" : "a");
+
 export function generateStaticParams() {
-  // Only live categories get a page. Restoration and body-and-paint are
-  // `active: false` in service-categories, so building them produced full
-  // playbooks whose hero CTA was "Set up a restoration gig" for a trade the
-  // directory cannot list or filter.
+  // Only live categories get a page. Restoration and body-and-paint went live
+  // 2026-08-19, so they build again — QUOTE_BASED sends their CTAs to the
+  // business application instead of the gig wizard, which would dead-end them.
   return trackSlugs().filter(isServiceCategory).map((track) => ({ track }));
 }
 
@@ -73,7 +83,16 @@ export default async function TrackPage({
   const Icon = ICONS[track.icon] ?? Wrench;
   // The apply form stores category KEYS. `track.slug` is the key; `track.category`
   // is the old human label, which the form no longer accepts.
-  const applyHref = `/services/apply/freelancer?category=${encodeURIComponent(track.slug)}`;
+  const quoteBased = QUOTE_BASED.has(slug);
+  const applyHref = quoteBased
+    ? "/services/apply/business"
+    : `/services/apply/freelancer?category=${encodeURIComponent(track.slug)}`;
+  const lower = track.label.toLowerCase();
+  const heroCta = quoteBased ? `List your ${lower} business` : `Set up ${article(lower)} ${lower} gig`;
+  const closingCta = quoteBased ? `List your ${lower} business` : `Start ${article(lower)} ${lower} gig`;
+  const closingBlurb = quoteBased
+    ? "Restoration and body work are quoted per project, so you list as a directory business — listing is free for founding providers."
+    : "Set up your profile and your first gig — listing is free for founding providers, and the only fee is 10% of a completed gig.";
   const others = PROVIDER_TRACKS.filter((t) => t.slug !== track.slug && isServiceCategory(t.slug));
 
   const howToSchema = {
@@ -140,7 +159,7 @@ export default async function TrackPage({
               href={applyHref}
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
-              Set up a {track.label.toLowerCase()} gig <ArrowRight className="w-4 h-4" />
+              {heroCta} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -314,14 +333,14 @@ export default async function TrackPage({
       <section className="py-14 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground mb-2">
-            Ready to get booked as a {track.label.toLowerCase()} specialist?
+            Ready to get booked as {article(lower)} {lower} specialist?
           </h2>
-          <p className="text-sm text-text-secondary mb-6">Set up your profile and your first gig — listing is free for founding providers.</p>
+          <p className="text-sm text-text-secondary mb-6">{closingBlurb}</p>
           <Link
             href={applyHref}
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
           >
-            Start your {track.label.toLowerCase()} gig <ArrowRight className="w-4 h-4" />
+            {closingCta} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>

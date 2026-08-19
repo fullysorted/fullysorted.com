@@ -146,10 +146,10 @@ export default function FreelancerWizard() {
         <PartyPopper className="w-16 h-16 mx-auto mb-6" style={{ color: "#B08D3F" }} />
         <h1 className="font-display font-semibold tracking-tight text-3xl text-foreground mb-3">You’re in — nice work.</h1>
         <p className="text-text-secondary mb-2">Your profile and first gig are saved as a draft.</p>
-        <p className="text-text-secondary mb-8">We review every applicant personally, usually within 3–5 business days. Meanwhile, you can polish everything in your dashboard.</p>
+        <p className="text-text-secondary mb-8">Lightly curated — you’ll hear from us within 3–5 business days. We’ll email you a link to edit your draft before anything goes public.</p>
         <div className="flex gap-3 justify-center">
-          <Link href="/dashboard/freelancer" className="px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-colors">
-            Go to my dashboard
+          <Link href="/services/guide" className="px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-colors">
+            Read the Provider Playbook
           </Link>
           <Link href="/services" className="px-6 py-3 bg-surface text-foreground font-medium rounded-xl">View directory</Link>
         </div>
@@ -205,7 +205,7 @@ export default function FreelancerWizard() {
               {[
                 { n: "1", t: "Tell us about you", d: "Two minutes. Name, what you do, where." },
                 { n: "2", t: "Build one gig", d: "We’ll help you write it — even draft it for you." },
-                { n: "3", t: "Set prices & submit", d: "Three simple tiers. We review, then you’re live." },
+                { n: "3", t: "Set prices & submit", d: "Three simple tiers. Lightly curated, then you’re live." },
               ].map(x => (
                 <div key={x.n} className="rounded-xl border border-border p-4">
                   <div className="w-7 h-7 rounded-full bg-accent-light text-accent font-bold text-sm flex items-center justify-center mb-2">{x.n}</div>
@@ -290,7 +290,7 @@ export default function FreelancerWizard() {
         {/* STEP 3 — Pricing */}
         {step === 3 && (
           <div className="mt-5">
-            <Help>Three tiers let buyers self-select. <strong>Basic</strong> is your entry offer (required), <strong>Standard</strong> is your most popular, <strong>Premium</strong> is the works. Put one feature per line. Price in whole US dollars.</Help>
+            <Help>Three tiers let buyers self-select. <strong>Basic</strong> is your entry offer (required), <strong>Standard</strong> is your most popular, <strong>Premium</strong> is the works. Put one feature per line. Price in whole US dollars. Fully Sorted takes 10% of a completed gig, deducted from your payout — set your prices with that in mind.</Help>
             <div className="grid md:grid-cols-3 gap-4 mt-4">
               {(["basic", "standard", "premium"] as Tier[]).map((t) => (
                 <div key={t} className="rounded-xl border border-border p-4 space-y-3">
@@ -342,7 +342,7 @@ export default function FreelancerWizard() {
                 ))}
               </div>
             </div>
-            <Help>Submitting saves everything as a <strong>draft</strong> and puts you in our review queue. Nothing goes public until we review and you publish from your dashboard.</Help>
+            <Help>Submitting saves everything as a <strong>draft</strong> and puts you in our review queue — nothing goes public until we’ve looked at it and you’ve confirmed. Prices shown above are what the owner pays; Fully Sorted takes 10% of a completed gig, deducted from your payout.</Help>
           </div>
         )}
 
