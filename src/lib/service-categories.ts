@@ -8,15 +8,16 @@
  * category meant editing six files.
  *
  * WHAT IS LIVE: the six recurring trades — photography, inspection, detailing,
- * storage, transport and mechanical. Between them they cover the whole
- * ownership year, which is the promise the name makes.
+ * storage, transport and mechanical — plus restoration and body & paint.
  *
- * WHAT IS NOT, YET: restoration and body & paint. Both are month-long project
- * work bought on long referral cycles, and neither is a sensible thing to ask
- * a brand-new directory for. They are kept below with `active: false` rather
- * than deleted, so labels, tints and any provider row already carrying one of
- * those categories still resolve. Flip the flag to bring them back — nothing
- * else needs touching.
+ * Restoration and body & paint were held back at first because both are
+ * month-long project work bought on long referral cycles. They were switched on
+ * 2026-08-19 because outreach is calling restoration shops directly: without a
+ * category to file them under, a rotisserie house gets logged as "mechanical"
+ * and its public page reads "is a mechanical specialist".
+ *
+ * Set `active: false` to retire a category. Labels and tints resolve for
+ * inactive categories too, so existing provider rows still render.
  */
 export type ServiceCategoryKey =
   | 'photography'
@@ -109,7 +110,6 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     tint: '#9a5a33',
   },
 
-  /* ── Not live yet. Flip `active` to bring either back. ────────────────── */
   {
     key: 'restoration',
     label: 'Restoration',
@@ -117,7 +117,7 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     verb: 'Rebuild it',
     blurb: 'Sympathetic refresh through to rotisserie rebuild, with the photos and invoices to prove it.',
     askedFor: 'Restoration work',
-    active: false,
+    active: true,
     tint: '#7a4a5a',
   },
   {
@@ -127,7 +127,7 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     verb: 'Straighten it',
     blurb: 'Metal shaping, color matching, factory-correct finishes. The shops other shops recommend.',
     askedFor: 'Body and paint',
-    active: false,
+    active: true,
     tint: '#5a6b74',
   },
 ];

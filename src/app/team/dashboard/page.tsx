@@ -53,7 +53,10 @@ function timeAgo(dateStr: string | null): string {
 }
 
 const EMPTY_FORM = {
-  businessName: "", ownerName: "", email: "", phone: "", category: "detailing",
+  // Category starts blank on purpose. Pre-selecting one meant a skipped dropdown
+  // could never fail validation, and a transport company would go live reading
+  // "is a detailing specialist".
+  businessName: "", ownerName: "", email: "", phone: "", category: "",
   location: "", website: "", instagram: "", specialties: "", yearsInBusiness: "",
   notes: "",
 };
@@ -64,6 +67,7 @@ export default function TeamDashboard() {
   const [providers, setProviders] = useState<PipelineProvider[]>([]);
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
   const [stage, setStage] = useState("all");
   const [search, setSearch] = useState("");
   const [showForm, setShowForm] = useState(false);
@@ -87,20 +91,35 @@ export default function TeamDashboard() {
 
   const load = useCallback(async () => {
     setLoading(true);
+    setLoadError("");
     const params = new URLSearchParams();
     if (stage !== "all") params.set("stage", stage);
     if (search) params.set("q", search);
-    const res = await fetch(`/api/team/providers?${params}`);
-    if (res.status === 401) {
-      router.push("/team");
-      return;
+    try {
+      const res = await fetch(`/api/team/providers?${params}`);
+      if (res.status === 401) {
+        router.push("/team");
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      // Anything other than a clean 200 must NOT paint an empty board. An
+      // empty board reads as "your work is gone" and the rep re-enters it all.
+      if (!res.ok) {
+        throw new Error(data.error || `Couldn't load the pipeline (${res.status}).`);
+      }
+      setProviders(data.providers || []);
+      const c: Record<string, number> = {};
+      for (const row of data.counts || []) c[row.outreach_status] = row.count;
+      setCounts(c);
+    } catch (e) {
+      setLoadError(
+        e instanceof Error
+          ? `${e.message} Your saved shops are safe — this is a loading problem, not lost data. Try again in a moment, and tell Chris if it persists.`
+          : "Couldn't load the pipeline. Your saved shops are safe.",
+      );
+    } finally {
+      setLoading(false);
     }
-    const data = await res.json();
-    setProviders(data.providers || []);
-    const c: Record<string, number> = {};
-    for (const row of data.counts || []) c[row.outreach_status] = row.count;
-    setCounts(c);
-    setLoading(false);
   }, [stage, search, router]);
 
   useEffect(() => {
@@ -304,6 +323,7 @@ export default function TeamDashboard() {
                 <div>
                   <label className="text-xs font-medium text-text-secondary block mb-1">Category *</label>
                   <select className={inputCls} value={form.category} onChange={(e) => setField("category", e.target.value)}>
+                    <option value="">Choose a category…</option>
                     {CATEGORIES.map((c) => (
                       <option key={c.value} value={c.value}>{c.label}</option>
                     ))}
@@ -394,6 +414,18 @@ export default function TeamDashboard() {
           {loading ? (
             <div className="p-10 text-center">
               <Loader2 className="w-5 h-5 animate-spin mx-auto text-text-tertiary" />
+            </div>
+          ) : loadError ? (
+            <div className="p-8 text-center">
+              <p className="text-sm font-semibold text-red-700 mb-1">Couldn&apos;t load the pipeline</p>
+              <p className="text-sm text-text-secondary max-w-md mx-auto">{loadError}</p>
+              <button
+                onClick={load}
+                className="mt-4 inline-flex items-center gap-2 px-4 h-9 text-xs font-semibold text-white rounded-lg"
+                style={{ backgroundColor: "#1E6091" }}
+              >
+                Try again
+              </button>
             </div>
           ) : providers.length === 0 ? (
             <div className="p-10 text-center text-sm text-text-secondary">

@@ -8,9 +8,18 @@
  */
 
 import { escapeHtml as esc, safeUrl } from "./escape-html";
+import { categoryLabel } from "./service-categories";
 
 const NOTIFY_TO = "chris@fullysorted.com";
 const FROM = "Fully Sorted <notifications@updates.fullysorted.com>";
+// The FROM subdomain is send-only (no MX record), so replies to it hard-bounce.
+// Every send must carry a reply path that actually receives mail.
+const REPLY_TO = "chris@fullysorted.com";
+
+// CAN-SPAM §7704(a)(5)(A)(iii): commercial email must carry a valid physical
+// postal address. There is no B2B exemption. Override per-environment if needed.
+const POSTAL_ADDRESS =
+  process.env.FS_POSTAL_ADDRESS || "3532 Don Lorenzo, San Diego, CA 92117";
 
 type EmailPayload = {
   to?: string;
@@ -29,7 +38,7 @@ async function sendEmail({ to = NOTIFY_TO, subject, html }: EmailPayload): Promi
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({ from: FROM, to, subject, html });
+    const { error } = await resend.emails.send({ from: FROM, replyTo: REPLY_TO, to, subject, html });
     if (error) {
       console.error("[email] Resend error:", error);
       return false;
@@ -239,6 +248,12 @@ function orderShell(opts: {
   bodyHtml: string;
   ctaLabel?: string;
   ctaUrl?: string;
+  /**
+   * Replaces the default signature line. Pass this rather than string-replacing
+   * the rendered HTML — the old `.replace()` approach broke silently whenever
+   * the footer text changed.
+   */
+  footerHtml?: string;
 }): string {
   return `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a18;">
@@ -249,7 +264,10 @@ function orderShell(opts: {
         ${opts.bodyHtml}
         ${opts.ctaLabel && opts.ctaUrl ? `<div style="margin-top:24px;"><a href="${opts.ctaUrl}" style="display:inline-block;background:${opts.accent};color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">${opts.ctaLabel}</a></div>` : ""}
       </div>
-      <p style="text-align:center;font-size:12px;color:#9a9a8a;margin-top:16px;">Fully Sorted · fullysorted.com</p>
+      <p style="text-align:center;font-size:12px;color:#9a9a8a;margin-top:16px;line-height:1.7;">
+        ${opts.footerHtml || "Fully Sorted · fullysorted.com"}<br/>
+        ${POSTAL_ADDRESS}
+      </p>
     </div>`;
 }
 
@@ -392,6 +410,15 @@ type ProviderInviteData = {
   claimUrl: string;
 };
 
+/**
+ * Footer for the two cold outreach templates. These are commercial email under
+ * CAN-SPAM, so they need a working reply path and a clear opt-out. The postal
+ * address is appended by orderShell for every template.
+ */
+const PROVIDER_EMAIL_FOOTER =
+  "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>" +
+  `Questions, or don't want to hear from us again? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll remove you.`;
+
 // First invite: "we built your listing — one click to approve it."
 export async function sendProviderInvite(d: ProviderInviteData) {
   const firstName = (d.ownerName || "").split(" ")[0];
@@ -402,18 +429,16 @@ export async function sendProviderInvite(d: ProviderInviteData) {
       accent: "#1E6091",
       heading: "Your founding-provider listing is ready",
       bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
-        <p>Thanks for talking with us. As promised, we've set up a <strong>free founding-provider listing</strong> for <strong>${esc(d.businessName)}</strong> in the Fully Sorted ${esc(d.category)} directory for the ${esc(d.location)} area.</p>
+        <p>We've put together a <strong>free founding-provider listing</strong> for <strong>${esc(d.businessName)}</strong> in the Fully Sorted ${esc(categoryLabel(d.category))} directory for the ${esc(d.location)} area. Nothing is published until you say so.</p>
         <p>One click to review it — then choose whichever suits you:</p>
-        <p style="margin:12px 0 0 0;"><strong>Approve &amp; manage</strong> — go live and keep your profile up to date yourself.<br/>
-        <strong>Just list me</strong> — go live as-is, nothing to maintain.<br/>
-        <strong>Remove me</strong> — we take you off and never contact you again.</p>
-        <p>Your founding-provider listing is free and there is no contract — collectors near you find and contact you directly.</p>`,
+        <p style="margin:12px 0 0 0;"><strong>Yes, this is mine — claim it</strong> — goes live now; we'll follow up with a link to edit your details and add photos.<br/>
+        <strong>List it, but I don't want an account</strong> — goes live as-is, nothing to maintain.<br/>
+        <strong>No thanks — remove me</strong> — we take you off and never contact you again.</p>
+        <p>The listing is free and there is no contract.</p>`,
       ctaLabel: "Review your listing",
       ctaUrl: d.claimUrl,
-    }).replace(
-      "Fully Sorted · fullysorted.com",
-      "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>Questions? Just reply to this email.",
-    ),
+      footerHtml: PROVIDER_EMAIL_FOOTER,
+    }),
   });
 }
 
@@ -427,13 +452,11 @@ export async function sendProviderInviteReminder(d: ProviderInviteData) {
       accent: "#1E6091",
       heading: "Your listing is one click away",
       bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
-        <p>Just a quick nudge — your free founding-provider listing for <strong>${esc(d.businessName)}</strong> is built and waiting for your OK. It takes about 30 seconds to review, and you can choose to manage it, have us list you as-is, or remove it entirely.</p>`,
+        <p>Just a quick nudge — your free founding-provider listing for <strong>${esc(d.businessName)}</strong> is built and waiting for your OK. It takes about 30 seconds to review, and you can choose to claim it, have us list it as-is, or remove it entirely.</p>`,
       ctaLabel: "Review your listing",
       ctaUrl: d.claimUrl,
-    }).replace(
-      "Fully Sorted · fullysorted.com",
-      "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>Questions? Just reply to this email.",
-    ),
+      footerHtml: PROVIDER_EMAIL_FOOTER,
+    }),
   });
 }
 

@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
 
   if (!businessName || !ownerName || !email || !category || !location) {
     return NextResponse.json(
-      { error: 'businessName, ownerName, email, category, and location are required' },
+      { error: 'Business name, owner name, email, category and location are all required.' },
       { status: 400 },
     );
   }

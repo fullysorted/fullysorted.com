@@ -12,9 +12,13 @@ import { NextRequest } from 'next/server';
  * without touching ADMIN_SECRET.
  */
 export function isTeam(request: NextRequest): boolean {
+  // Trimmed on both sides to match the login route — a TEAM_SECRET pasted into
+  // Vercel with a trailing newline must not invalidate every session.
+  const teamSecret = process.env.TEAM_SECRET?.trim();
   const teamCookie = request.cookies.get('fs_team')?.value;
-  if (process.env.TEAM_SECRET && teamCookie === process.env.TEAM_SECRET) return true;
+  if (teamSecret && teamCookie === teamSecret) return true;
+  const adminSecret = process.env.ADMIN_SECRET?.trim();
   const adminCookie = request.cookies.get('fs_admin')?.value;
-  if (process.env.ADMIN_SECRET && adminCookie === process.env.ADMIN_SECRET) return true;
+  if (adminSecret && adminCookie === adminSecret) return true;
   return false;
 }

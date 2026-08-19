@@ -11,9 +11,23 @@ export async function POST(request: NextRequest) {
   if (limited) return limited;
 
   const { secret } = await request.json();
-  const teamSecret = process.env.TEAM_SECRET;
+  const teamSecret = process.env.TEAM_SECRET?.trim();
 
-  if (!teamSecret || secret !== teamSecret) {
+  // Server-side misconfiguration is not the same as a wrong code. Saying so
+  // saves a support call — the rep otherwise retries until the rate limit
+  // locks him out of a login that was never going to work.
+  if (!teamSecret) {
+    return NextResponse.json(
+      { error: 'Team access is not configured yet. Contact Chris.' },
+      { status: 503 },
+    );
+  }
+
+  // Codes are pasted out of email; a trailing space or newline comes along for
+  // the ride and reads to the user as "the code is wrong".
+  const supplied = typeof secret === 'string' ? secret.trim() : '';
+
+  if (supplied !== teamSecret) {
     return NextResponse.json({ error: 'Invalid access code' }, { status: 401 });
   }
 

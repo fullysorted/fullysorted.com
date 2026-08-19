@@ -72,13 +72,14 @@ export default function ClaimActions({
       <div className="bg-white rounded-2xl border border-border p-8 text-center">
         <h3 className="font-display font-semibold tracking-tight text-xl text-foreground mb-2">Welcome aboard.</h3>
         <p className="text-sm text-text-secondary mb-5">
-          <strong>{businessName}</strong> is live as a founding provider. Create your account to manage your profile, respond to inquiries, and update your specialties.
+          <strong>{businessName}</strong> is live as a founding provider. We&apos;ll email you a link to edit your
+          profile and add photos within one business day — there&apos;s nothing you need to set up now.
         </p>
         <Link
-          href="/sign-up"
+          href={`/services/${slug}`}
           className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
         >
-          Create your account
+          View your listing
         </Link>
       </div>
     );
@@ -101,7 +102,7 @@ export default function ClaimActions({
               {submitting === 'claim' ? 'Saving…' : 'Yes, this is mine — claim it'}
             </p>
             <p className="text-xs text-text-secondary">
-              Goes live immediately. You&apos;ll create a free account next so you can edit your profile, see who&apos;s reaching out, and add photos.
+              Goes live immediately. We&apos;ll email you a link to edit your profile and add photos.
             </p>
           </div>
           <span className="text-xl" style={{ color: 'var(--accent)' }}>→</span>
