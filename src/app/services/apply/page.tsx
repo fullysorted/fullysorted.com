@@ -60,7 +60,7 @@ export default function ApplyChooserPage() {
             An established company with a storefront, team, or brand. Get a directory profile collectors trust.
           </p>
           <ul className="space-y-2 text-sm text-text-secondary mb-6 flex-1">
-            {["Company directory listing", "Team & business details", "Founding Provider badge", "Reviewed personally by Chris"].map(f => (
+            {["Company directory listing", "Team & business details", "Founding Provider badge", "Lightly curated"].map(f => (
               <li key={f} className="flex items-start gap-2"><Check className="w-4 h-4 text-green mt-0.5 shrink-0" /> {f}</li>
             ))}
           </ul>

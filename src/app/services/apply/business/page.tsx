@@ -84,7 +84,7 @@ export default function ApplyBusinessPage() {
           Get found by the collectors <span className="text-accent">who actually pay.</span>
         </h1>
         <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-          For established shops and companies — detailers, mechanics, inspectors, transporters, photographers and storage. Reviewed personally by Chris Peterson.
+          For established shops and companies — detailers, mechanics, inspectors, transporters, photographers and storage. Lightly curated, for your pleasure.
         </p>
       </motion.div>
 

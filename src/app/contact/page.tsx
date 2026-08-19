@@ -79,7 +79,7 @@ export default function ContactPage() {
                   {
                     icon: Clock,
                     label: "Response Time",
-                    value: "Usually within a few hours. I read every message myself.",
+                    value: "Usually within a few hours.",
                     href: null,
                   },
                 ].map(({ icon: Icon, label, value, href }) => (

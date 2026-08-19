@@ -74,7 +74,7 @@ export function ContributeBox({ modelId, modelName }: { modelId: number; modelNa
           <span className="text-sm font-semibold text-foreground">Owned one? Know something we don&apos;t?</span>
         </span>
         <span className="block mt-1 pl-[26px] text-xs text-text-secondary">
-          Corrections with a source get the page updated and you credited. Chris reads every one.
+          Corrections with a source get the page updated and you credited. Every one gets read.
         </span>
       </button>
     );

@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
     success: true,
     message:
       kind === 'correction'
-        ? "Thank you — Chris reads every correction personally. If it checks out, the page gets updated and you'll be credited."
-        : "Thank you — Chris reads every one of these. If it goes on the page, you'll be credited.",
+        ? "Thank you — every correction gets read. If it checks out, the page gets updated and you'll be credited."
+        : "Thank you — every one of these gets read. If it goes on the page, you'll be credited.",
   });
 }

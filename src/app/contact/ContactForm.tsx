@@ -59,7 +59,7 @@ export function ContactForm() {
         <div>
           <h3 className="font-bold text-lg mb-1" style={{ color: "#1a1a18" }}>Message sent</h3>
           <p className="text-sm" style={{ color: "#6b6b5e" }}>
-            Chris will be in touch within a few hours. Thanks for reaching out.
+            We&apos;ll be in touch within a few hours. Thanks for reaching out.
           </p>
         </div>
       </div>
