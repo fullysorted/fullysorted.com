@@ -22,7 +22,7 @@ export function FoundingBand() {
           Founding members
         </span>
         <span className="text-sm" style={{ color: "#C9D4E2" }}>
-          We&apos;re signing our first specialists across Southern California — photographers,
+          We&apos;re signing our first specialists now — photographers,
           inspectors, detailers, storage, transport and mechanics.
         </span>
         <Link

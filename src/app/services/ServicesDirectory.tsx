@@ -334,7 +334,7 @@ export default function ServicesDirectory() {
             emptyLine={
               providers.length === 0
                 ? "We're building the directory now — apply below to be one of the first shops listed."
-                : 'No shops match this search yet.'
+                : 'No shops match this search yet. Tell us who should be here and we will go and ask them.'
             }
           />
 
@@ -347,7 +347,7 @@ export default function ServicesDirectory() {
             emptyLine={
               providers.length === 0
                 ? "None listed yet. If you work on collector cars solo, this is your section."
-                : 'No independent specialists match this search yet.'
+                : 'No independent specialists match this search yet. Tell us who should be here and we will go and ask them.'
             }
             footerLink={{ href: '/gigs', label: 'Browse fixed-price gigs' }}
           />

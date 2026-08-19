@@ -84,7 +84,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "Where do you have coverage?",
-        a: "Southern California first. We are signing founding specialists region by region rather than spreading thin nationally, so the directory is deep where you actually need it instead of showing you one result four hundred miles away. Enclosed transport is the exception — those providers work nationwide.",
+        a: "It depends on the service. Enclosed transport, pre-purchase inspection and photography work anywhere in the country — with an inspection you are looking for someone near the car, not near you. The marketplace is national as well, because cars ship. The trades that need somebody physically standing next to your car — detailing, storage, mechanical — we deepen city by city rather than claim coverage we do not have. If nobody is listed near you yet, tell us who should be and we will go and ask them.",
       },
       {
         q: "Can someone inspect a car that isn't near me?",

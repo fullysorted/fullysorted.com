@@ -25,6 +25,12 @@ interface BrowseClientProps {
   hasRealListings?: boolean;
 }
 
+/** "San Diego, CA" -> "CA". Returns "" when the location has no state suffix. */
+function stateOf(loc?: string | null): string {
+  const part = (loc ?? "").split(",").pop() ?? "";
+  return part.trim().toUpperCase();
+}
+
 const EMPTY_FILTERS = {
   yearMin: "", yearMax: "", priceMin: "", priceMax: "",
   transmission: "Any", condition: "Any", location: "Anywhere",
@@ -48,6 +54,16 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
     (k) => filters[k as keyof typeof EMPTY_FILTERS] !== EMPTY_FILTERS[k as keyof typeof EMPTY_FILTERS]
   );
 
+  // Location filter is derived from the listings themselves, so the marketplace
+  // is national by default and the option list grows as inventory spreads.
+  const locationOptions = useMemo(
+    () => [
+      "Anywhere",
+      ...Array.from(new Set(initialListings.map((v) => stateOf(v.location)).filter(Boolean))).sort(),
+    ],
+    [initialListings]
+  );
+
   const filtered = useMemo(() => initialListings.filter((v) => {
     const matchesCategory =
       activeCategory === "All" || v.category === activeCategory;
@@ -67,10 +83,7 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
     if (filters.transmission !== "Any" &&
         !(v.transmission ?? "").toLowerCase().includes(filters.transmission.toLowerCase())) return false;
     if (filters.condition !== "Any" && v.condition !== filters.condition) return false;
-    if (filters.location !== "Anywhere" &&
-        !(v.location ?? "").toLowerCase().includes(
-          filters.location === "California" ? "ca" : filters.location.toLowerCase()
-        )) return false;
+    if (filters.location !== "Anywhere" && stateOf(v.location) !== filters.location) return false;
 
     return matchesCategory && matchesSearch;
   }), [initialListings, activeCategory, searchQuery, filters]);
@@ -257,10 +270,9 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               </label>
               <select value={filters.location} onChange={(e) => setFilter("location", e.target.value)}
                 className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent bg-white">
-                <option>Anywhere</option>
-                <option>San Diego, CA</option>
-                <option>Los Angeles, CA</option>
-                <option>California</option>
+                {locationOptions.map((loc) => (
+                  <option key={loc}>{loc}</option>
+                ))}
               </select>
             </div>
             {filtersActive && (

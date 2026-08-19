@@ -7,20 +7,20 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Collector Car Events",
   description:
-    "The collector car events Chris Peterson actually attends — concours, auctions, tours, and cars-and-coffee meets that are worth your weekend. Curated personally.",
+    "Concours, auctions, tours and cars-and-coffee meets worth your weekend — the collector car events we actually turn up to. Lightly curated.",
   alternates: { canonical: "/events" },
   openGraph: {
     type: "website",
     title: "Collector Car Events",
     description:
-      "The collector car events Chris Peterson actually attends — curated personally.",
+      "The collector car events we actually turn up to. Lightly curated.",
     url: "https://fullysorted.com/events",
   },
   twitter: {
     card: "summary_large_image",
     title: "Collector Car Events",
     description:
-      "The collector car events Chris Peterson actually attends — curated personally.",
+      "The collector car events we actually turn up to. Lightly curated.",
   },
 };
 
@@ -93,7 +93,7 @@ export default function EventsPage() {
             The events worth your weekend.
             <br />
             <span style={{ color: "#D9BC7A" }}>
-              Curated personally.
+              Lightly curated.
             </span>
           </h1>
           <p className="text-lg sm:text-xl leading-relaxed max-w-3xl text-white/85">

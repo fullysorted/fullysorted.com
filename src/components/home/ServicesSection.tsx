@@ -69,8 +69,8 @@ export function ServicesSection() {
           </h2>
           <p className="mt-4 text-base max-w-2xl leading-relaxed" style={{ color: "#6b6b5e" }}>
             {verbs.charAt(0).toUpperCase() + verbs.slice(1)}. We&apos;re signing founding
-            specialists across Southern California first, so the directory is deep where
-            you actually need it rather than thin everywhere.
+            specialists region by region, so the directory is deep where you actually
+            need it rather than thin everywhere.
           </p>
         </motion.div>
 
