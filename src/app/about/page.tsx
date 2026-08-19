@@ -6,7 +6,7 @@ import { ArrowRight, Mail, Wrench, TrendingUp, ShieldCheck, Heart } from "lucide
 export const metadata: Metadata = {
   title: "About Fully Sorted",
   description:
-    "Fully Sorted is on a mission to make collector car ownership easier — and to keep the skilled specialists who make it possible thriving in the process.",
+    "What \"fully sorted\" means, and why we named a company after it. Fully Sorted is on a mission to make collector car ownership easier — and to keep the skilled specialists who make it possible thriving in the process.",
 };
 
 const PILLARS = [
@@ -30,7 +30,7 @@ const PILLARS = [
 const STATS = [
   { value: "$0", label: "Buyer's premium" },
   { value: "From $9.99", label: "Flat listing fee" },
-  { value: "7", label: "Service categories" },
+  { value: "8", label: "Service categories" },
 ];
 
 export default function AboutPage() {
@@ -129,6 +129,37 @@ export default function AboutPage() {
           className="rounded-2xl p-8 sm:p-10 border space-y-8 text-base leading-relaxed"
           style={{ background: "#fff", borderColor: "rgba(0,0,0,0.08)", color: "#3a3a30" }}
         >
+          <div>
+            <h2 className="font-display text-2xl font-semibold tracking-tight mb-3" style={{ color: "#1a1a18" }}>
+              What &ldquo;fully sorted&rdquo; actually means
+            </h2>
+            <p>
+              It&apos;s British. In the UK, <em>sorted</em> means handled — dealt with, in
+              order, nothing left hanging. Tell someone in London a job is sorted and
+              they know you&apos;ve finished it.
+            </p>
+            <p className="mt-4">
+              Car people took the word somewhere more specific. A <strong>sorted</strong>{" "}
+              car is one whose faults have been chased down and fixed properly rather
+              than bodged or ignored. It starts on the button. The temperature gauge
+              sits where it should. Nothing weeps onto the garage floor. It isn&apos;t
+              necessarily restored and it certainly isn&apos;t concours — it&apos;s just{" "}
+              <em>right</em>, and you can get in and drive it without running a
+              checklist in your head.
+            </p>
+            <p className="mt-4">
+              Getting there is the hard part, because a sorted car is rarely the work of
+              one person. It&apos;s a good inspector before you buy, a mechanic who knows
+              the model, someone who will do the paint properly, a transporter who
+              understands what they are carrying, somewhere dry to keep it between
+              drives.
+            </p>
+            <p className="mt-4">
+              That is the whole company, really. We are the part between you and the
+              people who get your car fully sorted.
+            </p>
+          </div>
+
           <div>
             <h2 className="font-display text-2xl font-semibold tracking-tight mb-3" style={{ color: "#1a1a18" }}>
               Why this exists

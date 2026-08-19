@@ -239,6 +239,11 @@ const SECTIONS: FaqSection[] = [
     tint: "#6B4E71",
     items: [
       {
+        q: "What does \"fully sorted\" mean?",
+        a: "It is British. In the UK, 'sorted' means handled — dealt with, in order, nothing left hanging. Car people narrowed it further: a sorted car is one whose faults have been chased down and fixed properly rather than bodged or ignored. It starts on the button, the temperature gauge sits where it should, nothing weeps onto the garage floor. Not restored, not concours — just right, so you can get in and drive without running a checklist in your head. Getting a car there usually takes several different specialists, which is what this site is for.",
+        link: { href: "/about", label: "The longer version" },
+      },
+      {
         q: "How does Fully Sorted make money?",
         a: "Two ways today. Sellers pay a one-time flat fee to list a car. Providers pay a platform fee on fixed-price gigs booked through the site. That is the whole list — no commission on a car sale, no buyer's premium, no cut of a quote you agree directly with a specialist, and nothing sold to advertisers in the directory. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
       },
