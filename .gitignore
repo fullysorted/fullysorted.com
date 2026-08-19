@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Cowork session scratch.
+# The workspace folder is mounted over FUSE, and a delete on that mount is not
+# permitted — so stale git locks get MOVED here rather than removed. Left
+# untracked these show up as dozens of 0-byte files in every commit dialog,
+# which is how the wrong thing eventually gets committed. Safe to empty by hand.
+/_stale_git_locks/
+/_to_delete/
+/_to_delete_*/
+*.tgz
