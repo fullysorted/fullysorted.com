@@ -2,10 +2,11 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import {
   UserPlus, Search, Loader2, Copy, Check, Mail, Phone, MapPin,
   Send, BellRing, XCircle, LogOut, ChevronDown, ChevronUp, ExternalLink,
-  StickyNote, Pencil,
+  StickyNote, Pencil, ImageIcon, Upload,
 } from "lucide-react";
 import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 
@@ -28,6 +29,7 @@ interface PipelineProvider {
   claim_token: string | null;
   slug: string;
   created_at: string;
+  avatar_url: string | null;
 }
 
 const CATEGORIES = CATEGORY_OPTIONS;
@@ -58,8 +60,87 @@ const EMPTY_FORM = {
   // "is a detailing specialist".
   businessName: "", ownerName: "", email: "", phone: "", category: "",
   location: "", website: "", instagram: "", specialties: "", yearsInBusiness: "",
-  notes: "",
+  notes: "", avatarUrl: "",
 };
+
+/* ─── Photo uploader ────────────────────────────────────
+   Grab the shop's logo or a workshop photo from their website or Instagram,
+   save it locally, and upload it here. Required — a listing without a photo
+   is a listing nobody clicks. */
+function PhotoUpload({
+  value, onChange,
+}: {
+  value: string;
+  onChange: (url: string) => void;
+}) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // allow re-selecting the same file after an error
+    if (!file) return;
+    setError("");
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("folder", "providers");
+      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Upload failed — try again.");
+      onChange(data.url);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed — try again.");
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <div>
+      <div className="flex items-center gap-3">
+        {value ? (
+          <Image
+            src={value}
+            alt="Shop photo preview"
+            width={56}
+            height={56}
+            className="w-14 h-14 rounded-lg object-cover border border-border bg-white"
+            unoptimized
+          />
+        ) : (
+          <div className="w-14 h-14 rounded-lg border border-dashed border-border bg-white flex items-center justify-center">
+            <ImageIcon className="w-5 h-5 text-text-tertiary" />
+          </div>
+        )}
+        <div className="flex-1">
+          <label
+            className={`inline-flex items-center gap-1.5 px-3 h-9 text-xs font-semibold rounded-lg border cursor-pointer transition-colors ${
+              uploading
+                ? "border-border text-text-tertiary bg-gray-50"
+                : "border-border text-foreground bg-white hover:bg-gray-50"
+            }`}
+          >
+            {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
+            {uploading ? "Uploading…" : value ? "Replace photo" : "Upload photo"}
+            <input
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/heic"
+              className="hidden"
+              disabled={uploading}
+              onChange={handleFile}
+            />
+          </label>
+          <p className="text-[11px] text-text-tertiary mt-1">
+            JPEG/PNG/WebP, max 10MB. Grab their logo or a workshop shot from their website or Instagram.
+          </p>
+        </div>
+      </div>
+      {error && <p className="text-xs text-red-600 font-medium mt-1.5">{error}</p>}
+    </div>
+  );
+}
 
 /* ─── Page ──────────────────────────────────────────────── */
 export default function TeamDashboard() {
@@ -80,6 +161,9 @@ export default function TeamDashboard() {
   const [copiedId, setCopiedId] = useState<number | null>(null);
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [noteDraft, setNoteDraft] = useState("");
+  const [fixEmail, setFixEmail] = useState("");
+  const [fixPhone, setFixPhone] = useState("");
+  const [fixPhoto, setFixPhoto] = useState("");
   const [rowMsg, setRowMsg] = useState<{ id: number; msg: string; err?: boolean } | null>(null);
 
   useEffect(() => {
@@ -131,6 +215,12 @@ export default function TeamDashboard() {
   }
 
   async function addProvider(sendInvite: boolean) {
+    // The API enforces this too — checking here saves the round trip and
+    // points at the exact field.
+    if (!form.avatarUrl) {
+      setFormError("A shop photo or logo is required — upload one above the buttons.");
+      return;
+    }
     setSubmitting(sendInvite ? "invite" : "only");
     setFormError("");
     setFormSuccess("");
@@ -223,6 +313,35 @@ export default function TeamDashboard() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to save");
       setRowMsg({ id: p.id, msg: "Notes saved" });
+      load();
+    } catch (e) {
+      setRowMsg({ id: p.id, msg: e instanceof Error ? e.message : "Failed to save", err: true });
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  // Fix a mistyped email/phone or swap the photo — PATCH only sends fields
+  // that actually changed, so an untouched field is never overwritten.
+  async function saveDetails(p: PipelineProvider) {
+    const payload: Record<string, unknown> = { id: p.id };
+    if (fixEmail && fixEmail !== p.email) payload.email = fixEmail;
+    if (fixPhone !== (p.phone || "")) payload.phone = fixPhone;
+    if (fixPhoto && fixPhoto !== (p.avatar_url || "")) payload.avatarUrl = fixPhoto;
+    if (Object.keys(payload).length === 1) {
+      setRowMsg({ id: p.id, msg: "Nothing changed." });
+      return;
+    }
+    setBusyId(p.id);
+    try {
+      const res = await fetch("/api/team/providers", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to save");
+      setRowMsg({ id: p.id, msg: "Details updated" });
       load();
     } catch (e) {
       setRowMsg({ id: p.id, msg: e instanceof Error ? e.message : "Failed to save", err: true });
@@ -349,6 +468,10 @@ export default function TeamDashboard() {
                   <label className="text-xs font-medium text-text-secondary block mb-1">Specialties (comma-separated)</label>
                   <input className={inputCls} value={form.specialties} onChange={(e) => setField("specialties", e.target.value)} placeholder="Ceramic coating, paint correction, concours prep" />
                 </div>
+                <div className="sm:col-span-2">
+                  <label className="text-xs font-medium text-text-secondary block mb-1">Shop photo or logo *</label>
+                  <PhotoUpload value={form.avatarUrl} onChange={(url) => setField("avatarUrl", url)} />
+                </div>
                 <div>
                   <label className="text-xs font-medium text-text-secondary block mb-1">Your name (for the record)</label>
                   <input className={inputCls} value={addedBy} onChange={(e) => setAddedBy(e.target.value)} placeholder="e.g. Dave" />
@@ -441,6 +564,23 @@ export default function TeamDashboard() {
                 return (
                   <li key={p.id} className="px-5 py-4">
                     <div className="flex flex-wrap items-center gap-3">
+                      {p.avatar_url ? (
+                        <Image
+                          src={p.avatar_url}
+                          alt=""
+                          width={40}
+                          height={40}
+                          className="w-10 h-10 rounded-lg object-cover border border-border bg-white shrink-0"
+                          unoptimized
+                        />
+                      ) : (
+                        <div
+                          className="w-10 h-10 rounded-lg border border-dashed border-border bg-white flex items-center justify-center shrink-0"
+                          title="No photo yet — add one in the details panel"
+                        >
+                          <ImageIcon className="w-4 h-4 text-text-tertiary" />
+                        </div>
+                      )}
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
                           <p className="text-sm font-semibold text-foreground truncate">{p.business_name}</p>
@@ -498,6 +638,9 @@ export default function TeamDashboard() {
                           onClick={() => {
                             setExpandedId(expanded ? null : p.id);
                             setNoteDraft(p.outreach_notes || "");
+                            setFixEmail(p.email || "");
+                            setFixPhone(p.phone || "");
+                            setFixPhoto(p.avatar_url || "");
                             setRowMsg(null);
                           }}
                           className="inline-flex items-center gap-1.5 px-2.5 h-8 text-xs font-medium rounded-lg border border-border text-text-secondary bg-white hover:bg-gray-50"
@@ -538,6 +681,41 @@ export default function TeamDashboard() {
                               <span className="text-[11px] text-text-tertiary">Added by {p.outreach_added_by} · {timeAgo(p.created_at)}</span>
                             )}
                           </div>
+                        </div>
+                        <div className="pt-3 border-t border-border">
+                          <p className="text-xs font-semibold text-text-secondary mb-2">
+                            Fix details (email, phone, photo)
+                          </p>
+                          <div className="grid sm:grid-cols-2 gap-3 mb-3">
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Email</label>
+                              <input
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                type="email"
+                                value={fixEmail}
+                                onChange={(e) => setFixEmail(e.target.value)}
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Phone</label>
+                              <input
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                value={fixPhone}
+                                onChange={(e) => setFixPhone(e.target.value)}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-3">
+                            <PhotoUpload value={fixPhoto} onChange={setFixPhoto} />
+                          </div>
+                          <button
+                            onClick={() => saveDetails(p)}
+                            disabled={busyId === p.id}
+                            className="inline-flex items-center gap-1.5 px-3 h-8 text-xs font-semibold text-white rounded-lg disabled:opacity-60"
+                            style={{ backgroundColor: "#1E6091" }}
+                          >
+                            <Check className="w-3 h-3" /> Save details
+                          </button>
                         </div>
                         <div className="pt-2 border-t border-border">
                           <button

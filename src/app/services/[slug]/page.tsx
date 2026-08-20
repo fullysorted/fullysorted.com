@@ -7,6 +7,7 @@ import { getDb, schema } from '@/lib/db';
 import { and, eq } from 'drizzle-orm';
 import type { ServiceProvider } from '@/lib/db/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
+import ProviderInquiryForm from './ProviderInquiryForm';
 
 export const dynamic = 'force-dynamic';
 
@@ -78,6 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       type: 'profile',
       url: `https://fullysorted.com/services/${provider.slug}`,
+      ...(provider.avatarUrl ? { images: [{ url: provider.avatarUrl }] } : {}),
     },
   };
 }
@@ -105,6 +107,7 @@ export default async function ProviderProfilePage({ params }: Props) {
     knowsAbout: specialties,
     priceRange: provider.priceRange ?? '$$',
   };
+  if (provider.avatarUrl) jsonLd.image = provider.avatarUrl;
   if (provider.phone) jsonLd.telephone = provider.phone;
   if (provider.website) jsonLd.sameAs = [normalizeWebsite(provider.website)];
   if (hasRating) {
@@ -119,49 +122,58 @@ export default async function ProviderProfilePage({ params }: Props) {
     <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
       <JsonLd data={jsonLd} />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-        {/* Back link */}
-        <Link
-          href="/services"
-          className="inline-flex items-center gap-1.5 text-sm font-medium mb-6 transition-colors text-text-secondary hover:text-accent"
-        >
-          <span aria-hidden>←</span> Back to directory
-        </Link>
-
-        {/* Profile card */}
+      {/* ─── Hero band — full-bleed photography under a navy overlay ─── */}
+      <div className="relative overflow-hidden">
+        <Image
+          src={CATEGORY_PHOTOS[provider.category?.toLowerCase() ?? ''] ?? DEFAULT_PHOTO}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         <div
-          className="rounded-2xl overflow-hidden"
-          style={{
-            background: 'var(--bg-white)',
-            border: '1px solid var(--border-light)',
-            boxShadow: 'var(--shadow-lg)',
-          }}
-        >
-          {/* Header band — photographic backdrop under racing-green overlay */}
-          <div
-            className="relative overflow-hidden px-6 sm:px-10 py-8 sm:py-10"
-            style={{ borderBottom: '1px solid var(--border-light)' }}
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(rgba(15,32,50,0.72), rgba(15,32,50,0.9))' }}
+        />
+        <div className="film-grain absolute inset-0 opacity-[0.05] pointer-events-none" />
+        <div className="speed-lines absolute inset-0 opacity-[0.04] pointer-events-none" />
+        <div
+          className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+          style={{ background: 'linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)' }}
+        />
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-10 sm:pt-10 sm:pb-14">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 transition-colors hover:text-white"
+            style={{ color: 'rgba(245,239,230,0.7)' }}
           >
-            <Image
-              src={CATEGORY_PHOTOS[provider.category?.toLowerCase() ?? ''] ?? DEFAULT_PHOTO}
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 896px) 100vw, 896px"
-              className="object-cover"
-            />
-            <div
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(rgba(15,32,50,0.68), rgba(15,32,50,0.84))' }}
-            />
-            <div className="film-grain absolute inset-0 opacity-[0.05] pointer-events-none" />
-            <div className="speed-lines absolute inset-0 opacity-[0.04] pointer-events-none" />
-            {/* Top accent line */}
-            <div
-              className="absolute top-0 left-0 right-0 h-px pointer-events-none"
-              style={{ background: 'linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)' }}
-            />
-            <div className="relative">
+            <span aria-hidden>←</span> Back to directory
+          </Link>
+
+          <div className="flex flex-col sm:flex-row sm:items-end gap-6">
+            {/* The shop's own photo — required at onboarding, so every profile
+                leads with the business rather than a stock image. */}
+            {provider.avatarUrl && (
+              <div
+                className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-2xl overflow-hidden"
+                style={{
+                  boxShadow: '0 20px 50px -12px rgba(0,0,0,0.6)',
+                  border: '3px solid rgba(245,239,230,0.92)',
+                }}
+              >
+                <Image
+                  src={provider.avatarUrl}
+                  alt={`${provider.businessName} — photo`}
+                  fill
+                  sizes="144px"
+                  className="object-cover"
+                />
+              </div>
+            )}
+
+            <div className="min-w-0">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-6 h-px" style={{ background: 'var(--accent-gold)' }} />
                 <span
@@ -209,7 +221,7 @@ export default async function ProviderProfilePage({ params }: Props) {
                 {provider.priceRange && (
                   <span
                     className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-                    style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                    style={{ background: 'rgba(245,239,230,0.92)', color: 'var(--text-primary)' }}
                   >
                     {provider.priceRange}
                   </span>
@@ -217,9 +229,21 @@ export default async function ProviderProfilePage({ params }: Props) {
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Body */}
-          <div className="px-6 sm:px-10 py-8 sm:py-10">
+      {/* ─── Body — content left, contact card right ─── */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 items-start">
+          {/* Left column */}
+          <div
+            className="rounded-2xl px-6 sm:px-8 py-7 sm:py-8"
+            style={{
+              background: 'var(--bg-white)',
+              border: '1px solid var(--border-light)',
+              boxShadow: 'var(--shadow-lg)',
+            }}
+          >
             {/* Description */}
             <section className="mb-8">
               <h2
@@ -260,52 +284,74 @@ export default async function ProviderProfilePage({ params }: Props) {
             )}
 
             {/* Quick facts */}
-            {(provider.yearsInBusiness || provider.priceRange) && (
-              <section
-                className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 pt-6"
-                style={{ borderTop: '1px solid var(--border-light)' }}
-              >
-                {provider.yearsInBusiness && (
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>
-                      Years in business
-                    </p>
-                    <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
-                      {provider.yearsInBusiness}
-                    </p>
-                  </div>
-                )}
-                {provider.priceRange && (
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>
-                      Price range
-                    </p>
-                    <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
-                      {provider.priceRange}
-                    </p>
-                  </div>
-                )}
-              </section>
-            )}
-
-            {/* Contact */}
             <section
-              className="pt-6"
+              className="grid grid-cols-2 gap-4 pt-6"
               style={{ borderTop: '1px solid var(--border-light)' }}
             >
-              <h2
-                className="text-xs font-bold uppercase tracking-widest mb-4"
-                style={{ color: 'var(--text-tertiary)' }}
-              >
-                Contact
-              </h2>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>
+                  Location
+                </p>
+                <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                  {provider.location}
+                </p>
+              </div>
+              {provider.yearsInBusiness && (
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>
+                    Years in business
+                  </p>
+                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                    {provider.yearsInBusiness}
+                  </p>
+                </div>
+              )}
+              {provider.priceRange && (
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>
+                    Price range
+                  </p>
+                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                    {provider.priceRange}
+                  </p>
+                </div>
+              )}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>
+                  Category
+                </p>
+                <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                  {categoryLabel(provider.category)}
+                </p>
+              </div>
+            </section>
+          </div>
 
-              <div className="flex flex-wrap items-center gap-3 mb-6">
+          {/* Right column — sticky contact card */}
+          <aside
+            className="rounded-2xl px-6 py-7 lg:sticky lg:top-6"
+            style={{
+              background: 'var(--bg-white)',
+              border: '1px solid var(--border-light)',
+              boxShadow: 'var(--shadow-lg)',
+            }}
+          >
+            <h2
+              className="text-xs font-bold uppercase tracking-widest mb-4"
+              style={{ color: 'var(--text-tertiary)' }}
+            >
+              Get in touch
+            </h2>
+
+            <ProviderInquiryForm slug={provider.slug} businessName={provider.businessName} />
+
+            {(provider.phone || provider.website || igHandle) && (
+              <div className="mt-6 pt-5 space-y-2.5" style={{ borderTop: '1px solid var(--border-light)' }}>
                 {provider.phone && (
                   <a
                     href={`tel:${provider.phone}`}
-                    className="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-xl transition-colors"
-                    style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                    className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-accent"
+                    style={{ color: 'var(--text-primary)' }}
                   >
                     📞 {provider.phone}
                   </a>
@@ -315,8 +361,8 @@ export default async function ProviderProfilePage({ params }: Props) {
                     href={normalizeWebsite(provider.website)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-xl transition-colors"
-                    style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                    className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-accent"
+                    style={{ color: 'var(--text-primary)' }}
                   >
                     🌐 {provider.website.replace(/^https?:\/\//i, '').replace(/\/$/, '')}
                   </a>
@@ -326,27 +372,19 @@ export default async function ProviderProfilePage({ params }: Props) {
                     href={`https://instagram.com/${igHandle}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-xl transition-colors"
-                    style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                    className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-accent"
+                    style={{ color: 'var(--text-primary)' }}
                   >
                     @ {igHandle}
                   </a>
                 )}
               </div>
-
-              {/* Primary CTA */}
-              <a
-                href={`mailto:${provider.email}?subject=${encodeURIComponent(`Inquiry via Fully Sorted — ${provider.businessName}`)}`}
-                className="shine inline-flex items-center justify-center gap-2 text-sm font-semibold text-white px-6 py-3 rounded-xl transition-all bg-accent hover:bg-accent-hover hover:-translate-y-0.5"
-              >
-                Contact {provider.businessName}
-              </a>
-            </section>
-          </div>
+            )}
+          </aside>
         </div>
 
         {/* Footer note */}
-        <p className="text-xs text-center mt-6" style={{ color: 'var(--text-tertiary)' }}>
+        <p className="text-xs text-center mt-8" style={{ color: 'var(--text-tertiary)' }}>
           Listed in the Fully Sorted directory ·{' '}
           <Link href="/services" className="underline">
             browse more specialists

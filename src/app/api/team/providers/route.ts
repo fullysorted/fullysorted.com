@@ -24,6 +24,26 @@ async function getSql() {
 async function ensureColumns(sql: Awaited<ReturnType<typeof getSql>>) {
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_notes TEXT`;
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_added_by VARCHAR(100)`;
+  // avatar_url is in the drizzle schema (Phase 4) but may not exist on older
+  // prod tables — the setup route that adds it is manual. Cheap insurance.
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS avatar_url TEXT`;
+}
+
+// A provider photo must be one WE host (Vercel Blob). Stricter than "any
+// https URL" on purpose: next/image throws at render time for hosts that
+// aren't whitelisted in next.config, so accepting an arbitrary URL here
+// would let one bad row 500 the public profile page. The console's uploader
+// always produces a Blob URL, so this costs nothing in practice.
+function isValidImageUrl(u: string): boolean {
+  try {
+    const parsed = new URL(u);
+    return (
+      parsed.protocol === 'https:' &&
+      parsed.hostname.endsWith('.public.blob.vercel-storage.com')
+    );
+  } catch {
+    return false;
+  }
 }
 
 // GET /api/team/providers?stage=all|staged|sent|claimed|list_only&q=...
@@ -49,7 +69,7 @@ export async function GET(request: NextRequest) {
     rows = await sql`
       SELECT id, business_name, owner_name, email, phone, category, location, website,
              status, outreach_status, outreach_sent_at, outreach_responded_at,
-             outreach_notes, outreach_added_by, claim_token, slug, created_at
+             outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url
       FROM service_providers
       WHERE outreach_status = ${stageFilter}
         AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
@@ -59,7 +79,7 @@ export async function GET(request: NextRequest) {
     rows = await sql`
       SELECT id, business_name, owner_name, email, phone, category, location, website,
              status, outreach_status, outreach_sent_at, outreach_responded_at,
-             outreach_notes, outreach_added_by, claim_token, slug, created_at
+             outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url
       FROM service_providers
       WHERE outreach_status = ${stageFilter}
       ORDER BY created_at DESC LIMIT ${limit}
@@ -68,7 +88,7 @@ export async function GET(request: NextRequest) {
     rows = await sql`
       SELECT id, business_name, owner_name, email, phone, category, location, website,
              status, outreach_status, outreach_sent_at, outreach_responded_at,
-             outreach_notes, outreach_added_by, claim_token, slug, created_at
+             outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url
       FROM service_providers
       WHERE outreach_status IS NOT NULL
         AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
@@ -78,7 +98,7 @@ export async function GET(request: NextRequest) {
     rows = await sql`
       SELECT id, business_name, owner_name, email, phone, category, location, website,
              status, outreach_status, outreach_sent_at, outreach_responded_at,
-             outreach_notes, outreach_added_by, claim_token, slug, created_at
+             outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url
       FROM service_providers
       WHERE outreach_status IS NOT NULL
       ORDER BY created_at DESC LIMIT ${limit}
@@ -130,6 +150,7 @@ export async function POST(request: NextRequest) {
   const yearsInBusiness = str('yearsInBusiness', 50) || null;
   const notes = str('notes', 2000) || null;
   const addedBy = str('addedBy', 100) || null;
+  const avatarUrl = str('avatarUrl', 1000);
   const sendInvite = body.sendInvite === true;
 
   if (!businessName || !ownerName || !email || !category || !location) {
@@ -137,6 +158,16 @@ export async function POST(request: NextRequest) {
       { error: 'Business name, owner name, email, category and location are all required.' },
       { status: 400 },
     );
+  }
+  // A listing without a photo is a listing nobody clicks — required by design.
+  if (!avatarUrl) {
+    return NextResponse.json(
+      { error: 'A shop photo or logo is required. Upload one before adding the provider.' },
+      { status: 400 },
+    );
+  }
+  if (!isValidImageUrl(avatarUrl)) {
+    return NextResponse.json({ error: 'Photo URL is not valid.' }, { status: 400 });
   }
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
@@ -209,11 +240,11 @@ export async function POST(request: NextRequest) {
     INSERT INTO service_providers
       (business_name, owner_name, slug, category, location, email, phone, website, instagram,
        description, specialties, years_in_business, price_range, verified, founding_provider,
-       status, application_id, outreach_status, claim_token, outreach_notes, outreach_added_by)
+       status, application_id, outreach_status, claim_token, outreach_notes, outreach_added_by, avatar_url)
     VALUES
       (${businessName}, ${ownerName}, ${slug}, ${category}, ${location}, ${email}, ${phone}, ${website}, ${instagram},
        ${description}, ${JSON.stringify(specialtiesArray)}::jsonb, ${yearsInBusiness}, '$$', false, true,
-       'pending', ${applicationId}, 'staged', ${claimToken}, ${notes}, ${addedBy})
+       'pending', ${applicationId}, 'staged', ${claimToken}, ${notes}, ${addedBy}, ${avatarUrl})
     RETURNING id
   `;
   const providerId = provRows[0]?.id;
@@ -296,9 +327,13 @@ export async function PATCH(request: NextRequest) {
   const emailNew = typeof body.email === 'string' ? body.email.trim().toLowerCase().slice(0, 255) : undefined;
   const phoneNew = typeof body.phone === 'string' ? body.phone.trim().slice(0, 50) : undefined;
   const ownerNew = typeof body.ownerName === 'string' ? body.ownerName.trim().slice(0, 255) : undefined;
+  const avatarNew = typeof body.avatarUrl === 'string' ? body.avatarUrl.trim().slice(0, 1000) : undefined;
 
   if (emailNew && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailNew)) {
     return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
+  }
+  if (avatarNew && !isValidImageUrl(avatarNew)) {
+    return NextResponse.json({ error: 'Photo URL is not valid.' }, { status: 400 });
   }
 
   const result = await sql`
@@ -307,9 +342,10 @@ export async function PATCH(request: NextRequest) {
       email = COALESCE(${emailNew ?? null}, email),
       phone = COALESCE(${phoneNew ?? null}, phone),
       owner_name = COALESCE(${ownerNew ?? null}, owner_name),
+      avatar_url = COALESCE(${avatarNew ?? null}, avatar_url),
       updated_at = NOW()
     WHERE id = ${id}
-    RETURNING id, business_name, owner_name, email, phone, outreach_notes
+    RETURNING id, business_name, owner_name, email, phone, outreach_notes, avatar_url
   `;
 
   return NextResponse.json({ ok: true, provider: result[0] });

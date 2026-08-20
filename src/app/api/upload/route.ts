@@ -37,8 +37,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Optional folder prefix, allowlisted so callers can't write arbitrary paths.
+    const folderRaw = formData.get('folder');
+    const folder =
+      typeof folderRaw === 'string' && ['listings', 'providers'].includes(folderRaw)
+        ? folderRaw
+        : 'listings';
+
     // Upload to Vercel Blob
-    const blob = await put(`listings/${Date.now()}-${file.name}`, file, {
+    const blob = await put(`${folder}/${Date.now()}-${file.name}`, file, {
       access: 'public',
     });
 

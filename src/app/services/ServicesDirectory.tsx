@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { SERVICE_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
 
 // ─── Service Categories ────────────────────────────────
@@ -50,6 +51,7 @@ interface Provider {
   specialties: string[];
   priceRange: string;
   slug: string;
+  avatarUrl: string | null;
 }
 
 // ─── Provider Card ────────────────────────────────────
@@ -64,17 +66,34 @@ function ProviderCard({ provider }: { provider: Provider }) {
       whileHover={{ y: -3 }}
       className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)] transition-shadow"
     >
-      {/* Photographic category header */}
-      <div className="relative h-28 overflow-hidden listing-image-container">
-        <div
-          className="absolute inset-0"
-          style={{ background: `linear-gradient(135deg, ${CATEGORY_TINT[provider.category] ?? DEFAULT_TINT} 0%, #0b1a2e 92%)` }}
-        />
+      {/* Header — the shop's own photo when we have one (required at
+          onboarding), category tint as the fallback for older rows. */}
+      <Link href={`/services/${provider.slug}`} className="block relative h-36 overflow-hidden listing-image-container">
+        {provider.avatarUrl ? (
+          <>
+            <Image
+              src={provider.avatarUrl}
+              alt={`${provider.businessName} — photo`}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+            <div
+              className="absolute inset-0"
+              style={{ background: 'linear-gradient(rgba(11,26,46,0.05) 30%, rgba(11,26,46,0.72) 100%)' }}
+            />
+          </>
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{ background: `linear-gradient(135deg, ${CATEGORY_TINT[provider.category] ?? DEFAULT_TINT} 0%, #0b1a2e 92%)` }}
+          />
+        )}
         <div className="absolute inset-0 film-grain opacity-[0.07] pointer-events-none" />
         <span className="absolute bottom-2.5 left-5 text-[11px] font-bold uppercase tracking-widest text-white/90">
           {categoryLabel}
         </span>
-      </div>
+      </Link>
       <div className="p-6">
         {/* Header */}
         <div className="flex items-start justify-between mb-3">
