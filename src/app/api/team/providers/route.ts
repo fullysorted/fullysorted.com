@@ -159,10 +159,15 @@ export async function POST(request: NextRequest) {
       { status: 400 },
     );
   }
-  // Photo is strongly encouraged but OPTIONAL until Vercel Blob is configured
-  // on the deployment — with it required, an unconfigured /api/upload would
-  // block all onboarding. Re-tighten once BLOB_READ_WRITE_TOKEN is live.
-  if (avatarUrl && !isValidImageUrl(avatarUrl)) {
+  // A listing without a photo is a listing nobody clicks — required by design.
+  // (Blob storage verified working in production 2026-08-20.)
+  if (!avatarUrl) {
+    return NextResponse.json(
+      { error: 'A shop photo or logo is required. Upload one before adding the provider.' },
+      { status: 400 },
+    );
+  }
+  if (!isValidImageUrl(avatarUrl)) {
     return NextResponse.json({ error: 'Photo URL is not valid.' }, { status: 400 });
   }
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

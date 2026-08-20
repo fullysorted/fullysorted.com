@@ -134,7 +134,6 @@ function PhotoUpload({
           </label>
           <p className="text-[11px] text-text-tertiary mt-1">
             JPEG/PNG/WebP, max 10MB. Grab their logo or a workshop shot from their website or Instagram.
-            If the upload errors, add the provider without it — you can attach the photo later from the row&apos;s Fix details.
           </p>
         </div>
       </div>
@@ -216,6 +215,12 @@ export default function TeamDashboard() {
   }
 
   async function addProvider(sendInvite: boolean) {
+    // The API enforces this too — checking here saves the round trip and
+    // points at the exact field.
+    if (!form.avatarUrl) {
+      setFormError("A shop photo or logo is required — upload one above the buttons.");
+      return;
+    }
     setSubmitting(sendInvite ? "invite" : "only");
     setFormError("");
     setFormSuccess("");
@@ -464,7 +469,7 @@ export default function TeamDashboard() {
                   <input className={inputCls} value={form.specialties} onChange={(e) => setField("specialties", e.target.value)} placeholder="Ceramic coating, paint correction, concours prep" />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="text-xs font-medium text-text-secondary block mb-1">Shop photo or logo (add one whenever you can)</label>
+                  <label className="text-xs font-medium text-text-secondary block mb-1">Shop photo or logo *</label>
                   <PhotoUpload value={form.avatarUrl} onChange={(url) => setField("avatarUrl", url)} />
                 </div>
                 <div>
