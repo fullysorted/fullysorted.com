@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SERVICE_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
+import { ratingDisplay } from '@/lib/reviews';
 
 // ─── Service Categories ────────────────────────────────
 // Order and labels come from the canonical list so the directory matches the
@@ -109,8 +110,10 @@ function ProviderCard({ provider }: { provider: Provider }) {
               </h3>
               {/* Earned by the review record, not by an admin flag. This was
                   gated on `provider.verified` — a retired trust badge that
-                  /api/providers never even selected, so it never rendered. */}
-              {Number(provider.rating) >= 4.5 && provider.reviewCount >= 3 && (
+                  /api/providers never even selected, so it never rendered.
+                  The threshold now lives in lib/reviews.ts so the card, the
+                  profile badge and the JSON-LD cannot drift apart. */}
+              {ratingDisplay(provider.rating, provider.reviewCount).topRated && (
                 <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-0.5 rounded-full">
                   <Star className="w-3 h-3" aria-hidden /> Top-rated
                 </span>
@@ -128,7 +131,10 @@ function ProviderCard({ provider }: { provider: Provider }) {
               <span className="flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5" /> {provider.location}
               </span>
-              {Number(provider.rating) > 0 && provider.reviewCount > 0 && (
+              {/* No average below the minimum-n threshold — a single review is
+                  not a rating. Below it the card shows nothing and the profile
+                  shows the review itself. */}
+              {ratingDisplay(provider.rating, provider.reviewCount).show && (
                 <>
                   <span className="text-stone-300">|</span>
                   <span className="flex items-center gap-1">

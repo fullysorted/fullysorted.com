@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ReviewsPanel from './ReviewsPanel';
+import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 import { motion } from 'framer-motion';
 import { useAuth } from '@clerk/nextjs';
 import { Building2, MapPin, Phone, Globe, AtSign, Save, Loader2, CheckCircle, Clock, AlertCircle, ArrowRight, Sparkles, Tag, DollarSign, Wrench } from 'lucide-react';
@@ -442,6 +444,8 @@ export default function ProviderDashboard() {
           </button>
         </div>
       </form>
+
+      {PROVIDER_REVIEWS_PUBLIC && provider?.slug && <ReviewsPanel slug={provider.slug} />}
     </div>
   );
 }

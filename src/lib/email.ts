@@ -488,3 +488,93 @@ export async function notifyModelContribution(d: {
     `,
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Provider reviews — client invite + moderation notice
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Sent to a shop's client, asking them to review work that has already been
+ * done. Commercial email under CAN-SPAM even though it is solicited by the
+ * shop, so it carries the postal address (via orderShell) and an opt-out.
+ *
+ * The link is one-time and scoped to a single review row. We never tell the
+ * shop who did or didn't respond beyond what appears publicly, and the shop
+ * cannot withdraw the review once it is in.
+ */
+export async function sendReviewInvite(d: {
+  to: string;
+  clientName?: string;
+  businessName: string;
+  workType?: string | null;
+  reviewUrl: string;
+}) {
+  const firstName = (d.clientName || "").split(" ")[0];
+  return sendEmail({
+    to: d.to,
+    subject: `How did ${d.businessName} do?`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: `Tell other owners about ${esc(d.businessName)}`,
+      bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
+        <p><strong>${esc(d.businessName)}</strong> asked us to invite you to review${d.workType ? ` the ${esc(d.workType)}` : ""} they did for you. They are listed in the Fully Sorted directory, where owners find specialists to work on collector cars.</p>
+        <p>It takes a minute, and it is the single most useful thing you can do for the next owner deciding who to trust with their car. Be honest — good or bad. The shop can reply to what you write, but they cannot edit it, hide it, or take it down.</p>
+        <p style="font-size:13px;color:#6a6a5e;">This link works once and is just for you. We never publish your email address.</p>`,
+      ctaLabel: "Write your review",
+      ctaUrl: safeUrl(d.reviewUrl),
+      footerHtml:
+        "Fully Sorted · fullysorted.com<br/>" +
+        `You received this because ${esc(d.businessName)} asked us to. Don't want to hear from us again? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll remove you.`,
+    }),
+  });
+}
+
+// A review landed and is waiting in the moderation queue.
+export async function notifyNewReview(d: {
+  businessName: string;
+  authorName: string;
+  rating: number | null;
+  body: string;
+  source: string;
+  adminUrl: string;
+}) {
+  const stars = d.rating ? "★".repeat(d.rating) + "☆".repeat(5 - d.rating) : "—";
+  return sendEmail({
+    subject: `New ${d.source === "testimonial" ? "testimonial" : "review"} — ${d.businessName} (${d.rating ?? "no rating"})`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "A review is waiting for moderation",
+      bodyHtml: `<p><strong>${esc(d.businessName)}</strong></p>
+        <p style="font-size:18px;letter-spacing:2px;color:#B08D3F;margin:4px 0;">${stars}</p>
+        <p style="margin:0 0 4px 0;"><strong>${esc(d.authorName)}</strong> · ${esc(d.source)}</p>
+        <p style="white-space:pre-line;background:#faf9f6;padding:12px;border-radius:8px;">${esc(d.body)}</p>
+        <p style="font-size:13px;color:#6a6a5e;">Moderation is for abuse, spam and off-topic noise only. A negative review that describes real work gets published.</p>`,
+      ctaLabel: "Open the queue",
+      ctaUrl: safeUrl(d.adminUrl),
+    }),
+  });
+}
+
+// The review went live — tell the shop, and tell them how to reply.
+export async function notifyReviewPublished(d: {
+  to?: string | null;
+  businessName: string;
+  authorName: string;
+  rating: number | null;
+  profileUrl: string;
+}) {
+  if (!d.to) return false;
+  return sendEmail({
+    to: d.to,
+    subject: `A new review is live on your Fully Sorted profile`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "You have a new review",
+      bodyHtml: `<p><strong>${esc(d.authorName)}</strong> left ${d.rating ? `a ${d.rating}-star review` : "a review"} for ${esc(d.businessName)}.</p>
+        <p>It is live on your profile now. You have a public right of reply — replying well to a critical review does more for your reputation than the review costs you.</p>
+        <p style="font-size:13px;color:#6a6a5e;">Reviews cannot be edited or removed by the business. If you believe this one is fraudulent or defamatory rather than simply unfavourable, reply to this email and we'll look at it.</p>`,
+      ctaLabel: "See your profile",
+      ctaUrl: safeUrl(d.profileUrl),
+    }),
+  });
+}

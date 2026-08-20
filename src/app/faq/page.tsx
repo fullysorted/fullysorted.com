@@ -75,7 +75,15 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "Can a specialist delete a bad review?",
-        a: "No. Reviews are rolling out with the founding cohort and the rule we are building to is simple: a provider can reply to any review, in public, and cannot remove one. We will step in only for the things that are not reviews — abuse, or a review from someone who was never a customer — and if we remove something we will say why. A review section a business can curate is an advertisement.",
+        a: "No. A provider can reply to any review, in public, and that is the only thing they can do to it. They cannot edit one, hide one, or take one down, and there is no button anywhere in their account that would. We step in only for the things that are not reviews — abuse, spam, or a review from someone who was never a customer — and when we remove something we record why. A review section a business can curate is an advertisement.",
+      },
+      {
+        q: "What does a verified review mean, and why do some profiles show quotes instead?",
+        a: "A verified review comes from a client we emailed directly, using a one-time link tied to that shop and that person. Those are the only reviews that carry stars and the only ones behind a profile's rating. Separately, a shop can supply praise it already has — the letter, the line from an email — and we publish it with the client's name in a block that says plainly it came from the shop and has not been verified by us. Those quotes count towards nothing: not the average, not the Top-rated badge, not the rating Google sees. The directory is new, so early on you will see more of the second kind than the first. We would rather show you which is which than pretend.",
+      },
+      {
+        q: "Why does a profile show reviews but no star rating?",
+        a: "Because one five-star review is not a 5.0 rating. We do not show an average until a shop has at least three verified reviews — below that you get the reviews themselves and no number, which is more information, not less. It is the same rule the Value Guide uses on sales data: say what the evidence supports and nothing beyond it.",
       },
       {
         q: "What trades can I find right now?",

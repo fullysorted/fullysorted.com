@@ -18,3 +18,19 @@
 // Annotated as boolean, not the literal `false`, so TypeScript keeps both
 // branches of every gate type-checked and flipping it stays a one-line change.
 export const VALUE_GUIDE_PUBLIC: boolean = false;
+
+/**
+ * PROVIDER_REVIEWS_PUBLIC — the reviews & testimonials block on provider
+ * profiles, and the invite/testimonial controls in the /team console.
+ *
+ * On by default. The block is safe on an empty directory because every number
+ * it can show is gated behind the minimum-n rule in lib/reviews.ts: with fewer
+ * than three published verified reviews a profile shows the reviews themselves
+ * and no average, no Top-rated badge and no aggregateRating markup. A provider
+ * with nothing yet simply shows the "no reviews yet" line, which is true and
+ * is what makes the first real review worth something.
+ *
+ * Flip to false to pull the whole surface — public block, invite emails and
+ * console controls — in one line, without touching the write path or the data.
+ */
+export const PROVIDER_REVIEWS_PUBLIC: boolean = true;

@@ -38,6 +38,16 @@ async function runAll() {
     await sql`ALTER TABLE provider_applications ADD COLUMN IF NOT EXISTS provider_type VARCHAR(20) NOT NULL DEFAULT 'business'`;
   });
 
+  // provider_reviews — the review & testimonial table. Every review route
+  // calls ensureReviewTable itself, so this step is belt-and-braces: it means
+  // the table exists before the first review is written, and the public
+  // profile page (which reads the table directly and swallows errors) can
+  // never quietly render "no reviews yet" because the table was missing.
+  await step('provider_reviews table', async () => {
+    const { ensureReviewTable } = await import('@/lib/reviews');
+    await ensureReviewTable(sql);
+  });
+
   // gig tables
   await step('gigs table', async () => {
     await sql`CREATE TABLE IF NOT EXISTS gigs (

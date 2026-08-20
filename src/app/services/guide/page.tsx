@@ -175,16 +175,16 @@ const PROVIDER_STEPS: Step[] = [
   },
   {
     icon: TrendingUp,
-    title: "Grow — reviews, response time, and provider tiers",
+    title: "Grow — reviews and response time",
     body:
-      "Once you are live, momentum compounds. Reply fast, deliver on time, and ask happy owners to leave a review. Response time and on-time delivery feed the provider tiers and badges that push you up the rankings and win you more leads.",
+      "Once you are live, momentum compounds. Reply fast, deliver on time, and give us the names of clients who were happy: we email them a one-time link and their review lands on your profile with your reply box under it. You never see the link and you cannot pull the review, which is exactly why it is worth something to the next owner reading it.",
     checklist: [
       "Reply to inquiries within hours, not days",
       "Deliver on or ahead of the promised turnaround",
-      "Ask every satisfied owner for a review",
+      "Hand us the names of satisfied owners — we do the asking",
       "Refine your tiers and add-ons as you learn what sells",
     ],
-    tip: "Your first five reviews are the hardest and the most valuable. Overdeliver on your first jobs — you are not just doing the work, you are buying your reputation.",
+    tip: "Your first three reviews are the hardest and the most valuable — three is where a star rating starts appearing on your profile and in the directory. Overdeliver on the early jobs: you are not just doing the work, you are buying your reputation.",
   },
 ];
 
@@ -208,7 +208,7 @@ const BUYER_STEPS: Step[] = [
     icon: Search,
     title: "Find the right specialist",
     body:
-      "Filter by category, marque, and location, then read the profile properly. Look past the star average to the number of reviews behind it, study the portfolio for cars like yours, and check response times before you reach out.",
+      "Filter by category, marque, and location, then read the profile properly. Look past the star average to the number of reviews behind it — we do not show an average below three verified reviews at all — and note which quotes are verified clients and which the shop supplied itself. Study the portfolio for cars like yours before you reach out.",
   },
   {
     icon: PencilLine,
@@ -232,13 +232,13 @@ const BUYER_STEPS: Step[] = [
     icon: ShieldCheck,
     title: "Trust & protection",
     body:
-      "Every provider is rated and reviewed by the owners who hire them, and the open review record tells you who consistently delivers. Revisions and dispute handling are there to protect you if a job does not land the way it should.",
+      "Reviews come from clients we email directly after the work is done, and a shop can reply to one but can never remove it. The directory is young, so many profiles have no verified reviews yet — that is shown plainly rather than papered over. Revisions and dispute handling are there to protect you if a job does not land the way it should.",
   },
   {
     icon: Star,
     title: "After the job",
     body:
-      "Leave an honest review — it is how the whole community stays trustworthy. Re-book the specialists you trust, and reach out to support any time you need a hand.",
+      "If the shop invites you to review them, do it honestly — good or bad. It is the only thing on this site that a business cannot buy, and it is how the next owner decides. Re-book the specialists you trust, and reach out any time you need a hand.",
   },
 ];
 
@@ -264,7 +264,7 @@ const FAQS = [
   },
   {
     q: "How do I earn a higher ranking and more leads?",
-    a: "Respond quickly, deliver on time, and collect reviews from satisfied owners. Response time, on-time delivery, and your review record feed the provider tiers and badges that push you up the rankings and send more leads your way.",
+    a: "Respond quickly, deliver on time, and collect verified reviews. Give us the names of clients who were happy and we email them a one-time review link — at three verified reviews a star rating starts showing on your profile and on your directory card, and at 4.5 and above you pick up the Top-rated badge. Nothing about ranking is for sale.",
   },
   {
     q: "What information should I ask buyers for before starting?",

@@ -8,6 +8,9 @@ import { and, eq } from 'drizzle-orm';
 import type { ServiceProvider } from '@/lib/db/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 import ProviderInquiryForm from './ProviderInquiryForm';
+import ProviderReviews from './ProviderReviews';
+import { ratingDisplay, type PublicReview } from '@/lib/reviews';
+import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 
 export const dynamic = 'force-dynamic';
 
@@ -35,6 +38,54 @@ async function getProvider(slug: string): Promise<ServiceProvider | null> {
   } catch (e) {
     console.error('Provider lookup failed:', e);
     return null;
+  }
+}
+
+/**
+ * Published reviews for this provider, verified first.
+ *
+ * Read straight from the database rather than through /api/reviews — this is a
+ * server component and an internal fetch would cost a round trip and a second
+ * cold start for data we can select directly. The API route stays for the
+ * client-side surfaces.
+ *
+ * A failure here returns an empty list rather than throwing: a reviews outage
+ * must never take the profile down. Note that empty is also the honest answer
+ * to "no reviews yet", and the block below renders that state explicitly, so
+ * an outage and a genuinely new shop look the same to a visitor. That is an
+ * acceptable trade only because the block never asserts a number it cannot
+ * back up.
+ */
+async function getReviews(providerId: number): Promise<PublicReview[]> {
+  if (!process.env.DATABASE_URL) return [];
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+    const rows = await sql`
+      SELECT id, source, author_name, vehicle, work_type, work_date, rating, body,
+             provider_reply, provider_replied_at, published_at, created_at
+      FROM provider_reviews
+      WHERE provider_id = ${providerId} AND status = 'published'
+      ORDER BY source = 'verified' DESC, COALESCE(published_at, created_at) DESC
+      LIMIT 100
+    `;
+    return rows.map((r) => ({
+      id: Number(r.id),
+      source: r.source === 'testimonial' ? 'testimonial' : 'verified',
+      authorName: String(r.author_name),
+      vehicle: r.vehicle ? String(r.vehicle) : null,
+      workType: r.work_type ? String(r.work_type) : null,
+      workDate: r.work_date ? String(r.work_date) : null,
+      rating: r.rating === null || r.rating === undefined ? null : Number(r.rating),
+      body: String(r.body),
+      providerReply: r.provider_reply ? String(r.provider_reply) : null,
+      providerRepliedAt: r.provider_replied_at ? String(r.provider_replied_at) : null,
+      publishedAt: r.published_at ? String(r.published_at) : null,
+      createdAt: String(r.created_at),
+    }));
+  } catch (e) {
+    console.error('Provider reviews lookup failed:', e);
+    return [];
   }
 }
 
@@ -91,9 +142,13 @@ export default async function ProviderProfilePage({ params }: Props) {
   if (!provider) notFound();
 
   const specialties = provider.specialties ?? [];
-  const ratingNum = Number(provider.rating ?? 0);
-  const reviewCount = provider.reviewCount ?? 0;
-  const hasRating = ratingNum > 0 && reviewCount > 0;
+  // One gate for every number on this page — badge, JSON-LD and the reviews
+  // block all ask lib/reviews.ts rather than reimplementing the threshold.
+  const { show: hasRating, rating: ratingNum, count: reviewCount, topRated } = ratingDisplay(
+    provider.rating,
+    provider.reviewCount,
+  );
+  const reviews = PROVIDER_REVIEWS_PUBLIC ? await getReviews(provider.id) : [];
   const igHandle = provider.instagram ? instagramHandle(provider.instagram) : null;
 
   const jsonLd: Record<string, unknown> = {
@@ -110,12 +165,27 @@ export default async function ProviderProfilePage({ params }: Props) {
   if (provider.avatarUrl) jsonLd.image = provider.avatarUrl;
   if (provider.phone) jsonLd.telephone = provider.phone;
   if (provider.website) jsonLd.sameAs = [normalizeWebsite(provider.website)];
+  // aggregateRating rides the same minimum-n gate as the visible badge. Thin
+  // or self-supplied rating markup is exactly what Google's review-snippet
+  // policy penalises, and a shop's own testimonials never reach this branch.
   if (hasRating) {
     jsonLd.aggregateRating = {
       '@type': 'AggregateRating',
       ratingValue: ratingNum.toFixed(1),
       reviewCount,
+      bestRating: 5,
+      worstRating: 1,
     };
+  }
+  const verifiedReviews = reviews.filter((r) => r.source === 'verified' && r.rating);
+  if (verifiedReviews.length > 0) {
+    jsonLd.review = verifiedReviews.slice(0, 10).map((r) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: r.authorName },
+      reviewRating: { '@type': 'Rating', ratingValue: r.rating, bestRating: 5, worstRating: 1 },
+      reviewBody: r.body,
+      ...(r.publishedAt ? { datePublished: r.publishedAt.slice(0, 10) } : {}),
+    }));
   }
 
   return (
@@ -194,7 +264,7 @@ export default async function ProviderProfilePage({ params }: Props) {
 
               {/* Badges */}
               <div className="flex flex-wrap items-center gap-2 mt-4">
-                {hasRating && ratingNum >= 4.5 && reviewCount >= 3 && (
+                {topRated && (
                   <span
                     className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
                     style={{ background: 'var(--sorted-green-light)', color: 'var(--sorted-green-dark)' }}
@@ -211,12 +281,13 @@ export default async function ProviderProfilePage({ params }: Props) {
                   </span>
                 )}
                 {hasRating && (
-                  <span
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
+                  <a
+                    href="#reviews"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full transition-opacity hover:opacity-80"
                     style={{ background: 'var(--accent-blue-light)', color: 'var(--accent-blue)' }}
                   >
                     ★ {ratingNum.toFixed(1)} ({reviewCount} {reviewCount === 1 ? 'review' : 'reviews'})
-                  </span>
+                  </a>
                 )}
                 {provider.priceRange && (
                   <span
@@ -325,6 +396,16 @@ export default async function ProviderProfilePage({ params }: Props) {
                 </p>
               </div>
             </section>
+
+            {PROVIDER_REVIEWS_PUBLIC && (
+              <ProviderReviews
+                businessName={provider.businessName}
+                reviews={reviews}
+                rating={ratingNum}
+                reviewCount={reviewCount}
+                showAverage={hasRating}
+              />
+            )}
           </div>
 
           {/* Right column — sticky contact card */}

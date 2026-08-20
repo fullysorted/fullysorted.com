@@ -411,6 +411,62 @@ export const modelQueue = pgTable('model_queue', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
+// ─── Provider Reviews & Testimonials ─────────────────────
+// ONE table, two kinds of row, distinguished by `source`:
+//
+//   'verified'    — written by a client who received a one-time tokenized link
+//                   from us. This is the only kind that feeds the star average
+//                   and the only kind that may appear in aggregateRating JSON-LD.
+//   'testimonial' — praise the shop supplied itself, with attribution. Rendered
+//                   in a visually distinct block, labelled as unverified, and
+//                   EXCLUDED from every number on the page.
+//
+// Two rules the code must keep, not just the copy:
+//   1. A provider can never delete or hide a published review. They get a
+//      public right of reply (`providerReply`) and nothing else. Moderation is
+//      for abuse, spam and defamation — never for sentiment. See lib/reviews.ts.
+//   2. Star averages and aggregateRating stay hidden below MIN_REVIEWS_FOR_AVG.
+//      Same minimum-n discipline the Value Guide uses: say what you know.
+export const providerReviews = pgTable('provider_reviews', {
+  id: serial('id').primaryKey(),
+  providerId: integer('provider_id').references(() => serviceProviders.id).notNull(),
+
+  source: varchar('source', { length: 20 }).default('verified').notNull(), // verified | testimonial
+
+  // Verification chain — the invite rides an existing inquiry row when there is
+  // one, so "this person actually contacted this shop" is checkable after the fact.
+  sourceMessageId: integer('source_message_id'),
+  reviewToken: varchar('review_token', { length: 64 }).unique(), // one-time, cleared on use
+  invitedAt: timestamp('invited_at'),
+  tokenUsedAt: timestamp('token_used_at'),
+
+  // Author — email is stored for audit/dispute and is NEVER rendered publicly.
+  authorName: varchar('author_name', { length: 255 }).notNull(),
+  authorEmail: varchar('author_email', { length: 255 }),
+  vehicle: varchar('vehicle', { length: 200 }),   // "1973 911 T"
+  workType: varchar('work_type', { length: 120 }), // "Pre-purchase inspection"
+  workDate: varchar('work_date', { length: 40 }),
+
+  rating: integer('rating'),   // 1–5. Null on an unrated testimonial.
+  body: text('body').notNull(),
+
+  status: varchar('status', { length: 20 }).default('pending').notNull(), // pending | published | rejected
+  moderationNote: text('moderation_note'),
+
+  // Right of reply. Public, attributed to the business.
+  providerReply: text('provider_reply'),
+  providerRepliedAt: timestamp('provider_replied_at'),
+
+  // Provenance for testimonials: who typed it in, and the attestation that the
+  // shop has the client's permission to publish it. FTC 16 CFR 465 territory.
+  submittedBy: varchar('submitted_by', { length: 100 }),
+  consent: boolean('consent').default(false),
+
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  publishedAt: timestamp('published_at'),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
 // Type exports for use in components
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -428,3 +484,5 @@ export type Gig = typeof gigs.$inferSelect;
 export type NewGig = typeof gigs.$inferInsert;
 export type GigPackage = typeof gigPackages.$inferSelect;
 export type GigOrder = typeof gigOrders.$inferSelect;
+export type ProviderReview = typeof providerReviews.$inferSelect;
+export type NewProviderReview = typeof providerReviews.$inferInsert;

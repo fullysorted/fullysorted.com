@@ -6,9 +6,10 @@ import Image from "next/image";
 import {
   UserPlus, Search, Loader2, Copy, Check, Mail, Phone, MapPin,
   Send, BellRing, XCircle, LogOut, ChevronDown, ChevronUp, ExternalLink,
-  StickyNote, Pencil, ImageIcon, Upload,
+  StickyNote, Pencil, ImageIcon, Upload, Star, Quote,
 } from "lucide-react";
 import { CATEGORY_OPTIONS } from '@/lib/service-categories';
+import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 
 /* ─── Types ─────────────────────────────────────────────── */
 interface PipelineProvider {
@@ -216,6 +217,13 @@ export default function TeamDashboard() {
   const [fixPhoto, setFixPhoto] = useState("");
   const [photoInvalid, setPhotoInvalid] = useState(false);
   const [rowMsg, setRowMsg] = useState<{ id: number; msg: string; err?: boolean } | null>(null);
+  // Reviews panel — one open at a time, same as the rest of the row UI.
+  const EMPTY_INVITE = { clientName: "", clientEmail: "", workType: "" };
+  const EMPTY_TESTIMONIAL = { authorName: "", vehicle: "", workType: "", workDate: "", body: "", consent: false };
+  const [invite, setInvite] = useState({ ...EMPTY_INVITE });
+  const [testimonial, setTestimonial] = useState({ ...EMPTY_TESTIMONIAL });
+  const [reviewTab, setReviewTab] = useState<"invite" | "testimonial">("invite");
+  const [inviteLink, setInviteLink] = useState("");
 
   useEffect(() => {
     try {
@@ -415,6 +423,83 @@ export default function TeamDashboard() {
       if (!res.ok) throw new Error(data.error || "Failed to save");
       setRowMsg({ id: p.id, msg: "Details updated" });
       load();
+    } catch (e) {
+      setRowMsg({ id: p.id, msg: e instanceof Error ? e.message : "Failed to save", err: true });
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  // Ask a client of this shop for a real, verified review. The email goes from
+  // us to them; the shop never sees the token and cannot pull the review once
+  // it lands. This is the whole point — a directory where shops could bury bad
+  // reviews would be worth nothing to a buyer.
+  async function sendReviewInvite(p: PipelineProvider) {
+    if (!invite.clientName.trim() || !invite.clientEmail.trim()) {
+      setRowMsg({ id: p.id, msg: "Client name and email are both needed.", err: true });
+      return;
+    }
+    setBusyId(p.id);
+    setInviteLink("");
+    try {
+      const res = await fetch("/api/reviews/invite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          providerId: p.id,
+          clientName: invite.clientName.trim(),
+          clientEmail: invite.clientEmail.trim(),
+          workType: invite.workType.trim() || undefined,
+          invitedBy: addedBy || undefined,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        // A send failure still leaves a working link — hand it over by phone
+        // rather than losing the ask.
+        if (data.reviewUrl) setInviteLink(data.reviewUrl);
+        throw new Error(data.error || "Failed to send");
+      }
+      setRowMsg({ id: p.id, msg: `Review invite sent to ${invite.clientEmail}` });
+      setInvite({ ...EMPTY_INVITE });
+    } catch (e) {
+      setRowMsg({ id: p.id, msg: e instanceof Error ? e.message : "Failed to send", err: true });
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  // Type in praise the shop already has. Published with a label, attributed,
+  // and it never touches the star average.
+  async function addTestimonial(p: PipelineProvider) {
+    if (!testimonial.authorName.trim() || testimonial.body.trim().length < 20) {
+      setRowMsg({ id: p.id, msg: "Need the client's name and their actual words.", err: true });
+      return;
+    }
+    if (!testimonial.consent) {
+      setRowMsg({ id: p.id, msg: "Tick the permission box — it is the basis for publishing it.", err: true });
+      return;
+    }
+    setBusyId(p.id);
+    try {
+      const res = await fetch("/api/reviews/testimonial", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          providerId: p.id,
+          authorName: testimonial.authorName.trim(),
+          vehicle: testimonial.vehicle.trim() || undefined,
+          workType: testimonial.workType.trim() || undefined,
+          workDate: testimonial.workDate.trim() || undefined,
+          body: testimonial.body.trim(),
+          consent: true,
+          submittedBy: addedBy || "team",
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to save");
+      setRowMsg({ id: p.id, msg: "Saved — it goes live once Chris checks it." });
+      setTestimonial({ ...EMPTY_TESTIMONIAL });
     } catch (e) {
       setRowMsg({ id: p.id, msg: e instanceof Error ? e.message : "Failed to save", err: true });
     } finally {
@@ -816,6 +901,137 @@ export default function TeamDashboard() {
                             <Check className="w-3 h-3" /> Save details
                           </button>
                         </div>
+                        {PROVIDER_REVIEWS_PUBLIC && (
+                          <div className="pt-3 border-t border-border">
+                            <p className="text-xs font-semibold text-text-secondary mb-1">
+                              Reviews for {p.business_name}
+                            </p>
+                            <p className="text-[11px] text-text-tertiary mb-2 leading-relaxed">
+                              On the call, ask: &ldquo;who are two or three clients who&rsquo;d say something good?&rdquo;
+                              Send them an invite and it becomes a verified review with stars. If they&rsquo;d rather
+                              not have their clients emailed, type up praise they already have instead — it publishes
+                              labelled as theirs and counts towards no rating.
+                            </p>
+
+                            <div className="flex gap-2 mb-3">
+                              <button
+                                onClick={() => setReviewTab("invite")}
+                                className={`px-2.5 h-7 text-[11px] font-semibold rounded-lg border ${
+                                  reviewTab === "invite"
+                                    ? "bg-[#1E6091] text-white border-[#1E6091]"
+                                    : "bg-white text-text-secondary border-border"
+                                }`}
+                              >
+                                <Star className="w-3 h-3 inline mr-1" /> Ask a client
+                              </button>
+                              <button
+                                onClick={() => setReviewTab("testimonial")}
+                                className={`px-2.5 h-7 text-[11px] font-semibold rounded-lg border ${
+                                  reviewTab === "testimonial"
+                                    ? "bg-[#1E6091] text-white border-[#1E6091]"
+                                    : "bg-white text-text-secondary border-border"
+                                }`}
+                              >
+                                <Quote className="w-3 h-3 inline mr-1" /> Type a testimonial
+                              </button>
+                            </div>
+
+                            {reviewTab === "invite" ? (
+                              <div>
+                                <div className="grid sm:grid-cols-3 gap-2 mb-2">
+                                  <input
+                                    className="h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                    placeholder="Client name *"
+                                    value={invite.clientName}
+                                    onChange={(e) => setInvite({ ...invite, clientName: e.target.value })}
+                                  />
+                                  <input
+                                    className="h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                    type="email"
+                                    placeholder="Client email *"
+                                    value={invite.clientEmail}
+                                    onChange={(e) => setInvite({ ...invite, clientEmail: e.target.value })}
+                                  />
+                                  <input
+                                    className="h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                    placeholder="Work done (optional)"
+                                    value={invite.workType}
+                                    onChange={(e) => setInvite({ ...invite, workType: e.target.value })}
+                                  />
+                                </div>
+                                <button
+                                  onClick={() => sendReviewInvite(p)}
+                                  disabled={busyId === p.id}
+                                  className="inline-flex items-center gap-1.5 px-3 h-8 text-xs font-semibold text-white rounded-lg disabled:opacity-60"
+                                  style={{ backgroundColor: "#1E6091" }}
+                                >
+                                  <Send className="w-3 h-3" /> Send review invite
+                                </button>
+                                {inviteLink && (
+                                  <p className="text-[11px] mt-2 break-all text-text-tertiary">
+                                    Email failed, but the link works — pass it on: {inviteLink}
+                                  </p>
+                                )}
+                              </div>
+                            ) : (
+                              <div>
+                                <div className="grid sm:grid-cols-2 gap-2 mb-2">
+                                  <input
+                                    className="h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                    placeholder="Client name *"
+                                    value={testimonial.authorName}
+                                    onChange={(e) => setTestimonial({ ...testimonial, authorName: e.target.value })}
+                                  />
+                                  <input
+                                    className="h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                    placeholder="The car (e.g. 1973 911 T)"
+                                    value={testimonial.vehicle}
+                                    onChange={(e) => setTestimonial({ ...testimonial, vehicle: e.target.value })}
+                                  />
+                                  <input
+                                    className="h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                    placeholder="Work done"
+                                    value={testimonial.workType}
+                                    onChange={(e) => setTestimonial({ ...testimonial, workType: e.target.value })}
+                                  />
+                                  <input
+                                    className="h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                    placeholder="When (e.g. Spring 2024)"
+                                    value={testimonial.workDate}
+                                    onChange={(e) => setTestimonial({ ...testimonial, workDate: e.target.value })}
+                                  />
+                                </div>
+                                <textarea
+                                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30 mb-2"
+                                  rows={3}
+                                  placeholder="What the client actually said — their words, not a rewrite."
+                                  value={testimonial.body}
+                                  onChange={(e) => setTestimonial({ ...testimonial, body: e.target.value })}
+                                />
+                                <label className="flex items-start gap-2 text-[11px] text-text-secondary mb-2 leading-relaxed">
+                                  <input
+                                    type="checkbox"
+                                    className="mt-0.5"
+                                    checked={testimonial.consent}
+                                    onChange={(e) => setTestimonial({ ...testimonial, consent: e.target.checked })}
+                                  />
+                                  <span>
+                                    The shop confirms this client is real and has given permission to publish this
+                                    with their name. Ask them on the call — do not tick it for them.
+                                  </span>
+                                </label>
+                                <button
+                                  onClick={() => addTestimonial(p)}
+                                  disabled={busyId === p.id}
+                                  className="inline-flex items-center gap-1.5 px-3 h-8 text-xs font-semibold text-white rounded-lg disabled:opacity-60"
+                                  style={{ backgroundColor: "#1E6091" }}
+                                >
+                                  <Check className="w-3 h-3" /> Save testimonial
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        )}
                         <div className="pt-2 border-t border-border">
                           {p.outreach_status === "declined" ? (
                             <button
