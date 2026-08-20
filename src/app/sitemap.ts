@@ -4,6 +4,8 @@ import { events } from "@/lib/events";
 import { getPublishedModels } from "@/lib/data/models";
 import { getActiveGigs } from "@/lib/data/gigs";
 import { getPublicProviderSlugs } from "@/lib/data/providers";
+import { PROVIDER_TRACKS } from "@/lib/data/providerTracks";
+import { isServiceCategory } from "@/lib/service-categories";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -26,6 +28,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/services/apply`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/services/guide`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    // The guide pages were missing entirely — eight trade playbooks and the
+    // business guide, all substantial content, none of it crawlable. This is
+    // the cheapest acquisition asset the site has; it belongs in here.
+    { url: `${base}/services/guide/business`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/insurance`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/shop`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/how-it-works`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
@@ -37,6 +43,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
+
+  const trackPages: MetadataRoute.Sitemap = PROVIDER_TRACKS
+    .filter((t) => isServiceCategory(t.slug))
+    .map((t) => ({
+      url: `${base}/services/guide/${t.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
 
   const articlePages: MetadataRoute.Sitemap = articles.map((a) => ({
     url: `${base}/research/${a.slug}`,
@@ -94,5 +109,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     gigPages = [];
   }
 
-  return [...staticPages, ...articlePages, ...eventPages, ...modelPages, ...providerPages, ...gigPages];
+  return [...staticPages, ...trackPages, ...articlePages, ...eventPages, ...modelPages, ...providerPages, ...gigPages];
 }
