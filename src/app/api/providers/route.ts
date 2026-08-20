@@ -51,8 +51,13 @@ export async function GET() {
     return NextResponse.json({ providers });
   } catch (error) {
     console.error('Fetch providers error:', error);
-    // Fallback: return empty array so directory still renders
-    return NextResponse.json({ providers: [] });
+    // NOT an empty array. Returning [] made a database outage indistinguishable
+    // from "nobody has signed up", which on a directory that is just filling up
+    // reads as churn — and hides the outage from us entirely.
+    return NextResponse.json(
+      { error: 'Could not load the directory right now.', providers: [] },
+      { status: 503 }
+    );
   }
 }
 

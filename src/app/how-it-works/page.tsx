@@ -20,6 +20,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export const metadata: Metadata = {
   title: "How It Works",
@@ -84,7 +85,9 @@ const BUYER_STEPS = [
   {
     icon: CheckCircle2,
     title: "Check the comps",
-    body: "Our Value Guide pulls real auction data so you know what a car actually trades for — not what someone hopes to get.",
+    body: VALUE_GUIDE_PUBLIC
+      ? "Our Value Guide pulls real auction data so you know what a car actually trades for — not what someone hopes to get."
+      : "Work from real sold prices, not ask prices. Our model histories carry a market snapshot wherever we have enough recorded sales to say something honest.",
   },
   {
     icon: MessageSquare,
@@ -123,11 +126,15 @@ const PROVIDER_STEPS = [
 
 // 3. RESEARCH — the data layer behind both.
 const RESEARCH_STEPS = [
-  {
-    icon: BarChart3,
-    title: "Check the Value Guide",
-    body: "Real sold-price comps from auction results and reported private sales — so you know what a car actually trades for, not what someone hopes to get.",
-  },
+  ...(VALUE_GUIDE_PUBLIC
+    ? [
+        {
+          icon: BarChart3,
+          title: "Check the Value Guide",
+          body: "Real sold-price comps from auction results and reported private sales — so you know what a car actually trades for, not what someone hopes to get.",
+        },
+      ]
+    : []),
   {
     icon: BookOpen,
     title: "Read the model histories",
@@ -384,25 +391,27 @@ export default function HowItWorksPage() {
               className="text-xs font-bold uppercase tracking-widest mb-2"
               style={{ color: "#1E6091" }}
             >
-              Research &amp; Value Guide
+              {VALUE_GUIDE_PUBLIC ? <>Research &amp; Value Guide</> : <>Research</>}
             </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Knowing what a car is really worth</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
+              {VALUE_GUIDE_PUBLIC ? "Knowing what a car is really worth" : "Knowing the car before you buy it"}
+            </h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
               The same data sits under every listing and every quote — so nobody
               in the transaction is guessing.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div className={`grid grid-cols-1 gap-5 ${RESEARCH_STEPS.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
             {RESEARCH_STEPS.map((s, i) => (
               <StepCard key={i} index={i} {...s} />
             ))}
           </div>
           <div className="mt-10 text-center">
             <Link
-              href="/value-guide"
+              href={VALUE_GUIDE_PUBLIC ? "/value-guide" : "/research/models"}
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
-              Open the Value Guide <ArrowRight className="w-4 h-4" />
+              {VALUE_GUIDE_PUBLIC ? "Open the Value Guide" : "Browse the model histories"} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

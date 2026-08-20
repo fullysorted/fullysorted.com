@@ -267,18 +267,20 @@ export default function ServicesDirectory() {
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [providers, setProviders] = useState<Provider[]>([]);
   const [loading, setLoading] = useState(true);
+  // An outage and an empty directory are NOT the same thing and must not look
+  // the same. "No specialists yet" during a database failure reads as churn.
+  const [loadFailed, setLoadFailed] = useState(false);
 
   // Fetch providers from API
   useEffect(() => {
     fetch('/api/providers')
-      .then(res => res.json())
-      .then(data => {
-        if (data.providers) {
-          setProviders(data.providers);
-        }
-        setLoading(false);
+      .then(async (res) => {
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.error) throw new Error(data.error || 'Request failed');
+        setProviders(Array.isArray(data.providers) ? data.providers : []);
       })
-      .catch(() => setLoading(false));
+      .catch(() => setLoadFailed(true))
+      .finally(() => setLoading(false));
   }, []);
 
   // The directory holds two genuinely different kinds of supply: established
@@ -342,7 +344,23 @@ export default function ServicesDirectory() {
         </p>
       )}
 
-      {!loading && (
+      {!loading && loadFailed && (
+        <div className="rounded-2xl border p-6 text-center mb-6" style={{ borderColor: "rgba(176,85,63,0.3)", background: "rgba(176,85,63,0.06)" }}>
+          <p className="font-semibold text-sm" style={{ color: "#9a3f2f" }}>We couldn&apos;t load the directory just now</p>
+          <p className="text-sm text-stone-500 mt-1 max-w-md mx-auto">
+            This is a problem at our end, not an empty directory. Please refresh in a moment &mdash; and if it keeps happening, tell us.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 text-sm font-semibold text-white rounded-lg"
+            style={{ background: "#1E6091" }}
+          >
+            Try again
+          </button>
+        </div>
+      )}
+
+      {!loading && !loadFailed && (
         <>
           <ProviderSection
             title="Shops & businesses"

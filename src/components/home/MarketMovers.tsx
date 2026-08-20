@@ -8,8 +8,11 @@ import type { MarketMover } from "@/lib/sample-data";
 
 interface Segment {
   segment: string;
-  avg_price?: number;
+  avg_price?: number | null;
+  median_price?: number | null;
   sale_count?: number;
+  mean_skewed?: boolean;
+  has_midpoint?: boolean;
   trend_percent?: number | null;
   trend_direction?: string | null;
 }
@@ -22,8 +25,14 @@ interface Segment {
  */
 const MIN_TREND = 0.05;
 
-/** Thin segments are noise on a homepage. Show the ones with real depth. */
-const MIN_SALES = 3;
+/**
+ * Thin segments are noise on a homepage — and worse, they were carrying a
+ * headline figure. This used to be 3, and it printed the segment MEAN: the
+ * Air-Cooled Porsche 911 card read "avg $171,583" against a $95,000 median,
+ * a mean the Value Guide's own rule would have suppressed. Six is the floor
+ * for publishing a midpoint anywhere on this site.
+ */
+const MIN_SALES = 6;
 
 function TrendBadge({ trend, percentage }: { trend: MarketMover["trend"]; percentage: number }) {
   const styles = {
@@ -75,7 +84,7 @@ export function MarketMovers() {
                 trend: hasTrend ? (raw > 0 ? "up" : "down") : "flat",
                 percentage: hasTrend ? Math.abs(Math.round(raw * 10) / 10) : 0,
                 insight: `${s.sale_count} recorded ${s.sale_count === 1 ? "sale" : "sales"}${
-                  s.avg_price ? ` · avg $${Number(s.avg_price).toLocaleString()}` : ""
+                  s.median_price ? ` · median $${Number(s.median_price).toLocaleString()}` : ""
                 }`,
               };
             })
@@ -108,7 +117,7 @@ export function MarketMovers() {
               What the segments are doing
             </h2>
             <p className="mt-1 text-sm" style={{ color: "#6b6b5e" }}>
-              Average sale prices by segment, computed from the sales recorded in our comp database
+              Median sale prices by segment, computed from the sales recorded in our comp database
               {asOf ? ` · data through ${asOf}` : ""}
             </p>
           </div>
@@ -123,7 +132,9 @@ export function MarketMovers() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Raising the floor to six sales legitimately leaves fewer cards. Lay
+            four out as a 2x2 rather than 3 + a lonely orphan. */}
+        <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${movers.length >= 5 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
           {movers.map((mover, i) => (
             <motion.div
               key={mover.segment}
@@ -168,7 +179,7 @@ export function MarketMovers() {
             the comp database is still being built and is not yet a licensed
             feed. Tighten this wording the day it is. */}
         <p className="mt-8 text-xs leading-relaxed" style={{ color: "#9a9a8a" }}>
-          Our comp database is early and still being built out, so these averages are indicative
+          Our comp database is early and still being built out, so these figures are indicative
           rather than a complete picture of the market. Nothing here is financial or investment
           advice, and past results do not indicate future values.
         </p>

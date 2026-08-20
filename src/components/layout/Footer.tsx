@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 // Column order mirrors the site flow: Services → Marketplace → Research →
 // Company. Keep in sync with Header.tsx navEntries and the homepage sections.
@@ -23,7 +24,11 @@ const footerLinks = {
   ],
   Research: [
     { href: "/research/models", label: "Model Histories" },
-    { href: "/value-guide", label: "Value Guide" },
+    // With the guide hidden the crowdsource form takes its slot — it is the one
+    // live path that actually grows the comp set, so it must stay reachable.
+    ...(VALUE_GUIDE_PUBLIC
+      ? [{ href: "/value-guide", label: "Value Guide" }]
+      : [{ href: "/submit-sale", label: "Report a Sale" }]),
     { href: "/research/compare", label: "Compare Models" },
     { href: "/vin", label: "VIN Decoder" },
     { href: "/research", label: "Market Analysis" },

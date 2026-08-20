@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 // "Research" unifies the encyclopedia and the market/valuation tools under one
 // entry — the strategy's "encyclopedia ↔ market, unified" wedge — instead of
@@ -22,7 +23,9 @@ const researchMenu: NavMenu = {
   label: "Research",
   items: [
     { href: "/research/models", label: "Model Histories", desc: "Cited history, specs & production, model by model" },
-    { href: "/value-guide", label: "Value Guide", desc: "What any collector car is worth — real sold-price comps" },
+    ...(VALUE_GUIDE_PUBLIC
+      ? [{ href: "/value-guide", label: "Value Guide", desc: "What any collector car is worth — real sold-price comps" }]
+      : []),
     { href: "/research/compare", label: "Compare Models", desc: "Two cars head to head — rarity, value & specs" },
     { href: "/vin", label: "VIN Decoder", desc: "Decode any 1981+ VIN — specs & open recalls" },
     { href: "/research", label: "Market Analysis", desc: "Segment prices & written market analysis", divider: true },

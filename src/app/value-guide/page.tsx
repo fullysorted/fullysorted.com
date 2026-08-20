@@ -8,12 +8,19 @@ export const metadata: Metadata = {
   title: "Value Guide — What Is Your Classic Car Worth?",
   description:
     "Get real pricing data for any collector car. Backed by aggregated market comps from across the collector-car world — not ask prices.",
+  // Unlisted while the comp set is too thin to answer an ordinary search. The
+  // route stays reachable so it can be previewed; it is simply not advertised
+  // and not indexed. See src/lib/features.ts.
+  robots: { index: false, follow: false },
 };
 
+// "Refreshed regularly / Up to date" was a claim we cannot support: the comp
+// set does not auto-ingest, and the results panel stamps every search with the
+// date of the newest sale behind it. Claim what the page actually does.
 const STATS = [
   { icon: Database, label: "Sold prices, not ask prices", value: "Real comps" },
-  { icon: TrendingUp, label: "Across the collector market", value: "Aggregated data" },
-  { icon: BarChart3, label: "Refreshed regularly", value: "Up to date" },
+  { icon: TrendingUp, label: "Every sale behind the number is shown", value: "Nothing hidden" },
+  { icon: BarChart3, label: "We say so when the sample is thin", value: "Confidence stated" },
 ];
 
 const valueGuideSchema = {
@@ -41,8 +48,10 @@ const datasetSchema = {
 };
 
 export default function ValueGuidePage() {
+  // A <div>, not a <main>: the root layout already wraps children in <main>,
+  // and nesting a second one is invalid HTML and confuses screen readers.
   return (
-    <main className="min-h-screen" style={{ background: "#faf9f7" }}>
+    <div className="min-h-screen" style={{ background: "#faf9f7" }}>
       <ResearchNav active="value" />
       <JsonLd data={[valueGuideSchema, datasetSchema]} />
 
@@ -119,6 +128,6 @@ export default function ValueGuidePage() {
           <span className="text-sm font-bold shrink-0 inline-flex items-center gap-1" style={{ color: "#1E6091" }}>Report a sale <span aria-hidden>→</span></span>
         </a>
       </section>
-    </main>
+    </div>
   );
 }

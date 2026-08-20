@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ShieldCheck, FileText, Warehouse, Camera, BarChart3, ExternalLink, AlertCircle } from "lucide-react";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export const metadata: Metadata = {
   title: "Collector Car Insurance — what agreed value actually means",
@@ -59,9 +60,11 @@ const PREP = [
   {
     icon: BarChart3,
     title: "A defensible number",
-    body: "Agreed value is a negotiation, and the person with comparable sales in hand does better. Our Value Guide leads with the median of real sold prices rather than the record one.",
-    href: "/value-guide",
-    cta: "Check the Value Guide",
+    body: VALUE_GUIDE_PUBLIC
+      ? "Agreed value is a negotiation, and the person with comparable sales in hand does better. Our Value Guide leads with the median of real sold prices rather than the record one."
+      : "Agreed value is a negotiation, and the person with comparable sales in hand does better. Bring the median of what cars like yours actually made — not the record sale — and be ready to show where the figures came from.",
+    href: VALUE_GUIDE_PUBLIC ? "/value-guide" : "/services",
+    cta: VALUE_GUIDE_PUBLIC ? "Check the Value Guide" : "Find an appraiser",
   },
   {
     icon: Camera,

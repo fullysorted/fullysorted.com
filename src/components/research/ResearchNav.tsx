@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BookOpen, BarChart3, GitCompare, ScanLine, Newspaper } from "lucide-react";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 /**
  * One shared sub-navigation for the whole Research area.
@@ -30,13 +31,17 @@ const ITEMS: {
     blurb: "Cited history, specs and production, model by model",
     icon: <BookOpen className="w-4 h-4" />,
   },
-  {
-    key: "value",
-    href: "/value-guide",
-    label: "Value Guide",
-    blurb: "What one is worth — from real sold prices",
-    icon: <BarChart3 className="w-4 h-4" />,
-  },
+  ...(VALUE_GUIDE_PUBLIC
+    ? [
+        {
+          key: "value" as const,
+          href: "/value-guide",
+          label: "Value Guide",
+          blurb: "What one is worth — from real sold prices",
+          icon: <BarChart3 className="w-4 h-4" />,
+        },
+      ]
+    : []),
   {
     key: "compare",
     href: "/research/compare",

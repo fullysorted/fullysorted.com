@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Loader2, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export function SubmitSaleForm() {
   const [f, setF] = useState({
@@ -45,7 +46,7 @@ export function SubmitSaleForm() {
       <div className="flex gap-3 justify-center">
         <button onClick={() => { setDone(false); setConsent(false); setF({ make: "", model: "", year: "", trim: "", salePrice: "", saleDate: "", venue: "", mileage: "", exteriorColor: "", vin: "", location: "", sourceUrl: "", notes: "", name: "", email: "" }); }}
           className="px-5 py-2.5 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors">Add another</button>
-        <Link href="/value-guide" className="px-5 py-2.5 text-sm font-semibold text-foreground rounded-xl border border-border hover:bg-surface transition-colors inline-flex items-center gap-1.5">Value Guide <ArrowRight className="w-4 h-4" /></Link>
+        <Link href={VALUE_GUIDE_PUBLIC ? "/value-guide" : "/research/models"} className="px-5 py-2.5 text-sm font-semibold text-foreground rounded-xl border border-border hover:bg-surface transition-colors inline-flex items-center gap-1.5">{VALUE_GUIDE_PUBLIC ? "Value Guide" : "Model histories"} <ArrowRight className="w-4 h-4" /></Link>
       </div>
     </div>
   );

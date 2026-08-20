@@ -10,6 +10,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { RarityScale } from "@/components/research/RarityScale";
 import { ProductionBreakdown } from "@/components/research/ProductionBreakdown";
 import { ContributeBox } from "@/components/research/ContributeBox";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export const revalidate = 3600;
 
@@ -359,32 +360,72 @@ export default async function ModelPage({ params }: Props) {
               </div>
             )}
 
-            {/* CTAs */}
-            <div className="rounded-2xl p-5" style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.18)" }}>
-              {snapshot.count > 0 ? (
-                <>
-                  <div className="flex items-center gap-2 mb-2">
-                    <TrendingUp className="w-4 h-4" style={{ color: "#1E6091" }} />
-                    <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#6b6b5e" }}>Market Snapshot</p>
-                  </div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold" style={{ color: "#1a1a18" }}>{snapshot.median ? `$${snapshot.median.toLocaleString()}` : "\u2014"}</span>
-                    <span className="text-xs" style={{ color: "#9a9a8a" }}>median &middot; {snapshot.count} {snapshot.count === 1 ? "sale" : "sales"}</span>
-                  </div>
-                  {snapshot.low != null && snapshot.high != null && (
-                    <p className="text-xs mt-1" style={{ color: "#6b6b5e" }}>Range ${snapshot.low.toLocaleString()} &ndash; ${snapshot.high.toLocaleString()}</p>
-                  )}
-                </>
-              ) : (
-                <>
-                  <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>What&rsquo;s one worth today?</p>
-                  <p className="text-xs mb-1" style={{ color: "#6b6b5e" }}>Comp-backed pricing in the Value Guide.</p>
-                </>
-              )}
-              <Link href={`/value-guide?make=${encodeURIComponent(m.make)}&model=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold mt-3" style={{ color: "#1E6091" }}>
-                {snapshot.count > 0 ? "See all comps & the price trend" : "Open Value Guide"} <ArrowRight className="w-3 h-3" />
-              </Link>
+            {/* Market snapshot. getModelMarketSnapshot() now applies the same
+                minimum-n rule as the Value Guide: nothing under three sales, no
+                midpoint under six. With the guide hidden there is no CTA, so the
+                whole box only earns its place when there is something to say. */}
+            {(snapshot.count >= 3 || VALUE_GUIDE_PUBLIC) && (
+              <div className="rounded-2xl p-5" style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.18)" }}>
+                {snapshot.count >= 3 ? (
+                  <>
+                    <div className="flex items-center gap-2 mb-2">
+                      <TrendingUp className="w-4 h-4" style={{ color: "#1E6091" }} />
+                      <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#6b6b5e" }}>Market Snapshot</p>
+                    </div>
+                    {snapshot.median != null ? (
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-2xl font-bold" style={{ color: "#1a1a18" }}>${snapshot.median.toLocaleString()}</span>
+                        <span className="text-xs" style={{ color: "#9a9a8a" }}>median &middot; {snapshot.count} sales</span>
+                      </div>
+                    ) : (
+                      <p className="text-xs" style={{ color: "#6b6b5e" }}>
+                        {snapshot.count} recorded sales — too few for a median worth standing behind, so here is the range instead.
+                      </p>
+                    )}
+                    {snapshot.low != null && snapshot.high != null && (
+                      <p className="text-xs mt-1" style={{ color: "#6b6b5e" }}>Range ${snapshot.low.toLocaleString()} &ndash; ${snapshot.high.toLocaleString()}</p>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>What&rsquo;s one worth today?</p>
+                    <p className="text-xs mb-1" style={{ color: "#6b6b5e" }}>Comp-backed pricing in the Value Guide.</p>
+                  </>
+                )}
+                {VALUE_GUIDE_PUBLIC && (
+                  <Link href={`/value-guide?make=${encodeURIComponent(m.make)}&model=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold mt-3" style={{ color: "#1E6091" }}>
+                    {snapshot.count >= 3 ? "See all comps & the price trend" : "Open Value Guide"} <ArrowRight className="w-3 h-3" />
+                  </Link>
+                )}
+              </div>
+            )}
+            {/* The other two doors. A model page that ends in a full stop is a
+                dead end — it should open onto the specialists who work on this
+                car and the kit for the state it is in. */}
+            <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6b6b5e" }}>Next</p>
+              <div className="space-y-3.5">
+                <Link href={`/services?q=${encodeURIComponent(m.make)}`} className="flex items-center justify-between gap-3 group">
+                  <span className="text-sm font-semibold group-hover:opacity-70 transition-opacity" style={{ color: "#1a1a18" }}>
+                    Specialists who work on {m.make}
+                  </span>
+                  <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform" style={{ color: "#1E6091" }} />
+                </Link>
+                <Link href="/shop?kit=post-purchase" className="flex items-center justify-between gap-3 group">
+                  <span className="text-sm font-semibold group-hover:opacity-70 transition-opacity" style={{ color: "#1a1a18" }}>
+                    What to buy the weekend one arrives
+                  </span>
+                  <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform" style={{ color: "#1E6091" }} />
+                </Link>
+                <Link href="/shop?kit=ppi-prep" className="flex items-center justify-between gap-3 group">
+                  <span className="text-sm font-semibold group-hover:opacity-70 transition-opacity" style={{ color: "#1a1a18" }}>
+                    Kit for a pre-purchase inspection
+                  </span>
+                  <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform" style={{ color: "#1E6091" }} />
+                </Link>
+              </div>
             </div>
+
             {forSale.length > 0 && (
               <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
                 <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6b6b5e" }}>For sale now</p>

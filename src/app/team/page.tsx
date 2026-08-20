@@ -24,8 +24,15 @@ function TeamLoginForm() {
     });
 
     if (res.ok) {
-      const redirect = searchParams.get("redirect") || "/team/dashboard";
-      router.push(redirect);
+      // Only ever bounce to a path on this site. "//evil.com" and
+      // "/\\evil.com" are both browser-legal ways to leave the origin, so a
+      // bare startsWith("/") check is not enough.
+      const requested = searchParams.get("redirect") || "";
+      const safe =
+        requested.startsWith("/") && !requested.startsWith("//") && !requested.startsWith("/\\")
+          ? requested
+          : "/team/dashboard";
+      router.push(safe);
     } else {
       const data = await res.json().catch(() => ({}));
       setError(data.error || "Incorrect access code. Try again.");

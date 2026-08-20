@@ -50,7 +50,13 @@ export async function GET(request: NextRequest) {
 
   try {
     if (!process.env.DATABASE_URL) {
-      return NextResponse.json({ comps: [], total: 0, avgPrice: null, source: 'no_db' });
+      // Must NOT return a well-formed empty result: the UI would render it as
+      // "no comparable sales on record", which tells the user the car has no
+      // history when the truth is that we never got as far as looking.
+      return NextResponse.json(
+        { error: 'The comp database is unavailable right now. Please try again shortly.', comps: [], total: 0, source: 'no_db' },
+        { status: 503 }
+      );
     }
 
     const { neon } = await import('@neondatabase/serverless');
@@ -58,6 +64,10 @@ export async function GET(request: NextRequest) {
 
     const firstWord = model.split(' ')[0];
 
+    // Match the model column OR the lot title. The seed/ingest schema puts the
+    // variant in `trim` ("993" + "Carrera 4S"), so a perfectly reasonable search
+    // for "993 Carrera 4S" matched nothing on `model` alone and fell through to
+    // the whole 993 family without saying so.
     async function query(modelPattern: string, range: number): Promise<Row[]> {
       return (await sql`
         SELECT
@@ -67,7 +77,11 @@ export async function GET(request: NextRequest) {
         FROM auction_results
         WHERE
           LOWER(make) = ${make}
-          AND LOWER(model) LIKE ${modelPattern}
+          AND (
+            LOWER(model) LIKE ${modelPattern}
+            OR LOWER(COALESCE(model, '') || ' ' || COALESCE("trim", '')) LIKE ${modelPattern}
+            OR LOWER(COALESCE(lot_title, '')) LIKE ${modelPattern}
+          )
           AND year BETWEEN ${allYears ? 1900 : year - range} AND ${allYears ? 2100 : year + range}
           AND sold = true
           AND sale_price IS NOT NULL

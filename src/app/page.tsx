@@ -6,6 +6,7 @@ import { MarketMovers } from "@/components/home/MarketMovers";
 import { ValueGuidePreview } from "@/components/home/ValueGuidePreview";
 import { CTASection } from "@/components/home/CTASection";
 import type { Vehicle } from "@/lib/sample-data";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 // Was `force-dynamic`, which re-queried the database on every single homepage
 // hit and opted the most-visited page on the site out of every caching layer.
@@ -93,8 +94,9 @@ export default async function Home() {
       <ServicesSection />
       {/* Marketplace second — one strong section */}
       <FeaturedListings listings={listings} />
-      {/* Market intelligence — the data moat */}
-      <ValueGuidePreview />
+      {/* Market intelligence — the data moat. Hidden until the comp set can
+          answer an ordinary search; see src/lib/features.ts. */}
+      {VALUE_GUIDE_PUBLIC && <ValueGuidePreview />}
       <MarketMovers />
       <CTASection />
     </>

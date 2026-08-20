@@ -197,18 +197,17 @@ const SECTIONS: FaqSection[] = [
       {
         q: "Where does your valuation data come from?",
         a: "Publicly available sale results — auction results and reported private sales — aggregated into comps for a given year, make and model. We work from what cars actually sold for rather than what sellers were asking, because asking prices tell you about optimism, not about the market.",
-        link: { href: "/value-guide", label: "Open the Value Guide" },
       },
       {
         q: "How complete is the comp database?",
-        a: "Early, and we would rather say so than imply otherwise. It is deep on some segments and thin on others, it is not yet a licensed real-time feed, and we are adding to it continuously. Where a search returns too few comparable sales to be meaningful, the Value Guide says so instead of producing a confident number out of nothing.",
+        a: "Early, and we would rather say so than imply otherwise. It is deep on some segments and thin on others, it is not yet a licensed real-time feed, and we are adding to it continuously. Where we have too few comparable sales for a figure to mean anything, we say so instead of producing a confident number out of nothing.",
       },
       {
         q: "How many sales do you need before you'll give me a number?",
         a: "We publish the rule, which as far as we know nobody else does. One or two sales: no estimate at all, just the sales themselves. Three to five: a range, no midpoint — too few results to put a single number on a car honestly. Six to eight: a median worth using, framed as a reasonable read rather than a precise one. Nine or more: a median we will stand behind. Twenty or more before we will show you a trend. If you ever see a confident number on this site, it is because it earned it.",
       },
       {
-        q: "Why does the Value Guide lead with a median instead of an average?",
+        q: "Why do you lead with a median instead of an average?",
         a: "Because one exceptional car wrecks an average. A single concours-winning or numbers-matching rarity inside a small comp set drags the mean far above anything a normal example changes hands for — a four-sale set containing one seven-figure car will happily report a seven-figure 'average' for a car that trades at a fraction of it. The median is what a typical car in that set actually sold for. Where we detect that skew, we hide the average rather than print it.",
       },
       {

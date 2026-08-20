@@ -120,6 +120,21 @@ function confidenceOf(n: number): Confidence {
   return "solid";
 }
 
+/**
+ * Six comps is the floor for printing ANY midpoint anywhere on this page — the
+ * median tile, the condition estimate, the median line on the chart. Below it
+ * the page shows sales and a range and nothing else. One component quietly
+ * printing a number the tile beside it has just refused to print is the exact
+ * failure the minimum-n rule exists to prevent.
+ */
+function showMidpoint(n: number): boolean {
+  const c = confidenceOf(n);
+  return c === "median" || c === "solid";
+}
+
+/** Year cap on the search box — modern collectibles are collectibles too. */
+const CURRENT_YEAR = new Date().getFullYear();
+
 const CONFIDENCE_COPY: Record<Exclude<Confidence, "none">, { label: string; body: string; tone: string; bg: string; border: string }> = {
   raw: {
     label: "Not enough sales for an estimate",
@@ -209,7 +224,14 @@ function ourTake(
     }
   }
   if (conf !== "range" && r.lowPrice && r.highPrice && r.highPrice > r.lowPrice) {
-    bits.push(`Recent results run from ${formatPrice(r.lowPrice)} to ${formatPrice(r.highPrice)}, so condition, originality, and documentation are doing most of the work.`);
+    // Quote the IQR-trimmed band when there is one — otherwise this sentence
+    // reintroduces the very outlier the stat row just set aside.
+    const useTypical = (r.outliersExcluded ?? 0) > 0 && r.typicalLow && r.typicalHigh;
+    const lo = useTypical ? r.typicalLow! : r.lowPrice;
+    const hi = useTypical ? r.typicalHigh! : r.highPrice;
+    bits.push(
+      `${useTypical ? "Setting the outliers aside, recent" : "Recent"} results run from ${formatPrice(lo)} to ${formatPrice(hi)}, so condition, originality, and documentation are doing most of the work.`
+    );
   }
   if (trend && r.total >= 20) {
     if (trend.trend === "up") bits.push(`Comparing older sales to newer, the trend is up roughly ${trend.pct}%.`);
@@ -298,16 +320,39 @@ const CONDITION_GRADES = [
   { key: "project", label: "Project", tag: "#5", desc: "Incomplete or needs full restoration. Priced on potential.", lo: 6, mid: 15, hi: 26 },
 ] as const;
 
-function ConditionEstimator({ comps, car }: { comps: Comp[]; car: string }) {
+function ConditionEstimator({
+  comps,
+  car,
+  typicalLow,
+  typicalHigh,
+  outliersExcluded = 0,
+}: {
+  comps: Comp[];
+  car: string;
+  typicalLow?: number | null;
+  typicalHigh?: number | null;
+  outliersExcluded?: number;
+}) {
   const [grade, setGrade] = useState<string>("good");
   const [showMethod, setShowMethod] = useState(false);
 
+  // The ladder reads the SHAPE of the distribution, so any lot the comps API
+  // already set aside as an outlier must not be allowed to become the
+  // "Concours" number. Use the IQR-trimmed band when the API gives us one.
   const prices = comps
     .map((c) => c.sale_price)
     .filter((v): v is number => typeof v === "number" && v > 0)
+    .filter(
+      (v) =>
+        (typicalLow == null || v >= typicalLow) &&
+        (typicalHigh == null || v <= typicalHigh)
+    )
     .sort((a, b) => a - b);
 
-  if (prices.length < 5) return null;
+  // Six — the same floor confidenceOf() uses before the page will print a
+  // midpoint. Below it this estimate would contradict the "—" in the median
+  // tile a few inches above it.
+  if (prices.length < 6) return null;
 
   const g = CONDITION_GRADES.find((x) => x.key === grade) ?? CONDITION_GRADES[2];
   const est = Math.round(percentile(prices, g.mid));
@@ -320,7 +365,9 @@ function ConditionEstimator({ comps, car }: { comps: Comp[]; car: string }) {
   const axHi = percentile(prices, 98);
   const axSpan = axHi - axLo || axHi || 1;
   const pos = (v: number) => Math.max(0, Math.min(100, ((v - axLo) / axSpan) * 100));
-  const thin = prices.length < 8;
+  const thin = prices.length < 9;
+  /** Cheapest-to-dearest multiple. High values mean variant spread, not condition spread. */
+  const spread = prices[0] > 0 ? prices[prices.length - 1] / prices[0] : 0;
 
   return (
     <div className="bg-white border border-border rounded-xl p-5 sm:p-6">
@@ -455,11 +502,25 @@ function ConditionEstimator({ comps, car }: { comps: Comp[]; car: string }) {
             Condition maps to where cars in that shape land: Concours (#1) to the top of the market, Good (#3)
             around the median, Project (#5) to the bottom. The point estimate is the middle of that band and the
             range is its edges — computed live from the real sales you can see listed below, never a hidden model.
+            {outliersExcluded > 0
+              ? ` ${outliersExcluded} sale${outliersExcluded === 1 ? "" : "s"} sat far enough outside the rest of the set to be set aside first, so ${outliersExcluded === 1 ? "it is" : "they are"} not shaping the top of this ladder.`
+              : ""}
+          </p>
+        )}
+        {/* The ladder assumes the spread in the set is driven by CONDITION. On a
+            comp set that mixes variants — a base Mustang convertible next to a
+            GT500KR — the spread is driven by which car it is, and the ladder
+            reads high. Say so rather than let the number stand unqualified. */}
+        {spread >= 4 && (
+          <p className="text-xs mt-2 leading-relaxed" style={{ color: "#8a6d2f" }}>
+            The cheapest and dearest sales in this set are {spread.toFixed(1)}× apart, which is
+            usually a sign the set mixes variants, not just conditions. Narrow the model
+            (add the trim) for a ladder that reads condition alone.
           </p>
         )}
         {thin && (
           <p className="text-xs mt-2 leading-relaxed" style={{ color: "#8a6d2f" }}>
-            Only {prices.length} comparable sales here — treat this as directional. Broaden the year range for a firmer read.
+            Only {prices.length} comparable sales here — treat this as directional, not precise. Broaden the year range for a firmer read.
           </p>
         )}
         <p className="text-[11px] text-text-tertiary mt-2">
@@ -501,7 +562,12 @@ export function ValueGuideClient() {
 
         const res = await fetch(`/api/market/comps?${params}`);
         const data = await res.json();
-        if (data.error && !data.comps) throw new Error(data.error);
+        // `comps: []` is truthy, so the old `!data.comps` guard never fired and
+        // a database failure rendered as the calm "no comparable sales on
+        // record" empty state — telling the user the car has no history when
+        // in fact we never looked.
+        if (!res.ok) throw new Error(data?.error || `Search failed (${res.status})`);
+        if (data.error) throw new Error(data.error);
         setResult(data);
       } catch (err: unknown) {
         setFetchError(err instanceof Error ? err.message : "Failed to fetch comparables");
@@ -543,9 +609,15 @@ export function ValueGuideClient() {
 
   // Determine trend from comps (compare first 5 vs last 5 by date)
   function deriveTrend(comps: Comp[]): { trend: "up" | "down" | "flat"; pct: number } {
-    const sorted = [...comps].sort((a, b) =>
-      new Date(a.auction_date || 0).getTime() - new Date(b.auction_date || 0).getTime()
-    );
+    // Undated comps used to fall back to the epoch, which parked them at the
+    // "old" end of the split and invented a trend out of missing metadata.
+    const sorted = comps
+      .filter((c) => c.auction_date)
+      .sort(
+        (a, b) =>
+          new Date(a.auction_date as string).getTime() -
+          new Date(b.auction_date as string).getTime()
+      );
     if (sorted.length < 6) return { trend: "flat", pct: 0 };
     const half = Math.floor(sorted.length / 2);
     const older = sorted.slice(0, half).map(c => c.sale_price).filter(Boolean);
@@ -561,20 +633,24 @@ export function ValueGuideClient() {
   const trendInfo = result?.comps ? deriveTrend(result.comps) : null;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    // The page section already supplies the max-width container and padding.
+    <div>
       {/* Header */}
       <div className="mb-10">
+        {/* "Powered by Real Auction Data" was retired site-wide: the comp set
+            is not a licensed feed. The page hero already carries the H1, so
+            this is an H2 — two H1s on one URL was also an SEO own-goal. */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-light text-accent text-xs font-semibold rounded-full mb-4">
           <BarChart3 className="w-3.5 h-3.5" />
-          Powered by Real Auction Data
+          Sold prices, not asking prices
         </div>
-        <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl text-foreground">
-          Value Guide
-        </h1>
-        <p className="text-text-secondary mt-2 text-lg">
-          What is your collector car worth? Enter any year, make, and model to
-          see what cars like yours actually sell for — real auction results,
-          not ask prices.
+        <h2 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-foreground">
+          Search the comps
+        </h2>
+        <p className="text-text-secondary mt-2">
+          Enter a year, make, and model. You get what comparable cars actually
+          sold for — and, just as importantly, how many sales stand behind the
+          number.
         </p>
       </div>
 
@@ -594,7 +670,7 @@ export function ValueGuideClient() {
               onChange={(e) => setYearInput(e.target.value)}
               placeholder="e.g. 1973"
               min="1900"
-              max="2020"
+              max={CURRENT_YEAR}
               className="w-full h-12 px-4 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
             />
           </div>
@@ -712,8 +788,10 @@ export function ValueGuideClient() {
               </h2>
               <p className="text-sm text-text-secondary mt-0.5">
                 Based on {result.total} comparable {result.total === 1 ? "sale" : "sales"}{" "}
-                {yearInput
-                  ? `· ${parseInt(yearInput) - (result.yearRangeUsed ?? parseInt(yearRange))} – ${parseInt(yearInput) + (result.yearRangeUsed ?? parseInt(yearRange))}`
+                {/* searchedFor, not the live input — editing the year box after
+                    a search used to silently rewrite the range under the results. */}
+                {searchedFor.year
+                  ? `· ${parseInt(searchedFor.year) - (result.yearRangeUsed ?? parseInt(yearRange))} – ${parseInt(searchedFor.year) + (result.yearRangeUsed ?? parseInt(yearRange))}`
                   : ""}
                 {" · "}aggregated market comps
                 {result.latestSaleDate
@@ -751,6 +829,13 @@ export function ValueGuideClient() {
                   </div>
                 );
               })()}
+              {result.matchTier === "model_family" && (
+                <p className="text-xs text-text-tertiary mt-1">
+                  Nothing matched &ldquo;{searchedFor.model}&rdquo; exactly, so we broadened to the{" "}
+                  {searchedFor.model.split(" ")[0]} family. Check the sales below are really
+                  comparable to your car before you lean on the number.
+                </p>
+              )}
               {result.matchTier === "widened_years" && (
                 <p className="text-xs text-text-tertiary mt-1">
                   Exact-year sales were thin, so we widened the window to ±{result.yearRangeUsed} years to give you a usable read.
@@ -804,7 +889,7 @@ export function ValueGuideClient() {
                     Median
                   </p>
                   {/* Below six comps there is no honest midpoint to print. */}
-                  {confidenceOf(result.total) === "raw" || confidenceOf(result.total) === "range" ? (
+                  {!showMidpoint(result.total) ? (
                     <>
                       <p className="price-display text-2xl text-text-tertiary font-bold">—</p>
                       <p className="text-[10px] text-text-tertiary mt-1">Too few sales</p>
@@ -846,6 +931,15 @@ export function ValueGuideClient() {
                   <p className="price-display text-xl text-foreground">
                     {result.highPrice ? formatPrice(result.highPrice) : "—"}
                   </p>
+                  {/* Without this, a set whose median is suppressed still prints
+                      a $3.85M L88 as the biggest number on the page. */}
+                  {typeof result.outliersExcluded === "number" &&
+                    result.outliersExcluded > 0 &&
+                    result.typicalHigh && (
+                      <p className="text-[10px] text-text-tertiary mt-1 leading-tight">
+                        Outlier sale — typical top {formatPrice(result.typicalHigh)}
+                      </p>
+                    )}
                 </div>
               </div>
             )}
@@ -859,12 +953,22 @@ export function ValueGuideClient() {
           </div>
 
           {/* Glass-box condition estimator */}
-          {result.total >= 5 && (
-            <ConditionEstimator comps={result.comps} car={`${searchedFor.make} ${searchedFor.model}`.trim()} />
+          {showMidpoint(result.total) && (
+            <ConditionEstimator
+              comps={result.comps}
+              car={`${searchedFor.make} ${searchedFor.model}`.trim()}
+              typicalLow={result.typicalLow}
+              typicalHigh={result.typicalHigh}
+              outliersExcluded={result.outliersExcluded ?? 0}
+            />
           )}
 
-          {/* Price over time */}
-          <PriceHistoryChart comps={result.comps} median={result.medianPrice} />
+          {/* Price over time. The dashed median line is a midpoint like any
+              other — below six comps it stays off the chart. */}
+          <PriceHistoryChart
+            comps={result.comps}
+            median={showMidpoint(result.total) ? result.medianPrice : null}
+          />
 
           {/* Chris's Take */}
           {result.total > 0 && (

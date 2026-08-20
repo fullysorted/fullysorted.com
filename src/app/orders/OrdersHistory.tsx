@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAuth, useUser, SignInButton } from "@clerk/nextjs";
 import { Loader2, Package, ArrowRight, ShieldCheck, PackageCheck, CheckCircle2, AlertTriangle, Car, BarChart3, Wrench, Tag } from "lucide-react";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 interface Order {
   id: number;
@@ -31,7 +32,9 @@ const STATUS: Record<string, { label: string; bg: string; fg: string; icon: Reac
 
 const QUICK_ACTIONS = [
   { href: "/browse", label: "Browse cars", icon: Car },
-  { href: "/value-guide", label: "Value a car", icon: BarChart3 },
+  VALUE_GUIDE_PUBLIC
+    ? { href: "/value-guide", label: "Value a car", icon: BarChart3 }
+    : { href: "/research/models", label: "Model histories", icon: BarChart3 },
   { href: "/services", label: "Services", icon: Wrench },
   { href: "/sell", label: "Sell a car", icon: Tag },
 ];

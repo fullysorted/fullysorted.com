@@ -4,6 +4,7 @@ import { Info, ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SHOP_PRODUCTS, SHOP_CATEGORIES } from "@/lib/data/shopProducts";
 import { AFFILIATE_DISCLOSURE, affiliateHref } from "@/lib/affiliate";
+import { Suspense } from "react";
 import { ShopClient } from "./ShopClient";
 
 export const metadata: Metadata = {
@@ -88,7 +89,9 @@ export default function ShopPage() {
           <p className="text-xs leading-relaxed text-text-secondary">{AFFILIATE_DISCLOSURE}</p>
         </div>
 
-        <ShopClient />
+        <Suspense fallback={null}>
+            <ShopClient />
+          </Suspense>
 
         {/* Editorial close */}
         <div className="mt-4 rounded-2xl bg-white border border-border p-6 sm:p-8 text-center">

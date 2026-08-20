@@ -33,6 +33,19 @@ export async function POST(request: NextRequest) {
   const sql = neon(process.env.DATABASE_URL);
 
   // Look up the staged provider by token
+  // Remember which token was used, as a hash. The plain token is still cleared
+  // (it grants listing takeover), but the hash lets a second click on the same
+  // emailed link land on "you're already listed" instead of a 404 at the exact
+  // moment of highest intent.
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS claim_token_used VARCHAR(64)`;
+  // Same soft-delete columns the team console uses; this route can be the first
+  // to touch the table, so it cannot assume they already exist.
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_prev_status VARCHAR(30)`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_prev_public_status VARCHAR(30)`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_opted_out_at TIMESTAMPTZ`;
+  const { createHash } = await import('crypto');
+  const tokenHash = createHash('sha256').update(token).digest('hex');
+
   const rows = await sql`
     SELECT id, business_name, email, application_id, outreach_status
     FROM service_providers
@@ -44,7 +57,7 @@ export async function POST(request: NextRequest) {
   if (!provider) {
     return NextResponse.json({ error: 'Token not found or already used' }, { status: 404 });
   }
-  if (provider.outreach_status === 'opted_out') {
+  if (provider.outreach_status === 'opted_out' || provider.outreach_status === 'declined') {
     return NextResponse.json({ error: 'This listing has been removed' }, { status: 410 });
   }
 
@@ -55,8 +68,21 @@ export async function POST(request: NextRequest) {
       INSERT INTO outreach_suppression (business_name, email, domain, reason)
       VALUES (${provider.business_name}, ${provider.email}, ${domain}, 'Owner declined via claim link')
     `;
-    // Hard delete provider + application
-    await sql`DELETE FROM service_providers WHERE id = ${provider.id}`;
+    // Soft delete. The suppression row above already keeps the promise — we
+    // stop contacting them and the listing comes down. Destroying the record
+    // with CASCADE as well only means an accidental click is unrecoverable.
+    await sql`
+      UPDATE service_providers
+      SET outreach_prev_status = COALESCE(outreach_prev_status, outreach_status),
+          outreach_prev_public_status = COALESCE(outreach_prev_public_status, status),
+          outreach_status = 'declined',
+          status = 'declined',
+          outreach_opted_out_at = NOW(),
+          claim_token = NULL,
+          claim_token_used = ${tokenHash},
+          updated_at = NOW()
+      WHERE id = ${provider.id}
+    `;
     if (provider.application_id) {
       await sql`UPDATE provider_applications SET status = 'rejected' WHERE id = ${provider.application_id}`;
     }
@@ -74,6 +100,7 @@ export async function POST(request: NextRequest) {
         outreach_status = ${newOutreachStatus},
         outreach_responded_at = NOW(),
         claim_token = NULL,
+        claim_token_used = ${tokenHash},
         updated_at = NOW()
     WHERE id = ${provider.id}
   `;

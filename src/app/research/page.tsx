@@ -15,6 +15,7 @@ import {
 import { cn, formatPrice } from "@/lib/utils";
 import { articles } from "@/lib/articles";
 import { ResearchNav } from "@/components/research/ResearchNav";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export const metadata: Metadata = {
   title: "Market Research — Collector Car Trends & Analysis",
@@ -38,6 +39,8 @@ interface MarketSegment {
   lowPrice?: number;
   sale_count?: number;
   saleCount?: number;
+  mean_skewed?: boolean;
+  has_midpoint?: boolean;
   trend_percent?: number;
   trendPercent?: number;
   trend_direction?: string;
@@ -113,6 +116,11 @@ function normalize(seg: MarketSegment) {
     highPrice: seg.high_price ?? seg.highPrice,
     lowPrice: seg.low_price ?? seg.lowPrice,
     saleCount: seg.sale_count ?? seg.saleCount ?? 0,
+    // The API nulls the midpoint below six sales and suppresses a mean that a
+    // single lot has dragged. Carry both through rather than falling back to 0,
+    // which would render as "$0" and read as a price.
+    meanSkewed: seg.mean_skewed ?? false,
+    hasMidpoint: seg.has_midpoint ?? false,
     hasTrend,
     trendPercent: Math.abs(rawTrend ?? 0),
     trendDirection: (rawDir ?? "flat") as "up" | "down" | "flat",
@@ -504,22 +512,24 @@ export default async function ResearchPage() {
             )}
 
             {/* Value Guide CTA */}
-            <div
-              className="rounded-2xl p-5"
-              style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.18)" }}
-            >
-              <p className="font-bold text-stone-800 text-sm mb-1">Check Your Car&apos;s Value</p>
-              <p className="text-xs text-stone-500 mb-3">
-                Get a pricing verdict backed by real auction comps and market data.
-              </p>
-              <Link
-                href="/value-guide"
-                className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors hover:opacity-75"
-                style={{ color: "#1E6091" }}
+            {VALUE_GUIDE_PUBLIC && (
+              <div
+                className="rounded-2xl p-5"
+                style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.18)" }}
               >
-                Open Value Guide <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
+                <p className="font-bold text-stone-800 text-sm mb-1">Check Your Car&apos;s Value</p>
+                <p className="text-xs text-stone-500 mb-3">
+                  Get a pricing verdict backed by real auction comps and market data.
+                </p>
+                <Link
+                  href="/value-guide"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors hover:opacity-75"
+                  style={{ color: "#1E6091" }}
+                >
+                  Open Value Guide <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            )}
 
             {/* Data Sources */}
             <div
@@ -656,7 +666,8 @@ export default async function ResearchPage() {
                   <thead>
                     <tr style={{ borderBottom: "1px solid rgba(0,0,0,0.06)", background: "#f9f8f6" }}>
                       <th className="text-left px-5 py-3 font-bold text-stone-400 text-xs uppercase tracking-wider">Segment</th>
-                      <th className="text-right px-5 py-3 font-bold text-stone-400 text-xs uppercase tracking-wider">Avg Price</th>
+                      <th className="text-right px-5 py-3 font-bold text-stone-400 text-xs uppercase tracking-wider">Median</th>
+                      <th className="text-right px-5 py-3 font-bold text-stone-400 text-xs uppercase tracking-wider hidden md:table-cell">Range</th>
                       <th className="text-right px-5 py-3 font-bold text-stone-400 text-xs uppercase tracking-wider hidden sm:table-cell">Sales</th>
                       <th className="text-right px-5 py-3 font-bold text-stone-400 text-xs uppercase tracking-wider">Trend</th>
                     </tr>
@@ -665,7 +676,25 @@ export default async function ResearchPage() {
                     {segments.map((seg, i) => (
                       <tr key={seg.segmentKey} className={cn("hover:bg-stone-50 transition-colors", i > 0 && "border-t border-stone-100")}>
                         <td className="px-5 py-3.5 font-semibold text-stone-800">{seg.segment}</td>
-                        <td className="px-5 py-3.5 text-right price-display text-stone-700">{formatPrice(seg.avgPrice)}</td>
+                        <td className="px-5 py-3.5 text-right price-display text-stone-700">
+                          {seg.medianPrice ? (
+                            formatPrice(seg.medianPrice)
+                          ) : (
+                            <span className="text-stone-300" title={`Only ${seg.saleCount} recorded sales — too few for a midpoint`}>—</span>
+                          )}
+                        </td>
+                        <td className="px-5 py-3.5 text-right text-stone-500 text-sm hidden md:table-cell whitespace-nowrap">
+                          {seg.lowPrice && seg.highPrice && !seg.meanSkewed ? (
+                            `${formatPrice(seg.lowPrice)} – ${formatPrice(seg.highPrice)}`
+                          ) : (
+                            <span
+                              className="text-stone-300"
+                              title={seg.meanSkewed ? "One lot in this segment sits far above the rest — a range would describe no car anyone actually buys" : "Not enough recorded sales"}
+                            >
+                              —
+                            </span>
+                          )}
+                        </td>
                         <td className="px-5 py-3.5 text-right text-stone-400 hidden sm:table-cell">
                           {seg.saleCount > 0 ? seg.saleCount.toLocaleString() : "—"}
                         </td>

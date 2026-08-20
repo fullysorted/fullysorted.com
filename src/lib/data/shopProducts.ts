@@ -67,6 +67,75 @@ export const SHOP_CATEGORIES: ShopCategory[] = [
   },
 ];
 
+/**
+ * Scenario kits — the retail arm of "sorted".
+ *
+ * A generic affiliate page is a commodity. What makes this one ours is that the
+ * kits map to states of a car's checklist: the weekend it arrives, the week
+ * before a show, the day it goes away for winter, the morning of a
+ * pre-purchase inspection. Each kit is a moment an owner is already in, which
+ * is the only reason anyone buys anything from a list.
+ *
+ * Kits are compositions of SHOP_PRODUCTS — never a separate catalogue. Adding
+ * a product to a kit is one slug in `items`.
+ */
+export interface ShopKit {
+  slug: string;
+  label: string;
+  /** The moment this kit is for, in the owner's words. */
+  when: string;
+  intro: string;
+  icon: string; // lucide key, mapped in the client
+  /** Product slugs, in the order they matter. */
+  items: string[];
+}
+
+export const SHOP_KITS: ShopKit[] = [
+  {
+    slug: "post-purchase",
+    label: "The First Weekend",
+    when: "You just bought the car",
+    intro:
+      "Whatever the seller told you, you now own the maintenance history — so start your own. Read the book, change the fluids you cannot vouch for, and find out what the car is actually saying before you drive it anywhere far.",
+    icon: "KeyRound",
+    items: ["workshop-manual", "royal-purple-oil", "bluedriver-scanner", "tekton-torque-wrench", "adams-car-shampoo"],
+  },
+  {
+    slug: "ppi-prep",
+    label: "Pre-Purchase Inspection",
+    when: "You are about to buy one",
+    intro:
+      "You can pay a specialist to look at a car properly, and you should. This is what makes their hour count — and what lets you check the obvious things yourself before you spend it.",
+    icon: "Search",
+    items: ["arcan-floor-jack", "esco-jack-stands", "bluedriver-scanner", "buyers-guide", "originality-guide"],
+  },
+  {
+    slug: "show-day",
+    label: "Show Day",
+    when: "It is being judged on Sunday",
+    intro:
+      "Nothing here changes the car. It makes the car look like what it already is — which, on a field where everything has been polished, is mostly about the last hour before the judges arrive.",
+    icon: "Sparkles",
+    items: ["adams-car-shampoo", "adams-clay-kit", "griots-polisher", "adams-detail-spray", "rag-company-towels", "driving-gloves"],
+  },
+  {
+    slug: "winter-storage",
+    label: "Winter Storage",
+    when: "It is going away for a few months",
+    intro:
+      "A collector car spends most of its life parked, and parking it badly costs more than driving it. Stabilise the fuel, keep the battery alive, take the load off the tyres, and cover it with something that breathes.",
+    icon: "Warehouse",
+    items: ["stabil-fuel-stabilizer", "battery-tender-jr", "race-ramps-flatstoppers", "covercraft-car-cover"],
+  },
+];
+
+/** Products for a kit, in the kit's own order. Unknown slugs are skipped. */
+export function kitProducts(kit: ShopKit): ShopProduct[] {
+  return kit.items
+    .map((slug) => SHOP_PRODUCTS.find((p) => p.slug === slug))
+    .filter((p): p is ShopProduct => !!p);
+}
+
 export const SHOP_PRODUCTS: ShopProduct[] = [
   // ---- Detailing & Paint Care ----
   {

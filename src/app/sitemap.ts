@@ -3,6 +3,8 @@ import { articles } from "@/lib/articles";
 import { events } from "@/lib/events";
 import { getPublishedModels } from "@/lib/data/models";
 import { getActiveGigs } from "@/lib/data/gigs";
+import { getPublicProviderSlugs } from "@/lib/data/providers";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://fullysorted.com";
@@ -12,7 +14,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: base, lastModified: now, changeFrequency: "daily", priority: 1.0 },
     { url: `${base}/browse`, lastModified: now, changeFrequency: "hourly", priority: 0.9 },
     { url: `${base}/sell`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/value-guide`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    ...(VALUE_GUIDE_PUBLIC
+      ? [{ url: `${base}/value-guide`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 }]
+      : []),
     { url: `${base}/research`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/research/models`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/gigs`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
@@ -62,6 +66,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     modelPages = [];
   }
 
+  // Live provider profiles (empty at build with no DB — safe).
+  let providerPages: MetadataRoute.Sitemap = [];
+  try {
+    const providers = await getPublicProviderSlugs();
+    providerPages = providers.map((pr) => ({
+      url: `${base}/services/${pr.slug}`,
+      lastModified: pr.updated_at ? new Date(pr.updated_at) : now,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
+  } catch {
+    providerPages = [];
+  }
+
   // Active public gigs (empty at build with no DB — safe).
   let gigPages: MetadataRoute.Sitemap = [];
   try {
@@ -76,5 +94,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     gigPages = [];
   }
 
-  return [...staticPages, ...articlePages, ...eventPages, ...modelPages, ...gigPages];
+  return [...staticPages, ...articlePages, ...eventPages, ...modelPages, ...providerPages, ...gigPages];
 }

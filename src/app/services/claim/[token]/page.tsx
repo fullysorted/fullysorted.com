@@ -32,6 +32,34 @@ async function getProvider(token: string): Promise<Provider | null> {
   return (rows[0] as Provider | undefined) ?? null;
 }
 
+/**
+ * The token is cleared the moment it is used, so a provider who clicks the
+ * emailed link a second time — from a forwarded copy, from their phone, or
+ * because they weren't sure it worked — used to hit a bare 404. The
+ * "you're already listed" panel below existed but was unreachable. Match on
+ * the stored hash of the used token to get them there instead.
+ */
+async function getAlreadyClaimedProvider(token: string): Promise<Provider | null> {
+  if (!process.env.DATABASE_URL) return null;
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const { createHash } = await import('crypto');
+    const sql = neon(process.env.DATABASE_URL);
+    const hash = createHash('sha256').update(token).digest('hex');
+    const rows = await sql`
+      SELECT id, business_name, owner_name, category, location, website, phone,
+             description, specialties, years_in_business, status, outreach_status, slug
+      FROM service_providers
+      WHERE claim_token_used = ${hash}
+      LIMIT 1
+    `;
+    return (rows[0] as Provider | undefined) ?? null;
+  } catch {
+    // Column may not exist yet on an older table — fall through to notFound().
+    return null;
+  }
+}
+
 export const metadata = {
   title: 'Claim Your Listing',
   description: 'Review and claim your free founding-provider listing on Fully Sorted.',
@@ -39,8 +67,23 @@ export const metadata = {
 
 export default async function ClaimPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;
-  const provider = await getProvider(token);
+  const provider = (await getProvider(token)) ?? (await getAlreadyClaimedProvider(token));
   if (!provider) notFound();
+
+  // Second click after the owner asked to be taken off.
+  if (provider.outreach_status === 'declined') {
+    return (
+      <main className="min-h-screen bg-background py-16 px-4">
+        <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-border p-10 text-center">
+          <h1 className="font-display font-semibold tracking-tight text-3xl text-foreground mb-3">That listing has been removed</h1>
+          <p className="text-text-secondary">
+            You asked us not to list {provider.business_name}, and we haven&apos;t. You won&apos;t hear from us again.
+            If that was a mistake, reply to the email we sent and we&apos;ll put it back.
+          </p>
+        </div>
+      </main>
+    );
+  }
 
   // Already claimed/active
   if (provider.status === 'active' && provider.outreach_status === 'claimed') {

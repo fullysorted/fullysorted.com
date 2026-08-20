@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Factory, Star, ArrowRight } from "lucide-react";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 /**
  * Production by variant — turns the build numbers already cited in a model's
@@ -74,8 +75,9 @@ export function ProductionBreakdown({
           const oneOf = Math.round(denom / r.count);
           const barColor = isRarest ? "#B08D3F" : "#1E6091";
           const q = `/value-guide?make=${encodeURIComponent(make)}&model=${encodeURIComponent(trimName(r.name) || model)}`;
-          return (
-            <Link key={r.name} href={q} className="group block" title={`${r.name}: ~${r.count.toLocaleString()} built · about 1 of every ${oneOf.toLocaleString()}`}>
+          const rowTitle = `${r.name}: ~${r.count.toLocaleString()} built · about 1 of every ${oneOf.toLocaleString()}`;
+          const rowBody = (
+            <>
               <div className="flex items-baseline justify-between mb-1 gap-2">
                 <span className="text-sm font-semibold inline-flex items-center gap-1.5 min-w-0" style={{ color: "#1a1a18" }}>
                   {isRarest && <Star className="w-3.5 h-3.5 shrink-0" style={{ color: "#B08D3F" }} fill="#B08D3F" />}
@@ -95,7 +97,14 @@ export function ProductionBreakdown({
                   transition={{ duration: 0.8, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                 />
               </div>
-            </Link>
+            </>
+          );
+          // With the Value Guide hidden these become plain rows rather than
+          // links into a page that would answer "not enough sales".
+          return VALUE_GUIDE_PUBLIC ? (
+            <Link key={r.name} href={q} className="group block" title={rowTitle}>{rowBody}</Link>
+          ) : (
+            <div key={r.name} className="block" title={rowTitle}>{rowBody}</div>
           );
         })}
       </div>
@@ -113,11 +122,15 @@ export function ProductionBreakdown({
         <p className="text-[11px]" style={{ color: "#9a9a8a" }}>
           {listedShare != null
             ? `Variants shown ≈ ${listedShare}% of the ~${total!.toLocaleString()} built. Figures approximate; see Sources below.`
-            : "Figures approximate; tap a variant to value it. See Sources below."}
+            : VALUE_GUIDE_PUBLIC
+              ? "Figures approximate; tap a variant to value it. See Sources below."
+              : "Figures approximate; see Sources below."}
         </p>
-        <Link href={`/value-guide?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`} className="text-xs font-bold inline-flex items-center gap-1 shrink-0" style={{ color: "#1E6091" }}>
-          Value these <ArrowRight className="w-3 h-3" />
-        </Link>
+        {VALUE_GUIDE_PUBLIC && (
+          <Link href={`/value-guide?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`} className="text-xs font-bold inline-flex items-center gap-1 shrink-0" style={{ color: "#1E6091" }}>
+            Value these <ArrowRight className="w-3 h-3" />
+          </Link>
+        )}
       </div>
     </div>
   );

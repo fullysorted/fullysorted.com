@@ -186,13 +186,35 @@ export async function getModelMarketSnapshot(make: string, model: string): Promi
       LIMIT 80
     `) as { sale_price: number }[];
     const prices = rows.map((r) => r.sale_price).filter(Boolean).sort((a, b) => a - b);
-    if (!prices.length) return empty;
+    // Same minimum-n rule the Value Guide publishes, because this snapshot is
+    // the same claim made in a smaller box: under three sales there is nothing
+    // worth showing, and under six there is no honest midpoint — only a range.
+    // This used to print a bold median off a single sale.
+    const n = prices.length;
+    if (n < 3) return { ...empty, count: n };
+    const mid = Math.floor(n / 2);
+    const hasMidpoint = n >= 6;
+    // Same IQR pass the comps API runs, for the same reason: without it a
+    // four-sale Corvette set holding one seven-figure L88 printed a range of
+    // "$72,000 – $3,850,000", which describes no car anyone is likely to buy.
+    const q = (pct: number) => {
+      const pos = (n - 1) * pct;
+      const base = Math.floor(pos);
+      const rest = pos - base;
+      return prices[base + 1] !== undefined ? prices[base] + rest * (prices[base + 1] - prices[base]) : prices[base];
+    };
+    let band = prices;
+    if (n >= 4) {
+      const iqr = q(0.75) - q(0.25);
+      const trimmed = prices.filter((v) => v >= q(0.25) - 1.5 * iqr && v <= q(0.75) + 1.5 * iqr);
+      if (trimmed.length >= 3) band = trimmed;
+    }
     return {
-      count: prices.length,
-      median: prices[Math.floor(prices.length / 2)],
-      avg: Math.round(prices.reduce((a, b) => a + b, 0) / prices.length),
-      low: prices[0],
-      high: prices[prices.length - 1],
+      count: n,
+      median: hasMidpoint ? (n % 2 === 1 ? prices[mid] : Math.round((prices[mid - 1] + prices[mid]) / 2)) : null,
+      avg: hasMidpoint ? Math.round(band.reduce((a, b) => a + b, 0) / band.length) : null,
+      low: band[0],
+      high: band[band.length - 1],
     };
   } catch (e) {
     console.error('getModelMarketSnapshot failed:', (e as Error)?.message);

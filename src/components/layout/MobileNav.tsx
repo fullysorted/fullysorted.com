@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, PlusCircle, Wrench, LineChart } from "lucide-react";
+import { Home, Search, PlusCircle, Wrench, LineChart, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 // Services first — mirrors the header and homepage flow.
 const navItems = [
@@ -11,7 +12,11 @@ const navItems = [
   { href: "/services", label: "Services", icon: Wrench },
   { href: "/browse", label: "Browse", icon: Search },
   { href: "/sell", label: "Sell", icon: PlusCircle },
-  { href: "/value-guide", label: "Values", icon: LineChart },
+  // Five tabs either way — with the Value Guide hidden, the slot goes to the
+  // model histories rather than leaving a gap in the bar.
+  VALUE_GUIDE_PUBLIC
+    ? { href: "/value-guide", label: "Values", icon: LineChart }
+    : { href: "/research/models", label: "Research", icon: BookOpen },
 ];
 
 export function MobileNav() {

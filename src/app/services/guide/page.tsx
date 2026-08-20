@@ -558,6 +558,45 @@ export default function ProviderGuidePage() {
         </div>
       </section>
 
+      {/* Running the business — the layer underneath every trade */}
+      <section className="pb-16 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto">
+          <Link
+            href="/services/guide/business"
+            className="group block rounded-2xl p-6 sm:p-8 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+            style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.20)" }}
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                style={{ backgroundColor: "rgba(30,96,145,0.12)" }}
+              >
+                <Building2 className="w-6 h-6" style={{ color: "#1E6091" }} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#1E6091" }}>
+                  The part that isn&rsquo;t the craft
+                </p>
+                <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground mb-1.5">
+                  Running the business
+                </h2>
+                <p className="text-sm text-text-secondary max-w-2xl">
+                  Sole proprietor or LLC. What self-employment tax actually costs and when it is due.
+                  Why everyone wants a W-9. Which insurance covers a customer&rsquo;s car &mdash; and which
+                  one you probably have instead. Written for people who fix cars, not accountants.
+                </p>
+              </div>
+              <span
+                className="inline-flex items-center gap-1.5 text-sm font-bold shrink-0"
+                style={{ color: "#1E6091" }}
+              >
+                Read it <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </div>
+          </Link>
+        </div>
+      </section>
+
       {/* Provider playbook */}
       <section id="playbook" className="py-16 px-4 sm:px-6 bg-white border-y border-border scroll-mt-20">
         <div className="max-w-3xl mx-auto">

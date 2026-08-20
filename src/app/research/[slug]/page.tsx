@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, BookOpen, ArrowRight } from "lucide-react";
 import { articles, getArticleBySlug } from "@/lib/articles";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -248,27 +249,29 @@ export default async function ArticlePage({ params }: Props) {
             </div>
 
             {/* Value Guide CTA */}
-            <div
-              className="rounded-2xl p-5"
-              style={{
-                background: "rgba(30,96,145,0.06)",
-                border: "1px solid rgba(30,96,145,0.18)",
-              }}
-            >
-              <p className="font-bold text-stone-800 text-sm mb-1">
-                What&apos;s your car worth?
-              </p>
-              <p className="text-xs text-stone-500 mb-3">
-                Get a comp-backed pricing verdict in under 60 seconds.
-              </p>
-              <Link
-                href="/value-guide"
-                className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors"
-                style={{ color: "#1E6091" }}
+            {VALUE_GUIDE_PUBLIC && (
+              <div
+                className="rounded-2xl p-5"
+                style={{
+                  background: "rgba(30,96,145,0.06)",
+                  border: "1px solid rgba(30,96,145,0.18)",
+                }}
               >
-                Open Value Guide <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
+                <p className="font-bold text-stone-800 text-sm mb-1">
+                  What&apos;s your car worth?
+                </p>
+                <p className="text-xs text-stone-500 mb-3">
+                  Get a comp-backed pricing verdict in under 60 seconds.
+                </p>
+                <Link
+                  href="/value-guide"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors"
+                  style={{ color: "#1E6091" }}
+                >
+                  Open Value Guide <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            )}
 
             {/* Sell CTA */}
             <div

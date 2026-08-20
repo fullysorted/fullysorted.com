@@ -345,6 +345,31 @@ export default async function TrackPage({
         </div>
       </section>
 
+      {/* The layer underneath every trade */}
+      <section className="pb-12 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto">
+          <Link
+            href="/services/guide/business"
+            className="group flex items-center justify-between gap-4 rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:shadow-md"
+            style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.20)" }}
+          >
+            <div className="min-w-0">
+              <p className="font-bold text-foreground text-sm mb-0.5">
+                And the part that isn&rsquo;t the craft
+              </p>
+              <p className="text-xs text-text-secondary">
+                Entity choice, self-employment tax, W-9s, the insurance that actually covers a
+                customer&rsquo;s car, and getting paid. Same guide for every trade.
+              </p>
+            </div>
+            <ArrowRight
+              className="w-5 h-5 shrink-0 group-hover:translate-x-0.5 transition-transform"
+              style={{ color: "#1E6091" }}
+            />
+          </Link>
+        </div>
+      </section>
+
       {/* Other tracks */}
       <section className="pb-16 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
