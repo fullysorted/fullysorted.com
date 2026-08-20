@@ -159,14 +159,10 @@ export async function POST(request: NextRequest) {
       { status: 400 },
     );
   }
-  // A listing without a photo is a listing nobody clicks — required by design.
-  if (!avatarUrl) {
-    return NextResponse.json(
-      { error: 'A shop photo or logo is required. Upload one before adding the provider.' },
-      { status: 400 },
-    );
-  }
-  if (!isValidImageUrl(avatarUrl)) {
+  // Photo is strongly encouraged but OPTIONAL until Vercel Blob is configured
+  // on the deployment — with it required, an unconfigured /api/upload would
+  // block all onboarding. Re-tighten once BLOB_READ_WRITE_TOKEN is live.
+  if (avatarUrl && !isValidImageUrl(avatarUrl)) {
     return NextResponse.json({ error: 'Photo URL is not valid.' }, { status: 400 });
   }
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -244,7 +240,7 @@ export async function POST(request: NextRequest) {
     VALUES
       (${businessName}, ${ownerName}, ${slug}, ${category}, ${location}, ${email}, ${phone}, ${website}, ${instagram},
        ${description}, ${JSON.stringify(specialtiesArray)}::jsonb, ${yearsInBusiness}, '$$', false, true,
-       'pending', ${applicationId}, 'staged', ${claimToken}, ${notes}, ${addedBy}, ${avatarUrl})
+       'pending', ${applicationId}, 'staged', ${claimToken}, ${notes}, ${addedBy}, ${avatarUrl || null})
     RETURNING id
   `;
   const providerId = provRows[0]?.id;
