@@ -47,14 +47,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
   }
 
-  const providerId = Number(body.providerId);
+  let providerId = Number(body.providerId) || 0;
+  // The admin inbox knows a provider by slug (inquiries are stored with
+  // listing_slug = "provider:<slug>"), so accept either handle.
+  const providerSlug = String(body.providerSlug ?? '').trim();
   const clientName = String(body.clientName ?? '').trim();
   const clientEmail = String(body.clientEmail ?? '').trim().toLowerCase();
   const workType = String(body.workType ?? '').trim() || null;
   const sourceMessageId = body.sourceMessageId ? Number(body.sourceMessageId) : null;
   const invitedBy = String(body.invitedBy ?? '').trim().slice(0, 100) || null;
 
-  if (!providerId || !clientName || !clientEmail) {
+  if ((!providerId && !providerSlug) || !clientName || !clientEmail) {
     return NextResponse.json({ error: 'Provider, client name and client email are all required.' }, { status: 400 });
   }
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(clientEmail)) {
@@ -64,10 +67,11 @@ export async function POST(request: NextRequest) {
   const sql = await getSql();
   await ensureReviewTable(sql);
 
-  const [provider] = await sql`
-    SELECT id, business_name, status FROM service_providers WHERE id = ${providerId} LIMIT 1
-  `;
+  const [provider] = providerId
+    ? await sql`SELECT id, business_name, status FROM service_providers WHERE id = ${providerId} LIMIT 1`
+    : await sql`SELECT id, business_name, status FROM service_providers WHERE slug = ${providerSlug} LIMIT 1`;
   if (!provider) return NextResponse.json({ error: 'Provider not found.' }, { status: 404 });
+  providerId = Number(provider.id);
 
   // Never mail an address that has opted out of anything we send.
   const [suppressed] = await sql`
@@ -80,30 +84,46 @@ export async function POST(request: NextRequest) {
   // One open invite per client per provider. Re-asking the same person for the
   // same job is nagging, and duplicate tokens make the audit trail useless.
   const [existing] = await sql`
-    SELECT id, token_used_at FROM provider_reviews
+    SELECT id, status, token_used_at FROM provider_reviews
     WHERE provider_id = ${providerId} AND LOWER(author_email) = ${clientEmail}
     ORDER BY created_at DESC LIMIT 1
   `;
-  if (existing && !existing.token_used_at) {
-    return NextResponse.json({ error: 'They already have an open invite for this shop.' }, { status: 409 });
-  }
-  if (existing && existing.token_used_at) {
+  if (existing?.token_used_at) {
     return NextResponse.json({ error: 'They have already reviewed this shop.' }, { status: 409 });
+  }
+  if (existing && existing.status === 'invited') {
+    return NextResponse.json({ error: 'They already have an open invite for this shop.' }, { status: 409 });
   }
 
   const token = makeToken();
 
-  // The row exists from the moment the invite is sent, in a 'pending' state
-  // with an empty body. That is deliberate: it means an unredeemed invite is
-  // visible in the queue, so we can see who was asked and never answered.
-  await sql`
-    INSERT INTO provider_reviews
-      (provider_id, source, source_message_id, review_token, invited_at,
-       author_name, author_email, work_type, body, status, submitted_by)
-    VALUES
-      (${providerId}, 'verified', ${sourceMessageId}, ${token}, NOW(),
-       ${clientName}, ${clientEmail}, ${workType}, '', 'invited', ${invitedBy})
-  `;
+  // An invite that timed out is re-issuable — the person never said no, they
+  // just never got round to it, and refusing forever would be a bug that only
+  // showed up two months after launch. Reuse the row so the audit trail stays
+  // one line per person per shop, and reset the reminder so the new invite
+  // gets its own single nudge.
+  if (existing && existing.status === 'expired') {
+    await sql`
+      UPDATE provider_reviews
+      SET review_token = ${token}, invited_at = NOW(), reminder_sent_at = NULL,
+          expired_at = NULL, status = 'invited', author_name = ${clientName},
+          work_type = COALESCE(${workType}, work_type), submitted_by = ${invitedBy},
+          updated_at = NOW()
+      WHERE id = ${existing.id}
+    `;
+  } else {
+    // The row exists from the moment the invite is sent, in an 'invited' state
+    // with an empty body. That is deliberate: an unredeemed invite is visible
+    // in the queue, so we can see who was asked and never answered.
+    await sql`
+      INSERT INTO provider_reviews
+        (provider_id, source, source_message_id, review_token, invited_at,
+         author_name, author_email, work_type, body, status, submitted_by)
+      VALUES
+        (${providerId}, 'verified', ${sourceMessageId}, ${token}, NOW(),
+         ${clientName}, ${clientEmail}, ${workType}, '', 'invited', ${invitedBy})
+    `;
+  }
 
   const reviewUrl = `${SITE}/review/${token}`;
   const { sendReviewInvite } = await import('@/lib/email');

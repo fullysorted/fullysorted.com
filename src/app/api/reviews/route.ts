@@ -86,7 +86,8 @@ export async function POST(request: NextRequest) {
   await ensureReviewTable(sql);
 
   const [invite] = await sql`
-    SELECT r.id, r.provider_id, r.token_used_at, r.work_type, p.business_name, p.email AS provider_email
+    SELECT r.id, r.provider_id, r.status, r.token_used_at, r.work_type,
+           p.business_name, p.email AS provider_email
     FROM provider_reviews r
     JOIN service_providers p ON p.id = r.provider_id
     WHERE r.review_token = ${token}
@@ -98,6 +99,18 @@ export async function POST(request: NextRequest) {
   }
   if (invite.token_used_at) {
     return NextResponse.json({ error: 'This link has already been used — thank you, your review is in.' }, { status: 409 });
+  }
+  // An expired invite keeps its token so the page can explain itself rather
+  // than 404, which means this route — not the token's existence — is what
+  // makes it inert. Anything that is not an open invite is refused here.
+  if (invite.status === 'expired') {
+    return NextResponse.json(
+      { error: 'This review link has expired. Ask the shop to send you a fresh one and we will.' },
+      { status: 410 },
+    );
+  }
+  if (invite.status !== 'invited') {
+    return NextResponse.json({ error: 'That review link is no longer open.' }, { status: 409 });
   }
 
   const reviewId = Number(invite.id);

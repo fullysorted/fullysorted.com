@@ -21,6 +21,7 @@ type Invite = {
   clientName: string;
   workType: string | null;
   used: boolean;
+  expired: boolean;
 } | null;
 
 async function getInvite(token: string): Promise<Invite> {
@@ -29,7 +30,7 @@ async function getInvite(token: string): Promise<Invite> {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(process.env.DATABASE_URL);
     const [row] = await sql`
-      SELECT r.author_name, r.work_type, r.token_used_at, p.business_name
+      SELECT r.author_name, r.work_type, r.token_used_at, r.status, p.business_name
       FROM provider_reviews r
       JOIN service_providers p ON p.id = r.provider_id
       WHERE r.review_token = ${token}
@@ -41,6 +42,7 @@ async function getInvite(token: string): Promise<Invite> {
       clientName: String(row.author_name ?? ''),
       workType: row.work_type ? String(row.work_type) : null,
       used: !!row.token_used_at,
+      expired: row.status === 'expired',
     };
   } catch (e) {
     console.error('Review invite lookup failed:', e);
@@ -76,7 +78,20 @@ export default async function ReviewPage({ params }: Props) {
           Owners use these to decide who to trust with their car, so the useful review is the honest one — good or bad.
         </p>
 
-        {invite.used ? (
+        {invite.expired ? (
+          <div
+            className="rounded-2xl px-6 py-6"
+            style={{ background: 'var(--bg-white)', border: '1px solid var(--border-light)' }}
+          >
+            <p className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+              This link has expired.
+            </p>
+            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+              Review links stay open for a couple of months and this one has run out. If you would still like to say
+              something about {invite.businessName}, email chris@fullysorted.com and we will send you a fresh one.
+            </p>
+          </div>
+        ) : invite.used ? (
           <div
             className="rounded-2xl px-6 py-6"
             style={{ background: 'var(--bg-white)', border: '1px solid var(--border-light)' }}

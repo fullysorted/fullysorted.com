@@ -578,3 +578,36 @@ export async function notifyReviewPublished(d: {
     }),
   });
 }
+
+/**
+ * One nudge, seven days after the invite, and never again.
+ *
+ * The person we are emailing owes us nothing — they already paid the shop and
+ * we are asking them for a favour. A drip sequence here would be the site
+ * nagging the public to generate its own content, so REVIEW_REMINDER_DAYS is a
+ * single reminder and the cron marks the row so it cannot fire twice.
+ */
+export async function sendReviewInviteReminder(d: {
+  to: string;
+  clientName?: string;
+  businessName: string;
+  reviewUrl: string;
+}) {
+  const firstName = (d.clientName || "").split(" ")[0];
+  return sendEmail({
+    to: d.to,
+    subject: `Still happy to review ${d.businessName}?`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "One quick nudge, then we'll leave you alone",
+      bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
+        <p>We asked last week whether you'd write a few lines about the work <strong>${esc(d.businessName)}</strong> did for you. The link is still open if you have a minute.</p>
+        <p>If you'd rather not, that is completely fine — this is the only reminder we will send.</p>`,
+      ctaLabel: "Write your review",
+      ctaUrl: safeUrl(d.reviewUrl),
+      footerHtml:
+        "Fully Sorted · fullysorted.com<br/>" +
+        `You received this because ${esc(d.businessName)} asked us to. Don't want to hear from us again? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll remove you.`,
+    }),
+  });
+}

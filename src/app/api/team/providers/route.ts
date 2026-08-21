@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 import { isTeam } from '@/lib/team-auth';
 import { rateLimit } from '@/lib/rate-limit';
+import { isBlobImageUrl } from '@/lib/images';
 
 function slugify(s: string): string {
   return s
@@ -45,22 +46,9 @@ async function ensureColumns(sql: Awaited<ReturnType<typeof getSql>>) {
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_opted_out_at TIMESTAMPTZ`;
 }
 
-// A provider photo must be one WE host (Vercel Blob). Stricter than "any
-// https URL" on purpose: next/image throws at render time for hosts that
-// aren't whitelisted in next.config, so accepting an arbitrary URL here
-// would let one bad row 500 the public profile page. The console's uploader
-// always produces a Blob URL, so this costs nothing in practice.
-function isValidImageUrl(u: string): boolean {
-  try {
-    const parsed = new URL(u);
-    return (
-      parsed.protocol === 'https:' &&
-      parsed.hostname.endsWith('.public.blob.vercel-storage.com')
-    );
-  } catch {
-    return false;
-  }
-}
+// Shared with the two public apply wizards — see lib/images.ts for why a
+// provider photo must be one we host.
+const isValidImageUrl = (u: string): boolean => isBlobImageUrl(u);
 
 // GET /api/team/providers?stage=all|staged|sent|claimed|list_only&q=...
 // The rep's pipeline view: staged providers + outreach status. Scoped columns

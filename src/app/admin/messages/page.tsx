@@ -3,8 +3,9 @@
 import { useEffect, useState, useCallback } from "react";
 import {
   MessageSquare, Mail, Phone, DollarSign, ExternalLink,
-  Archive, CheckCircle, Loader2, Filter, ChevronDown, ChevronUp,
+  Archive, CheckCircle, Loader2, Filter, ChevronDown, ChevronUp, Star,
 } from "lucide-react";
+import { PROVIDER_REVIEWS_PUBLIC } from "@/lib/features";
 import { formatPrice } from "@/lib/utils";
 import { Suspense } from "react";
 
@@ -28,10 +29,26 @@ const TYPE_COLORS: Record<string, { color: string; bg: string }> = {
   inquiry: { color: "#2563eb", bg: "#dbeafe" },
   offer:   { color: "#7c3aed", bg: "#ede9fe" },
   general: { color: "#6b7280", bg: "#f3f4f6" },
+  "provider-inquiry": { color: "#0f766e", bg: "#ccfbf1" },
 };
 
 const STATUS_OPTIONS = ["all", "new", "read", "replied", "archived"];
-const TYPE_OPTIONS = ["all", "inquiry", "offer", "general"];
+const TYPE_OPTIONS = ["all", "inquiry", "provider-inquiry", "offer", "general"];
+
+/**
+ * Provider inquiries are stored with listing_slug = "provider:<slug>" — there
+ * is no listing, the shop IS the subject. Returns the shop's slug, or null for
+ * an ordinary listing message.
+ *
+ * This is also what makes the review loop closeable: the inquiry row already
+ * holds the client's name, their email, and which shop they contacted. Asking
+ * them for a review afterwards is one click and no typing, and the resulting
+ * review is linked back to the inquiry that produced it.
+ */
+function providerSlugOf(msg: { listing_slug: string | null }): string | null {
+  const s = msg.listing_slug;
+  return s && s.startsWith("provider:") ? s.slice("provider:".length) : null;
+}
 
 function MessagesContent() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -41,6 +58,7 @@ function MessagesContent() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [updating, setUpdating] = useState<number | null>(null);
   const [noteInputs, setNoteInputs] = useState<Record<number, string>>({});
+  const [askResult, setAskResult] = useState<{ id: number; msg: string; err?: boolean } | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -66,6 +84,37 @@ function MessagesContent() {
     });
     await load();
     setUpdating(null);
+  }
+
+  // Ask the person who sent this inquiry to review the shop they contacted.
+  // Everything the invite needs is already on the row, so this is the whole
+  // "job finished → ask for a review" trigger: no form, no retyping, and the
+  // review carries a link back to the inquiry it came from.
+  async function askForReview(msg: Message) {
+    const slug = providerSlugOf(msg);
+    if (!slug) return;
+    setUpdating(msg.id);
+    setAskResult(null);
+    try {
+      const res = await fetch("/api/reviews/invite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          providerSlug: slug,
+          clientName: msg.sender_name,
+          clientEmail: msg.sender_email,
+          sourceMessageId: msg.id,
+          invitedBy: "admin",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not send that invite.");
+      setAskResult({ id: msg.id, msg: `Review invite sent to ${msg.sender_email}.` });
+    } catch (e) {
+      setAskResult({ id: msg.id, msg: e instanceof Error ? e.message : "Could not send that invite.", err: true });
+    } finally {
+      setUpdating(null);
+    }
   }
 
   function formatDate(d: string) {
@@ -238,13 +287,20 @@ function MessagesContent() {
                       )}
                       {msg.listing_slug && (
                         <a
-                          href={`/listings/${msg.listing_slug}`}
+                          /* A provider inquiry has no listing. This used to
+                             build /listings/provider:some-shop, which is a 404
+                             every time. */
+                          href={
+                            providerSlugOf(msg)
+                              ? `/services/${providerSlugOf(msg)}`
+                              : `/listings/${msg.listing_slug}`
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-text-secondary hover:text-foreground"
                         >
                           <ExternalLink className="w-4 h-4" />
-                          View listing
+                          {providerSlugOf(msg) ? "View shop profile" : "View listing"}
                         </a>
                       )}
                     </div>
@@ -279,6 +335,17 @@ function MessagesContent() {
                       >
                         <CheckCircle className="w-3.5 h-3.5" /> Mark Replied
                       </button>
+                      {PROVIDER_REVIEWS_PUBLIC && providerSlugOf(msg) && (
+                        <button
+                          onClick={() => askForReview(msg)}
+                          disabled={updating === msg.id}
+                          title="Send this client a one-time link to review the shop they contacted"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors disabled:opacity-60"
+                          style={{ borderColor: "#B08D3F", color: "#8A6E31" }}
+                        >
+                          <Star className="w-3.5 h-3.5" /> Ask them for a review
+                        </button>
+                      )}
                       <button
                         onClick={() => updateMessage(msg.id, { status: "archived", adminNotes: noteInputs[msg.id] || msg.admin_notes })}
                         disabled={updating === msg.id}
@@ -296,6 +363,11 @@ function MessagesContent() {
                         </button>
                       )}
                       {updating === msg.id && <Loader2 className="w-4 h-4 animate-spin text-accent" />}
+                      {askResult?.id === msg.id && (
+                        <span className={`text-xs font-medium ${askResult.err ? "text-red-600" : "text-green-700"}`}>
+                          {askResult.msg}
+                        </span>
+                      )}
                     </div>
                   </div>
                 )}

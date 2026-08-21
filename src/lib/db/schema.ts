@@ -438,6 +438,8 @@ export const providerReviews = pgTable('provider_reviews', {
   sourceMessageId: integer('source_message_id'),
   reviewToken: varchar('review_token', { length: 64 }).unique(), // one-time, cleared on use
   invitedAt: timestamp('invited_at'),
+  reminderSentAt: timestamp('reminder_sent_at'), // exactly one nudge, ever
+  expiredAt: timestamp('expired_at'),
   tokenUsedAt: timestamp('token_used_at'),
 
   // Author — email is stored for audit/dispute and is NEVER rendered publicly.

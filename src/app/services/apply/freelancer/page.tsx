@@ -7,6 +7,7 @@ import {
   ArrowLeft, ArrowRight, Check, Loader2, Sparkles, Info, PartyPopper,
   User, Tag, DollarSign, ClipboardCheck, Lightbulb,
 } from "lucide-react";
+import PhotoUpload from "@/components/media/PhotoUpload";
 import { CATEGORY_OPTIONS } from "@/lib/service-categories";
 
 /**
@@ -61,6 +62,7 @@ export default function FreelancerWizard() {
   const [f, setF] = useState({
     ownerName: "", email: "", phone: "", headline: "", category: "",
     serviceArea: "", skills: "", bio: "", gigTitle: "", gigDescription: "",
+    avatarUrl: "",
   });
   const [pkgs, setPkgs] = useState<Record<Tier, Pkg>>(EMPTY_PKG);
   const set = (k: string, v: string) => setF((p) => ({ ...p, [k]: v }));
@@ -76,7 +78,9 @@ export default function FreelancerWizard() {
   const setPkg = (tier: Tier, k: keyof Pkg, v: string) => setPkgs((p) => ({ ...p, [tier]: { ...p[tier], [k]: v } }));
 
   function canAdvance(): boolean {
-    if (step === 1) return !!(f.ownerName && f.email && f.category && f.bio);
+    // The photo is part of step 1's requirements, not an optional extra. A
+    // freelancer profile with no face is the weakest thing in the directory.
+    if (step === 1) return !!(f.ownerName && f.email && f.category && f.bio && f.avatarUrl);
     if (step === 2) return !!(f.gigTitle && f.gigDescription);
     if (step === 3) return !!pkgs.basic.price;
     return true;
@@ -129,6 +133,7 @@ export default function FreelancerWizard() {
           ownerName: f.ownerName, email: f.email, phone: f.phone, headline: f.headline,
           serviceArea: f.serviceArea, location: f.serviceArea, category: f.category,
           skills: f.skills.split(",").map(s => s.trim()).filter(Boolean), bio: f.bio,
+          avatarUrl: f.avatarUrl,
           clerkUserId: userId || null,
           gig: { title: f.gigTitle, description: f.gigDescription, category: f.category, packages },
         }),
@@ -238,6 +243,21 @@ export default function FreelancerWizard() {
                 <label className="block text-sm font-medium text-foreground mb-1.5">Service area</label>
                 <input className={input} value={f.serviceArea} onChange={e => set("serviceArea", e.target.value)} placeholder="San Diego County" />
               </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1.5">Your photo *</label>
+              <PhotoUpload
+                value={f.avatarUrl}
+                onChange={(url) => set("avatarUrl", url)}
+                label="Upload your photo"
+                hint={
+                  <>
+                    JPEG/PNG/WebP, max 10MB. A picture of you, or of your work with your name on it. Already on your
+                    Instagram? Right-click it, choose &ldquo;Copy image address&rdquo;, and paste it above.
+                  </>
+                }
+              />
+              <Help>People hire a person, not a listing. This shows on your profile and on every gig you publish.</Help>
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-1.5">One-line headline</label>

@@ -147,9 +147,9 @@ export async function PATCH(request: NextRequest) {
     // invite, a duplicate). It is not a moderation tool — a review that has
     // been written gets published or rejected with a reason, on the record.
     case 'delete_invite': {
-      if (review.status !== 'invited') {
+      if (review.status !== 'invited' && review.status !== 'expired') {
         return NextResponse.json(
-          { error: 'Only an unredeemed invite can be deleted. Publish or reject a written review instead.' },
+          { error: 'Only an unanswered invite can be deleted. Publish or reject a written review instead.' },
           { status: 400 },
         );
       }

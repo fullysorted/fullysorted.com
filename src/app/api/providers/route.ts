@@ -3,6 +3,7 @@ import { auth } from '@clerk/nextjs/server';
 import { getDb, schema } from '@/lib/db';
 import { eq } from 'drizzle-orm';
 import { rateLimit } from '@/lib/rate-limit';
+import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
 
 // Cap a free-text field to a sane length to prevent abuse / DB bloat.
 const cap = (v: unknown, n: number): string | null => {
@@ -73,7 +74,7 @@ export async function POST(request: NextRequest) {
       businessName, ownerName, category, location, email,
       phone, website, instagram, yearsInBusiness,
       specialties, description, idealClient, whyList, referredBy,
-      priceRange,
+      priceRange, avatarUrl,
     } = body;
 
     if (!businessName || !ownerName || !category || !location || !email || !description) {
@@ -81,6 +82,14 @@ export async function POST(request: NextRequest) {
         { error: 'Business name, owner name, category, location, email, and description are required' },
         { status: 400 }
       );
+    }
+
+    // A photo is required here for the same reason it is required in the /team
+    // console: a directory card without one is a card nobody clicks, and half
+    // a directory with photos looks worse than none. Blob-host only — an
+    // arbitrary URL would 500 the profile page at render time.
+    if (!isBlobImageUrl(avatarUrl)) {
+      return NextResponse.json({ error: PHOTO_REQUIRED_MESSAGE }, { status: 400 });
     }
 
     // SECURITY: bind ownership to the authenticated session only — never trust a
@@ -134,6 +143,7 @@ export async function POST(request: NextRequest) {
       specialties: specialtiesArray.slice(0, 30).map((s: string) => String(s).slice(0, 80)),
       yearsInBusiness: cap(yearsInBusiness, 50),
       priceRange: priceRange || '$$',
+      avatarUrl: String(avatarUrl),
       verified: false,
       foundingProvider: false, // TODO: check count for founding badge
       status: 'pending',

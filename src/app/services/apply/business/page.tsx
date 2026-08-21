@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Building2, Send, Loader2, CheckCircle, Shield, Star, Sparkles, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { CATEGORY_OPTIONS } from '@/lib/service-categories';
+import PhotoUpload from '@/components/media/PhotoUpload';
 
 const CATEGORIES = CATEGORY_OPTIONS;
 
@@ -19,10 +20,21 @@ export default function ApplyBusinessPage() {
     businessName: '', ownerName: '', category: '', location: '', yearsInBusiness: '',
     email: '', phone: '', website: '', instagram: '', description: '',
     idealClient: '', whyList: '', referredBy: '', priceRange: '$$',
+    avatarUrl: '',
   });
+  const [photoInvalid, setPhotoInvalid] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Caught here as well as server-side so the applicant is told before the
+    // round trip, and the field is highlighted rather than just a banner.
+    if (!form.avatarUrl) {
+      setPhotoInvalid(true);
+      setError('Please add a photo — it is the first thing an owner sees.');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    setPhotoInvalid(false);
     setSubmitting(true);
     setError('');
     try {
@@ -166,6 +178,25 @@ export default function ApplyBusinessPage() {
               </div>
             </div>
           </div>
+          <div className="border-t border-border pt-6">
+            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-1">Your photo *</h3>
+            <p className="text-sm text-text-secondary mb-4">
+              One good picture of the shop, the workshop, or your logo. It is the first thing an owner sees on your
+              card in the directory, and cards without one get skipped.
+            </p>
+            <PhotoUpload
+              value={form.avatarUrl}
+              onChange={(url) => { update('avatarUrl', url); setPhotoInvalid(false); }}
+              invalid={photoInvalid}
+              hint={
+                <>
+                  JPEG/PNG/WebP, max 10MB. If the picture is already on your website or Instagram, right-click it,
+                  choose &ldquo;Copy image address&rdquo;, and paste it above — we will fetch it for you.
+                </>
+              }
+            />
+          </div>
+
           <div className="border-t border-border pt-6">
             <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">About Your Work</h3>
             <div className="space-y-5">

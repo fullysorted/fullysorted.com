@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { getDb, schema } from '@/lib/db';
+import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
 
 function slugify(s: string): string {
   return (
@@ -24,6 +25,15 @@ export async function POST(request: NextRequest) {
         { error: 'Your name, email, category, and a short bio are required.' },
         { status: 400 }
       );
+    }
+
+    // This route accepted avatarUrl with NO validation — a hand-posted
+    // "https://evil.example/x.jpg" would have been written straight into
+    // service_providers.avatar_url and then thrown at render time from
+    // next/image, taking the profile page down. Blob-host only, and required:
+    // a freelancer profile without a face is worth very little.
+    if (!isBlobImageUrl(avatarUrl)) {
+      return NextResponse.json({ error: PHOTO_REQUIRED_MESSAGE }, { status: 400 });
     }
 
     // SECURITY: bind ownership to the authenticated session only. Never trust a
@@ -68,7 +78,7 @@ export async function POST(request: NextRequest) {
       headline: headline || null,
       skills: skillsArr,
       serviceArea: serviceArea || location || null,
-      avatarUrl: avatarUrl || null,
+      avatarUrl: String(avatarUrl),
       onboardingComplete: true,
       status: 'pending',
     }).returning();

@@ -34,6 +34,24 @@ export const MIN_REVIEWS_FOR_AVG = 3;
 /** Rating at or above which the "Top-rated" badge may appear (with n >= MIN). */
 export const TOP_RATED_MIN = 4.5;
 
+/**
+ * Days after an invite is sent before we send exactly ONE reminder.
+ *
+ * One. Not a sequence. The person owes us nothing — they are doing a favour for
+ * a shop they already paid — and a directory that nags the public to generate
+ * its own content is a directory nobody answers twice.
+ */
+export const REVIEW_REMINDER_DAYS = 7;
+
+/**
+ * Days after which an unredeemed invite expires. The link stops working, the
+ * row leaves the queue, and the client is never contacted again.
+ *
+ * Long enough that a slow reply still lands, short enough that a live token is
+ * not sitting in an old inbox a year later.
+ */
+export const REVIEW_INVITE_EXPIRY_DAYS = 60;
+
 export type ReviewSource = 'verified' | 'testimonial';
 /**
  * 'invited'   — the link has been mailed, nothing written yet. The row exists
@@ -41,8 +59,12 @@ export type ReviewSource = 'verified' | 'testimonial';
  * 'pending'   — written, waiting for moderation.
  * 'published' — live on the profile.
  * 'rejected'  — abuse/spam/off-topic. Never used for an unfavourable review.
+ * 'expired'   — invited, never answered, and out of time. The token is kept so
+ *               the page can say "this link has expired" instead of 404ing at
+ *               someone who was only trying to do us a favour; the submit route
+ *               refuses anything that is not 'invited', so it is inert.
  */
-export type ReviewStatus = 'invited' | 'pending' | 'published' | 'rejected';
+export type ReviewStatus = 'invited' | 'pending' | 'published' | 'rejected' | 'expired';
 
 export type PublicReview = {
   id: number;
@@ -76,6 +98,8 @@ export async function ensureReviewTable(sql: Sql): Promise<void> {
       source_message_id INTEGER,
       review_token VARCHAR(64) UNIQUE,
       invited_at TIMESTAMPTZ,
+      reminder_sent_at TIMESTAMPTZ,
+      expired_at TIMESTAMPTZ,
       token_used_at TIMESTAMPTZ,
       author_name VARCHAR(255) NOT NULL,
       author_email VARCHAR(255),
@@ -95,6 +119,11 @@ export async function ensureReviewTable(sql: Sql): Promise<void> {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `;
+  // Forward compatibility: columns added after the table first shipped. The
+  // CREATE above only runs on a fresh database, so anything new needs an ALTER
+  // here too or a deployed environment silently misses it.
+  await sql`ALTER TABLE provider_reviews ADD COLUMN IF NOT EXISTS reminder_sent_at TIMESTAMPTZ`;
+  await sql`ALTER TABLE provider_reviews ADD COLUMN IF NOT EXISTS expired_at TIMESTAMPTZ`;
   await sql`CREATE INDEX IF NOT EXISTS provider_reviews_provider_idx ON provider_reviews (provider_id, status)`;
   await sql`CREATE INDEX IF NOT EXISTS provider_reviews_token_idx ON provider_reviews (review_token)`;
   await sql`CREATE INDEX IF NOT EXISTS provider_reviews_status_idx ON provider_reviews (status, created_at DESC)`;
