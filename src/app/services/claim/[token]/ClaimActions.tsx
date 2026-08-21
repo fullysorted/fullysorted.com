@@ -121,7 +121,7 @@ export default function ClaimActions({
               {submitting === 'list_only' ? 'Saving…' : 'List it, but I don\u2019t want an account'}
             </p>
             <p className="text-xs text-text-secondary">
-              Goes live immediately. Collectors can see your profile and reach out via your existing website. No account, no notifications from us.
+              Goes live immediately. Nothing to set up and nothing to maintain. If an owner enquires through your profile we pass it straight to you by email — that is the only thing you will ever hear from us.
             </p>
           </div>
           <span className="text-xl text-text-secondary">→</span>

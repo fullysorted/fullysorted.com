@@ -22,6 +22,9 @@ export default function ProviderInquiryForm({
   const [message, setMessage] = useState('');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  // Whether the message went to the shop directly or came to us to pass on.
+  // The old copy claimed the former in both cases; it is now whichever is true.
+  const [relayed, setRelayed] = useState(false);
   const [error, setError] = useState('');
 
   async function submit(e: React.FormEvent) {
@@ -48,6 +51,7 @@ export default function ProviderInquiryForm({
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Couldn't send — try again in a moment.");
+      setRelayed(!!data.relayed);
       setSent(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Couldn't send — try again in a moment.");
@@ -65,10 +69,12 @@ export default function ProviderInquiryForm({
         <Check className="w-5 h-5 mt-0.5 shrink-0" style={{ color: 'var(--sorted-green-dark, #3d7a2a)' }} />
         <div>
           <p className="text-sm font-semibold" style={{ color: 'var(--sorted-green-dark, #3d7a2a)' }}>
-            Sent to {businessName}.
+            {relayed ? `Sent to ${businessName}.` : `We've got it — passing it to ${businessName}.`}
           </p>
           <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
-            Your inquiry goes through Fully Sorted — the reply lands in your email.
+            {relayed
+              ? 'It landed in their inbox just now, and their reply comes straight back to your email.'
+              : 'We pass this one on by hand, so it may take a little longer than usual. Their reply comes straight to your email.'}
           </p>
         </div>
       </div>
@@ -130,7 +136,8 @@ export default function ProviderInquiryForm({
         {sending ? 'Sending…' : `Message ${businessName}`}
       </button>
       <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-        Sent through Fully Sorted. Your details go to {businessName} and nowhere else.
+        Goes to {businessName}. We keep a copy so we can chase it up if they don&rsquo;t reply — and we never pass
+        your details to anyone else.
       </p>
     </form>
   );

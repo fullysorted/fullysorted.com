@@ -8,6 +8,7 @@
  */
 
 import { escapeHtml as esc, safeUrl } from "./escape-html";
+import { isEmailAddress } from "./leads";
 import { categoryLabel } from "./service-categories";
 
 const NOTIFY_TO = "chris@fullysorted.com";
@@ -25,9 +26,21 @@ type EmailPayload = {
   to?: string;
   subject: string;
   html: string;
+  /**
+   * Per-send reply path. Defaults to Chris.
+   *
+   * This override exists for one case that matters: a lead relayed to a shop.
+   * Without it every message we forward carries Chris's address, so a shop
+   * hitting Reply answers Chris instead of the customer who is waiting — and
+   * the lead dies in an inbox. Anything user-supplied must be validated before
+   * it reaches here; see isEmailAddress below.
+   */
+  replyTo?: string;
+  /** Silent copy. Used to keep Chris on relayed leads without exposing him. */
+  bcc?: string;
 };
 
-async function sendEmail({ to = NOTIFY_TO, subject, html }: EmailPayload): Promise<boolean> {
+async function sendEmail({ to = NOTIFY_TO, subject, html, replyTo, bcc }: EmailPayload): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     // Gracefully skip — log so it shows in Vercel logs but don't crash
@@ -38,7 +51,14 @@ async function sendEmail({ to = NOTIFY_TO, subject, html }: EmailPayload): Promi
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({ from: FROM, replyTo: REPLY_TO, to, subject, html });
+    const { error } = await resend.emails.send({
+      from: FROM,
+      replyTo: isEmailAddress(replyTo) ? replyTo.trim() : REPLY_TO,
+      to,
+      ...(isEmailAddress(bcc) ? { bcc: bcc.trim() } : {}),
+      subject,
+      html,
+    });
     if (error) {
       console.error("[email] Resend error:", error);
       return false;
@@ -608,6 +628,62 @@ export async function sendReviewInviteReminder(d: {
       footerHtml:
         "Fully Sorted · fullysorted.com<br/>" +
         `You received this because ${esc(d.businessName)} asked us to. Don't want to hear from us again? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll remove you.`,
+    }),
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Directory leads — relayed to the shop
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * An owner enquires about a shop through its profile page. This goes to the
+ * SHOP, with the owner as the reply path, and a blind copy to Chris.
+ *
+ * Until now `notifyNewMessage` was called with no recipient at all, so every
+ * directory enquiry landed in Chris's inbox and was forwarded by hand — while
+ * the form told the customer "Sent to {businessName}". That was survivable at
+ * two shops a week and is the reason the directory felt dead to providers.
+ *
+ * Three things this template has to get right that the admin one did not:
+ *   1. Reply goes to the customer. The whole point.
+ *   2. No /admin links, no internal language — a shop owner is reading this.
+ *   3. A postal address and a way out, because it is unsolicited mail to a
+ *      business (CAN-SPAM applies even though the message is wanted).
+ */
+export async function notifyProviderLead(d: {
+  providerEmail: string;
+  businessName: string;
+  senderName: string;
+  senderEmail: string;
+  senderPhone?: string | null;
+  messageText: string;
+  profileUrl: string;
+  copyTo?: string | null;
+}) {
+  return sendEmail({
+    to: d.providerEmail,
+    replyTo: d.senderEmail,
+    bcc: d.copyTo || undefined,
+    subject: `New enquiry for ${d.businessName} — ${d.senderName}`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "Someone wants to talk to you about their car",
+      bodyHtml: `<p><strong>${esc(d.senderName)}</strong> found <strong>${esc(d.businessName)}</strong> in the Fully Sorted directory and sent this:</p>
+        <div style="margin:16px 0;padding:14px 16px;background:#faf9f6;border-radius:8px;">
+          <p style="margin:0;white-space:pre-line;">${esc(d.messageText)}</p>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <tr><td style="padding:6px 0;font-weight:600;width:90px;">Email</td><td style="padding:6px 0;"><a href="mailto:${esc(d.senderEmail)}" style="color:#1E6091;">${esc(d.senderEmail)}</a></td></tr>
+          ${d.senderPhone ? `<tr><td style="padding:6px 0;font-weight:600;">Phone</td><td style="padding:6px 0;"><a href="tel:${esc(d.senderPhone)}" style="color:#1E6091;">${esc(d.senderPhone)}</a></td></tr>` : ""}
+        </table>
+        <p style="margin-top:16px;"><strong>Just hit Reply</strong> — it goes straight to them, not to us.</p>
+        <p style="font-size:13px;color:#6a6a5e;">Owners tend to contact two or three shops at once, so the first useful reply usually wins the job.</p>`,
+      ctaLabel: "See your profile",
+      ctaUrl: safeUrl(d.profileUrl),
+      footerHtml:
+        "Fully Sorted · fullysorted.com<br/>" +
+        `You're getting this because ${esc(d.businessName)} is listed in our directory. Don't want enquiries by email? Reply to <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll sort it.`,
     }),
   });
 }

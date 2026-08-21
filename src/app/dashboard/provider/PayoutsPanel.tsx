@@ -6,6 +6,7 @@ import {
   ChevronDown, AlertTriangle, Mail, TrendingUp, Lock, ListChecks, XCircle,
 } from "lucide-react";
 import { PLATFORM_FEE_PCT_LABEL } from "@/lib/payments";
+import { GIG_PAYMENTS_ENABLED } from "@/lib/features";
 
 interface Order {
   id: number;
@@ -123,7 +124,27 @@ export function PayoutsPanel() {
           <Wallet className="w-5 h-5" style={{ color: "#1E6091" }} />
           <h3 className="font-bold text-foreground">Payments &amp; payouts</h3>
         </div>
-        {payoutsEnabled ? (
+        {!GIG_PAYMENTS_ENABLED ? (
+          /* The rail is closed site-wide. Say so plainly rather than showing a
+             button that 503s, and reassure anyone with money already in escrow
+             that it still completes — turning the rail off never strands a
+             payment that was already taken. */
+          <div>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold mb-3" style={{ backgroundColor: "rgba(0,0,0,0.05)", color: "#6b6b5e" }}>
+              <Lock className="w-4 h-4" /> Not open yet
+            </span>
+            <p className="text-sm text-text-secondary">
+              Taking card payments through Fully Sorted isn&rsquo;t switched on yet. Owners can still request your
+              gigs and you quote them directly — the request lands in your email the same way a directory enquiry
+              does. We&rsquo;ll email you when paid booking opens.
+            </p>
+            {(payoutsEnabled || orders.some((o) => ["paid", "delivered", "disputed"].includes(o.status))) && (
+              <p className="text-sm text-text-secondary mt-3">
+                Anything already paid for is unaffected — deliver it as normal and it pays out to you as normal.
+              </p>
+            )}
+          </div>
+        ) : payoutsEnabled ? (
           <div className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold" style={{ backgroundColor: "rgba(106,176,76,0.14)", color: "#4b8b2e" }}>
               <ShieldCheck className="w-4 h-4" /> Payouts active

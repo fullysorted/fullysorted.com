@@ -5,6 +5,7 @@ import { ArrowLeft, MapPin } from "lucide-react";
 import { getGigBySlug } from "@/lib/data/gigs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { OrderPanel } from "./OrderPanel";
+import { GIG_PAYMENTS_ENABLED } from '@/lib/features';
 
 export const revalidate = 300;
 
@@ -127,7 +128,7 @@ export default async function GigDetailPage({ params }: Props) {
 
           {/* Order panel */}
           <div className="lg:col-span-1">
-            <OrderPanel gigSlug={gig.slug} packages={gig.packages} payEnabled={!!gig.provider_payouts_enabled} providerName={gig.provider_name} />
+            <OrderPanel gigSlug={gig.slug} packages={gig.packages} payEnabled={GIG_PAYMENTS_ENABLED && !!gig.provider_payouts_enabled} providerName={gig.provider_name} />
           </div>
         </div>
       </div>

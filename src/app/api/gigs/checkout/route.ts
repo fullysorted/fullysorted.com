@@ -5,6 +5,7 @@ import { getStripe } from '@/lib/stripe';
 import { getDb, schema } from '@/lib/db';
 import { and, eq } from 'drizzle-orm';
 import { dollarsToCents, platformFeeCents, providerPayoutCents } from '@/lib/payments';
+import { GIG_PAYMENTS_ENABLED } from '@/lib/features';
 
 // POST /api/gigs/checkout — buyer pays for a gig package. Funds are captured to
 // the PLATFORM account and HELD (escrow); they're released to the provider via a
@@ -13,6 +14,16 @@ import { dollarsToCents, platformFeeCents, providerPayoutCents } from '@/lib/pay
 // flow instead of taking money we can't pay out.
 export async function POST(request: NextRequest) {
   try {
+    // The rail is off site-wide. `fallback: 'inquiry'` is the same shape the
+    // not-configured and provider-not-ready branches below return, so the
+    // buyer silently gets the unpaid request flow instead of an error.
+    if (!GIG_PAYMENTS_ENABLED) {
+      return NextResponse.json(
+        { error: 'Paid booking is not available yet. Send a request instead.', fallback: 'inquiry' },
+        { status: 503 },
+      );
+    }
+
     const { userId } = await auth();
     const body = await request.json();
     const { gigSlug, packageId, buyerName, buyerEmail, message } = body;

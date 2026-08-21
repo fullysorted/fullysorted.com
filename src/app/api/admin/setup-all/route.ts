@@ -43,6 +43,22 @@ async function runAll() {
   // the table exists before the first review is written, and the public
   // profile page (which reads the table directly and swallows errors) can
   // never quietly render "no reviews yet" because the table was missing.
+  // messages.provider_id — links a directory enquiry to the shop it was about.
+  // The backfill reads the slug already embedded in listing_slug, so leads
+  // taken before this column existed are not stranded outside the provider's
+  // inbox.
+  await step('messages.provider_id + backfill', async () => {
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS provider_id INTEGER`;
+    await sql`CREATE INDEX IF NOT EXISTS messages_provider_idx ON messages (provider_id, created_at DESC)`;
+    await sql`
+      UPDATE messages m
+      SET provider_id = p.id
+      FROM service_providers p
+      WHERE m.provider_id IS NULL
+        AND m.listing_slug = 'provider:' || p.slug
+    `;
+  });
+
   await step('provider_reviews table', async () => {
     const { ensureReviewTable } = await import('@/lib/reviews');
     await ensureReviewTable(sql);

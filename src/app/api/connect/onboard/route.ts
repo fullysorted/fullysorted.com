@@ -4,12 +4,24 @@ import { getStripe } from '@/lib/stripe';
 import { getDb, schema } from '@/lib/db';
 import { eq } from 'drizzle-orm';
 import { getProviderForUser } from '@/lib/data/providerAuth';
+import { GIG_PAYMENTS_ENABLED } from '@/lib/features';
 
 // POST /api/connect/onboard — create (or reuse) a Stripe Connect Express account
 // for the signed-in provider and return a hosted onboarding link. This is how a
 // provider becomes eligible to receive payouts. No money moves here.
 export async function POST(request: NextRequest) {
   try {
+    // Creating a Connect account is what makes a provider payable, so this is
+    // an entry point and it closes with the rail. Existing accounts are left
+    // alone — /api/connect/status still syncs them, and any order already in
+    // escrow still releases.
+    if (!GIG_PAYMENTS_ENABLED) {
+      return NextResponse.json(
+        { error: 'Payouts are not open yet. We will email you when they are.' },
+        { status: 503 },
+      );
+    }
+
     const { userId } = await auth();
     if (!userId) return NextResponse.json({ error: 'Sign in required' }, { status: 401 });
 

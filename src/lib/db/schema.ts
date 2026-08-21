@@ -134,6 +134,12 @@ export const messages = pgTable('messages', {
   listingId: integer('listing_id').references(() => listings.id),
   listingSlug: varchar('listing_slug', { length: 500 }),
   listingTitle: text('listing_title'),
+  // Set for directory enquiries, where the subject is a shop rather than a car.
+  // The slug was already encoded in listingSlug as "provider:<slug>", but as a
+  // string with no join — so a provider could not be shown their own leads, and
+  // response time could not be measured. This column is what makes both
+  // queryable.
+  providerId: integer('provider_id'),
   senderName: varchar('sender_name', { length: 255 }).notNull(),
   senderEmail: varchar('sender_email', { length: 255 }).notNull(),
   senderPhone: varchar('sender_phone', { length: 50 }),
@@ -222,9 +228,12 @@ export const serviceProviders = pgTable('service_providers', {
   // Guided onboarding progress
   onboardingStep: integer('onboarding_step').default(0),
   onboardingComplete: boolean('onboarding_complete').default(false),
-  // Payments — SCAFFOLDING ONLY. Disabled until legal/accounting sign-off
-  // (1099/Stripe Connect). No money moves until payoutsEnabled is true AND a
-  // real Connect account is wired. See RESEARCH-AND-REGISTRY-ROADMAP.md Phase 5.
+  // Payments — these two columns are what makes a provider payable, and they
+  // are set by the PROVIDER, not by us: completing Stripe Connect onboarding
+  // flips both. They are therefore NOT a kill switch, which is how they read
+  // for a long time. The actual switch is GIG_PAYMENTS_ENABLED in
+  // lib/features.ts; it gates checkout and Connect onboarding, and
+  // deliberately does not gate release, refund or dispute.
   payoutsEnabled: boolean('payouts_enabled').default(false),
   stripeConnectId: varchar('stripe_connect_id', { length: 255 }),
 
@@ -264,8 +273,13 @@ export const gigPackages = pgTable('gig_packages', {
   features: jsonb('features').$type<string[]>().default([]),
 });
 
-// Orders — earnings/ledger SCAFFOLDING. Payment capture & payout are NOT wired;
-// rows are created in a 'pending' state for tracking only until legal sign-off.
+// Orders. Two rails share this table:
+//   'inquiry'          — an unpaid lead. Always available.
+//   the paid lifecycle — pending_payment → paid → delivered → completed, with
+//                        cancelled / refunded / disputed branches. Real Stripe
+//                        capture, escrow and transfers; gated at the entrance
+//                        by GIG_PAYMENTS_ENABLED (lib/features.ts).
+// Note 'accepted' and 'in_progress' below have never been written by any code.
 export const gigOrders = pgTable('gig_orders', {
   id: serial('id').primaryKey(),
   gigId: integer('gig_id').references(() => gigs.id).notNull(),

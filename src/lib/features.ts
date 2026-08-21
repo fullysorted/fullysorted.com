@@ -34,3 +34,38 @@ export const VALUE_GUIDE_PUBLIC: boolean = false;
  * console controls — in one line, without touching the write path or the data.
  */
 export const PROVIDER_REVIEWS_PUBLIC: boolean = true;
+
+/**
+ * GIG_PAYMENTS_ENABLED — the paid gig rail: card checkout, escrow, Connect
+ * onboarding and transfers.
+ *
+ * This flag exists because until now there wasn't one. The rail was believed to
+ * be disabled pending legal and accounting sign-off, but nothing disabled it:
+ * the only condition guarding checkout was per-provider data
+ * (`payouts_enabled && stripe_connect_id`), and a provider sets BOTH of those
+ * themselves by pressing "Set up payouts" on their own dashboard. Any provider
+ * who found that button could have flipped their gigs into live card checkout.
+ * Nothing had, because no gigs were live yet — but the gate was data, not a
+ * decision, and a decision this size should be one line someone chose.
+ *
+ * WHAT THIS GATES — entry only:
+ *   • POST /api/gigs/checkout      no new money is taken
+ *   • POST /api/connect/onboard    no new Connect accounts are created
+ *   • the gig page's "Book & pay"  falls back to "Request this gig"
+ *   • the dashboard payout CTA     hidden
+ *
+ * WHAT THIS DELIBERATELY DOES NOT GATE — the exits:
+ *   deliver, accept, release, refund, dispute, the auto-release cron and the
+ *   Stripe webhooks all keep working. Turning the rail off must never strand
+ *   money that is already held. If an order is in escrow when this flips to
+ *   false, it still completes and still pays out.
+ *
+ * Buyers are not blocked from the marketplace when this is false — they get the
+ * unpaid inquiry flow, which is the same lead the directory produces.
+ *
+ * TO TURN IT ON, all three should be true: the 1099/tax reporting position is
+ * settled (see the tax memo), the terms cover escrow and refunds, and a
+ * provider can edit a gig's price — today they cannot change it after signup,
+ * which is not a thing to discover after taking someone's card.
+ */
+export const GIG_PAYMENTS_ENABLED: boolean = false;
