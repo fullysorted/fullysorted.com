@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, BookOpen, ArrowRight } from "lucide-react";
 import { articles, getArticleBySlug } from "@/lib/articles";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ResearchNav } from "@/components/research/ResearchNav";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 interface Props {
@@ -115,6 +116,9 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
       <JsonLd data={[articleSchema, breadcrumbSchema]} />
+      {/* An article is a research surface like any other; without this band it
+          was the one place in Research that gave no signal the rest exists. */}
+      <ResearchNav active="market" />
       {/* Light Header */}
       <div className="relative" style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
@@ -229,23 +233,22 @@ export default async function ArticlePage({ params }: Props) {
               <h3 className="font-bold text-stone-800 mb-2">
                 Get the weekly analysis free
               </h3>
+              {/* Was a <form> with no action and no handler in a server
+                  component — submitting reloaded the page and recorded nothing.
+                  No subscribe endpoint exists, so route the ask to /contact
+                  rather than keep a control that only looks like it works. */}
               <p className="text-sm text-stone-500 mb-4">
                 Every Monday morning: what moved, what didn't, and what to watch.
+                Sign-up is handled by hand for now — send an address through the
+                contact form and it goes on the list.
               </p>
-              <form className="space-y-2">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full h-10 px-3 text-sm border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
-                />
-                <button
-                  type="submit"
-                  className="w-full h-10 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
-                  style={{ background: "#1E6091" }}
-                >
-                  Subscribe — Free
-                </button>
-              </form>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-1.5 w-full h-10 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
+                style={{ background: "#1E6091" }}
+              >
+                Ask to be added <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
 
             {/* Value Guide CTA */}

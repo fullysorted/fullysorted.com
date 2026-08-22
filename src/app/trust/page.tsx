@@ -44,7 +44,7 @@ const PILLARS = [
     icon: Wallet,
     title: "How we make money",
     body:
-      "Two ways, and you should know both. Sellers pay a one-time flat fee to list a car. Providers pay a platform fee on fixed-price gigs booked through the site. That is the entire list — we take no commission on a car sale, there is no buyer's premium, we take no cut of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. Nobody pays us to rank higher; if that ever changes, promoted placement will be labelled as such on the page. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
+      "Two ways, and you should know both. Sellers pay a one-time listing fee — $9.99 standard, $29.99 featured, $49.99 premium. Providers pay a 10% platform fee on fixed-price gigs booked through the site. That is the entire list — the listing fee is the only charge on a car sale however much it sells for, there is no buyer's premium, we take nothing out of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. Nobody pays us to rank higher; if that ever changes, promoted placement will be labelled as such on the page. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
   },
   {
     icon: HandCoins,

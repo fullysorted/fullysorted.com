@@ -57,7 +57,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Chris Peterson", url: "https://fullysorted.com" }],
   creator: "Chris Peterson",
   metadataBase: new URL("https://fullysorted.com"),
-  alternates: { canonical: "/" },
+  // NO site-wide `alternates.canonical` here. Next.js inherits `alternates`
+  // into every child segment that does not override it, so a default of "/"
+  // silently told crawlers that /research, /vin, /browse, /sell, /services and
+  // a dozen other indexable pages were all duplicates of the homepage. Each
+  // page sets its own canonical; a page with none is better off with none.
   category: "Automotive Services",
   openGraph: {
     type: "website",

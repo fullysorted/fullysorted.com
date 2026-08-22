@@ -3,6 +3,7 @@ import { BrowseClient } from "./BrowseClient";
 import type { Vehicle } from "@/lib/sample-data";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/browse" },
   title: "Browse Collector Cars",
   description: "Browse collector cars for sale — Muscle, European, JDM, Vintage, Modern Classic, and more. Direct from owners. Peer-to-peer.",
 };

@@ -5,8 +5,9 @@ import {
   ArrowLeft, ArrowRight, AlertTriangle, ShieldCheck, ExternalLink,
   Gauge, Factory, Wrench, TrendingUp, BookOpen, Scale,
 } from "lucide-react";
-import { getPublishedModelBySlug, modelDisplayName, getModelMarketSnapshot, getActiveListingsForModel } from "@/lib/data/models";
+import { getPublishedModelBySlugResult, modelDisplayName, getModelMarketSnapshot, getActiveListingsForModel } from "@/lib/data/models";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ResearchNav } from "@/components/research/ResearchNav";
 import { RarityScale } from "@/components/research/RarityScale";
 import { ProductionBreakdown } from "@/components/research/ProductionBreakdown";
 import { ContributeBox } from "@/components/research/ContributeBox";
@@ -20,8 +21,9 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { make, model } = await params;
-  const m = await getPublishedModelBySlug(make, model);
-  if (!m) return { title: "Model Not Found" };
+  const { model: m, ok } = await getPublishedModelBySlugResult(make, model);
+  // A failed lookup is not a missing model, and must not be labelled as one.
+  if (!m) return ok ? { title: "Model Not Found" } : { title: "Model History Temporarily Unavailable", robots: { index: false, follow: true } };
   const name = modelDisplayName(m);
   const desc =
     (m.summary || "").replace(/[#*]/g, "").slice(0, 155) ||
@@ -86,9 +88,38 @@ function Section({
   );
 }
 
+/**
+ * Rendered when the model lookup did not get an answer — an outage, not a
+ * missing page. Deliberately not notFound(): the URL is still valid.
+ */
+function ModelUnavailable() {
+  return (
+    <div style={{ background: "#faf9f7" }} className="min-h-screen">
+      <ResearchNav active="models" />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+        <Link href="/research/models" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8" style={{ color: "#6b6b5e" }}>
+          <ArrowLeft className="w-4 h-4" /> Model Histories
+        </Link>
+        <div className="rounded-2xl bg-white px-6 py-16 text-center" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
+          <AlertTriangle className="w-8 h-8 mx-auto mb-4" style={{ color: "#cfcabb" }} />
+          <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>This history could not be loaded</p>
+          <p className="text-sm max-w-md mx-auto" style={{ color: "#9a9a8a" }}>
+            The page exists — the research database did not answer. Reloading in
+            a few minutes will usually be enough.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default async function ModelPage({ params }: Props) {
   const { make, model } = await params;
-  const m = await getPublishedModelBySlug(make, model);
+  const { model: m, ok } = await getPublishedModelBySlugResult(make, model);
+  // Only a lookup that actually ran can prove there is no such model. When the
+  // query failed we do not know, and a hard 404 on a live URL is a permanent
+  // cost paid for a transient fault — crawlers drop it. Say what happened.
+  if (!m && !ok) return <ModelUnavailable />;
   if (!m) notFound();
 
   const snapshot = await getModelMarketSnapshot(m.make, m.model);
@@ -159,6 +190,8 @@ export default async function ModelPage({ params }: Props) {
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
       <JsonLd data={[vehicleSchema, articleSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]} />
+      {/* The deepest research surface had no band back to the rest of Research. */}
+      <ResearchNav active="models" />
 
       {/* Header */}
       <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>

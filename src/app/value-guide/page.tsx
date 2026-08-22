@@ -123,7 +123,7 @@ export default function ValueGuidePage() {
           </div>
           <div className="flex-1">
             <p className="font-semibold text-foreground">Know a sale we&rsquo;re missing?</p>
-            <p className="text-sm text-text-secondary">Add a real sold price and make the data sharper for everyone. We verify before it goes live.</p>
+            <p className="text-sm text-text-secondary">Add a real sold price and make the data sharper for everyone. Each submission is checked against its source before it is published.</p>
           </div>
           <span className="text-sm font-bold shrink-0 inline-flex items-center gap-1" style={{ color: "#1E6091" }}>Report a sale <span aria-hidden>→</span></span>
         </a>

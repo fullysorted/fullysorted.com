@@ -61,6 +61,9 @@ async function getAlreadyClaimedProvider(token: string): Promise<Provider | null
 }
 
 export const metadata = {
+  // Single-use claim URL — never index it, and never follow the token out
+  // into a crawler's link graph.
+  robots: { index: false, follow: false },
   title: 'Claim Your Listing',
   description: 'Review and claim your free founding-provider listing on Fully Sorted.',
 };

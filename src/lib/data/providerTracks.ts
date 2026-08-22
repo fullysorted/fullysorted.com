@@ -179,7 +179,7 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     ],
     addOns: [
       "Enclosed upgrade",
-      "Expedited / guaranteed dates",
+      "Expedited pickup and delivery windows",
       "Additional insurance coverage",
       "Non-running / inop winch loading",
       "Short-term storage either end",

@@ -87,15 +87,15 @@ const PROVIDER_STEPS: Step[] = [
   },
   {
     icon: ShieldCheck,
-    title: "Create your account & get verified",
+    title: "Create your account & add your credentials",
     body:
       "Sign up, then confirm your email and phone — that part is account security, not a rating. Add your business credentials: licenses, insurance, workshop accreditations. Owners can see what you have listed and decide for themselves. We do not hand out a stamp of approval; your standing here is built from reviews by the owners who actually hired you.",
     checklist: [
-      "Verify email and phone",
+      "Confirm your email and phone",
       "Add business license / registration number",
       "Add your insurance details and any workshop accreditations, so owners can see them",
     ],
-    tip: "A verified, insured profile converts far better than an anonymous one. Collectors are handing over six-figure cars — signal that you are safe to trust.",
+    tip: "A profile that shows licence and insurance details converts far better than an anonymous one. Collectors are handing over six-figure cars — show them what you carry.",
   },
   {
     icon: UserCircle,
@@ -165,9 +165,9 @@ const PROVIDER_STEPS: Step[] = [
     icon: BadgeCheck,
     title: "Publish & pass review",
     body:
-      "Before your listing goes live, it gets a quick quality check for completeness and professionalism. A verified profile, a real portfolio, and clear pricing sail through. Once approved, you are live and discoverable.",
+      "Before your listing goes live, it gets a quick quality check for completeness and professionalism. A complete profile, a real portfolio, and clear pricing sail through. Once approved, you are live and discoverable.",
     checklist: [
-      "Profile complete and verified",
+      "Profile complete, with contact details confirmed",
       "Portfolio populated with real work",
       "At least one listing with tiered pricing and requirements",
     ],

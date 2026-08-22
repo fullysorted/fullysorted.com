@@ -17,25 +17,33 @@ function TeamLoginForm() {
     setLoading(true);
     setError("");
 
-    const res = await fetch("/api/team/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ secret }),
-    });
+    // A rejected fetch (offline, DNS, aborted request) used to leave the
+    // button spinning forever: setLoading(false) only ran on the !res.ok
+    // branch, so a network failure never cleared it and never said why.
+    try {
+      const res = await fetch("/api/team/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ secret }),
+      });
 
-    if (res.ok) {
-      // Only ever bounce to a path on this site. "//evil.com" and
-      // "/\\evil.com" are both browser-legal ways to leave the origin, so a
-      // bare startsWith("/") check is not enough.
-      const requested = searchParams.get("redirect") || "";
-      const safe =
-        requested.startsWith("/") && !requested.startsWith("//") && !requested.startsWith("/\\")
-          ? requested
-          : "/team/dashboard";
-      router.push(safe);
-    } else {
-      const data = await res.json().catch(() => ({}));
-      setError(data.error || "Incorrect access code. Try again.");
+      if (res.ok) {
+        // Only ever bounce to a path on this site. "//evil.com" and
+        // "/\\evil.com" are both browser-legal ways to leave the origin, so a
+        // bare startsWith("/") check is not enough.
+        const requested = searchParams.get("redirect") || "";
+        const safe =
+          requested.startsWith("/") && !requested.startsWith("//") && !requested.startsWith("/\\")
+            ? requested
+            : "/team/dashboard";
+        router.push(safe);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error || "Incorrect access code. Try again.");
+      }
+    } catch {
+      setError("Could not reach the server. Check your connection and try again.");
+    } finally {
       setLoading(false);
     }
   }

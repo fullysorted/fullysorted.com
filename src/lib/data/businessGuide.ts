@@ -338,7 +338,7 @@ export const BUSINESS_GUIDE: GuideChapter[] = [
       {
         heading: "What it costs",
         body: [
-          "A directory listing is free during the founding period, and the founding cohort keeps that. There is no commission on work you find here, and no buyer's premium taken out of what an owner has to spend on the job.",
+          "A directory listing is free during the founding period, and the founding cohort keeps that. Work you quote and invoice directly is yours in full — the only charge is the 10% platform fee on fixed-price gigs booked through the site, and nothing is taken out of what an owner has to spend on the job.",
           "Card payment for fixed-price bookings is rolling out rather than live — until a provider is switched on for payouts, a booking arrives as an enquiry and you invoice the owner directly. When it does switch on, the processing fee is the honest cost of taking a card, and it will be stated plainly rather than buried.",
         ],
       },

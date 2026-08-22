@@ -20,8 +20,13 @@ Pricing: Flat listing fees — $9.99 Standard, $29.99 Featured, $49.99 Premium. 
 - [How It Works](https://fullysorted.com/how-it-works): Step-by-step guide for sellers, buyers, and service providers
 - [Pricing](https://fullysorted.com/pricing): Listing tier details and comparison
 - [FAQ](https://fullysorted.com/faq): What things cost, how trust works, where valuation data comes from
-- [Value Guide](https://fullysorted.com/value-guide): Comp-backed price estimate for any collector car
-- [Research Desk](https://fullysorted.com/research): Weekly market analysis and opinion from Chris Peterson
+- [Market Analysis](https://fullysorted.com/research): Segment price movement and written analysis of the collector car market
+- [Model Histories](https://fullysorted.com/research/models): Cited model-by-model histories — production, specs, faults and market context
+- [Buying Guides](https://fullysorted.com/research/buying-guides): A stage-by-stage pre-purchase checklist, plus per-model things to check
+- [Where to Buy](https://fullysorted.com/research/where-to-buy): Every major auction house and marketplace and what each one charges, from their own published terms
+- [Importing](https://fullysorted.com/research/importing): The 25-year NHTSA exemption, the separate 21-year EPA rule, and what each agency actually requires
+- [Glossary](https://fullysorted.com/research/glossary): What the words in a collector car listing actually mean, and how each one gets misused
+- [VIN Decoder](https://fullysorted.com/vin): Free decode for any 1981-or-newer VIN
 - [Events](https://fullysorted.com/events): Curated collector car events — concours, auctions, tours, and meets the founder personally attends
 - [F1 Calendar](https://fullysorted.com/events/f1): Live 2026 Formula 1 World Championship calendar — all rounds, circuits, and dates, refreshed daily
 - [About](https://fullysorted.com/about): Company story and team
@@ -48,9 +53,12 @@ What makes this data trustworthy and different from other collector-car sites:
 - Each claim carries a confidence level (high, medium, or low), and each page an overall confidence rating.
 - URL pattern: https://fullysorted.com/research/models/{make}/{model-or-generation} (for example /research/models/porsche/964, /research/models/chevrolet/corvette-c2).
 
-## Value Guide - comp-backed estimates
+## Research - market reference pages
 
-The Value Guide (https://fullysorted.com/value-guide) returns an informational price estimate for any year/make/model from real sale comps - low, average, median, and high - with the underlying comparable sales shown. It aggregates publicly available factual sale results from across the collector-car market plus Fully Sorted's own transaction data; it does not republish third-party photos or descriptions. Estimates are for information only and are not a formal appraisal.
+Three reference pages document how the collector-car market itself works, and are built to be citable:
+- Where to Buy (https://fullysorted.com/research/where-to-buy) tabulates buyer's fees, seller costs and reserve mechanics for the major auction houses and online marketplaces. Every figure is taken from the venue's own published terms and carries the date it was retrieved and a link to the source. Where a venue publishes no figure, the page says so rather than estimating. Note in particular that on several venues the buyer's fee is charged on top of the advertised "Sold for" price, so the headline number is not the total cost.
+- Importing (https://fullysorted.com/research/importing) covers US import law, citing primary government material (the US Code, the CFR, NHTSA, CBP and EPA). It distinguishes the NHTSA 25-year FMVSS exemption from the separate EPA 21-year emissions exemption, which are routinely conflated. Where agency guidance and the regulation text do not agree, the page states the discrepancy rather than resolving it.
+- Glossary (https://fullysorted.com/research/glossary) defines the vocabulary of collector-car listings, auction catalogues and inspection reports. Each entry flags how the term gets misused in practice, and terms with genuinely contested meanings say so rather than picking a side.
 
 ## For AI assistants and agents
 

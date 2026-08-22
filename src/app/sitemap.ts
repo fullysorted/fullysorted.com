@@ -21,12 +21,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       : []),
     { url: `${base}/research`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/research/models`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    // The research hub's four newer surfaces. These are the pages built to be
+    // found — reference material with no equivalent elsewhere on the site.
+    { url: `${base}/research/buying-guides`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${base}/research/where-to-buy`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/research/importing`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/research/glossary`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    // Was absent despite carrying its own metadata and canonical.
+    { url: `${base}/research/compare`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/gigs`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/vin`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/events/f1`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
     { url: `${base}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/services/apply`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/services/apply/business`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/services/apply/freelancer`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/submit-sale`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/services/guide`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     // The guide pages were missing entirely — eight trade playbooks and the
     // business guide, all substantial content, none of it crawlable. This is
@@ -95,6 +106,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     providerPages = [];
   }
 
+  // Active marketplace listings (empty at build with no DB — safe). Without
+  // these the whole inventory was reachable only through /browse, so no
+  // individual car could ever rank for its own year/make/model.
+  let listingPages: MetadataRoute.Sitemap = [];
+  try {
+    if (process.env.DATABASE_URL) {
+      const { neon } = await import("@neondatabase/serverless");
+      const sql = neon(process.env.DATABASE_URL);
+      const rows = (await sql`
+        SELECT slug, updated_at FROM listings
+        WHERE status = 'active' AND slug IS NOT NULL
+        ORDER BY created_at DESC
+        LIMIT 5000
+      `) as { slug: string; updated_at: string | null }[];
+      listingPages = rows.map((l) => ({
+        url: `${base}/listings/${l.slug}`,
+        lastModified: l.updated_at ? new Date(l.updated_at) : now,
+        changeFrequency: "daily" as const,
+        priority: 0.7,
+      }));
+    }
+  } catch {
+    listingPages = [];
+  }
+
   // Active public gigs (empty at build with no DB — safe).
   let gigPages: MetadataRoute.Sitemap = [];
   try {
@@ -109,5 +145,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     gigPages = [];
   }
 
-  return [...staticPages, ...trackPages, ...articlePages, ...eventPages, ...modelPages, ...providerPages, ...gigPages];
+  return [...staticPages, ...trackPages, ...articlePages, ...eventPages, ...modelPages, ...providerPages, ...gigPages, ...listingPages];
 }

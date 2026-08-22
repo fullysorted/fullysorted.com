@@ -24,9 +24,23 @@ import { seedBmwIsetta } from '@/lib/data/model-seed-bmw-isetta';
 import { seedAmphicar770 } from '@/lib/data/model-seed-amphicar-770';
 import { seed356 } from '@/lib/data/model-seed-porsche-356';
 import { seedCitroenDs } from '@/lib/data/model-seed-citroen-ds';
+// Second research wave (2026-08-22) — 12 further cited histories.
+import { seedSkylineR32 } from '@/lib/data/model-seed-skyline-r32';
+import { seedCarrera32 } from '@/lib/data/model-seed-carrera-3-2';
+import { seed944Turbo } from '@/lib/data/model-seed-944-turbo';
+import { seedDefender } from '@/lib/data/model-seed-defender';
+import { seed300SL } from '@/lib/data/model-seed-300sl-w198';
+import { seedType2Bus } from '@/lib/data/model-seed-type-2-bus';
+import { seedCorvetteC3 } from '@/lib/data/model-seed-corvette-c3';
+import { seedCharger2ndGen } from '@/lib/data/model-seed-charger-2nd-gen';
+import { seedAlfaSpider } from '@/lib/data/model-seed-alfa-spider';
+import { seedDeltaIntegrale } from '@/lib/data/model-seed-delta-integrale';
+import { seedF40 } from '@/lib/data/model-seed-f40';
+import { seedLandCruiser60 } from '@/lib/data/model-seed-land-cruiser-60';
 
 // All researched model drafts to seed (status='draft' for human review).
-const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx, seedCorvetteC2, seedMustang1stGen, seed930Turbo, seedRx7Fd, seedETypeS1, seedBronco1stGen, seedFj40, seedW113Pagoda, seedBmw2002, seedSkylineR34, seedCountach, seedTestarossa, seedShelbyCobra, seedDeLoreanDmc12, seedBmwIsetta, seedAmphicar770, seed356, seedCitroenDs];
+const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx, seedCorvetteC2, seedMustang1stGen, seed930Turbo, seedRx7Fd, seedETypeS1, seedBronco1stGen, seedFj40, seedW113Pagoda, seedBmw2002, seedSkylineR34, seedCountach, seedTestarossa, seedShelbyCobra, seedDeLoreanDmc12, seedBmwIsetta, seedAmphicar770, seed356, seedCitroenDs,
+  seedSkylineR32, seedCarrera32, seed944Turbo, seedDefender, seed300SL, seedType2Bus, seedCorvetteC3, seedCharger2ndGen, seedAlfaSpider, seedDeltaIntegrale, seedF40, seedLandCruiser60];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {

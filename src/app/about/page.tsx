@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight, Mail, Wrench, TrendingUp, ShieldCheck, Heart } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About Fully Sorted",
   description:
     "What \"fully sorted\" means, and why we named a company after it. Fully Sorted is on a mission to make collector car ownership easier — and to keep the skilled specialists who make it possible thriving in the process.",

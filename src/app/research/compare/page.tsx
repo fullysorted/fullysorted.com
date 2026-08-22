@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, GitCompareArrows, ShieldCheck } from "lucide-react";
-import { getPublishedModels, getPublishedModelBySlug, getModelMarketSnapshot, modelDisplayName, parseModelSlug } from "@/lib/data/models";
+import { getPublishedModelsResult, getPublishedModelBySlug, getModelMarketSnapshot, modelDisplayName, parseModelSlug } from "@/lib/data/models";
 import { CompareSelector } from "./CompareSelector";
 import { ResearchNav } from "@/components/research/ResearchNav";
 
@@ -30,7 +30,9 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const a = sp.a || "";
   const b = sp.b || "";
 
-  const models = await getPublishedModels();
+  // Whether the list is empty because nothing is published or because the query
+  // failed changes what this page can honestly say — see src/lib/data/models.ts.
+  const { rows: models, ok: modelsOk } = await getPublishedModelsResult();
   const options = models
     .map((m) => ({ slug: m.slug, label: modelDisplayName(m) }))
     .sort((x, y) => x.label.localeCompare(y.label));
@@ -91,9 +93,31 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <CompareSelector options={options} a={a} b={b} />
+        {/* With no options the selects were empty and the panel below still read
+            "Pick two models to compare" — an instruction nobody could follow.
+            Show the selector only when there is something to select. */}
+        {options.length > 0 && <CompareSelector options={options} a={a} b={b} />}
 
-        {both ? (
+        {options.length === 0 ? (
+          <div className="mt-8 rounded-2xl bg-white border border-border p-10 text-center">
+            <GitCompareArrows className="w-9 h-9 mx-auto mb-3" style={{ color: "#cfcabb" }} />
+            {modelsOk ? (
+              <>
+                <p className="font-semibold text-foreground mb-1">No model histories are published yet</p>
+                <p className="text-sm text-text-secondary">
+                  Comparison opens once there are two researched models to put side by side.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="font-semibold text-foreground mb-1">The model list could not be loaded</p>
+                <p className="text-sm text-text-secondary">
+                  A fault at our end, not an empty database. Reloading in a few minutes will usually be enough.
+                </p>
+              </>
+            )}
+          </div>
+        ) : both ? (
           <div className="mt-8 rounded-2xl bg-white border border-border overflow-hidden">
             <div className="grid grid-cols-[minmax(90px,1fr)_1.4fr_1.4fr] sm:grid-cols-[160px_1fr_1fr]">
               <div className="p-4 sm:p-5 border-b border-border" />

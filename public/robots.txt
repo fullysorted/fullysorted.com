@@ -4,6 +4,20 @@
 User-agent: *
 Allow: /
 
+# Consoles, dashboards and single-use token URLs. These are auth-gated, but a
+# crawler should not be spending its budget on a login form, and a token URL
+# in a link graph is a token URL in a log file.
+Disallow: /admin
+Disallow: /team
+Disallow: /dashboard
+Disallow: /orders
+Disallow: /review/
+Disallow: /services/claim/
+Disallow: /services/link/
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /api/
+
 # AI Crawlers — explicitly allowed
 User-agent: GPTBot
 Allow: /

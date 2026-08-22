@@ -2,6 +2,7 @@ import Image from 'next/image';
 import SellForm from './SellForm';
 
 export const metadata = {
+  alternates: { canonical: "/sell" },
   title: 'Sell Your Collector Car for $9.99',
   description: 'List your collector car for $9.99. Simple flat-fee listings. AI-assisted listings, full-resolution photos, and direct buyer messaging. Built by collectors, for collectors.',
 };

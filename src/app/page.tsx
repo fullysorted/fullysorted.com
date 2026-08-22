@@ -12,6 +12,14 @@ import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 // hit and opted the most-visited page on the site out of every caching layer.
 // Nothing here is per-user; a five-minute window is plenty fresh for a
 // marketing page that shows at most eight listings.
+import type { Metadata } from "next";
+
+// The root layout no longer sets a site-wide canonical (it was being inherited
+// by every page), so the homepage declares its own.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export const revalidate = 300;
 
 async function getActiveListings(): Promise<Vehicle[]> {

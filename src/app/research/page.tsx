@@ -15,12 +15,14 @@ import {
 import { cn, formatPrice } from "@/lib/utils";
 import { articles } from "@/lib/articles";
 import { ResearchNav } from "@/components/research/ResearchNav";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export const metadata: Metadata = {
-  title: "Market Research — Collector Car Trends & Analysis",
+  title: "Collector Car Market Analysis",
   description:
-    "Collector car market analysis by Chris Peterson — auction results, price trends, segment breakdowns and honest market commentary.",
+    "Auction results, segment price movement and written analysis of the collector car market — what moved, by how much, and what it means.",
+  alternates: { canonical: "/research" },
 };
 
 export const revalidate = 300;
@@ -29,10 +31,13 @@ export const revalidate = 300;
 interface MarketSegment {
   segment: string;
   segment_key?: string;
-  avg_price?: number;
-  avgPrice?: number;
-  median_price?: number;
-  medianPrice?: number;
+  // Nullable on purpose: /api/market nulls the midpoint under six sales and
+  // nulls a mean that one lot has dragged. Null means "no honest figure", which
+  // is a different statement from a price, so it must survive to the renderer.
+  avg_price?: number | null;
+  avgPrice?: number | null;
+  median_price?: number | null;
+  medianPrice?: number | null;
   high_price?: number;
   highPrice?: number;
   low_price?: number;
@@ -76,9 +81,9 @@ interface TrendingListing {
 }
 
 /* ---------- Data fetching ---------- */
-async function getMarketData(): Promise<{ segments: MarketSegment[]; source: string }> {
+async function getMarketData(): Promise<{ segments: MarketSegment[]; source: string; as_of?: string | null }> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.fullysorted.com";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://fullysorted.com";
     const res = await fetch(`${baseUrl}/api/market?limit=25`, { next: { revalidate: 300 } });
     if (!res.ok) throw new Error("Failed");
     return res.json();
@@ -89,7 +94,7 @@ async function getMarketData(): Promise<{ segments: MarketSegment[]; source: str
 
 async function getTrending(): Promise<{ trending: TrendingListing[]; hot: DealAlert[] }> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.fullysorted.com";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://fullysorted.com";
     const res = await fetch(`${baseUrl}/api/trending`, { next: { revalidate: 300 } });
     if (!res.ok) throw new Error("Failed");
     return res.json();
@@ -111,7 +116,9 @@ function normalize(seg: MarketSegment) {
   return {
     segment: seg.segment,
     segmentKey: seg.segment_key || seg.segment?.toLowerCase().replace(/\s+/g, "_"),
-    avgPrice: seg.avg_price ?? seg.avgPrice ?? 0,
+    // No `?? 0` here. The API returns null deliberately; zero would render as
+    // "$0" and be read as a price.
+    avgPrice: seg.avg_price ?? seg.avgPrice ?? null,
     medianPrice: seg.median_price ?? seg.medianPrice,
     highPrice: seg.high_price ?? seg.highPrice,
     lowPrice: seg.low_price ?? seg.lowPrice,
@@ -173,8 +180,48 @@ export default async function ResearchPage() {
 
   const [featuredArticle, ...restArticles] = articles;
 
+  // The desk is a collection of articles and carried no structured data at all,
+  // so nothing told a crawler that this URL is the index of the writing rather
+  // than one more page of prices. Blog + ItemList gives it that, and the
+  // breadcrumb puts it under /research in the same shape the model pages use.
+  const deskSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://fullysorted.com/research#blog",
+    url: "https://fullysorted.com/research",
+    name: "Collector Car Market Analysis",
+    description:
+      "Auction results, segment price movement and written analysis of the collector car market.",
+    publisher: { "@id": "https://fullysorted.com/#organization" },
+    inLanguage: "en-US",
+    blogPost: articles.map((a) => ({
+      "@type": "BlogPosting",
+      headline: a.title,
+      description: a.excerpt,
+      datePublished: a.date,
+      articleSection: a.category,
+      url: `https://fullysorted.com/research/${a.slug}`,
+      publisher: { "@id": "https://fullysorted.com/#organization" },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://fullysorted.com" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Market Analysis",
+        item: "https://fullysorted.com/research",
+      },
+    ],
+  };
+
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
+      <JsonLd data={[deskSchema, breadcrumbSchema]} />
       <ResearchNav active="market" />
 
       {/* ─── Photo Hero — vintage garage under racing-green overlay ── */}
@@ -213,9 +260,14 @@ export default async function ResearchPage() {
           <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}>
             {[
               ...(segments.length > 0
-                ? [{ value: `${segments.length}`, label: "Segments Tracked" }]
+                ? [
+                    { value: `${segments.length}`, label: "Segments Tracked" },
+                    // Only claim auction data when segments are actually
+                    // rendering below. With none, this asserted a dataset the
+                    // page was not showing.
+                    { value: "Real", label: "Auction Data" },
+                  ]
                 : []),
-              { value: "Real", label: "Auction Data" },
               { value: "Written", label: "By Chris" },
             ].map((s) => (
               <div key={s.label}>
@@ -447,28 +499,22 @@ export default async function ResearchPage() {
                 </p>
               </div>
               <h3 className="font-bold mb-2" style={{ color: "#1a1a18" }}>Monday Market Movers</h3>
+              {/* This was a <form> with no action and no handler inside a server
+                  component: the button reloaded the page and no address was ever
+                  recorded. There is no subscribe endpoint to wire it to, so it
+                  asks through the contact route instead of miming a signup. */}
               <p className="text-sm mb-4" style={{ color: "#6b6b5e" }}>
-                Auction results, what moved, and where the smart money is going — straight to your inbox.
+                Auction results, what moved, and where the smart money is going —
+                straight to your inbox. Sign-up is handled by hand for now: send an
+                address through the contact form and it goes on the list.
               </p>
-              <form className="space-y-2">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full h-10 px-3 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
-                  style={{
-                    background: "#faf9f7",
-                    border: "1px solid rgba(0,0,0,0.12)",
-                    color: "#1a1a18",
-                  }}
-                />
-                <button
-                  type="submit"
-                  className="w-full h-10 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
-                  style={{ background: "#1E6091" }}
-                >
-                  Subscribe — Free
-                </button>
-              </form>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-1.5 w-full h-10 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
+                style={{ background: "#1E6091" }}
+              >
+                Ask to be added <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
 
             {/* Top Movers */}
@@ -494,7 +540,9 @@ export default async function ResearchPage() {
                         <TrendBadge trend={m.trendDirection} pct={m.trendPercent} />
                       </div>
                       <p className="text-xs text-stone-400 mt-0.5">
-                        Avg {formatPrice(m.avgPrice)}
+                        {/* Null average = the sample is too thin, or one lot has
+                            dragged the mean. Show nothing rather than a number. */}
+                        Avg {m.avgPrice != null ? formatPrice(m.avgPrice) : "—"}
                       </p>
                     </div>
                   ))}
@@ -543,12 +591,43 @@ export default async function ResearchPage() {
                 Aggregated from publicly available collector-car auction results
                 and market data from across the industry.
               </p>
-              <p className="text-xs text-stone-300 mt-2">Updated regularly.</p>
+              {/* "Updated regularly" claimed a cadence nothing here maintains:
+                  the set does not auto-ingest. Say what is actually true. */}
+              <p className="text-xs text-stone-300 mt-2">
+                Not a live feed — the set grows as new results are recorded, and
+                each figure is dated by the newest sale behind it.
+              </p>
             </div>
           </div>
         </div>
 
         {/* ─── Full Segment Table ───────────────────────────── */}
+        {/* Zero segments used to hide this section outright, so a page still
+            headed "Research Desk" simply had a hole where the market data goes
+            and never said why. State it. */}
+        {segments.length === 0 && (
+          <section id="segments" className="mt-16">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-px" style={{ background: "#1E6091" }} />
+              <h2 className="text-sm font-bold text-stone-400 uppercase tracking-widest">
+                Market Segments
+              </h2>
+            </div>
+            <div
+              className="rounded-2xl px-6 py-10 text-center"
+              style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)" }}
+            >
+              <p className="font-semibold text-stone-800 mb-1">
+                Segment prices are unavailable right now
+              </p>
+              <p className="text-sm text-stone-400 max-w-md mx-auto">
+                No segment currently clears the minimum sample this site
+                publishes against, or the market data could not be read. Written
+                analysis above is unaffected.
+              </p>
+            </div>
+          </section>
+        )}
         {segments.length > 0 && (
           <section id="segments" className="mt-16">
             <div className="flex items-center gap-3 mb-3">
@@ -562,14 +641,16 @@ export default async function ResearchPage() {
                 <p className="text-xl sm:text-2xl font-bold text-stone-800">
                   Price & Trend Overview
                 </p>
+                {/* The "fallback" branch described hardcoded segments the API
+                    no longer returns. And "Updated regularly" claimed a cadence
+                    nothing maintains — the newest sale behind the data is the
+                    only freshness figure this page can stand behind. */}
                 <p className="text-sm text-stone-400 mt-1">
                   {segments.length} segments tracked ·{" "}
-                  {marketData.source === "fallback"
-                    ? "Curated historical data"
-                    : marketData.source === "live_aggregate"
+                  {marketData.source === "live_aggregate"
                     ? "Live aggregated from auction results"
-                    : "From market database"}{" "}
-                  · Updated regularly
+                    : "From market database"}
+                  {marketData.as_of ? ` · Sales through ${marketData.as_of}` : ""}
                 </p>
               </div>
             </div>
@@ -630,7 +711,20 @@ export default async function ResearchPage() {
                                 {seg.segment}
                               </td>
                               <td className="px-4 py-3.5 text-right price-display text-stone-700">
-                                {formatPrice(seg.avgPrice)}
+                                {seg.avgPrice != null ? (
+                                  formatPrice(seg.avgPrice)
+                                ) : (
+                                  <span
+                                    className="text-stone-300"
+                                    title={
+                                      seg.meanSkewed
+                                        ? "One lot in this segment sits far above the rest — an average would describe no car anyone actually buys"
+                                        : `Only ${seg.saleCount} recorded sales — too few for an average`
+                                    }
+                                  >
+                                    —
+                                  </span>
+                                )}
                               </td>
                               <td className="px-4 py-3.5 text-right text-stone-400 hidden sm:table-cell">
                                 {seg.medianPrice ? formatPrice(seg.medianPrice) : "—"}

@@ -18,17 +18,25 @@ function LoginForm() {
     setLoading(true);
     setError("");
 
-    const res = await fetch("/api/admin/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ secret }),
-    });
+    // A rejected fetch (offline, DNS, aborted request) used to leave the
+    // button spinning forever: setLoading(false) only ran on the !res.ok
+    // branch, so a network failure never cleared it and never said why.
+    try {
+      const res = await fetch("/api/admin/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ secret }),
+      });
 
-    if (res.ok) {
-      const redirect = searchParams.get("redirect") || "/admin/dashboard";
-      router.push(redirect);
-    } else {
-      setError("Incorrect key. Try again.");
+      if (res.ok) {
+        const redirect = searchParams.get("redirect") || "/admin/dashboard";
+        router.push(redirect);
+      } else {
+        setError("Incorrect key. Try again.");
+      }
+    } catch {
+      setError("Could not reach the server. Check your connection and try again.");
+    } finally {
       setLoading(false);
     }
   }

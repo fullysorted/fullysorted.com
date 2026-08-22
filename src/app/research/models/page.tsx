@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Database } from "lucide-react";
-import { getPublishedModelsWithMeta } from "@/lib/data/models";
+import { getPublishedModelsWithMetaResult } from "@/lib/data/models";
 import { ModelsDirectory } from "./ModelsDirectory";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ResearchNav } from "@/components/research/ResearchNav";
@@ -16,7 +16,9 @@ export const metadata: Metadata = {
 };
 
 export default async function ModelsIndexPage() {
-  const models = await getPublishedModelsWithMeta();
+  // Use the result-carrying variant: an empty list from a failed query must not
+  // be reported to readers as an editorial queue (see src/lib/data/models.ts).
+  const { rows: models, ok: modelsOk } = await getPublishedModelsWithMetaResult();
   const items = models.map((m) => ({
     id: m.id, slug: m.slug, make: m.make, model: m.model, generation: m.generation,
     year_start: m.year_start, year_end: m.year_end, production_total: m.production_total,
@@ -93,7 +95,16 @@ export default async function ModelsIndexPage() {
 
       {/* Directory */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        {items.length === 0 ? (
+        {items.length === 0 && !modelsOk ? (
+          <div className="rounded-2xl bg-white px-6 py-16 text-center" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
+            <Database className="w-8 h-8 mx-auto mb-4" style={{ color: "#cfcabb" }} />
+            <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>The model histories could not be loaded</p>
+            <p className="text-sm max-w-md mx-auto" style={{ color: "#9a9a8a" }}>
+              This is a fault at our end, not an empty database. The pages are
+              published and will render again once the source is reachable.
+            </p>
+          </div>
+        ) : items.length === 0 ? (
           <div className="rounded-2xl bg-white px-6 py-16 text-center" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
             <Database className="w-8 h-8 mx-auto mb-4" style={{ color: "#cfcabb" }} />
             <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>The first model histories are in review</p>

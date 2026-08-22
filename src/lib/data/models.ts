@@ -8,7 +8,21 @@
  * Everything degrades gracefully when DATABASE_URL is unset (local build /
  * preview deploys) — list functions return [] and lookups return null, so the
  * site builds and renders empty states instead of crashing.
+ *
+ * That graceful degradation had one cost: a caller receiving [] could not tell
+ * "nothing is published yet" from "the database did not answer", so an outage
+ * rendered as an editorial empty state ("check back shortly") and a live model
+ * URL 404'd. The `*Result` variants below carry that distinction. `ok` is true
+ * only when the query actually ran and returned; it is false both when the
+ * query threw and when there is no DATABASE_URL to query, because in neither
+ * case do we have an answer to report. The original functions are unchanged.
  */
+
+/** A list query that knows whether it got an answer. `ok: false` = no answer. */
+export interface ModelQueryResult<T> {
+  rows: T[];
+  ok: boolean;
+}
 
 export interface ModelSource {
   id: number;
@@ -100,6 +114,27 @@ export async function getPublishedModels(): Promise<VehicleModelRow[]> {
   }
 }
 
+/**
+ * Same query as getPublishedModels(), reporting whether the database answered.
+ * Callers that render an empty state must use this one — see the note at the
+ * top of this file.
+ */
+export async function getPublishedModelsResult(): Promise<ModelQueryResult<VehicleModelRow>> {
+  if (!hasDb()) return { rows: [], ok: false };
+  try {
+    const sql = await sqlClient();
+    const rows = (await sql`
+      SELECT * FROM vehicle_models
+      WHERE status = 'published'
+      ORDER BY make ASC, model ASC, year_start ASC
+    `) as unknown as VehicleModelRow[];
+    return { rows, ok: true };
+  } catch (e) {
+    console.error('getPublishedModelsResult failed:', (e as Error)?.message);
+    return { rows: [], ok: false };
+  }
+}
+
 export interface VehicleModelRowMeta extends VehicleModelRow {
   source_count: number;
   claim_count: number;
@@ -124,6 +159,27 @@ export async function getPublishedModelsWithMeta(): Promise<VehicleModelRowMeta[
   } catch (e) {
     console.error('getPublishedModelsWithMeta failed:', (e as Error)?.message);
     return [];
+  }
+}
+
+/** getPublishedModelsWithMeta(), reporting whether the database answered. */
+export async function getPublishedModelsWithMetaResult(): Promise<ModelQueryResult<VehicleModelRowMeta>> {
+  if (!hasDb()) return { rows: [], ok: false };
+  try {
+    const sql = await sqlClient();
+    const rows = (await sql`
+      SELECT m.*,
+        (SELECT COUNT(*) FROM model_sources s WHERE s.model_id = m.id)::int AS source_count,
+        (SELECT COUNT(*) FROM model_claims c WHERE c.model_id = m.id)::int AS claim_count,
+        (SELECT COUNT(*) FROM model_claims c WHERE c.model_id = m.id AND c.status = 'disputed')::int AS disputed_count
+      FROM vehicle_models m
+      WHERE m.status = 'published'
+      ORDER BY m.make ASC, m.model ASC, m.year_start ASC
+    `) as unknown as VehicleModelRowMeta[];
+    return { rows, ok: true };
+  } catch (e) {
+    console.error('getPublishedModelsWithMetaResult failed:', (e as Error)?.message);
+    return { rows: [], ok: false };
   }
 }
 
@@ -160,6 +216,52 @@ export async function getPublishedModelBySlug(
   } catch (e) {
     console.error('getPublishedModelBySlug failed:', (e as Error)?.message);
     return null;
+  }
+}
+
+/**
+ * The same lookup, reporting whether the database answered. `model: null` with
+ * `ok: true` means there genuinely is no such published model (a real 404);
+ * `ok: false` means the lookup never got an answer, which must NOT 404 — a URL
+ * that is live today would otherwise be dropped by crawlers on a bad minute.
+ */
+export interface ModelLookupResult {
+  model: ModelPage | null;
+  ok: boolean;
+}
+
+export async function getPublishedModelBySlugResult(
+  make: string,
+  modelSlug: string
+): Promise<ModelLookupResult> {
+  if (!hasDb()) return { model: null, ok: false };
+  const slug = `${make}/${modelSlug}`.toLowerCase();
+  try {
+    const sql = await sqlClient();
+    const rows = (await sql`
+      SELECT * FROM vehicle_models
+      WHERE LOWER(slug) = ${slug} AND status = 'published'
+      LIMIT 1
+    `) as unknown as VehicleModelRow[];
+    const m = rows[0];
+    if (!m) return { model: null, ok: true };
+
+    const [sources, claims, contributions] = await Promise.all([
+      sql`SELECT id, title, url, publisher, source_type, reliability
+          FROM model_sources WHERE model_id = ${m.id} ORDER BY id ASC` as unknown as Promise<ModelSource[]>,
+      sql`SELECT id, section, claim_text, confidence, status, source_ids, conflict_note
+          FROM model_claims WHERE model_id = ${m.id} ORDER BY id ASC` as unknown as Promise<ModelClaim[]>,
+      // Approved owner contributions only — pending text must never render.
+      sql`SELECT id, kind, section, body, submitter_name, submitter_credential, published_at
+          FROM model_contributions
+          WHERE model_id = ${m.id} AND status = 'approved'
+          ORDER BY published_at DESC NULLS LAST, id DESC` as unknown as Promise<ModelContribution[]>,
+    ]);
+
+    return { model: { ...m, sources, claims, contributions }, ok: true };
+  } catch (e) {
+    console.error('getPublishedModelBySlugResult failed:', (e as Error)?.message);
+    return { model: null, ok: false };
   }
 }
 

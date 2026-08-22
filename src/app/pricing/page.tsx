@@ -5,6 +5,7 @@ import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
 import { PLATFORM_FEE_PCT_LABEL } from '@/lib/payments';
 
 export const metadata = {
+  alternates: { canonical: "/pricing" },
   title: 'Pricing',
   description: `Simple, transparent pricing. First ${FREE_LISTINGS_THRESHOLD} listings are free. Standard from $9.99, Featured $29.99, Premium $49.99.`,
 };

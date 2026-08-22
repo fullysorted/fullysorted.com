@@ -177,7 +177,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "What happens when it sells?",
-        a: "Mark it sold in your dashboard, which closes the listing and stops the enquiries. That is it — no commission is due, no success fee, nothing to reconcile. Telling us also improves the comp database for the next person, and if you are willing to share what it actually sold for, that is genuinely useful to everyone.",
+        a: "Mark it sold in your dashboard, which closes the listing and stops the enquiries. That is it — the one-time listing fee you already paid is the only charge, and nothing further is owed on the sale. Telling us also improves the comp database for the next person, and if you are willing to share what it actually sold for, that is genuinely useful to everyone.",
         link: { href: "/submit-sale", label: "Report a sale price" },
       },
       {
@@ -252,7 +252,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "How does Fully Sorted make money?",
-        a: "Two ways today. Sellers pay a one-time flat fee to list a car. Providers pay a platform fee on fixed-price gigs booked through the site. That is the whole list — no commission on a car sale, no buyer's premium, no cut of a quote you agree directly with a specialist, and nothing sold to advertisers in the directory. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
+        a: "Two ways today. Sellers pay a one-time listing fee — $9.99 standard, $29.99 featured, $49.99 premium. Providers pay a 10% platform fee on fixed-price gigs booked through the site. That is the whole list — the listing fee is the only charge on a car sale however much it sells for, there is no buyer's premium, we take nothing out of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
       },
       {
         q: "You're brand new. Why should I trust you?",
