@@ -1,5 +1,6 @@
 // Client-safe listing tier configuration
 // This file can be imported by both server and client components
+import { AI_ASSIST_ENABLED } from './features';
 
 export type ListingTier = 'standard' | 'featured' | 'premium';
 
@@ -44,14 +45,14 @@ export const LISTING_TIERS: Record<ListingTier, TierConfig> = {
     displayPrice: '$29.99',
     photos: 40,
     videos: 1,
-    aiDescription: true,
+    aiDescription: AI_ASSIST_ENABLED,
     daysListed: 60,
     socialShare: true,
     priorityPlacement: true,
     escrow: false,
     features: [
       '40 photos + 1 video',
-      'AI-generated description',
+      ...(AI_ASSIST_ENABLED ? ['AI-generated description'] : []),
       'Social media promotion',
       'Priority browse placement',
       'Active for 60 days',
@@ -65,7 +66,7 @@ export const LISTING_TIERS: Record<ListingTier, TierConfig> = {
     displayPrice: '$49.99',
     photos: 9999,
     videos: 9999,
-    aiDescription: true,
+    aiDescription: AI_ASSIST_ENABLED,
     daysListed: 9999,
     socialShare: true,
     priorityPlacement: true,
@@ -75,7 +76,7 @@ export const LISTING_TIERS: Record<ListingTier, TierConfig> = {
     escrow: true,
     features: [
       'Unlimited photos & video',
-      'AI-generated description',
+      ...(AI_ASSIST_ENABLED ? ['AI-generated description'] : []),
       'Social media promotion',
       'Top browse placement',
       'Listed until sold',

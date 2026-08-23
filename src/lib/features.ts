@@ -69,3 +69,25 @@ export const PROVIDER_REVIEWS_PUBLIC: boolean = true;
  * which is not a thing to discover after taking someone's card.
  */
 export const GIG_PAYMENTS_ENABLED: boolean = false;
+
+/**
+ * AI_ASSIST_ENABLED — every AI-assisted writing surface on the site: the
+ * listing description generator on /sell, the gig copy assistant in the
+ * freelancer wizard, and the model-page drafter in /admin.
+ *
+ * Off 2026-08-22. The Anthropic key is configured but has no credit, so the
+ * calls reach the API and fail. A button that fails after a spinner is worse
+ * than no button: the manual path works perfectly on every one of these
+ * surfaces, and it is the path everyone was going to take anyway.
+ *
+ * IMPORTANT — this also gates a PAID promise. AI descriptions are sold as part
+ * of the Featured ($29.99) and Premium ($49.99) listing tiers. While this is
+ * false, `LISTING_TIERS[...].aiDescription` is false too and the feature bullet
+ * changes, so the site does not charge for something that cannot run. Turning
+ * this back on restores the tier copy, the pricing table and all three surfaces
+ * in one line.
+ *
+ * To turn it on: put credit on the Anthropic account, confirm ANTHROPIC_API_KEY
+ * is set in Vercel, then flip this.
+ */
+export const AI_ASSIST_ENABLED: boolean = false;

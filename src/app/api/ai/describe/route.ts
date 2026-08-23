@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateListingDescription } from '@/lib/ai/generate-description';
 import { rateLimit } from '@/lib/rate-limit';
+import { AI_ASSIST_ENABLED } from '@/lib/features';
 
 export async function POST(request: NextRequest) {
   try {
     // Check for API key
+    // Gated by AI_ASSIST_ENABLED. The key is set but has no credit, so without
+    // this the call reaches Anthropic and fails slowly. Refuse up front.
+    if (!AI_ASSIST_ENABLED) {
+      return NextResponse.json({ error: 'AI assistance is turned off right now.' }, { status: 503 });
+    }
     if (!process.env.ANTHROPIC_API_KEY) {
       return NextResponse.json(
         { error: 'AI service not configured' },

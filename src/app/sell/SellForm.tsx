@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { AI_ASSIST_ENABLED } from '@/lib/features';
 import { motion } from 'framer-motion';
 import { trackMetaEvent } from '@/components/analytics/MetaPixel';
 import {
@@ -340,7 +341,7 @@ export default function SellForm() {
           </div>
 
           <p className="text-xs text-text-tertiary text-center">
-            Not sure? Featured is our most popular option — AI write-up, social share, and 60-day listing.
+            Not sure? Featured is our most popular option — {AI_ASSIST_ENABLED ? 'AI write-up, social share, and 60-day listing.' : 'social share, more photos, and a 60-day listing.'}
           </p>
         </div>
       )}
@@ -479,12 +480,16 @@ export default function SellForm() {
               value={form.sellerNotes}
               onChange={(e) => updateField('sellerNotes', e.target.value)}
               rows={4}
-              placeholder="Tell us what makes this car special. Recent work done? History you know? Quirks? The more you share, the better the AI description."
+              placeholder={`Tell us what makes this car special. Recent work done? History you know? Quirks?${AI_ASSIST_ENABLED ? " The more you share, the better the AI description." : ""}`}
               className={`${inputClass} resize-none`}
             />
           </div>
 
-          {selectedTierConfig.aiDescription ? (
+          {/* With AI_ASSIST_ENABLED off, aiDescription is false on every tier, so
+              this would otherwise fall through to the "upgrade your plan" nudge —
+              which would be selling an upgrade that cannot deliver. Say nothing
+              instead; the description field below is right there. */}
+          {!AI_ASSIST_ENABLED ? null : selectedTierConfig.aiDescription ? (
             <button
               onClick={generateAIDescription}
               disabled={isGenerating || !form.year || !form.make || !form.model}
@@ -515,7 +520,7 @@ export default function SellForm() {
           {form.description && (
             <div className="space-y-4">
               <div>
-                <label className={labelClass}>AI-Generated Description</label>
+                <label className={labelClass}>{AI_ASSIST_ENABLED ? "AI-Generated Description" : "Description"}</label>
                 <textarea value={form.description} onChange={(e) => updateField('description', e.target.value)} rows={8} className={`${inputClass} resize-none`} />
                 <p className="text-xs text-text-tertiary mt-1">Feel free to edit — this is your listing.</p>
               </div>

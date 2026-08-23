@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateModelPage } from '@/lib/ai/generate-model-page';
+import { AI_ASSIST_ENABLED } from '@/lib/features';
 
 function isAdmin(request: NextRequest): boolean {
   const cookie = request.cookies.get('fs_admin')?.value;
@@ -72,6 +73,9 @@ export async function POST(request: NextRequest) {
   }
 
   // action === 'generate' — run the AI agent, store as DRAFT (never auto-publish).
+  if (!AI_ASSIST_ENABLED) {
+    return NextResponse.json({ error: 'AI drafting is turned off (AI_ASSIST_ENABLED).' }, { status: 503 });
+  }
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json({ error: 'ANTHROPIC_API_KEY not configured' }, { status: 503 });
   }

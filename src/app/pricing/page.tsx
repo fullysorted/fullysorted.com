@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { AI_ASSIST_ENABLED } from '@/lib/features';
 import Image from 'next/image';
 import { CheckCircle2, Star } from 'lucide-react';
 import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
@@ -173,7 +174,9 @@ export default function PricingPage() {
                   </div>
                   <p className="text-text-secondary text-sm">
                     {key === 'standard' && 'Get your car listed and in front of buyers.'}
-                    {key === 'featured' && 'The full Fully Sorted experience — AI write-up, social promo, priority placement.'}
+                    {key === 'featured' && (AI_ASSIST_ENABLED
+                      ? 'The full Fully Sorted experience — AI write-up, social promo, priority placement.'
+                      : 'The full Fully Sorted experience — social promo, priority placement, more photos and video.')}
                     {key === 'premium' && 'Maximum exposure, listed until sold, plus an introduction to a licensed escrow company.'}
                   </p>
                 </div>
@@ -225,7 +228,9 @@ export default function PricingPage() {
                   { label: 'Price', values: ['$9.99', '$29.99', '$49.99'] },
                   { label: 'Photos', values: ['20', '40', 'Unlimited'] },
                   { label: 'Video', values: ['—', '1', 'Unlimited'] },
-                  { label: 'AI Description', values: ['—', '✓', '✓'] },
+                  // Pulled from the table entirely while AI_ASSIST_ENABLED is off —
+                  // a comparison row is a promise, and this one is being charged for.
+                  ...(AI_ASSIST_ENABLED ? [{ label: 'AI Description', values: ['—', '✓', '✓'] }] : []),
                   { label: 'Days Listed', values: ['30', '60', 'Until sold'] },
                   { label: 'Social Share', values: ['—', '✓', '✓'] },
                   { label: 'Priority Placement', values: ['—', '✓', '✓'] },

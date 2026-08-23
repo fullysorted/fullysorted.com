@@ -59,7 +59,7 @@ function SuccessInner() {
             </p>
             <ul className="text-text-secondary text-sm mt-2 space-y-1.5">
               <li>1. I review your listing for accuracy and completeness</li>
-              <li>2. The AI description gets a human check (by me)</li>
+              <li>2. Your description gets a human check before it goes live</li>
               <li>3. Your listing goes live on the marketplace</li>
               <li>4. You get an email confirmation with your listing link</li>
             </ul>

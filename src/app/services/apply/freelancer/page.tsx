@@ -1,5 +1,6 @@
 "use client";
 
+import { AI_ASSIST_ENABLED } from "@/lib/features";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
@@ -244,7 +245,7 @@ export default function FreelancerWizard() {
             <div className="grid sm:grid-cols-3 gap-3">
               {[
                 { n: "1", t: "Tell us about you", d: "Two minutes. Name, what you do, where." },
-                { n: "2", t: "Build one gig", d: "We’ll help you write it — even draft it for you." },
+                { n: "2", t: "Build one gig", d: AI_ASSIST_ENABLED ? "We’ll help you write it — even draft it for you." : "Plain prompts, no blank page. Takes a few minutes." },
                 { n: "3", t: "Set prices & submit", d: "Three simple tiers. Lightly curated, then you’re live." },
               ].map(x => (
                 <div key={x.n} className="rounded-xl border border-border p-4">
@@ -316,7 +317,7 @@ export default function FreelancerWizard() {
             <div>
               <label className="block text-sm font-medium text-foreground mb-1.5">Short bio *</label>
               <textarea className={input + " resize-none"} rows={3} value={f.bio} onChange={e => set("bio", e.target.value)} placeholder="15 years detailing show cars; obsessive about soft paint and original finishes." />
-              <Help>A few honest sentences about your experience. This builds trust — and our AI uses it to help draft your gig.</Help>
+              <Help>A few honest sentences about your experience. This is what an owner reads before deciding to call you.</Help>
             </div>
           </div>
         )}
@@ -324,12 +325,16 @@ export default function FreelancerWizard() {
         {/* STEP 2 — Gig */}
         {step === 2 && (
           <div className="mt-5 space-y-5">
-            <button onClick={runAi} disabled={aiLoading}
-              className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors disabled:opacity-60">
-              {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" style={{ color: "#E9D8A6" }} />}
-              {aiLoading ? "Drafting for you…" : "Draft my gig with AI"}
-            </button>
-            <p className="text-xs text-text-secondary -mt-2">Uses what you entered to draft a title, description, and starter prices. You edit everything after.</p>
+            {AI_ASSIST_ENABLED && (
+              <>
+                <button onClick={runAi} disabled={aiLoading}
+                  className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors disabled:opacity-60">
+                  {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" style={{ color: "#E9D8A6" }} />}
+                  {aiLoading ? "Drafting for you…" : "Draft my gig with AI"}
+                </button>
+                <p className="text-xs text-text-secondary -mt-2">Uses what you entered to draft a title, description, and starter prices. You edit everything after.</p>
+              </>
+            )}
             <div>
               <label className="block text-sm font-medium text-foreground mb-1.5">Gig title *</label>
               <input className={input} value={f.gigTitle} onChange={e => set("gigTitle", e.target.value)} placeholder="I will perform a concours-level pre-purchase inspection" />
