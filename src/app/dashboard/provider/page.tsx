@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import ReviewsPanel from './ReviewsPanel';
+import ClaimExistingListing from './ClaimExistingListing';
+import PhotoUpload from '@/components/media/PhotoUpload';
 import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 import { motion } from 'framer-motion';
 import { useAuth } from '@clerk/nextjs';
@@ -53,6 +55,10 @@ export default function ProviderDashboard() {
     specialties: [] as string[],
     yearsInBusiness: '',
     priceRange: '$$',
+    // A photo is REQUIRED on every path that creates a listing, but this
+    // dashboard had no field for it — so a provider whose listing was created
+    // by the team, or claimed with a token, could never add one themselves.
+    avatarUrl: '',
   });
 
   // Fetch provider profile
@@ -75,6 +81,7 @@ export default function ProviderDashboard() {
             specialties: data.provider.specialties || [],
             yearsInBusiness: data.provider.yearsInBusiness || '',
             priceRange: data.provider.priceRange || '$$',
+            avatarUrl: data.provider.avatarUrl || '',
           });
         }
         setLoading(false);
@@ -146,7 +153,8 @@ export default function ProviderDashboard() {
           </div>
           <h1 className="text-3xl font-display font-semibold tracking-tight text-foreground mb-4">Become a Service Provider</h1>
           <p className="text-text-secondary mb-8 max-w-md mx-auto">
-            You don&apos;t have a provider profile yet. Apply to join the Fully Sorted Services Directory and get in front of serious collector car owners.
+            This account isn&apos;t attached to a listing yet. Apply to join the Fully Sorted Services Directory and get
+            in front of serious collector car owners.
           </p>
           <Link
             href="/services/apply"
@@ -154,6 +162,10 @@ export default function ProviderDashboard() {
           >
             Apply to Be Listed <ArrowRight className="w-5 h-5" />
           </Link>
+
+          {/* The listing may well already exist — this screen used to send a
+              shop we had onboarded by phone straight into applying again. */}
+          <ClaimExistingListing />
         </motion.div>
       </div>
     );
@@ -276,6 +288,21 @@ export default function ProviderDashboard() {
                 className="w-full px-3 py-2.5 bg-white border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent"
               />
             </div>
+            <div className="sm:col-span-2">
+              <label className="block text-sm font-medium text-foreground mb-1.5">Profile photo</label>
+              <PhotoUpload
+                value={form.avatarUrl}
+                onChange={(url: string) => setForm({ ...form, avatarUrl: url })}
+                label="Upload a photo"
+                hint={
+                  <>
+                    JPEG/PNG/WebP, max 10MB. Your workshop, your work, or you. Listings with a
+                    photo get looked at; listings without one mostly do not.
+                  </>
+                }
+              />
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-foreground mb-1.5">
                 <DollarSign className="w-3.5 h-3.5 inline mr-1" /> Price Range

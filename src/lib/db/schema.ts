@@ -215,6 +215,21 @@ export const serviceProviders = pgTable('service_providers', {
   outreachStatus: varchar('outreach_status', { length: 50 }),
   claimToken: varchar('claim_token', { length: 64 }).unique(),
   outreachSentAt: timestamp('outreach_sent_at'),
+
+  // ─── Account linking ───────────────────────────────────────────
+  // clerkUserId above was, for a long time, only ever written at INSERT — there
+  // was no UPDATE path anywhere in the codebase. That meant a shop the team
+  // seeded could never get an account: they'd sign up, be told "you don't have
+  // a provider profile yet" while their listing sat live in the directory, and
+  // the only button on offer created a duplicate.
+  //
+  // These four columns are the fix. A single-use, expiring token is emailed to
+  // the address ALREADY on the row, and redeeming it while signed in sets
+  // clerkUserId on that existing row. See lib/account-link.ts for the rules.
+  accountLinkToken: varchar('account_link_token', { length: 64 }).unique(),
+  accountLinkSentAt: timestamp('account_link_sent_at'),
+  accountLinkExpiresAt: timestamp('account_link_expires_at'),
+  accountLinkedAt: timestamp('account_linked_at'),
   outreachRespondedAt: timestamp('outreach_responded_at'),
 
   // ─── Provider type split (Phase 4: business vs freelancer) ──────

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { getDb, schema } from '@/lib/db';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import { rateLimit } from '@/lib/rate-limit';
 import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
 
@@ -98,6 +98,37 @@ export async function POST(request: NextRequest) {
 
     const db = getDb();
 
+    // Refuse a second listing for a business we already hold.
+    //
+    // This route had no duplicate check at all, while /api/team/providers has
+    // had one all along — so the commonest failure was our own doing: a shop
+    // onboarded by phone signs up, the dashboard can't match them (their row
+    // has no clerk_user_id), it offers "Apply to Be Listed", and they end up
+    // with two listings on two slugs. The answer is not a second row, it's the
+    // account-link flow, so point them at it.
+    const [duplicate] = await db
+      .select({ id: schema.serviceProviders.id, slug: schema.serviceProviders.slug })
+      .from(schema.serviceProviders)
+      // Exclude rows the link flow will refuse to mint for (rejected listings
+      // and shops that asked to be removed). Without this a declined shop that
+      // later changed its mind was blocked from applying AND could never get a
+      // link — a permanent dead end with no way forward.
+      .where(sql`LOWER(${schema.serviceProviders.email}) = ${String(email).trim().toLowerCase()}
+                 AND COALESCE(${schema.serviceProviders.status}, '') <> 'rejected'
+                 AND COALESCE(${schema.serviceProviders.outreachStatus}, '') <> 'declined'`)
+      .limit(1);
+    if (duplicate) {
+      return NextResponse.json(
+        {
+          error:
+            'There is already a listing using that email address. Rather than creating a second one, we can send that address a link to manage the existing listing.',
+          duplicate: true,
+          linkRequest: true,
+        },
+        { status: 409 },
+      );
+    }
+
     // Create slug from business name
     const slug = businessName
       .toLowerCase()
@@ -105,8 +136,14 @@ export async function POST(request: NextRequest) {
       .replace(/^-|-$/g, '')
       + '-' + Math.random().toString(36).substring(2, 8);
 
-    // Save application record
-    await db.insert(schema.providerApplications).values({
+    // Save application record.
+    //
+    // The inserted id has to be captured. Without it the provider row below was
+    // written with a null application_id, and /api/admin/providers' "keep the
+    // application row in sync" UPDATE ran `WHERE id = NULL` — matching nothing.
+    // Every application therefore sat at 'pending' forever no matter what the
+    // admin did to the listing.
+    const [application] = await db.insert(schema.providerApplications).values({
       businessName,
       ownerName,
       category,
@@ -121,7 +158,7 @@ export async function POST(request: NextRequest) {
       whyList: whyList || null,
       referredBy: referredBy || null,
       status: 'pending',
-    });
+    }).returning({ id: schema.providerApplications.id });
 
     // Create provider profile (pending until Chris approves)
     const specialtiesArray = typeof specialties === 'string'
@@ -147,6 +184,7 @@ export async function POST(request: NextRequest) {
       verified: false,
       foundingProvider: false, // TODO: check count for founding badge
       status: 'pending',
+      applicationId: application?.id ?? null,
     }).returning();
 
     // The application row above is already durable and shows in /admin/providers,

@@ -57,9 +57,16 @@ export async function PUT(request: NextRequest) {
       businessName, ownerName, category, location,
       phone, website, instagram,
       description, specialties, yearsInBusiness, priceRange,
+      avatarUrl, headline, serviceArea, skills, hourlyRate,
     } = body;
 
     // Only allow editing certain fields (not email, status, verified, etc.)
+    //
+    // NOTE the WHERE below is `id = existing.id`, NOT `clerkUserId = userId`.
+    // It used to be the latter, which updates EVERY row the user owns. That is
+    // not hypothetical: until the duplicate guards landed, a provider who
+    // submitted the apply form twice owned two rows, and one save from this
+    // dashboard overwrote both listings with a single business's details.
     const [updated] = await db
       .update(schema.serviceProviders)
       .set({
@@ -74,9 +81,17 @@ export async function PUT(request: NextRequest) {
         ...(specialties && { specialties }),
         ...(yearsInBusiness !== undefined && { yearsInBusiness }),
         ...(priceRange && { priceRange }),
+        // Photo is REQUIRED on both cold-apply paths but was never settable
+        // here, so a listing claimed by its owner could never get one. The
+        // freelancer fields were in the same position.
+        ...(avatarUrl !== undefined && { avatarUrl }),
+        ...(headline !== undefined && { headline }),
+        ...(serviceArea !== undefined && { serviceArea }),
+        ...(skills && { skills }),
+        ...(hourlyRate !== undefined && { hourlyRate }),
         updatedAt: new Date(),
       })
-      .where(eq(schema.serviceProviders.clerkUserId, userId))
+      .where(eq(schema.serviceProviders.id, existing.id))
       .returning();
 
     return NextResponse.json({ provider: updated, message: 'Profile updated successfully' });

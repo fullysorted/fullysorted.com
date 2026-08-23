@@ -43,6 +43,13 @@ async function runAll() {
   // the table exists before the first review is written, and the public
   // profile page (which reads the table directly and swallows errors) can
   // never quietly render "no reviews yet" because the table was missing.
+  // Account linking — the columns that finally make clerk_user_id settable on
+  // an existing row. See lib/account-link.ts.
+  await step('service_providers account-link columns', async () => {
+    const { ensureAccountLinkColumns } = await import('@/lib/account-link');
+    await ensureAccountLinkColumns(sql);
+  });
+
   // messages.provider_id — links a directory enquiry to the shop it was about.
   // The backfill reads the slug already embedded in listing_slug, so leads
   // taken before this column existed are not stranded outside the provider's

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
+import { sql } from 'drizzle-orm';
 import { getDb, schema } from '@/lib/db';
 import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
 
@@ -48,8 +49,41 @@ export async function POST(request: NextRequest) {
     const skillsArr: string[] = Array.isArray(skills) ? skills : [];
     const slug = slugify(ownerName);
 
+    // Same duplicate guard as /api/providers. It was added there and not here,
+    // which left the exact hole the account-link flow exists to close: a shop
+    // already in the directory picks "freelancer" on the apply page, and gets a
+    // second service_providers row on a second slug. Match on email regardless
+    // of status, and send them to the link flow instead of inserting.
+    const [duplicate] = await db
+      .select({ id: schema.serviceProviders.id, slug: schema.serviceProviders.slug })
+      .from(schema.serviceProviders)
+      // Exclude rows the link flow will refuse to mint for (rejected listings
+      // and shops that asked to be removed). Without this a declined shop that
+      // later changed its mind was blocked from applying AND could never get a
+      // link — a permanent dead end with no way forward.
+      .where(sql`LOWER(${schema.serviceProviders.email}) = ${String(email).trim().toLowerCase()}
+                 AND COALESCE(${schema.serviceProviders.status}, '') <> 'rejected'
+                 AND COALESCE(${schema.serviceProviders.outreachStatus}, '') <> 'declined'`)
+      .limit(1);
+    if (duplicate) {
+      return NextResponse.json(
+        {
+          error:
+            'There is already a listing using that email address. Rather than creating a second one, we can send that address a link to manage the existing listing.',
+          duplicate: true,
+          linkRequest: true,
+        },
+        { status: 409 },
+      );
+    }
+
     // Application record (shows in the same admin queue, tagged freelancer).
-    await db.insert(schema.providerApplications).values({
+    //
+    // Same bug as /api/providers: the inserted id was thrown away, so the
+    // profile row carried a null application_id and the admin route's
+    // `UPDATE provider_applications ... WHERE id = <application_id>` matched no
+    // row. Applications stayed 'pending' however the listing was decided.
+    const [application] = await db.insert(schema.providerApplications).values({
       businessName: headline || ownerName,
       ownerName,
       category,
@@ -60,7 +94,7 @@ export async function POST(request: NextRequest) {
       whyList: null,
       providerType: 'freelancer',
       status: 'pending',
-    });
+    }).returning({ id: schema.providerApplications.id });
 
     // Pending freelancer profile.
     const [provider] = await db.insert(schema.serviceProviders).values({
@@ -81,6 +115,7 @@ export async function POST(request: NextRequest) {
       avatarUrl: String(avatarUrl),
       onboardingComplete: true,
       status: 'pending',
+      applicationId: application?.id ?? null,
     }).returning();
 
     // Optional first gig (draft) + packages — best-effort: never block the

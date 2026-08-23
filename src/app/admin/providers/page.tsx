@@ -73,6 +73,11 @@ function ProvidersContent() {
   const [statusFilter, setStatusFilter] = useState(searchParams.get("status") || "pending");
   const [updating, setUpdating] = useState<number | null>(null);
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  // Approving now emails the provider. This holds what the API said about that
+  // send — the PATCH response used to be discarded entirely, so a failed
+  // notification would have been invisible here and the shop would have gone
+  // live without ever being told.
+  const [notice, setNotice] = useState<{ tone: "ok" | "warn"; text: string; linkUrl?: string } | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -96,11 +101,21 @@ function ProvidersContent() {
 
   async function updateProvider(id: number, updates: Record<string, unknown>) {
     setUpdating(id);
-    await fetch("/api/admin/providers", {
+    setNotice(null);
+    const res = await fetch("/api/admin/providers", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, ...updates }),
     });
+    // Only an approval sends mail, so only an approval reports on it.
+    if (updates.status === "active") {
+      const data = await res.json().catch(() => ({}));
+      if (data.emailed) {
+        setNotice({ tone: "ok", text: `Approved. We emailed ${data.sentTo} to say the listing is live.` });
+      } else if (data.emailError) {
+        setNotice({ tone: "warn", text: data.emailError, linkUrl: data.linkUrl });
+      }
+    }
     await load();
     setUpdating(null);
   }
@@ -132,6 +147,31 @@ function ProvidersContent() {
           </p>
         </div>
       </div>
+
+      {/* Outcome of the approval email, good or bad. A failed send never blocks
+          the status change, so this is the only place it surfaces. */}
+      {notice && (
+        <div
+          className="rounded-xl border p-4 text-sm"
+          style={
+            notice.tone === "ok"
+              ? { borderColor: "#bbf7d0", backgroundColor: "#f0fdf4", color: "#166534" }
+              : { borderColor: "#fed7aa", backgroundColor: "#fff7ed", color: "#9a3412" }
+          }
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p>{notice.text}</p>
+              {notice.linkUrl && (
+                <p className="mt-1 font-mono text-xs break-all">{notice.linkUrl}</p>
+              )}
+            </div>
+            <button onClick={() => setNotice(null)} className="text-xs font-semibold underline shrink-0">
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Stat chips */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

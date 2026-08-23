@@ -108,7 +108,57 @@ export async function POST(request: NextRequest) {
     await sql`UPDATE provider_applications SET status = 'approved' WHERE id = ${provider.application_id}`;
   }
 
-  return NextResponse.json({ ok: true, action: newOutreachStatus });
+  // A shop that CLAIMED said they want to manage this themselves — so give them
+  // the way to. Until now this branch ended here and the invite email's promise
+  // ("we'll follow up with a link to edit your details and add photos") had no
+  // code behind it: clerk_user_id was never set by any route, so a claimed
+  // listing was permanently unmanageable. Best effort; the listing is already
+  // live and a mail failure must not turn into an error for the shop.
+  //
+  // What a mail failure MUST do is stop the success page saying "we'll email you
+  // a link shortly". Nothing is queued and nothing retries, so that sentence was
+  // a delivery we never made, and the shop waited for an email that was never
+  // coming. Report what actually happened instead and let the page hand them the
+  // reply-to address — the same principle as deliver()/undeliverableResponse()
+  // in lib/submissions.ts, applied to a claim that must stay saved either way.
+  let linkUrl: string | null = null;
+  let loginEmailSent = false;
+  if (newOutreachStatus === 'claimed') {
+    try {
+      const { ensureAccountLinkColumns, mintAccountLink, LINK_TOKEN_TTL_DAYS } = await import('@/lib/account-link');
+      await ensureAccountLinkColumns(sql);
+      const minted = await mintAccountLink(sql, { providerId: Number(provider.id) });
+      if (minted.ok) {
+        linkUrl = `https://fullysorted.com/services/link/${minted.target.token}`;
+        const { sendAccountLinkInvite } = await import('@/lib/email');
+        // sendEmail() has always returned a boolean here; nothing read it.
+        loginEmailSent = (await sendAccountLinkInvite({
+          to: minted.target.email,
+          businessName: minted.target.businessName,
+          linkUrl,
+          ttlDays: LINK_TOKEN_TTL_DAYS,
+        })) === true;
+        if (!loginEmailSent) {
+          console.error(`[claim] login link minted but not emailed (provider ${provider.id})`);
+        }
+      } else {
+        console.error(`[claim] could not mint a login link (provider ${provider.id}): ${minted.reason}`);
+      }
+    } catch (e) {
+      console.error('[claim] account link setup failed', e);
+    }
+  }
+
+  // linkUrl: the on-screen route in, when there is one. loginEmailSent: whether
+  // the copy is allowed to mention an email. contactEmail: where they go when
+  // neither worked.
+  return NextResponse.json({
+    ok: true,
+    action: newOutreachStatus,
+    linkUrl,
+    loginEmailSent,
+    contactEmail: 'chris@fullysorted.com',
+  });
 }
 
 // GET /api/providers/claim?token=... — used by the claim page to fetch the staged listing

@@ -23,6 +23,10 @@ export default function ApplyBusinessPage() {
     avatarUrl: '',
   });
   const [photoInvalid, setPhotoInvalid] = useState(false);
+  // Set when the server says this email already has a listing. The right answer
+  // then is a link to manage the existing one, not a second application.
+  const [duplicate, setDuplicate] = useState(false);
+  const [linkSent, setLinkSent] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +49,10 @@ export default function ApplyBusinessPage() {
       });
       const data = await res.json();
       if (res.ok) setSubmitted(true);
-      else setError(data.error || 'Something went wrong. Please try again.');
+      else {
+        setDuplicate(!!data.duplicate);
+        setError(data.error || 'Something went wrong. Please try again.');
+      }
     } catch {
       setError('Failed to submit. Please check your connection and try again.');
     } finally {
@@ -54,6 +61,36 @@ export default function ApplyBusinessPage() {
   };
 
   const update = (field: string, value: string) => setForm({ ...form, [field]: value });
+
+  // "That's already us" — mail the address on the existing listing a link to
+  // take it over, rather than creating a duplicate.
+  const requestLink = async () => {
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/providers/link/request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: form.email.trim() }),
+      });
+      const data = await res.json().catch(() => ({}));
+      // Was: trust `data.message` whatever the status. The request route now
+      // returns 502 when the mail provider refused the send, and reading the
+      // body regardless meant a failed send still rendered "we've sent it a
+      // link" — the same false-success this route was fixed to stop reporting.
+      if (!res.ok) {
+        setLinkSent(
+          data.error ||
+            "We couldn't send that email just now. Email chris@fullysorted.com and we'll set your login up by hand.",
+        );
+        return;
+      }
+      setLinkSent(data.message || "If that address is on a listing, we've sent it a link.");
+    } catch {
+      setLinkSent('Try again in a moment, or email chris@fullysorted.com.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   if (submitted) {
     return (
@@ -213,7 +250,30 @@ export default function ApplyBusinessPage() {
               </div>
             </div>
           </div>
-          {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">{error}</div>}
+          {error && !duplicate && (
+            <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">{error}</div>
+          )}
+          {duplicate && (
+            <div className="bg-surface border border-border rounded-lg p-4 text-sm">
+              <p className="font-semibold text-foreground mb-1">You&apos;re already listed with us.</p>
+              <p className="text-text-secondary mb-3">
+                There&apos;s a listing on <strong>{form.email}</strong> already. A second one would split your reviews
+                and confuse owners searching for you — better to take over the one that exists.
+              </p>
+              {linkSent ? (
+                <p className="text-text-secondary">{linkSent}</p>
+              ) : (
+                <button
+                  type="button"
+                  onClick={requestLink}
+                  disabled={submitting}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white rounded-lg bg-accent hover:bg-accent-hover disabled:opacity-60"
+                >
+                  Email me a link to manage it
+                </button>
+              )}
+            </div>
+          )}
           <div className="pt-4">
             <button type="submit" disabled={submitting}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-3 rounded-xl transition-colors disabled:opacity-50">

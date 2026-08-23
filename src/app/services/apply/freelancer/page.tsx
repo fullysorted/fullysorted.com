@@ -58,6 +58,12 @@ export default function FreelancerWizard() {
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   const [aiLoading, setAiLoading] = useState(false);
+  // Set when the server says this email already has a listing. /api/freelancers
+  // answers that 409 by offering to mail a link to the existing listing — but
+  // this form had no handler behind the offer, so the applicant read a remedy
+  // and had no way to take it. Same flags, same panel as the business form.
+  const [duplicate, setDuplicate] = useState(false);
+  const [linkSent, setLinkSent] = useState("");
 
   const [f, setF] = useState({
     ownerName: "", email: "", phone: "", headline: "", category: "",
@@ -120,7 +126,9 @@ export default function FreelancerWizard() {
   }
 
   async function submit() {
-    setSubmitting(true); setError("");
+    // Cleared each attempt: the panel names an email address, so a stale one
+    // left over from a previous submit would name the wrong one.
+    setSubmitting(true); setError(""); setDuplicate(false); setLinkSent("");
     const packages = (Object.keys(pkgs) as Tier[]).filter(t => pkgs[t].price).map((t) => ({
       tier: t, title: pkgs[t].title, price: parseInt(pkgs[t].price) || 0,
       deliveryDays: parseInt(pkgs[t].deliveryDays) || null, revisions: parseInt(pkgs[t].revisions) || null,
@@ -140,8 +148,35 @@ export default function FreelancerWizard() {
       });
       const d = await res.json();
       if (res.ok) setDone(true);
-      else setError(d.error || "Something went wrong. Please try again.");
+      else {
+        setDuplicate(!!d.duplicate);
+        setError(d.error || "Something went wrong. Please try again.");
+      }
     } catch { setError("Failed to submit. Check your connection and try again."); }
+    setSubmitting(false);
+  }
+
+  // "That's already me" — mail the address on the existing listing a link to
+  // take it over, rather than creating a second profile on a second slug.
+  async function requestLink() {
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/providers/link/request", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: f.email.trim() }),
+      });
+      const d = await res.json().catch(() => ({}));
+      // That route answers 502 with an `error` when the mail provider refused
+      // the send. Reporting "we've sent it" there would repeat the very promise
+      // this panel exists to keep — see the deliver() contract in lib/submissions.
+      setLinkSent(
+        res.ok
+          ? d.message || "If that address is on a listing, we\u2019ve sent it a link."
+          : d.error || "Try again in a moment, or email chris@fullysorted.com."
+      );
+    } catch {
+      setLinkSent("Try again in a moment, or email chris@fullysorted.com.");
+    }
     setSubmitting(false);
   }
 
@@ -366,7 +401,30 @@ export default function FreelancerWizard() {
           </div>
         )}
 
-        {error && <div className="mt-5 bg-red-50 border border-red-200 text-red-700 rounded-lg p-3 text-sm">{error}</div>}
+        {error && !duplicate && <div className="mt-5 bg-red-50 border border-red-200 text-red-700 rounded-lg p-3 text-sm">{error}</div>}
+
+        {duplicate && (
+          <div className="mt-5 rounded-xl border border-border p-4 text-sm" style={{ background: "rgba(0,0,0,0.02)" }}>
+            <p className="font-semibold text-foreground mb-1">You’re already listed with us.</p>
+            <p className="text-text-secondary mb-3">
+              There’s a listing on <strong className="text-foreground">{f.email}</strong> already. A second one would
+              split your reviews and confuse owners searching for you — better to take over the one that exists.
+            </p>
+            {linkSent ? (
+              <p className="text-text-secondary">{linkSent}</p>
+            ) : (
+              <button
+                type="button"
+                onClick={requestLink}
+                disabled={submitting}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors disabled:opacity-60"
+              >
+                {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
+                Email me a link to manage it
+              </button>
+            )}
+          </div>
+        )}
 
         {/* Nav */}
         <div className="flex items-center justify-between mt-8 pt-5 border-t border-border">

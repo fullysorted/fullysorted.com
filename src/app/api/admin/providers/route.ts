@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { ensureAccountLinkColumns, mintAccountLink, LINK_TOKEN_TTL_DAYS } from '@/lib/account-link';
+
+const SITE = 'https://fullysorted.com';
 
 function isAdmin(request: NextRequest): boolean {
   const secret = request.cookies.get('fs_admin')?.value;
@@ -112,7 +115,80 @@ export async function PATCH(request: NextRequest) {
     await sql`UPDATE provider_applications SET status = 'rejected' WHERE id = ${result[0].application_id}`;
   }
 
-  return NextResponse.json({ provider: result[0] });
+  // ─── Tell the provider they were approved ──────────────────────────────
+  //
+  // Approving used to be entirely silent. The apply form promises an answer in
+  // 3-5 business days, the admin flips the row to `active`, and the shop is
+  // never told — their listing goes live and the only people who know are us.
+  //
+  // Worse for the rows that came in through the public apply form: it does not
+  // require sign-in, so `clerk_user_id` is null and the shop has a live listing
+  // it can never log in to manage. So when there is no account on the row we
+  // mint an account-link token here and put it in the same email — approval and
+  // "here is how you get in" as one message, not two we never send.
+  //
+  // Everything below is best-effort and wrapped: the status change is already
+  // committed and must stand even if the mail provider is down. What it must
+  // NOT do is fail silently, so the response reports whether it went, and hands
+  // the admin the link when it didn't. Mirrors the team branch of
+  // /api/providers/link/request.
+  let emailOutcome: Record<string, unknown> = {};
+  if (status === 'active') {
+    try {
+      const p = result[0];
+      const to = typeof p.email === 'string' ? p.email.trim() : '';
+      const profileUrl = `${SITE}/services/${p.slug}`;
+
+      let linkUrl: string | undefined;
+      let mintFailed: string | undefined;
+      if (!p.clerk_user_id) {
+        await ensureAccountLinkColumns(sql);
+        const minted = await mintAccountLink(sql, { providerId: Number(p.id) });
+        if (minted.ok) {
+          linkUrl = `${SITE}/services/link/${minted.target.token}`;
+        } else {
+          // 'already_linked' can't happen on this branch; the rest are real
+          // states the admin needs to see (no email on file, shop declined).
+          mintFailed = minted.reason;
+        }
+      }
+
+      if (!to) {
+        emailOutcome = { emailed: false, emailError: 'No email address on that listing — approved, but nobody was told.' };
+      } else if (mintFailed) {
+        emailOutcome = {
+          emailed: false,
+          emailError: `Approved, but couldn't create a login link (${mintFailed}) — no email sent.`,
+        };
+      } else {
+        const { sendProviderApprovedEmail } = await import('@/lib/email');
+        const sent = await sendProviderApprovedEmail({
+          to,
+          businessName: String(p.business_name),
+          profileUrl,
+          ...(linkUrl ? { linkUrl, ttlDays: LINK_TOKEN_TTL_DAYS } : {}),
+        });
+        emailOutcome = sent
+          ? { emailed: true, sentTo: to }
+          : {
+              emailed: false,
+              sentTo: to,
+              ...(linkUrl ? { linkUrl } : {}),
+              emailError: linkUrl
+                ? "Approved, but the email didn't send — send them this link by hand."
+                : "Approved, but the email didn't send — tell them their listing is live.",
+            };
+        if (!sent) console.error('[admin/providers] approval email not sent for provider', p.id);
+      }
+    } catch (err) {
+      // The approval itself is done and durable. Never let this throw out of
+      // the handler and 500 a change that already happened.
+      console.error('[admin/providers] approval notification threw (status IS saved)', err);
+      emailOutcome = { emailed: false, emailError: "Approved, but the notification failed. Check the logs and contact them by hand." };
+    }
+  }
+
+  return NextResponse.json({ provider: result[0], ...emailOutcome });
 }
 
 // DELETE /api/admin/providers?id=123 — hard delete (use sparingly)

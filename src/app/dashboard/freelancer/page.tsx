@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   Loader2, CheckCircle2, Circle, DollarSign, Lock, Tag, Eye, EyeOff,
-  Plus, ArrowRight, Sparkles, Wallet, Inbox, Trash2,
+  Plus, ArrowRight, Sparkles, Wallet, Inbox, Trash2, ImageIcon,
 } from "lucide-react";
+import PhotoUpload from "@/components/media/PhotoUpload";
 
 interface Pkg { id: number; tier: string; title: string | null; price: number; deliveryDays: number | null; features: string[] | null }
 interface Gig { id: number; slug: string; title: string; description: string | null; status: string; packages: Pkg[] }
@@ -22,6 +23,8 @@ export default function FreelancerDashboard() {
   const [gigs, setGigs] = useState<Gig[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<number | null>(null);
+  const [savingPhoto, setSavingPhoto] = useState(false);
+  const [photoMessage, setPhotoMessage] = useState("");
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -33,6 +36,30 @@ export default function FreelancerDashboard() {
     setLoading(false);
   }, []);
   useEffect(() => { load(); }, [load]);
+
+  // The checklist has always had an "Add a profile photo" line pointing at
+  // #profile, and nothing on this page carried that id or let anyone set a
+  // photo — the only photo field on the site was in the apply wizard, which a
+  // freelancer who already has a profile can't run again (it 409s as a
+  // duplicate). So the one item most likely to be outstanding was the one item
+  // with no way to complete it. PUT /api/providers/me already accepted
+  // avatarUrl; this is the missing UI for it.
+  async function savePhoto(url: string) {
+    setSavingPhoto(true); setPhotoMessage("");
+    try {
+      const res = await fetch("/api/providers/me", {
+        method: "PUT", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ avatarUrl: url }),
+      });
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(d.error || "Couldn’t save that photo — try again.");
+      setProvider((p) => (p ? { ...p, avatarUrl: url } : p));
+      setPhotoMessage("Saved. It’s on your profile and every gig you publish.");
+    } catch (e) {
+      setPhotoMessage(e instanceof Error ? e.message : "Couldn’t save that photo — try again.");
+    }
+    setSavingPhoto(false);
+  }
 
   async function setGigStatus(gig: Gig, status: string) {
     setBusy(gig.id);
@@ -52,7 +79,9 @@ export default function FreelancerDashboard() {
   const checklist = [
     { done: !!provider, label: "Create your freelancer profile", href: "/services/apply/freelancer" },
     { done: hasGig, label: "Build your first gig", href: "/services/apply/freelancer" },
-    { done: !!provider?.avatarUrl, label: "Add a profile photo", href: "#profile" },
+    // Points at the profile card below, which only exists once there is a
+    // profile to attach a photo to; before that the wizard is the right place.
+    { done: !!provider?.avatarUrl, label: "Add a profile photo", href: provider ? "#profile" : "/services/apply/freelancer" },
     { done: approved, label: "Get approved by the Fully Sorted team", href: "#" },
     { done: hasLiveGig, label: "Publish a gig so buyers can find you", href: "#gigs" },
   ];
@@ -136,6 +165,41 @@ export default function FreelancerDashboard() {
           ))}
         </ul>
       </motion.div>
+
+      {/* Profile photo — the target of the checklist's #profile link */}
+      {provider && (
+        <motion.div
+          id="profile"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.14, ease: "easeOut" }}
+          className="rounded-2xl border border-border bg-white p-6 scroll-mt-24"
+        >
+          <h2 className="font-bold text-foreground flex items-center gap-2 mb-1">
+            <ImageIcon className="w-4 h-4 text-accent" /> Your photo
+          </h2>
+          <p className="text-sm text-text-secondary mb-4">
+            People hire a person, not a listing. This shows on your profile and on every gig you publish.
+          </p>
+          <PhotoUpload
+            value={provider.avatarUrl || ""}
+            onChange={savePhoto}
+            label="Upload your photo"
+            hint={
+              <>
+                JPEG/PNG/WebP, max 10MB. A picture of you, or of your work with your name on it. Already on your
+                Instagram? Right-click it, choose &ldquo;Copy image address&rdquo;, and paste it above.
+              </>
+            }
+          />
+          {savingPhoto && (
+            <p className="text-xs text-text-secondary mt-2 inline-flex items-center gap-1.5">
+              <Loader2 className="w-3.5 h-3.5 animate-spin text-accent" /> Saving…
+            </p>
+          )}
+          {!savingPhoto && photoMessage && <p className="text-xs text-text-secondary mt-2">{photoMessage}</p>}
+        </motion.div>
+      )}
 
       {/* Earnings — scaffolding, payments disabled */}
       <div className="grid sm:grid-cols-3 gap-4">

@@ -687,3 +687,111 @@ export async function notifyProviderLead(d: {
     }),
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Account linking — set up a login for a listing that already exists
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Sent to the address already on the provider row. Always to that address,
+ * never to one a caller supplied — that property is what makes "request a link"
+ * safe to expose publicly.
+ */
+export async function sendAccountLinkInvite(d: {
+  to: string;
+  businessName: string;
+  linkUrl: string;
+  ttlDays: number;
+}) {
+  return sendEmail({
+    to: d.to,
+    subject: `Set up your login for ${d.businessName}`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "Take control of your listing",
+      bodyHtml: `<p><strong>${esc(d.businessName)}</strong> is listed on Fully Sorted, and this link sets up the login that lets you manage it yourself.</p>
+        <p>Once you're in you can edit your details, reply to reviews, and keep the listing current without going through us.</p>
+        <p style="font-size:13px;color:#6a6a5e;">The link works once and expires in ${d.ttlDays} days. If you didn't ask for it, ignore it — nothing changes until someone uses it.</p>`,
+      ctaLabel: "Set up my login",
+      ctaUrl: safeUrl(d.linkUrl),
+      footerHtml:
+        "Fully Sorted · fullysorted.com<br/>" +
+        `Not your listing? Tell us at <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll take it down.`,
+    }),
+  });
+}
+
+/**
+ * Security notice, sent after a link succeeds. The token went to the business's
+ * own address, but invite emails get forwarded around an office — so the
+ * business hears about it either way, and has somewhere to go if it was not them.
+ */
+export async function notifyAccountLinked(d: {
+  to: string;
+  businessName: string;
+  profileUrl: string;
+}) {
+  return sendEmail({
+    to: d.to,
+    subject: `A login was set up for ${d.businessName}`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "Your listing now has a login",
+      bodyHtml: `<p>Someone just set up an account to manage <strong>${esc(d.businessName)}</strong> on Fully Sorted, using the link we emailed to this address.</p>
+        <p>If that was you, nothing else to do — your dashboard is at <a href="https://fullysorted.com/dashboard/provider" style="color:#1E6091;">fullysorted.com/dashboard/provider</a>.</p>
+        <p><strong>If it wasn't you, reply to this email straight away</strong> and we'll unlink it while we sort it out.</p>`,
+      ctaLabel: "See your listing",
+      ctaUrl: safeUrl(d.profileUrl),
+    }),
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Provider approval — the message that closes the loop on an application
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Sent when an admin flips an application from `pending` to `active`.
+ *
+ * There was no template here at all, which meant a shop filled in the apply
+ * form, read "we'll review it within 3-5 business days", and then heard nothing
+ * — ever. Their listing went live and the only person who knew was us.
+ *
+ * The optional `linkUrl` is the second half of the same problem. The public
+ * apply form does not require sign-in, so `clerk_user_id` is null on most of
+ * these rows and the shop has a live listing it cannot log in to manage. When
+ * the caller has minted a link token, this email carries it, so approval and
+ * "here is how you get in" arrive as one message rather than two we never send.
+ * When the row is already linked, the CTA is the listing itself.
+ */
+export async function sendProviderApprovedEmail(d: {
+  to: string;
+  businessName: string;
+  profileUrl: string;
+  /** Present only when the row has no account attached yet. */
+  linkUrl?: string;
+  ttlDays?: number;
+}) {
+  const hasLink = !!d.linkUrl;
+  return sendEmail({
+    to: d.to,
+    subject: `Your Fully Sorted listing is live — ${d.businessName}`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "Your listing is live",
+      bodyHtml: hasLink
+        ? `<p>We've approved <strong>${esc(d.businessName)}</strong>. Your profile is published in the Fully Sorted directory now, and owners looking for your kind of work can find it and contact you.</p>
+        <p>You applied without an account, so the last thing to do is set up a login. That is what the button below does — once you're in you can edit your details, add photos, reply to reviews, and keep the listing current without going through us.</p>
+        <p>Enquiries reach you by email either way, so nothing is waiting on this. It just means you own the page rather than us.</p>
+        <p style="font-size:13px;color:#6a6a5e;">The link works once and expires in ${esc(d.ttlDays ?? 14)} days. Your listing is at <a href="${safeUrl(d.profileUrl)}" style="color:#1E6091;">${esc(d.profileUrl)}</a>.</p>`
+        : `<p>We've approved <strong>${esc(d.businessName)}</strong>. Your profile is published in the Fully Sorted directory now, and owners looking for your kind of work can find it and contact you.</p>
+        <p>Enquiries come straight to you by email — you reply to the customer, not to us. Everything else about the listing is yours to manage from your dashboard at <a href="https://fullysorted.com/dashboard/provider" style="color:#1E6091;">fullysorted.com/dashboard/provider</a>: details, photos, and replies to any reviews you get.</p>
+        <p style="font-size:13px;color:#6a6a5e;">Something on the page wrong? Reply to this email and we'll fix it.</p>`,
+      ctaLabel: hasLink ? "Set up my login" : "See your listing",
+      ctaUrl: safeUrl(hasLink ? d.linkUrl! : d.profileUrl),
+      footerHtml:
+        "Fully Sorted · fullysorted.com<br/>" +
+        `You're getting this because ${esc(d.businessName)} applied to be listed in our directory. Questions, or want the listing removed? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a>.`,
+    }),
+  });
+}

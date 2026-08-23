@@ -195,7 +195,29 @@ export async function register() {
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS payouts_enabled BOOLEAN DEFAULT false`;
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS stripe_connect_id VARCHAR(255)`;
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_status VARCHAR(50)`;
+    // These two are declared in schema.ts but were only ever created by the
+    // admin-triggered /api/admin/seed-providers route. Production has them
+    // because somebody happened to run it; a fresh database would not, and
+    // every read of the table would fail the same way the account_link columns
+    // would. The boot migrator is the right place for a column the ORM knows about.
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_sent_at TIMESTAMP`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_responded_at TIMESTAMP`;
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS claim_token VARCHAR(64)`;
+    // Account linking. These MUST live here, not only in ensureAccountLinkColumns(),
+    // because drizzle names every mapped column explicitly in the SQL it emits —
+    // a bare .select() on service_providers compiles to
+    //   select "id", "slug", ..., "account_link_token" from "service_providers"
+    // so the moment schema.ts knows about these columns, EVERY read and write of
+    // the table fails with 42703 until they exist. That includes the public
+    // provider profile, /api/providers/me and the whole gig rail. Creating them
+    // lazily inside the link routes is too late: the first request after a deploy
+    // is not going to be a link redemption.
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_link_token VARCHAR(64)`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_link_sent_at TIMESTAMP`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_link_expires_at TIMESTAMP`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_linked_at TIMESTAMP`;
+    await sql`CREATE UNIQUE INDEX IF NOT EXISTS service_providers_account_link_token_idx
+              ON service_providers (account_link_token)`;
 
     await sql`
       CREATE TABLE IF NOT EXISTS gigs (

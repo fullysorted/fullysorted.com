@@ -100,6 +100,7 @@ export default function TeamDashboard() {
   const [testimonial, setTestimonial] = useState({ ...EMPTY_TESTIMONIAL });
   const [reviewTab, setReviewTab] = useState<"invite" | "testimonial">("invite");
   const [inviteLink, setInviteLink] = useState("");
+  const [linkUrl, setLinkUrl] = useState("");
 
   useEffect(() => {
     try {
@@ -378,6 +379,30 @@ export default function TeamDashboard() {
       setTestimonial({ ...EMPTY_TESTIMONIAL });
     } catch (e) {
       setRowMsg({ id: p.id, msg: e instanceof Error ? e.message : "Failed to save", err: true });
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  // Email the shop a link that attaches a login to the listing they already
+  // have. Before this existed, a shop we onboarded by phone could never get an
+  // account at all — signing up showed them "you don't have a provider profile
+  // yet" while their listing sat live, and applying again made a duplicate.
+  async function sendAccountLink(p: PipelineProvider) {
+    setBusyId(p.id);
+    setLinkUrl("");
+    try {
+      const res = await fetch("/api/providers/link/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ providerId: p.id }),
+      });
+      const data = await res.json();
+      if (data.linkUrl) setLinkUrl(data.linkUrl);
+      if (!res.ok || !data.success) throw new Error(data.error || "Couldn't send it");
+      setRowMsg({ id: p.id, msg: `Login link sent to ${data.sentTo}` });
+    } catch (e) {
+      setRowMsg({ id: p.id, msg: e instanceof Error ? e.message : "Couldn't send it", err: true });
     } finally {
       setBusyId(null);
     }
@@ -777,6 +802,28 @@ export default function TeamDashboard() {
                             <Check className="w-3 h-3" /> Save details
                           </button>
                         </div>
+                        <div className="pt-3 border-t border-border">
+                          <p className="text-xs font-semibold text-text-secondary mb-1">Account access</p>
+                          <p className="text-[11px] text-text-tertiary mb-2 leading-relaxed">
+                            Sends {p.email} a one-time link to set up a login for this listing, so they can edit their
+                            own details and reply to reviews. Good line on a call: &ldquo;I&rsquo;ll email you a link
+                            now — takes a minute and then it&rsquo;s yours.&rdquo;
+                          </p>
+                          <button
+                            onClick={() => sendAccountLink(p)}
+                            disabled={busyId === p.id}
+                            className="inline-flex items-center gap-1.5 px-3 h-8 text-xs font-semibold text-white rounded-lg disabled:opacity-60"
+                            style={{ backgroundColor: "#1E6091" }}
+                          >
+                            <Mail className="w-3 h-3" /> Send login link
+                          </button>
+                          {linkUrl && (
+                            <p className="text-[11px] mt-2 break-all text-text-tertiary">
+                              Link (in case the email doesn&rsquo;t land): {linkUrl}
+                            </p>
+                          )}
+                        </div>
+
                         {PROVIDER_REVIEWS_PUBLIC && (
                           <div className="pt-3 border-t border-border">
                             <p className="text-xs font-semibold text-text-secondary mb-1">
