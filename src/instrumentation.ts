@@ -26,6 +26,42 @@ export async function register() {
   if (process.env.NEXT_RUNTIME !== 'nodejs') return;
   if (!process.env.DATABASE_URL) return;
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // ORM-CRITICAL COLUMNS — their own try/catch, and they run FIRST.
+  //
+  // Drizzle names every mapped column explicitly in the SQL it emits, so a bare
+  // .select() on service_providers compiles to
+  //   select "id", "slug", ..., "account_link_token" from "service_providers"
+  // A column that schema.ts declares but the database lacks therefore breaks
+  // EVERY read and write of that table, not just the feature that added it.
+  //
+  // This block used to live inside the big migration try/catch below. On
+  // 2026-08-22 that took production down: something earlier in that block threw,
+  // the single catch swallowed it, every statement after it was skipped, and
+  // every public provider profile 404'd (the page catches the query error and
+  // calls notFound()). Nothing surfaced it because both failures are silent.
+  //
+  // So: separate try/catch, before anything else can fail, and a loud log.
+  // Add a column to schema.ts, add it here — not to an admin-only setup route.
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_sent_at TIMESTAMP`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_responded_at TIMESTAMP`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_link_token VARCHAR(64)`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_link_sent_at TIMESTAMP`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_link_expires_at TIMESTAMP`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_linked_at TIMESTAMP`;
+    await sql`CREATE UNIQUE INDEX IF NOT EXISTS service_providers_account_link_token_idx
+              ON service_providers (account_link_token)`;
+  } catch (err) {
+    console.error(
+      '[Fully Sorted] CRITICAL: could not ensure ORM-critical service_providers columns. ' +
+        'Every provider read will fail until this is resolved:',
+      err,
+    );
+  }
+
   try {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(process.env.DATABASE_URL);
@@ -195,29 +231,7 @@ export async function register() {
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS payouts_enabled BOOLEAN DEFAULT false`;
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS stripe_connect_id VARCHAR(255)`;
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_status VARCHAR(50)`;
-    // These two are declared in schema.ts but were only ever created by the
-    // admin-triggered /api/admin/seed-providers route. Production has them
-    // because somebody happened to run it; a fresh database would not, and
-    // every read of the table would fail the same way the account_link columns
-    // would. The boot migrator is the right place for a column the ORM knows about.
-    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_sent_at TIMESTAMP`;
-    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_responded_at TIMESTAMP`;
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS claim_token VARCHAR(64)`;
-    // Account linking. These MUST live here, not only in ensureAccountLinkColumns(),
-    // because drizzle names every mapped column explicitly in the SQL it emits —
-    // a bare .select() on service_providers compiles to
-    //   select "id", "slug", ..., "account_link_token" from "service_providers"
-    // so the moment schema.ts knows about these columns, EVERY read and write of
-    // the table fails with 42703 until they exist. That includes the public
-    // provider profile, /api/providers/me and the whole gig rail. Creating them
-    // lazily inside the link routes is too late: the first request after a deploy
-    // is not going to be a link redemption.
-    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_link_token VARCHAR(64)`;
-    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_link_sent_at TIMESTAMP`;
-    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_link_expires_at TIMESTAMP`;
-    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_linked_at TIMESTAMP`;
-    await sql`CREATE UNIQUE INDEX IF NOT EXISTS service_providers_account_link_token_idx
-              ON service_providers (account_link_token)`;
 
     await sql`
       CREATE TABLE IF NOT EXISTS gigs (
