@@ -8,7 +8,7 @@
  */
 
 import { escapeHtml as esc, safeUrl } from "./escape-html";
-import { isEmailAddress } from "./leads";
+import { isEmailAddress, briefRows, type LeadBrief } from "./leads";
 import { categoryLabel } from "./service-categories";
 
 const NOTIFY_TO = "chris@fullysorted.com";
@@ -658,9 +658,41 @@ export async function notifyProviderLead(d: {
   senderEmail: string;
   senderPhone?: string | null;
   messageText: string;
+  /** Optional structured answers about the car — see lib/leads.ts. */
+  brief?: LeadBrief | null;
+  /** Where the shop tells us what happened to this lead. Null if unsaved. */
+  actionUrl?: string | null;
   profileUrl: string;
   copyTo?: string | null;
 }) {
+  // The car brief, when they filled it in. Rendered from briefRows so this
+  // email, /admin and anything later agree on wording and order.
+  const rows = briefRows(d.brief ?? null);
+  const briefHtml = rows.length
+    ? `<table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0;background:#f4f7fa;border-radius:8px;">
+         ${rows
+           .map(
+             ([k, v]) =>
+               `<tr><td style="padding:8px 14px;font-weight:600;width:150px;color:#2C4A63;">${esc(k)}</td><td style="padding:8px 14px;">${esc(v)}</td></tr>`,
+           )
+           .join("")}
+       </table>`
+    : "";
+
+  // Two links, no login. Most shops in the directory have not linked an
+  // account yet, and a lead that can only be actioned from a dashboard they
+  // have never seen is a lead nobody ever reports on.
+  const actionHtml = d.actionUrl
+    ? `<p style="font-size:13px;color:#6a6a5e;margin-top:20px;border-top:1px solid #e6e3da;padding-top:14px;">
+         Once you have dealt with it:
+         <a href="${safeUrl(d.actionUrl + "?do=replied")}" style="color:#1E6091;font-weight:600;">I replied to this</a>
+         &nbsp;&middot;&nbsp;
+         <a href="${safeUrl(d.actionUrl + "?do=junk")}" style="color:#9a5a33;font-weight:600;">Not a real enquiry</a><br/>
+         One click. It tells us nothing about what you said &mdash; it is how we
+         keep time-wasters out of your inbox.
+       </p>`
+    : "";
+
   return sendEmail({
     to: d.providerEmail,
     replyTo: d.senderEmail,
@@ -673,12 +705,14 @@ export async function notifyProviderLead(d: {
         <div style="margin:16px 0;padding:14px 16px;background:#faf9f6;border-radius:8px;">
           <p style="margin:0;white-space:pre-line;">${esc(d.messageText)}</p>
         </div>
+        ${briefHtml}
         <table style="width:100%;border-collapse:collapse;font-size:14px;">
           <tr><td style="padding:6px 0;font-weight:600;width:90px;">Email</td><td style="padding:6px 0;"><a href="mailto:${esc(d.senderEmail)}" style="color:#1E6091;">${esc(d.senderEmail)}</a></td></tr>
           ${d.senderPhone ? `<tr><td style="padding:6px 0;font-weight:600;">Phone</td><td style="padding:6px 0;"><a href="tel:${esc(d.senderPhone)}" style="color:#1E6091;">${esc(d.senderPhone)}</a></td></tr>` : ""}
         </table>
         <p style="margin-top:16px;"><strong>Just hit Reply</strong> — it goes straight to them, not to us.</p>
-        <p style="font-size:13px;color:#6a6a5e;">Owners tend to contact two or three shops at once, so the first useful reply usually wins the job.</p>`,
+        <p style="font-size:13px;color:#6a6a5e;">Owners tend to contact two or three shops at once, so the first useful reply usually wins the job.</p>
+        ${actionHtml}`,
       ctaLabel: "See your profile",
       ctaUrl: safeUrl(d.profileUrl),
       footerHtml:

@@ -80,3 +80,136 @@ export async function resolveRelay(sql: Sql, listingSlug: string | null | undefi
     slug: String(p.slug),
   };
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * The car brief
+ *
+ * An owner writing "how much to sort my 911" gives a shop nothing to quote
+ * from, so the shop writes back asking the same four questions every time and
+ * the thread dies. These fields are those four questions, asked once.
+ *
+ * EVERY FIELD IS OPTIONAL, and the form defaults to the plain message box.
+ * A brief is a bonus, never a toll gate: plenty of owners are on a phone, or
+ * do not know where the chassis number lives on a 1967 car, and a form that
+ * insists loses the lead that a shop most wants. Nothing here is required,
+ * nothing here is validated against a car database, and an empty brief is a
+ * perfectly good enquiry.
+ * ───────────────────────────────────────────────────────────────────────── */
+
+export type LeadBrief = Record<string, string>;
+
+/** Answer sets. Free text is never coerced into these — it is dropped. */
+const CHOICES: Record<string, readonly string[]> = {
+  condition: ['drives', 'runs-not-road', 'not-running', 'project', 'unsure'],
+  transport: ['needed', 'can-deliver', 'unsure'],
+  timeline: ['now', 'few-weeks', 'few-months', 'planning'],
+  budget: ['under-1k', '1-5k', '5-15k', '15-50k', 'over-50k', 'not-sure'],
+};
+
+/** Free-text brief fields and their caps. */
+const TEXT_FIELDS: Record<string, number> = {
+  year: 4,
+  make: 60,
+  model: 80,
+  chassis: 40,     // VIN, chassis or engine number — whatever they have
+  serviceType: 60,
+  location: 120,
+};
+
+/** Human labels, used in the shop's email and in /admin. */
+const LABELS: Record<string, string> = {
+  car: 'Car',
+  chassis: 'Chassis / VIN',
+  serviceType: 'Wants',
+  condition: 'Condition',
+  location: 'Where the car is',
+  transport: 'Transport',
+  timeline: 'Timeline',
+  budget: 'Budget in mind',
+};
+
+const CHOICE_LABELS: Record<string, string> = {
+  drives: 'Drives and is road-legal',
+  'runs-not-road': 'Runs, not road-ready',
+  'not-running': 'Not running',
+  project: 'Project / apart',
+  unsure: 'Not sure',
+  needed: 'Needs collecting',
+  'can-deliver': 'Can deliver it',
+  now: 'As soon as possible',
+  'few-weeks': 'Next few weeks',
+  'few-months': 'Next few months',
+  planning: 'Just planning ahead',
+  'under-1k': 'Under $1,000',
+  '1-5k': '$1,000 – $5,000',
+  '5-15k': '$5,000 – $15,000',
+  '15-50k': '$15,000 – $50,000',
+  'over-50k': 'Over $50,000',
+  'not-sure': 'No idea yet — tell me',
+};
+
+/**
+ * Take whatever the form sent and keep only what we recognise. Unknown keys,
+ * over-long values and off-list choices are dropped rather than stored: this
+ * object is rendered into an email we send to a third party, so it holds only
+ * values this file defines.
+ *
+ * Returns null when nothing survives, so "no brief" is a null column rather
+ * than an empty object that later code has to special-case.
+ */
+export function normalizeBrief(input: unknown): LeadBrief | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const src = input as Record<string, unknown>;
+  const out: LeadBrief = {};
+
+  for (const [key, max] of Object.entries(TEXT_FIELDS)) {
+    const v = src[key];
+    if (typeof v !== 'string') continue;
+    const trimmed = v.trim().slice(0, max);
+    if (trimmed) out[key] = trimmed;
+  }
+  for (const [key, allowed] of Object.entries(CHOICES)) {
+    const v = src[key];
+    if (typeof v === 'string' && allowed.includes(v)) out[key] = v;
+  }
+
+  return Object.keys(out).length > 0 ? out : null;
+}
+
+/** "1973 Porsche 911", or whatever part of it they gave us. */
+export function briefCarLine(brief: LeadBrief | null): string {
+  if (!brief) return '';
+  return [brief.year, brief.make, brief.model].filter(Boolean).join(' ').trim();
+}
+
+/**
+ * The brief as label/value pairs, in reading order, ready to render. Kept in
+ * one place so the shop's email, the admin view and anything later all show
+ * the same thing in the same order.
+ */
+export function briefRows(brief: LeadBrief | null): Array<[string, string]> {
+  if (!brief) return [];
+  const rows: Array<[string, string]> = [];
+  const car = briefCarLine(brief);
+  if (car) rows.push([LABELS.car, car]);
+  for (const key of ['chassis', 'serviceType', 'condition', 'location', 'transport', 'timeline', 'budget']) {
+    const v = brief[key];
+    if (!v) continue;
+    rows.push([LABELS[key] ?? key, CHOICE_LABELS[v] ?? v]);
+  }
+  return rows;
+}
+
+/**
+ * A plain-text rendering appended to message_text.
+ *
+ * This is deliberate belt-and-braces: message_text is what /admin shows, what
+ * the fallback email prints and what a `SELECT *` export contains. Keeping a
+ * readable copy there means every surface that existed before the brief did
+ * still shows the whole enquiry, with no code change and nothing to migrate.
+ */
+export function briefToText(brief: LeadBrief | null): string {
+  const rows = briefRows(brief);
+  if (rows.length === 0) return '';
+  return ['', '— About the car —', ...rows.map(([k, v]) => `${k}: ${v}`)].join('\n');
+}

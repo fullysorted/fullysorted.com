@@ -54,10 +54,65 @@ export async function register() {
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS account_linked_at TIMESTAMP`;
     await sql`CREATE UNIQUE INDEX IF NOT EXISTS service_providers_account_link_token_idx
               ON service_providers (account_link_token)`;
+    // Work preferences (2026-08-25). In schema.ts, therefore ORM-critical:
+    // without these every provider read fails, not just the preferences panel.
+    // accepting_work is NOT NULL DEFAULT TRUE so existing rows keep today's
+    // behaviour — a shop is presumed open until it says otherwise.
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS accepting_work BOOLEAN NOT NULL DEFAULT TRUE`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS marques JSONB DEFAULT '[]'::JSONB`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS service_types JSONB DEFAULT '[]'::JSONB`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS min_job_value INTEGER`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS service_radius_miles INTEGER`;
   } catch (err) {
     console.error(
       '[Fully Sorted] CRITICAL: could not ensure ORM-critical service_providers columns. ' +
         'Every provider read will fail until this is resolved:',
+      err,
+    );
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // MESSAGES — every directory lead and every listing enquiry lands here.
+  //
+  // Its own try/catch for the same reason as the block above: if this table is
+  // wrong, a real owner's enquiry to a real shop is lost, and the only symptom
+  // is silence. Two separate faults are repaired here.
+  //
+  // 1. The CREATE TABLE further down this file has ALWAYS declared a different
+  //    shape from the one /api/messages inserts into (`content`/`read` versus
+  //    `message_text`/`type`/`status`). Production was built by an admin setup
+  //    route and has the right shape, so this was invisible — but any fresh
+  //    database threw on every insert. The ALTERs below bring either shape up
+  //    to the real one.
+  // 2. The brief and lead-outcome columns (2026-08-25) are declared in
+  //    schema.ts, so they must exist here rather than in an admin-only route.
+  // ─────────────────────────────────────────────────────────────────────────
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS listing_slug VARCHAR(500)`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS listing_title TEXT`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS provider_id INTEGER`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS sender_phone VARCHAR(50)`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS message_text TEXT`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS type VARCHAR(50) NOT NULL DEFAULT 'inquiry'`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS offer_amount INTEGER`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS status VARCHAR(50) NOT NULL DEFAULT 'new'`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS admin_notes TEXT`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP NOT NULL DEFAULT NOW()`;
+    // The car brief + the shop's own report of what happened to the lead.
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS brief JSONB`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS action_token VARCHAR(64)`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS replied_at TIMESTAMP`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS outcome VARCHAR(30)`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS junk BOOLEAN DEFAULT FALSE`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS junk_reason VARCHAR(120)`;
+    await sql`CREATE UNIQUE INDEX IF NOT EXISTS messages_action_token_idx ON messages (action_token)`;
+    await sql`CREATE INDEX IF NOT EXISTS messages_provider_idx ON messages (provider_id, created_at DESC)`;
+  } catch (err) {
+    console.error(
+      '[Fully Sorted] CRITICAL: could not ensure messages columns. ' +
+        'Directory leads may fail to save until this is resolved:',
       err,
     );
   }
@@ -127,15 +182,32 @@ export async function register() {
     await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS denied_reason TEXT`;
     await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS sold_price INTEGER`;
 
+    // The shape /api/messages actually inserts into. This declaration used to
+    // say `content`/`read`, which no code has ever written — see the repair
+    // block near the top of this file.
     await sql`
       CREATE TABLE IF NOT EXISTS messages (
         id SERIAL PRIMARY KEY,
         listing_id INTEGER REFERENCES listings(id),
-        sender_name VARCHAR(255),
-        sender_email VARCHAR(255),
-        content TEXT NOT NULL,
-        read BOOLEAN DEFAULT FALSE,
-        created_at TIMESTAMP NOT NULL DEFAULT NOW()
+        listing_slug VARCHAR(500),
+        listing_title TEXT,
+        provider_id INTEGER,
+        sender_name VARCHAR(255) NOT NULL,
+        sender_email VARCHAR(255) NOT NULL,
+        sender_phone VARCHAR(50),
+        message_text TEXT NOT NULL,
+        type VARCHAR(50) NOT NULL DEFAULT 'inquiry',
+        offer_amount INTEGER,
+        status VARCHAR(50) NOT NULL DEFAULT 'new',
+        admin_notes TEXT,
+        brief JSONB,
+        action_token VARCHAR(64),
+        replied_at TIMESTAMP,
+        outcome VARCHAR(30),
+        junk BOOLEAN DEFAULT FALSE,
+        junk_reason VARCHAR(120),
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMP NOT NULL DEFAULT NOW()
       )
     `;
 

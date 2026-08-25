@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
-import { resolveRelay, isEmailAddress, type Relay } from '@/lib/leads';
+import { randomBytes } from 'crypto';
+import { resolveRelay, isEmailAddress, normalizeBrief, briefToText, type Relay } from '@/lib/leads';
 
 // POST /api/messages — public. A buyer contacts a seller about a listing, or an
 // owner contacts a shop through its directory profile.
@@ -25,11 +26,11 @@ export async function POST(request: NextRequest) {
   const {
     listingId, listingSlug, listingTitle,
     senderName, senderEmail, senderPhone,
-    messageText, type, offerAmount,
+    messageText, type, offerAmount, brief: rawBrief,
   } = body as {
     listingId?: number; listingSlug?: string; listingTitle?: string;
     senderName?: string; senderEmail?: string; senderPhone?: string;
-    messageText?: string; type?: string; offerAmount?: number;
+    messageText?: string; type?: string; offerAmount?: number; brief?: unknown;
   };
 
   if (!senderName || !senderEmail || !messageText) {
@@ -44,6 +45,23 @@ export async function POST(request: NextRequest) {
   // `type` lands in a varchar(50); an over-long value threw on insert and the
   // failure was swallowed, leaving the message as an email only.
   const kind = String(type || 'inquiry').slice(0, 50);
+
+  // The optional car brief. normalizeBrief keeps only the fields lib/leads.ts
+  // defines — this object is rendered into an email to a third party, so it is
+  // never passed through as sent.
+  const brief = normalizeBrief(rawBrief);
+
+  // A readable copy goes into message_text as well as the brief column, so
+  // /admin, the fallback email and any export show the whole enquiry without
+  // knowing this feature exists.
+  const fullText = `${messageText}${briefToText(brief)}`;
+
+  // Single-use-ish handle for the two links at the bottom of the shop's email
+  // ("I replied" / "not a real enquiry"). Generated before the save so the
+  // email can carry it, but only ever offered when the row actually saved —
+  // a link to a row that does not exist is worse than no link.
+  const actionToken = randomBytes(24).toString('base64url');
+  let savedRow = false;
 
   // A relay lookup failure must never cost us the lead — fall back to Chris.
   let relay: Relay = null;
@@ -62,18 +80,20 @@ export async function POST(request: NextRequest) {
       ? async () => {
           const { neon } = await import('@neondatabase/serverless');
           const sql = neon(process.env.DATABASE_URL!);
-          // Idempotent: provider_id was added after this table shipped, so a
-          // deployed database will not have it until this runs once.
-          await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS provider_id INTEGER`;
+          // Columns are ensured at boot in src/instrumentation.ts — adding an
+          // ALTER per insert was cheap insurance for one column and would not
+          // stay cheap for eight.
           await sql`
-            INSERT INTO messages (listing_id, listing_slug, listing_title, provider_id, sender_name, sender_email, sender_phone, message_text, type, offer_amount, status)
+            INSERT INTO messages (listing_id, listing_slug, listing_title, provider_id, sender_name, sender_email, sender_phone, message_text, type, offer_amount, status, brief, action_token)
             VALUES (
               ${listingId || null}, ${listingSlug || null}, ${listingTitle || null},
               ${relay?.providerId ?? null},
               ${senderName}, ${senderEmail.trim()}, ${senderPhone || null},
-              ${messageText}, ${kind}, ${offerAmount || null}, 'new'
+              ${fullText}, ${kind}, ${offerAmount || null}, 'new',
+              ${brief ? JSON.stringify(brief) : null}, ${actionToken}
             )
           `;
+          savedRow = true;
         }
       : undefined,
     notify: async () => {
@@ -87,14 +107,17 @@ export async function POST(request: NextRequest) {
           senderName,
           senderEmail: senderEmail.trim(),
           senderPhone,
-          messageText,
+          messageText: messageText,
+          brief,
+          // Only when the row exists to act on.
+          actionUrl: savedRow ? `https://fullysorted.com/lead/${actionToken}` : null,
           profileUrl: `https://fullysorted.com/services/${relay.slug}`,
           copyTo: 'chris@fullysorted.com',
         });
       }
       const { notifyNewMessage } = await import('@/lib/email');
       return notifyNewMessage({
-        senderName, senderEmail: senderEmail.trim(), senderPhone, messageText,
+        senderName, senderEmail: senderEmail.trim(), senderPhone, messageText: fullText,
         listingTitle, listingSlug, type: kind, offerAmount,
       });
     },
@@ -109,7 +132,7 @@ export async function POST(request: NextRequest) {
         Email: senderEmail,
         Phone: senderPhone,
         Offer: offerAmount,
-        Message: messageText,
+        Message: fullText,
       }
     );
   }

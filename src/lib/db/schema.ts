@@ -148,6 +148,28 @@ export const messages = pgTable('messages', {
   offerAmount: integer('offer_amount'),
   status: varchar('status', { length: 50 }).default('new').notNull(), // new, read, replied, archived
   adminNotes: text('admin_notes'),
+
+  // ─── The car brief (optional) ─────────────────────────────────────────
+  // Structured answers from the "about the car" panel on the enquiry form:
+  // year/make/model, chassis number, condition, timeline, budget band. Every
+  // field is optional and the form defaults to a plain message box, so this is
+  // null for plenty of good enquiries. A readable copy is always appended to
+  // message_text as well, so nothing that predates this column loses detail.
+  brief: jsonb('brief').$type<Record<string, string>>(),
+
+  // ─── Lead outcome ─────────────────────────────────────────────────────
+  // What happened to the lead, reported by the shop from its own email — no
+  // login required, which matters because most shops are not linked yet.
+  // repliedAt is self-reported, not observed: we do not read anyone's mail and
+  // there is no tracking pixel. junk is the shop saying this was not a real
+  // enquiry, which is the number that tells us whether the inbox is worth
+  // paying for. Nothing here is shown publicly.
+  actionToken: varchar('action_token', { length: 64 }),
+  repliedAt: timestamp('replied_at'),
+  outcome: varchar('outcome', { length: 30 }), // replied, junk
+  junk: boolean('junk').default(false),
+  junkReason: varchar('junk_reason', { length: 120 }),
+
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
@@ -251,6 +273,26 @@ export const serviceProviders = pgTable('service_providers', {
   // deliberately does not gate release, refund or dispute.
   payoutsEnabled: boolean('payouts_enabled').default(false),
   stripeConnectId: varchar('stripe_connect_id', { length: 255 }),
+
+  // ─── Work preferences ──────────────────────────────────────────────────
+  // What this shop actually wants to be sent. The fastest way to kill a
+  // directory is to forward everything to everyone: the shop stops opening the
+  // emails, and by the time it matters nobody is answering. These are the
+  // shop's own answers to "what should we send you".
+  //
+  // acceptingWork defaults TRUE so every existing row keeps behaving exactly as
+  // it does today. It is a display and routing hint, never a gate: an enquiry
+  // to a shop that has paused is still delivered — the owner chose that shop,
+  // and a lead is never silently dropped. See lib/leads.ts.
+  acceptingWork: boolean('accepting_work').default(true).notNull(),
+  /** Marques they actually want — free text, e.g. ["Porsche", "Alfa Romeo"]. */
+  marques: jsonb('marques').$type<string[]>().default([]),
+  /** Service category keys beyond their headline one (lib/service-categories). */
+  serviceTypes: jsonb('service_types').$type<string[]>().default([]),
+  /** Smallest job worth their time, USD. Shown as "from $X" guidance, not a filter. */
+  minJobValue: integer('min_job_value'),
+  /** How far they will travel or collect from, miles. */
+  serviceRadiusMiles: integer('service_radius_miles'),
 
   // Timestamps
   createdAt: timestamp('created_at').defaultNow().notNull(),

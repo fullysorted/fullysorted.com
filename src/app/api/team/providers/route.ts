@@ -424,6 +424,59 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ ok: true, action: 'restored', stage: provider.outreach_prev_status || 'staged' });
   }
 
+  // ── Work preferences ───────────────────────────────────────────────────
+  // Its own action rather than another entry in EDITABLE_KEYS: these are the
+  // shop's answers to "what should we send you", collected on the call, and
+  // they are the one part of the record a rep should be able to set without
+  // touching public copy. The linked-owner guard still applies — a shop that
+  // manages its own listing owns this too.
+  if (body.action === 'set_preferences') {
+    if (provider.clerk_user_id) {
+      return NextResponse.json(
+        { error: 'This shop manages its own listing now — it sets its own work preferences.' },
+        { status: 403 },
+      );
+    }
+    const limitedPrefs = rateLimit(request, 'team-edit', 300, 60 * 60 * 1000);
+    if (limitedPrefs) return limitedPrefs;
+
+    const strList = (v: unknown, maxItems: number, maxLen: number): string[] | undefined => {
+      if (!Array.isArray(v)) return undefined;
+      return v
+        .filter((x): x is string => typeof x === 'string')
+        .map((x) => x.trim().slice(0, maxLen))
+        .filter(Boolean)
+        .slice(0, maxItems);
+    };
+    const num = (v: unknown, max: number): number | null | undefined => {
+      if (v === null || v === '') return null;
+      if (v === undefined) return undefined;
+      const n = typeof v === 'number' ? v : parseInt(String(v).replace(/[^0-9]/g, ''), 10);
+      if (!Number.isFinite(n) || n < 0) return undefined;
+      return Math.min(Math.round(n), max);
+    };
+
+    const marques = strList(body.marques, 25, 40);
+    const serviceTypes = strList(body.serviceTypes, 12, 40);
+    const minJob = num(body.minJobValue, 1_000_000);
+    const radius = num(body.serviceRadiusMiles, 3_000);
+    const accepting = typeof body.acceptingWork === 'boolean' ? body.acceptingWork : undefined;
+
+    await sql`
+      UPDATE service_providers
+      SET accepting_work = COALESCE(${accepting ?? null}::boolean, accepting_work),
+          marques = COALESCE(${marques ? JSON.stringify(marques) : null}::jsonb, marques),
+          service_types = COALESCE(${serviceTypes ? JSON.stringify(serviceTypes) : null}::jsonb, service_types),
+          min_job_value = CASE WHEN ${minJob === undefined} THEN min_job_value ELSE ${minJob ?? null} END,
+          service_radius_miles = CASE WHEN ${radius === undefined} THEN service_radius_miles ELSE ${radius ?? null} END,
+          outreach_last_edited_by = COALESCE(${typeof body.editedBy === 'string' ? body.editedBy.trim().slice(0, 100) : null}, outreach_last_edited_by),
+          outreach_last_edited_at = NOW(),
+          updated_at = NOW()
+      WHERE id = ${id}
+    `;
+    return NextResponse.json({ ok: true, action: 'preferences_saved' });
+  }
+
   // POST was rate limited and PATCH was not, which left the widest write path
   // in the console unbounded if the shared team cookie ever leaked. It is
   // applied HERE, below the two opt-out branches: recording that someone asked

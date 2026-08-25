@@ -58,7 +58,33 @@ export async function PUT(request: NextRequest) {
       phone, website, instagram,
       description, specialties, yearsInBusiness, priceRange,
       avatarUrl, headline, serviceArea, skills, hourlyRate,
+      acceptingWork, marques, serviceTypes, minJobValue, serviceRadiusMiles,
     } = body;
+
+    // ── Work preferences ────────────────────────────────────────────────
+    // Bounded here rather than trusted: marques render on a public page, and
+    // an unbounded list would be a paste-anything field on someone else's site.
+    const strList = (v: unknown, maxItems: number, maxLen: number): string[] | undefined => {
+      if (!Array.isArray(v)) return undefined;
+      return v
+        .filter((x): x is string => typeof x === 'string')
+        .map((x) => x.trim().slice(0, maxLen))
+        .filter(Boolean)
+        .slice(0, maxItems);
+    };
+    // Null clears the field; a number is clamped to something sane. A shop
+    // typing 999999 into "minimum job" has made a mistake, not a statement.
+    const num = (v: unknown, max: number): number | null | undefined => {
+      if (v === null || v === '') return null;
+      if (v === undefined) return undefined;
+      const n = typeof v === 'number' ? v : parseInt(String(v).replace(/[^0-9]/g, ''), 10);
+      if (!Number.isFinite(n) || n < 0) return undefined;
+      return Math.min(Math.round(n), max);
+    };
+    const marquesClean = strList(marques, 25, 40);
+    const serviceTypesClean = strList(serviceTypes, 12, 40);
+    const minJobClean = num(minJobValue, 1_000_000);
+    const radiusClean = num(serviceRadiusMiles, 3_000);
 
     // Only allow editing certain fields (not email, status, verified, etc.)
     //
@@ -89,6 +115,14 @@ export async function PUT(request: NextRequest) {
         ...(serviceArea !== undefined && { serviceArea }),
         ...(skills && { skills }),
         ...(hourlyRate !== undefined && { hourlyRate }),
+        // Work preferences. acceptingWork is a real boolean or nothing —
+        // `...(x && {})` would make "false" unsettable, which is the only value
+        // that matters here.
+        ...(typeof acceptingWork === 'boolean' && { acceptingWork }),
+        ...(marquesClean !== undefined && { marques: marquesClean }),
+        ...(serviceTypesClean !== undefined && { serviceTypes: serviceTypesClean }),
+        ...(minJobClean !== undefined && { minJobValue: minJobClean }),
+        ...(radiusClean !== undefined && { serviceRadiusMiles: radiusClean }),
         updatedAt: new Date(),
       })
       .where(eq(schema.serviceProviders.id, existing.id))

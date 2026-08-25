@@ -142,6 +142,15 @@ export default async function ProviderProfilePage({ params }: Props) {
   if (!provider) notFound();
 
   const specialties = provider.specialties ?? [];
+  // What this shop says it wants to be sent. All optional, all shop-supplied —
+  // nothing here is inferred, and a shop that has told us nothing renders
+  // exactly as it did before these fields existed.
+  const marques = provider.marques ?? [];
+  const minJobValue = provider.minJobValue ?? null;
+  const serviceRadius = provider.serviceRadiusMiles ?? null;
+  const hasWorkPrefs = marques.length > 0 || minJobValue !== null || serviceRadius !== null;
+  // Defaults true, so this reads "open" for every row that predates the column.
+  const acceptingWork = provider.acceptingWork !== false;
   // One gate for every number on this page — badge, JSON-LD and the reviews
   // block all ask lib/reviews.ts rather than reimplementing the threshold.
   const { show: hasRating, rating: ratingNum, count: reviewCount, topRated } = ratingDisplay(
@@ -354,6 +363,38 @@ export default async function ProviderProfilePage({ params }: Props) {
               </section>
             )}
 
+            {/* What they take on — the shop's own answers, not our inference. */}
+            {hasWorkPrefs && (
+              <section className="mb-8">
+                <h2
+                  className="text-xs font-bold uppercase tracking-widest mb-3"
+                  style={{ color: 'var(--text-tertiary)' }}
+                >
+                  What they take on
+                </h2>
+                <div className="space-y-2">
+                  {marques.length > 0 && (
+                    <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                      <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Marques: </span>
+                      {marques.join(', ')}
+                    </p>
+                  )}
+                  {minJobValue !== null && (
+                    <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                      <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Typical job: </span>
+                      from about ${minJobValue.toLocaleString('en-US')}
+                    </p>
+                  )}
+                  {serviceRadius !== null && (
+                    <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                      <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Travels: </span>
+                      about {serviceRadius} miles from {provider.location}
+                    </p>
+                  )}
+                </div>
+              </section>
+            )}
+
             {/* Quick facts */}
             <section
               className="grid grid-cols-2 gap-4 pt-6"
@@ -423,6 +464,19 @@ export default async function ProviderProfilePage({ params }: Props) {
             >
               Get in touch
             </h2>
+
+            {/* Said they are full. The form stays — someone who picked this shop
+                deliberately should still be able to reach it, and a booked shop
+                is often the one worth waiting for. It just sets expectations. */}
+            {!acceptingWork && (
+              <p
+                className="text-xs mb-4 px-3 py-2.5 rounded-lg"
+                style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
+              >
+                Not taking on new work at the moment. You can still write &mdash; expect a slower reply, or a
+                date further out.
+              </p>
+            )}
 
             <ProviderInquiryForm slug={provider.slug} businessName={provider.businessName} />
 
