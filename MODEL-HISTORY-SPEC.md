@@ -136,9 +136,11 @@ which source without re-fetching. "General overview" is a failed note.
 3. If the disagreement is about the production total, `productionTotal` is
    `null` and `productionNotes` carries the explanation
 
-Ten of the twelve good seeds carry at least one dispute. A model that returns
-zero disputes is far more likely to have been under-researched than to be
-genuinely uncontested — go back and check the production figure specifically.
+Ten of the twelve good seeds carry at least one dispute, so a clean run is
+unusual. **But never manufacture a conflict to look thorough.** If you genuinely
+found no disagreement, say so in the receipt and name the sources you checked the
+production figure against. An invented dispute discredits the honesty layer far
+more thoroughly than a missing one does.
 
 `sourceRefs` must reference `ref` values that exist in `sources`. A claim with
 one `sourceRef` needs a reason to be single-sourced.
@@ -211,6 +213,7 @@ Return **only** this JSON. Never return file content — it is already on disk.
   "historyChars": 3895,
   "productionTotal": null,
   "overallConfidence": "high",
+  "productionCheckedAgainst": ["ref-a", "ref-b"],
   "notes": "One line, only if something needs a human. Otherwise empty."
 }
 ```
