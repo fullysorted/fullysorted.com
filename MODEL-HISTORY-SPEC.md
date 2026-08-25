@@ -74,6 +74,12 @@ URL is a liability.
 | `sources` | **12 minimum**, 16+ preferred |
 | `claims` | **14 minimum** |
 
+**These are ranges, not minimums.** A field over its ceiling fails review the
+same way one under its floor does — overlong `marketNotes` is padding, and an
+18+ key `specs` block is usually restating the engine string. The exception is
+`sources` and `claims`: exceeding those is fine provided every source is
+referenced by at least one claim. Expect a finished file of 26,000-35,000 bytes.
+
 A file that comes in under a floor gets sent back. The current thin files sit at
 1,600–2,300 chars of history and 4–8 sources; that is the problem you are fixing.
 
@@ -149,9 +155,12 @@ one `sourceRef` needs a reason to be single-sourced.
 
 - Primary: **classic.com**. Every figure stamped **"as of August 2026"** in the
   prose. A market number without a date is a future lie.
-- **Bring a Trailer returns 403 to automated retrieval.** Do not cite a BaT
-  figure you could not fetch. Do not reconstruct one from memory.
-- **Hagerty valuation pages redirect-loop.** Same rule.
+- **Known-blocked to automated retrieval — never cite from memory:**
+  Bring a Trailer (403), Hagerty valuation pages (redirect-loop),
+  cars.bonhams.com (403), Glenmarch (403). If you cannot fetch it, it does not
+  go in `sources`.
+- Registry and club sites are often SPAs that return only app scaffolding to a
+  fetch. Scaffolding is not a source.
 - Auction results (RM Sotheby's, Gooding, Bonhams) are citable when you fetched
   the individual lot page. Name the house, the sale, the month and the year.
 - Buyer's premium is charged **on top of** the advertised "Sold for". If you
@@ -193,7 +202,12 @@ separates a good car from a bad one and let the reader conclude.
 
 ## 9. Before you finish
 
-1. `npx tsc --noEmit` must pass, or at minimum your file must parse.
+**Validate in your own container BEFORE writing to the Mac.** Write the file
+locally first, then run a Node parse plus a mechanical check of floors, ceilings,
+`sourceRefs` resolution and banned copy. Fix what it catches, then write once to
+the device. Do not use the device as your draft surface.
+
+1. The file must parse. `npx tsc --noEmit` if you can reach it.
 2. Every `sourceRefs` entry resolves to a `ref` in `sources`.
 3. Every `status: "disputed"` claim has a `conflictNote`.
 4. No banned copy present.

@@ -253,31 +253,33 @@ export default async function ResearchPage() {
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed text-stone-200">
             Analysis of the collector car market — auction results, price trends, and
-            where the smart money is going. Written by Chris Peterson.
+            where the smart money is going. From the Fully Sorted Research Desk.
           </p>
 
-          {/* Quick stats row — only honest, data-backed values */}
-          <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}>
-            {[
-              ...(segments.length > 0
-                ? [
-                    { value: `${segments.length}`, label: "Segments Tracked" },
-                    // Only claim auction data when segments are actually
-                    // rendering below. With none, this asserted a dataset the
-                    // page was not showing.
-                    { value: "Real", label: "Auction Data" },
-                  ]
-                : []),
-              { value: "Written", label: "By Chris" },
-            ].map((s) => (
-              <div key={s.label}>
-                <div className="text-2xl font-bold text-white">{s.value}</div>
-                <div className="text-xs uppercase tracking-widest mt-0.5 text-stone-300">
-                  {s.label}
+          {/* Quick stats row — only honest, data-backed values.
+              "Written / By Chris" used to sit here as a third tile. It was not a
+              statistic, and the hub aggregates desk output rather than one
+              person's articles, so it was removed. With no segments there is
+              nothing honest to show, so the whole row goes rather than leaving a
+              headless bordered band. */}
+          {segments.length > 0 && (
+            <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}>
+              {[
+                { value: `${segments.length}`, label: "Segments Tracked" },
+                // Only claim auction data when segments are actually
+                // rendering below. With none, this asserted a dataset the
+                // page was not showing.
+                { value: "Real", label: "Auction Data" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="text-2xl font-bold text-white">{s.value}</div>
+                  <div className="text-xs uppercase tracking-widest mt-0.5 text-stone-300">
+                    {s.label}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
