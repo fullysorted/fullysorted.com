@@ -3,12 +3,14 @@
  * block for structured data. Use a single component per schema entity so
  * Next.js de-duplicates cleanly and search/AI crawlers can parse each graph.
  */
+import { serializeJsonLd } from "@/lib/escape-html";
+
 export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
   return (
     <script
       type="application/ld+json"
       // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   );
 }

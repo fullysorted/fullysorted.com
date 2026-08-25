@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { sampleVehicles, type Vehicle } from "@/lib/sample-data";
+import { serializeJsonLd } from "@/lib/escape-html";
 import { ListingDetail } from "./ListingDetail";
 
 interface Props {
@@ -52,7 +53,9 @@ function dbListingToVehicle(listing: any): Vehicle {
     compCount: listing.compCount ?? 0,
     compSource: 'Fully Sorted',
     highlights: listing.highlights ?? [],
-    status: listing.status === 'active' ? 'active' : 'active',
+    // getListing only ever returns 'active' rows (filtered in the query below),
+    // so this is always 'active' — but keep it explicit rather than fabricating.
+    status: 'active',
     listedAt: listing.createdAt ? new Date(listing.createdAt).toISOString() : new Date().toISOString(),
     slug: listing.slug,
   };
@@ -65,12 +68,16 @@ async function getListing(slug: string): Promise<Vehicle | null> {
   if (process.env.DATABASE_URL) {
     try {
       const { getDb, schema } = await import('@/lib/db');
-      const { eq } = await import('drizzle-orm');
+      const { and, eq } = await import('drizzle-orm');
       const db = getDb();
+      // Only serve APPROVED (active) listings. Without this filter a pending
+      // listing renders live at /listings/{slug} the instant it is POSTed —
+      // which, combined with unescaped JSON-LD, was an unauthenticated stored
+      // XSS path. Keep the status gate here even though the sink is now escaped.
       const [dbListing] = await db
         .select()
         .from(schema.listings)
-        .where(eq(schema.listings.slug, slug))
+        .where(and(eq(schema.listings.slug, slug), eq(schema.listings.status, 'active')))
         .limit(1);
       return dbListing ? dbListingToVehicle(dbListing) : null;
     } catch (e) {
@@ -138,7 +145,7 @@ export default async function ListingPage({ params }: Props) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <ListingDetail vehicle={vehicle} />
     </>

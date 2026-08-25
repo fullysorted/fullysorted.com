@@ -53,6 +53,23 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // The add form checks the do-not-contact list, and so does an edit that
+  // repoints a record. This is the send itself — the only place that actually
+  // puts mail in someone's inbox — and it checked nothing at all. A row can
+  // reach here suppressed: it declined via the claim link, or the address was
+  // suppressed after the row was created.
+  const suppressed = await sql`
+    SELECT reason FROM outreach_suppression WHERE LOWER(email) = LOWER(${provider.email}) LIMIT 1
+  `;
+  if (suppressed.length > 0) {
+    return NextResponse.json(
+      {
+        error: `${provider.business_name} asked to be removed from Fully Sorted (${suppressed[0].reason || 'no reason recorded'}). Do not invite them again without their explicit OK.`,
+      },
+      { status: 409 },
+    );
+  }
+
   const claimUrl = `https://www.fullysorted.com/services/claim/${provider.claim_token}`;
   const isReminder = body.reminder === true || provider.outreach_status === 'sent';
 

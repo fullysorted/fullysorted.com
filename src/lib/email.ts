@@ -746,6 +746,37 @@ export async function notifyAccountLinked(d: {
   });
 }
 
+/**
+ * Sent to Chris when the team console repoints a LIVE listing's contact email.
+ *
+ * The /team console runs on one shared secret with no per-rep identity. On a
+ * listing that is already public, changing the contact address is the one edit
+ * that is also the first half of a takeover: change the email, send the login
+ * link, and the listing belongs to whoever asked for it. Nothing in the console
+ * needs to be locked down for that — the rep genuinely does have to fix wrong
+ * addresses — but it must not be able to happen quietly.
+ */
+export async function notifyProviderEmailChanged(d: {
+  businessName: string;
+  previousEmail: string;
+  newEmail: string;
+  editedBy: string | null;
+  profileUrl: string;
+}) {
+  return sendEmail({
+    subject: `Contact email changed on a live listing — ${d.businessName}`,
+    html: orderShell({
+      accent: "#b45309",
+      heading: "A live listing's contact email was changed",
+      bodyHtml: `<p><strong>${esc(d.businessName)}</strong> is live, and the team console just changed the address on file.</p>
+        <p>Was: ${esc(d.previousEmail)}<br/>Now: ${esc(d.newEmail)}<br/>By: ${esc(d.editedBy || "no name given")}</p>
+        <p>If that matches a call you know about, nothing to do. If it doesn't, change it back and rotate <code>TEAM_SECRET</code> — the next step after an email change is a login link to that address.</p>`,
+      ctaLabel: "See the listing",
+      ctaUrl: safeUrl(d.profileUrl),
+    }),
+  });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Provider approval — the message that closes the loop on an application
 // ─────────────────────────────────────────────────────────────────────────────

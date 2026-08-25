@@ -22,6 +22,10 @@ interface PipelineProvider {
   category: string;
   location: string;
   website: string | null;
+  instagram: string | null;
+  description: string | null;
+  specialties: string[] | null;
+  years_in_business: string | null;
   status: string;
   outreach_status: string | null;
   outreach_sent_at: string | null;
@@ -33,6 +37,9 @@ interface PipelineProvider {
   created_at: string;
   avatar_url: string | null;
   outreach_opted_out_at: string | null;
+  owner_linked: boolean;
+  outreach_last_edited_by: string | null;
+  outreach_last_edited_at: string | null;
 }
 
 const CATEGORIES = CATEGORY_OPTIONS;
@@ -88,9 +95,15 @@ export default function TeamDashboard() {
   const [copiedId, setCopiedId] = useState<number | null>(null);
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [noteDraft, setNoteDraft] = useState("");
-  const [fixEmail, setFixEmail] = useState("");
-  const [fixPhone, setFixPhone] = useState("");
-  const [fixPhoto, setFixPhoto] = useState("");
+  // The whole editable profile, not just the contact line. A shop that gets
+  // renamed, moves, or turns out to be a restoration house rather than a
+  // mechanic is a normal outcome of a call — the rep should not need Chris.
+  const EMPTY_EDIT = {
+    businessName: "", ownerName: "", email: "", phone: "", category: "",
+    location: "", website: "", instagram: "", specialties: "", yearsInBusiness: "",
+    description: "", avatarUrl: "",
+  };
+  const [edit, setEdit] = useState({ ...EMPTY_EDIT });
   const [photoInvalid, setPhotoInvalid] = useState(false);
   const [rowMsg, setRowMsg] = useState<{ id: number; msg: string; err?: boolean } | null>(null);
   // Reviews panel — one open at a time, same as the rest of the row UI.
@@ -278,14 +291,41 @@ export default function TeamDashboard() {
     }
   }
 
-  // Fix a mistyped email/phone or swap the photo — PATCH only sends fields
-  // that actually changed, so an untouched field is never overwritten.
+  // Edit the provider's details. PATCH only carries fields that actually
+  // changed, so an untouched field is never overwritten — and an optional
+  // field cleared to empty is sent, because clearing a wrong website is a
+  // real edit rather than a no-op.
+  function editSetField(k: string, v: string) {
+    setEdit((prev) => ({ ...prev, [k]: v }));
+  }
+
   async function saveDetails(p: PipelineProvider) {
-    const payload: Record<string, unknown> = { id: p.id };
-    if (fixEmail && fixEmail !== p.email) payload.email = fixEmail;
-    if (fixPhone !== (p.phone || "")) payload.phone = fixPhone;
-    if (fixPhoto && fixPhoto !== (p.avatar_url || "")) payload.avatarUrl = fixPhoto;
-    if (Object.keys(payload).length === 1) {
+    const current: Record<string, string> = {
+      businessName: p.business_name || "",
+      ownerName: p.owner_name || "",
+      email: p.email || "",
+      phone: p.phone || "",
+      category: p.category || "",
+      location: p.location || "",
+      website: p.website || "",
+      instagram: p.instagram || "",
+      specialties: (p.specialties || []).join("\n"),
+      yearsInBusiness: p.years_in_business || "",
+      description: p.description || "",
+      avatarUrl: p.avatar_url || "",
+    };
+    if (addedBy) {
+      try { window.localStorage.setItem("fs_team_name", addedBy); } catch { /* ignore */ }
+    }
+    const payload: Record<string, unknown> = { id: p.id, editedBy: addedBy || null };
+    for (const [k, was] of Object.entries(current)) {
+      const now = (edit as Record<string, string>)[k] ?? "";
+      if (now.trim() === was.trim()) continue;
+      // One specialty per line, so a specialty that itself contains a comma
+      // survives a round trip through this form.
+      payload[k] = k === "specialties" ? now.split("\n").map((x) => x.trim()).filter(Boolean) : now;
+    }
+    if (Object.keys(payload).length === 2) {
       setRowMsg({ id: p.id, msg: "Nothing changed." });
       return;
     }
@@ -298,6 +338,27 @@ export default function TeamDashboard() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to save");
+      // Re-seed from what the server actually stored. It normalises (adds a
+      // scheme to a website, strips an @ off a handle, lowercases an email), so
+      // a panel left open would otherwise keep re-sending the pre-normalised
+      // text as though it were a fresh edit.
+      const saved = data.provider;
+      if (saved) {
+        setEdit({
+          businessName: saved.business_name || "",
+          ownerName: saved.owner_name || "",
+          email: saved.email || "",
+          phone: saved.phone || "",
+          category: saved.category || "",
+          location: saved.location || "",
+          website: saved.website || "",
+          instagram: saved.instagram || "",
+          specialties: (saved.specialties || []).join("\n"),
+          yearsInBusiness: saved.years_in_business || "",
+          description: saved.description || "",
+          avatarUrl: saved.avatar_url || "",
+        });
+      }
       setRowMsg({ id: p.id, msg: "Details updated" });
       load();
     } catch (e) {
@@ -723,9 +784,20 @@ export default function TeamDashboard() {
                           onClick={() => {
                             setExpandedId(expanded ? null : p.id);
                             setNoteDraft(p.outreach_notes || "");
-                            setFixEmail(p.email || "");
-                            setFixPhone(p.phone || "");
-                            setFixPhoto(p.avatar_url || "");
+                            setEdit({
+                              businessName: p.business_name || "",
+                              ownerName: p.owner_name || "",
+                              email: p.email || "",
+                              phone: p.phone || "",
+                              category: p.category || "",
+                              location: p.location || "",
+                              website: p.website || "",
+                              instagram: p.instagram || "",
+                              specialties: (p.specialties || []).join("\n"),
+                              yearsInBusiness: p.years_in_business || "",
+                              description: p.description || "",
+                              avatarUrl: p.avatar_url || "",
+                            });
                             setRowMsg(null);
                           }}
                           className="inline-flex items-center gap-1.5 px-2.5 h-8 text-xs font-medium rounded-lg border border-border text-text-secondary bg-white hover:bg-gray-50"
@@ -768,39 +840,166 @@ export default function TeamDashboard() {
                           </div>
                         </div>
                         <div className="pt-3 border-t border-border">
-                          <p className="text-xs font-semibold text-text-secondary mb-2">
-                            Fix details (email, phone, photo)
+                          <p className="text-xs font-semibold text-text-secondary mb-1">
+                            Edit this provider
+                          </p>
+                          {p.owner_linked ? (
+                            <p className="text-[11px] text-text-tertiary leading-relaxed">
+                              {p.business_name} has its own login and writes its own profile now.
+                              Editing it here would paint over the owner&rsquo;s words with no way
+                              back, so it&rsquo;s locked. Ask them to change it, or ask Chris.
+                            </p>
+                          ) : p.outreach_status === "declined" ? (
+                            <p className="text-[11px] text-text-tertiary leading-relaxed">
+                              This shop asked to be removed, so its details are frozen. If that was
+                              a mistake, hit Undo first.
+                            </p>
+                          ) : (
+                          <>
+                          <p className="text-[11px] text-text-tertiary mb-2 leading-relaxed">
+                            Everything the owner would fix on the call. Changes go live on their
+                            profile straight away. The web address stays the same even if the
+                            business name changes, so any link already sent out still works.
                           </p>
                           <div className="grid sm:grid-cols-2 gap-3 mb-3">
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Business name</label>
+                              <input
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                value={edit.businessName}
+                                onChange={(e) => editSetField("businessName", e.target.value)}
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Owner name</label>
+                              <input
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                value={edit.ownerName}
+                                onChange={(e) => editSetField("ownerName", e.target.value)}
+                              />
+                            </div>
                             <div>
                               <label className="text-[11px] font-medium text-text-tertiary block mb-1">Email</label>
                               <input
                                 className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
                                 type="email"
-                                value={fixEmail}
-                                onChange={(e) => setFixEmail(e.target.value)}
+                                value={edit.email}
+                                onChange={(e) => editSetField("email", e.target.value)}
                               />
                             </div>
                             <div>
                               <label className="text-[11px] font-medium text-text-tertiary block mb-1">Phone</label>
                               <input
                                 className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
-                                value={fixPhone}
-                                onChange={(e) => setFixPhone(e.target.value)}
+                                value={edit.phone}
+                                onChange={(e) => editSetField("phone", e.target.value)}
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Category</label>
+                              <select
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                value={edit.category}
+                                onChange={(e) => editSetField("category", e.target.value)}
+                              >
+                                {!CATEGORIES.some((c) => c.value === edit.category) && (
+                                  <option value={edit.category}>{edit.category || "Pick a category"}</option>
+                                )}
+                                {CATEGORIES.map((c) => (
+                                  <option key={c.value} value={c.value}>{c.label}</option>
+                                ))}
+                              </select>
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Location</label>
+                              <input
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                value={edit.location}
+                                onChange={(e) => editSetField("location", e.target.value)}
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Website</label>
+                              <input
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                placeholder="shopname.com"
+                                value={edit.website}
+                                onChange={(e) => editSetField("website", e.target.value)}
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Instagram</label>
+                              <input
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                placeholder="handle, without the @"
+                                value={edit.instagram}
+                                onChange={(e) => editSetField("instagram", e.target.value)}
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Specialties (one per line)</label>
+                              <textarea
+                                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                rows={3}
+                                placeholder={"Air-cooled 911\nEngine rebuilds\nConcours prep"}
+                                value={edit.specialties}
+                                onChange={(e) => editSetField("specialties", e.target.value)}
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">Years in business</label>
+                              <input
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                value={edit.yearsInBusiness}
+                                onChange={(e) => editSetField("yearsInBusiness", e.target.value)}
                               />
                             </div>
                           </div>
                           <div className="mb-3">
-                            <PhotoUpload value={fixPhoto} onChange={setFixPhoto} />
+                            <label className="text-[11px] font-medium text-text-tertiary block mb-1">
+                              Description (this is the paragraph on their public profile)
+                            </label>
+                            <textarea
+                              className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                              rows={4}
+                              value={edit.description}
+                              onChange={(e) => editSetField("description", e.target.value)}
+                            />
                           </div>
-                          <button
-                            onClick={() => saveDetails(p)}
-                            disabled={busyId === p.id}
-                            className="inline-flex items-center gap-1.5 px-3 h-8 text-xs font-semibold text-white rounded-lg disabled:opacity-60"
-                            style={{ backgroundColor: "#1E6091" }}
-                          >
-                            <Check className="w-3 h-3" /> Save details
-                          </button>
+                          <div className="mb-3">
+                            <PhotoUpload
+                              value={edit.avatarUrl}
+                              onChange={(url) => editSetField("avatarUrl", url)}
+                            />
+                          </div>
+                          <div className="mb-3 max-w-xs">
+                            <label className="text-[11px] font-medium text-text-tertiary block mb-1">
+                              Your name (recorded against this edit)
+                            </label>
+                            <input
+                              className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                              value={addedBy}
+                              onChange={(e) => setAddedBy(e.target.value)}
+                            />
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <button
+                              onClick={() => saveDetails(p)}
+                              disabled={busyId === p.id}
+                              className="inline-flex items-center gap-1.5 px-3 h-8 text-xs font-semibold text-white rounded-lg disabled:opacity-60"
+                              style={{ backgroundColor: "#1E6091" }}
+                            >
+                              <Check className="w-3 h-3" /> Save changes
+                            </button>
+                            {p.outreach_last_edited_at && (
+                              <span className="text-[11px] text-text-tertiary">
+                                Last edited{p.outreach_last_edited_by ? ` by ${p.outreach_last_edited_by}` : ""} ·{" "}
+                                {timeAgo(p.outreach_last_edited_at)}
+                              </span>
+                            )}
+                          </div>
+                          </>
+                          )}
                         </div>
                         <div className="pt-3 border-t border-border">
                           <p className="text-xs font-semibold text-text-secondary mb-1">Account access</p>

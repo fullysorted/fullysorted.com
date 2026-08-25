@@ -31,6 +31,12 @@ function LoginForm() {
       if (res.ok) {
         const redirect = searchParams.get("redirect") || "/admin/dashboard";
         router.push(redirect);
+      } else if (res.status === 503) {
+        // The key is not wrong — there is no key on this deployment. Retyping
+        // it forever is the wrong next move, so don't imply that it is.
+        setError("This deployment has no ADMIN_SECRET set. Add it in Vercel and redeploy.");
+      } else if (res.status === 429) {
+        setError("Too many attempts. Wait 15 minutes and try again.");
       } else {
         setError("Incorrect key. Try again.");
       }
