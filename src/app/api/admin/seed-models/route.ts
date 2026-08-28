@@ -38,9 +38,53 @@ import { seedDeltaIntegrale } from '@/lib/data/model-seed-delta-integrale';
 import { seedF40 } from '@/lib/data/model-seed-f40';
 import { seedLandCruiser60 } from '@/lib/data/model-seed-land-cruiser-60';
 
+// Third research wave (2026-08-28) — 36 further cited histories.
+import { seedCamaro1stGen } from '@/lib/data/model-seed-camaro-1st-gen';
+import { seedChevelleSs } from '@/lib/data/model-seed-chevelle-ss';
+import { seedCorvetteC1 } from '@/lib/data/model-seed-corvette-c1';
+import { seedCorvetteC4Zr1 } from '@/lib/data/model-seed-corvette-c4-zr1';
+import { seedBarracudaEBody } from '@/lib/data/model-seed-barracuda-e-body';
+import { seedChallenger1stGen } from '@/lib/data/model-seed-challenger-1st-gen';
+import { seedSuperbird } from '@/lib/data/model-seed-superbird';
+import { seedShelbyGt350 } from '@/lib/data/model-seed-shelby-gt350';
+import { seedGt40 } from '@/lib/data/model-seed-gt40';
+import { seedThunderbird1stGen } from '@/lib/data/model-seed-thunderbird-1st-gen';
+import { seedF1005thGen } from '@/lib/data/model-seed-f-100-5th-gen';
+import { seedNineElevenSc } from '@/lib/data/model-seed-911-sc';
+import { seed928 } from '@/lib/data/model-seed-928';
+import { seedM5E28 } from '@/lib/data/model-seed-m5-e28';
+import { seedM3E36 } from '@/lib/data/model-seed-m3-e36';
+import { seedSlR107 } from '@/lib/data/model-seed-sl-r107';
+import { seed190ECosworth } from '@/lib/data/model-seed-190e-cosworth';
+import { seedUrQuattro } from '@/lib/data/model-seed-ur-quattro';
+import { seedGolfGtiMk1 } from '@/lib/data/model-seed-golf-gti-mk1';
+import { seedDino246 } from '@/lib/data/model-seed-dino-246';
+import { seed328 } from '@/lib/data/model-seed-328';
+import { seedF355 } from '@/lib/data/model-seed-f355';
+import { seedMiura } from '@/lib/data/model-seed-miura';
+import { seedStratos } from '@/lib/data/model-seed-stratos';
+import { seedPantera } from '@/lib/data/model-seed-pantera';
+import { seedMgb } from '@/lib/data/model-seed-mgb';
+import { seedTr6 } from '@/lib/data/model-seed-tr6';
+import { seedAustinHealey3000 } from '@/lib/data/model-seed-austin-healey-3000';
+import { seedClassicMini } from '@/lib/data/model-seed-classic-mini';
+import { seedRangeRoverClassic } from '@/lib/data/model-seed-range-rover-classic';
+import { seedMx5Na } from '@/lib/data/model-seed-mx-5-na';
+import { seedRx7Fc } from '@/lib/data/model-seed-rx-7-fc';
+import { seed510 } from '@/lib/data/model-seed-510';
+import { seed300zxZ32 } from '@/lib/data/model-seed-300zx-z32';
+import { seedS2000 } from '@/lib/data/model-seed-s2000';
+import { seedLandCruiser80 } from '@/lib/data/model-seed-land-cruiser-80';
 // All researched model drafts to seed (status='draft' for human review).
 const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx, seedCorvetteC2, seedMustang1stGen, seed930Turbo, seedRx7Fd, seedETypeS1, seedBronco1stGen, seedFj40, seedW113Pagoda, seedBmw2002, seedSkylineR34, seedCountach, seedTestarossa, seedShelbyCobra, seedDeLoreanDmc12, seedBmwIsetta, seedAmphicar770, seed356, seedCitroenDs,
-  seedSkylineR32, seedCarrera32, seed944Turbo, seedDefender, seed300SL, seedType2Bus, seedCorvetteC3, seedCharger2ndGen, seedAlfaSpider, seedDeltaIntegrale, seedF40, seedLandCruiser60];
+  seedSkylineR32, seedCarrera32, seed944Turbo, seedDefender, seed300SL, seedType2Bus, seedCorvetteC3, seedCharger2ndGen, seedAlfaSpider, seedDeltaIntegrale, seedF40, seedLandCruiser60,
+  seedCamaro1stGen, seedChevelleSs, seedCorvetteC1, seedCorvetteC4Zr1, seedBarracudaEBody,
+  seedChallenger1stGen, seedSuperbird, seedShelbyGt350, seedGt40, seedThunderbird1stGen,
+  seedF1005thGen, seedNineElevenSc, seed928, seedM5E28, seedM3E36, seedSlR107,
+  seed190ECosworth, seedUrQuattro, seedGolfGtiMk1, seedDino246, seed328, seedF355, seedMiura,
+  seedStratos, seedPantera, seedMgb, seedTr6, seedAustinHealey3000, seedClassicMini,
+  seedRangeRoverClassic, seedMx5Na, seedRx7Fc, seed510, seed300zxZ32, seedS2000,
+  seedLandCruiser80];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {
