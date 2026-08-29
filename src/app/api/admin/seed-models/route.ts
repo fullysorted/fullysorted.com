@@ -110,6 +110,11 @@ const STARTER_QUEUE: { make: string; model: string; generation: string | null; p
   { make: 'Toyota', model: '4Runner', generation: 'N120/N130 (2nd gen)', priority: 20 },
 ];
 
+// Seeding 73 models is ~3,300 sequential Neon round-trips, which overruns the
+// default function budget. Raise the ceiling where the plan allows it, and let
+// the caller page through with ?offset=&limit= on plans that cap lower.
+export const maxDuration = 300;
+
 export async function POST(request: NextRequest) {
   if (!isAuthorized(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -202,7 +207,13 @@ export async function POST(request: NextRequest) {
 
   // 2. Upsert each researched draft (idempotent — re-running refreshes them).
   const results: { slug: string; sources: number; claims: number }[] = [];
-  for (const s of SEEDS) {
+  const sp = request.nextUrl.searchParams;
+  const offset = Math.max(0, Number(sp.get('offset') ?? 0) || 0);
+  const limitRaw = sp.get('limit');
+  const limit = limitRaw === null ? SEEDS.length : Math.max(1, Number(limitRaw) || SEEDS.length);
+  const batch = SEEDS.slice(offset, offset + limit);
+
+  for (const s of batch) {
   const existing = (await sql`SELECT id FROM vehicle_models WHERE slug = ${s.slug} LIMIT 1`) as { id: number }[];
   let modelId: number;
 
@@ -281,10 +292,15 @@ export async function POST(request: NextRequest) {
             SELECT 'Porsche', '911', '964', 100, 'drafted'
             WHERE NOT EXISTS (SELECT 1 FROM model_queue WHERE make='Porsche' AND model='911' AND generation='964')`;
 
+  const nextOffset = offset + batch.length;
   return NextResponse.json({
     success: true,
     seeded: results,
     count: results.length,
+    total: SEEDS.length,
+    offset,
+    nextOffset: nextOffset < SEEDS.length ? nextOffset : null,
+    remaining: Math.max(0, SEEDS.length - nextOffset),
     status: 'draft',
     message: `Tables ready. ${results.length} model drafts seeded — review them in /admin/models before publishing.`,
   });
