@@ -11,6 +11,7 @@ import ProviderInquiryForm from './ProviderInquiryForm';
 import ProviderReviews from './ProviderReviews';
 import { ratingDisplay, type PublicReview } from '@/lib/reviews';
 import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
+import { normalizeWorkSettings, workSetting, teamSizeLabel } from '@/lib/work-settings';
 
 export const dynamic = 'force-dynamic';
 
@@ -148,7 +149,19 @@ export default async function ProviderProfilePage({ params }: Props) {
   const marques = provider.marques ?? [];
   const minJobValue = provider.minJobValue ?? null;
   const serviceRadius = provider.serviceRadiusMiles ?? null;
-  const hasWorkPrefs = marques.length > 0 || minJobValue !== null || serviceRadius !== null;
+  // Where the work happens — the provider's own answer, and the field that
+  // replaced the business/freelancer split. Empty for every row seeded before
+  // the question existed, and empty renders nothing: this page never tells an
+  // owner "premises you can visit" on a provider's behalf again.
+  const settings = normalizeWorkSettings(provider.workSettings);
+  const settingBlurbs = settings.map((k) => workSetting(k)!.ownerBlurb);
+  const team = teamSizeLabel(provider.teamSize);
+  const hasWorkPrefs =
+    marques.length > 0 ||
+    minJobValue !== null ||
+    serviceRadius !== null ||
+    settings.length > 0 ||
+    team !== null;
   // Defaults true, so this reads "open" for every row that predates the column.
   const acceptingWork = provider.acceptingWork !== false;
   // One gate for every number on this page — badge, JSON-LD and the reviews
@@ -373,6 +386,18 @@ export default async function ProviderProfilePage({ params }: Props) {
                   What they take on
                 </h2>
                 <div className="space-y-2">
+                  {settingBlurbs.length > 0 && (
+                    <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                      <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Where: </span>
+                      {settingBlurbs.join(' ')}
+                    </p>
+                  )}
+                  {team && (
+                    <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                      <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Size: </span>
+                      {team}
+                    </p>
+                  )}
                   {marques.length > 0 && (
                     <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                       <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Marques: </span>

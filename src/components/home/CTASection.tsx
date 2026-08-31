@@ -83,7 +83,7 @@ export function CTASection() {
               </Link>
             </div>
             <Link
-              href="/services/apply/freelancer"
+              href="/services/apply"
               className="group inline-flex items-center gap-1.5 mt-6 text-sm font-semibold text-white/90 hover:text-white transition-colors"
             >
               Work on cars? Get paid doing what you love

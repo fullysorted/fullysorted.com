@@ -8,6 +8,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { SERVICE_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
 import { ratingDisplay } from '@/lib/reviews';
+import {
+  WORK_SETTINGS,
+  normalizeWorkSettings,
+  workSettingLabels,
+  teamSizeLabel,
+  type WorkSettingKey,
+} from '@/lib/work-settings';
 
 // ─── Service Categories ────────────────────────────────
 // Order and labels come from the canonical list so the directory matches the
@@ -48,7 +55,11 @@ interface Provider {
   website: string | null;
   instagram: string | null;
   foundingProvider: boolean;
-  providerType?: string; // 'business' (a shop) | 'freelancer' (an independent)
+  // Where the work happens. Replaces providerType, which used to cut this
+  // directory into "shops" and "freelancers" — see lib/work-settings.ts.
+  workSettings?: string[] | null;
+  teamSize?: string | null;
+  serviceRadiusMiles?: number | null;
   specialties: string[];
   priceRange: string;
   slug: string;
@@ -146,6 +157,25 @@ function ProviderCard({ provider }: { provider: Provider }) {
               <span className="text-stone-300">|</span>
               <span className="text-stone-600 font-medium">{provider.priceRange}</span>
             </div>
+            {/* Where the work happens, and how big the outfit is — both the
+                provider's own answers. A row that has told us nothing renders
+                nothing here rather than being labelled by inference. */}
+            {(workSettingLabels(provider.workSettings).length > 0 || teamSizeLabel(provider.teamSize)) && (
+              <div className="flex flex-wrap items-center gap-2 mt-2">
+                {workSettingLabels(provider.workSettings).map((label) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full"
+                    style={{ background: 'var(--accent-light, #E8F0F8)', color: '#1E6091' }}
+                  >
+                    {label}
+                  </span>
+                ))}
+                {teamSizeLabel(provider.teamSize) && (
+                  <span className="text-xs text-stone-500">{teamSizeLabel(provider.teamSize)}</span>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -208,31 +238,27 @@ function ProviderCard({ provider }: { provider: Provider }) {
   );
 }
 
-// ─── One labelled band of the directory ───────────────
-function ProviderSection({
-  title, blurb, icon, providers, categorySuffix, emptyLine, footerLink,
+// ─── The results grid ─────────────────────────────────
+//
+// This was two labelled bands, "Shops & businesses" and "Independent
+// specialists", split on provider_type. It is one grid now. The split asked
+// providers about their legal form and then made a promise on their behalf —
+// the shops band was headed "specialists with a premises you can visit", under
+// which sat a one-man mobile appraiser who travels nationwide, while the other
+// band stood empty with a dashed placeholder. Where the work happens is a
+// filter now, which is the honest shape: an owner narrows, we never assert.
+function ResultsGrid({
+  providers, count, emptyLine,
 }: {
-  title: string;
-  blurb: string;
-  icon: React.ReactNode;
   providers: Provider[];
-  categorySuffix: string;
+  count: number;
   emptyLine: string;
-  footerLink?: { href: string; label: string };
 }) {
   return (
     <section className="mb-12">
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
-        <h2 className="flex items-center gap-2 font-display text-xl font-semibold tracking-tight text-stone-900">
-          <span className="text-accent">{icon}</span>
-          {title}
-        </h2>
-        <span className="text-sm text-stone-500">
-          {providers.length} {providers.length === 1 ? 'specialist listed' : 'specialists listed'}{categorySuffix}
-        </span>
-      </div>
-      <p className="text-sm text-stone-500 mb-5 max-w-2xl">{blurb}</p>
-
+      <p className="text-sm text-stone-500 mb-5">
+        {count} {count === 1 ? 'specialist' : 'specialists'} listed
+      </p>
       {providers.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-2">
           <AnimatePresence mode="popLayout">
@@ -244,14 +270,6 @@ function ProviderSection({
       ) : (
         <div className="rounded-2xl border border-dashed border-stone-300 bg-white/60 px-6 py-10 text-center">
           <p className="text-sm text-stone-500 max-w-md mx-auto">{emptyLine}</p>
-        </div>
-      )}
-
-      {footerLink && providers.length === 0 && (
-        <div className="mt-3 text-center">
-          <Link href={footerLink.href} className="text-sm font-semibold text-accent hover:underline">
-            {footerLink.label} →
-          </Link>
         </div>
       )}
     </section>
@@ -270,6 +288,10 @@ export default function ServicesDirectory() {
     : 'all';
 
   const [activeCategory, setActiveCategory] = useState<CategoryKey>(validType);
+  // Where the work happens. 'all' plus the three keys from lib/work-settings.
+  // A provider who has not answered is never hidden by a filter they could not
+  // have matched — see `matches` below.
+  const [activeSetting, setActiveSetting] = useState<'all' | WorkSettingKey>('all');
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [providers, setProviders] = useState<Provider[]>([]);
   const [loading, setLoading] = useState(true);
@@ -289,27 +311,25 @@ export default function ServicesDirectory() {
       .finally(() => setLoading(false));
   }, []);
 
-  // The directory holds two genuinely different kinds of supply: established
-  // shops with premises, and independent specialists who travel to the car.
-  // Owners shop for them differently, so they get their own sections rather
-  // than being blended into one grid.
   const matches = (p: Provider) => {
     const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+    // A provider with no work_settings answer has not said no — they have said
+    // nothing, and most of the seeded rows predate the question entirely.
+    // Hiding them from a filter would make the directory look emptier than it
+    // is and punish the shops we onboarded by phone. They stay visible until
+    // they tell us otherwise.
+    const declared = normalizeWorkSettings(p.workSettings);
+    const matchesSetting =
+      activeSetting === 'all' || declared.length === 0 || declared.includes(activeSetting);
     const matchesSearch =
       searchQuery === '' ||
       p.businessName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.specialties.some((s) => s.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesSetting && matchesSearch;
   };
 
   const filtered = providers.filter(matches);
-  const shops = filtered.filter((p) => (p.providerType ?? 'business') !== 'freelancer');
-  const freelancers = filtered.filter((p) => (p.providerType ?? 'business') === 'freelancer');
-  const categorySuffix =
-    activeCategory !== 'all'
-      ? ` in ${CATEGORIES.find((c) => c.key === activeCategory)?.label}`
-      : '';
 
   return (
     <div>
@@ -344,6 +364,31 @@ export default function ServicesDirectory() {
         ))}
       </div>
 
+      {/* Where the work happens. Deliberately a filter and not a heading: the
+          directory no longer sorts providers into kinds on their behalf, it
+          lets an owner narrow to the arrangement that suits their car. */}
+      <div className="flex flex-wrap items-center gap-2 mb-8">
+        <span className="text-xs font-semibold uppercase tracking-widest text-stone-400 mr-1">
+          Where the work happens
+        </span>
+        {([{ key: 'all' as const, label: 'Any' }, ...WORK_SETTINGS.map((w) => ({ key: w.key, label: w.ownerLabel }))]).map(
+          (opt) => (
+            <button
+              key={opt.key}
+              onClick={() => setActiveSetting(opt.key)}
+              aria-pressed={activeSetting === opt.key}
+              className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all ${
+                activeSetting === opt.key
+                  ? 'bg-stone-900 text-white'
+                  : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-900'
+              }`}
+            >
+              {opt.label}
+            </button>
+          ),
+        )}
+      </div>
+
       {loading && (
         <p className="text-sm text-stone-500 mb-6 flex items-center gap-2">
           <Loader2 className="w-4 h-4 animate-spin" /> Loading providers...
@@ -367,34 +412,15 @@ export default function ServicesDirectory() {
       )}
 
       {!loading && !loadFailed && (
-        <>
-          <ProviderSection
-            title="Shops & businesses"
-            blurb="Established workshops, detailers and specialists with a premises you can visit."
-            icon={<Wrench className="w-4 h-4" />}
-            providers={shops}
-            categorySuffix={categorySuffix}
-            emptyLine={
-              providers.length === 0
-                ? "We're building the directory now — apply below to be one of the first shops listed."
-                : 'No shops match this search yet. Tell us who should be here and we will go and ask them.'
-            }
-          />
-
-          <ProviderSection
-            title="Independent specialists"
-            blurb="One-person operations and mobile pros who come to the car — often with fixed-price gigs you can book outright."
-            icon={<Sparkles className="w-4 h-4" />}
-            providers={freelancers}
-            categorySuffix={categorySuffix}
-            emptyLine={
-              providers.length === 0
-                ? "None listed yet. If you work on collector cars solo, this is your section."
-                : 'No independent specialists match this search yet. Tell us who should be here and we will go and ask them.'
-            }
-            footerLink={{ href: '/gigs', label: 'Browse fixed-price gigs' }}
-          />
-        </>
+        <ResultsGrid
+          providers={filtered}
+          count={filtered.length}
+          emptyLine={
+            providers.length === 0
+              ? "We're building the directory now — apply below to be one of the first listed."
+              : 'Nobody matches that yet. Tell us who should be here and we will go and ask them.'
+          }
+        />
       )}
 
       {/* CTA to Apply */}

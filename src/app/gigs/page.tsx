@@ -67,7 +67,7 @@ export default async function GigsPage() {
             See exactly what you get and what it costs, before you book.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Link href="/services/apply/freelancer" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold bg-white text-accent shadow-sm hover:-translate-y-0.5 hover:shadow-lg transition-all">
+            <Link href="/services/apply" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold bg-white text-accent shadow-sm hover:-translate-y-0.5 hover:shadow-lg transition-all">
               <Sparkles className="w-4 h-4" style={{ color: "#B08D3F" }} /> Offer your own gig <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/services/guide" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold border border-white/40 text-white hover:bg-white/10 transition-all">
@@ -84,7 +84,7 @@ export default async function GigsPage() {
             <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>The first gigs are on their way</p>
             <p className="text-sm max-w-md mx-auto" style={{ color: "#9a9a8a" }}>
               Specialists are setting up their gigs now. Are you a pro?{" "}
-              <Link href="/services/apply/freelancer" className="underline text-accent hover:text-accent-hover">List one in five minutes.</Link>
+              <Link href="/services/apply" className="underline text-accent hover:text-accent-hover">List one in five minutes.</Link>
             </p>
           </div>
         ) : (

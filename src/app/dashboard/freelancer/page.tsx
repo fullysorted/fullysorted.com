@@ -77,11 +77,11 @@ export default function FreelancerDashboard() {
   const hasLiveGig = gigs.some(g => g.status === "active");
   const approved = provider?.status === "active";
   const checklist = [
-    { done: !!provider, label: "Create your freelancer profile", href: "/services/apply/freelancer" },
-    { done: hasGig, label: "Build your first gig", href: "/services/apply/freelancer" },
+    { done: !!provider, label: "Create your freelancer profile", href: "/services/apply" },
+    { done: hasGig, label: "Build your first gig", href: "/services/apply" },
     // Points at the profile card below, which only exists once there is a
     // profile to attach a photo to; before that the wizard is the right place.
-    { done: !!provider?.avatarUrl, label: "Add a profile photo", href: provider ? "#profile" : "/services/apply/freelancer" },
+    { done: !!provider?.avatarUrl, label: "Add a profile photo", href: provider ? "#profile" : "/services/apply" },
     { done: approved, label: "Get approved by the Fully Sorted team", href: "#" },
     { done: hasLiveGig, label: "Publish a gig so buyers can find you", href: "#gigs" },
   ];
@@ -133,7 +133,7 @@ export default function FreelancerDashboard() {
           <p className="text-text-secondary text-sm max-w-md mx-auto mb-5">
             Our guided setup walks you through everything — we’ll even draft your gig for you. Takes about five minutes.
           </p>
-          <Link href="/services/apply/freelancer" className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">
+          <Link href="/services/apply" className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">
             Start guided setup <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
@@ -253,7 +253,7 @@ export default function FreelancerDashboard() {
       >
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-bold text-foreground flex items-center gap-2"><Tag className="w-4 h-4 text-accent" /> Your gigs</h2>
-          <Link href="/services/apply/freelancer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
+          <Link href="/services/apply" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
             <Plus className="w-4 h-4" /> New gig
           </Link>
         </div>

@@ -84,15 +84,16 @@ export default async function TrackPage({
   // The apply form stores category KEYS. `track.slug` is the key; `track.category`
   // is the old human label, which the form no longer accepts.
   const quoteBased = QUOTE_BASED.has(slug);
-  const applyHref = quoteBased
-    ? "/services/apply/business"
-    : `/services/apply/freelancer?category=${encodeURIComponent(track.slug)}`;
+  // One application either way now — the business/freelancer fork was retired
+  // 2026-08-31. The category still prefills, which is the only part of the old
+  // deep link that was doing any work.
+  const applyHref = `/services/apply?category=${encodeURIComponent(track.slug)}`;
   const lower = track.label.toLowerCase();
   const heroCta = quoteBased ? `List your ${lower} business` : `Set up ${article(lower)} ${lower} gig`;
   const closingCta = quoteBased ? `List your ${lower} business` : `Start ${article(lower)} ${lower} gig`;
   const closingBlurb = quoteBased
-    ? "Restoration and body work are quoted per project, so you list as a directory business — listing is free for founding providers."
-    : "Set up your profile and your first gig — listing is free for founding providers, and the only fee is 10% of a completed gig.";
+    ? "Restoration and body work are quoted per project, so owners send you an enquiry rather than booking a price — listing is free for founding providers."
+    : "Set up your profile — listing is free for founding providers while we build out the directory.";
   const others = PROVIDER_TRACKS.filter((t) => t.slug !== track.slug && isServiceCategory(t.slug));
 
   const howToSchema = {
@@ -212,8 +213,8 @@ export default async function TrackPage({
                 show your craft, capture the project scope in your client requirements, and quote each car after a
                 proper assessment. Phase the billing against milestones rather than naming a single number.
               </p>
-              <Link href="/services/apply/business" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold" style={{ color: "#1E6091" }}>
-                List as a directory business <ArrowRight className="w-4 h-4" />
+              <Link href={applyHref} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold" style={{ color: "#1E6091" }}>
+                List your services <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           ) : (

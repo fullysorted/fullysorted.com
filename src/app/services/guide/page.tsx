@@ -49,7 +49,7 @@ const PATHS = [
     title: "Book-me-now gigs",
     body:
       "Package a service at an upfront price — a paint-correction detail, a pre-purchase inspection, an enclosed transport lane. Buyers see the price, pick a tier, and book in a couple of clicks. Best for repeatable, well-scoped work you can quote without a conversation.",
-    cta: { href: "/services/apply/freelancer", label: "Offer a fixed-price gig" },
+    cta: { href: "/services/apply", label: "Get listed" },
   },
   {
     icon: Building2,
@@ -57,7 +57,7 @@ const PATHS = [
     title: "Get-a-quote listing",
     body:
       "List your shop or business in the specialist directory. Owners find you by marque, service, and location, then send an inquiry for a custom quote. Best for bespoke, high-value work — an engine rebuild, collection management, a complex multi-car move — that needs a conversation before a number.",
-    cta: { href: "/services/apply/business", label: "List your business" },
+    cta: { href: "/services/apply", label: "Get listed" },
   },
 ];
 

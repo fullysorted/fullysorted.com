@@ -63,6 +63,13 @@ export async function register() {
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS service_types JSONB DEFAULT '[]'::JSONB`;
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS min_job_value INTEGER`;
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS service_radius_miles INTEGER`;
+    // Where the work happens (2026-08-31). Replaces the business/freelancer
+    // split as the axis the directory is cut on. In schema.ts, therefore
+    // ORM-critical: without these every provider read fails, not just the new
+    // filter. Both default to "hasn't told us" so existing rows are unchanged
+    // and render exactly as they do today.
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS work_settings JSONB DEFAULT '[]'::JSONB`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS team_size VARCHAR(20)`;
   } catch (err) {
     console.error(
       '[Fully Sorted] CRITICAL: could not ensure ORM-critical service_providers columns. ' +

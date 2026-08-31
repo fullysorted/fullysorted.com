@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, schema } from '@/lib/db';
 import { eq } from 'drizzle-orm';
+import { normalizeWorkSettings, normalizeTeamSize } from '@/lib/work-settings';
 import { auth } from '@clerk/nextjs/server';
 
 // ─── GET /api/providers/me ──────────────────────────────
@@ -59,6 +60,7 @@ export async function PUT(request: NextRequest) {
       description, specialties, yearsInBusiness, priceRange,
       avatarUrl, headline, serviceArea, skills, hourlyRate,
       acceptingWork, marques, serviceTypes, minJobValue, serviceRadiusMiles,
+      workSettings, teamSize,
     } = body;
 
     // ── Work preferences ────────────────────────────────────────────────
@@ -85,6 +87,12 @@ export async function PUT(request: NextRequest) {
     const serviceTypesClean = strList(serviceTypes, 12, 40);
     const minJobClean = num(minJobValue, 1_000_000);
     const radiusClean = num(serviceRadiusMiles, 3_000);
+    // Where the work happens. undefined = field not sent, leave it alone.
+    // An empty array IS a meaningful answer ("I've cleared this"), so it must
+    // survive the spread below — hence the explicit undefined check, not `&&`.
+    const workSettingsClean =
+      workSettings === undefined ? undefined : normalizeWorkSettings(workSettings);
+    const teamSizeClean = teamSize === undefined ? undefined : normalizeTeamSize(teamSize);
 
     // Only allow editing certain fields (not email, status, verified, etc.)
     //
@@ -123,6 +131,8 @@ export async function PUT(request: NextRequest) {
         ...(serviceTypesClean !== undefined && { serviceTypes: serviceTypesClean }),
         ...(minJobClean !== undefined && { minJobValue: minJobClean }),
         ...(radiusClean !== undefined && { serviceRadiusMiles: radiusClean }),
+        ...(workSettingsClean !== undefined && { workSettings: workSettingsClean }),
+        ...(teamSizeClean !== undefined && { teamSize: teamSizeClean }),
         updatedAt: new Date(),
       })
       .where(eq(schema.serviceProviders.id, existing.id))

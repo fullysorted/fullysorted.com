@@ -4,6 +4,7 @@ import { getDb, schema } from '@/lib/db';
 import { eq, sql } from 'drizzle-orm';
 import { rateLimit } from '@/lib/rate-limit';
 import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
+import { normalizeWorkSettings, normalizeTeamSize } from '@/lib/work-settings';
 
 // Cap a free-text field to a sane length to prevent abuse / DB bloat.
 const cap = (v: unknown, n: number): string | null => {
@@ -38,7 +39,13 @@ export async function GET() {
         rating: schema.serviceProviders.rating,
         reviewCount: schema.serviceProviders.reviewCount,
         foundingProvider: schema.serviceProviders.foundingProvider,
-        providerType: schema.serviceProviders.providerType,
+        // provider_type is DEPRECATED and deliberately NOT selected: it used to
+        // split this directory into "shops" and "freelancers", an answer about
+        // legal form that was wrong on every live row. work_settings is what
+        // replaced it.
+        workSettings: schema.serviceProviders.workSettings,
+        teamSize: schema.serviceProviders.teamSize,
+        serviceRadiusMiles: schema.serviceProviders.serviceRadiusMiles,
         headline: schema.serviceProviders.headline,
         skills: schema.serviceProviders.skills,
         serviceArea: schema.serviceProviders.serviceArea,
@@ -74,7 +81,7 @@ export async function POST(request: NextRequest) {
       businessName, ownerName, category, location, email,
       phone, website, instagram, yearsInBusiness,
       specialties, description, idealClient, whyList, referredBy,
-      priceRange, avatarUrl,
+      priceRange, avatarUrl, workSettings, teamSize, serviceRadiusMiles,
     } = body;
 
     if (!businessName || !ownerName || !category || !location || !email || !description) {
@@ -129,6 +136,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Travel radius: optional, numeric, and bounded.
+    const radiusRaw =
+      serviceRadiusMiles === undefined || serviceRadiusMiles === null || serviceRadiusMiles === ''
+        ? null
+        : parseInt(String(serviceRadiusMiles).replace(/[^0-9]/g, ''), 10);
+    const radiusMiles =
+      radiusRaw !== null && Number.isFinite(radiusRaw) && radiusRaw > 0
+        ? Math.min(radiusRaw, 3_000)
+        : null;
+
     // Create slug from business name
     const slug = businessName
       .toLowerCase()
@@ -181,6 +198,14 @@ export async function POST(request: NextRequest) {
       yearsInBusiness: cap(yearsInBusiness, 50),
       priceRange: priceRange || '$$',
       avatarUrl: String(avatarUrl),
+      // Whitelisted, not trusted — these render as factual claims on a public
+      // business profile, so an unrecognised value is dropped, not stored.
+      workSettings: normalizeWorkSettings(workSettings),
+      teamSize: normalizeTeamSize(teamSize),
+      // Only meaningful alongside 'mobile', but harmless otherwise. Clamped:
+      // a provider typing 99999 into "how far do you travel" has slipped, not
+      // made a statement.
+      serviceRadiusMiles: radiusMiles,
       verified: false,
       foundingProvider: false, // TODO: check count for founding badge
       status: 'pending',

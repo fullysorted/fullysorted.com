@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 import { isTeam } from '@/lib/team-auth';
 import { rateLimit } from '@/lib/rate-limit';
+import { normalizeWorkSettings, normalizeTeamSize } from '@/lib/work-settings';
 import { isBlobImageUrl } from '@/lib/images';
 import { isServiceCategory } from '@/lib/service-categories';
 
@@ -461,10 +462,22 @@ export async function PATCH(request: NextRequest) {
     const minJob = num(body.minJobValue, 1_000_000);
     const radius = num(body.serviceRadiusMiles, 3_000);
     const accepting = typeof body.acceptingWork === 'boolean' ? body.acceptingWork : undefined;
+    // Where the work happens. A rep onboarding a shop by phone is usually the
+    // FIRST person to learn this ("do they come to you, or do you take the car
+    // to them?"), so the console has to be able to set it — otherwise every
+    // seeded row stays blank until the shop claims its listing, which most
+    // never do. undefined = not sent, leave alone. An empty array clears it.
+    const settings = Array.isArray(body.workSettings)
+      ? normalizeWorkSettings(body.workSettings)
+      : undefined;
+    const teamSizeVal =
+      body.teamSize === undefined ? undefined : normalizeTeamSize(body.teamSize);
 
     await sql`
       UPDATE service_providers
       SET accepting_work = COALESCE(${accepting ?? null}::boolean, accepting_work),
+          work_settings = CASE WHEN ${settings === undefined} THEN work_settings ELSE ${settings ? JSON.stringify(settings) : '[]'}::jsonb END,
+          team_size = CASE WHEN ${teamSizeVal === undefined} THEN team_size ELSE ${teamSizeVal ?? null} END,
           marques = COALESCE(${marques ? JSON.stringify(marques) : null}::jsonb, marques),
           service_types = COALESCE(${serviceTypes ? JSON.stringify(serviceTypes) : null}::jsonb, service_types),
           min_job_value = CASE WHEN ${minJob === undefined} THEN min_job_value ELSE ${minJob ?? null} END,

@@ -254,9 +254,32 @@ export const serviceProviders = pgTable('service_providers', {
   accountLinkedAt: timestamp('account_linked_at'),
   outreachRespondedAt: timestamp('outreach_responded_at'),
 
-  // ─── Provider type split (Phase 4: business vs freelancer) ──────
-  providerType: varchar('provider_type', { length: 20 }).default('business').notNull(), // business | freelancer
-  // Freelancer-specific
+  // ─── DEPRECATED 2026-08-31: provider_type ──────────────────────
+  // Was the first question on the application form ("business or
+  // freelancer?") and the axis the directory was split on. It asked about a
+  // provider's legal form, which is the one thing an owner choosing a
+  // specialist does not care about, and on the live directory it was wrong on
+  // every row: all three providers were 'business' (everyone signing up IS a
+  // business), including a one-man mobile appraiser filed under "premises you
+  // can visit", while the freelancer band sat empty.
+  //
+  // Replaced by work_settings + team_size below. The column STAYS — dropping a
+  // NOT NULL column that Drizzle names in every select is how you 404 every
+  // provider profile ([[fully_sorted_orm_column_outage]]) — but nothing reads
+  // it to make a decision and nothing writes anything but the default. Do not
+  // reintroduce it as a filter, a band, or a badge.
+  providerType: varchar('provider_type', { length: 20 }).default('business').notNull(),
+
+  // ─── Where the work happens (2026-08-31) ───────────────────────
+  // Multi-select: ['workshop'] | ['mobile'] | ['workshop','mobile'] | …
+  // See lib/work-settings.ts, which owns the keys and the copy. Empty means
+  // "hasn't told us" and renders nothing — never a guess.
+  workSettings: jsonb('work_settings').$type<string[]>().default([]),
+  /** 'solo' | 'small' | 'team'. A trust signal on the profile, never a filter. */
+  teamSize: varchar('team_size', { length: 20 }),
+
+  // Optional profile extras (were freelancer-only, now open to everyone —
+  // a two-person restoration shop has a headline as surely as a solo detailer).
   headline: varchar('headline', { length: 200 }),       // e.g. "Mobile detailer — air-cooled specialist"
   hourlyRate: integer('hourly_rate'),                    // optional, USD
   skills: jsonb('skills').$type<string[]>().default([]),
