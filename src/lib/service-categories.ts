@@ -16,6 +16,11 @@
  * category to file them under, a rotisserie house gets logged as "mechanical"
  * and its public page reads "is a mechanical specialist".
  *
+ * ORDER IS THE OWNERSHIP YEAR (set 2026-09-01): buy it (inspection), get it
+ * home (transport), keep it right (mechanical, body & paint, restoration),
+ * keep it clean (detailing), put it away (storage), sell it (photography).
+ * The homepage reads the list left to right as a story, so keep it that way.
+ *
  * Set `active: false` to retire a category. Labels and tints resolve for
  * inactive categories too, so existing provider rows still render.
  */
@@ -50,16 +55,6 @@ export interface ServiceCategory {
 /** Every category the platform has ever had a label for, active or not. */
 export const ALL_CATEGORIES: ServiceCategory[] = [
   {
-    key: 'photography',
-    label: 'Photography',
-    longLabel: 'Automotive Photography',
-    verb: 'Shoot it',
-    blurb: 'Photography that sells the car, or simply does it justice. Listing shoots, editorial, event coverage.',
-    askedFor: 'Photos worth the car',
-    active: true,
-    tint: '#B08D3F',
-  },
-  {
     key: 'inspection',
     label: 'Inspections',
     longLabel: 'Pre-Purchase Inspection',
@@ -68,26 +63,6 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     askedFor: 'A pre-purchase inspection',
     active: true,
     tint: '#4b8b2e',
-  },
-  {
-    key: 'detailing',
-    label: 'Detailing',
-    longLabel: 'Detailing & Paint Correction',
-    verb: 'Clean it',
-    blurb: 'Ceramic coating, paint correction, concours prep — by people who have done it on cars like yours.',
-    askedFor: 'Ceramic coating or a proper correction',
-    active: true,
-    tint: '#1E6091',
-  },
-  {
-    key: 'storage',
-    label: 'Storage',
-    longLabel: 'Climate-Controlled Storage',
-    verb: 'Store it',
-    blurb: 'Somewhere secure between drives. Climate control, battery tending, and someone who will actually start it.',
-    askedFor: 'Somewhere safe to keep it',
-    active: true,
-    tint: '#3D6B6B',
   },
   {
     key: 'transport',
@@ -104,12 +79,21 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     label: 'Mechanics',
     longLabel: 'Service & Mechanical',
     verb: 'Fix it',
-    blurb: 'Carbs, points, cam chains, cooling — mechanics who know your model, not just modern diagnostic ports.',
+    blurb: 'Carbs, points, cam chains, cooling. Mechanics who know your model, not just the diagnostic port.',
     askedFor: 'A marque specialist',
     active: true,
     tint: '#9a5a33',
   },
-
+  {
+    key: 'bodywork',
+    label: 'Body & Paint',
+    longLabel: 'Body Work & Paint',
+    verb: 'Straighten it',
+    blurb: 'Metal shaping, color matching, factory-correct finishes. The shops other shops recommend.',
+    askedFor: 'Body and paint',
+    active: true,
+    tint: '#5a6b74',
+  },
   {
     key: 'restoration',
     label: 'Restoration',
@@ -121,14 +105,34 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     tint: '#7a4a5a',
   },
   {
-    key: 'bodywork',
-    label: 'Body & Paint',
-    longLabel: 'Body Work & Paint',
-    verb: 'Straighten it',
-    blurb: 'Metal shaping, color matching, factory-correct finishes. The shops other shops recommend.',
-    askedFor: 'Body and paint',
+    key: 'detailing',
+    label: 'Detailing',
+    longLabel: 'Detailing & Paint Correction',
+    verb: 'Clean it',
+    blurb: 'Ceramic coating, paint correction and concours prep, by people who have done it on cars like yours.',
+    askedFor: 'Ceramic coating or a proper correction',
     active: true,
-    tint: '#5a6b74',
+    tint: '#1E6091',
+  },
+  {
+    key: 'storage',
+    label: 'Storage',
+    longLabel: 'Climate-Controlled Storage',
+    verb: 'Store it',
+    blurb: 'Somewhere secure between drives. Climate control, battery tending, and someone who will actually start it.',
+    askedFor: 'Somewhere safe to keep it',
+    active: true,
+    tint: '#3D6B6B',
+  },
+  {
+    key: 'photography',
+    label: 'Photography',
+    longLabel: 'Automotive Photography',
+    verb: 'Shoot it',
+    blurb: 'Photography that sells the car, or simply does it justice. Listing shoots, editorial, event coverage.',
+    askedFor: 'Photos worth the car',
+    active: true,
+    tint: '#B08D3F',
   },
 ];
 
@@ -187,7 +191,7 @@ export const REFERRAL_SERVICES: ReferralService[] = [
     longLabel: 'Collector Car Insurance',
     verb: 'Insure it',
     blurb:
-      'A standard policy pays what the car depreciated to. A collector policy pays the number you agreed up front — which is worth understanding before you need it.',
+      'A standard policy pays what the car depreciated to. A collector policy pays the number you agreed up front. Worth understanding before you need it.',
     askedFor: 'Agreed-value cover',
     href: '/insurance',
     tint: '#6B4E71',

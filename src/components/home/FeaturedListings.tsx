@@ -19,9 +19,9 @@ interface FeaturedListingsProps {
 const valueProps = [
   // "From", not a flat "$9.99" — there are three tiers and an early-adopter
   // free window, and the CTA band and /pricing both already say "from".
-  { stat: "From $9.99", label: "One-time listing fee, paid up front — first 100 cars free" },
-  { stat: "P2P", label: "Direct owner-to-owner — no dealers in the middle" },
-  { stat: "$0", label: "Buyer's premium — the price you see is the price you pay" },
+  { stat: "From $9.99", label: "One-time listing fee, paid up front. First 100 cars free." },
+  { stat: "P2P", label: "Direct owner-to-owner. No dealers in the middle." },
+  { stat: "$0", label: "Buyer's premium. The price you see is the price you pay." },
 ];
 
 export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
@@ -32,12 +32,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
   ].slice(0, 8);
 
   return (
-    <section className="relative py-14 sm:py-20" style={{ background: "#ffffff" }}>
-      {/* Top border */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, rgba(0,0,0,0.07) 50%, transparent)" }}
-      />
+    <section className="relative py-14 sm:py-20" style={{ background: "#F5EFE6", borderTop: "1px solid rgba(26,26,24,0.12)" }}>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
@@ -49,34 +44,28 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8"
         >
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-px" style={{ background: "#1E6091" }} />
-              <span
-                className="text-xs font-bold tracking-widest uppercase"
-                style={{ color: "#1E6091" }}
-              >
-                The Marketplace
-              </span>
-            </div>
+            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#6b6b5e" }}>
+              The Marketplace
+            </p>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
               When it&apos;s time to buy or sell
             </h2>
             <p className="mt-1 text-sm max-w-xl" style={{ color: "#6b6b5e" }}>
-              Once your car is sorted, sell it the direct way — owner to owner,
+              Once your car is sorted, sell it the direct way: owner to owner,
               simple flat listing fees, no auction clock and no buyer&apos;s premium.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <Link
               href="/browse"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-white transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white transition-colors hover:bg-[#174B72]"
               style={{ background: "#1E6091" }}
             >
               Browse Cars <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/sell"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold border transition-colors hover:bg-stone-50"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold border transition-colors hover:bg-stone-50"
               style={{ borderColor: "rgba(0,0,0,0.14)", color: "#1a1a18", background: "#ffffff" }}
             >
               Sell a Car
@@ -96,9 +85,9 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
             <div
               key={vp.stat + vp.label}
               className="flex items-center gap-4 px-5 py-4 rounded-xl"
-              style={{ background: "#faf9f7", border: "1px solid rgba(0,0,0,0.07)" }}
+              style={{ background: "#ffffff", border: "1px solid rgba(26,26,24,0.12)" }}
             >
-              <span className="price-display text-2xl" style={{ color: "#1E6091" }}>{vp.stat}</span>
+              <span className="price-display text-xl whitespace-nowrap" style={{ color: "#1E6091" }}>{vp.stat}</span>
               <span className="text-xs leading-snug" style={{ color: "#6b6b5e" }}>{vp.label}</span>
             </div>
           ))}
@@ -154,7 +143,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
               className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl hover:opacity-90 transition-opacity"
               style={{ background: "#1E6091" }}
             >
-              List Your Car — From $9.99
+              List your car from $9.99
             </Link>
           </div>
         )}

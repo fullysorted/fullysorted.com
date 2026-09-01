@@ -51,8 +51,8 @@ export function ValueGuidePreview() {
               Know what your car is worth
             </h2>
             <p className="leading-relaxed text-sm sm:text-base" style={{ color: "#6b6b5e" }}>
-              Our Value Guide aggregates publicly available sale results —
-              auction results and reported private sales — into a pricing verdict
+              Our Value Guide aggregates publicly available sale results,
+              auction results and reported private sales, into a pricing verdict
               backed by what cars actually sold for, not what sellers hoped for.
               Every figure comes from a dated sale, and the comp set behind it is
               shown alongside the number.

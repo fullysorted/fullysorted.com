@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 import { Send, Loader2, CheckCircle, Shield, Star, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { CATEGORY_OPTIONS } from '@/lib/service-categories';
-import { WORK_SETTINGS, TEAM_SIZES, type WorkSettingKey } from '@/lib/work-settings';
+import { type WorkSettingKey } from '@/lib/work-settings';
+import WorkSettingsFields from '@/components/provider/WorkSettingsFields';
 import PhotoUpload from '@/components/media/PhotoUpload';
 
 const CATEGORIES = CATEGORY_OPTIONS;
@@ -45,11 +46,6 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
   const [linkSent, setLinkSent] = useState('');
 
   const update = (field: string, value: string) => setForm((f) => ({ ...f, [field]: value }));
-
-  const toggleWork = (key: WorkSettingKey) => {
-    setWorkInvalid(false);
-    setWorkSettings((prev) => (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -249,65 +245,31 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
               Pick everything that applies. This is what owners filter the directory by, and it is the only
               thing they need to know before they get in touch.
             </p>
-            <div
-              className={`grid gap-3 sm:grid-cols-3 ${workInvalid ? 'ring-2 ring-red-400 rounded-xl p-1' : ''}`}
-            >
-              {WORK_SETTINGS.map((w) => {
-                const on = workSettings.includes(w.key);
-                return (
-                  <button
-                    type="button"
-                    key={w.key}
-                    onClick={() => toggleWork(w.key)}
-                    aria-pressed={on}
-                    className={`text-left rounded-xl border-2 p-4 transition-all ${
-                      on
-                        ? 'border-accent bg-accent-light'
-                        : 'border-border bg-white hover:border-accent/50'
-                    }`}
-                  >
-                    <span className="block text-sm font-semibold text-foreground mb-1">{w.providerLabel}</span>
-                    <span className="block text-xs text-text-secondary">{w.providerHint}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {workSettings.includes('mobile') && (
-              <div className="mt-5 max-w-xs">
-                <label className="block text-sm font-medium text-foreground mb-1.5">
-                  How far do you travel? (miles)
-                </label>
-                <input
-                  type="number"
-                  min={1}
-                  placeholder="75"
-                  value={form.serviceRadiusMiles}
-                  onChange={e => update('serviceRadiusMiles', e.target.value)}
-                  className={INPUT}
-                />
-                <p className="text-xs text-text-secondary mt-1.5">
-                  Optional. Shown as guidance on your profile, never used to hide you from anyone.
-                </p>
-              </div>
-            )}
-
-            <div className="mt-5 grid gap-5 sm:grid-cols-2">
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">How many of you are there?</label>
-                <select value={form.teamSize} onChange={e => update('teamSize', e.target.value)} className={INPUT}>
-                  <option value="">Rather not say</option>
-                  {TEAM_SIZES.map(t => <option key={t.key} value={t.key}>{t.providerLabel}</option>)}
-                </select>
-                <p className="text-xs text-text-secondary mt-1.5">
-                  Optional. Collectors like knowing whose hands are on the car — one person is an advantage here,
-                  not a disadvantage.
-                </p>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">Years doing this</label>
-                <input type="text" placeholder="18" value={form.yearsInBusiness} onChange={e => update('yearsInBusiness', e.target.value)} className={INPUT} />
-              </div>
+            <WorkSettingsFields
+              idPrefix="apply"
+              invalid={workInvalid}
+              value={{
+                workSettings,
+                teamSize: form.teamSize,
+                serviceRadiusMiles: form.serviceRadiusMiles,
+              }}
+              onChange={(next) => {
+                setWorkInvalid(false);
+                setWorkSettings(next.workSettings);
+                setForm((f) => ({
+                  ...f,
+                  teamSize: next.teamSize,
+                  serviceRadiusMiles: next.serviceRadiusMiles,
+                }));
+              }}
+            />
+            <p className="text-xs text-text-secondary mt-3">
+              Collectors like knowing whose hands are on the car — one person is an advantage here, not a
+              disadvantage.
+            </p>
+            <div className="mt-5 max-w-xs">
+              <label className="block text-sm font-medium text-foreground mb-1.5">Years doing this</label>
+              <input type="text" placeholder="18" value={form.yearsInBusiness} onChange={e => update('yearsInBusiness', e.target.value)} className={INPUT} />
             </div>
           </div>
 

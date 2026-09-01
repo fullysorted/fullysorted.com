@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, schema } from '@/lib/db';
 import { eq } from 'drizzle-orm';
-import { normalizeWorkSettings, normalizeTeamSize } from '@/lib/work-settings';
+import { normalizeWorkSettings, normalizeTeamSize, radiusForSettings } from '@/lib/work-settings';
 import { auth } from '@clerk/nextjs/server';
 
 // ─── GET /api/providers/me ──────────────────────────────
@@ -131,7 +131,15 @@ export async function PUT(request: NextRequest) {
         ...(serviceTypesClean !== undefined && { serviceTypes: serviceTypesClean }),
         ...(minJobClean !== undefined && { minJobValue: minJobClean }),
         ...(radiusClean !== undefined && { serviceRadiusMiles: radiusClean }),
-        ...(workSettingsClean !== undefined && { workSettings: workSettingsClean }),
+        ...(workSettingsClean !== undefined && {
+          workSettings: workSettingsClean,
+          // Settled together, never apart: saving "no longer mobile" has to
+          // take the radius with it or the profile keeps claiming a range.
+          serviceRadiusMiles: radiusForSettings(
+            workSettingsClean,
+            radiusClean !== undefined ? radiusClean : existing.serviceRadiusMiles,
+          ),
+        }),
         ...(teamSizeClean !== undefined && { teamSize: teamSizeClean }),
         updatedAt: new Date(),
       })

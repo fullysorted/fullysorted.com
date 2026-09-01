@@ -119,12 +119,12 @@ const SECTIONS: FaqSection[] = [
     items: [
       {
         q: "What does it cost to be listed?",
-        a: "Founding specialists list free while we are building out the directory. There are two ways to be on here: a directory profile, where owners find you and request quotes, and fixed-price gigs, where you package what you do at a set price and owners book it directly.",
+        a: "Founding specialists list free while we are building out the directory. You get a directory profile: owners find you by service, marque and location, read your reviews, and send you an enquiry for a quote. The enquiry goes to you and nobody else — we do not fan it out to your competitors.",
         link: { href: "/services/apply", label: "Get listed" },
       },
       {
         q: "Do I need to be a registered business?",
-        a: "No. There are two application routes — one for established shops and companies, one for independent specialists working on their own. Both sit in the same directory, in separate sections, so owners can tell which they are dealing with.",
+        a: "We do not ask. There is one application, and it has no box for your legal structure — a shop with six lifts and a one-person mobile operation fill in the same form and sit in the same directory. What we do ask is where the work happens: whether owners bring the car to you, you travel to the car, or the work is off-site. That is what owners search on, and it is the only thing they need to know before getting in touch. (Whether you should register as an LLC is a real question with real tax consequences — our provider business guide covers it — but it has nothing to do with getting listed.)",
       },
       {
         q: "How do I get paid?",

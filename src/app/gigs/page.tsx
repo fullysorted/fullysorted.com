@@ -67,8 +67,13 @@ export default async function GigsPage() {
             See exactly what you get and what it costs, before you book.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
+            {/* Was "Offer your own gig". The guided wizard that created gigs
+                was the freelancer application, retired 2026-08-31, and gig
+                checkout is off at GIG_PAYMENTS_ENABLED — so there is currently
+                no way for a provider to make one. Sending them to a form that
+                cannot do it is the seam this link used to be. */}
             <Link href="/services/apply" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold bg-white text-accent shadow-sm hover:-translate-y-0.5 hover:shadow-lg transition-all">
-              <Sparkles className="w-4 h-4" style={{ color: "#B08D3F" }} /> Offer your own gig <ArrowRight className="w-4 h-4" />
+              <Sparkles className="w-4 h-4" style={{ color: "#B08D3F" }} /> List your services <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/services/guide" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold border border-white/40 text-white hover:bg-white/10 transition-all">
               How to get booked
@@ -83,8 +88,10 @@ export default async function GigsPage() {
             <Sparkles className="w-8 h-8 mx-auto mb-4" style={{ color: "#cfcabb" }} />
             <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>The first gigs are on their way</p>
             <p className="text-sm max-w-md mx-auto" style={{ color: "#9a9a8a" }}>
-              Specialists are setting up their gigs now. Are you a pro?{" "}
-              <Link href="/services/apply" className="underline text-accent hover:text-accent-hover">List one in five minutes.</Link>
+              Fixed-price gigs are not open yet. In the meantime, owners find specialists in the{" "}
+              <Link href="/services" className="underline text-accent hover:text-accent-hover">services directory</Link>{" "}
+              and ask for a quote. Are you a pro?{" "}
+              <Link href="/services/apply" className="underline text-accent hover:text-accent-hover">Get listed in five minutes.</Link>
             </p>
           </div>
         ) : (

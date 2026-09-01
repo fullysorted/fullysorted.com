@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 import { isTeam } from '@/lib/team-auth';
 import { rateLimit } from '@/lib/rate-limit';
-import { normalizeWorkSettings, normalizeTeamSize } from '@/lib/work-settings';
+import { normalizeWorkSettings, normalizeTeamSize, radiusForSettings } from '@/lib/work-settings';
 import { isBlobImageUrl } from '@/lib/images';
 import { isServiceCategory } from '@/lib/service-categories';
 
@@ -50,6 +50,12 @@ async function ensureColumns(sql: Awaited<ReturnType<typeof getSql>>) {
   // it can record the name the rep typed and when — enough for Chris to ask.
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_last_edited_by VARCHAR(100)`;
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_last_edited_at TIMESTAMPTZ`;
+  // Where the work happens (2026-08-31). instrumentation.ts owns these as
+  // ORM-critical columns; repeated here because this console talks raw SQL
+  // and must not 500 on a box where the boot hook has not run yet.
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS work_settings JSONB DEFAULT '[]'::JSONB`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS team_size VARCHAR(20)`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS service_radius_miles INTEGER`;
 }
 
 // Shared with the two public apply wizards — see lib/images.ts for why a
@@ -82,7 +88,8 @@ export async function GET(request: NextRequest) {
              status, outreach_status, outreach_sent_at, outreach_responded_at,
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
-             outreach_last_edited_by, outreach_last_edited_at
+             outreach_last_edited_by, outreach_last_edited_at,
+             work_settings, team_size, service_radius_miles
       FROM service_providers
       WHERE outreach_status = ${stageFilter}
         AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
@@ -95,7 +102,8 @@ export async function GET(request: NextRequest) {
              status, outreach_status, outreach_sent_at, outreach_responded_at,
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
-             outreach_last_edited_by, outreach_last_edited_at
+             outreach_last_edited_by, outreach_last_edited_at,
+             work_settings, team_size, service_radius_miles
       FROM service_providers
       WHERE outreach_status = ${stageFilter}
       ORDER BY created_at DESC LIMIT ${limit}
@@ -107,7 +115,8 @@ export async function GET(request: NextRequest) {
              status, outreach_status, outreach_sent_at, outreach_responded_at,
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
-             outreach_last_edited_by, outreach_last_edited_at
+             outreach_last_edited_by, outreach_last_edited_at,
+             work_settings, team_size, service_radius_miles
       FROM service_providers
       WHERE outreach_status IS NOT NULL AND outreach_status <> 'declined'
         AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
@@ -120,7 +129,8 @@ export async function GET(request: NextRequest) {
              status, outreach_status, outreach_sent_at, outreach_responded_at,
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
-             outreach_last_edited_by, outreach_last_edited_at
+             outreach_last_edited_by, outreach_last_edited_at,
+             work_settings, team_size, service_radius_miles
       FROM service_providers
       WHERE outreach_status IS NOT NULL AND outreach_status <> 'declined'
       ORDER BY created_at DESC LIMIT ${limit}
@@ -169,6 +179,12 @@ export async function POST(request: NextRequest) {
   const website = str('website', 500) || null;
   const instagram = str('instagram', 100) || null;
   const specialties = str('specialties', 1000);
+  // Captured on the first call rather than left for a second visit. Normalised
+  // through lib/work-settings like every other write path, so a rep cannot
+  // create a row in a shape the directory does not understand.
+  const newWorkSettings = normalizeWorkSettings(body.workSettings);
+  const newTeamSize = normalizeTeamSize(body.teamSize);
+  const newRadius = radiusForSettings(newWorkSettings, body.serviceRadiusMiles);
   const yearsInBusiness = str('yearsInBusiness', 50) || null;
   const notes = str('notes', 2000) || null;
   const addedBy = str('addedBy', 100) || null;
@@ -280,11 +296,13 @@ export async function POST(request: NextRequest) {
     INSERT INTO service_providers
       (business_name, owner_name, slug, category, location, email, phone, website, instagram,
        description, specialties, years_in_business, price_range, verified, founding_provider,
-       status, application_id, outreach_status, claim_token, outreach_notes, outreach_added_by, avatar_url)
+       status, application_id, outreach_status, claim_token, outreach_notes, outreach_added_by, avatar_url,
+       work_settings, team_size, service_radius_miles)
     VALUES
       (${businessName}, ${ownerName}, ${slug}, ${category}, ${location}, ${email}, ${phone}, ${website}, ${instagram},
        ${description}, ${JSON.stringify(specialtiesArray)}::jsonb, ${yearsInBusiness}, '$$', false, true,
-       'pending', ${applicationId}, 'staged', ${claimToken}, ${notes}, ${addedBy}, ${avatarUrl || null})
+       'pending', ${applicationId}, 'staged', ${claimToken}, ${notes}, ${addedBy}, ${avatarUrl || null},
+       ${JSON.stringify(newWorkSettings)}::jsonb, ${newTeamSize}, ${newRadius})
     RETURNING id
   `;
   const providerId = provRows[0]?.id;
@@ -322,7 +340,7 @@ export async function POST(request: NextRequest) {
 // Body: { id, action: 'opt_out' | 'undo_opt_out' }
 //     | { id, ...any of: businessName, ownerName, email, phone, category, location,
 //              website, instagram, description, specialties, yearsInBusiness,
-//              avatarUrl, notes }
+//              avatarUrl, notes, workSettings, teamSize, serviceRadiusMiles }
 // Still admin-only: status, verified, founding_provider, price_range, delete.
 export async function PATCH(request: NextRequest) {
   if (!isTeam(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -346,7 +364,8 @@ export async function PATCH(request: NextRequest) {
     SELECT id, business_name, owner_name, email, phone, category, location, website,
            instagram, description, specialties, years_in_business, avatar_url,
            outreach_notes, application_id, outreach_status, status, clerk_user_id, slug,
-           outreach_prev_status, outreach_prev_public_status
+           outreach_prev_status, outreach_prev_public_status,
+           work_settings, team_size, service_radius_miles
     FROM service_providers WHERE id = ${id} LIMIT 1
   `;
   const provider = rows[0];
@@ -512,6 +531,10 @@ export async function PATCH(request: NextRequest) {
   const EDITABLE_KEYS = [
     'businessName', 'ownerName', 'email', 'phone', 'category', 'location',
     'website', 'instagram', 'description', 'specialties', 'yearsInBusiness', 'avatarUrl',
+    // Where the work happens. Listed here on purpose: a rep must not be able to
+    // rewrite this on a shop that has linked its own login, for exactly the
+    // reason the other fields are protected.
+    'workSettings', 'teamSize', 'serviceRadiusMiles',
   ];
   const touched = EDITABLE_KEYS.filter((k) => body[k] !== undefined);
 
@@ -576,6 +599,16 @@ export async function PATCH(request: NextRequest) {
   const instagramNew = optional('instagram', 100);
   const yearsNew = optional('yearsInBusiness', 50);
   const editedBy = typeof body.editedBy === 'string' ? body.editedBy.trim().slice(0, 100) : null;
+
+  // Where the work happens. undefined = not sent, leave it alone. An empty
+  // array is a real answer ("I got this wrong, clear it"), so it is NOT folded
+  // into undefined. Whitelisted by lib/work-settings — the same normaliser the
+  // public form and the provider dashboard run through, so the three surfaces
+  // cannot store different shapes.
+  const workSettingsNew =
+    body.workSettings === undefined ? undefined : normalizeWorkSettings(body.workSettings);
+  const teamSizeNew = body.teamSize === undefined ? undefined : normalizeTeamSize(body.teamSize);
+  const radiusNew: unknown = body.serviceRadiusMiles;
 
   if (tooLong.length > 0) {
     return NextResponse.json({ error: `Too long: ${tooLong.join(', ')}.` }, { status: 400 });
@@ -738,6 +771,13 @@ export async function PATCH(request: NextRequest) {
     avatarUrl: pick(avatarNew, (provider.avatar_url as string | null) ?? null),
     notes: pick(notes, (provider.outreach_notes as string | null) ?? null),
     specialties: specialtiesValue ?? ((provider.specialties as string[] | null) ?? []),
+    workSettings:
+      workSettingsNew ?? normalizeWorkSettings(provider.work_settings),
+    teamSize: teamSizeNew !== undefined ? teamSizeNew : normalizeTeamSize(provider.team_size),
+    serviceRadiusMiles: radiusForSettings(
+      workSettingsNew ?? normalizeWorkSettings(provider.work_settings),
+      radiusNew !== undefined ? radiusNew : ((provider.service_radius_miles as number | null) ?? null),
+    ),
   };
 
   // Who last touched this row. There is one shared team login, so this is the
@@ -762,6 +802,9 @@ export async function PATCH(request: NextRequest) {
       description = ${next.description},
       years_in_business = ${next.yearsInBusiness},
       specialties = ${JSON.stringify(next.specialties)}::jsonb,
+      work_settings = ${JSON.stringify(next.workSettings)}::jsonb,
+      team_size = ${next.teamSize},
+      service_radius_miles = ${next.serviceRadiusMiles},
       avatar_url = ${next.avatarUrl},
       outreach_notes = ${next.notes},
       outreach_last_edited_by = CASE WHEN ${touched.length > 0} THEN ${stampBy} ELSE outreach_last_edited_by END,
@@ -770,7 +813,8 @@ export async function PATCH(request: NextRequest) {
     WHERE id = ${id}
     RETURNING id, business_name, owner_name, email, phone, category, location, website,
               instagram, description, specialties, years_in_business, avatar_url, outreach_notes,
-              outreach_last_edited_by, outreach_last_edited_at
+              outreach_last_edited_by, outreach_last_edited_at,
+              work_settings, team_size, service_radius_miles
   `;
 
   // Keep the originating application in step, so the admin Applications view

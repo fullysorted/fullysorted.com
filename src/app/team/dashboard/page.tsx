@@ -9,6 +9,8 @@ import {
   StickyNote, Pencil, ImageIcon, Star, Quote,
 } from "lucide-react";
 import { CATEGORY_OPTIONS } from '@/lib/service-categories';
+import WorkSettingsFields from "@/components/provider/WorkSettingsFields";
+import { normalizeWorkSettings, normalizeTeamSize, type WorkSettingKey } from "@/lib/work-settings";
 import PhotoUpload from '@/components/media/PhotoUpload';
 import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 
@@ -40,6 +42,9 @@ interface PipelineProvider {
   owner_linked: boolean;
   outreach_last_edited_by: string | null;
   outreach_last_edited_at: string | null;
+  work_settings: string[] | null;
+  team_size: string | null;
+  service_radius_miles: number | null;
 }
 
 const CATEGORIES = CATEGORY_OPTIONS;
@@ -87,6 +92,11 @@ export default function TeamDashboard() {
   const [search, setSearch] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ ...EMPTY_FORM });
+  // Same control as the edit panel, on the ADD form — a rep learns this on the
+  // first call, and leaving it for a second visit is how rows stay blank.
+  const [addWork, setAddWork] = useState<{ workSettings: WorkSettingKey[]; teamSize: string; serviceRadiusMiles: string }>(
+    { workSettings: [], teamSize: "", serviceRadiusMiles: "" },
+  );
   const [addedBy, setAddedBy] = useState("");
   const [submitting, setSubmitting] = useState<"invite" | "only" | null>(null);
   const [formError, setFormError] = useState("");
@@ -104,6 +114,14 @@ export default function TeamDashboard() {
     description: "", avatarUrl: "",
   };
   const [edit, setEdit] = useState({ ...EMPTY_EDIT });
+  // Kept OUT of `edit`, which is a flat string map that saveDetails diffs with
+  // .trim(). Work settings are an array and an enum, so they get their own
+  // state and their own explicit diff below rather than being coerced into a
+  // shape that would silently stringify.
+  const EMPTY_WORK: { workSettings: WorkSettingKey[]; teamSize: string; serviceRadiusMiles: string } = {
+    workSettings: [], teamSize: "", serviceRadiusMiles: "",
+  };
+  const [editWork, setEditWork] = useState({ ...EMPTY_WORK });
   const [photoInvalid, setPhotoInvalid] = useState(false);
   const [rowMsg, setRowMsg] = useState<{ id: number; msg: string; err?: boolean } | null>(null);
   // Reviews panel — one open at a time, same as the rest of the row UI.
@@ -182,7 +200,16 @@ export default function TeamDashboard() {
       const res = await fetch("/api/team/providers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, addedBy, sendInvite }),
+        body: JSON.stringify({
+          ...form,
+          addedBy,
+          sendInvite,
+          workSettings: addWork.workSettings,
+          teamSize: addWork.teamSize || null,
+          serviceRadiusMiles: addWork.workSettings.includes("mobile")
+            ? addWork.serviceRadiusMiles
+            : null,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong");
@@ -194,6 +221,7 @@ export default function TeamDashboard() {
           : `${form.businessName} added. Send the invite when they're ready.`,
       );
       setForm({ ...EMPTY_FORM });
+      setAddWork({ workSettings: [], teamSize: "", serviceRadiusMiles: "" });
       load();
     } catch (e) {
       setFormError(e instanceof Error ? e.message : "Something went wrong");
@@ -291,6 +319,24 @@ export default function TeamDashboard() {
     }
   }
 
+  // Seed the work-settings panel from a row. Used both when the panel opens
+  // and after a save, so the "has anything changed" check below is always
+  // comparing against what the server actually stored.
+  function workFromRow(row: {
+    work_settings?: string[] | null;
+    team_size?: string | null;
+    service_radius_miles?: number | null;
+  }) {
+    return {
+      workSettings: normalizeWorkSettings(row.work_settings),
+      teamSize: normalizeTeamSize(row.team_size) ?? "",
+      serviceRadiusMiles:
+        row.service_radius_miles === null || row.service_radius_miles === undefined
+          ? ""
+          : String(row.service_radius_miles),
+    };
+  }
+
   // Edit the provider's details. PATCH only carries fields that actually
   // changed, so an untouched field is never overwritten — and an optional
   // field cleared to empty is sent, because clearing a wrong website is a
@@ -325,6 +371,22 @@ export default function TeamDashboard() {
       // survives a round trip through this form.
       payload[k] = k === "specialties" ? now.split("\n").map((x) => x.trim()).filter(Boolean) : now;
     }
+    // Work settings, diffed on their own because they are not strings. Sent
+    // only when something actually moved, so an untouched panel never stamps
+    // the row as edited.
+    const wasWork = workFromRow(p);
+    const mobile = editWork.workSettings.includes("mobile");
+    const nowRadius = mobile ? editWork.serviceRadiusMiles.trim() : "";
+    if (
+      wasWork.workSettings.join(",") !== editWork.workSettings.join(",") ||
+      wasWork.teamSize !== editWork.teamSize ||
+      wasWork.serviceRadiusMiles !== nowRadius
+    ) {
+      payload.workSettings = editWork.workSettings;
+      payload.teamSize = editWork.teamSize || null;
+      payload.serviceRadiusMiles = nowRadius === "" ? null : nowRadius;
+    }
+
     if (Object.keys(payload).length === 2) {
       setRowMsg({ id: p.id, msg: "Nothing changed." });
       return;
@@ -358,6 +420,7 @@ export default function TeamDashboard() {
           description: saved.description || "",
           avatarUrl: saved.avatar_url || "",
         });
+        setEditWork(workFromRow(saved));
       }
       setRowMsg({ id: p.id, msg: "Details updated" });
       load();
@@ -623,6 +686,27 @@ export default function TeamDashboard() {
                   <input className={inputCls} value={addedBy} onChange={(e) => setAddedBy(e.target.value)} placeholder="e.g. Dave" />
                 </div>
                 <div className="sm:col-span-2 lg:col-span-3">
+                  <label className="text-xs font-medium text-text-secondary block mb-1">
+                    Where the work happens
+                  </label>
+                  <p className="text-[11px] text-text-tertiary mb-2">
+                    Ask them: <em>&ldquo;do people bring the car to you, or do you go to the
+                    car?&rdquo;</em> Tick everything they say. Owners filter the directory on this.
+                  </p>
+                  <WorkSettingsFields
+                    compact
+                    idPrefix="team-add"
+                    value={addWork}
+                    onChange={(next) =>
+                      setAddWork({
+                        workSettings: next.workSettings,
+                        teamSize: next.teamSize,
+                        serviceRadiusMiles: next.serviceRadiusMiles,
+                      })
+                    }
+                  />
+                </div>
+                <div className="sm:col-span-2 lg:col-span-3">
                   <label className="text-xs font-medium text-text-secondary block mb-1">Call notes (internal only)</label>
                   <textarea
                     className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
@@ -798,6 +882,7 @@ export default function TeamDashboard() {
                               description: p.description || "",
                               avatarUrl: p.avatar_url || "",
                             });
+                            setEditWork(workFromRow(p));
                             setRowMsg(null);
                           }}
                           className="inline-flex items-center gap-1.5 px-2.5 h-8 text-xs font-medium rounded-lg border border-border text-text-secondary bg-white hover:bg-gray-50"
@@ -955,6 +1040,40 @@ export default function TeamDashboard() {
                               />
                             </div>
                           </div>
+
+                          {/* Where the work happens — the one thing the
+                              directory filters on, and the thing a rep on a
+                              call is usually the FIRST person to learn. Every
+                              row seeded before 2026-08-31 has it blank. */}
+                          <div className="mb-3 rounded-xl border border-border bg-gray-50/60 p-3">
+                            <p className="text-[11px] font-semibold text-text-secondary mb-1">
+                              Where the work happens
+                              {editWork.workSettings.length === 0 && (
+                                <span className="ml-2 font-medium" style={{ color: "#8A6E31" }}>
+                                  · not answered yet
+                                </span>
+                              )}
+                            </p>
+                            <p className="text-[11px] text-text-tertiary mb-3 leading-relaxed">
+                              Ask them: <em>&ldquo;do people bring the car to you, or do you go to
+                              the car?&rdquo;</em> Tick everything they say — plenty of shops are
+                              both. Owners filter the directory on this, and a blank answer just
+                              means their card says nothing about how they work.
+                            </p>
+                            <WorkSettingsFields
+                              compact
+                              idPrefix={`team-${p.id}`}
+                              value={editWork}
+                              onChange={(next) =>
+                                setEditWork({
+                                  workSettings: next.workSettings,
+                                  teamSize: next.teamSize,
+                                  serviceRadiusMiles: next.serviceRadiusMiles,
+                                })
+                              }
+                            />
+                          </div>
+
                           <div className="mb-3">
                             <label className="text-[11px] font-medium text-text-tertiary block mb-1">
                               Description (this is the paragraph on their public profile)

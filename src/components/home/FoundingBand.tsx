@@ -22,8 +22,8 @@ export function FoundingBand() {
           Founding members
         </span>
         <span className="text-sm" style={{ color: "#C9D4E2" }}>
-          We&apos;re signing our first specialists now — photographers,
-          inspectors, detailers, storage, transport and mechanics.
+          We&apos;re signing our first specialists now: inspectors, transporters,
+          mechanics, body shops, restorers, detailers, storage and photographers.
         </span>
         <Link
           href="/services/apply"

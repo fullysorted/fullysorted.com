@@ -4,7 +4,7 @@ import { getDb, schema } from '@/lib/db';
 import { eq, sql } from 'drizzle-orm';
 import { rateLimit } from '@/lib/rate-limit';
 import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
-import { normalizeWorkSettings, normalizeTeamSize } from '@/lib/work-settings';
+import { normalizeWorkSettings, normalizeTeamSize, radiusForSettings } from '@/lib/work-settings';
 
 // Cap a free-text field to a sane length to prevent abuse / DB bloat.
 const cap = (v: unknown, n: number): string | null => {
@@ -136,15 +136,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Travel radius: optional, numeric, and bounded.
-    const radiusRaw =
-      serviceRadiusMiles === undefined || serviceRadiusMiles === null || serviceRadiusMiles === ''
-        ? null
-        : parseInt(String(serviceRadiusMiles).replace(/[^0-9]/g, ''), 10);
-    const radiusMiles =
-      radiusRaw !== null && Number.isFinite(radiusRaw) && radiusRaw > 0
-        ? Math.min(radiusRaw, 3_000)
-        : null;
+    // One rule for this, in lib/work-settings — a radius is only ever stored
+    // on a row that says it travels.
+    const radiusMiles = radiusForSettings(workSettings, serviceRadiusMiles);
 
     // Create slug from business name
     const slug = businessName
@@ -202,9 +196,6 @@ export async function POST(request: NextRequest) {
       // business profile, so an unrecognised value is dropped, not stored.
       workSettings: normalizeWorkSettings(workSettings),
       teamSize: normalizeTeamSize(teamSize),
-      // Only meaningful alongside 'mobile', but harmless otherwise. Clamped:
-      // a provider typing 99999 into "how far do you travel" has slipped, not
-      // made a statement.
       serviceRadiusMiles: radiusMiles,
       verified: false,
       foundingProvider: false, // TODO: check count for founding badge

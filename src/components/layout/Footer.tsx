@@ -82,8 +82,8 @@ export function Footer() {
               />
             </div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(230,238,247,0.55)" }}>
-              The collector car services network, marketplace, and research hub —
-              built by enthusiasts, for enthusiasts.
+              The collector car services network, marketplace and research hub.
+              Built by enthusiasts, for enthusiasts.
             </p>
             {/* Tricolor motif */}
             <div className="flex items-center gap-1.5 mt-4" aria-hidden>

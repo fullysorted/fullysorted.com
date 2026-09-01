@@ -1,145 +1,95 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import { Search, ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, BadgeCheck, Wrench } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { Search, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { SERVICE_CATEGORIES } from "@/lib/service-categories";
+import { SERVICE_CATEGORIES, type ServiceCategoryKey } from "@/lib/service-categories";
 
-/* ─────────────────────────────────────────────────────────────
+/*
    Services-first hero.
    Left: "What does your car need?" search → /services
-   Right: rotating service showcase (no DB dependency — never empty)
-   ───────────────────────────────────────────────────────────── */
+   Right: the ownership year, one service at a time (no DB dependency, never empty)
 
-const slideVariants = {
-  enter: (d: number) => ({ x: d > 0 ? 56 : -56, opacity: 0, scale: 0.97 }),
-  center: { x: 0, opacity: 1, scale: 1 },
-  exit: (d: number) => ({ x: d > 0 ? -56 : 56, opacity: 0, scale: 0.97 }),
-};
+   Restyled 2026-09-01. The previous version stacked an animated gradient mesh,
+   film grain, speed lines, a three-square badge, a squiggle under the headline,
+   per-slide icon tiles and alternating blue/gold accents. Individually fine;
+   together they read as a template. This version keeps the structure and the
+   Heritage Blue tokens and removes the decoration. One accent, one typeface
+   pairing, real photographs.
+*/
 
-interface ShowcaseService {
-  key: string;
-  title: string;
-  tagline: string;
-  desc: string;
-  accent: string;
-  photo: string;
-  href: string;
-  icon: React.ReactNode;
-}
+const INK = "#1a1a18";
+const MUTED = "#6b6b5e";
+const BLUE = "#1E6091";
+const GOLD = "#B08D3F";
+const RULE = "rgba(26,26,24,0.12)";
 
-const showcaseServices: ShowcaseService[] = [
-  {
-    key: "inspection",
-    title: "Pre-Purchase Inspection",
+/**
+ * Showcase copy per category. Photos live in public/images/services (credits
+ * in CREDITS.md there) and are named by category key, so adding a category to
+ * lib/service-categories and dropping in a photo is the whole job. Order comes
+ * from SERVICE_CATEGORIES, which is the ownership year.
+ */
+const SHOWCASE: Record<ServiceCategoryKey, { tagline: string; desc: string }> = {
+  inspection: {
     tagline: "Know before the wire goes",
-    desc: "A trusted set of eyes on the car before you commit. Compression numbers, panel gaps, the stuff sellers don't photograph.",
-    accent: "#1E6091",
-    photo: "/images/archive/porsche-904-engine-bay.jpg",
-    href: "/services?type=inspection",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
-        <circle cx="21" cy="21" r="12" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M30 30l10 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M16 21l4 4 7-7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    desc: "A trusted set of eyes on the car before you commit. Compression numbers, panel gaps, the things sellers do not photograph.",
   },
-  {
-    key: "detailing",
-    title: "Detailing & Paint Correction",
-    tagline: "Show-ready, garage-proud",
-    desc: "Ceramic coating, full correction, concours prep — specialists who treat your car like their own.",
-    accent: "#1E6091",
-    photo: "/images/archive/porsche-911-rs.jpg",
-    href: "/services?type=detailing",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
-        <ellipse cx="24" cy="32" rx="18" ry="6" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M6 32V20c0-4 8-8 18-8s18 4 18 8v12" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M31 8l1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2 1.2-3Z" fill="currentColor" fillOpacity="0.9" />
-      </svg>
-    ),
-  },
-  {
-    key: "photography",
-    title: "Automotive Photography",
-    tagline: "Twelve pictures decide the price",
-    desc: "Listing shoots, editorial and event work — photographers who wait for the light and show the flaws honestly.",
-    accent: "#B08D3F",
-    photo: "/images/archive/porsche-906-gallery.jpg",
-    href: "/services?type=photography",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
-        <rect x="4" y="14" width="40" height="26" rx="4" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M17 14l3-5h8l3 5" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-        <circle cx="24" cy="27" r="8" stroke="currentColor" strokeWidth="2.5" />
-        <circle cx="24" cy="27" r="3" fill="currentColor" fillOpacity="0.9" />
-      </svg>
-    ),
-  },
-  {
-    key: "transport",
-    title: "Enclosed Transport",
+  transport: {
     tagline: "Your car rides inside",
-    desc: "Door-to-door enclosed hauling, nationwide. Liftgates, soft straps, and drivers who know what they're carrying.",
-    accent: "#B08D3F",
-    photo: "/images/archive/mc12-transporter.jpg",
-    href: "/services?type=transport",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
-        <rect x="4" y="14" width="28" height="20" rx="3" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M32 20h8l4 6v8h-12" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-        <circle cx="13" cy="36" r="4" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="2.5" />
-        <circle cx="37" cy="36" r="4" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="2.5" />
-      </svg>
-    ),
+    desc: "Door-to-door enclosed hauling, nationwide. Liftgates, soft straps, and drivers who know what they are carrying.",
   },
-  {
-    key: "storage",
-    title: "Climate-Controlled Storage",
+  mechanical: {
+    tagline: "Wrenches you can trust",
+    desc: "Carbs, points, cam chains, cooling systems. Mechanics who know your model, not just the diagnostic port.",
+  },
+  bodywork: {
+    tagline: "Straight panels, correct paint",
+    desc: "Metal shaping, color matching and factory-correct finishes, from the shops other shops recommend.",
+  },
+  restoration: {
+    tagline: "Bare metal to concours lawn",
+    desc: "Sympathetic refresh through to a full rotisserie rebuild, with the photos and invoices to prove it.",
+  },
+  detailing: {
+    tagline: "Show-ready, garage-proud",
+    desc: "Ceramic coating, full correction and concours prep, by specialists who treat your car like their own.",
+  },
+  storage: {
     tagline: "A safe home between drives",
     desc: "Climate, security, battery tending and someone who will actually start it. Storing a car well is active, not passive.",
-    accent: "#1E6091",
-    photo: "/images/archive/porsche-904-workshop.jpg",
-    href: "/services?type=storage",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
-        <path d="M6 20 24 8l18 12v20H6V20Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-        <rect x="15" y="26" width="18" height="14" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-        <path d="M15 32h18M15 36h18" stroke="currentColor" strokeWidth="2" strokeOpacity="0.6" />
-      </svg>
-    ),
   },
-  {
-    key: "mechanical",
-    title: "Service & Mechanical",
-    tagline: "Wrenches you can trust",
-    desc: "Carbs, points, cam chains, cooling systems — mechanics who know your model, not just modern diagnostics ports.",
-    accent: "#1E6091",
-    photo: "/images/archive/race-engine-stand.jpg",
-    href: "/services?type=mechanical",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
-        <path d="M30 8a10 10 0 0 0-9.6 12.8L8 33.2a4 4 0 1 0 5.7 5.7l12.4-12.4A10 10 0 0 0 40 17l-6 6-5-1-1-5 6-6a10 10 0 0 0-4-3Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-      </svg>
-    ),
+  photography: {
+    tagline: "Twelve pictures decide the price",
+    desc: "Listing shoots, editorial and event work. Photographers who wait for the light and show the flaws honestly.",
   },
-];
+};
+
+const slides = SERVICE_CATEGORIES.map((c) => ({
+  key: c.key,
+  title: c.longLabel,
+  verb: c.verb,
+  photo: `/images/services/${c.key}.jpg`,
+  href: `/services?type=${c.key}`,
+  ...SHOWCASE[c.key],
+}));
+
+const slideVariants = {
+  enter: (d: number) => ({ x: d > 0 ? 40 : -40, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (d: number) => ({ x: d > 0 ? -40 : 40, opacity: 0 }),
+};
 
 function ServiceShowcase() {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
   const [paused, setPaused] = useState(false);
 
-  const go = useCallback(
-    (next: number, d: number) => {
-      setDir(d);
-      setIndex((next + showcaseServices.length) % showcaseServices.length);
-    },
-    []
-  );
+  const go = useCallback((next: number, d: number) => {
+    setDir(d);
+    setIndex((next + slides.length) % slides.length);
+  }, []);
 
   // WCAG 2.2.2: auto-advancing content must be pausable, and must not move at
   // all for anyone who has asked the OS for reduced motion.
@@ -147,11 +97,13 @@ function ServiceShowcase() {
     if (paused) return;
     if (typeof window !== "undefined" &&
         window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => go(index + 1, 1), 4200);
+    const id = setInterval(() => go(index + 1, 1), 4600);
     return () => clearInterval(id);
   }, [index, paused, go]);
 
-  const s = showcaseServices[index];
+  const s = slides[index];
+  const n = String(index + 1).padStart(2, "0");
+  const total = String(slides.length).padStart(2, "0");
 
   return (
     <div
@@ -162,24 +114,23 @@ function ServiceShowcase() {
       onBlurCapture={() => setPaused(false)}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Featured services"
+      aria-label="The ownership year, one service at a time"
     >
-      <div className="flex items-center gap-2 mb-3">
-        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#6ab04c" }} />
-        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#9a9a8a" }}>
-          The Services Hub
+      <div className="flex items-baseline justify-between mb-3">
+        <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: MUTED }}>
+          The ownership year
         </span>
-        <span className="text-xs ml-auto" style={{ color: "#b0b0a0" }}>
-          {index + 1} / {showcaseServices.length}
+        <span className="price-display text-xs tabular-nums" style={{ color: MUTED }}>
+          {n} / {total}
         </span>
       </div>
 
       <div
-        className="shine rounded-2xl overflow-hidden border shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)]"
-        style={{ borderColor: "rgba(0,0,0,0.10)", background: "#ffffff" }}
+        className="overflow-hidden rounded-xl bg-white"
+        style={{ border: `1px solid ${RULE}`, boxShadow: "0 18px 40px -24px rgba(26,26,24,0.35)" }}
       >
-        {/* Visual header */}
-        <div className="relative h-44 sm:h-52 overflow-hidden">
+        {/* Photograph */}
+        <div className="relative aspect-[16/10] overflow-hidden" style={{ background: "#0F2032" }}>
           <AnimatePresence mode="wait" custom={dir}>
             <motion.div
               key={s.key}
@@ -188,47 +139,40 @@ function ServiceShowcase() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.36, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="absolute inset-0"
-              style={{ background: "#1E6091" }}
             >
-              {/* Photographic header */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={s.photo}
                 alt=""
-                width={640}
-                height={416}
+                width={1280}
+                height={832}
                 fetchPriority={index === 0 ? "high" : "auto"}
                 decoding="async"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              {/* Legibility overlay — racing-green wash */}
               <div
                 className="absolute inset-0 pointer-events-none"
-                style={{ background: "linear-gradient(to top, rgba(15,32,50,0.72) 0%, rgba(15,32,50,0.22) 55%, rgba(15,32,50,0.08) 100%)" }}
+                style={{ background: "linear-gradient(to top, rgba(15,32,50,0.78) 0%, rgba(15,32,50,0.15) 45%, rgba(15,32,50,0) 70%)" }}
               />
-              <div
-                className="absolute bottom-3 right-3 w-12 h-12 rounded-xl flex items-center justify-center shadow-lg"
-                style={{ background: "rgba(255,255,255,0.94)", color: s.accent }}
-              >
-                {s.icon}
-              </div>
-              <div
-                className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-xs font-bold shadow-md"
-                style={{ background: s.accent, color: "#fff" }}
-              >
-                {s.tagline}
+              <div className="absolute left-5 right-5 bottom-4">
+                <div className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "rgba(255,255,255,0.72)" }}>
+                  {n} · {s.verb}
+                </div>
+                <div className="font-display text-xl sm:text-2xl font-semibold leading-tight text-white mt-1">
+                  {s.title}
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Details */}
-        <div className="p-4 sm:p-5">
+        {/* Copy */}
+        <div className="px-5 pt-4 pb-4 sm:px-6">
           <AnimatePresence mode="wait" custom={dir}>
             <motion.div
-              key={s.key + "-info"}
+              key={s.key + "-copy"}
               custom={dir}
               variants={slideVariants}
               initial="enter"
@@ -236,286 +180,193 @@ function ServiceShowcase() {
               exit="exit"
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.04 }}
             >
-              <h3 className="font-bold text-lg leading-snug" style={{ color: "#1a1a18" }}>{s.title}</h3>
-              <p className="text-xs mt-2 leading-relaxed" style={{ color: "#6b6b5e" }}>
-                {s.desc}
-              </p>
+              <p className="font-display text-base italic" style={{ color: INK }}>{s.tagline}</p>
+              <p className="text-sm mt-1.5 leading-relaxed" style={{ color: MUTED }}>{s.desc}</p>
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex items-center justify-between mt-4 pt-3.5" style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>
+          <div className="flex items-center justify-between mt-4 pt-4" style={{ borderTop: `1px solid ${RULE}` }}>
             <Link
               href={s.href}
-              className="inline-flex items-center gap-1.5 text-xs font-bold transition-colors hover:opacity-70"
-              style={{ color: s.accent }}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
+              style={{ color: BLUE }}
             >
-              Find a pro <ArrowRight className="w-3 h-3" />
+              Find a specialist <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <div className="flex items-center gap-1.5">
               <button
+                type="button"
                 onClick={() => go(index - 1, -1)}
                 aria-label="Previous service"
-                className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-stone-100"
-                style={{ border: "1px solid rgba(0,0,0,0.12)" }}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-stone-100"
+                style={{ border: `1px solid ${RULE}`, color: INK }}
               >
-                <ChevronLeft className="w-4 h-4" style={{ color: "#9a9a8a" }} />
+                <ChevronLeft className="w-4 h-4" />
               </button>
               <button
+                type="button"
                 onClick={() => go(index + 1, 1)}
                 aria-label="Next service"
-                className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-stone-100"
-                style={{ border: "1px solid rgba(0,0,0,0.12)" }}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-stone-100"
+                style={{ border: `1px solid ${RULE}`, color: INK }}
               >
-                <ChevronRight className="w-4 h-4" style={{ color: "#9a9a8a" }} />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Progress dots */}
-      <div className="flex items-center justify-center gap-1.5 mt-3">
-        {showcaseServices.map((svc, i) => (
+      {/* Segmented progress: one bar per service, the current one filled */}
+      <div className="grid gap-1 mt-3" style={{ gridTemplateColumns: `repeat(${slides.length}, minmax(0, 1fr))` }}>
+        {slides.map((sl, i) => (
           <button
-            key={svc.key}
+            key={sl.key}
+            type="button"
             onClick={() => go(i, i > index ? 1 : -1)}
-            aria-label={`Show ${svc.title}`}
+            aria-label={`Show ${sl.title}`}
             aria-current={i === index ? "true" : undefined}
-            className="p-1"
+            className="py-1.5"
           >
             <span
-              className="block rounded-full transition-all duration-300"
-              style={{
-                width: i === index ? "18px" : "5px",
-                height: "5px",
-                background: i === index ? "#1E6091" : "rgba(0,0,0,0.15)",
-              }}
+              className="block h-[3px] rounded-full transition-colors duration-300"
+              style={{ background: i === index ? BLUE : "rgba(26,26,24,0.14)" }}
             />
           </button>
         ))}
       </div>
 
-      {/* Bridge to the marketplace — second billing, still present */}
+      {/* Bridge to the marketplace. Second billing, still present. */}
       <Link
         href="/browse"
-        className="group mt-4 flex items-center justify-between gap-3 px-4 py-3 rounded-xl border transition-all hover:-translate-y-0.5"
-        style={{ borderColor: "rgba(0,0,0,0.09)", background: "rgba(255,255,255,0.7)" }}
+        className="group mt-4 flex items-center justify-between gap-3 text-sm"
+        style={{ color: MUTED }}
       >
-        <span className="text-xs" style={{ color: "#6b6b5e" }}>
-          Buying or selling? <span className="font-bold" style={{ color: "#1a1a18" }}>Visit the marketplace</span>
+        <span>
+          Buying or selling? <span className="font-semibold" style={{ color: INK }}>Visit the marketplace</span>
         </span>
-        <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" style={{ color: "#1E6091" }} />
+        <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" style={{ color: BLUE }} />
       </Link>
     </div>
   );
 }
 
-// Every live category, in the canonical order. Adding one here is a
-// one-line change in lib/service-categories, not a change to this file.
-//
-// These use the SHORT label, not `askedFor`. Sitting directly under a search
-// box they read as filters, and the long conversational forms ("Ceramic
-// coating or a proper correction") wrapped to three rows on a phone and
-// pushed the showcase below the fold. The conversational phrasing still does
-// its job in the cards further down the page.
-const quickPicks = SERVICE_CATEGORIES.map((c) => ({
-  label: c.label,
-  type: c.key as string,
-}));
+// Every live category, in the canonical order. These use the SHORT label:
+// sitting directly under a search box they read as filters.
+const quickPicks = SERVICE_CATEGORIES.map((c) => ({ label: c.label, type: c.key as string }));
 
 export function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
-  // Gentle parallax on the showcase column as the hero scrolls away
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const showcaseY = useTransform(scrollYProgress, [0, 1], [0, -32]);
-
   return (
-    <section ref={heroRef} className="relative overflow-hidden" style={{ background: "var(--bg-primary)" }}>
-      {/* Animated paddock-color mesh + editorial film grain */}
-      <div className="absolute inset-0 paddock-mesh pointer-events-none" />
-      <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
-      <div className="absolute inset-0 speed-lines opacity-[0.03] pointer-events-none" />
+    <section className="relative" style={{ background: "var(--bg-primary)" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-16 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
 
-      {/* Top accent line */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px pointer-events-none"
-        style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }}
-      />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-          {/* LEFT — Headline + service search */}
-          <div>
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, x: -14 }}
-              animate={{ opacity: 1, x: 0 }}
+          {/* LEFT: headline + service search */}
+          <div className="lg:col-span-7">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.45 }}
-              className="inline-flex items-center gap-2.5 mb-6 px-3.5 py-2 rounded-full"
-              style={{ border: "1px solid rgba(30,96,145,0.28)", background: "rgba(30,96,145,0.07)" }}
+              className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-5"
+              style={{ color: MUTED }}
             >
-              <div className="flex gap-1">
-                {["#1E6091", "#1E6091", "#B08D3F"].map((c) => (
-                  <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
-                ))}
-              </div>
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#1E6091" }}>
-                The Collector Car Services Hub
-              </span>
-            </motion.div>
+              The collector car services hub
+            </motion.p>
 
-            {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 22 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display text-[2.6rem] sm:text-5xl lg:text-[3.2rem] font-semibold leading-[1.08] tracking-tight"
-              style={{ color: "#1a1a18" }}
+              transition={{ duration: 0.55, delay: 0.05 }}
+              className="font-display text-[2.7rem] sm:text-5xl lg:text-[3.6rem] font-semibold leading-[1.05] tracking-tight"
+              style={{ color: INK }}
             >
               Get your car{" "}
-              <span className="relative whitespace-nowrap" style={{ color: "#1E6091" }}>
-                fully sorted<span style={{ color: "#B08D3F" }}>.</span>
-                <svg
-                  className="absolute -bottom-1 left-0 w-full overflow-visible"
-                  viewBox="0 0 200 6"
-                  fill="none"
-                  preserveAspectRatio="none"
-                  style={{ height: "6px" }}
-                >
-                  <path
-                    d="M0 5 Q25 1 50 5 Q75 9 100 5 Q125 1 150 5 Q175 9 200 5"
-                    stroke="#1E6091"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.45"
-                    fill="none"
-                  />
-                </svg>
+              <span className="whitespace-nowrap" style={{ color: BLUE }}>
+                fully sorted<span style={{ color: GOLD }}>.</span>
               </span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base sm:text-lg mt-5 max-w-lg leading-relaxed"
-              style={{ color: "#6b6b5e" }}
+              transition={{ duration: 0.55, delay: 0.12 }}
+              className="text-base sm:text-lg mt-5 max-w-xl leading-relaxed"
+              style={{ color: MUTED }}
             >
-              The right specialist for whatever your car needs, found in minutes —
-              built by people who&apos;ve spent their lives around these cars.
+              The right specialist for whatever your car needs, found in minutes.
+              Built by people who have spent their lives around these cars.
             </motion.p>
 
-            {/* Service search */}
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8"
+              transition={{ duration: 0.55, delay: 0.2 }}
+              className="mt-8 max-w-xl"
             >
               <form action="/services" className="relative">
                 <Search
                   className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
-                  style={{ color: "#9ca3af" }}
+                  style={{ color: "#9a9a8a" }}
+                  aria-hidden
                 />
                 <input
                   type="text"
                   name="q"
+                  aria-label="What does your car need?"
                   placeholder='What does your car need? Try "inspection" or "ceramic coating"'
-                  className="w-full h-[54px] pl-12 pr-32 rounded-xl text-sm font-medium focus:outline-none shadow-2xl"
-                  style={{ background: "#ffffff", color: "#1a1a18", border: "1px solid rgba(0,0,0,0.12)" }}
+                  className="w-full h-[54px] pl-12 pr-[7.5rem] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1E6091]/30"
+                  style={{ background: "#ffffff", color: INK, border: `1px solid ${RULE}`, boxShadow: "0 8px 24px -16px rgba(26,26,24,0.35)" }}
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5 text-white text-sm font-bold rounded-lg transition-all"
-                  style={{ background: "#1E6091" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#174B72")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "#1E6091")}
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 h-[42px] px-5 text-white text-sm font-semibold rounded-md transition-colors hover:bg-[#174B72]"
+                  style={{ background: BLUE }}
                 >
                   Find a Pro
                 </button>
               </form>
 
-              <div className="flex flex-wrap gap-2 mt-4">
+              <div className="flex flex-wrap gap-1 mt-4">
                 {quickPicks.map((cat) => (
                   <Link
                     key={cat.type}
                     href={`/services?type=${encodeURIComponent(cat.type)}`}
-                    className="px-3.5 py-1 text-xs font-semibold rounded-full border transition-all"
-                    style={{
-                      color: "#6b6b5e",
-                      borderColor: "rgba(0,0,0,0.12)",
-                      background: "transparent",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = "#fff";
-                      (e.currentTarget as HTMLElement).style.borderColor = "#1E6091";
-                      (e.currentTarget as HTMLElement).style.background = "#1E6091";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = "#6b6b5e";
-                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.12)";
-                      (e.currentTarget as HTMLElement).style.background = "transparent";
-                    }}
+                    className="px-3 py-1 text-[13px] font-medium rounded-full transition-colors hover:bg-white"
+                    style={{ color: INK, border: `1px solid ${RULE}` }}
                   >
                     {cat.label}
                   </Link>
                 ))}
               </div>
-
             </motion.div>
 
-            {/*
-              One trust row, not two. There used to be a pair stacked ~60px
-              apart, and they said the same thing twice: "Owner-reviewed
-              specialists" directly above "Rated by real owners", with three
-              identical ShieldCheck icons in the top row. One row, three
-              distinct claims, three distinct icons.
-            */}
+            {/* One trust row, three claims, no icons. */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap gap-x-7 gap-y-3 mt-10 pt-8"
-              style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
+              transition={{ duration: 0.55, delay: 0.4 }}
+              className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-x-3 gap-y-2 mt-10 pt-6 text-sm"
+              style={{ borderTop: `1px solid ${RULE}`, color: MUTED }}
             >
-              {[
-                { icon: <BadgeCheck className="w-4 h-4" aria-hidden />, text: "Owner-reviewed specialists", accent: "#6ab04c" },
-                { icon: <Wrench className="w-4 h-4" aria-hidden />, text: "25 years in the paddock", accent: "#1E6091" },
-                { icon: <ShieldCheck className="w-4 h-4" aria-hidden />, text: "Free to browse", accent: "#1E6091" },
-              ].map((item) => (
-                <div key={item.text} className="flex items-center gap-2">
-                  <span style={{ color: item.accent }}>{item.icon}</span>
-                  <span className="text-sm font-bold tracking-tight" style={{ color: "#1a1a18" }}>{item.text}</span>
-                </div>
-              ))}
+              <span className="font-semibold" style={{ color: INK }}>Owner-reviewed specialists</span>
+              <span aria-hidden className="hidden sm:inline" style={{ color: GOLD }}>·</span>
+              <span className="font-semibold" style={{ color: INK }}>25 years in the paddock</span>
+              <span aria-hidden className="hidden sm:inline" style={{ color: GOLD }}>·</span>
+              <span className="font-semibold" style={{ color: INK }}>Free to browse</span>
             </motion.div>
           </div>
 
-          {/* RIGHT — Rotating service showcase */}
+          {/* RIGHT: the ownership year, one service at a time */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.22 }}
-            style={{ y: showcaseY }}
-            className="relative"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.18 }}
+            className="lg:col-span-5"
           >
-            <div
-              className="absolute -inset-8 rounded-3xl pointer-events-none"
-              style={{ background: "radial-gradient(ellipse, rgba(30,96,145,0.07) 0%, transparent 70%)" }}
-            />
             <ServiceShowcase />
           </motion.div>
         </div>
       </div>
-
-      {/* Bottom feather */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-12 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.04))" }}
-      />
     </section>
   );
 }

@@ -98,21 +98,15 @@ export function MarketMovers() {
   if (!movers || movers.length === 0) return null;
 
   return (
-    <section className="py-14 sm:py-20" style={{ background: "#ffffff" }}>
+    <section className="py-14 sm:py-20" style={{ background: "#ffffff", borderTop: "1px solid rgba(26,26,24,0.12)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Section header */}
         <div className="flex items-end justify-between mb-8">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-1 h-4 rounded-full" style={{ background: "#1E6091" }} />
-              <span
-                className="text-xs font-bold tracking-widest uppercase"
-                style={{ color: "#1E6091" }}
-              >
-                Market Data
-              </span>
-            </div>
+            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#6b6b5e" }}>
+              Market Data
+            </p>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
               What the segments are doing
             </h2>

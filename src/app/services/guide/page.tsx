@@ -40,23 +40,32 @@ export const metadata: Metadata = {
 };
 
 /* ————————————————————————————————————————————————
-   The two ways to sell your services
+   How work reaches you
+   ————————————————————————————————————————————————
+   This block used to read "the two ways to sell your services" and sent one
+   card to the business application and the other to the freelancer one. Both
+   doors are gone (2026-08-31). More to the point, the second card described
+   fixed-price gigs as something a provider could set up today — and the wizard
+   that created gigs WAS the freelancer application, with checkout gated off at
+   GIG_PAYMENTS_ENABLED besides. Sending a provider to a form that cannot do
+   the thing the card promised is exactly the seam this page should not have.
+   So: the live route is stated as live, and the one that is not open says so.
 ———————————————————————————————————————————————— */
 const PATHS = [
   {
-    icon: Layers,
-    tag: "Fixed-price gig",
-    title: "Book-me-now gigs",
+    icon: Building2,
+    tag: "Live now",
+    title: "Owners enquire, you quote",
     body:
-      "Package a service at an upfront price — a paint-correction detail, a pre-purchase inspection, an enclosed transport lane. Buyers see the price, pick a tier, and book in a couple of clicks. Best for repeatable, well-scoped work you can quote without a conversation.",
+      "Your directory profile: owners find you by service, marque and location, read your reviews, and send you an enquiry. It goes to you and nobody else — we do not fan one job out to four shops and let you bid each other down. You reply with a number, and whatever you agree is between you and the owner.",
     cta: { href: "/services/apply", label: "Get listed" },
   },
   {
-    icon: Building2,
-    tag: "Directory business",
-    title: "Get-a-quote listing",
+    icon: Layers,
+    tag: "Not open yet",
+    title: "Fixed-price gigs",
     body:
-      "List your shop or business in the specialist directory. Owners find you by marque, service, and location, then send an inquiry for a custom quote. Best for bespoke, high-value work — an engine rebuild, collection management, a complex multi-car move — that needs a conversation before a number.",
+      "Packaging a service at an upfront price — a paint-correction detail, a pre-purchase inspection, an enclosed transport lane — so an owner can book it outright. It suits repeatable, well-scoped work you can price without a conversation. It is not switched on yet, and we would rather say so than take a signup for it. Get your profile up and you will be first in line.",
     cta: { href: "/services/apply", label: "Get listed" },
   },
 ];
@@ -194,9 +203,14 @@ const PROVIDER_STEPS: Step[] = [
 const BUYER_STEPS: Step[] = [
   {
     icon: Sparkles,
-    title: "Two ways to hire",
+    title: "How hiring works",
+    // Was "Two ways to hire", the first of which was "book a fixed-price gig
+    // instantly". There are no bookable gigs — checkout is off at
+    // GIG_PAYMENTS_ENABLED and, since the freelancer wizard was retired, no
+    // provider can create one. Telling a buyer they can book instantly was a
+    // promise the site cannot keep.
     body:
-      "Book a fixed-price gig instantly when the job is well-defined — a detail, an inspection, a transport run. Or contact an owner-reviewed business for a custom quote when the work is bespoke — an engine rebuild, a long-term storage plan, a multi-car move. Fast and fixed, or custom and quoted.",
+      "You find the specialist, you contact the specialist. Search by service, marque and location, read what other owners said, then send one enquiry to the shop you picked — it goes to them and nobody else. They come back to you with a quote, and what you agree is between the two of you. Fixed-price gigs you can book outright are coming; they are not open yet.",
   },
   {
     icon: UserCircle,
@@ -248,7 +262,7 @@ const BUYER_STEPS: Step[] = [
 const FAQS = [
   {
     q: "Do I need a registered business to list?",
-    a: "You can list as an independent specialist offering fixed-price gigs, or as a registered business in the directory. Either way, a complete profile — real credentials, clear pricing, honest scope — is what wins the first booking. After that it is the reviews from owners who hired you that do the work.",
+    a: "We do not ask about your legal structure. There is one application, and a shop with six lifts and a one-person mobile operation fill in the same form — what we ask is where the work happens, because that is what owners filter on. Either way, a complete profile — real credentials, clear pricing, honest scope — is what wins the first job. After that it is the reviews from owners who hired you that do the work.",
   },
   {
     q: "How should I price my services?",
@@ -477,10 +491,11 @@ export default function ProviderGuidePage() {
               Start here
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-              Two ways to sell your services
+              How work reaches you
             </h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              Pick the model that fits the work. Many specialists run both — productized gigs for repeatable jobs, a directory listing for bespoke projects.
+              One application either way — we do not ask whether you are a company or a one-person
+              operation, only where the work happens.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -497,7 +512,11 @@ export default function ProviderGuidePage() {
                     </div>
                     <span
                       className="text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
-                      style={{ color: "#8a6d2f", backgroundColor: "rgba(176,141,63,0.12)" }}
+                      style={
+                        p.tag === "Live now"
+                          ? { color: "#15803d", backgroundColor: "rgba(106,176,76,0.14)" }
+                          : { color: "#6b6b60", backgroundColor: "rgba(0,0,0,0.05)" }
+                      }
                     >
                       {p.tag}
                     </span>

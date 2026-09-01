@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import ReviewsPanel from './ReviewsPanel';
 import ClaimExistingListing from './ClaimExistingListing';
 import PhotoUpload from '@/components/media/PhotoUpload';
+import WorkSettingsFields from '@/components/provider/WorkSettingsFields';
+import { normalizeWorkSettings, type WorkSettingKey } from '@/lib/work-settings';
 import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 import { motion } from 'framer-motion';
 import { useAuth } from '@clerk/nextjs';
@@ -59,6 +61,12 @@ export default function ProviderDashboard() {
     // dashboard had no field for it — so a provider whose listing was created
     // by the team, or claimed with a token, could never add one themselves.
     avatarUrl: '',
+    // Where the work happens. Every listing seeded before 2026-08-31 has this
+    // blank, and blank is what the directory filter treats as "hasn't said" —
+    // so this panel is the route by which an existing shop fills it in.
+    workSettings: [] as WorkSettingKey[],
+    teamSize: '',
+    serviceRadiusMiles: '',
   });
 
   // Fetch provider profile
@@ -82,6 +90,12 @@ export default function ProviderDashboard() {
             yearsInBusiness: data.provider.yearsInBusiness || '',
             priceRange: data.provider.priceRange || '$$',
             avatarUrl: data.provider.avatarUrl || '',
+            workSettings: normalizeWorkSettings(data.provider.workSettings),
+            teamSize: data.provider.teamSize || '',
+            serviceRadiusMiles:
+              data.provider.serviceRadiusMiles === null || data.provider.serviceRadiusMiles === undefined
+                ? ''
+                : String(data.provider.serviceRadiusMiles),
           });
         }
         setLoading(false);
@@ -95,10 +109,17 @@ export default function ProviderDashboard() {
     setSaveMessage('');
 
     try {
+      const mobile = form.workSettings.includes('mobile');
       const res = await fetch('/api/providers/me', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          teamSize: form.teamSize || null,
+          // '' means "cleared", which the API turns into NULL. A shop that is
+          // no longer mobile must not keep a stale "travels 75 miles" line.
+          serviceRadiusMiles: mobile ? form.serviceRadiusMiles : '',
+        }),
       });
       const data = await res.json();
       if (res.ok) {
@@ -325,6 +346,55 @@ export default function ProviderDashboard() {
               </div>
             </div>
           </div>
+        </motion.section>
+
+        {/* Where the work happens — the field the directory filters on. */}
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.14, ease: 'easeOut' }}
+          className="bg-white rounded-xl border border-border p-6"
+        >
+          <h2 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-accent" /> Where the work happens
+          </h2>
+          {form.workSettings.length === 0 ? (
+            /* Not a scold — a specific, fixable reason to answer. Every listing
+               created before this field existed lands here, and this nudge is
+               how those rows get filled in without anyone touching the
+               database. */
+            <div
+              className="rounded-xl border p-4 mb-5 text-sm"
+              style={{ borderColor: 'rgba(176,141,63,0.35)', background: 'rgba(176,141,63,0.08)' }}
+            >
+              <p className="font-semibold text-foreground mb-1">Your listing doesn&apos;t say this yet.</p>
+              <p className="text-text-secondary">
+                Owners filter the directory by whether you come to the car or they bring it to you. Until you
+                answer, you still appear under every filter — but your card says nothing about how you work,
+                which is the first thing they want to know.
+              </p>
+            </div>
+          ) : (
+            <p className="text-sm text-text-secondary mb-5">
+              Pick everything that applies. Owners filter the directory on this.
+            </p>
+          )}
+          <WorkSettingsFields
+            idPrefix="dash"
+            value={{
+              workSettings: form.workSettings,
+              teamSize: form.teamSize,
+              serviceRadiusMiles: form.serviceRadiusMiles,
+            }}
+            onChange={(next) =>
+              setForm({
+                ...form,
+                workSettings: next.workSettings,
+                teamSize: next.teamSize,
+                serviceRadiusMiles: next.serviceRadiusMiles,
+              })
+            }
+          />
         </motion.section>
 
         {/* Contact */}
