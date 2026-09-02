@@ -97,7 +97,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${vehicle.title} | Fully Sorted`,
-    description: `${vehicle.title} — ${vehicle.condition} condition, ${vehicle.mileage.toLocaleString()} miles, ${vehicle.transmission}. ${vehicle.location}.`,
+    description: `${vehicle.title}: ${vehicle.condition} condition, ${vehicle.mileage.toLocaleString()} miles, ${vehicle.transmission}. ${vehicle.location}.`,
     openGraph: {
       title: `${vehicle.title} | Fully Sorted`,
       description: vehicle.description?.slice(0, 200) ?? '',

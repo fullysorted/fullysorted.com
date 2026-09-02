@@ -62,7 +62,7 @@ const STAGES: ChecklistStage[] = [
       {
         title: "Read the title before you read the advert",
         body:
-          "Ask for a photograph of the title, logbook or export certificate with the chassis number legible, and confirm the registered keeper is the person selling the car. Branded, salvage, bonded and lien-encumbered cars all sell legitimately — they are simply worth less, and an outstanding lien has to be paid off through the closing, not on assurance.",
+          "Ask for a photograph of the title, logbook or export certificate with the chassis number legible, and confirm the registered keeper is the person selling the car. Branded, salvage, bonded and lien-encumbered cars all sell legitimately. They are simply worth less, and an outstanding lien has to be paid off through the closing, not on assurance.",
         points: [
           "Registered owner name matches the seller's ID, or there is a signed power of attorney explaining why it does not.",
           "Title status read in full: clean, salvage, rebuilt, bonded, flood, odometer-discrepant, or in transit from a lender.",
@@ -76,7 +76,7 @@ const STAGES: ChecklistStage[] = [
           "Decode the VIN or chassis number independently and check it against the model's build years, engine family, body style and assembly plant. Then order the title history and, where the marque runs an archive, the factory build record.",
         points: [
           "1981-and-newer VINs are 17 digits and decode free; earlier chassis numbers need a marque registry, a club archive or the factory.",
-          "Factory records exist for many marques — build sheets, certificates of authenticity, heritage certificates — and are the only way to confirm original colour, engine and options.",
+          "Factory records exist for many marques (build sheets, certificates of authenticity, heritage certificates) and are the only way to confirm original color, engine and options.",
           "A title-history report will show branding, mileage readings and past registrations across states. It will not show unreported accident damage.",
         ],
         link: {
@@ -90,8 +90,8 @@ const STAGES: ChecklistStage[] = [
         body:
           "Price the car against completed sales of the same generation, specification and condition tier within the last eighteen months. Asking prices are an opening position; auction results are a record.",
         points: [
-          "Compare like for like: a matching-numbers car, a correct-colour car and a restored shell are three different markets.",
-          "Note the fees that sat on top of each comparable — buyer's premium at auction, sales tax and registration at home.",
+          "Compare like for like: a matching-numbers car, a correct-color car and a restored shell are three different markets.",
+          "Note the fees that sat on top of each comparable: buyer's premium at auction, sales tax and registration at home.",
           "Watch for a car that has been through several sales in quick succession. That pattern usually has a reason behind it.",
         ],
       },
@@ -100,7 +100,7 @@ const STAGES: ChecklistStage[] = [
         body:
           "Request the service invoices with mileage printed on them, the inspection or roadworthiness records, receipts for the expensive scheduled work, and a walk-around video shot to your instructions rather than the seller's showreel.",
         points: [
-          "Invoices for the big scheduled items — cambelt, valve clearances, fuel system, brake overhaul — with dates and mileage.",
+          "Invoices for the big scheduled items (cambelt, valve clearances, fuel system, brake overhaul) with dates and mileage.",
           "A cold start filmed from behind the car, the underside on a lift or ramps, the shut lines, and the areas the model is known to rot.",
           "A gap of several years with no paperwork is not proof of neglect, but it is the part of the story you should price.",
         ],
@@ -132,7 +132,7 @@ const STAGES: ChecklistStage[] = [
       {
         title: "Numbers first, paint second",
         body:
-          "Find and photograph every identifying number on the car: chassis plate, chassis stamping, engine number, gearbox number, body tag and any option or colour code. Confirm they agree with each other and with the title.",
+          "Find and photograph every identifying number on the car: chassis plate, chassis stamping, engine number, gearbox number, body tag and any option or color code. Confirm they agree with each other and with the title.",
         points: [
           "Compare the stamping style, depth and spacing with a known-original example. Restamped and re-plated numbers are a documented practice on valuable models.",
           "A replacement engine is not automatically a problem. An undisclosed one is, because matching-numbers cars are priced differently.",
@@ -172,7 +172,7 @@ const STAGES: ChecklistStage[] = [
         points: [
           "Temperature under load, oil pressure when hot at idle, and charging voltage.",
           "Gearbox synchromesh on a second-gear downshift, clutch bite point, and whether the car pulls out of gear on the overrun.",
-          "Braking in a straight line, steering that self-centres, and no vibration that arrives at a particular speed.",
+          "Braking in a straight line, steering that self-centers, and no vibration that arrives at a particular speed.",
           "Drive it on a poor surface as well as a smooth one. Suspension and body noises need something to react to.",
         ],
       },
@@ -585,7 +585,7 @@ export default async function BuyingGuidesPage() {
                 label: "Glossary",
                 icon: <Library className="w-4 h-4" />,
                 blurb:
-                  "Matching numbers, bonded title, concours, survivor — what the terms in this checklist and in a listing actually mean.",
+                  "Matching numbers, bonded title, concours, survivor: what the terms in this checklist and in a listing actually mean.",
               },
               {
                 href: "/research/models",

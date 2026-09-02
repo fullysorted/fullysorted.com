@@ -32,11 +32,11 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: {
-    default: "Fully Sorted — The Collector Car Services Hub",
+    default: "Fully Sorted: The Collector Car Services Hub",
     template: "%s | Fully Sorted",
   },
   description:
-    "Find owner-reviewed specialists for everything your collector car needs — inspection, detailing, transport, storage, photography and mechanical work. Plus a direct owner-to-owner marketplace and a research center built on real sold prices.",
+    "Find owner-reviewed specialists for everything your collector car needs: inspection, transport, mechanical work, body work and paint, restoration, detailing, storage and photography. Plus a direct owner-to-owner marketplace and a research center built on real sold prices.",
   keywords: [
     "collector car services",
     "classic car specialists",
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
     "peer to peer car sale",
     "San Diego collector cars",
   ],
-  authors: [{ name: "Chris Peterson", url: "https://fullysorted.com" }],
-  creator: "Chris Peterson",
+  authors: [{ name: "Fully Sorted", url: "https://fullysorted.com" }],
+  creator: "Fully Sorted",
   metadataBase: new URL("https://fullysorted.com"),
   // NO site-wide `alternates.canonical` here. Next.js inherits `alternates`
   // into every child segment that does not override it, so a default of "/"
@@ -68,16 +68,16 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://fullysorted.com",
     siteName: "Fully Sorted",
-    title: "Fully Sorted — The Collector Car Services Hub",
+    title: "Fully Sorted: The Collector Car Services Hub",
     description:
-      "Specialists for everything your collector car needs — inspection, detailing, transport, storage and more.",
+      "Specialists for everything your collector car needs: inspection, transport, mechanical work, body work and paint, restoration, detailing, storage and photography.",
     // Note: opengraph-image.png in src/app/ is auto-registered by Next.js
     // metadata conventions — do NOT set images[] here or it will override.
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fully Sorted — The Collector Car Services Hub",
-    description: "Specialists for everything your collector car needs — inspection, detailing, transport, storage and more.",
+    title: "Fully Sorted: The Collector Car Services Hub",
+    description: "Specialists for everything your collector car needs: inspection, transport, mechanical work, body work and paint, restoration, detailing, storage and photography.",
     creator: "@fully_sorted",
   },
   robots: {

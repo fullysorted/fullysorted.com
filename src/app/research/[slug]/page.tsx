@@ -239,7 +239,7 @@ export default async function ArticlePage({ params }: Props) {
                   rather than keep a control that only looks like it works. */}
               <p className="text-sm text-stone-500 mb-4">
                 Every Monday morning: what moved, what didn't, and what to watch.
-                Sign-up is handled by hand for now — send an address through the
+                Sign-up is handled by hand for now. Send an address through the
                 contact form and it goes on the list.
               </p>
               <Link

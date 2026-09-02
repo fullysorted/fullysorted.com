@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
   title: "Contact",
   description:
-    "Get in touch with Chris Peterson and the Fully Sorted team. Questions about listings, valuations, or just want to talk cars — we're here.",
+    "Get in touch with the Fully Sorted team. Questions about listings, valuations, or just want to talk cars, we're here.",
 };
 
 export default function ContactPage() {
@@ -34,7 +34,7 @@ export default function ContactPage() {
           </h1>
           <p className="text-lg max-w-2xl" style={{ color: "#6b6b5e" }}>
             Whether you have a question about a listing, need help with a
-            valuation, or just want to talk cars — I&apos;d love to hear from you.
+            valuation, or just want to talk cars, we&apos;d like to hear from you.
           </p>
         </div>
       </section>
@@ -124,7 +124,7 @@ export default function ContactPage() {
             >
               <h2 className="font-bold text-lg mb-1" style={{ color: "#1a1a18" }}>Follow Along</h2>
               <p className="text-sm mb-5" style={{ color: "#6b6b5e" }}>
-                Car photos, market takes, and San Diego life.
+                Car photos and market takes.
               </p>
               <div className="space-y-3">
                 <a
@@ -135,7 +135,7 @@ export default function ContactPage() {
                   style={{ color: "#1E6091" }}
                 >
                   <ExternalLink className="w-4 h-4" />
-                  Instagram — @fully.sorted
+                  Instagram: @fully.sorted
                 </a>
                 <a
                   href="https://www.facebook.com/fullysorted/"
@@ -145,7 +145,7 @@ export default function ContactPage() {
                   style={{ color: "#1E6091" }}
                 >
                   <ExternalLink className="w-4 h-4" />
-                  Facebook — @fullysorted
+                  Facebook: @fullysorted
                 </a>
               </div>
             </div>

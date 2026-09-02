@@ -21,7 +21,7 @@ import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 export const metadata: Metadata = {
   title: "Collector Car Market Analysis",
   description:
-    "Auction results, segment price movement and written analysis of the collector car market — what moved, by how much, and what it means.",
+    "Auction results, segment price movement and written analysis of the collector car market: what moved, by how much, and what it means.",
   alternates: { canonical: "/research" },
 };
 
@@ -252,7 +252,7 @@ export default async function ResearchPage() {
             Market Research
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed text-stone-200">
-            Analysis of the collector car market — auction results, price trends, and
+            Analysis of the collector car market: auction results, price trends, and
             where the smart money is going. From the Fully Sorted Research Desk.
           </p>
 
@@ -506,7 +506,7 @@ export default async function ResearchPage() {
                   recorded. There is no subscribe endpoint to wire it to, so it
                   asks through the contact route instead of miming a signup. */}
               <p className="text-sm mb-4" style={{ color: "#6b6b5e" }}>
-                Auction results, what moved, and where the smart money is going —
+                Auction results, what moved, and where the smart money is going,
                 straight to your inbox. Sign-up is handled by hand for now: send an
                 address through the contact form and it goes on the list.
               </p>
@@ -544,7 +544,7 @@ export default async function ResearchPage() {
                       <p className="text-xs text-stone-400 mt-0.5">
                         {/* Null average = the sample is too thin, or one lot has
                             dragged the mean. Show nothing rather than a number. */}
-                        Avg {m.avgPrice != null ? formatPrice(m.avgPrice) : "—"}
+                        Avg {m.avgPrice != null ? formatPrice(m.avgPrice) : "–"}
                       </p>
                     </div>
                   ))}
@@ -596,7 +596,7 @@ export default async function ResearchPage() {
               {/* "Updated regularly" claimed a cadence nothing here maintains:
                   the set does not auto-ingest. Say what is actually true. */}
               <p className="text-xs text-stone-300 mt-2">
-                Not a live feed — the set grows as new results are recorded, and
+                Not a live feed. The set grows as new results are recorded, and
                 each figure is dated by the newest sale behind it.
               </p>
             </div>
@@ -720,31 +720,31 @@ export default async function ResearchPage() {
                                     className="text-stone-300"
                                     title={
                                       seg.meanSkewed
-                                        ? "One lot in this segment sits far above the rest — an average would describe no car anyone actually buys"
-                                        : `Only ${seg.saleCount} recorded sales — too few for an average`
+                                        ? "One lot in this segment sits far above the rest. An average would describe no car anyone actually buys."
+                                        : `Only ${seg.saleCount} recorded sales, too few for an average`
                                     }
                                   >
-                                    —
+                                    –
                                   </span>
                                 )}
                               </td>
                               <td className="px-4 py-3.5 text-right text-stone-400 hidden sm:table-cell">
-                                {seg.medianPrice ? formatPrice(seg.medianPrice) : "—"}
+                                {seg.medianPrice ? formatPrice(seg.medianPrice) : "–"}
                               </td>
                               <td className="px-4 py-3.5 text-right text-stone-400 hidden md:table-cell">
-                                {seg.highPrice ? formatPrice(seg.highPrice) : "—"}
+                                {seg.highPrice ? formatPrice(seg.highPrice) : "–"}
                               </td>
                               <td className="px-4 py-3.5 text-right text-stone-400 hidden md:table-cell">
-                                {seg.lowPrice ? formatPrice(seg.lowPrice) : "—"}
+                                {seg.lowPrice ? formatPrice(seg.lowPrice) : "–"}
                               </td>
                               <td className="px-4 py-3.5 text-right text-stone-400 hidden sm:table-cell">
-                                {seg.saleCount > 0 ? seg.saleCount.toLocaleString() : "—"}
+                                {seg.saleCount > 0 ? seg.saleCount.toLocaleString() : "–"}
                               </td>
                               <td className="px-5 py-3.5 text-right">
                                 {seg.hasTrend ? (
                                   <TrendBadge trend={seg.trendDirection} pct={seg.trendPercent} />
                                 ) : (
-                                  <span className="text-stone-300">—</span>
+                                  <span className="text-stone-300">–</span>
                                 )}
                               </td>
                             </tr>
@@ -776,7 +776,7 @@ export default async function ResearchPage() {
                           {seg.medianPrice ? (
                             formatPrice(seg.medianPrice)
                           ) : (
-                            <span className="text-stone-300" title={`Only ${seg.saleCount} recorded sales — too few for a midpoint`}>—</span>
+                            <span className="text-stone-300" title={`Only ${seg.saleCount} recorded sales, too few for a midpoint`}>–</span>
                           )}
                         </td>
                         <td className="px-5 py-3.5 text-right text-stone-500 text-sm hidden md:table-cell whitespace-nowrap">
@@ -785,20 +785,20 @@ export default async function ResearchPage() {
                           ) : (
                             <span
                               className="text-stone-300"
-                              title={seg.meanSkewed ? "One lot in this segment sits far above the rest — a range would describe no car anyone actually buys" : "Not enough recorded sales"}
+                              title={seg.meanSkewed ? "One lot in this segment sits far above the rest. A range would describe no car anyone actually buys." : "Not enough recorded sales"}
                             >
-                              —
+                              –
                             </span>
                           )}
                         </td>
                         <td className="px-5 py-3.5 text-right text-stone-400 hidden sm:table-cell">
-                          {seg.saleCount > 0 ? seg.saleCount.toLocaleString() : "—"}
+                          {seg.saleCount > 0 ? seg.saleCount.toLocaleString() : "–"}
                         </td>
                         <td className="px-5 py-3.5 text-right">
                           {seg.hasTrend ? (
                             <TrendBadge trend={seg.trendDirection} pct={seg.trendPercent} />
                           ) : (
-                            <span className="text-stone-300">—</span>
+                            <span className="text-stone-300">–</span>
                           )}
                         </td>
                       </tr>

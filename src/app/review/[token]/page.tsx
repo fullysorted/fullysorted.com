@@ -75,7 +75,7 @@ export default async function ReviewPage({ params }: Props) {
           {invite.workType
             ? `They asked us to invite you to review the ${invite.workType.toLowerCase()} they did for you.`
             : 'They asked us to invite you to review the work they did for you.'}{' '}
-          Owners use these to decide who to trust with their car, so the useful review is the honest one — good or bad.
+          Owners use these to decide who to trust with their car, so the useful review is the honest one, good or bad.
         </p>
 
         {invite.expired ? (
@@ -100,7 +100,7 @@ export default async function ReviewPage({ params }: Props) {
               This link has already been used.
             </p>
             <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-              Your review is in — thank you. If you meant to change something, email chris@fullysorted.com.
+              Your review is in. Thank you. If you meant to change something, email chris@fullysorted.com.
             </p>
           </div>
         ) : (
@@ -110,7 +110,7 @@ export default async function ReviewPage({ params }: Props) {
         <p className="text-xs leading-relaxed mt-8" style={{ color: 'var(--text-tertiary)' }}>
           Your review is published with your name and your car, never your email address.{' '}
           {invite.businessName} can reply to it publicly, but cannot edit it, hide it, or take it down.
-          We check reviews for abuse and spam before they go live — never for whether they are flattering.{' '}
+          We check reviews for abuse and spam before they go live, never for whether they are flattering.{' '}
           <Link href="/faq" className="underline">
             More about how this works
           </Link>

@@ -31,7 +31,7 @@ export async function generateMetadata({
   const ogImage =
     event.ogImage ?? event.heroImage ?? FALLBACK_OG;
   const url = `${SITE}/events/${event.slug}`;
-  const title = `${event.title} — ${event.dateLabel}`;
+  const title = `${event.title}: ${event.dateLabel}`;
   const description = event.excerpt;
 
   return {
@@ -318,7 +318,7 @@ export default async function EventPage({ params }: Props) {
                 <p
                   className="text-xs font-bold uppercase tracking-widest mb-2 text-accent"
                 >
-                  Note from Chris
+                  Note from Our Founder
                 </p>
                 <p
                   className="text-sm sm:text-base italic leading-relaxed"
@@ -573,8 +573,8 @@ export default async function EventPage({ params }: Props) {
                 className="text-xs mb-3"
                 style={{ color: "#6b6b5e" }}
               >
-                Bringing a car to sell after the show? List it for $9.99
-                with a simple one-time flat fee.
+                Bringing a car to sell after the show? List it from $9.99,
+                one-time.
               </p>
               <Link
                 href="/sell"

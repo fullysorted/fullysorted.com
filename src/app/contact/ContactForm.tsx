@@ -45,7 +45,7 @@ export function ContactForm() {
       setError(data?.error || "Something went wrong. Please try again.");
     } catch {
       setStatus("error");
-      setError("Couldn't reach the server — check your connection and try again.");
+      setError("Couldn't reach the server. Check your connection and try again.");
     }
   }
 
@@ -69,7 +69,7 @@ export function ContactForm() {
   return (
     <div className="rounded-2xl p-6 sm:p-8 border" style={{ background: "#fff", borderColor: "rgba(0,0,0,0.08)" }}>
       <h2 className="font-bold text-xl mb-1" style={{ color: "#1a1a18" }}>Send a Message</h2>
-      <p className="text-sm mb-6" style={{ color: "#6b6b5e" }}>Usually a response within a few hours.</p>
+      <p className="text-sm mb-6" style={{ color: "#6b6b5e" }}>Tell us what&apos;s going on and we&apos;ll take it from there.</p>
 
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>

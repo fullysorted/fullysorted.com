@@ -23,6 +23,7 @@ import {
   IMPORT_ELIGIBILITY,
   IMPORT_DATA_RETRIEVED,
   IMPORT_DISCLAIMER,
+  IMPORT_DISCLAIMER_SHORT,
 } from "@/lib/data/importing";
 
 export const revalidate = 86400;
@@ -252,7 +253,7 @@ export default function ImportingPage() {
             </ul>
           </div>
           <p className="text-xs mt-3" style={{ color: MUTED_LIGHT }}>
-            Eligibility is per vehicle and rolls forward continuously — see{" "}
+            Eligibility is per vehicle and rolls forward continuously: see{" "}
             <Link href="#rolling-window" className="underline" style={{ color: ACCENT }}>
               the rolling eligibility window
             </Link>
@@ -451,7 +452,12 @@ export default function ImportingPage() {
                   className="article-body"
                   dangerouslySetInnerHTML={{ __html: renderMarkdown(section.body) }}
                 />
-                {section.keyPoints && section.keyPoints.length > 0 && (
+                {/* The NHTSA and EPA sections already show their key points in the
+                    "two agencies" summary cards above, so skip the repeat here. */}
+                {section.keyPoints &&
+                  section.keyPoints.length > 0 &&
+                  section.id !== "nhtsa-25-year" &&
+                  section.id !== "epa-21-year" && (
                   <div
                     className="mt-6 rounded-2xl p-5"
                     style={{
@@ -502,7 +508,7 @@ export default function ImportingPage() {
                 </h2>
               </div>
               <p className="text-sm mb-5" style={{ color: MUTED }}>
-                {IMPORT_SOURCES.length} sources, of which {primaryCount} are primary — the
+                {IMPORT_SOURCES.length} sources, of which {primaryCount}{' '}are primary: the
                 statute, the regulation, the agency form or the agency&apos;s own guidance,
                 rather than a secondary account of it. Every quotation above is taken from
                 one of them.
@@ -569,7 +575,7 @@ export default function ImportingPage() {
                 Glossary
               </p>
               <p className="text-sm leading-relaxed" style={{ color: MUTED }}>
-                HS-7, 3520-1, Show or Display, RI, OP year — what the import terms in a
+                HS-7, 3520-1, Show or Display, RI, OP year: what the import terms in a
                 listing actually mean.
               </p>
               <span
@@ -634,12 +640,7 @@ export default function ImportingPage() {
             </h2>
           </div>
           <p className="text-sm leading-relaxed" style={{ color: MUTED }}>
-            {IMPORT_DISCLAIMER}
-          </p>
-          <p className="text-xs mt-3" style={{ color: MUTED_LIGHT }}>
-            Sources retrieved {IMPORT_DATA_RETRIEVED}. Federal regulations, tariff
-            classifications and state registration rules change, and this page reflects
-            the position on that date only.
+            {IMPORT_DISCLAIMER_SHORT}
           </p>
         </aside>
       </div>

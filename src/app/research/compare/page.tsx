@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, GitCompareArrows, ShieldCheck } from "lucide-react";
-import { getPublishedModelsResult, getPublishedModelBySlug, getModelMarketSnapshot, modelDisplayName, parseModelSlug } from "@/lib/data/models";
+import { getPublishedModelsResult, getPublishedModelBySlug, getModelMarketSnapshot, modelDisplayName, parseModelSlug, displayGeneration } from "@/lib/data/models";
 import { CompareSelector } from "./CompareSelector";
 import { ResearchNav } from "@/components/research/ResearchNav";
 
@@ -68,7 +68,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
     <Link href={`/research/models/${side.m.slug}`} className="group block">
       <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#1E6091" }}>{side.m.make}</p>
       <p className="font-display text-xl font-semibold tracking-tight text-foreground group-hover:underline">
-        {side.m.model} {side.m.generation && <span style={{ color: "#9a9a8a" }}>({side.m.generation})</span>}
+        {side.m.model} {displayGeneration(side.m) && <span style={{ color: "#9a9a8a" }}>({displayGeneration(side.m)})</span>}
       </p>
     </Link>
   ) : <p className="text-sm text-text-secondary">Pick a model above</p>;

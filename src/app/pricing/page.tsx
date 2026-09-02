@@ -62,7 +62,7 @@ export default function PricingPage() {
       <section className="bg-accent text-white py-5">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <p className="text-lg font-semibold">
-            Early on purpose — founding specialists are listed <strong>free</strong>, and the
+            Early on purpose: founding specialists are listed <strong>free</strong>, and the
             first {FREE_LISTINGS_THRESHOLD} cars listed are <strong>free</strong> too.
             Get in early.
           </p>
@@ -81,7 +81,7 @@ export default function PricingPage() {
             Browsing is free. You pay the person who does the work.
           </h2>
           <p className="text-base text-text-secondary max-w-2xl mx-auto">
-            Fully Sorted is where you find them and, on fixed-price gigs, how you pay them safely.
+            Fully Sorted is where you find them, and once fixed-price gigs open, how you&apos;ll pay them safely.
             We are not a middleman on the quote.
           </p>
         </div>
@@ -95,15 +95,15 @@ export default function PricingPage() {
               highlight: false,
             },
             {
-              title: "Book a fixed-price gig",
+              title: "When fixed-price gigs open",
               price: "The listed price",
-              body: "What the provider publishes is what you pay — no platform markup on top. Where a provider has card payment switched on, your payment is held and only released to them once the work is delivered. Card payment is still rolling out; until a provider is set up, a booking reaches them as an enquiry and you settle directly.",
+              body: "What the provider publishes will be what you pay, with no platform markup on top. Once a provider has card payment switched on, your payment will be held and only released to them once the work is delivered. Until gigs open, a booking reaches them as an inquiry and you settle directly.",
               highlight: true,
             },
             {
-              title: "What the provider pays",
+              title: "What the provider will pay",
               price: PLATFORM_FEE_PCT_LABEL,
-              body: `We take ${PLATFORM_FEE_PCT_LABEL} of a completed gig, deducted from the provider payout. Listing a business and receiving quote requests is free.`,
+              body: `When fixed-price gigs open, we'll take ${PLATFORM_FEE_PCT_LABEL} of a completed gig, deducted from the provider payout. Listing a business and receiving quote requests is free.`,
               highlight: false,
             },
           ].map((c) => (
@@ -122,9 +122,8 @@ export default function PricingPage() {
         </div>
 
         <p className="text-sm text-text-secondary text-center mt-6 max-w-2xl mx-auto">
-          Custom work quoted directly between you and the shop is settled between you and the shop.
-          We only sit in the middle when you book a fixed-price gig, and that is so your money is
-          protected until the job is done.
+          Custom, quoted work stays between you and the shop. We only sit in the middle on a
+          fixed-price gig, once they open, so your money is protected until the job is done.
         </p>
       </section>
 
@@ -175,8 +174,8 @@ export default function PricingPage() {
                   <p className="text-text-secondary text-sm">
                     {key === 'standard' && 'Get your car listed and in front of buyers.'}
                     {key === 'featured' && (AI_ASSIST_ENABLED
-                      ? 'The full Fully Sorted experience — AI write-up, social promo, priority placement.'
-                      : 'The full Fully Sorted experience — social promo, priority placement, more photos and video.')}
+                      ? 'The full Fully Sorted experience: AI write-up, social promo, priority placement.'
+                      : 'The full Fully Sorted experience: social promo, priority placement, more photos and video.')}
                     {key === 'premium' && 'Maximum exposure, listed until sold, plus an introduction to a licensed escrow company.'}
                   </p>
                 </div>
@@ -227,14 +226,14 @@ export default function PricingPage() {
                 {[
                   { label: 'Price', values: ['$9.99', '$29.99', '$49.99'] },
                   { label: 'Photos', values: ['20', '40', 'Unlimited'] },
-                  { label: 'Video', values: ['—', '1', 'Unlimited'] },
+                  { label: 'Video', values: ['Not included', '1', 'Unlimited'] },
                   // Pulled from the table entirely while AI_ASSIST_ENABLED is off —
                   // a comparison row is a promise, and this one is being charged for.
-                  ...(AI_ASSIST_ENABLED ? [{ label: 'AI Description', values: ['—', '✓', '✓'] }] : []),
+                  ...(AI_ASSIST_ENABLED ? [{ label: 'AI Description', values: ['Not included', '✓', '✓'] }] : []),
                   { label: 'Days Listed', values: ['30', '60', 'Until sold'] },
-                  { label: 'Social Share', values: ['—', '✓', '✓'] },
-                  { label: 'Priority Placement', values: ['—', '✓', '✓'] },
-                  { label: 'Licensed escrow introduction', values: ['—', '—', '✓'] },
+                  { label: 'Social Share', values: ['Not included', '✓', '✓'] },
+                  { label: 'Priority Placement', values: ['Not included', '✓', '✓'] },
+                  { label: 'Licensed escrow introduction', values: ['Not included', 'Not included', '✓'] },
                 ].map((row, i) => (
                   <tr
                     key={row.label}

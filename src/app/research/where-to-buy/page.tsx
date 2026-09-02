@@ -61,7 +61,7 @@ const KIND_GROUPS: {
     kind: "live-auction",
     title: "Live auctions",
     blurb:
-      "Catalogue sales with a rostrum, pre-sale estimates and a tiered premium that varies by sale location.",
+      "Catalog sales with a rostrum, pre-sale estimates and a tiered premium that varies by sale location.",
     icon: Landmark,
   },
   {
@@ -128,7 +128,7 @@ function KindBadge({ kind }: { kind: Marketplace["kind"] }) {
 }
 
 function FeeCell({ fees }: { fees: MarketplaceFee[] }) {
-  if (fees.length === 0) return <span style={{ color: "#9a9a8a" }}>—</span>;
+  if (fees.length === 0) return <span style={{ color: "#9a9a8a" }}>–</span>;
   const [first, ...rest] = fees;
   return (
     <div>
@@ -249,7 +249,7 @@ export default function WhereToBuyPage() {
             Where to buy a collector car
           </h1>
           <p className="text-base sm:text-lg leading-relaxed max-w-2xl text-stone-200">
-            A reference table of {MARKETPLACES.length} major collector car auction houses and
+            A reference table of {MARKETPLACES.length}{' '}major collector car auction houses and
             marketplaces, and what each one charges. Every figure below was taken from the venue&apos;s own
             published terms on {MARKETPLACE_DATA_RETRIEVED} and links back to the page it came from.
             Where a venue publishes no number, that is what this page says.
@@ -631,7 +631,7 @@ export default function WhereToBuyPage() {
                         >
                           {s.title}
                         </a>
-                        <span> — {s.publisher}</span>
+                        <span> · {s.publisher}</span>
                         <span style={{ color: "#9a9a8a" }}> · retrieved {s.retrieved}</span>
                       </li>
                     ))}

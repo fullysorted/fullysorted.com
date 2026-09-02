@@ -17,7 +17,7 @@ const TERM_SET_ID = `${PAGE_URL}#termset`;
 
 export const metadata: Metadata = {
   title: "Collector Car Glossary",
-  description: `What the words in a collector car listing actually mean — ${GLOSSARY.length} terms across condition, provenance, auction, title and import language, with the traps flagged.`,
+  description: `What the words in a collector car listing actually mean: ${GLOSSARY.length} terms across condition, provenance, auction, title and import language, with the traps flagged.`,
   alternates: { canonical: "/research/glossary" },
 };
 
@@ -154,7 +154,7 @@ export default function GlossaryPage() {
     "@id": TERM_SET_ID,
     name: "Collector Car Glossary",
     description:
-      "The vocabulary of collector car listings, auction catalogues, inspection reports and title paperwork, defined term by term.",
+      "The vocabulary of collector car listings, auction catalogs, inspection reports and title paperwork, defined term by term.",
     url: PAGE_URL,
     inLanguage: "en-US",
     publisher: { "@id": "https://fullysorted.com/#organization" },
@@ -254,7 +254,7 @@ export default function GlossaryPage() {
             The collector car glossary
           </h1>
           <p className="text-base sm:text-lg leading-relaxed max-w-2xl text-stone-200">
-            Listing copy, auction catalogues, inspection reports and title
+            Listing copy, auction catalogs, inspection reports and title
             paperwork each carry a vocabulary of their own, and a good deal of it
             is load-bearing. Here are {GLOSSARY.length} of those words: what each
             one means, where the meaning came from, and how it gets stretched.
@@ -282,8 +282,8 @@ export default function GlossaryPage() {
             <Link href="/research/models" className="font-semibold underline" style={{ color: "#1E6091" }}>
               model histories
             </Link>
-            . Auction mechanics — who charges what, and at which point in the sale
-            — are set out under{" "}
+            . Auction mechanics (who charges what, and at which point in the sale)
+            are set out under{" "}
             <Link href="/research/where-to-buy" className="font-semibold underline" style={{ color: "#1E6091" }}>
               where to buy
             </Link>
@@ -424,8 +424,8 @@ export default function GlossaryPage() {
             style={{ color: "#6b6b5e" }}
           >
             Definitions with an outside authority behind them were checked against
-            the following. Where a term has no authority behind it — and a good
-            many here do not — the entry says so rather than picking a side.
+            the following. Where a term has no authority behind it, and a good
+            many here do not, the entry says so rather than picking a side.
           </p>
           <ol
             className="rounded-2xl bg-white overflow-hidden"

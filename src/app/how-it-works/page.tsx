@@ -25,7 +25,7 @@ import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "Fully Sorted is a collector car services hub with a peer-to-peer marketplace and a research center. Here's exactly how hiring a specialist, buying and selling, and using the Value Guide work.",
+    "Fully Sorted is a collector car services hub with a peer-to-peer marketplace and a research center. Here's exactly how hiring a specialist, buying and selling, and researching a car's value work.",
   alternates: { canonical: "/how-it-works" },
 };
 
@@ -34,7 +34,7 @@ const HIRE_STEPS = [
   {
     icon: Search,
     title: "Tell us what the car needs",
-    body: "Search by what you need — pre-purchase inspection, ceramic coating, enclosed transport, a marque specialist — or browse fixed-price gigs with upfront pricing.",
+    body: "Search by what you need (pre-purchase inspection, ceramic coating, enclosed transport, a marque specialist), or check back for fixed-price gigs with upfront pricing once they open.",
   },
   {
     icon: Star,
@@ -49,7 +49,7 @@ const HIRE_STEPS = [
   {
     icon: CheckCircle2,
     title: "Leave your own review",
-    body: "When the job's done, your review becomes part of the record the next owner reads. That's how the directory gets better — collectively, in the open.",
+    body: "When the job's done, your review becomes part of the record the next owner reads. That's how the directory gets better: collectively, in the open.",
   },
 ];
 
@@ -61,8 +61,8 @@ const SELLER_STEPS = [
   },
   {
     icon: Sparkles,
-    title: "We polish the listing",
-    body: "Our AI drafts a clean description in a tone collectors actually read. You review, edit, and publish — or Chris can write a personal take for featured listings.",
+    title: "You write the listing",
+    body: "You write the description; we give you a structure that works and examples of what collectors actually read. Review, edit, and publish whenever you're ready.",
   },
   {
     icon: Eye,
@@ -80,13 +80,13 @@ const BUYER_STEPS = [
   {
     icon: Search,
     title: "Browse honest listings",
-    body: "Filter by era, category, price, and location. Every listing shows real photos, VIN, mileage, and — where available — comparable recent sale prices.",
+    body: "Filter by era, category, price, and location. Every listing shows real photos, VIN, mileage, and, where available, comparable recent sale prices.",
   },
   {
     icon: CheckCircle2,
     title: "Check the comps",
     body: VALUE_GUIDE_PUBLIC
-      ? "Our Value Guide pulls real auction data so you know what a car actually trades for — not what someone hopes to get."
+      ? "Our Value Guide pulls real auction data so you know what a car actually trades for, not what someone hopes to get."
       : "Work from real sold prices, not ask prices. Our model histories carry a market snapshot wherever we have enough recorded sales to say something honest.",
   },
   {
@@ -97,7 +97,7 @@ const BUYER_STEPS = [
   {
     icon: Handshake,
     title: "Close the deal your way",
-    body: "Bank transfer, escrow service, cashier's check — whatever you agree on. Fully Sorted is the introduction; you run the transaction.",
+    body: "Bank transfer, escrow service, cashier's check: whatever you agree on. Fully Sorted is the introduction; you run the transaction.",
   },
 ];
 
@@ -105,12 +105,12 @@ const PROVIDER_STEPS = [
   {
     icon: Wrench,
     title: "Apply to be listed",
-    body: "Tell us about your shop or practice, specialties, and the kind of work you do best. Applications are reviewed by a human — no bots, no algorithms.",
+    body: "Tell us about your shop or practice, specialties, and the kind of work you do best. Applications are reviewed by a human: no bots, no algorithms.",
   },
   {
     icon: ShieldCheck,
     title: "Get your profile live",
-    body: "Applications are reviewed by a human before a profile goes live. From there your reputation is built in the open — by the owners you work for.",
+    body: "Once approved, your profile goes live and your reputation is built in the open, by the owners you work for.",
   },
   {
     icon: Camera,
@@ -120,7 +120,7 @@ const PROVIDER_STEPS = [
   {
     icon: DollarSign,
     title: "Get found by owners who care",
-    body: "Collectors searching for detailers, inspectors, mechanics, restorers, and transporters find you — ranked by the work you've done and the owners who vouch for it.",
+    body: "Collectors searching for detailers, inspectors, mechanics, restorers, and transporters find you, ranked by the work you've done and the owners who vouch for it.",
   },
 ];
 
@@ -131,7 +131,7 @@ const RESEARCH_STEPS = [
         {
           icon: BarChart3,
           title: "Check the Value Guide",
-          body: "Real sold-price comps from auction results and reported private sales — so you know what a car actually trades for, not what someone hopes to get.",
+          body: "Real sold-price comps from auction results and reported private sales, so you know what a car actually trades for, not what someone hopes to get.",
         },
       ]
     : []),
@@ -185,7 +185,7 @@ const howToHireSchema = {
   "@id": "https://fullysorted.com/how-it-works#howto-hire",
   name: "How to hire a collector car specialist on Fully Sorted",
   description:
-    "Step-by-step guide to finding and booking an owner-reviewed specialist for your collector car — inspection, detailing, transport, mechanical, restoration and body work.",
+    "Step-by-step guide to finding and booking an owner-reviewed specialist for your collector car: inspection, transport, mechanical work, body work and paint, restoration, detailing, storage and photography.",
   totalTime: "PT10M",
   step: HIRE_STEPS.map((s, i) => ({
     "@type": "HowToStep",
@@ -240,7 +240,7 @@ export default function HowItWorksPage() {
             How Fully Sorted Works
           </p>
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl text-foreground leading-[1.08] mb-4">
-            Find the specialists who keep your car running — then buy, sell and research it in one place.
+            Find the specialists who keep your car running, then buy, sell and research it in one place.
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
             Fully Sorted is a collector car services hub first: an owner-reviewed
@@ -261,7 +261,7 @@ export default function HowItWorksPage() {
             />
             <div className="absolute inset-0" aria-hidden="true" style={{ background: "linear-gradient(rgba(15,32,50,0.1), rgba(15,32,50,0.65))" }} />
             <p className="absolute bottom-4 left-5 right-5 text-sm sm:text-base font-semibold text-white text-left">
-              Know before the wire goes — real comps, owner-reviewed specialists, and a deal you own end to end.
+              Know before the wire goes: real comps, owner-reviewed specialists, and a deal you own end to end.
             </p>
           </div>
         </div>
@@ -279,9 +279,9 @@ export default function HowItWorksPage() {
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Getting work done on your car</h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              Inspection, detailing, transport, mechanical, restoration, body and
-              paint — the specialists collectors actually use, rated by the owners
-              who hired them.
+              Inspection, transport, mechanical, body and paint, restoration,
+              detailing, storage, and photography: the specialists collectors
+              actually use, rated by the owners who hired them.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -311,7 +311,7 @@ export default function HowItWorksPage() {
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Joining the Fully Sorted directory</h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              Detailers, inspectors, mechanics, restorers, transporters — the skilled specialists who make collector car ownership possible.
+              Detailers, inspectors, mechanics, restorers, transporters, body and paint shops, storage facilities, and photographers: the skilled specialists who make collector car ownership possible.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -397,7 +397,7 @@ export default function HowItWorksPage() {
               {VALUE_GUIDE_PUBLIC ? "Knowing what a car is really worth" : "Knowing the car before you buy it"}
             </h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              The same data sits under every listing and every quote — so nobody
+              The same data sits under every listing and every quote, so nobody
               in the transaction is guessing.
             </p>
           </div>
@@ -429,7 +429,7 @@ export default function HowItWorksPage() {
             One-time listing fee. Straightforward pricing.
           </h2>
           <p className="text-base text-text-secondary">
-            Standard $9.99, Featured $29.99, Premium $49.99 — all one-time, paid up front. The first 100 sellers list free as founding members.
+            Standard $9.99, Featured $29.99, Premium $49.99: all one-time, paid up front. The first 100 sellers list free as founding members.
           </p>
           <div className="mt-8">
             <Link
@@ -457,7 +457,7 @@ export default function HowItWorksPage() {
           <div className="bg-white border border-border rounded-2xl p-8 text-center">
             <p className="text-sm text-text-secondary leading-relaxed max-w-xl mx-auto">
               What things cost, how trust works, where our valuation numbers come from,
-              and what we deliberately don&apos;t do — answered in full, in one place.
+              and what we deliberately don&apos;t do: answered in full, in one place.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
               <Link

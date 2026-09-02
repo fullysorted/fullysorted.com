@@ -4,22 +4,22 @@ import { MapPin, Calendar, Flag, ExternalLink, ArrowLeft } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "2026 Formula 1 Calendar — Live",
+  title: "2026 Formula 1 Calendar: Live",
   description:
-    "The complete 2026 Formula 1 World Championship calendar — all 24 rounds, live status, circuits, and dates. The F1 season tracker for collector car enthusiasts.",
+    "The complete 2026 Formula 1 World Championship calendar: all 24 rounds, live status, circuits, and dates. The F1 season tracker for collector car enthusiasts.",
   alternates: { canonical: "/events/f1" },
   openGraph: {
     type: "website",
     title: "2026 Formula 1 Calendar",
     description:
-      "Live tracker for the 2026 F1 World Championship — every round, every circuit, every date.",
+      "Live tracker for the 2026 F1 World Championship: every round, every circuit, every date.",
     url: "https://fullysorted.com/events/f1",
   },
   twitter: {
     card: "summary_large_image",
     title: "2026 Formula 1 Calendar",
     description:
-      "Live tracker for the 2026 F1 World Championship — every round, every circuit, every date.",
+      "Live tracker for the 2026 F1 World Championship: every round, every circuit, every date.",
   },
 };
 
@@ -161,7 +161,7 @@ export default async function F1Page() {
             <span style={{ color: "#D9BC7A" }}>World Championship</span>
           </h1>
           <p className="text-lg sm:text-xl leading-relaxed max-w-3xl text-white/85">
-            The complete 2026 F1 calendar — all {races.length || 24} rounds, live status,
+            The complete 2026 F1 calendar: all {races.length || 24} rounds, live status,
             and the circuits the modern championship runs on.
           </p>
 
@@ -175,7 +175,7 @@ export default async function F1Page() {
               }}
             >
               <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#D9BC7A" }}>
-                Next up — Round {nextRace.round}
+                Next up: Round {nextRace.round}
               </p>
               <h2 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-white mb-2">
                 {nextRace.raceName}

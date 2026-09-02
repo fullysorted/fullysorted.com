@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Collector Car Events",
   description:
-    "Concours, auctions, tours and cars-and-coffee meets worth your weekend — the collector car events we actually turn up to. Lightly curated.",
+    "Concours, auctions, tours and cars-and-coffee meets worth your weekend: the collector car events we actually turn up to. Lightly curated.",
   alternates: { canonical: "/events" },
   openGraph: {
     type: "website",
@@ -33,7 +33,7 @@ export default function EventsPage() {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Fully Sorted — Collector Car Events",
+    name: "Fully Sorted: Collector Car Events",
     itemListElement: sorted.map((e, i) => ({
       "@type": "ListItem",
       position: i + 1,
@@ -99,8 +99,8 @@ export default function EventsPage() {
           <p className="text-lg sm:text-xl leading-relaxed max-w-3xl text-white/85">
             Concours, auctions, tours, and cars-and-coffee meets that
             actually move the needle. Every event on this list is one
-            I&apos;ve been to, am going to, or am directly involved
-            with — chosen because they are worth the drive, not because anyone asked.
+            we&apos;ve been to, are going to, or are directly involved
+            with, chosen because they are worth the drive, not because anyone asked.
           </p>
         </div>
         <div
@@ -149,7 +149,7 @@ export default function EventsPage() {
                 Formula 1 World Championship
               </h2>
               <p className="text-sm sm:text-base leading-relaxed mb-4 text-white/70">
-                The complete 2026 F1 calendar with live status — every round,
+                The complete 2026 F1 calendar with live status: every round,
                 every circuit, every date. Pulled from the official feed and
                 refreshed daily.
               </p>
@@ -249,8 +249,8 @@ export default function EventsPage() {
             className="text-sm mb-4 max-w-xl mx-auto"
             style={{ color: "#6b6b5e" }}
           >
-            Send me the details. If it&apos;s the kind of event I&apos;d
-            tell a friend about, it goes on this page. No fee.
+            Send us the details. If it&apos;s the kind of event we&apos;d
+            tell a friend about, it goes on this page. Free to submit.
           </p>
           <a
             href="mailto:chris@fullysorted.com?subject=Event submission"

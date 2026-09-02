@@ -12,6 +12,8 @@ import { RarityScale } from "@/components/research/RarityScale";
 import { ProductionBreakdown } from "@/components/research/ProductionBreakdown";
 import { ContributeBox } from "@/components/research/ContributeBox";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
+import { renderMarkdownLite as renderMarkdown } from "@/lib/markdown-lite";
+import { MarqueNotice } from "@/components/research/MarqueNotice";
 
 export const revalidate = 3600;
 
@@ -29,43 +31,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     (m.summary || "").replace(/[#*]/g, "").slice(0, 155) ||
     `History, specs, production numbers and buyer's notes for the ${name}.`;
   return {
-    title: `${name} — History, Specs & Buyer's Guide | Fully Sorted`,
+    title: `${name}: History, Specs and Buyer's Guide`,
     description: desc,
     alternates: { canonical: `/research/models/${m.slug}` },
     openGraph: {
       type: "article",
-      title: `${name} — History, Specs & Buyer's Guide`,
+      title: `${name}: History, Specs and Buyer's Guide`,
       description: desc,
       url: `https://fullysorted.com/research/models/${m.slug}`,
     },
   };
-}
-
-// Lightweight markdown → HTML (## headings, **bold**, paragraphs).
-// SECURITY: this content is AI-generated and later rendered via
-// dangerouslySetInnerHTML, so we HTML-escape every block BEFORE applying the
-// markdown transforms. Without this, any raw HTML (e.g. <img onerror=…>) that
-// slipped past review would execute as stored XSS.
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function renderMarkdown(content: string): string {
-  return content
-    .split("\n\n")
-    .map((block) => {
-      const t = escapeHtml(block.trim());
-      if (!t) return "";
-      if (t.startsWith("## ")) return `<h2>${t.slice(3)}</h2>`;
-      const withBold = t.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-      return `<p>${withBold}</p>`;
-    })
-    .join("");
 }
 
 const CONFIDENCE_STYLE: Record<string, { bg: string; fg: string; label: string }> = {
@@ -126,10 +101,12 @@ export default async function ModelPage({ params }: Props) {
   const forSale = await getActiveListingsForModel(m.make, m.model);
 
   const name = modelDisplayName(m);
+  // "F40 (F40)": a generation that merely repeats the model name is noise.
+  const generation = m.generation && m.generation.trim().toLowerCase() !== m.model.trim().toLowerCase() ? m.generation : null;
   const years = [m.year_start, m.year_end].filter(Boolean).join("–");
   const conf = CONFIDENCE_STYLE[m.overall_confidence || "medium"] ?? CONFIDENCE_STYLE.medium;
   const disputed = m.claims.filter((c) => c.status === "disputed");
-  const sourceById = new Map(m.sources.map((s) => [s.id, s]));
+  const makeSlug = m.slug.split("/")[0];
 
   const vehicleSchema = {
     "@context": "https://schema.org",
@@ -146,7 +123,7 @@ export default async function ModelPage({ params }: Props) {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: `${name} — History, Specs & Buyer's Guide`,
+    headline: `${name}: History, Specs and Buyer's Guide`,
     description: (m.summary || "").replace(/[#*]/g, "").slice(0, 200),
     author: { "@type": "Organization", name: "Fully Sorted" },
     publisher: { "@id": "https://fullysorted.com/#organization" },
@@ -162,7 +139,8 @@ export default async function ModelPage({ params }: Props) {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Research", item: "https://fullysorted.com/research" },
       { "@type": "ListItem", position: 2, name: "Model Histories", item: "https://fullysorted.com/research/models" },
-      { "@type": "ListItem", position: 3, name, item: `https://fullysorted.com/research/models/${m.slug}` },
+      { "@type": "ListItem", position: 3, name: m.make, item: `https://fullysorted.com/research/models/${makeSlug}` },
+      { "@type": "ListItem", position: 4, name, item: `https://fullysorted.com/research/models/${m.slug}` },
     ],
   };
 
@@ -196,18 +174,22 @@ export default async function ModelPage({ params }: Props) {
       {/* Header */}
       <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <Link href="/research/models" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8" style={{ color: "#6b6b5e" }}>
-            <ArrowLeft className="w-4 h-4" /> Model Histories
-          </Link>
+          <nav className="flex flex-wrap items-center gap-2 text-sm font-medium mb-8" style={{ color: "#6b6b5e" }} aria-label="Breadcrumb">
+            <Link href="/research/models" className="inline-flex items-center gap-1.5 hover:opacity-70 transition-opacity">
+              <ArrowLeft className="w-4 h-4" /> Model Histories
+            </Link>
+            <span aria-hidden style={{ color: "#cfcabb" }}>/</span>
+            <Link href={`/research/models/${makeSlug}`} className="hover:opacity-70 transition-opacity">{m.make}</Link>
+          </nav>
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#1E6091" }}>{m.make}</span>
+            <Link href={`/research/models/${makeSlug}`} className="text-xs font-bold uppercase tracking-widest hover:opacity-70 transition-opacity" style={{ color: "#1E6091" }}>{m.make}</Link>
             {years && <span className="text-xs" style={{ color: "#9a9a8a" }}>{years}</span>}
             <span className="text-xs font-bold px-2.5 py-1 rounded-full inline-flex items-center gap-1" style={{ background: conf.bg, color: conf.fg }}>
               <ShieldCheck className="w-3 h-3" /> {conf.label}
             </span>
           </div>
           <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-5xl leading-[1.1] mb-3" style={{ color: "#1a1a18" }}>
-            {m.model} {m.generation && <span style={{ color: "#9a9a8a" }}>({m.generation})</span>}
+            {m.model} {generation && <span style={{ color: "#9a9a8a" }}>({generation})</span>}
           </h1>
           {m.production_total != null && (
             <p className="text-sm" style={{ color: "#6b6b5e" }}>
@@ -293,9 +275,10 @@ export default async function ModelPage({ params }: Props) {
                   ))}
                 </ol>
                 <p className="text-xs mt-4" style={{ color: "#9a9a8a" }}>
-                  Synthesized from the sources above and cross-checked. We cite and link out; we don’t
+                  Synthesized from the sources above and cross-checked. We cite and link out; we do not
                   republish other databases verbatim.
                 </p>
+                <MarqueNotice make={m.make} className="mt-4" />
               </Section>
             )}
 

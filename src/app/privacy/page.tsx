@@ -37,7 +37,7 @@ export default function PrivacyPage() {
           <div>
             <h2 className="text-xl font-bold mb-3" style={{ color: "#1a1a18" }}>Information We Collect</h2>
             <p>
-              When you use Fully Sorted, we collect information you provide directly — such as your name,
+              When you use Fully Sorted, we collect information you provide directly, such as your name,
               email address, phone number, and vehicle details when listing a car or applying to our services
               directory. We also collect payment information through our secure payment processor (Stripe),
               though we never store full card numbers.
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
             <h2 className="text-xl font-bold mb-3" style={{ color: "#1a1a18" }}>Data Security</h2>
             <p>
               We take security seriously. All data is transmitted over HTTPS. Payment processing is handled
-              entirely by Stripe — we never see or store your full payment details.
+              entirely by Stripe. We never see or store your full payment details.
             </p>
           </div>
 

@@ -26,7 +26,7 @@ export default function ReviewForm({
     e.preventDefault();
     if (!name.trim()) return setError('Please add your name.');
     if (!rating) return setError('Please choose a rating.');
-    if (body.trim().length < 20) return setError('Please write a sentence or two — a bare rating helps nobody.');
+    if (body.trim().length < 20) return setError('Please write a sentence or two. A bare rating helps nobody.');
     setError('');
     setSending(true);
     try {
@@ -43,10 +43,10 @@ export default function ReviewForm({
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || 'Something went wrong — try again in a moment.');
+      if (!res.ok) throw new Error(data.error || 'Something went wrong. Try again in a moment.');
       setSent(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong — try again in a moment.');
+      setError(err instanceof Error ? err.message : 'Something went wrong. Try again in a moment.');
     } finally {
       setSending(false);
     }
@@ -61,7 +61,7 @@ export default function ReviewForm({
         <Check className="w-5 h-5 mt-0.5 shrink-0" style={{ color: 'var(--sorted-green-dark, #3d7a2a)' }} />
         <div>
           <p className="text-sm font-semibold" style={{ color: 'var(--sorted-green-dark, #3d7a2a)' }}>
-            Thank you — that is genuinely useful.
+            Thank you. That is genuinely useful.
           </p>
           <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
             It goes live on {businessName}&rsquo;s profile once we have checked it for spam and abuse. We do not edit

@@ -36,10 +36,10 @@ export default function LeadOutcome({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, action, reason: action === 'junk' ? reason.trim() || undefined : undefined }),
       });
-      if (!res.ok) throw new Error('That did not go through — try once more.');
+      if (!res.ok) throw new Error('That did not go through. Try once more.');
       setDone(action);
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'That did not go through — try once more.');
+      setError(e instanceof Error ? e.message : 'That did not go through. Try once more.');
     } finally {
       setSending(null);
     }
@@ -49,10 +49,10 @@ export default function LeadOutcome({
     return (
       <div className="rounded-2xl border p-8 text-center" style={{ borderColor: 'var(--border-light)', background: 'var(--surface, #fff)' }}>
         <Check className="w-8 h-8 mx-auto mb-3" style={{ color: '#4b8b2e' }} />
-        <h1 className="font-display text-2xl mb-2">Got it — thank you.</h1>
+        <h1 className="font-display text-2xl mb-2">Got it. Thank you.</h1>
         <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
           {done === 'replied'
-            ? 'Nothing else to do. Knowing which enquiries get answered is how we work out which ones are worth sending you.'
+            ? 'Nothing else to do. Knowing which inquiries get answered is how we work out which ones are worth sending you.'
             : 'Noted. Enough of these from one direction and we go and fix the source rather than keep forwarding it.'}
         </p>
         <Link href="/services" className="inline-block mt-6 text-sm font-semibold" style={{ color: 'var(--accent, #1E6091)' }}>
@@ -64,9 +64,9 @@ export default function LeadOutcome({
 
   return (
     <div className="rounded-2xl border p-8" style={{ borderColor: 'var(--border-light)', background: 'var(--surface, #fff)' }}>
-      <h1 className="font-display text-2xl mb-2">What happened with that enquiry?</h1>
+      <h1 className="font-display text-2xl mb-2">What happened with that inquiry?</h1>
       <p className="text-sm mb-6" style={{ color: 'var(--text-secondary)' }}>
-        One click. We cannot see your inbox and we are not asking what you said — just whether it was worth
+        One click. We cannot see your inbox and we are not asking what you said, just whether it was worth
         your time.
       </p>
 
@@ -80,7 +80,7 @@ export default function LeadOutcome({
           {sending === 'replied' ? <Loader2 className="w-5 h-5 animate-spin" /> : <ThumbsUp className="w-5 h-5" style={{ color: '#4b8b2e' }} />}
           <span>
             <span className="block text-sm font-semibold">I replied to this one</span>
-            <span className="block text-xs" style={{ color: 'var(--text-tertiary)' }}>A real enquiry — I got back to them.</span>
+            <span className="block text-xs" style={{ color: 'var(--text-tertiary)' }}>A real inquiry. I got back to them.</span>
           </span>
         </button>
 
@@ -92,7 +92,7 @@ export default function LeadOutcome({
         >
           {sending === 'junk' ? <Loader2 className="w-5 h-5 animate-spin" /> : <Ban className="w-5 h-5" style={{ color: '#9a5a33' }} />}
           <span>
-            <span className="block text-sm font-semibold">Not a real enquiry</span>
+            <span className="block text-sm font-semibold">Not a real inquiry</span>
             <span className="block text-xs" style={{ color: 'var(--text-tertiary)' }}>Spam, a sales pitch, or nothing to do with what I do.</span>
           </span>
         </button>

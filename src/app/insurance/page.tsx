@@ -4,7 +4,7 @@ import { ShieldCheck, FileText, Warehouse, Camera, BarChart3, ExternalLink, Aler
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export const metadata: Metadata = {
-  title: "Collector Car Insurance — what agreed value actually means",
+  title: "Collector Car Insurance: what agreed value actually means",
   description:
     "A standard auto policy pays what a car is worth after depreciation. A collector policy pays the number you agreed up front. What agreed value means, what carriers usually require, and what to have ready before you call.",
   alternates: { canonical: "/insurance" },
@@ -38,7 +38,7 @@ const VALUE_TYPES = [
     term: "Actual cash value",
     good: false,
     body:
-      "What a standard auto policy uses. The car's replacement cost, less depreciation, decided after the loss by the insurer. For a car that has appreciated since you bought it, this is the gap that ruins people — the adjuster is valuing a used vehicle, not a collector one.",
+      "What a standard auto policy uses. The car's replacement cost, less depreciation, decided after the loss by the insurer. For a car that has appreciated since you bought it, this is the gap that ruins people: the adjuster is valuing a used vehicle, not a collector one.",
   },
   {
     term: "Stated value",
@@ -49,10 +49,10 @@ const VALUE_TYPES = [
 ];
 
 const REQUIREMENTS = [
-  "Another vehicle for daily driving — collector policies generally assume this is not your commuter",
+  "Another vehicle for daily driving: collector policies generally assume this is not your commuter",
   "Secured, enclosed storage, and carriers often ask what the building is like",
   "Limited or declared annual mileage, though flexible and higher-mileage options have become common",
-  "Pleasure use: shows, club events, weekend driving — not commuting or business use",
+  "Pleasure use: shows, club events, weekend driving, not commuting or business use",
   "A driving record and, frequently, a minimum age",
 ];
 
@@ -62,7 +62,7 @@ const PREP = [
     title: "A defensible number",
     body: VALUE_GUIDE_PUBLIC
       ? "Agreed value is a negotiation, and the person with comparable sales in hand does better. Our Value Guide leads with the median of real sold prices rather than the record one."
-      : "Agreed value is a negotiation, and the person with comparable sales in hand does better. Bring the median of what cars like yours actually made — not the record sale — and be ready to show where the figures came from.",
+      : "Agreed value is a negotiation, and the person with comparable sales in hand does better. Bring the median of what cars like yours actually made (not the record sale) and be ready to show where the figures came from.",
     href: VALUE_GUIDE_PUBLIC ? "/value-guide" : "/services",
     cta: VALUE_GUIDE_PUBLIC ? "Check the Value Guide" : "Find an appraiser",
   },
@@ -76,7 +76,7 @@ const PREP = [
   {
     icon: Warehouse,
     title: "Where it lives",
-    body: "Storage comes up on almost every collector application. If the car is kept somewhere secure and climate-managed, that is worth saying — and worth arranging if it is not.",
+    body: "Storage comes up on almost every collector application. If the car is kept somewhere secure and climate-managed, that is worth saying, and worth arranging if it is not.",
     href: "/services?type=storage",
     cta: "Find storage",
   },
@@ -163,7 +163,7 @@ export default function InsurancePage() {
           </h2>
           <p className="text-base mb-7 max-w-3xl leading-relaxed" style={{ color: "#6b6b5e" }}>
             Specialist policies are cheaper than standard ones largely because the car is driven
-            less and kept better. That trade shows up as conditions. These are the common ones —
+            less and kept better. That trade shows up as conditions. These are the common ones:
             they vary by carrier and by state, so confirm the specifics with whoever writes it.
           </p>
           <ul className="space-y-3">
@@ -233,7 +233,7 @@ export default function InsurancePage() {
           </h2>
           <p className="text-base leading-relaxed max-w-3xl mb-6" style={{ color: "#C9D4E2" }}>
             A specialist collector car insurer, writing agreed-value policies for exactly this kind
-            of car. We are not an agent and we do not sell policies — we point you at them because
+            of car. We are not an agent and we do not sell policies: we point you at them because
             it is who we would call, and because a specialist underwriter is the difference between
             an adjuster who understands your car and one who looks it up in a used-car guide. Get
             your own quotes and compare.
@@ -258,7 +258,7 @@ export default function InsurancePage() {
               insurance agent, broker or carrier, and nothing on this page is insurance advice or a
               recommendation about your particular situation. We may earn a referral fee if you take
               out a policy through this link. It costs you nothing, and it does not change what is
-              written above. Coverage, conditions and availability vary by carrier and by state —
+              written above. Coverage, conditions and availability vary by carrier and by state:
               read the policy and confirm the details with the insurer before you rely on any of it.
             </p>
           </div>

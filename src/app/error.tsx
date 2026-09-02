@@ -31,12 +31,12 @@ export default function GlobalError({
           Something went wrong on our end.
         </h1>
         <p className="text-text-secondary mb-7">
-          That&apos;s our fault, not yours. Try again — and if it keeps happening,
+          That&apos;s our fault, not yours. Try again. If it keeps happening,
           email{" "}
           <a href="mailto:chris@fullysorted.com" className="text-accent font-semibold hover:underline">
             chris@fullysorted.com
           </a>{" "}
-          and I&apos;ll sort it.
+          and we&apos;ll sort it.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button

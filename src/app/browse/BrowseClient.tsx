@@ -321,7 +321,7 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               href="/sell"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
-              List Your Car — From $9.99
+              List Your Car · From $9.99
             </Link>
           </div>
         ) : (

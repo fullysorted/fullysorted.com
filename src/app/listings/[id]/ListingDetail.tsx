@@ -55,7 +55,7 @@ function PhotoGallery({ vehicle }: { vehicle: Vehicle }) {
       >
         <Image
           src={allPhotos[activeIndex]}
-          alt={`${vehicle.title} — photo ${activeIndex + 1}`}
+          alt={`${vehicle.title}, photo ${activeIndex + 1}`}
           fill
           sizes="(max-width: 1024px) 100vw, 1024px"
           className="object-cover"
@@ -191,7 +191,7 @@ function PhotoGallery({ vehicle }: { vehicle: Vehicle }) {
             >
               <Image
                 src={allPhotos[activeIndex]}
-                alt={`${vehicle.title} — photo ${activeIndex + 1}`}
+                alt={`${vehicle.title}, photo ${activeIndex + 1}`}
                 fill
                 sizes="(max-width: 1280px) 100vw, 1280px"
                 className="object-contain"
@@ -261,7 +261,7 @@ function ContactForm({
         setError(data?.error || "Couldn't send that. Please try again.");
       }
     } catch {
-      setError("Couldn't reach the server — check your connection and try again.");
+      setError("Couldn't reach the server. Check your connection and try again.");
     } finally {
       setSending(false);
     }
@@ -409,7 +409,7 @@ export function ListingDetail({ vehicle }: Props) {
       try {
         await navigator.share({
           title: vehicle.title,
-          text: `Check out this ${vehicle.title} on Fully Sorted — $${vehicle.price.toLocaleString()}`,
+          text: `Check out this ${vehicle.title} on Fully Sorted: $${vehicle.price.toLocaleString()}`,
           url: window.location.href,
         });
       } catch {
@@ -523,7 +523,7 @@ export function ListingDetail({ vehicle }: Props) {
                     <p className="text-stone-600 mt-1 leading-relaxed text-sm">
                       &ldquo;{vehicle.chrisTake}&rdquo;
                     </p>
-                    <p className="text-xs text-stone-400 mt-1">— Fully Sorted</p>
+                    <p className="text-xs text-stone-400 mt-1">Fully Sorted</p>
                   </div>
                 </div>
               </div>
@@ -687,7 +687,7 @@ export function ListingDetail({ vehicle }: Props) {
                         At or below comparable sales
                       </p>
                       <p className="text-xs mt-0.5" style={{ color: "rgba(106,176,76,0.8)" }}>
-                        Based on {vehicle.compCount} recorded {vehicle.compCount === 1 ? "sale" : "sales"} — not an appraisal
+                        Based on {vehicle.compCount} recorded {vehicle.compCount === 1 ? "sale" : "sales"}. Not an appraisal.
                       </p>
                     </div>
                   ) : (
@@ -702,7 +702,7 @@ export function ListingDetail({ vehicle }: Props) {
                         Above Average
                       </p>
                       <p className="text-xs mt-0.5" style={{ color: "rgba(120,95,41,0.85)" }}>
-                        Condition, originality or rarity may well justify it — {vehicle.compCount} recorded {vehicle.compCount === 1 ? "sale" : "sales"}
+                        Condition, originality or rarity may well justify it. {vehicle.compCount} recorded {vehicle.compCount === 1 ? "sale" : "sales"}.
                       </p>
                     </div>
                   )}
@@ -725,7 +725,7 @@ export function ListingDetail({ vehicle }: Props) {
                   <span className="font-bold" style={{ color: "#1E6091" }}>
                     Get it inspected before you wire anything.
                   </span>{" "}
-                  Find an inspector near the car — they go and look at it for you.
+                  Find an inspector near the car. They go and look at it for you.
                 </span>
               </Link>
 
