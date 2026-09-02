@@ -3,7 +3,7 @@ import { Database } from "lucide-react";
 import { SubmitSaleForm } from "./SubmitSaleForm";
 
 export const metadata: Metadata = {
-  title: "Report a Sale — Help Build the Best Collector-Car Data",
+  title: "Report a Sale: Help Build the Best Collector-Car Data",
   description: "Know a collector-car sale price? Add it to Fully Sorted's market data. Reviewed before publishing; we only use the factual sale details.",
   alternates: { canonical: "/submit-sale" },
 };
@@ -16,7 +16,7 @@ export default function SubmitSalePage() {
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 py-14 sm:py-16 text-center">
           <div className="inline-flex items-center gap-2 mb-3"><Database className="w-5 h-5" style={{ color: "#D9C08A" }} /><span className="text-xs font-bold uppercase tracking-widest text-white/70">Report a Sale</span></div>
           <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl mb-3">Know a sale price? Add it.</h1>
-          <p className="text-stone-300">Every real result you add makes the collector-car market a little more transparent — and helps the next buyer and seller. Takes a minute; each submission is checked against its source before it is published.</p>
+          <p className="text-stone-300">Every real result you add makes the collector-car market a little more transparent, and helps the next buyer and seller. Takes a minute; each submission is checked against its source before it is published.</p>
         </div>
       </div>
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-14">

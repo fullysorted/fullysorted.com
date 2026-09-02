@@ -8,7 +8,7 @@ import { Suspense } from "react";
 import { ShopClient } from "./ShopClient";
 
 export const metadata: Metadata = {
-  title: "Garage Essentials — Gear Worth Owning",
+  title: "Garage Essentials: Gear Worth Owning",
   description:
     "A curated, editorial pick of the detailing, tools, storage, and reference gear serious collector-car owners actually use. Chosen for the recommendation, not the catalog.",
   alternates: { canonical: "/shop" },
@@ -20,7 +20,7 @@ const collectionSchema = {
   "@id": "https://fullysorted.com/shop#collection",
   name: "Garage Essentials",
   description:
-    "A curated, editorial selection of the gear serious collector-car owners actually use — detailing, tools, storage, and reference.",
+    "A curated, editorial selection of the gear serious collector-car owners actually use: detailing, tools, storage, and reference.",
   url: "https://fullysorted.com/shop",
   isPartOf: { "@id": "https://fullysorted.com/#website" },
   hasPart: {
@@ -73,7 +73,7 @@ export default function ShopPage() {
             The gear we&rsquo;d put in <span style={{ color: "#D9C08A" }}>our own garage.</span>
           </h1>
           <p className="text-lg text-stone-300 max-w-2xl">
-            Not a store — a short, opinionated list of the detailing supplies, tools, and preservation kit
+            Not a store: a short, opinionated list of the detailing supplies, tools, and preservation kit
             that actually earn their place around a collector car. Chosen for the recommendation, not the catalog.
           </p>
         </div>
@@ -99,7 +99,7 @@ export default function ShopPage() {
             Everything here, we&rsquo;d actually use
           </h2>
           <p className="text-sm text-text-secondary max-w-2xl mx-auto mb-6">
-            This list is curated and grows slowly on purpose — a specific product only makes it in when it earns the
+            This list is curated and grows slowly on purpose: a specific product only makes it in when it earns the
             recommendation. Looking for a specialist to do the work instead? That&rsquo;s what the directory is for.
           </p>
           <Link

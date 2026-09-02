@@ -76,7 +76,7 @@ export default function LinkActions({
         style={{ background: 'var(--bg-white)', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-lg)' }}
       >
         <p className="text-sm mb-5" style={{ color: 'var(--text-secondary)' }}>
-          First, create your Fully Sorted account — or sign in if you already have one. We&rsquo;ll bring you straight
+          First, create your Fully Sorted account, or sign in if you already have one. We&rsquo;ll bring you straight
           back here.
         </p>
         <div className="flex flex-wrap gap-3">

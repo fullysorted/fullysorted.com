@@ -39,13 +39,13 @@ export const SHOP_CATEGORIES: ShopCategory[] = [
     key: "detailing",
     label: "Detailing & Paint Care",
     icon: "Sparkles",
-    intro: "Paint is where value lives. This is what keeps it right — without harming original finishes.",
+    intro: "Paint is where value lives. This is what keeps it right, without harming original finishes.",
   },
   {
     key: "garage",
     label: "Garage & Tools",
     icon: "Wrench",
-    intro: "The tools and fluids worth owning before you need them, and worth buying once — properly.",
+    intro: "The tools and fluids worth owning before you need them, and worth buying once, properly.",
   },
   {
     key: "storage",
@@ -57,7 +57,7 @@ export const SHOP_CATEGORIES: ShopCategory[] = [
     key: "library",
     label: "The Library",
     icon: "BookOpen",
-    intro: "Know the car before you turn a bolt — manuals and histories worth the shelf space.",
+    intro: "Know the car before you turn a bolt: manuals and histories worth the shelf space.",
   },
   {
     key: "enthusiast",
@@ -96,7 +96,7 @@ export const SHOP_KITS: ShopKit[] = [
     label: "The First Weekend",
     when: "You just bought the car",
     intro:
-      "Whatever the seller told you, you now own the maintenance history — so start your own. Read the book, change the fluids you cannot vouch for, and find out what the car is actually saying before you drive it anywhere far.",
+      "Whatever the seller told you, you now own the maintenance history, so start your own. Read the book, change the fluids you cannot vouch for, and find out what the car is actually saying before you drive it anywhere far.",
     icon: "KeyRound",
     items: ["workshop-manual", "royal-purple-oil", "bluedriver-scanner", "tekton-torque-wrench", "adams-car-shampoo"],
   },
@@ -105,7 +105,7 @@ export const SHOP_KITS: ShopKit[] = [
     label: "Pre-Purchase Inspection",
     when: "You are about to buy one",
     intro:
-      "You can pay a specialist to look at a car properly, and you should. This is what makes their hour count — and what lets you check the obvious things yourself before you spend it.",
+      "You can pay a specialist to look at a car properly, and you should. This is what makes their hour count, and what lets you check the obvious things yourself before you spend it.",
     icon: "Search",
     items: ["arcan-floor-jack", "esco-jack-stands", "bluedriver-scanner", "buyers-guide", "originality-guide"],
   },
@@ -114,7 +114,7 @@ export const SHOP_KITS: ShopKit[] = [
     label: "Show Day",
     when: "It is being judged on Sunday",
     intro:
-      "Nothing here changes the car. It makes the car look like what it already is — which, on a field where everything has been polished, is mostly about the last hour before the judges arrive.",
+      "Nothing here changes the car. It makes the car look like what it already is, which, on a field where everything has been polished, is mostly about the last hour before the judges arrive.",
     icon: "Sparkles",
     items: ["adams-car-shampoo", "adams-clay-kit", "griots-polisher", "adams-detail-spray", "rag-company-towels", "driving-gloves"],
   },
@@ -142,7 +142,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "adams-car-shampoo",
     name: "Adam's Polishes Car Shampoo",
     blurb:
-      "Adam's pH-balanced shampoo is the enthusiast default — it lifts dirt and cuts grime without stripping wax or attacking soft, original paint. The safest first step in any wash.",
+      "Adam's pH-balanced shampoo is the enthusiast default because it lifts dirt and cuts grime without stripping wax or attacking soft, original paint, and it's the safest first step in any wash.",
     category: "detailing",
     merchant: "amazon",
     amazonSearch: "Adam's Polishes car wash shampoo",
@@ -152,7 +152,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "adams-clay-kit",
     name: "Adam's Polishes Clay Bar Kit",
     blurb:
-      "Bonded contaminants dull even a clean car. Adam's clay kit brings paint back to glass-smooth before any polish or coating — you'll feel the difference with your eyes closed.",
+      "Bonded contaminants dull even a clean car. Adam's clay kit brings paint back to glass-smooth before any polish or coating, and you'll feel the difference with your eyes closed.",
     category: "detailing",
     merchant: "amazon",
     amazonSearch: "Adam's Polishes clay bar kit",
@@ -161,7 +161,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "griots-polisher",
     name: "Griot's Garage Random-Orbital Polisher",
     blurb:
-      "The Griot's 6-inch random-orbital is the machine that made paint correction safe for weekend owners — far more forgiving on collector paint than a rotary. Buy once, cry once.",
+      "The Griot's 6-inch random-orbital is the machine that made paint correction safe for weekend owners: far more forgiving on collector paint than a rotary. Buy once, cry once.",
     category: "detailing",
     merchant: "amazon",
     amazonSearch: "Griot's Garage random orbital polisher",
@@ -171,7 +171,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "rag-company-towels",
     name: "The Rag Company Microfiber Towels",
     blurb:
-      "Cheap towels put the swirls right back in. The Rag Company's plush microfiber is the least glamorous upgrade that matters most — buy a stack and never look back.",
+      "Cheap towels put the swirls right back in. The Rag Company's plush microfiber is the least glamorous upgrade that matters most, so buy a stack and never look back.",
     category: "detailing",
     merchant: "amazon",
     amazonSearch: "The Rag Company microfiber detailing towels",
@@ -191,7 +191,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "royal-purple-oil",
     name: "Royal Purple High-Performance Motor Oil",
     blurb:
-      "Royal Purple's synthetic is a garage favorite for cars that sit and then get driven hard — strong film strength and additive package for older engines. Match the grade to your marque's spec.",
+      "Royal Purple's synthetic is a garage favorite for cars that sit and then get driven hard, thanks to strong film strength and an additive package built for older engines. Match the grade to your marque's spec.",
     category: "garage",
     merchant: "amazon",
     amazonSearch: "Royal Purple high performance synthetic motor oil",
@@ -201,7 +201,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "arcan-floor-jack",
     name: "Arcan Low-Profile Aluminum Floor Jack",
     blurb:
-      "The Arcan aluminum low-profile jack slides under lowered and vintage cars a standard jack can't reach — and won't wreck your back getting there.",
+      "The Arcan aluminum low-profile jack slides under lowered and vintage cars a standard jack can't reach, and it won't wreck your back getting there.",
     category: "garage",
     merchant: "amazon",
     amazonSearch: "Arcan low profile aluminum floor jack",
@@ -210,7 +210,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "esco-jack-stands",
     name: "ESCO Jack Stands",
     blurb:
-      "Never trust a jack alone. A pair of properly rated ESCO stands is the cheapest insurance in the garage — use them every single time.",
+      "Never trust a jack alone. A pair of properly rated ESCO stands is the cheapest insurance in the garage, so use them every single time.",
     category: "garage",
     merchant: "amazon",
     amazonSearch: "ESCO jack stands pair",
@@ -228,7 +228,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "bluedriver-scanner",
     name: "BlueDriver Bluetooth OBD-II Scanner",
     blurb:
-      "For anything 1996-on, BlueDriver turns a mystery warning light into a specific answer — before you hand the car (and a blank check) to a shop.",
+      "For anything 1996-on, BlueDriver turns a mystery warning light into a specific answer before you hand the car (and a blank check) to a shop.",
     category: "garage",
     merchant: "amazon",
     amazonSearch: "BlueDriver bluetooth OBD2 scanner",
@@ -249,7 +249,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "stabil-fuel-stabilizer",
     name: "STA-BIL Fuel Stabilizer",
     blurb:
-      "Modern ethanol fuel starts degrading in months. STA-BIL keeps the fuel system clean and varnish-free while the car sleeps — a few ounces saves a carburetor rebuild.",
+      "Modern ethanol fuel starts degrading in months. STA-BIL keeps the fuel system clean and varnish-free while the car sleeps, and a few ounces saves a carburetor rebuild.",
     category: "storage",
     merchant: "amazon",
     amazonSearch: "STA-BIL fuel stabilizer",
@@ -267,7 +267,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "race-ramps-flatstoppers",
     name: "Race Ramps FlatStoppers",
     blurb:
-      "Tires flat-spot under a stationary car over a long winter. Race Ramps FlatStoppers spread the load and save your rubber — cheaper than a set of tires you didn't need to buy.",
+      "Tires flat-spot under a stationary car over a long winter: Race Ramps FlatStoppers spread the load and save your rubber, cheaper than a set of tires you didn't need to buy.",
     category: "storage",
     merchant: "amazon",
     amazonSearch: "Race Ramps FlatStoppers tire cradles",
@@ -278,7 +278,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "workshop-manual",
     name: "Haynes / Bentley Workshop Manual",
     blurb:
-      "Nothing beats the correct manual for torque specs, sequences, and wiring diagrams. Find the Haynes or Bentley for your marque — it pays for itself the first afternoon.",
+      "Nothing beats the correct manual for torque specs, sequences, and wiring diagrams. Find the Haynes or Bentley for your marque; it pays for itself the first afternoon.",
     category: "library",
     merchant: "amazon",
     amazonSearch: "Haynes Bentley workshop manual classic car",
@@ -317,7 +317,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "autoart-scale-model",
     name: "AUTOart 1:18 Scale Model",
     blurb:
-      "The right AUTOart 1:18 of your car — opening panels, detailed engine, the works — is the gift every enthusiast quietly wants and never buys for themselves.",
+      "The right AUTOart 1:18 of your car, opening panels, detailed engine, the works, is the gift every enthusiast quietly wants and never buys for themselves.",
     category: "enthusiast",
     merchant: "amazon",
     amazonSearch: "AUTOart 1:18 diecast model car",
@@ -344,7 +344,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     slug: "art-print",
     name: "Automotive Art Prints",
     blurb:
-      "A good print of the right car beats another poster every time — the finishing touch for an office or a hallway.",
+      "A good print of the right car beats another poster every time, and it's the finishing touch for an office or a hallway.",
     category: "enthusiast",
     merchant: "amazon",
     amazonSearch: "classic car art print poster",

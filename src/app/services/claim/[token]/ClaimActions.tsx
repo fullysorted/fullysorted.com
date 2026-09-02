@@ -53,7 +53,7 @@ export default function ClaimActions({
     if (result.action === 'removed') {
       return (
         <div className="bg-white rounded-2xl border border-border p-8 text-center">
-          <h3 className="font-display font-semibold tracking-tight text-xl text-foreground mb-2">Done — you&apos;re removed.</h3>
+          <h3 className="font-display font-semibold tracking-tight text-xl text-foreground mb-2">Done. You&apos;re removed.</h3>
           <p className="text-sm text-text-secondary">
             We won&apos;t reach out again. If you change your mind, email{' '}
             <a href="mailto:chris@fullysorted.com" className="underline">chris@fullysorted.com</a>.
@@ -89,14 +89,14 @@ export default function ClaimActions({
         <p className={`text-sm text-text-secondary ${result.linkUrl ? 'mb-5' : 'mb-2'}`}>
           <strong>{businessName}</strong> is live as a founding provider.{' '}
           {result.linkUrl && result.loginEmailSent
-            ? 'Set up your login now and you can edit your details and add photos yourself — it takes a minute. We\u2019ve emailed you the same link in case you\u2019d rather do it later.'
+            ? 'Set up your login now and you can edit your details and add photos yourself. It takes a minute. We\u2019ve emailed you the same link in case you\u2019d rather do it later.'
             : result.linkUrl
-              ? 'Set up your login below and you can edit your details and add photos yourself — it takes a minute. The email with that link didn\u2019t go out, so use the button rather than waiting for one, or bookmark this page.'
+              ? 'Set up your login below and you can edit your details and add photos yourself. It takes a minute. The email with that link didn\u2019t go out, so use the button rather than waiting for one, or bookmark this page.'
               : null}
         </p>
         {!result.linkUrl && (
           <p className="text-sm text-text-secondary mb-5">
-            We couldn&apos;t set up your login link just now, and no email has been sent — so there is nothing waiting
+            We couldn&apos;t set up your login link just now, and no email has been sent, so there is nothing waiting
             in your inbox. Email{' '}
             <a href={`mailto:${contact}`} className="underline" style={{ color: '#1E6091' }}>{contact}</a>{' '}
             and we&apos;ll set it up by hand. Your listing stays live either way.
@@ -140,7 +140,7 @@ export default function ClaimActions({
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="font-bold text-foreground mb-1">
-              {submitting === 'claim' ? 'Saving…' : 'Yes, this is mine — claim it'}
+              {submitting === 'claim' ? 'Saving…' : 'Yes, this is mine: claim it'}
             </p>
             <p className="text-xs text-text-secondary">
               Goes live immediately. We&apos;ll email you a link to edit your profile and add photos.
@@ -162,7 +162,7 @@ export default function ClaimActions({
               {submitting === 'list_only' ? 'Saving…' : 'List it, but I don\u2019t want an account'}
             </p>
             <p className="text-xs text-text-secondary">
-              Goes live immediately. Nothing to set up and nothing to maintain. If an owner enquires through your profile we pass it straight to you by email — that is the only thing you will ever hear from us.
+              Goes live immediately. Nothing to set up and nothing to maintain. If an owner inquires through your profile we pass it straight to you by email. That is the only thing you will ever hear from us.
             </p>
           </div>
           <span className="text-xl text-text-secondary">→</span>
@@ -193,7 +193,7 @@ export default function ClaimActions({
               onClick={() => setConfirmRemove(false)}
               className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg border border-border text-foreground hover:bg-surface transition-colors disabled:opacity-50"
             >
-              Cancel — keep me listed
+              Cancel: keep me listed
             </button>
           </div>
         </div>
@@ -206,7 +206,7 @@ export default function ClaimActions({
         >
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="font-bold text-foreground mb-1">No thanks — remove me</p>
+              <p className="font-bold text-foreground mb-1">No thanks, remove me</p>
               <p className="text-xs text-text-secondary">
                 We&apos;ll delete the staged listing and add you to our suppression list so we never reach out again.
               </p>

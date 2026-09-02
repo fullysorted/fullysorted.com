@@ -5,7 +5,7 @@ import { ShieldCheck, Lock, CreditCard, Star, RefreshCw, Clock, Search, Eye, Wal
 export const metadata: Metadata = {
   title: "Trust & Safety",
   description:
-    "How Fully Sorted keeps buyers, sellers and service providers safe — what we check, what we don't, how we make money, and where our responsibility ends.",
+    "How Fully Sorted keeps buyers, sellers and service providers safe: what we check, what we don't, how we make money, and where our responsibility ends.",
   alternates: { canonical: "/trust" },
 };
 
@@ -14,7 +14,7 @@ const PILLARS = [
     icon: CreditCard,
     title: "Secure payments, powered by Stripe",
     body:
-      "This applies to fixed-price service gigs, and only to those. Card payments are processed by Stripe, a PCI-DSS Level 1 provider; card details go straight to Stripe and are never stored on our servers. Where a provider has card payment switched on, your payment is held and only released once the work is delivered. Card payment is still rolling out provider by provider. A car sale is different and always will be: the money never passes through Fully Sorted at all — see below.",
+      "This will apply to fixed-price service gigs, and only to those, once they open. Card payments will be processed by Stripe, a PCI-DSS Level 1 provider; card details will go straight to Stripe and will never be stored on our servers. Once a provider has card payment switched on, your payment will be held and only released once the work is delivered. A car sale is different and always will be: the money never passes through Fully Sorted at all. See below.",
   },
   {
     icon: Lock,
@@ -32,25 +32,25 @@ const PILLARS = [
     icon: RefreshCw,
     title: "Clear refunds & dispute handling",
     body:
-      "On a fixed-price gig paid through the site, held funds stay paused until the problem is resolved, and refunds go back to your original payment method. On quoted work we never held your money, so your recourse is the agreement you made with the specialist — plus the review you leave, which we do act on. Listing fees are covered by a good-faith review window; policy details below.",
+      "When fixed-price gigs open, held funds will stay paused until a problem is resolved, and refunds will go back to your original payment method. On quoted work we never hold your money, so your recourse is the agreement you made with the specialist, plus the review you leave, which we do act on. Listing fees are refundable if we remove your listing before it goes live, or if you tell us within 48 hours of a duplicate or mistaken charge; policy details below.",
   },
   {
     icon: Search,
     title: "Fraud protection",
     body:
-      "We use automated checks and human review to watch for suspicious listings and activity. For any vehicle purchase, we strongly recommend a professional pre-purchase inspection and a licensed escrow company for significant transactions — Fully Sorted is the introduction, not a party to the sale.",
+      "We use automated checks and human review to watch for suspicious listings and activity. For any vehicle purchase, we strongly recommend a professional pre-purchase inspection and a licensed escrow company for significant transactions. Fully Sorted is the introduction, not a party to the sale.",
   },
   {
     icon: Wallet,
     title: "How we make money",
     body:
-      "Two ways, and you should know both. Sellers pay a one-time listing fee — $9.99 standard, $29.99 featured, $49.99 premium. Providers pay a 10% platform fee on fixed-price gigs booked through the site. That is the entire list — the listing fee is the only charge on a car sale however much it sells for, there is no buyer's premium, we take nothing out of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. Nobody pays us to rank higher; if that ever changes, promoted placement will be labelled as such on the page. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
+      "Two ways, one live today and one planned. Sellers pay a one-time listing fee: $9.99 standard, $29.99 featured, $49.99 premium. When fixed-price gigs open, providers will pay a 10% platform fee on gigs booked through the site. That is the entire list: the listing fee is the only charge on a car sale however much it sells for, there is no buyer's premium, we take nothing out of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. Nobody pays us to rank higher; if that ever changes, promoted placement will be labeled as such on the page. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
   },
   {
     icon: HandCoins,
     title: "Where our responsibility ends",
     body:
-      "Being straight about this is part of being trustworthy. On a car sale we are the introduction, not a party to it — we do not hold the money, inspect the car, or guarantee either side. On service work, the contract is between you and the specialist; ask for their certificate of insurance, and specifically for garage-keepers cover, before anyone takes your keys. What we do own is who we let list, what the public record says about them, and acting on it when someone lets an owner down.",
+      "Being straight about this is part of being trustworthy. On a car sale we are the introduction, not a party to it: we do not hold the money, inspect the car, or guarantee either side. On service work, the contract is between you and the specialist; ask for their certificate of insurance, and specifically for garage-keepers cover, before anyone takes your keys. What we do own is who we let list, what the public record says about them, and acting on it when someone lets an owner down.",
   },
   {
     icon: Clock,
@@ -69,7 +69,7 @@ const POLICIES = [
   {
     heading: "Service payment protection",
     body:
-      "Funds for a booked gig are held after payment and only released to the provider when you accept the completed work. If you report a problem, auto-release is paused while we help both sides resolve it. If the work isn't delivered, you're refunded.",
+      "When fixed-price gigs open, funds for a booked gig will be held after payment and only released to the provider when you accept the completed work. If you report a problem, auto-release will pause while we help both sides resolve it. If the work isn't delivered, you'll be refunded.",
   },
   {
     heading: "Your privacy",
@@ -97,7 +97,7 @@ export default function TrustPage() {
             Built to be safe, sound, and fully sorted
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "#5a5a52" }}>
-            Buying, selling, and hiring around collector cars involves real money and real trust. Here&apos;s exactly how we protect every side of a transaction — and what you should do on your end, too.
+            Buying, selling, and hiring around collector cars involves real money and real trust. Here&apos;s exactly how we protect every side of a transaction, and what you should do on your end, too.
           </p>
         </div>
       </section>

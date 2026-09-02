@@ -64,7 +64,7 @@ export function ProductionBreakdown({
         <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#6b6b5e" }}>Production by variant</p>
       </div>
       <p className="text-sm mb-5" style={{ color: "#6b6b5e" }}>
-        How the {model} run breaks down — and which variants are the scarce ones. Approximate figures from this model&rsquo;s cited sources.
+        How the {model} run breaks down, and which variants are the scarce ones. Approximate figures from this model&rsquo;s cited sources.
       </p>
 
       <div className="space-y-3">
@@ -113,7 +113,7 @@ export function ProductionBreakdown({
       <div className="mt-5 rounded-xl p-3.5 flex items-start gap-2.5" style={{ background: "rgba(176,141,63,0.08)", border: "1px solid rgba(176,141,63,0.25)" }}>
         <Star className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#B08D3F" }} fill="#B08D3F" />
         <p className="text-xs leading-relaxed" style={{ color: "#3a3a34" }}>
-          <span className="font-bold">Rarest of the bunch:</span> the {rarest.name} — only about {rarest.count.toLocaleString()} built
+          <span className="font-bold">Rarest of the bunch:</span> the {rarest.name}, only about {rarest.count.toLocaleString()} built
           {denom > 0 ? `, roughly 1 in every ${Math.round(denom / rarest.count).toLocaleString()} ${model}s.` : "."} If provenance and rarity drive your buy, this is the one to hunt.
         </p>
       </div>

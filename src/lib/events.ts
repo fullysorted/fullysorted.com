@@ -29,7 +29,7 @@ export interface FSEvent {
   ogImage?: string;
   /** Featured = pinned to top of /events index */
   featured?: boolean;
-  /** Note from Chris (italicized callout on the detail page) */
+  /** Note from the founder (italicized callout on the detail page) */
   founderNote?: string;
   /** Structured weekend schedule entries */
   schedule?: Array<{
@@ -62,37 +62,37 @@ export const events: FSEvent[] = [
     tagline: "World-class cars, world-class experience.",
     beneficiary: "La Jolla Historical Society",
     excerpt:
-      "The 20th annual La Jolla Concours d'Elegance — three days on the cliffs above La Jolla Cove featuring over 150 exquisite, timeless automobiles, plus a Friday VIP soirée and Saturday's Porsches & Power on Prospect.",
+      "The 20th annual La Jolla Concours d'Elegance, three days on the cliffs above La Jolla Cove featuring over 150 exquisite, timeless automobiles, plus a Friday VIP soirée and Saturday's Porsches & Power on Prospect.",
     body: `## A 20-year tradition on the Pacific
 
 The 20th annual La Jolla Concours d'Elegance returns April 24–26, 2026 to its home on the lawn at Ellen Browning Scripps Park, directly above La Jolla Cove. Over the course of three days, the event brings together world-class automobiles, the people who own them, and one of the most beautiful natural settings on the West Coast.
 
 What started in January 2004 as a winter showcase for downtown La Jolla, dreamed up by a few local business owners, has grown into one of the most respected concours events in California. By 2012 the format had matured into the full Concours d'Elegance you'll see today. Twenty years in, it's still curated, still community-rooted, and still unmistakably La Jolla.
 
-## Sunday — The Concours
+## Sunday: The Concours
 
-The main concours runs **Sunday, April 26 from 9:00 AM to 4:00 PM** at La Jolla Cove. The field features over 150 exquisite, timeless automobiles — pre-war classics, post-war European exotics, American muscle, sports racing cars, and modern collectibles — judged by class on the lawn at Scripps Park, with the Pacific as the backdrop.
+The main concours runs **Sunday, April 26 from 9:00 AM to 4:00 PM** at La Jolla Cove. The field features over 150 exquisite, timeless automobiles (pre-war classics, post-war European exotics, American muscle, sports racing cars, and modern collectibles) judged by class on the lawn at Scripps Park, with the Pacific as the backdrop.
 
 It's smaller and more curated than the big national concours. That's the point. You can walk the entire field, talk to every owner, and see every car the way it was meant to be seen.
 
-## Friday — Motorvault VIP Soirée
+## Friday: Motorvault VIP Soirée
 
-The weekend opens **Friday, April 24 from 6:00 to 10:00 PM** with the Motorvault soirée — an evening of taste and indulgence beside the Pacific Ocean. It's the kind of night where the conversations that shape the rest of the weekend actually happen. Limited capacity, ticketed separately or included with the Ultimate VIP package.
+The weekend opens **Friday, April 24 from 6:00 to 10:00 PM** with the Motorvault soirée: an evening of taste and indulgence beside the Pacific Ocean. It's the kind of night where the conversations that shape the rest of the weekend actually happen. Limited capacity, ticketed separately or included with the Ultimate VIP package.
 
-## Saturday — Porsches & Power on Prospect
+## Saturday: Porsches & Power on Prospect
 
-**Saturday, April 25 from 5:00 to 9:00 PM**, La Jolla Village hosts Porsches & Power on Prospect — Porsches and other performance machinery taking over Prospect Street in the heart of the Village. Free and open to the public. Bring the family, bring a friend who doesn't normally do car events, and let the village do the work.
+**Saturday, April 25 from 5:00 to 9:00 PM**, La Jolla Village hosts Porsches & Power on Prospect: Porsches and other performance machinery taking over Prospect Street in the heart of the Village. Free and open to the public. Bring the family, bring a friend who doesn't normally do car events, and let the village do the work.
 
 ## Tickets
 
-Tickets are sold through the official La Jolla Concours website. Early-bird pricing closes April 15, 2026 — after that, every tier increases. Buy early.
+Tickets are sold through the official La Jolla Concours website. Early-bird pricing closes April 15, 2026. After that, every tier increases. Buy early.
 
-- **General Admission (Sunday)** — $109 early-bird / $129 after April 15
-- **VIP Lounge (Sunday)** — $399 early-bird / $449 after April 15
-- **Ocean Suite Lounge (Sunday)** — $545 early-bird / $565 after April 15
-- **Motorvault / Friday VIP Soirée** — $399 early-bird / $449 after April 15
-- **Ultimate VIP (Friday + Sunday)** — $699 early-bird / $799 after April 15
-- **Porsches & Power on Prospect (Saturday)** — Free
+- **General Admission (Sunday)**: $109 early-bird / $129 after April 15
+- **VIP Lounge (Sunday)**: $399 early-bird / $449 after April 15
+- **Ocean Suite Lounge (Sunday)**: $545 early-bird / $565 after April 15
+- **Motorvault / Friday VIP Soirée**: $399 early-bird / $449 after April 15
+- **Ultimate VIP (Friday + Sunday)**: $699 early-bird / $799 after April 15
+- **Porsches & Power on Prospect (Saturday)**: Free
 
 ## The cause behind the cars
 
@@ -100,7 +100,7 @@ The La Jolla Concours d'Elegance benefits the **La Jolla Historical Society**, f
 
 ## What I'd do if you're going
 
-If you're flying in, give yourself the full weekend. Friday night is where you meet people. Saturday is for the village. Sunday is the show. Wear shoes you can walk on grass in for six hours, bring a hat, bring sunscreen, and don't try to do the whole field in the first hour — pace yourself.
+If you're flying in, give yourself the full weekend. Friday night is where you meet people. Saturday is for the village. Sunday is the show. Wear shoes you can walk on grass in for six hours, bring a hat, bring sunscreen, and don't try to do the whole field in the first hour. Pace yourself.
 
 If you've never been to this event before, this is the year. Twenty years in, world-class field, world-class setting. There is no better West Coast concours.`,
     url: "https://lajollaconcours.com",
@@ -108,7 +108,7 @@ If you've never been to this event before, this is the year. Twenty years in, wo
     ogImage: "/events/la-jolla-concours-og.png",
     featured: true,
     founderNote:
-      "Full disclosure: I'm closely involved with the La Jolla Concours d'Elegance and I'll be on the lawn all three days. If you're coming, find me — I'd rather meet you in person than over email.",
+      "Full disclosure: I'm closely involved with the La Jolla Concours d'Elegance and I'll be on the lawn all three days. If you're coming, find me. I'd rather meet you in person than over email.",
     schedule: [
       {
         day: "Friday, April 24",
@@ -129,7 +129,7 @@ If you've never been to this event before, this is the year. Twenty years in, wo
         name: "La Jolla Concours d'Elegance",
         time: "9:00 AM – 4:00 PM",
         description:
-          "The main event — over 150 exquisite, timeless automobiles judged by class on the lawn at Ellen Browning Scripps Park.",
+          "The main event: over 150 exquisite, timeless automobiles judged by class on the lawn at Ellen Browning Scripps Park.",
       },
     ],
     tickets: [
@@ -185,7 +185,7 @@ For one week every August, the entire collector car world flies to a 17-mile str
 
 It's not a single event. It's the most concentrated collection of separate, world-class events anywhere in the car world, all running in parallel for nine days.
 
-## The Sunday — Pebble Beach Concours d'Elegance
+## The Sunday: Pebble Beach Concours d'Elegance
 
 The week culminates **Sunday, August 16, 2026** with the 75th Pebble Beach Concours d'Elegance on the 18th fairway of Pebble Beach Golf Links. It is the most important concours in the world. Best of Show at Pebble is the most coveted prize a collector car can win. The field is invitation-only, every car is meticulously researched, and the judging is brutal. Sunday morning the cars roll up onto the lawn at dawn while the fog burns off the bay.
 
@@ -193,24 +193,24 @@ The week culminates **Sunday, August 16, 2026** with the 75th Pebble Beach Conco
 
 Four major houses run sales across the week, and together they typically transact between $400M and $500M:
 
-- **RM Sotheby's Monterey** — Thursday/Friday at the Monterey Conference Center
-- **Gooding & Company** — Friday/Saturday at the Pebble Beach equestrian center
-- **Bonhams Quail Lodge** — Friday at Quail Lodge in Carmel Valley
-- **Mecum Monterey** — Wednesday through Saturday at the Hyatt Regency
+- **RM Sotheby's Monterey**: Thursday/Friday at the Monterey Conference Center
+- **Gooding & Company**: Friday/Saturday at the Pebble Beach equestrian center
+- **Bonhams Quail Lodge**: Friday at Quail Lodge in Carmel Valley
+- **Mecum Monterey**: Wednesday through Saturday at the Hyatt Regency
 
-Whether you're buying or just watching, the auctions are the financial heartbeat of the week. Get a paddle even if you're not bidding — the floor energy is the point.
+Whether you're buying or just watching, the auctions are the financial heartbeat of the week. Get a paddle even if you're not bidding: the floor energy is the point.
 
-## Friday — The Quail
+## Friday: The Quail
 
 **The Quail, A Motorsports Gathering** on Friday, August 14 at Quail Lodge & Golf Club is the most exclusive ticket of the week. Capped attendance, lavish hospitality, manufacturer concept reveals, and a curated field that punches well above its size. Tickets sell out in hours when they go on sale.
 
 ## Concorso Italiano
 
-**Concorso Italiano** on Saturday, August 15 at Black Horse Golf Course in Seaside is the all-Italian celebration — Ferrari, Lamborghini, Maserati, Alfa Romeo, Lancia, Fiat. Less precious than Pebble, more festival, just as serious about the cars.
+**Concorso Italiano** on Saturday, August 15 at Black Horse Golf Course in Seaside is the all-Italian celebration: Ferrari, Lamborghini, Maserati, Alfa Romeo, Lancia, Fiat. Less precious than Pebble, more festival, just as serious about the cars.
 
-## Historic racing — Monterey Motorsports Reunion
+## Historic racing: Monterey Motorsports Reunion
 
-**WeatherTech Raceway Laguna Seca** hosts the Monterey Motorsports Reunion the weekend of August 14–16, with the Pre-Reunion the prior weekend. Pre-war GP cars, '50s sports racers, '60s F1, Can-Am, Trans-Am, Group C — the cars run hard. Pre-Reunion is the local secret: same paddock, half the crowd.
+**WeatherTech Raceway Laguna Seca** hosts the Monterey Motorsports Reunion the weekend of August 14–16, with the Pre-Reunion the prior weekend. Pre-war GP cars, '50s sports racers, '60s F1, Can-Am, Trans-Am, Group C: the cars run hard. Pre-Reunion is the local secret: same paddock, half the crowd.
 
 ## Pebble Beach Tour d'Elegance
 
@@ -238,7 +238,7 @@ Book your hotel in January. Seriously. By April everything within an hour is gon
         day: "Wednesday, August 12 – Saturday, August 15",
         name: "Mecum Monterey",
         description:
-          "Mecum's Monterey sale at the Hyatt Regency Monterey — typically 600+ collector cars across four days.",
+          "Mecum's Monterey sale at the Hyatt Regency Monterey: typically 600+ collector cars across four days.",
       },
       {
         day: "Thursday, August 13",
@@ -262,7 +262,7 @@ Book your hotel in January. Seriously. By April everything within an hour is gon
         day: "Friday, August 14",
         name: "Bonhams Quail Lodge Auction",
         description:
-          "Bonhams' Monterey sale at Quail Lodge — runs the same day as The Quail gathering.",
+          "Bonhams' Monterey sale at Quail Lodge: runs the same day as The Quail gathering.",
       },
       {
         day: "Friday, August 14 – Saturday, August 15",
@@ -274,7 +274,7 @@ Book your hotel in January. Seriously. By April everything within an hour is gon
         day: "Friday, August 14 – Sunday, August 16",
         name: "Monterey Motorsports Reunion",
         description:
-          "Historic racing at WeatherTech Raceway Laguna Seca. Pre-war GP through Group C — the cars run hard.",
+          "Historic racing at WeatherTech Raceway Laguna Seca. Pre-war GP through Group C. The cars run hard.",
       },
       {
         day: "Saturday, August 15",
@@ -311,21 +311,21 @@ The Concorso d'Eleganza Villa d'Este has been held on the shores of Lake Como si
 
 The event is co-organized by the Villa d'Este Hotel and the BMW Group, which has been the title partner since 1999 and the operating partner since 2009. The format is split across two days and two venues.
 
-## Saturday — Villa d'Este (private)
+## Saturday: Villa d'Este (private)
 
-Saturday is the invitation-only day at Villa d'Este itself. Roughly 50 cars are displayed on the hotel's terraced gardens directly above the lake, judged by an international jury. The setting is intimate — small field, beautiful cars, beautiful lake, and a guest list that reads like a who's who of European collecting.
+Saturday is the invitation-only day at Villa d'Este itself. Roughly 50 cars are displayed on the hotel's terraced gardens directly above the lake, judged by an international jury. The setting is intimate: small field, beautiful cars, beautiful lake, and a guest list that reads like a who's who of European collecting.
 
-## Sunday — Villa Erba (public)
+## Sunday: Villa Erba (public)
 
 Sunday opens to the public at neighboring **Villa Erba**, a separate lakeside estate a short walk down the shoreline. The full Concours field moves to Villa Erba for the day, joined by a much larger gathering of clubs, special displays, and a public concours alongside the main event. Tickets are sold to the public for Sunday only.
 
 ## Best of Show
 
-The two Best of Show prizes — the Coppa d'Oro Villa d'Este (voted by the public on Sunday) and the Trofeo BMW Group (voted by the jury on Saturday) — are among the most prestigious wins in vintage car collecting. Cars that win at Villa d'Este are immediately validated as among the best examples in the world.
+The two Best of Show prizes, the Coppa d'Oro Villa d'Este (voted by the public on Sunday) and the Trofeo BMW Group (voted by the jury on Saturday), are among the most prestigious wins in vintage car collecting. Cars that win at Villa d'Este are immediately validated as among the best examples in the world.
 
 ## What I'd do if you're going
 
-Fly into Milan Malpensa, drive to Como (about an hour), and stay anywhere in or around Cernobbio if you can manage it. Saturday is invitation-only, so unless you're a guest of an exhibitor, this is a Sunday-at-Villa-Erba trip. Get the early ferry from Como, arrive at Villa Erba right when it opens, and budget a full day. The lake itself is the second show — bring a camera and don't rush.
+Fly into Milan Malpensa, drive to Como (about an hour), and stay anywhere in or around Cernobbio if you can manage it. Saturday is invitation-only, so unless you're a guest of an exhibitor, this is a Sunday-at-Villa-Erba trip. Get the early ferry from Como, arrive at Villa Erba right when it opens, and budget a full day. The lake itself is the second show. Bring a camera and don't rush.
 
 If you have an extra day, drive the lake. The roads around Como are some of the best driving roads in Europe and the Alfa and Ferrari factories are both within striking distance.`,
     url: "https://www.concorsodeleganzavilladeste.com",
@@ -347,16 +347,16 @@ If you have an extra day, drive the lake. The roads around Como are some of the 
     category: "Tour",
     tagline: "Pre-war GP cars and historic F1 on the streets of Monte Carlo.",
     excerpt:
-      "The biennial historic Grand Prix on the actual Monaco circuit. Pre-war Bugattis, '50s and '60s F1, sports racers, and Cosworth-era F1 cars all running flat out through Casino Square and down to the harbor — two weeks before the modern F1 race uses the same streets.",
+      "The biennial historic Grand Prix on the actual Monaco circuit. Pre-war Bugattis, '50s and '60s F1, sports racers, and Cosworth-era F1 cars all running flat out through Casino Square and down to the harbor, two weeks before the modern F1 race uses the same streets.",
     body: `## A real Grand Prix on the real circuit
 
-Every two years — only in even years — the Automobile Club de Monaco transforms the streets of Monte Carlo into a historic Grand Prix circuit two weekends before the modern Formula 1 race. Same circuit. Same Casino Square. Same harbor chicane. Same tunnel. Different cars: pre-war Bugattis and ERAs, '50s front-engine F1, '60s and '70s rear-engine F1, sports racers, and Cosworth-era 3-litre F1 cars from the '70s and early '80s.
+Every two years (only in even years) the Automobile Club de Monaco transforms the streets of Monte Carlo into a historic Grand Prix circuit two weekends before the modern Formula 1 race. Same circuit. Same Casino Square. Same harbor chicane. Same tunnel. Different cars: pre-war Bugattis and ERAs, '50s front-engine F1, '60s and '70s rear-engine F1, sports racers, and Cosworth-era 3-liter F1 cars from the '70s and early '80s.
 
 This is not a parade. The cars run flat out, in anger, on the actual circuit, with proper grids and proper races. Drivers crash. Marshals work. The Armco bites.
 
 ## Series
 
-The weekend is divided into seven or eight series grouped by era and class — pre-war GP, post-war front-engine F1, '60s 1.5-litre F1, '60s/'70s 3-litre F1, '70s F3, sports racers, and so on. Each series gets practice on Friday, qualifying Saturday, and a race on Sunday.
+The weekend is divided into seven or eight series grouped by era and class: pre-war GP, post-war front-engine F1, '60s 1.5-liter F1, '60s/'70s 3-liter F1, '70s F3, sports racers, and so on. Each series gets practice on Friday, qualifying Saturday, and a race on Sunday.
 
 ## Why this matters
 
@@ -366,7 +366,7 @@ The Monaco Historique is the only event in the world that puts genuine historic 
 
 ## What I'd do if you're going
 
-Fly into Nice, take the train along the coast (one of the most beautiful train rides anywhere), and stay in or near Monte Carlo if your wallet allows — otherwise base in Beaulieu-sur-Mer or Èze and train in. General admission tickets get you into bleacher sections at several corners; grandstand seats at Casino, Sainte-Dévote, or the harbor cost more but are worth it if you can swing it.
+Fly into Nice, take the train along the coast (one of the most beautiful train rides anywhere), and stay in or near Monte Carlo if your wallet allows. Otherwise base in Beaulieu-sur-Mer or Èze and train in. General admission tickets get you into bleacher sections at several corners; grandstand seats at Casino, Sainte-Dévote, or the harbor cost more but are worth it if you can swing it.
 
 This is biennial. If you miss 2026, the next one is 2028. Go.`,
     url: "https://www.monaco-historique.com",

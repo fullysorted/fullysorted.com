@@ -21,6 +21,17 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // The thin AI draft at this slug was unpublished 2026-09-01 in favour of the
+      // researched page; the old URL had been indexed, so keep it answering.
+      {
+        source: "/research/models/lancia/delta-integrale",
+        destination: "/research/models/lancia/delta-hf-integrale",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     // Defense-in-depth security headers applied to every response.
     // NOTE: no strict Content-Security-Policy is set here because the app loads

@@ -118,7 +118,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const provider = await getProvider(slug);
   if (!provider) return { title: 'Provider Not Found' };
 
-  const title = `${provider.businessName} — ${provider.category} | Fully Sorted`;
+  const title = `${provider.businessName} · ${provider.category} | Fully Sorted`;
   const description =
     (provider.description?.slice(0, 200) ??
       `${provider.businessName}, a collector car ${provider.category.toLowerCase()} specialist in ${provider.location}.`);
@@ -257,7 +257,7 @@ export default async function ProviderProfilePage({ params }: Props) {
               >
                 <Image
                   src={provider.avatarUrl}
-                  alt={`${provider.businessName} — photo`}
+                  alt={`${provider.businessName} photo`}
                   fill
                   sizes="144px"
                   className="object-cover"
@@ -498,7 +498,7 @@ export default async function ProviderProfilePage({ params }: Props) {
                 className="text-xs mb-4 px-3 py-2.5 rounded-lg"
                 style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
               >
-                Not taking on new work at the moment. You can still write &mdash; expect a slower reply, or a
+                Not taking on new work at the moment. You can still write. Expect a slower reply, or a
                 date further out.
               </p>
             )}

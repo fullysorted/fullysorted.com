@@ -89,6 +89,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     }));
+    // Make landing pages, only where a make has enough histories to be a page
+    // worth indexing (the same threshold the make route uses for noindex).
+    const byMake = new Map<string, number>();
+    for (const m of models) byMake.set(m.slug.split("/")[0], (byMake.get(m.slug.split("/")[0]) ?? 0) + 1);
+    for (const [makeSlug, n] of byMake) {
+      if (n >= 3) modelPages.push({ url: `${base}/research/models/${makeSlug}`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 });
+    }
   } catch {
     modelPages = [];
   }

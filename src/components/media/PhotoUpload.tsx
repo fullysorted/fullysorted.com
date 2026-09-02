@@ -31,11 +31,11 @@ export default function PhotoUpload({
       body.append("folder", "providers");
       const res = await fetch("/api/upload", { method: "POST", body });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || "Upload failed — try again.");
+      if (!res.ok) throw new Error(data.error || "Upload failed. Try again.");
       onChange(data.url);
       setLink("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Upload failed — try again.");
+      setError(err instanceof Error ? err.message : "Upload failed. Try again.");
     } finally {
       setUploading(false);
     }

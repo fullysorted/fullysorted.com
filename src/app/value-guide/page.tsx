@@ -5,9 +5,9 @@ import { BarChart3, TrendingUp, Database } from "lucide-react";
 import { ResearchNav } from "@/components/research/ResearchNav";
 
 export const metadata: Metadata = {
-  title: "Value Guide — What Is Your Classic Car Worth?",
+  title: "Value Guide: What Is Your Classic Car Worth?",
   description:
-    "Get real pricing data for any collector car. Backed by aggregated market comps from across the collector-car world — not ask prices.",
+    "Get real pricing data for any collector car. Backed by aggregated market comps from across the collector-car world, not ask prices.",
   // Unlisted while the comp set is too thin to answer an ordinary search. The
   // route stays reachable so it can be previewed; it is simply not advertised
   // and not indexed. See src/lib/features.ts.

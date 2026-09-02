@@ -5,7 +5,7 @@ import ServicesDirectory from './ServicesDirectory';
 export const metadata = {
   alternates: { canonical: "/services" },
   title: 'Services Directory',
-  description: 'Find specialists for your collector car: photographers, detailers, mechanics, transporters, inspectors and storage — backed by owner reviews.',
+  description: 'Find specialists for your collector car: inspection, transport, mechanical work, body and paint, restoration, detailing, storage, and photography, backed by owner reviews.',
 };
 
 export default function ServicesPage() {
@@ -47,14 +47,14 @@ export default function ServicesPage() {
               ))}
             </div>
             <span className="text-xs font-bold tracking-widest uppercase text-white/90">
-              Collector Car Community
+              The services directory
             </span>
           </div>
 
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-4 text-white">
-            Find specialists who<br className="hidden sm:block" />{' '}
+            Find the specialist<br className="hidden sm:block" />{' '}
             <span className="relative whitespace-nowrap">
-              actually get it.
+              your car needs.
               <svg
                 className="absolute -bottom-1.5 left-0 w-full overflow-visible"
                 viewBox="0 0 200 6"
@@ -75,7 +75,7 @@ export default function ServicesPage() {
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: 'rgba(245,239,230,0.85)' }}>
             Whether you need a detailer who understands patina, a mechanic who knows your model,
-            or a transporter who treats every car like their own — this is the place to find them.
+            or a transporter who treats every car like their own, this is the place to find them.
             Open to anyone who loves collector cars.
           </p>
 
@@ -84,16 +84,13 @@ export default function ServicesPage() {
             style={{ borderTop: '1px solid rgba(255,255,255,0.18)' }}
           >
             {[
-              { value: 'Buyers & sellers', label: 'Free to browse', dot: '#6ab04c' },
-              { value: 'Specialists', label: 'Apply to be listed', dot: '#29ABE2' },
-              { value: 'Enthusiasts', label: 'All welcome', dot: '#B08D3F' },
+              { text: 'Free to browse', dot: '#6ab04c' },
+              { text: 'Specialists apply to be listed', dot: '#29ABE2' },
+              { text: 'Open to every owner', dot: '#B08D3F' },
             ].map((s) => (
-              <div key={s.label} className="flex items-center gap-2.5">
+              <div key={s.text} className="flex items-center gap-2.5">
                 <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: s.dot }} />
-                <div>
-                  <span className="text-sm font-semibold text-white">{s.value}</span>
-                  <span className="text-sm" style={{ color: 'rgba(245,239,230,0.65)' }}> — {s.label}</span>
-                </div>
+                <span className="text-sm font-semibold text-white">{s.text}</span>
               </div>
             ))}
           </div>

@@ -52,7 +52,7 @@ export default function TermsPage() {
               and may be reported to relevant authorities.
             </p>
             <p className="mt-3">
-              Fully Sorted is a marketing platform only — we are not a party to any transaction between
+              Fully Sorted is a marketing platform only. We are not a party to any transaction between
               buyer and seller. All negotiations, payments, and transfers happen directly between the
               parties.
             </p>

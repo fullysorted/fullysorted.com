@@ -96,7 +96,7 @@ export async function notifyGigInquiry(data: {
         <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;">
           <p style="margin:0 0 8px;"><strong>Gig:</strong> ${esc(data.gigTitle)}</p>
           <p style="margin:0 0 8px;"><strong>Provider:</strong> ${esc(data.providerName)}</p>
-          ${data.tier ? `<p style="margin:0 0 8px;"><strong>Package:</strong> ${esc(data.tier)}${data.amount ? ` — $${esc(data.amount)}` : ""}</p>` : ""}
+          ${data.tier ? `<p style="margin:0 0 8px;"><strong>Package:</strong> ${esc(data.tier)}${data.amount ? `: $${esc(data.amount)}` : ""}</p>` : ""}
           <p style="margin:0 0 8px;"><strong>From:</strong> ${esc(data.buyerName)} (${esc(data.buyerEmail)})</p>
           ${data.message ? `<p style="margin:12px 0 0;color:#6b6b5e;">${esc(data.message)}</p>` : ""}
         </div>
@@ -171,7 +171,7 @@ export async function notifyNewMessage(data: {
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a18;">
         <div style="background:${isOffer ? "#6ab04c" : "#1E6091"};padding:16px 24px;border-radius:12px 12px 0 0;">
-          <h2 style="color:#fff;margin:0;font-size:20px;">${isOffer ? `New Offer — $${data.offerAmount?.toLocaleString()}` : "New Inquiry"}</h2>
+          <h2 style="color:#fff;margin:0;font-size:20px;">${isOffer ? `New Offer: $${data.offerAmount?.toLocaleString()}` : "New Inquiry"}</h2>
         </div>
         <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;">
           ${data.listingTitle ? `<p style="margin:0 0 16px;padding:12px;background:#EEF4FA;border:1px solid #CFE0EF;border-radius:8px;font-size:14px;"><strong>Listing:</strong> ${esc(data.listingTitle)}</p>` : ""}
@@ -233,7 +233,7 @@ export async function notifyContactForm(data: {
   message: string;
 }) {
   return sendEmail({
-    subject: `✉️ Contact form: ${data.subject} — ${data.name}`,
+    subject: `✉️ Contact form: ${data.subject} from ${data.name}`,
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a18;">
         <div style="background:#1E6091;padding:16px 24px;border-radius:12px 12px 0 0;">
@@ -318,7 +318,7 @@ export async function sendOrderReceiptToBuyer(d: { buyerEmail?: string; gigTitle
       accent: "#1E6091",
       heading: "Payment received & held",
       bodyHtml: `<p>Thanks for your order with <strong>${esc(d.providerName)}</strong>.</p>
-        <p><strong>${esc(d.gigTitle)}</strong> — ${esc(d.amountDisplay)}</p>
+        <p><strong>${esc(d.gigTitle)}</strong>: ${esc(d.amountDisplay)}</p>
         <p>Your payment is held securely by Fully Sorted and only released to the provider when you accept the completed work. You can check the status or release payment any time from your order page.</p>`,
       ctaLabel: "View your order",
       ctaUrl: d.orderUrl,
@@ -369,7 +369,7 @@ export async function notifyOrderRefundedToBuyer(d: { buyerEmail?: string; gigTi
     html: orderShell({
       accent: "#6b6b5e",
       heading: "Your order was refunded",
-      bodyHtml: `<p>Your order <strong>${esc(d.gigTitle)}</strong> was cancelled and <strong>${esc(d.amountDisplay)}</strong> has been refunded to your original payment method. Refunds typically take 5–10 business days to appear.</p>`,
+      bodyHtml: `<p>Your order <strong>${esc(d.gigTitle)}</strong> was canceled and <strong>${esc(d.amountDisplay)}</strong> has been refunded to your original payment method. Refunds typically take 5–10 business days to appear.</p>`,
     }),
   });
 }
@@ -377,7 +377,7 @@ export async function notifyOrderRefundedToBuyer(d: { buyerEmail?: string; gigTi
 // Buyer reported a problem — notify the provider and Chris (admin).
 export async function notifyOrderDisputed(d: { providerEmail?: string; gigTitle: string; buyerName?: string; buyerEmail?: string; reason: string; orderId: number }) {
   const bodyHtml = `<p><strong>${esc(d.gigTitle)}</strong></p>
-    <p>${d.buyerName ? `${esc(d.buyerName)}` : "The buyer"}${d.buyerEmail ? ` (${esc(d.buyerEmail)})` : ""} reported a problem with this order. The held payment is paused — it will not auto-release until this is resolved.</p>
+    <p>${d.buyerName ? `${esc(d.buyerName)}` : "The buyer"}${d.buyerEmail ? ` (${esc(d.buyerEmail)})` : ""} reported a problem with this order. The held payment is paused. It will not auto-release until this is resolved.</p>
     <div style="margin-top:12px;padding:16px;background:#faf9f7;border-radius:8px;">
       <p style="margin:0 0 6px;font-weight:600;">What they said</p>
       <p style="margin:0;color:#6b6b5e;white-space:pre-line;">${esc(d.reason)}</p>
@@ -393,7 +393,7 @@ export async function notifyOrderDisputed(d: { providerEmail?: string; gigTitle:
   }
   // Admin (Chris)
   return sendEmail({
-    subject: `⚠️ Dispute reported — order #${d.orderId}: ${d.gigTitle}`,
+    subject: `⚠️ Dispute reported: order #${d.orderId}: ${d.gigTitle}`,
     html: orderShell({ accent: "#B0553F", heading: "Order dispute reported", bodyHtml, ctaLabel: "Review orders", ctaUrl: "https://fullysorted.com/admin/messages" }),
   });
 }
@@ -406,7 +406,7 @@ export async function notifySaleSubmission(d: { make: string; model: string; yea
     html: orderShell({
       accent: "#1E6091",
       heading: "New sold-price submission",
-      bodyHtml: `<p><strong>${esc(car)}</strong>${d.salePrice ? ` — $${d.salePrice.toLocaleString()}` : ""}</p>
+      bodyHtml: `<p><strong>${esc(car)}</strong>${d.salePrice ? `: $${d.salePrice.toLocaleString()}` : ""}</p>
         ${d.venue ? `<p>Venue: ${esc(d.venue)}</p>` : ""}
         ${d.submitter ? `<p>From: ${esc(d.submitter)}</p>` : ""}
         ${d.sourceUrl ? `<p>Proof: <a href="${safeUrl(d.sourceUrl)}">${esc(d.sourceUrl)}</a></p>` : ""}
@@ -444,16 +444,16 @@ export async function sendProviderInvite(d: ProviderInviteData) {
   const firstName = (d.ownerName || "").split(" ")[0];
   return sendEmail({
     to: d.to,
-    subject: `Your Fully Sorted listing is ready to approve — ${d.businessName}`,
+    subject: `Your Fully Sorted listing is ready to approve: ${d.businessName}`,
     html: orderShell({
       accent: "#1E6091",
       heading: "Your founding-provider listing is ready",
       bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
         <p>We've put together a <strong>free founding-provider listing</strong> for <strong>${esc(d.businessName)}</strong> in the Fully Sorted ${esc(categoryLabel(d.category))} directory for the ${esc(d.location)} area. Nothing is published until you say so.</p>
-        <p>One click to review it — then choose whichever suits you:</p>
-        <p style="margin:12px 0 0 0;"><strong>Yes, this is mine — claim it</strong> — goes live now; we'll follow up with a link to edit your details and add photos.<br/>
-        <strong>List it, but I don't want an account</strong> — goes live as-is, nothing to maintain.<br/>
-        <strong>No thanks — remove me</strong> — we take you off and never contact you again.</p>
+        <p>One click to review it. Then choose whichever suits you:</p>
+        <p style="margin:12px 0 0 0;"><strong>Yes, this is mine: claim it</strong>. Goes live now; we'll follow up with a link to edit your details and add photos.<br/>
+        <strong>List it, but I don't want an account</strong>. Goes live as-is, nothing to maintain.<br/>
+        <strong>No thanks, remove me</strong>. We take you off and never contact you again.</p>
         <p>The listing is free and there is no contract.</p>`,
       ctaLabel: "Review your listing",
       ctaUrl: d.claimUrl,
@@ -467,12 +467,12 @@ export async function sendProviderInviteReminder(d: ProviderInviteData) {
   const firstName = (d.ownerName || "").split(" ")[0];
   return sendEmail({
     to: d.to,
-    subject: `Quick reminder — your ${d.businessName} listing is waiting`,
+    subject: `Quick reminder: your ${d.businessName} listing is waiting`,
     html: orderShell({
       accent: "#1E6091",
       heading: "Your listing is one click away",
       bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
-        <p>Just a quick nudge — your free founding-provider listing for <strong>${esc(d.businessName)}</strong> is built and waiting for your OK. It takes about 30 seconds to review, and you can choose to claim it, have us list it as-is, or remove it entirely.</p>`,
+        <p>Just a quick nudge. Your free founding-provider listing for <strong>${esc(d.businessName)}</strong> is built and waiting for your OK. It takes about 30 seconds to review, and you can choose to claim it, have us list it as-is, or remove it entirely.</p>`,
       ctaLabel: "Review your listing",
       ctaUrl: d.claimUrl,
       footerHtml: PROVIDER_EMAIL_FOOTER,
@@ -538,12 +538,12 @@ export async function sendReviewInvite(d: {
       heading: `Tell other owners about ${esc(d.businessName)}`,
       bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
         <p><strong>${esc(d.businessName)}</strong> asked us to invite you to review${d.workType ? ` the ${esc(d.workType)}` : ""} they did for you. They are listed in the Fully Sorted directory, where owners find specialists to work on collector cars.</p>
-        <p>It takes a minute, and it is the single most useful thing you can do for the next owner deciding who to trust with their car. Be honest — good or bad. The shop can reply to what you write, but they cannot edit it, hide it, or take it down.</p>
+        <p>It takes a minute, and it is the single most useful thing you can do for the next owner deciding who to trust with their car. Be honest, good or bad. The shop can reply to what you write, but they cannot edit it, hide it, or take it down.</p>
         <p style="font-size:13px;color:#6a6a5e;">This link works once and is just for you. We never publish your email address.</p>`,
       ctaLabel: "Write your review",
       ctaUrl: safeUrl(d.reviewUrl),
       footerHtml:
-        "Fully Sorted · fullysorted.com<br/>" +
+        "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>" +
         `You received this because ${esc(d.businessName)} asked us to. Don't want to hear from us again? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll remove you.`,
     }),
   });
@@ -558,9 +558,9 @@ export async function notifyNewReview(d: {
   source: string;
   adminUrl: string;
 }) {
-  const stars = d.rating ? "★".repeat(d.rating) + "☆".repeat(5 - d.rating) : "—";
+  const stars = d.rating ? "★".repeat(d.rating) + "☆".repeat(5 - d.rating) : "No rating";
   return sendEmail({
-    subject: `New ${d.source === "testimonial" ? "testimonial" : "review"} — ${d.businessName} (${d.rating ?? "no rating"})`,
+    subject: `New ${d.source === "testimonial" ? "testimonial" : "review"}: ${d.businessName} (${d.rating ?? "no rating"})`,
     html: orderShell({
       accent: "#1E6091",
       heading: "A review is waiting for moderation",
@@ -591,8 +591,8 @@ export async function notifyReviewPublished(d: {
       accent: "#1E6091",
       heading: "You have a new review",
       bodyHtml: `<p><strong>${esc(d.authorName)}</strong> left ${d.rating ? `a ${d.rating}-star review` : "a review"} for ${esc(d.businessName)}.</p>
-        <p>It is live on your profile now. You have a public right of reply — replying well to a critical review does more for your reputation than the review costs you.</p>
-        <p style="font-size:13px;color:#6a6a5e;">Reviews cannot be edited or removed by the business. If you believe this one is fraudulent or defamatory rather than simply unfavourable, reply to this email and we'll look at it.</p>`,
+        <p>It is live on your profile now. You have a public right of reply. Replying well to a critical review does more for your reputation than the review costs you.</p>
+        <p style="font-size:13px;color:#6a6a5e;">Reviews cannot be edited or removed by the business. If you believe this one is fraudulent or defamatory rather than simply unfavorable, reply to this email and we'll look at it.</p>`,
       ctaLabel: "See your profile",
       ctaUrl: safeUrl(d.profileUrl),
     }),
@@ -622,11 +622,11 @@ export async function sendReviewInviteReminder(d: {
       heading: "One quick nudge, then we'll leave you alone",
       bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
         <p>We asked last week whether you'd write a few lines about the work <strong>${esc(d.businessName)}</strong> did for you. The link is still open if you have a minute.</p>
-        <p>If you'd rather not, that is completely fine — this is the only reminder we will send.</p>`,
+        <p>If you'd rather not, that is completely fine. This is the only reminder we will send.</p>`,
       ctaLabel: "Write your review",
       ctaUrl: safeUrl(d.reviewUrl),
       footerHtml:
-        "Fully Sorted · fullysorted.com<br/>" +
+        "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>" +
         `You received this because ${esc(d.businessName)} asked us to. Don't want to hear from us again? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll remove you.`,
     }),
   });
@@ -687,8 +687,8 @@ export async function notifyProviderLead(d: {
          Once you have dealt with it:
          <a href="${safeUrl(d.actionUrl + "?do=replied")}" style="color:#1E6091;font-weight:600;">I replied to this</a>
          &nbsp;&middot;&nbsp;
-         <a href="${safeUrl(d.actionUrl + "?do=junk")}" style="color:#9a5a33;font-weight:600;">Not a real enquiry</a><br/>
-         One click. It tells us nothing about what you said &mdash; it is how we
+         <a href="${safeUrl(d.actionUrl + "?do=junk")}" style="color:#9a5a33;font-weight:600;">Not a real inquiry</a><br/>
+         One click. It tells us nothing about what you said. It is how we
          keep time-wasters out of your inbox.
        </p>`
     : "";
@@ -697,7 +697,7 @@ export async function notifyProviderLead(d: {
     to: d.providerEmail,
     replyTo: d.senderEmail,
     bcc: d.copyTo || undefined,
-    subject: `New enquiry for ${d.businessName} — ${d.senderName}`,
+    subject: `New inquiry for ${d.businessName} from ${d.senderName}`,
     html: orderShell({
       accent: "#1E6091",
       heading: "Someone wants to talk to you about their car",
@@ -710,14 +710,14 @@ export async function notifyProviderLead(d: {
           <tr><td style="padding:6px 0;font-weight:600;width:90px;">Email</td><td style="padding:6px 0;"><a href="mailto:${esc(d.senderEmail)}" style="color:#1E6091;">${esc(d.senderEmail)}</a></td></tr>
           ${d.senderPhone ? `<tr><td style="padding:6px 0;font-weight:600;">Phone</td><td style="padding:6px 0;"><a href="tel:${esc(d.senderPhone)}" style="color:#1E6091;">${esc(d.senderPhone)}</a></td></tr>` : ""}
         </table>
-        <p style="margin-top:16px;"><strong>Just hit Reply</strong> — it goes straight to them, not to us.</p>
+        <p style="margin-top:16px;"><strong>Just hit Reply</strong>. It goes straight to them, not to us.</p>
         <p style="font-size:13px;color:#6a6a5e;">Owners tend to contact two or three shops at once, so the first useful reply usually wins the job.</p>
         ${actionHtml}`,
       ctaLabel: "See your profile",
       ctaUrl: safeUrl(d.profileUrl),
       footerHtml:
-        "Fully Sorted · fullysorted.com<br/>" +
-        `You're getting this because ${esc(d.businessName)} is listed in our directory. Don't want enquiries by email? Reply to <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll sort it.`,
+        "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>" +
+        `You're getting this because ${esc(d.businessName)} is listed in our directory. Don't want inquiries by email? Reply to <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll sort it.`,
     }),
   });
 }
@@ -745,11 +745,11 @@ export async function sendAccountLinkInvite(d: {
       heading: "Take control of your listing",
       bodyHtml: `<p><strong>${esc(d.businessName)}</strong> is listed on Fully Sorted, and this link sets up the login that lets you manage it yourself.</p>
         <p>Once you're in you can edit your details, reply to reviews, and keep the listing current without going through us.</p>
-        <p style="font-size:13px;color:#6a6a5e;">The link works once and expires in ${d.ttlDays} days. If you didn't ask for it, ignore it — nothing changes until someone uses it.</p>`,
+        <p style="font-size:13px;color:#6a6a5e;">The link works once and expires in ${d.ttlDays} days. If you didn't ask for it, ignore it. Nothing changes until someone uses it.</p>`,
       ctaLabel: "Set up my login",
       ctaUrl: safeUrl(d.linkUrl),
       footerHtml:
-        "Fully Sorted · fullysorted.com<br/>" +
+        "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>" +
         `Not your listing? Tell us at <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll take it down.`,
     }),
   });
@@ -772,7 +772,7 @@ export async function notifyAccountLinked(d: {
       accent: "#1E6091",
       heading: "Your listing now has a login",
       bodyHtml: `<p>Someone just set up an account to manage <strong>${esc(d.businessName)}</strong> on Fully Sorted, using the link we emailed to this address.</p>
-        <p>If that was you, nothing else to do — your dashboard is at <a href="https://fullysorted.com/dashboard/provider" style="color:#1E6091;">fullysorted.com/dashboard/provider</a>.</p>
+        <p>If that was you, nothing else to do. Your dashboard is at <a href="https://fullysorted.com/dashboard/provider" style="color:#1E6091;">fullysorted.com/dashboard/provider</a>.</p>
         <p><strong>If it wasn't you, reply to this email straight away</strong> and we'll unlink it while we sort it out.</p>`,
       ctaLabel: "See your listing",
       ctaUrl: safeUrl(d.profileUrl),
@@ -798,13 +798,13 @@ export async function notifyProviderEmailChanged(d: {
   profileUrl: string;
 }) {
   return sendEmail({
-    subject: `Contact email changed on a live listing — ${d.businessName}`,
+    subject: `Contact email changed on a live listing: ${d.businessName}`,
     html: orderShell({
       accent: "#b45309",
       heading: "A live listing's contact email was changed",
       bodyHtml: `<p><strong>${esc(d.businessName)}</strong> is live, and the team console just changed the address on file.</p>
         <p>Was: ${esc(d.previousEmail)}<br/>Now: ${esc(d.newEmail)}<br/>By: ${esc(d.editedBy || "no name given")}</p>
-        <p>If that matches a call you know about, nothing to do. If it doesn't, change it back and rotate <code>TEAM_SECRET</code> — the next step after an email change is a login link to that address.</p>`,
+        <p>If that matches a call you know about, nothing to do. If it doesn't, change it back and rotate <code>TEAM_SECRET</code>. The next step after an email change is a login link to that address.</p>`,
       ctaLabel: "See the listing",
       ctaUrl: safeUrl(d.profileUrl),
     }),
@@ -840,22 +840,22 @@ export async function sendProviderApprovedEmail(d: {
   const hasLink = !!d.linkUrl;
   return sendEmail({
     to: d.to,
-    subject: `Your Fully Sorted listing is live — ${d.businessName}`,
+    subject: `Your Fully Sorted listing is live: ${d.businessName}`,
     html: orderShell({
       accent: "#1E6091",
       heading: "Your listing is live",
       bodyHtml: hasLink
         ? `<p>We've approved <strong>${esc(d.businessName)}</strong>. Your profile is published in the Fully Sorted directory now, and owners looking for your kind of work can find it and contact you.</p>
-        <p>You applied without an account, so the last thing to do is set up a login. That is what the button below does — once you're in you can edit your details, add photos, reply to reviews, and keep the listing current without going through us.</p>
-        <p>Enquiries reach you by email either way, so nothing is waiting on this. It just means you own the page rather than us.</p>
+        <p>You applied without an account, so the last thing to do is set up a login. That is what the button below does. Once you're in you can edit your details, add photos, reply to reviews, and keep the listing current without going through us.</p>
+        <p>Inquiries reach you by email either way, so nothing is waiting on this. It just means you own the page rather than us.</p>
         <p style="font-size:13px;color:#6a6a5e;">The link works once and expires in ${esc(d.ttlDays ?? 14)} days. Your listing is at <a href="${safeUrl(d.profileUrl)}" style="color:#1E6091;">${esc(d.profileUrl)}</a>.</p>`
         : `<p>We've approved <strong>${esc(d.businessName)}</strong>. Your profile is published in the Fully Sorted directory now, and owners looking for your kind of work can find it and contact you.</p>
-        <p>Enquiries come straight to you by email — you reply to the customer, not to us. Everything else about the listing is yours to manage from your dashboard at <a href="https://fullysorted.com/dashboard/provider" style="color:#1E6091;">fullysorted.com/dashboard/provider</a>: details, photos, and replies to any reviews you get.</p>
+        <p>Inquiries come straight to you by email. You reply to the customer, not to us. Everything else about the listing is yours to manage from your dashboard at <a href="https://fullysorted.com/dashboard/provider" style="color:#1E6091;">fullysorted.com/dashboard/provider</a>: details, photos, and replies to any reviews you get.</p>
         <p style="font-size:13px;color:#6a6a5e;">Something on the page wrong? Reply to this email and we'll fix it.</p>`,
       ctaLabel: hasLink ? "Set up my login" : "See your listing",
       ctaUrl: safeUrl(hasLink ? d.linkUrl! : d.profileUrl),
       footerHtml:
-        "Fully Sorted · fullysorted.com<br/>" +
+        "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>" +
         `You're getting this because ${esc(d.businessName)} applied to be listed in our directory. Questions, or want the listing removed? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a>.`,
     }),
   });

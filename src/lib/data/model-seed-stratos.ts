@@ -7,7 +7,7 @@ export const seedStratos = {
  "make": "Lancia",
  "model": "Stratos HF",
  "generation": "Stratos HF",
- "generationCode": "829 (road cars carry chassis numbers prefixed 829AR0)",
+ "generationCode": "829",
  "trim": null,
  "yearStart": 1973,
  "yearEnd": 1978,

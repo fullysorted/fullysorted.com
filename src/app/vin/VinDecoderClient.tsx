@@ -37,7 +37,7 @@ export function VinDecoderClient() {
       if (!res.ok) { setError(data.error || "Lookup failed"); }
       else { setDecoded(data.decoded); setRecalls(data.recalls || []); }
     } catch {
-      setError("Network error — try again.");
+      setError("Network error. Try again.");
     }
     setLoading(false);
   }
@@ -78,8 +78,8 @@ export function VinDecoderClient() {
             Decode any VIN
           </h1>
           <p className="text-base sm:text-lg leading-relaxed mb-8" style={{ color: "#6b6b5e" }}>
-            Enter a 17-character VIN to pull the factory build details — year, make, model, engine,
-            and assembly plant — plus any open safety recalls. Powered by the NHTSA public database.
+            Enter a 17-character VIN to pull the factory build details (year, make, model, engine,
+            and assembly plant) plus any open safety recalls. Powered by the NHTSA public database.
           </p>
 
           <form onSubmit={lookup} className="flex flex-col sm:flex-row gap-3">
@@ -134,7 +134,7 @@ export function VinDecoderClient() {
                 {rows.map(([k, v], i) => (
                   <tr key={k} style={{ borderTop: i === 0 ? "none" : "1px solid rgba(0,0,0,0.06)" }}>
                     <td className="px-5 py-3 font-medium w-2/5" style={{ color: "#6b6b5e" }}>{k}</td>
-                    <td className="px-5 py-3" style={{ color: v ? "#1a1a18" : "#bbb" }}>{v || "—"}</td>
+                    <td className="px-5 py-3" style={{ color: v ? "#1a1a18" : "#bbb" }}>{v || "–"}</td>
                   </tr>
                 ))}
               </tbody>
@@ -169,10 +169,10 @@ export function VinDecoderClient() {
 
           {/* Disclaimer */}
           <div className="rounded-xl p-4 text-xs leading-relaxed" style={{ background: "rgba(0,0,0,0.03)", color: "#6b6b5e" }}>
-            <strong>What this is — and isn’t.</strong> This decodes the VIN using the free, public NHTSA
+            <strong>What this is, and isn’t.</strong> This decodes the VIN using the free, public NHTSA
             vPIC database and lists open U.S. safety recalls. It is <em>not</em> a title, mileage, or
             accident-history report. For title/brand history you need a licensed provider (NMVTIS,
-            Carfax, AutoCheck) — we’ll add that through a proper partnership, never by scraping.
+            Carfax, AutoCheck). We’ll add that through a proper partnership, never by scraping.
           </div>
 
           {/* Cross-link to research */}

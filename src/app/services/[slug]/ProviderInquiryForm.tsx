@@ -26,7 +26,7 @@ const CONDITIONS = [
   ['drives', 'Drives and is road-legal'],
   ['runs-not-road', 'Runs, but not road-ready'],
   ['not-running', 'Not running'],
-  ['project', 'Project — apart or stored'],
+  ['project', 'Project: apart or stored'],
   ['unsure', "Not sure"],
 ] as const;
 
@@ -43,7 +43,7 @@ const BUDGETS = [
   ['5-15k', '$5,000 – $15,000'],
   ['15-50k', '$15,000 – $50,000'],
   ['over-50k', 'Over $50,000'],
-  ['not-sure', 'No idea yet — tell me'],
+  ['not-sure', 'No idea yet, tell me'],
 ] as const;
 
 const TRANSPORT = [
@@ -115,7 +115,7 @@ export default function ProviderInquiryForm({
         body: JSON.stringify({
           type: 'provider-inquiry',
           listingSlug: `provider:${slug}`,
-          listingTitle: `Provider inquiry — ${businessName}`,
+          listingTitle: `Provider inquiry: ${businessName}`,
           senderName: name.trim(),
           senderEmail: email.trim(),
           senderPhone: phone.trim() || undefined,
@@ -124,11 +124,11 @@ export default function ProviderInquiryForm({
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || "Couldn't send — try again in a moment.");
+      if (!res.ok) throw new Error(data.error || "Couldn't send. Try again in a moment.");
       setRelayed(!!data.relayed);
       setSent(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Couldn't send — try again in a moment.");
+      setError(err instanceof Error ? err.message : "Couldn't send. Try again in a moment.");
     } finally {
       setSending(false);
     }
@@ -143,7 +143,7 @@ export default function ProviderInquiryForm({
         <Check className="w-5 h-5 mt-0.5 shrink-0" style={{ color: 'var(--sorted-green-dark, #3d7a2a)' }} />
         <div>
           <p className="text-sm font-semibold" style={{ color: 'var(--sorted-green-dark, #3d7a2a)' }}>
-            {relayed ? `Sent to ${businessName}.` : `We've got it — passing it to ${businessName}.`}
+            {relayed ? `Sent to ${businessName}.` : `We've got it. Passing it to ${businessName}.`}
           </p>
           <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
             {relayed
@@ -212,7 +212,7 @@ export default function ProviderInquiryForm({
           className="w-full flex items-center justify-between gap-2 px-3 py-2.5 text-left"
         >
           <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>
-            Add a few details about the car — optional
+            Add a few details about the car (optional)
           </span>
           {showCar ? (
             <Minus className="w-4 h-4 shrink-0" style={{ color: 'var(--text-tertiary)' }} />
@@ -224,7 +224,7 @@ export default function ProviderInquiryForm({
         {showCar && (
           <div className="px-3 pb-3 space-y-3">
             <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-              Skip anything you don&rsquo;t know. It only saves a round of emails &mdash; the message above is
+              Skip anything you don&rsquo;t know. It only saves a round of emails. The message above is
               enough on its own.
             </p>
 
@@ -257,7 +257,7 @@ export default function ProviderInquiryForm({
                 placeholder="Only if it&rsquo;s to hand" value={chassis} maxLength={40}
                 onChange={(e) => setChassis(e.target.value)} />
               <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
-                No need to go and look for it &mdash; it is on the registration, and they can ask later.
+                No need to go and look for it. It is on the registration, and they can ask later.
               </p>
             </div>
 
@@ -268,7 +268,7 @@ export default function ProviderInquiryForm({
                 </label>
                 <select id="fs-condition" className={selectCls} style={{ borderColor: 'var(--border-light)' }}
                   value={condition} onChange={(e) => setCondition(e.target.value)}>
-                  <option value="">—</option>
+                  <option value="">Select</option>
                   {CONDITIONS.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
                 </select>
               </div>
@@ -286,7 +286,7 @@ export default function ProviderInquiryForm({
                 </label>
                 <select id="fs-transport" className={selectCls} style={{ borderColor: 'var(--border-light)' }}
                   value={transport} onChange={(e) => setTransport(e.target.value)}>
-                  <option value="">—</option>
+                  <option value="">Select</option>
                   {TRANSPORT.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
                 </select>
               </div>
@@ -296,7 +296,7 @@ export default function ProviderInquiryForm({
                 </label>
                 <select id="fs-timeline" className={selectCls} style={{ borderColor: 'var(--border-light)' }}
                   value={timeline} onChange={(e) => setTimeline(e.target.value)}>
-                  <option value="">—</option>
+                  <option value="">Select</option>
                   {TIMELINES.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
                 </select>
               </div>
@@ -308,7 +308,7 @@ export default function ProviderInquiryForm({
               </label>
               <select id="fs-budget" className={selectCls} style={{ borderColor: 'var(--border-light)' }}
                 value={budget} onChange={(e) => setBudget(e.target.value)}>
-                <option value="">—</option>
+                <option value="">Select</option>
                 {BUDGETS.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
               </select>
               <p className="text-[11px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
@@ -329,7 +329,7 @@ export default function ProviderInquiryForm({
         {sending ? 'Sending…' : `Message ${businessName}`}
       </button>
       <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-        Goes to {businessName}. We keep a copy so we can chase it up if they don&rsquo;t reply — and we never pass
+        Goes to {businessName}. We keep a copy so we can chase it up if they don&rsquo;t reply, and we never pass
         your details to anyone else.
       </p>
     </form>

@@ -67,7 +67,7 @@ export default async function AccountLinkPage({ params }: { params: Promise<{ to
       <Shell title="That link has expired">
         <p className="mb-4" style={{ color: 'var(--text-secondary)' }}>
           Links stay good for {LINK_TOKEN_TTL_DAYS} days and this one has run out. Nothing is wrong with your listing
-          for <strong>{found.businessName}</strong> — we just need to send you a fresh one.
+          for <strong>{found.businessName}</strong>. We just need to send you a fresh one.
         </p>
         <Link href="/dashboard/provider" className="underline" style={{ color: 'var(--accent-blue)' }}>
           Request a new link
@@ -100,7 +100,7 @@ export default async function AccountLinkPage({ params }: { params: Promise<{ to
       <LinkActions token={token} businessName={found.businessName} signedIn={!!userId} />
       <p className="text-xs leading-relaxed mt-7" style={{ color: 'var(--text-tertiary)' }}>
         This link works once and only for this listing. We sent it to the address we already hold for{' '}
-        {found.businessName} — if that isn&rsquo;t you, please don&rsquo;t use it.
+        {found.businessName}. If that isn&rsquo;t you, please don&rsquo;t use it.
       </p>
     </Shell>
   );

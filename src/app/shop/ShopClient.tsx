@@ -165,7 +165,7 @@ export function ShopClient() {
         </h2>
         <p className="text-sm text-text-secondary max-w-2xl mb-5">
           Four kits for the four times an owner actually needs to buy something. Everything in them is
-          from the list below &mdash; grouped by the job rather than by the shelf.
+          from the list below, grouped by the job rather than by the shelf.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {SHOP_KITS.map((k) => {

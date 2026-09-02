@@ -33,39 +33,30 @@ import { PROVIDER_TRACKS } from "@/lib/data/providerTracks";
 import { isServiceCategory } from "@/lib/service-categories";
 
 export const metadata: Metadata = {
-  title: "The Provider Playbook — How to Get Booked on Fully Sorted",
+  title: "The Provider Playbook: How to Get Booked on Fully Sorted",
   description:
     "A step-by-step onboarding guide for collector-car specialists: build a profile that wins trust, price your services in tiers, and grow your bookings. Plus a buyer's guide to hiring the right pro.",
   alternates: { canonical: "/services/guide" },
 };
 
 /* ————————————————————————————————————————————————
-   How work reaches you
-   ————————————————————————————————————————————————
-   This block used to read "the two ways to sell your services" and sent one
-   card to the business application and the other to the freelancer one. Both
-   doors are gone (2026-08-31). More to the point, the second card described
-   fixed-price gigs as something a provider could set up today — and the wizard
-   that created gigs WAS the freelancer application, with checkout gated off at
-   GIG_PAYMENTS_ENABLED besides. Sending a provider to a form that cannot do
-   the thing the card promised is exactly the seam this page should not have.
-   So: the live route is stated as live, and the one that is not open says so.
+   The two ways to sell your services
 ———————————————————————————————————————————————— */
 const PATHS = [
   {
-    icon: Building2,
-    tag: "Live now",
-    title: "Owners enquire, you quote",
+    icon: Layers,
+    tag: "Fixed-price gig",
+    title: "Book-me-now gigs",
     body:
-      "Your directory profile: owners find you by service, marque and location, read your reviews, and send you an enquiry. It goes to you and nobody else — we do not fan one job out to four shops and let you bid each other down. You reply with a number, and whatever you agree is between you and the owner.",
-    cta: { href: "/services/apply", label: "Get listed" },
+      "Package a service at an upfront price: a paint-correction detail, a pre-purchase inspection, an enclosed transport lane. When fixed-price gigs open, buyers will see the price, pick a tier, and book in a couple of clicks. Best for repeatable, well-scoped work you can quote without a conversation.",
+    cta: { href: "/services/apply", label: "Get ready for launch" },
   },
   {
-    icon: Layers,
-    tag: "Not open yet",
-    title: "Fixed-price gigs",
+    icon: Building2,
+    tag: "Directory business",
+    title: "Get-a-quote listing",
     body:
-      "Packaging a service at an upfront price — a paint-correction detail, a pre-purchase inspection, an enclosed transport lane — so an owner can book it outright. It suits repeatable, well-scoped work you can price without a conversation. It is not switched on yet, and we would rather say so than take a signup for it. Get your profile up and you will be first in line.",
+      "List your shop or business in the specialist directory. Owners find you by marque, service, and location, then send an inquiry for a custom quote. Best for bespoke, high-value work (an engine rebuild, collection management, a complex multi-car move) that needs a conversation before a number.",
     cta: { href: "/services/apply", label: "Get listed" },
   },
 ];
@@ -86,31 +77,31 @@ const PROVIDER_STEPS: Step[] = [
     icon: Route,
     title: "Choose your path",
     body:
-      "Decide how you want to sell before you build anything. Fixed-price gigs win fast, repeatable bookings; a directory listing wins bespoke, high-ticket jobs. Plenty of pros run both — a set of productized gigs for bread-and-butter work, plus a directory profile for full projects.",
+      "Decide how you want to sell before you build anything. A directory listing wins bespoke, high-ticket jobs today. Once fixed-price gigs open, they will win fast, repeatable bookings on top of that. Plenty of pros will run both: a set of productized gigs for bread-and-butter work, plus a directory profile for full projects.",
     checklist: [
-      "Repeatable and easy to price up front → fixed-price gig",
+      "Repeatable and easy to price up front → fixed-price gig, once gigs open",
       "Bespoke, high-value, needs a scoping call → directory business",
-      "A mix of both → set up a gig and claim a directory listing",
+      "A mix of both → claim a directory listing now and add gigs when they launch",
     ],
-    tip: "Not sure? Start with one clean fixed-price gig. It is the fastest way to your first review, and reviews are what unlock everything else.",
+    tip: "Not sure? Start with a directory listing: it is live today, and reviews are what unlock everything else. Have a clean fixed-price gig ready to switch on the moment gigs open.",
   },
   {
     icon: ShieldCheck,
     title: "Create your account & add your credentials",
     body:
-      "Sign up, then confirm your email and phone — that part is account security, not a rating. Add your business credentials: licenses, insurance, workshop accreditations. Owners can see what you have listed and decide for themselves. We do not hand out a stamp of approval; your standing here is built from reviews by the owners who actually hired you.",
+      "Sign up, then confirm your email and phone. That part is account security, not a rating. Add your business credentials: licenses, insurance, workshop accreditations. Owners can see what you have listed and decide for themselves. We do not hand out a stamp of approval; your standing here is built from reviews by the owners who actually hired you.",
     checklist: [
       "Confirm your email and phone",
       "Add business license / registration number",
       "Add your insurance details and any workshop accreditations, so owners can see them",
     ],
-    tip: "A profile that shows licence and insurance details converts far better than an anonymous one. Collectors are handing over six-figure cars — show them what you carry.",
+    tip: "A profile that shows license and insurance details converts far better than an anonymous one. Collectors are handing over six-figure cars: show them what you carry.",
   },
   {
     icon: UserCircle,
     title: "Build a profile that wins trust",
     body:
-      "Your profile is your storefront. Lead with a sharp, specific tagline, a professional photo or clean logo, and a bio that makes your specialism obvious in the first line. Collectors hire experts, not generalists — so say exactly which marques, eras, and services you are the specialist in.",
+      "Your profile is your storefront. Lead with a sharp, specific tagline, a professional photo or clean logo, and a bio that makes your specialism obvious in the first line. Collectors hire experts, not generalists, so say exactly which marques, eras, and services you are the specialist in.",
     checklist: [
       "Professional headshot or high-resolution logo",
       "One-line tagline naming your specialism (e.g. 'Air-cooled Porsche paint correction, Los Angeles')",
@@ -121,25 +112,25 @@ const PROVIDER_STEPS: Step[] = [
   },
   {
     icon: Images,
-    title: "Add your portfolio — this is non-negotiable",
+    title: "Add your portfolio: this is non-negotiable",
     body:
-      "Nothing sells specialist work like proof of specialist work. Upload high-resolution before/after photos and, wherever you can, short video of completed cars. This is the single most powerful thing on your profile — treat a thin portfolio as an unfinished profile.",
+      "Nothing sells specialist work like proof of specialist work. Upload high-resolution before/after photos and, wherever you can, short video of completed cars. This is the single most powerful thing on your profile. Treat a thin portfolio as an unfinished profile.",
     checklist: [
       "Before/after pairs for your best jobs",
       "Detail shots: paint, panel gaps, engine bay, interior, badges",
       "Short video walkarounds where possible",
       "Only your own work, only your own photos",
     ],
-    tip: "Ten strong, well-lit before/afters beat fifty phone snaps. Curate for quality — buyers judge your standards by the worst photo you post.",
+    tip: "Ten strong, well-lit before/afters beat fifty phone snaps. Curate for quality: buyers judge your standards by the worst photo you post.",
   },
   {
     icon: ListChecks,
     title: "Create your first listing",
     body:
-      "Give the service a clear, descriptive title, put it in the right category, and tag it with the keywords owners actually search — marque, service, location. A precise title and correct category are how buyers and search engines find you.",
+      "Give the service a clear, descriptive title, put it in the right category, and tag it with the keywords owners actually search: marque, service, location. A precise title and correct category are how buyers and search engines find you.",
     checklist: [
       "Descriptive title ('Multi-stage paint correction & ceramic coating')",
-      "Correct category: photography, inspection, detailing, storage, transport, mechanical",
+      "Correct category: photography, inspection, detailing, restoration, body and paint, storage, transport, mechanical",
       "Tags/keywords: marques, services, city/region",
     ],
     tip: "Write the title a buyer would type into search, not the one that sounds clever. Clarity outranks cleverness every time.",
@@ -148,14 +139,14 @@ const PROVIDER_STEPS: Step[] = [
     icon: Layers,
     title: "Set your scope & pricing",
     body:
-      "For fixed-price gigs, offer up to three tiers so buyers can self-select by budget and ambition — for example Standard, Enhanced, and Concours — each with a price, a turnaround time, and what is included. Add optional extras for the upsells. For a directory business, publish a clear service list and explain how your quote and lead process works.",
+      "For fixed-price gigs, offer up to three tiers so buyers can self-select by budget and ambition (for example Standard, Enhanced, and Concours), each with a price, a turnaround time, and what is included. Add optional extras for the upsells. For a directory business, publish a clear service list and explain how your quote and lead process works.",
     checklist: [
       "Three tiers, each with price, turnaround, and revisions",
-      "Concrete deliverables per tier — no vague 'premium service'",
+      "Concrete deliverables per tier: no vague 'premium service'",
       "Add-ons for common upsells (paint sealant, extra detail time, expedited slot)",
       "Directory listings: publish a service menu and typical price ranges",
     ],
-    tip: "Anchor with three tiers. Most buyers pick the middle — so make the middle tier the one you most want to sell, and let Concours make it look reasonable.",
+    tip: "Anchor with three tiers. Most buyers pick the middle, so make the middle tier the one you most want to sell, and let Concours make it look reasonable.",
   },
   {
     icon: ClipboardList,
@@ -180,20 +171,20 @@ const PROVIDER_STEPS: Step[] = [
       "Portfolio populated with real work",
       "At least one listing with tiered pricing and requirements",
     ],
-    tip: "Complete profiles get approved faster and rank higher. Finish everything before you submit — a half-built profile reads as a half-serious business.",
+    tip: "Complete profiles get approved faster and rank higher. Finish everything before you submit: a half-built profile reads as a half-serious business.",
   },
   {
     icon: TrendingUp,
-    title: "Grow — reviews and response time",
+    title: "Grow: reviews and response time",
     body:
       "Once you are live, momentum compounds. Reply fast, deliver on time, and give us the names of clients who were happy: we email them a one-time link and their review lands on your profile with your reply box under it. You never see the link and you cannot pull the review, which is exactly why it is worth something to the next owner reading it.",
     checklist: [
       "Reply to inquiries within hours, not days",
       "Deliver on or ahead of the promised turnaround",
-      "Hand us the names of satisfied owners — we do the asking",
+      "Hand us the names of satisfied owners: we do the asking",
       "Refine your tiers and add-ons as you learn what sells",
     ],
-    tip: "Your first three reviews are the hardest and the most valuable — three is where a star rating starts appearing on your profile and in the directory. Overdeliver on the early jobs: you are not just doing the work, you are buying your reputation.",
+    tip: "Your first three reviews are the hardest and the most valuable: three is where a star rating starts appearing on your profile and in the directory. Overdeliver on the early jobs: you are not just doing the work, you are buying your reputation.",
   },
 ];
 
@@ -203,14 +194,9 @@ const PROVIDER_STEPS: Step[] = [
 const BUYER_STEPS: Step[] = [
   {
     icon: Sparkles,
-    title: "How hiring works",
-    // Was "Two ways to hire", the first of which was "book a fixed-price gig
-    // instantly". There are no bookable gigs — checkout is off at
-    // GIG_PAYMENTS_ENABLED and, since the freelancer wizard was retired, no
-    // provider can create one. Telling a buyer they can book instantly was a
-    // promise the site cannot keep.
+    title: "Two ways to hire",
     body:
-      "You find the specialist, you contact the specialist. Search by service, marque and location, read what other owners said, then send one enquiry to the shop you picked — it goes to them and nobody else. They come back to you with a quote, and what you agree is between the two of you. Fixed-price gigs you can book outright are coming; they are not open yet.",
+      "Contact an owner-reviewed business for a custom quote, whether the job is well-defined (a detail, an inspection, a transport run) or bespoke (an engine rebuild, a long-term storage plan, a multi-car move). Once fixed-price gigs open, well-defined jobs will also be bookable instantly at a fixed price. For now, it is custom and quoted either way.",
   },
   {
     icon: UserCircle,
@@ -222,13 +208,13 @@ const BUYER_STEPS: Step[] = [
     icon: Search,
     title: "Find the right specialist",
     body:
-      "Filter by category, marque, and location, then read the profile properly. Look past the star average to the number of reviews behind it — we do not show an average below three verified reviews at all — and note which quotes are verified clients and which the shop supplied itself. Study the portfolio for cars like yours before you reach out.",
+      "Filter by category, marque, and location, then read the profile properly. Look past the star average to the number of reviews behind it (we do not show an average below three verified reviews at all), and note which quotes are verified clients and which the shop supplied itself. Study the portfolio for cars like yours before you reach out.",
   },
   {
     icon: PencilLine,
     title: "Write a good brief",
     body:
-      "A specialist can only deliver what you describe. Be specific: the vehicle and its condition, the exact outcome you want, your timeline and budget, and your must-haves and must-avoids. A precise brief gets a precise quote — and a better result.",
+      "A specialist can only deliver what you describe. Be specific: the vehicle and its condition, the exact outcome you want, your timeline and budget, and your must-haves and must-avoids. A precise brief gets a precise quote, and a better result.",
   },
   {
     icon: MessageSquare,
@@ -240,19 +226,19 @@ const BUYER_STEPS: Step[] = [
     icon: CreditCard,
     title: "Place an order or request a quote",
     body:
-      "For a fixed-price gig, pick the tier that fits and you will see a transparent total including fees before you confirm. For bespoke work, send your brief to the business as a lead and they will come back with a custom quote.",
+      "Send your brief to the business as a lead and they will come back with a custom quote, well-defined job or bespoke. Once fixed-price gigs open, you will be able to pick a tier for a well-defined job instead and see a transparent total including fees before you confirm.",
   },
   {
     icon: ShieldCheck,
     title: "Trust & protection",
     body:
-      "Reviews come from clients we email directly after the work is done, and a shop can reply to one but can never remove it. The directory is young, so many profiles have no verified reviews yet — that is shown plainly rather than papered over. Revisions and dispute handling are there to protect you if a job does not land the way it should.",
+      "Reviews come from clients we email directly after the work is done, and a shop can reply to one but can never remove it. The directory is young, so many profiles have no verified reviews yet. That is shown plainly rather than papered over. Revisions and dispute handling are there to protect you if a job does not land the way it should.",
   },
   {
     icon: Star,
     title: "After the job",
     body:
-      "If the shop invites you to review them, do it honestly — good or bad. It is the only thing on this site that a business cannot buy, and it is how the next owner decides. Re-book the specialists you trust, and reach out any time you need a hand.",
+      "If the shop invites you to review them, do it honestly, good or bad. It is the only thing on this site that a business cannot buy, and it is how the next owner decides. Re-book the specialists you trust, and reach out any time you need a hand.",
   },
 ];
 
@@ -262,11 +248,11 @@ const BUYER_STEPS: Step[] = [
 const FAQS = [
   {
     q: "Do I need a registered business to list?",
-    a: "We do not ask about your legal structure. There is one application, and a shop with six lifts and a one-person mobile operation fill in the same form — what we ask is where the work happens, because that is what owners filter on. Either way, a complete profile — real credentials, clear pricing, honest scope — is what wins the first job. After that it is the reviews from owners who hired you that do the work.",
+    a: "You can list as an independent specialist, ready to offer fixed-price gigs once they open, or as a registered business in the directory today. Either way, a complete profile (real credentials, clear pricing, honest scope) is what wins the first booking. After that it is the reviews from owners who hired you that do the work.",
   },
   {
     q: "How should I price my services?",
-    a: "For fixed-price gigs, offer up to three tiers — for example Standard, Enhanced, and Concours — each with a clear price, turnaround, and list of what is included, plus optional add-ons for upsells. Most buyers choose the middle tier, so make it the one you most want to sell. For bespoke work, list your services in the directory and quote each job individually.",
+    a: "Once fixed-price gigs open, offer up to three tiers (for example Standard, Enhanced, and Concours), each with a clear price, turnaround, and list of what is included, plus optional add-ons for upsells. Most buyers choose the middle tier, so make it the one you most want to sell. For bespoke work, list your services in the directory today and quote each job individually.",
   },
   {
     q: "Why does my portfolio matter so much?",
@@ -274,11 +260,11 @@ const FAQS = [
   },
   {
     q: "How do I get found by the right owners?",
-    a: "Name your specialism precisely — the marques, eras, and services you are the expert in — in your title, tagline, and tags. Specific beats generic: 'air-cooled Porsche paint correction' gets found where 'car detailing' disappears.",
+    a: "Name your specialism precisely: the marques, eras, and services you are the expert in, in your title, tagline, and tags. Specific beats generic: 'air-cooled Porsche paint correction' gets found where 'car detailing' disappears.",
   },
   {
     q: "How do I earn a higher ranking and more leads?",
-    a: "Respond quickly, deliver on time, and collect verified reviews. Give us the names of clients who were happy and we email them a one-time review link — at three verified reviews a star rating starts showing on your profile and on your directory card, and at 4.5 and above you pick up the Top-rated badge. Nothing about ranking is for sale.",
+    a: "Respond quickly, deliver on time, and collect verified reviews. Give us the names of clients who were happy and we email them a one-time review link. At three verified reviews a star rating starts showing on your profile and on your directory card, and at 4.5 and above you pick up the Top-rated badge. Nothing about ranking is for sale.",
   },
   {
     q: "What information should I ask buyers for before starting?",
@@ -491,11 +477,10 @@ export default function ProviderGuidePage() {
               Start here
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-              How work reaches you
+              Two ways to sell your services
             </h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              One application either way — we do not ask whether you are a company or a one-person
-              operation, only where the work happens.
+              Pick the model that fits the work. Once fixed-price gigs open, many specialists will run both: productized gigs for repeatable jobs, a directory listing for bespoke projects.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -512,11 +497,7 @@ export default function ProviderGuidePage() {
                     </div>
                     <span
                       className="text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
-                      style={
-                        p.tag === "Live now"
-                          ? { color: "#15803d", backgroundColor: "rgba(106,176,76,0.14)" }
-                          : { color: "#6b6b60", backgroundColor: "rgba(0,0,0,0.05)" }
-                      }
+                      style={{ color: "#8a6d2f", backgroundColor: "rgba(176,141,63,0.12)" }}
                     >
                       {p.tag}
                     </span>
@@ -601,7 +582,7 @@ export default function ProviderGuidePage() {
                 </h2>
                 <p className="text-sm text-text-secondary max-w-2xl">
                   Sole proprietor or LLC. What self-employment tax actually costs and when it is due.
-                  Why everyone wants a W-9. Which insurance covers a customer&rsquo;s car &mdash; and which
+                  Why everyone wants a W-9. Which insurance covers a customer&rsquo;s car, and which
                   one you probably have instead. Written for people who fix cars, not accountants.
                 </p>
               </div>
@@ -627,7 +608,7 @@ export default function ProviderGuidePage() {
               The nine-step playbook
             </h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              From empty profile to first booking. Work through it in order — each step builds the trust that makes the next one pay off.
+              From empty profile to first booking. Work through it in order: each step builds the trust that makes the next one pay off.
             </p>
           </div>
           <div className="space-y-4">

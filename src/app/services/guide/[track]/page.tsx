@@ -62,7 +62,7 @@ export async function generateMetadata({
   const { track: slug } = await params;
   const track = getTrack(slug);
   if (!track) return { title: "Provider Guide" };
-  const title = `${track.label} on Fully Sorted — Provider Guide`;
+  const title = `${track.label} on Fully Sorted: Provider Guide`;
   return {
     title,
     description: `How to get booked as a collector-car ${track.label.toLowerCase()} specialist: gig ideas, pricing tiers, portfolio checklist, and what to ask clients. ${track.hiredFor}`,
@@ -92,8 +92,8 @@ export default async function TrackPage({
   const heroCta = quoteBased ? `List your ${lower} business` : `Set up ${article(lower)} ${lower} gig`;
   const closingCta = quoteBased ? `List your ${lower} business` : `Start ${article(lower)} ${lower} gig`;
   const closingBlurb = quoteBased
-    ? "Restoration and body work are quoted per project, so owners send you an enquiry rather than booking a price — listing is free for founding providers."
-    : "Set up your profile — listing is free for founding providers while we build out the directory.";
+    ? "Restoration and body work are quoted per project, so owners send you an inquiry rather than booking a price. Listing is free for founding providers."
+    : "Set up your profile: listing is free for founding providers while we build out the directory.";
   const others = PROVIDER_TRACKS.filter((t) => t.slug !== track.slug && isServiceCategory(t.slug));
 
   const howToSchema = {
@@ -229,7 +229,7 @@ export default async function TrackPage({
                   >
                     {featured && (
                       <span className="self-start text-[10px] font-bold uppercase tracking-wider text-white px-2 py-0.5 rounded-full mb-3" style={{ backgroundColor: "#1E6091" }}>
-                        Most booked
+                        Most popular
                       </span>
                     )}
                     <h3 className="text-lg font-bold text-foreground">{tier.name}</h3>

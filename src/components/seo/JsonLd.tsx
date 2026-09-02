@@ -24,7 +24,7 @@ export const organizationSchema = {
   "@type": "Organization",
   "@id": "https://fullysorted.com/#organization",
   name: "Fully Sorted",
-  alternateName: "Fully Sorted — Collector Car Services Hub",
+  alternateName: "Fully Sorted: Collector Car Services Hub",
   url: "https://fullysorted.com",
   logo: {
     "@type": "ImageObject",
@@ -34,7 +34,7 @@ export const organizationSchema = {
   },
   image: "https://fullysorted.com/opengraph-image.png",
   description:
-    "A collector car services hub: an owner-reviewed directory of specialists for inspection, detailing, transport, mechanical, restoration and body work — alongside a direct owner-to-owner marketplace with flat listing fees and a research center built on real sold prices.",
+    "A collector car services hub: an owner-reviewed directory of specialists for inspection, detailing, transport, mechanical, restoration and body work, alongside a direct owner-to-owner marketplace with flat listing fees and a research center built on real sold prices.",
   foundingDate: "2025",
   founder: {
     "@type": "Person",
@@ -74,7 +74,7 @@ export const websiteSchema = {
   url: "https://fullysorted.com",
   name: "Fully Sorted",
   description:
-    "The collector car services hub — specialists, marketplace and research in one place.",
+    "The collector car services hub: specialists, marketplace and research in one place.",
   publisher: { "@id": "https://fullysorted.com/#organization" },
   potentialAction: {
     "@type": "SearchAction",

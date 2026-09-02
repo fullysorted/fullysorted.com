@@ -43,8 +43,8 @@ export function CTASection() {
             <p className="text-white/80 mt-4 text-lg leading-relaxed max-w-xl">
               Whatever your car needs, from an inspection before the wire goes to a
               proper detail or a trusted shop, owner-reviewed specialists are one
-              search away. And when it&apos;s time to sell, list it free, owner
-              to owner.
+              search away. And when it&apos;s time to sell: flat fees from $9.99,
+              first 100 listings free.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link
@@ -58,7 +58,7 @@ export function CTASection() {
                 href="/sell"
                 className="inline-flex items-center justify-center px-7 py-3.5 border border-white/50 text-white text-sm font-semibold rounded-lg hover:border-white hover:bg-white/10 transition-colors"
               >
-                List your car
+                List your car from $9.99
               </Link>
             </div>
             <Link

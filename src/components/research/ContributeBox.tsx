@@ -48,7 +48,7 @@ export function ContributeBox({ modelId, modelName }: { modelId: number; modelNa
       else if (d?.undelivered && d?.mailto) { setMailto(d.mailto); setError(d.error); }
       else setError(d?.error || "Couldn't send that. Please try again.");
     } catch {
-      setError("Couldn't reach the server — check your connection and try again.");
+      setError("Couldn't reach the server. Check your connection and try again.");
     } finally {
       setBusy(false);
     }
@@ -86,7 +86,7 @@ export function ContributeBox({ modelId, modelName }: { modelId: number; modelNa
         <div>
           <h3 className="text-sm font-bold text-foreground">Add to this page</h3>
           <p className="text-xs text-text-secondary mt-0.5">
-            Nothing appears publicly until Chris has checked it.
+            Nothing appears publicly until our team has checked it.
           </p>
         </div>
         <button type="button" onClick={() => setOpen(false)} aria-label="Close" className="text-stone-400 hover:text-stone-600">
@@ -118,7 +118,7 @@ export function ContributeBox({ modelId, modelName }: { modelId: number; modelNa
         required rows={4} value={f.body} onChange={(e) => set("body", e.target.value)}
         placeholder={kind === "correction"
           ? "What's wrong, and what should it say instead?"
-          : "Tell us about your car — when you got it, what it's been through, what surprised you."}
+          : "Tell us about your car: when you got it, what it's been through, what surprised you."}
         className={`${inputCls} resize-none`}
       />
 
@@ -126,7 +126,7 @@ export function ContributeBox({ modelId, modelName }: { modelId: number; modelNa
         <div>
           <input
             required type="url" value={f.sourceUrl} onChange={(e) => set("sourceUrl", e.target.value)}
-            placeholder="Source we can check — link, book, or document" className={inputCls}
+            placeholder="Source we can check: link, book, or document" className={inputCls}
           />
           <p className="text-xs text-text-tertiary mt-1">
             We cite everything on these pages, so a correction needs something behind it.
@@ -140,7 +140,7 @@ export function ContributeBox({ modelId, modelName }: { modelId: number; modelNa
       </div>
       <input
         value={f.credential} onChange={(e) => set("credential", e.target.value)}
-        placeholder="Optional — owned one 12 years, marque registrar, ex-factory…" className={inputCls}
+        placeholder="Optional: owned one 12 years, marque registrar, ex-factory…" className={inputCls}
       />
 
       {error && (

@@ -85,7 +85,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
           <>
             <Image
               src={provider.avatarUrl}
-              alt={`${provider.businessName} — photo`}
+              alt={`${provider.businessName} photo`}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
@@ -399,7 +399,7 @@ export default function ServicesDirectory() {
         <div className="rounded-2xl border p-6 text-center mb-6" style={{ borderColor: "rgba(176,85,63,0.3)", background: "rgba(176,85,63,0.06)" }}>
           <p className="font-semibold text-sm" style={{ color: "#9a3f2f" }}>We couldn&apos;t load the directory just now</p>
           <p className="text-sm text-stone-500 mt-1 max-w-md mx-auto">
-            This is a problem at our end, not an empty directory. Please refresh in a moment &mdash; and if it keeps happening, tell us.
+            This is a problem at our end, not an empty directory. Please refresh in a moment. If it keeps happening, tell us.
           </p>
           <button
             onClick={() => window.location.reload()}
@@ -417,7 +417,7 @@ export default function ServicesDirectory() {
           count={filtered.length}
           emptyLine={
             providers.length === 0
-              ? "We're building the directory now — apply below to be one of the first listed."
+              ? "We're building the directory now. Apply below to be one of the first listed."
               : 'Nobody matches that yet. Tell us who should be here and we will go and ask them.'
           }
         />
@@ -440,7 +440,7 @@ export default function ServicesDirectory() {
         <h3 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-white mb-3">Join the Directory</h3>
         <p className="text-stone-200 mb-2 font-medium">Are you a specialist? Get listed.</p>
         <p className="text-stone-300 mb-6 max-w-xl mx-auto">
-          If you do exceptional work with collector cars — photography, inspection, detailing, storage, transport, mechanical — apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.
+          If you do exceptional work with collector cars (inspection, transport, mechanical, body and paint, restoration, detailing, storage, or photography), apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link

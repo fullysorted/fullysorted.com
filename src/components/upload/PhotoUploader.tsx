@@ -154,7 +154,7 @@ export default function PhotoUploader({ photos, onChange, maxPhotos = 20 }: Phot
                   Drop photos here or <span className="text-amber-600">browse</span>
                 </p>
                 <p className="text-stone-400 text-sm mt-1">
-                  JPEG, PNG, WebP, or HEIC — up to 10MB each — {maxPhotos - photos.length} remaining
+                  JPEG, PNG, WebP, or HEIC, up to 10MB each, {maxPhotos - photos.length} remaining
                 </p>
               </div>
             </>
@@ -170,12 +170,12 @@ export default function PhotoUploader({ photos, onChange, maxPhotos = 20 }: Phot
       {/* Photo Tips */}
       {photos.length === 0 && (
         <div className="bg-amber-50 border border-amber-100 rounded-xl p-4">
-          <p className="text-stone-700 text-sm font-medium mb-2">Photo tips from Chris:</p>
+          <p className="text-stone-700 text-sm font-medium mb-2">Photo tips:</p>
           <ul className="text-stone-600 text-sm space-y-1">
-            <li>&bull; Shoot in natural light — early morning or golden hour is best</li>
+            <li>&bull; Shoot in natural light: early morning or golden hour is best</li>
             <li>&bull; Get all four corners, the engine bay, interior, trunk, and undercarriage</li>
-            <li>&bull; Include close-ups of any flaws — honesty sells more cars than polish</li>
-            <li>&bull; First photo is your hero shot — make it count</li>
+            <li>&bull; Include close-ups of any flaws: honesty sells more cars than polish</li>
+            <li>&bull; First photo is your hero shot: make it count</li>
           </ul>
         </div>
       )}

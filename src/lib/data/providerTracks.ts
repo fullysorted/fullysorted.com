@@ -50,16 +50,16 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     headline: "Turn paint into a portfolio",
     hiredFor: "Paint correction, ceramic coating, show prep, and preserving original finishes.",
     intro:
-      "Collector-car owners obsess over paint — original single-stage lacquer, soft European clear, a concours finish that has to survive judging. They are not buying a car wash; they are trusting you with a finish that can be worth five figures on its own. Package that expertise into clear tiers and prove it with before/afters.",
+      "Collector-car owners obsess over paint: original single-stage lacquer, soft European clear, a concours finish that has to survive judging. They are not buying a car wash; they are trusting you with a finish that can be worth five figures on its own. Package that expertise into clear tiers and prove it with before/afters.",
     gigIdeas: [
       { title: "Maintenance detail", blurb: "Safe wash, decontamination, and protection to keep a sorted car sorted between shows." },
-      { title: "Single-stage paint correction", blurb: "One-step machine polish to remove light swirls and restore gloss — the everyday upgrade." },
+      { title: "Single-stage paint correction", blurb: "One-step machine polish to remove light swirls and restore gloss: the everyday upgrade." },
       { title: "Multi-stage correction + ceramic", blurb: "Full compound-and-refine plus a ceramic coating; your flagship, highest-margin gig." },
       { title: "Concours show prep", blurb: "Deadline-driven prep to a judging standard, engine bay and undercarriage included." },
       { title: "Interior & leather restoration", blurb: "Deep clean, condition, and protect original leather, wood, and trim." },
     ],
     pricingNote:
-      "Anchor with three tiers so buyers self-select by ambition and budget. Most pick the middle — make it your best-value correction package.",
+      "Anchor with three tiers so buyers self-select by ambition and budget. Most pick the middle. Make it your best-value correction package.",
     tiers: [
       { name: "Standard", price: "$150–$350", turnaround: "1 day", includes: ["Safe hand wash & dry", "Iron/tar decontamination", "Spray sealant or wax", "Interior wipe-down & vacuum"] },
       { name: "Enhanced", price: "$450–$900", turnaround: "1–2 days", includes: ["Everything in Standard", "Single-stage machine correction", "6-month sealant", "Trim & tire dressing", "Before/after documentation"] },
@@ -84,18 +84,18 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "Paint type: original single-stage, factory clear, or resprayed",
       "Current condition and any known defects",
       "Indoor space, power, and water access at the location",
-      "Whether it is for a show — and the show date",
+      "Whether it is for a show, and the show date",
       "Any areas to avoid (delicate original paint, patina to preserve)",
     ],
     tips: [
-      "Never wet-sand or aggressively cut original paint without written disclosure — measure depth with a gauge first and document it.",
+      "Never wet-sand or aggressively cut original paint without written disclosure. Measure depth with a gauge first and document it.",
       "Photograph in consistent lighting so your before/afters are believable, not flattering.",
-      "For original-paint cars, sell preservation, not perfection — collectors often value honest patina over a mirror finish.",
+      "For original-paint cars, sell preservation, not perfection. Collectors often value honest patina over a mirror finish.",
     ],
     keywords: ["paint correction", "ceramic coating", "concours detailing", "swirl removal", "original paint preservation"],
     faqs: [
       { q: "How do I price paint correction when every car is different?", a: "Price by process, not by car: a defined single-stage vs multi-stage vs ceramic package, each with a paint-condition assumption stated up front. Ask for photos in your requirements, and note that heavily defected or repainted panels may need a custom quote." },
-      { q: "Should I offer ceramic coating as a tier or an add-on?", a: "Both. Build it into your top Concours tier and also offer it as a paid add-on to the middle tier — that captures buyers who want correction now and coating as the upsell." },
+      { q: "Should I offer ceramic coating as a tier or an add-on?", a: "Both. Build it into your top Concours tier and also offer it as a paid add-on to the middle tier. That captures buyers who want correction now and coating as the upsell." },
     ],
   },
   {
@@ -107,9 +107,9 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     headline: "Be the expert eyes buyers can't be",
     hiredFor: "Remote pre-purchase inspections, condition reports, and an honest deal-or-walk verdict.",
     intro:
-      "Most collector cars are bought at a distance — an auction two states away, a dealer across the country. The buyer can't be there, so they hire you to be. A great PPI isn't a checklist; it's a written, photographed, defensible opinion that a five- or six-figure decision rests on. Sell rigor and independence.",
+      "Most collector cars are bought at a distance: an auction two states away, a dealer across the country. The buyer can't be there, so they hire you to be. A great PPI isn't a checklist; it's a written, photographed, defensible opinion that a five- or six-figure decision rests on. Sell rigor and independence.",
     gigIdeas: [
-      { title: "Standard PPI", blurb: "Full visual inspection, cold start, road test, and a photo report — the core remote-buyer gig." },
+      { title: "Standard PPI", blurb: "Full visual inspection, cold start, road test, and a photo report: the core remote-buyer gig." },
       { title: "Concours-level PPI", blurb: "Compression/leakdown, paint-depth survey, on-a-lift undercarriage, and a detailed written report." },
       { title: "Auction-lot inspection", blurb: "Fast, deadline-driven inspection and verdict before a specific lot crosses the block." },
       { title: "Numbers-matching verification", blurb: "VIN, chassis, engine, and gearbox number checks against factory records and registries." },
@@ -131,7 +131,7 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     ],
     portfolio: [
       "A sample (redacted) written report",
-      "Photos of real findings — accident repair, rust, over-spray",
+      "Photos of real findings: accident repair, rust, over-spray",
       "Cold-start / walkaround video clips",
       "Your inspection setup: lift, paint gauge, borescope",
     ],
@@ -139,18 +139,18 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "Listing URL, VIN/chassis number, and photos",
       "Car's exact location and how to get access to it",
       "Seller or auction-house contact and viewing window",
-      "Deadline — especially if an auction is ending",
+      "Deadline: especially if an auction is ending",
       "The buyer's specific worries (rust, matching numbers, accident history)",
     ],
     tips: [
-      "Always insist on a genuine cold start — a pre-warmed engine hides the faults buyers most need to know about.",
+      "Always insist on a genuine cold start: a pre-warmed engine hides the faults buyers most need to know about.",
       "Photograph the VIN and every number you verify; your report is only as strong as its evidence.",
-      "State conflicts of interest plainly. Your independence from the seller is the entire product — protect it.",
+      "State conflicts of interest plainly. Your independence from the seller is the entire product. Protect it.",
     ],
     keywords: ["pre-purchase inspection", "PPI", "classic car condition report", "remote car inspection", "numbers matching"],
     faqs: [
       { q: "How do I handle a car I have to travel to inspect?", a: "Build travel into a clearly stated service radius with a mileage or day-rate add-on beyond it. Set expectations in your requirements list so an auction-lot buyer knows the timeline before they book." },
-      { q: "What protects me if a buyer disputes my report?", a: "Document everything — photos, video, and a written report with dated evidence for each finding. Describe what you observed on the day rather than guaranteeing the future, and keep your records. Rigor and evidence are your best protection." },
+      { q: "What protects me if a buyer disputes my report?", a: "Document everything: photos, video, and a written report with dated evidence for each finding. Describe what you observed on the day rather than guaranteeing the future, and keep your records. Rigor and evidence are your best protection." },
     ],
   },
   {
@@ -165,7 +165,7 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "A collector shipping a car is trusting a stranger with something that can't be replaced and often can't be driven onto a trailer. The job is bought on trust: your rig, your straps, your insurance, and your condition-report process matter more than your price. Show all of it.",
     gigIdeas: [
       { title: "Open transport", blurb: "Cost-effective shared-load transport for drivers and project cars." },
-      { title: "Enclosed transport", blurb: "Weather- and debris-protected enclosed hauling — the default for valuable classics." },
+      { title: "Enclosed transport", blurb: "Weather- and debris-protected enclosed hauling: the default for valuable classics." },
       { title: "White-glove single-car", blurb: "One car, one trailer, liftgate loading, and direct door-to-door service." },
       { title: "Auction pickup & delivery", blurb: "Collect a won lot from the auction house and deliver it deadline-tight." },
       { title: "Show & event logistics", blurb: "Storage-to-show and back, coordinated around the event calendar." },
@@ -198,9 +198,9 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "Access notes at both ends (narrow street, gated, low garage)",
     ],
     tips: [
-      "Soft ties only on a collector car — never chain down a classic. Say so on your profile; owners look for it.",
+      "Soft ties only on a collector car. Never chain down a classic. Say so on your profile; owners look for it.",
       "Do a photographed condition report at pickup and delivery. It protects you and reassures the owner.",
-      "Verify your cargo insurance limit actually covers the car's value before you quote — and show the limit.",
+      "Verify your cargo insurance limit actually covers the car's value before you quote, and show the limit.",
     ],
     keywords: ["enclosed car transport", "classic car shipping", "collector car transport", "auction car pickup", "white-glove auto transport"],
     faqs: [
@@ -217,16 +217,16 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     headline: "The photos that sell the car",
     hiredFor: "Listing photo sets, editorial shoots, provenance documentation, and film.",
     intro:
-      "On a collector-car listing, photography is the product. A great set adds real money to a sale and a weak one buries it. Sellers hire you for a consistent, honest, beautiful set — and increasingly for the documentation photos that become part of a car's permanent history file.",
+      "On a collector-car listing, photography is the product. A great set adds real money to a sale and a weak one buries it. Sellers hire you for a consistent, honest, beautiful set, and increasingly for the documentation photos that become part of a car's permanent history file.",
     gigIdeas: [
-      { title: "Listing / sale package", blurb: "A complete, consistent set built to sell — exterior, interior, engine, and the honest detail shots buyers want." },
+      { title: "Listing / sale package", blurb: "A complete, consistent set built to sell: exterior, interior, engine, and the honest detail shots buyers want." },
       { title: "Editorial / feature shoot", blurb: "Location-based hero images for a feature, a wall print, or a marque's own marketing." },
-      { title: "Provenance documentation set", blurb: "VIN, odometer, engine numbers, options, and flaws — the archival record collectors keep with the car." },
+      { title: "Provenance documentation set", blurb: "VIN, odometer, engine numbers, options, and flaws: the archival record collectors keep with the car." },
       { title: "Film & video walkaround", blurb: "A narrated or cinematic walkaround and cold-start film for the listing." },
       { title: "Rolling & drone", blurb: "Motion and aerial work for editorial and social." },
     ],
     pricingNote:
-      "Price by deliverable count, location, and usage. A listing set is volume; an editorial shoot is craft — tier them differently.",
+      "Price by deliverable count, location, and usage. A listing set is volume; an editorial shoot is craft. Tier them differently.",
     tiers: [
       { name: "Standard", price: "$250–$450", turnaround: "2–3 days", includes: ["On-location or studio", "25 edited images", "Exterior, interior, engine, detail", "Web-ready delivery"] },
       { name: "Enhanced", price: "$600–$1,200", turnaround: "3–5 days", includes: ["Editorial location shoot", "50+ edited images", "Golden-hour / twilight set", "Full documentation frames", "Print-ready files"] },
@@ -240,7 +240,7 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "Print-ready & licensed files",
     ],
     portfolio: [
-      "A full consistent set from one car — not just single hero shots",
+      "A full consistent set from one car, not just single hero shots",
       "Exterior hero, interior, engine bay, and detail macros",
       "A twilight or golden-hour frame",
       "Rolling and, if you offer it, drone work",
@@ -253,14 +253,14 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "Deadline (listing go-live or auction date)",
     ],
     tips: [
-      "Always shoot the documentation frames — VIN, odometer, engine number, options, and honest flaws. They add provenance value and buyers trust the set more.",
+      "Always shoot the documentation frames: VIN, odometer, engine number, options, and honest flaws. They add provenance value and buyers trust the set more.",
       "Deliver a consistent look across the whole set; a matched grade reads as professional, a mixed one reads as amateur.",
-      "Golden hour and clean reflections do more for a car than any filter — scout the light before you scout the pose.",
+      "Golden hour and clean reflections do more for a car than any filter. Scout the light before you scout the pose.",
     ],
     keywords: ["automotive photography", "car listing photos", "classic car photographer", "editorial car shoot", "collector car documentation"],
     faqs: [
-      { q: "Listing photos or editorial — which should I lead with?", a: "Lead with the listing package as your volume gig; it is what most sellers need and books fastest. Offer editorial and film as your premium tiers for owners who want images that outlive the sale." },
-      { q: "How many images should a package include?", a: "Enough to tell the whole honest story of the car — typically 25 for a listing set and 50+ for editorial. State the count per tier so buyers know exactly what they are getting." },
+      { q: "Listing photos or editorial: which should I lead with?", a: "Lead with the listing package as your volume gig; it is what most sellers need and books fastest. Offer editorial and film as your premium tiers for owners who want images that outlive the sale." },
+      { q: "How many images should a package include?", a: "Enough to tell the whole honest story of the car: typically 25 for a listing set and 50+ for editorial. State the count per tier so buyers know exactly what they are getting." },
     ],
   },
   {
@@ -272,9 +272,9 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     headline: "Keep the legends running",
     hiredFor: "Recommissioning, tuning, system overhauls, and pre-event mechanical checks.",
     intro:
-      "Collector cars sit, and sitting breaks things. Owners need a specialist who knows the quirks of a specific marque and era — the right carb jets, the correct-spec parts, the ignition setup nobody under fifty remembers. Sell that specialism, not general repair.",
+      "Collector cars sit, and sitting breaks things. Owners need a specialist who knows the quirks of a specific marque and era: the right carb jets, the correct-spec parts, the ignition setup nobody under fifty remembers. Sell that specialism, not general repair.",
     gigIdeas: [
-      { title: "Recommissioning after storage", blurb: "Fluids, brakes, fuel system, ignition — safely wake a car that's been parked for years." },
+      { title: "Recommissioning after storage", blurb: "Fluids, brakes, fuel system, ignition: safely wake a car that's been parked for years." },
       { title: "Pre-event mechanical check", blurb: "A go/no-go safety and reliability pass before a rally, tour, or track day." },
       { title: "Carburetor rebuild & tune", blurb: "Rebuild, jet, and synchronize to period-correct spec." },
       { title: "Brake system overhaul", blurb: "Master cylinder, wheel cylinders/calipers, lines, and bleed for a car meant to actually be driven." },
@@ -304,10 +304,10 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "Symptoms and when they occur",
       "Known service history and recent work",
       "Parts availability or originality requirements",
-      "Deadline — especially for a specific event",
+      "Deadline: especially for a specific event",
     ],
     tips: [
-      "Source correct-spec parts and say you do — the wrong jets or plugs on a classic are a resale red flag.",
+      "Source correct-spec parts and say you do: the wrong jets or plugs on a classic are a resale red flag.",
       "Photo-document the work; owners keep it in the history file and it supports the car's value.",
       "Return the old parts to the owner. It signals honesty and proves the work was done.",
     ],
@@ -326,16 +326,16 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     headline: "Bring history back to life",
     hiredFor: "Concours and driver-quality restorations, from nut-and-bolt rebuilds to sympathetic preservation.",
     intro:
-      "Restoration is the highest-trust, highest-value work on the platform — a multi-month, five- or six-figure project where the owner is betting on your craft and your judgment. These jobs are quoted and scoped, not bought off a menu. Your listing's job is to prove you can be trusted with the whole car.",
+      "Restoration is the highest-trust, highest-value work on the platform: a multi-month, five- or six-figure project where the owner is betting on your craft and your judgment. These jobs are quoted and scoped, not bought off a menu. Your listing's job is to prove you can be trusted with the whole car.",
     gigIdeas: [
-      { title: "Concours nut-and-bolt", blurb: "Complete disassembly to a judging standard — the flagship restoration." },
+      { title: "Concours nut-and-bolt", blurb: "Complete disassembly to a judging standard: the flagship restoration." },
       { title: "Driver-quality restoration", blurb: "A beautiful, honest car built to be enjoyed rather than judged." },
       { title: "Mechanical restoration", blurb: "Engine, drivetrain, brakes, and suspension to as-new, keeping the patina outside." },
       { title: "Preservation / sympathetic", blurb: "Stabilize and conserve an original car rather than restore it away." },
       { title: "Interior & trim restoration", blurb: "Upholstery, wood, chrome, and trim returned to correct spec." },
     ],
     pricingNote:
-      "Restoration is quote-based. Scope the project in writing, phase the billing, and set milestones — never a single fixed number.",
+      "Restoration is quote-based. Scope the project in writing, phase the billing, and set milestones: never a single fixed number.",
     quoteBased: true,
     addOns: [
       "Phased / staged project billing",
@@ -344,7 +344,7 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "Show preparation and entry support",
     ],
     portfolio: [
-      "Full build threads — bare metal to finished car",
+      "Full build threads: bare metal to finished car",
       "Panel, paint, and body process shots",
       "Before/after of a completed project",
       "Detail of correctness: badges, fasteners, finishes",
@@ -357,7 +357,7 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "Documentation and parts that come with the car",
     ],
     tips: [
-      "Agree the scope in writing before any spanner turns — scope creep is where restoration relationships break down.",
+      "Agree the scope in writing before any spanner turns. Scope creep is where restoration relationships break down.",
       "Phase the billing against milestones so the owner sees progress and you are never carrying the whole risk.",
       "Photo-document every stage. It reassures the owner, becomes part of the car's provenance, and protects its resale value.",
     ],
@@ -373,26 +373,26 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     label: "Body & Paint",
     icon: "PaintBucket",
     eyebrow: "Body Work & Paint",
-    headline: "Panel, metal, and colour done right",
-    hiredFor: "Respray, rust and panel repair, accident work, and period-correct colour matching.",
+    headline: "Panel, metal, and color done right",
+    hiredFor: "Respray, rust and panel repair, accident work, and period-correct color matching.",
     intro:
       "Bodywork on a collector car is a correctness game as much as a craft one. The wrong paint system, a modern base-clear where the factory ran single-stage, or panel gaps that don't match the era can quietly cost an owner value. Sell your eye for originality alongside your finish quality.",
     gigIdeas: [
-      { title: "Full respray", blurb: "Bare-metal or scuff-and-shoot respray in a correct, documented colour." },
-      { title: "Panel & rust repair", blurb: "Cut, fabricate, and blend — restoring structure and shape, not just hiding it." },
+      { title: "Full respray", blurb: "Bare-metal or scuff-and-shoot respray in a correct, documented color." },
+      { title: "Panel & rust repair", blurb: "Cut, fabricate, and blend: restoring structure and shape, not just hiding it." },
       { title: "Accident / collision repair", blurb: "Structural and cosmetic repair to a collector standard." },
-      { title: "Colour match & blend", blurb: "Match original single-stage or metallic and blend invisibly into adjacent panels." },
+      { title: "Color match & blend", blurb: "Match original single-stage or metallic and blend invisibly into adjacent panels." },
       { title: "Lead loading & metal finishing", blurb: "Period-correct techniques for cars that deserve them." },
     ],
     pricingNote:
       "Spot and single-panel work can be tiered; a full respray is best quoted after seeing the car. Be explicit about the paint system.",
     tiers: [
-      { name: "Standard", price: "$400–$1,200", turnaround: "2–4 days", includes: ["Single-panel repair or respray", "Colour match", "Blend into adjacent panels", "Cut & polish"] },
+      { name: "Standard", price: "$400–$1,200", turnaround: "2–4 days", includes: ["Single-panel repair or respray", "Color match", "Blend into adjacent panels", "Cut & polish"] },
       { name: "Enhanced", price: "$1,500–$4,000", turnaround: "1–2 weeks", includes: ["Multi-panel work", "Rust remediation", "Correct paint system (single-stage or base/clear)", "Panel-gap correction"] },
       { name: "Concours", price: "Quoted", turnaround: "Project", includes: ["Bare-metal full respray", "Metal finishing / lead loading", "Show-standard block & finish", "Full documentation"] },
     ],
     addOns: [
-      "Colour change",
+      "Color change",
       "Period-correct single-stage paint",
       "Rust remediation",
       "Trim, chrome, and badge refinishing",
@@ -400,25 +400,25 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     portfolio: [
       "Bare metal and block-sanding stages",
       "Rust repair before/after with fabricated metal",
-      "Colour match shown across a panel edge under light",
+      "Color match shown across a panel edge under light",
       "Corrected, period-correct panel gaps",
     ],
     requirements: [
       "Panels affected and the nature of the damage",
       "Current paint: original, resprayed, single-stage or base/clear",
-      "Factory colour code, if known",
-      "Originality goals — matching finish vs upgrade",
+      "Factory color code, if known",
+      "Originality goals: matching finish vs upgrade",
       "Deadline and whether it is for a show or sale",
     ],
     tips: [
-      "Match the paint system to the car's originality — a modern base/clear on a car that left the factory in single-stage can cost value. Ask, then advise.",
+      "Match the paint system to the car's originality: a modern base/clear on a car that left the factory in single-stage can cost value. Ask, then advise.",
       "Document rust repair fully; hidden filler is the thing collectors fear most, and proof of proper metalwork is a selling point.",
       "Respect period-correct panel gaps. Too-perfect can be as wrong as too-loose.",
     ],
     keywords: ["classic car respray", "rust repair", "paint matching", "collision repair classic", "bare metal respray"],
     faqs: [
-      { q: "Single-stage or base/clear — which should I quote?", a: "Whichever matches the car's originality goal. For a numbers-matching concours car, period-correct single-stage often protects value; for a driver or restomod, a durable base/clear may be the right call. Ask the owner's intent in your requirements and advise from there." },
-      { q: "Can I fix-price a full respray?", a: "Rarely — hidden rust and prep vary too much. Offer spot and single-panel work at set prices, and quote full resprays after inspecting the car, using your requirements list to gather photos first." },
+      { q: "Single-stage or base/clear: which should I quote?", a: "Whichever matches the car's originality goal. For a numbers-matching concours car, period-correct single-stage often protects value; for a driver or restomod, a durable base/clear may be the right call. Ask the owner's intent in your requirements and advise from there." },
+      { q: "Can I fix-price a full respray?", a: "Rarely. Hidden rust and prep vary too much. Offer spot and single-panel work at set prices, and quote full resprays after inspecting the car, using your requirements list to gather photos first." },
     ],
   },
   {
@@ -430,10 +430,10 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     headline: "A safe home between drives",
     hiredFor: "Climate-controlled storage, maintenance programs, and full collection management.",
     intro:
-      "Storing a collector car well is active, not passive — climate, security, battery and tyre care, and the occasional start-up all protect the asset. Owners are trusting you with cars they can't replace, sometimes for years. Sell the specifics of your facility and your care program, not just square footage.",
+      "Storing a collector car well is active, not passive: climate, security, battery and tire care, and the occasional start-up all protect the asset. Owners are trusting you with cars they can't replace, sometimes for years. Sell the specifics of your facility and your care program, not just square footage.",
     gigIdeas: [
       { title: "Climate-controlled storage", blurb: "Monthly indoor storage in a temperature- and humidity-managed facility." },
-      { title: "Maintenance program", blurb: "Battery tending, tyre care, and periodic start-ups so the car is ready when the owner is." },
+      { title: "Maintenance program", blurb: "Battery tending, tire care, and periodic start-ups so the car is ready when the owner is." },
       { title: "Show-season in & out", blurb: "Seasonal storage timed around the event and driving calendar." },
       { title: "Long-term dry storage", blurb: "Extended preservation storage with a documented condition baseline." },
       { title: "Collection management", blurb: "Full-service care, records, and logistics for a multi-car collection." },
@@ -442,7 +442,7 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
       "Storage is recurring. Offer clear monthly tiers by level of care, and add event transport or detailing as recurring upsells.",
     tiers: [
       { name: "Standard", price: "$150–$300 / mo", turnaround: "Monthly", includes: ["Secure indoor bay", "Car cover", "Basic access by appointment", "Documented intake condition"] },
-      { name: "Enhanced", price: "$300–$600 / mo", turnaround: "Monthly", includes: ["Climate-controlled space", "Battery tender & tyre care", "Monthly start-up & report", "Priority access"] },
+      { name: "Enhanced", price: "$300–$600 / mo", turnaround: "Monthly", includes: ["Climate-controlled space", "Battery tender & tire care", "Monthly start-up & report", "Priority access"] },
       { name: "Concours", price: "$600+ / mo", turnaround: "Monthly", includes: ["Premium climate-controlled", "Full maintenance program", "Detailing between drives", "Event transport coordination"] },
     ],
     addOns: [
@@ -453,7 +453,7 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     ],
     portfolio: [
       "Facility interior, security, and climate systems",
-      "Cars stored properly — covers, spacing, tenders",
+      "Cars stored properly: covers, spacing, tenders",
       "Your intake condition-report process",
       "Access and handling areas",
     ],
@@ -466,12 +466,12 @@ export const PROVIDER_TRACKS: ProviderTrack[] = [
     ],
     tips: [
       "Lead with your specifics: humidity control, security, fire suppression, and 24/7 monitoring are what collectors actually compare.",
-      "Agree access terms up front — owners want to know they can see or collect their car without friction.",
-      "Battery tending and tyre care sound minor but signal that you understand what parked collector cars actually need.",
+      "Agree access terms up front: owners want to know they can see or collect their car without friction.",
+      "Battery tending and tire care sound minor but signal that you understand what parked collector cars actually need.",
     ],
     keywords: ["classic car storage", "climate controlled car storage", "collection management", "collector car storage facility", "vehicle preservation"],
     faqs: [
-      { q: "How do I compete with cheap warehouse storage?", a: "By selling care, not space. Climate control, security, a maintenance program, and a documented intake condition are what set collector-grade storage apart from a cold shed — make them the headline." },
+      { q: "How do I compete with cheap warehouse storage?", a: "By selling care, not space. Climate control, security, a maintenance program, and a documented intake condition are what set collector-grade storage apart from a cold shed. Make them the headline." },
       { q: "Should storage be a fixed gig or a directory listing?", a: "Offer clear monthly tiers so owners can compare at a glance, and treat multi-car collection management as a quote-based directory service. Recurring add-ons like detailing and event transport lift the value of every space." },
     ],
   },

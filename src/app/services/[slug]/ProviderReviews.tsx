@@ -94,7 +94,7 @@ export default function ProviderReviews({
         <>
           {!showAverage && (
             <p className="text-xs mb-4 rounded-lg px-3 py-2" style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}>
-              {verified.length === 1 ? 'One verified review' : `${verified.length} verified reviews`} so far — not
+              {verified.length === 1 ? 'One verified review' : `${verified.length} verified reviews`} so far. Not
               enough to average yet. We start showing a star rating at {MIN_REVIEWS_FOR_AVG}.
             </p>
           )}
@@ -140,7 +140,7 @@ export default function ProviderReviews({
           </p>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             A verified review comes from a client we email directly after work is finished. {businessName} has not
-            collected any here yet — which is worth knowing, and worth nothing more than that.
+            collected any here yet, which is worth knowing, and worth nothing more than that.
           </p>
         </div>
       )}
@@ -164,7 +164,7 @@ export default function ProviderReviews({
                     {r.body}
                   </p>
                   <p className="text-xs mt-1.5" style={{ color: 'var(--text-tertiary)' }}>
-                    — {r.authorName}
+                    {r.authorName}
                     {byline(r) ? ` · ${byline(r)}` : ''}
                   </p>
                   {r.providerReply && <ReplyBlock text={r.providerReply} />}

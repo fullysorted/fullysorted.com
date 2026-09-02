@@ -104,7 +104,7 @@ export function undeliverableResponse(
   return NextResponse.json(
     {
       error:
-        "We couldn't get that through to us just now. Send it as an email instead — everything you typed is already in it.",
+        "We couldn't get that through to us just now. Send it as an email instead. Everything you typed is already in it.",
       undelivered: true,
       mailto: fallbackMailto(subject, fields),
       contactEmail: CONTACT_EMAIL,

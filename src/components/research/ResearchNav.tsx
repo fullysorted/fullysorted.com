@@ -84,7 +84,7 @@ const ITEMS: Item[] = [
           key: "value" as const,
           href: "/value-guide",
           label: "Value Guide",
-          blurb: "What one is worth — from real sold prices",
+          blurb: "What one is worth: from real sold prices",
           group: "car" as const,
           icon: <BarChart3 className="w-4 h-4" />,
         },
@@ -160,7 +160,7 @@ export function ResearchNav({ active }: { active: ResearchSection }) {
           )}
         </div>
         <p className="mt-1.5 mb-4 text-sm max-w-3xl" style={{ color: "#6b6b5e" }}>
-          Know the car before anyone asks you for money — what it is, what it&apos;s
+          Know the car before anyone asks you for money: what it is, what it&apos;s
           worth, and what the market is doing.
         </p>
 

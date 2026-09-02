@@ -365,6 +365,13 @@ export function parseModelSlug(slug: string): { make: string; modelSlug: string 
   return { make, modelSlug: rest.join('/') };
 }
 
+/** A generation label that only repeats the model name ("F40 (F40)") is dropped. */
+export function displayGeneration(m: Pick<VehicleModelRow, 'model' | 'generation'>): string | null {
+  if (!m.generation) return null;
+  return m.generation.trim().toLowerCase() === m.model.trim().toLowerCase() ? null : m.generation;
+}
+
 export function modelDisplayName(m: Pick<VehicleModelRow, 'make' | 'model' | 'generation'>): string {
-  return [m.make, m.model, m.generation && `(${m.generation})`].filter(Boolean).join(' ');
+  const gen = displayGeneration(m);
+  return [m.make, m.model, gen && `(${gen})`].filter(Boolean).join(' ');
 }

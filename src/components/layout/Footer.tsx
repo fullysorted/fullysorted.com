@@ -53,7 +53,7 @@ const footerLinks = {
 const assurances = [
   { label: "256-bit SSL encrypted" },
   { label: "Owner-reviewed specialists" },
-  { label: "Free to list" },
+  { label: "Flat listing fees" },
   { label: "$0 buyer's premium" },
 ];
 

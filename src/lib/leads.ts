@@ -145,7 +145,7 @@ const CHOICE_LABELS: Record<string, string> = {
   '5-15k': '$5,000 – $15,000',
   '15-50k': '$15,000 – $50,000',
   'over-50k': 'Over $50,000',
-  'not-sure': 'No idea yet — tell me',
+  'not-sure': 'No idea yet, tell me',
 };
 
 /**
@@ -211,5 +211,5 @@ export function briefRows(brief: LeadBrief | null): Array<[string, string]> {
 export function briefToText(brief: LeadBrief | null): string {
   const rows = briefRows(brief);
   if (rows.length === 0) return '';
-  return ['', '— About the car —', ...rows.map(([k, v]) => `${k}: ${v}`)].join('\n');
+  return ['', 'About the car:', ...rows.map(([k, v]) => `${k}: ${v}`)].join('\n');
 }

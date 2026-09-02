@@ -138,11 +138,11 @@ const CURRENT_YEAR = new Date().getFullYear();
 const CONFIDENCE_COPY: Record<Exclude<Confidence, "none">, { label: string; body: string; tone: string; bg: string; border: string }> = {
   raw: {
     label: "Not enough sales for an estimate",
-    body: "One or two recorded sales cannot describe a market. The sales themselves are below — read them as anecdotes, not as a value.",
+    body: "One or two recorded sales cannot describe a market. The sales themselves are below. Read them as anecdotes, not as a value.",
     tone: "#8a6d1f", bg: "rgba(176,141,63,0.12)", border: "rgba(176,141,63,0.28)",
   },
   range: {
-    label: "Directional — range only",
+    label: "Directional: range only",
     body: "Too few sales to put a single number on this car honestly, so we are showing what the range looked like rather than a midpoint.",
     tone: "#8a6d1f", bg: "rgba(176,141,63,0.12)", border: "rgba(176,141,63,0.28)",
   },
@@ -173,15 +173,15 @@ function formatDate(dateStr?: string): string {
 
 function makeWisdom(make: string): string {
   const notes: Record<string, string> = {
-    porsche: "On air-cooled Porsches, service history and originality separate the strong sales from the average ones — matching numbers and a clean, rust-free body are what buyers pay up for.",
+    porsche: "On air-cooled Porsches, service history and originality separate the strong sales from the average ones. Matching numbers and a clean, rust-free body are what buyers pay up for.",
     bmw: "The BMW market rewards originality and documentation; on the icons like the E30 M3 and 2002tii, any hint of hard track use or modification hurts.",
-    ford: "Condition is everything on first-gen Fords — a driver-quality car and a show car aren't the same market, and correct, documented drivetrains carry a premium.",
-    chevrolet: "The Chevy market splits sharply between numbers-matching cars and restorations — know which bucket a given car sits in before you price it.",
+    ford: "Condition is everything on first-gen Fords. A driver-quality car and a show car aren't the same market, and correct, documented drivetrains carry a premium.",
+    chevrolet: "The Chevy market splits sharply between numbers-matching cars and restorations. Know which bucket a given car sits in before you price it.",
     toyota: "Supply is tight on the collectible Toyotas and enthusiast demand keeps climbing; unmodified, original examples command the premium.",
-    honda: "Buyers prize original, unmodified cars with clean history — modified examples take a real hit versus stock.",
-    ferrari: "Scrutinize the service records — a missed cam-belt or clutch job can mean serious deferred cost, and the market prices that in.",
+    honda: "Buyers prize original, unmodified cars with clean history. Modified examples take a real hit versus stock.",
+    ferrari: "Scrutinize the service records. A missed cam-belt or clutch job can mean serious deferred cost, and the market prices that in.",
     mercedes: "Quality of restoration matters enormously here; amateur work destroys value while documented, correct cars hold it.",
-    jaguar: "Beautiful but maintenance-intensive — buyers price in the mechanical complexity and reward rust-free, sorted cars.",
+    jaguar: "Beautiful but maintenance-intensive. Buyers price in the mechanical complexity and reward rust-free, sorted cars.",
     datsun: "The Z-car market rewards condition and originality; unrestored survivors are increasingly sought after.",
     mazda: "Rotary reliability concerns mean buyers pay up for engine-refreshed, well-documented examples.",
     lamborghini: "Provenance and documented service at official specialists are paramount at this level.",
@@ -202,7 +202,7 @@ function ourTake(
   // stat row has just refused to print.
   const conf = confidenceOf(r.total);
   if (conf === "raw") {
-    return `We have ${r.total} recorded ${r.total === 1 ? "sale" : "sales"} for the ${car}, which is not a market — it is an anecdote. Read the ${r.total === 1 ? "sale" : "sales"} below on its own terms, and treat any figure you derive from it with suspicion.`;
+    return `We have ${r.total} recorded ${r.total === 1 ? "sale" : "sales"} for the ${car}, which is not a market. It is an anecdote. Read the ${r.total === 1 ? "sale" : "sales"} below on its own terms, and treat any figure you derive from it with suspicion.`;
   }
   const bits: string[] = [];
   const median = r.medianPrice;
@@ -215,8 +215,8 @@ function ourTake(
     let s0 = `Across ${r.total} comparable sales, the ${car} centers on about ${formatPrice(median)} (median)`;
     if (avg && !r.meanSkewed) {
       const skew = (avg - median) / median;
-      if (skew > 0.12) s0 += `, while the ${formatPrice(avg)} average sits higher — a few exceptional cars are pulling the top of the market up`;
-      else if (skew < -0.12) s0 += `, with the ${formatPrice(avg)} average below it — project-grade cars are dragging the mean down`;
+      if (skew > 0.12) s0 += `, while the ${formatPrice(avg)} average sits higher: a few exceptional cars are pulling the top of the market up`;
+      else if (skew < -0.12) s0 += `, with the ${formatPrice(avg)} average below it: project-grade cars are dragging the mean down`;
     }
     bits.push(s0 + ".");
     if (r.meanSkewed) {
@@ -240,7 +240,7 @@ function ourTake(
   }
   const wisdom = makeWisdom(make);
   if (wisdom) bits.push(wisdom);
-  if (conf === "median") bits.push(`With ${r.total} comparable sales this is a reasonable read, not a precise one — use it to frame an offer rather than to settle one.`);
+  if (conf === "median") bits.push(`With ${r.total} comparable sales this is a reasonable read, not a precise one: use it to frame an offer rather than to settle one.`);
   return bits.join(" ");
 }
 
@@ -289,7 +289,7 @@ function PriceHistoryChart({ comps, median }: { comps: Comp[]; median: number | 
         ))}
         {pts.map((d, i) => (
           <circle key={i} cx={x(d.t)} cy={y(d.p)} r={5} fill="#1E6091" fillOpacity={0.82} stroke="#ffffff" strokeWidth={1.5}>
-            <title>{`${d.label} — ${formatPrice(d.p)} (${fmtD(d.t)})`}</title>
+            <title>{`${d.label}: ${formatPrice(d.p)} (${fmtD(d.t)})`}</title>
           </circle>
         ))}
       </svg>
@@ -315,8 +315,8 @@ function percentile(sortedAsc: number[], pct: number): number {
 const CONDITION_GRADES = [
   { key: "concours", label: "Concours", tag: "#1", desc: "Show-winning, better-than-factory. Best cars in the market.", lo: 78, mid: 88, hi: 96 },
   { key: "excellent", label: "Excellent", tag: "#2", desc: "Beautifully restored or a stunning preserved original.", lo: 60, mid: 72, hi: 82 },
-  { key: "good", label: "Good", tag: "#3", desc: "A sorted, honest, usable driver — the heart of the market.", lo: 40, mid: 50, hi: 62 },
-  { key: "fair", label: "Fair", tag: "#4", desc: "Presentable but needs work — deferred maintenance or cosmetics.", lo: 20, mid: 32, hi: 44 },
+  { key: "good", label: "Good", tag: "#3", desc: "A sorted, honest, usable driver: the heart of the market.", lo: 40, mid: 50, hi: 62 },
+  { key: "fair", label: "Fair", tag: "#4", desc: "Presentable but needs work: deferred maintenance or cosmetics.", lo: 20, mid: 32, hi: 44 },
   { key: "project", label: "Project", tag: "#5", desc: "Incomplete or needs full restoration. Priced on potential.", lo: 6, mid: 15, hi: 26 },
 ] as const;
 
@@ -375,7 +375,7 @@ function ConditionEstimator({
         <div>
           <h3 className="font-semibold text-foreground">Value by condition</h3>
           <p className="text-xs text-text-secondary mt-0.5 max-w-md">
-            Not a black-box estimate — pick a condition and see where {car || "cars"} in that shape
+            Not a black-box estimate: pick a condition and see where {car || "cars"} in that shape
             actually land across {prices.length} real sales.
           </p>
         </div>
@@ -501,7 +501,7 @@ function ConditionEstimator({
             We take the {prices.length} comparable sold prices, sort them, and read the distribution directly.
             Condition maps to where cars in that shape land: Concours (#1) to the top of the market, Good (#3)
             around the median, Project (#5) to the bottom. The point estimate is the middle of that band and the
-            range is its edges — computed live from the real sales you can see listed below, never a hidden model.
+            range is its edges: computed live from the real sales you can see listed below, never a hidden model.
             {outliersExcluded > 0
               ? ` ${outliersExcluded} sale${outliersExcluded === 1 ? "" : "s"} sat far enough outside the rest of the set to be set aside first, so ${outliersExcluded === 1 ? "it is" : "they are"} not shaping the top of this ladder.`
               : ""}
@@ -520,7 +520,7 @@ function ConditionEstimator({
         )}
         {thin && (
           <p className="text-xs mt-2 leading-relaxed" style={{ color: "#8a6d2f" }}>
-            Only {prices.length} comparable sales here — treat this as directional, not precise. Broaden the year range for a firmer read.
+            Only {prices.length} comparable sales here. Treat this as directional, not precise. Broaden the year range for a firmer read.
           </p>
         )}
         <p className="text-[11px] text-text-tertiary mt-2">
@@ -649,7 +649,7 @@ export function ValueGuideClient() {
         </h2>
         <p className="text-text-secondary mt-2">
           Enter a year, make, and model. You get what comparable cars actually
-          sold for — and, just as importantly, how many sales stand behind the
+          sold for, and, just as importantly, how many sales stand behind the
           number.
         </p>
       </div>
@@ -809,7 +809,7 @@ export function ValueGuideClient() {
                   <p className="text-xs mt-2 inline-flex items-center gap-1.5 px-2 py-1 rounded-md"
                      style={{ color: "#8a6d1f", background: "rgba(176,141,63,0.12)", border: "1px solid rgba(176,141,63,0.28)" }}>
                     <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                    Newest comparable sale is about {months} months old — treat this as directional.
+                    Newest comparable sale is about {months} months old. Treat this as directional.
                   </p>
                 );
               })()}
@@ -843,7 +843,7 @@ export function ValueGuideClient() {
               )}
               {typeof result.outliersExcluded === "number" && result.outliersExcluded > 0 && result.typicalAvgPrice && (
                 <p className="text-xs text-text-tertiary mt-1">
-                  {result.outliersExcluded} outlier {result.outliersExcluded === 1 ? "sale" : "sales"} set aside — the typical market runs{" "}
+                  {result.outliersExcluded} outlier {result.outliersExcluded === 1 ? "sale" : "sales"} set aside: the typical market runs{" "}
                   {formatPrice(result.typicalLow!)} – {formatPrice(result.typicalHigh!)} (avg {formatPrice(result.typicalAvgPrice)}).
                 </p>
               )}
@@ -881,7 +881,7 @@ export function ValueGuideClient() {
                     Low
                   </p>
                   <p className="price-display text-xl text-foreground">
-                    {result.lowPrice ? formatPrice(result.lowPrice) : "—"}
+                    {result.lowPrice ? formatPrice(result.lowPrice) : "–"}
                   </p>
                 </div>
                 <div className="px-6 py-5 text-center bg-accent-light/40">
@@ -891,13 +891,13 @@ export function ValueGuideClient() {
                   {/* Below six comps there is no honest midpoint to print. */}
                   {!showMidpoint(result.total) ? (
                     <>
-                      <p className="price-display text-2xl text-text-tertiary font-bold">—</p>
+                      <p className="price-display text-2xl text-text-tertiary font-bold">–</p>
                       <p className="text-[10px] text-text-tertiary mt-1">Too few sales</p>
                     </>
                   ) : (
                     <>
                       <p className="price-display text-2xl text-accent font-bold">
-                        {result.medianPrice ? formatPrice(result.medianPrice) : "—"}
+                        {result.medianPrice ? formatPrice(result.medianPrice) : "–"}
                       </p>
                       <p className="text-[10px] text-text-tertiary mt-1">Typical sale</p>
                     </>
@@ -913,14 +913,14 @@ export function ValueGuideClient() {
                       say so instead of showing it. */}
                   {result.meanSkewed ? (
                     <>
-                      <p className="price-display text-xl text-text-tertiary">—</p>
+                      <p className="price-display text-xl text-text-tertiary">–</p>
                       <p className="text-[10px] text-text-tertiary mt-1 leading-tight">
                         Skewed by an outlier
                       </p>
                     </>
                   ) : (
                     <p className="price-display text-xl text-foreground">
-                      {result.avgPrice ? formatPrice(result.avgPrice) : "—"}
+                      {result.avgPrice ? formatPrice(result.avgPrice) : "–"}
                     </p>
                   )}
                 </div>
@@ -929,7 +929,7 @@ export function ValueGuideClient() {
                     High
                   </p>
                   <p className="price-display text-xl text-foreground">
-                    {result.highPrice ? formatPrice(result.highPrice) : "—"}
+                    {result.highPrice ? formatPrice(result.highPrice) : "–"}
                   </p>
                   {/* Without this, a set whose median is suppressed still prints
                       a $3.85M L88 as the biggest number on the page. */}
@@ -937,7 +937,7 @@ export function ValueGuideClient() {
                     result.outliersExcluded > 0 &&
                     result.typicalHigh && (
                       <p className="text-[10px] text-text-tertiary mt-1 leading-tight">
-                        Outlier sale — typical top {formatPrice(result.typicalHigh)}
+                        Outlier sale: typical top {formatPrice(result.typicalHigh)}
                       </p>
                     )}
                 </div>

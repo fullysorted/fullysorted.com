@@ -50,7 +50,7 @@ export const GLOSSARY_CATEGORIES: {
     key: "provenance",
     label: "Provenance and documentation",
     blurb:
-      "The paper and stampings that tie a specific car to a specific factory build — and the terms for cars that only look like they do.",
+      "The paper and stampings that tie a specific car to a specific factory build, and the terms for cars that only look like they do.",
   },
   {
     key: "market",
@@ -68,7 +68,7 @@ export const GLOSSARY_CATEGORIES: {
     key: "bodywork",
     label: "Bodywork and paint",
     blurb:
-      "Structure, panel work and paint — where the largest hidden costs in an old car usually sit.",
+      "Structure, panel work and paint, where the largest hidden costs in an old car usually sit.",
   },
   {
     key: "paperwork",
@@ -80,7 +80,7 @@ export const GLOSSARY_CATEGORIES: {
     key: "process",
     label: "Buying process",
     blurb:
-      "Inspection, payment, transport and insurance — the mechanics of getting a car bought and moved.",
+      "Inspection, payment, transport and insurance: the mechanics of getting a car bought and moved.",
   },
   {
     key: "import",
@@ -140,7 +140,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Garage find",
     category: "condition",
     definition:
-      "The same idea as a barn find, applied to a car stored indoors in a domestic garage. The distinction is usually favourable, since a dry garage is a far better environment than an agricultural building.",
+      "The same idea as a barn find, applied to a car stored indoors in a domestic garage. The distinction is usually favorable, since a dry garage is a far better environment than an agricultural building.",
     watchOut:
       "Used interchangeably with \"barn find\" for effect. Neither term tells you anything about the storage conditions, which is the only part that matters mechanically.",
     seeAlso: ["barn-find", "recommissioning"],
@@ -150,7 +150,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Recommissioning",
     category: "condition",
     definition:
-      "Returning a car that has stood unused to safe running order: fluids, fuel system, brakes, tyres, perishable rubber and electrics. It is explicitly not restoration, and on a long-stored car it routinely runs into five figures.",
+      "Returning a car that has stood unused to safe running order: fluids, fuel system, brakes, tires, perishable rubber and electrics. It is explicitly not restoration, and on a long-stored car it routinely runs into five figures.",
     alsoKnownAs: ["Sorting", "Fettling"],
     watchOut:
       "\"Only needs recommissioning\" is one of the most expensive sentences in a listing. It typically excludes anything found once the car is running.",
@@ -161,7 +161,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Rolling restoration",
     category: "condition",
     definition:
-      "Restoring a car in stages while continuing to use it, rather than taking it off the road for a single programme of work. Done properly it spreads cost and keeps the car exercised; described loosely it means work has been started and not finished.",
+      "Restoring a car in stages while continuing to use it, rather than taking it off the road for a single program of work. Done properly it spreads cost and keeps the car exercised; described loosely it means work has been started and not finished.",
     watchOut:
       "Frequently used to frame deferred maintenance as a plan. Ask what has been completed, what is outstanding, and whether the completed work was done to the standard the rest will need to match.",
     seeAlso: ["driver-quality", "frame-on-restoration", "recommissioning"],
@@ -174,7 +174,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "A restoration in which the body is separated from the chassis so that both can be stripped, repaired and refinished independently. It is the most complete approach for a body-on-frame car and by far the most expensive.",
     alsoKnownAs: ["Nut-and-bolt restoration", "Ground-up restoration"],
     watchOut:
-      "The term is applied to unibody cars where there is no separate frame to remove, in which case it is meaningless. It also says nothing about quality — a frame-off restoration can be badly done.",
+      "The term is applied to unibody cars where there is no separate frame to remove, in which case it is meaningless. It also says nothing about quality: a frame-off restoration can be badly done.",
     seeAlso: [
       "frame-on-restoration",
       "rotisserie-restoration",
@@ -213,7 +213,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Patina",
     category: "condition",
     definition:
-      "Honest surface ageing of original finishes — dulled paint, softened brightwork, worn leather — valued as evidence of an unrestored car. Where the line falls between patina and damage is genuinely contested, and two experienced people will place it differently on the same car.",
+      "Honest surface aging of original finishes (dulled paint, softened brightwork, worn leather), valued as evidence of an unrestored car. Where the line falls between patina and damage is genuinely contested, and two experienced people will place it differently on the same car.",
     watchOut:
       "Used to reframe rust, failed lacquer, mismatched panels and torn trim as a virtue. Surface oxidation on a sound panel and rot through a sill are not the same thing.",
     seeAlso: ["survivor", "preservation-class", "rust-repair-vs-rust-removal"],
@@ -223,7 +223,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Resto-mod",
     category: "condition",
     definition:
-      "A car restored to a high cosmetic standard but deliberately re-engineered with modern components — typically brakes, suspension, drivetrain, cooling or air conditioning. Value tracks the quality of the build and the reputation of the builder rather than the model's standard price guide.",
+      "A car restored to a high cosmetic standard but deliberately re-engineered with modern components: typically brakes, suspension, drivetrain, cooling or air conditioning. Value tracks the quality of the build and the reputation of the builder rather than the model's standard price guide.",
     alsoKnownAs: ["Restomod", "Pro-touring"],
     watchOut:
       "A resto-mod cannot be numbers-matching in any meaningful sense, and the original parts are frequently long gone. Ask whether they were retained and are included.",
@@ -234,7 +234,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Correct vs original",
     category: "condition",
     definition:
-      "\"Original\" means the part fitted at the factory is still on the car. \"Correct\" means the part matches factory specification but is not necessarily the one the car was built with — a period-dated replacement, or a reproduction to the right pattern. The distinction drives large price differences and is the single most useful question to ask about any component.",
+      "\"Original\" means the part fitted at the factory is still on the car. \"Correct\" means the part matches factory specification but is not necessarily the one the car was built with: a period-dated replacement, or a reproduction to the right pattern. The distinction drives large price differences and is the single most useful question to ask about any component.",
     alsoKnownAs: ["Date-correct", "Correct-type"],
     watchOut:
       "The two words are used interchangeably in listings, almost always in the direction that flatters the car.",
@@ -294,7 +294,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Born-with",
     category: "provenance",
     definition:
-      "A component fitted to the car on the production line and still present — the strictest form of the originality claim. Applied most often to the engine, gearbox and rear axle.",
+      "A component fitted to the car on the production line and still present: the strictest form of the originality claim. Applied most often to the engine, gearbox and rear axle.",
     alsoKnownAs: ["Born-with engine", "Original to the car"],
     watchOut:
       "Distinct from a period-correct replacement of the same specification, though listings blur the two. A \"born-with\" claim needs documentary support, not just a matching date code.",
@@ -315,7 +315,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Build sheet",
     category: "provenance",
     definition:
-      "The factory document specifying how an individual car was to be assembled — model, paint, trim, drivetrain and options. Copies were frequently left in the car during assembly and turn up decades later under seats, above the fuel tank or behind trim panels.",
+      "The factory document specifying how an individual car was to be assembled: model, paint, trim, drivetrain and options. Copies were frequently left in the car during assembly and turn up decades later under seats, above the fuel tank or behind trim panels.",
     watchOut:
       "A loose build sheet found in a car proves only that a build sheet is in that car. Confirm that the sequence or VIN reference on the sheet matches the shell it came out of.",
     seeAlso: ["broadcast-sheet", "window-sticker", "fender-tag", "marti-report"],
@@ -357,9 +357,9 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Marti Report",
     category: "provenance",
     definition:
-      "A production report generated from Ford's own database under licence, covering Ford, Lincoln and Mercury vehicles built in the United States and Canada from 1967 onwards. It confirms original colour, trim, axle ratio, options, build and sale dates, dealer, and how many cars were produced to the same specification.",
+      "A production report generated from Ford's own database under license, covering Ford, Lincoln and Mercury vehicles built in the United States and Canada from 1967 onwards. It confirms original color, trim, axle ratio, options, build and sale dates, dealer, and how many cars were produced to the same specification.",
     watchOut:
-      "It documents what Ford built against that VIN — not what is bolted to the car in front of you. A Marti Report and a car that does not match it is a common combination.",
+      "It documents what Ford built against that VIN: not what is bolted to the car in front of you. A Marti Report and a car that does not match it is a common combination.",
     seeAlso: ["build-sheet", "window-sticker", "vin", "clone"],
   },
   {
@@ -367,9 +367,9 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Kardex",
     category: "provenance",
     definition:
-      "Porsche's factory record card for an individual car, originating as a warranty and service record rather than a build sheet. It typically shows chassis, engine and gearbox numbers, colours, optional equipment, the delivering dealer and first owner, and any factory-recorded engine or transmission change.",
+      "Porsche's factory record card for an individual car, originating as a warranty and service record rather than a build sheet. It typically shows chassis, engine and gearbox numbers, colors, optional equipment, the delivering dealer and first owner, and any factory-recorded engine or transmission change.",
     watchOut:
-      "Original Kardex copies are hard to obtain, and what is commonly supplied instead is a modern Certificate of Authenticity transcribed from the record — a useful document, but a transcription, with the transcription errors that implies.",
+      "Original Kardex copies are hard to obtain, and what is commonly supplied instead is a modern Certificate of Authenticity transcribed from the record: a useful document, but a transcription, with the transcription errors that implies.",
     seeAlso: ["heritage-certificate", "chassis-number", "matching-numbers"],
   },
   {
@@ -388,10 +388,10 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Classiche certification",
     category: "provenance",
     definition:
-      "Ferrari's factory authentication programme for road cars over twenty years old and for its competition models, resulting in a bound certificate — the Red Book — issued after inspection and review by a certification committee. Chassis originality is a prerequisite; bodywork, mechanical and electrical systems are also examined.",
+      "Ferrari's factory authentication program for road cars over twenty years old and for its competition models, resulting in a bound certificate (the Red Book) issued after inspection and review by a certification committee. Chassis originality is a prerequisite; bodywork, mechanical and electrical systems are also examined.",
     alsoKnownAs: ["Red Book", "Ferrari Classiche"],
     watchOut:
-      "Certification is not universally treated as a positive. Some owners of significant cars decline it, and the programme's willingness to certify cars fitted with factory-supplied replacement components is a live argument in the market.",
+      "Certification is not universally treated as a positive. Some owners of significant cars decline it, and the program's willingness to certify cars fitted with factory-supplied replacement components is a live argument in the market.",
     seeAlso: ["heritage-certificate", "kardex", "matching-numbers"],
   },
   {
@@ -399,7 +399,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Heritage certificate",
     category: "provenance",
     definition:
-      "A manufacturer or marque-archive document confirming a car's original specification and build details from factory records — issued under various names by Jaguar, BMW, Mercedes-Benz, Porsche and others.",
+      "A manufacturer or marque-archive document confirming a car's original specification and build details from factory records, issued under various names by Jaguar, BMW, Mercedes-Benz, Porsche and others.",
     alsoKnownAs: ["Certificate of Authenticity", "Birth certificate"],
     watchOut:
       "It records what the factory built, not what survives. It also does not authenticate the shell in front of you against that record.",
@@ -412,7 +412,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     definition:
       "The manufacturer's unique identifier for an individual car, stamped into the frame or structure and, on pre-1981 cars, the primary identity in the absence of a standardised VIN. In European and competition-car usage the chassis number is the car's identity for provenance purposes.",
     watchOut:
-      "On cars where a shell has been replaced, or where two cars have been combined, which chassis number legitimately applies is a well-known area of dispute — particularly for competition cars with continuous racing histories.",
+      "On cars where a shell has been replaced, or where two cars have been combined, which chassis number legitimately applies is a well-known area of dispute, particularly for competition cars with continuous racing histories.",
     seeAlso: ["vin", "matching-numbers", "kardex", "tool-room-copy"],
   },
   {
@@ -423,7 +423,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "Vehicle Identification Number. Standardised at seventeen characters for cars built from the 1981 model year for the North American market, encoding manufacturer, model, engine, plant and sequence. Earlier cars use shorter, manufacturer-specific formats.",
     alsoKnownAs: ["Vehicle Identification Number"],
     watchOut:
-      "Pre-1981 numbers vary in length and format, which routinely breaks online history checks and insurance and registration systems — an absent record for an older car usually means the format was rejected, not that the car is suspect.",
+      "Pre-1981 numbers vary in length and format, which routinely breaks online history checks and insurance and registration systems: an absent record for an older car usually means the format was rejected, not that the car is suspect.",
     seeAlso: ["chassis-number", "fender-tag", "clean-title", "odometer-discrepancy"],
   },
   {
@@ -431,7 +431,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Continuation",
     category: "provenance",
     definition:
-      "A car built by the original manufacturer, to the original specification and usually within the original chassis-number sequence, after production had ended. Jaguar's Lightweight E-Type and XKSS and Aston Martin's DB4 GT programmes are the reference examples.",
+      "A car built by the original manufacturer, to the original specification and usually within the original chassis-number sequence, after production had ended. Jaguar's Lightweight E-Type and XKSS and Aston Martin's DB4 GT programs are the reference examples.",
     watchOut:
       "A continuation is a new car with factory sanction, not an original. The word is borrowed by third-party builders with no factory involvement, for whom \"recreation\" is the accurate term.",
     seeAlso: ["recreation", "replica", "tool-room-copy", "certificate-of-origin"],
@@ -452,7 +452,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Tribute",
     category: "provenance",
     definition:
-      "A car modified to present as a higher-specification model it was not built as — a base Mustang finished as a Shelby, a 911 finished as an RS. The term implies the seller is being open about what the car is.",
+      "A car modified to present as a higher-specification model it was not built as: a base Mustang finished as a Shelby, a 911 finished as an RS. The term implies the seller is being open about what the car is.",
     watchOut:
       "\"Tribute\", \"clone\", \"recreation\" and \"replica\" are used interchangeably and inconsistently across markets, and none is a defined category. What matters is what the car's own paperwork says it left the factory as.",
     seeAlso: ["clone", "recreation", "replica", "marti-report"],
@@ -507,7 +507,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "The car sells to the highest bid regardless of level. It concentrates bidding and generally produces stronger results than a reserved consignment of the same car, because bidders know a sale will occur.",
     alsoKnownAs: ["Absolute auction", "Selling regardless"],
     watchOut:
-      "Genuinely no-reserve lots occasionally sell far below market. Some houses permit the seller or an agent to bid, which is not the same thing as no reserve — read the conditions of sale.",
+      "Genuinely no-reserve lots occasionally sell far below market. Some houses permit the seller or an agent to bid, which is not the same thing as no reserve. Read the conditions of sale.",
     seeAlso: ["reserve", "hammer-price", "well-bought"],
   },
   {
@@ -517,7 +517,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     definition:
       "The winning bid as called by the auctioneer, before buyer's premium, taxes and fees. It is the number reported in most auction results.",
     watchOut:
-      "Comparing a hammer price to an all-in private sale price understates the auction car by the premium — commonly ten percent or more. Establish which figure a quoted comp refers to.",
+      "Comparing a hammer price to an all-in private sale price understates the auction car by the premium, commonly ten percent or more. Establish which figure a quoted comp refers to.",
     seeAlso: ["buyers-premium", "comp", "sellers-commission"],
   },
   {
@@ -547,7 +547,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "An auction lot that failed to reach its reserve and was retained by the seller. The auction house records it as unsold, and the highest bid is a matter of record even though no sale occurred.",
     alsoKnownAs: ["BI", "Unsold"],
     watchOut:
-      "A bought-in lot's high bid gets quoted as if it were a sale price. It is a bid nobody had to honour, and it sets a ceiling rather than a value.",
+      "A bought-in lot's high bid gets quoted as if it were a sale price. It is a bid nobody had to honor, and it sets a ceiling rather than a value.",
     seeAlso: ["no-sale", "reserve", "post-block-sale", "provisional-bid"],
   },
   {
@@ -587,7 +587,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Comp",
     category: "market",
     definition:
-      "A comparable — a recorded sale of a similar car used to argue a value. Useful comps match on specification, condition, documentation, mileage and market, and are recent enough to reflect current conditions.",
+      "A comparable: a recorded sale of a similar car used to argue a value. Useful comps match on specification, condition, documentation, mileage and market, and are recent enough to reflect current conditions.",
     alsoKnownAs: ["Comparable", "Comparable sale"],
     watchOut:
       "Comps are selected to support a position. Sellers quote the strongest result for the model; buyers quote the weakest. Ask what the excluded sales did, and whether the quoted figure includes premium.",
@@ -598,7 +598,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Market-correct",
     category: "market",
     definition:
-      "A price consistent with recent comparable sales — neither a bargain nor an outlier. The term appears in auction analysis to describe a result that needs no explanation.",
+      "A price consistent with recent comparable sales, neither a bargain nor an outlier. The term appears in auction analysis to describe a result that needs no explanation.",
     watchOut:
       "It is a judgement, not a measurement, and it depends entirely on which comps the speaker chose. Sellers use it to mean \"do not negotiate\".",
     seeAlso: ["comp", "well-bought", "money-car", "book-value"],
@@ -608,7 +608,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Money car",
     category: "market",
     definition:
-      "The specification of a model that carries a substantial premium over its siblings — typically the right engine, gearbox, colour combination and options, in the right production year. On some models the money car is worth several times a standard example.",
+      "The specification of a model that carries a substantial premium over its siblings: typically the right engine, gearbox, color combination and options, in the right production year. On some models the money car is worth several times a standard example.",
     watchOut:
       "Which specification counts as the money car shifts with fashion and is argued over within every marque community. It is also exactly the specification that gets cloned.",
     seeAlso: ["clone", "tribute", "comp", "market-correct"],
@@ -657,7 +657,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Condition #4",
     category: "market",
     definition:
-      "A fair car — running and usable, with obvious wear such as pitted chrome, chipped glass, dents and imperfect paint, but complete and not missing major components.",
+      "A fair car: running and usable, with obvious wear such as pitted chrome, chipped glass, dents and imperfect paint, but complete and not missing major components.",
     alsoKnownAs: ["Fair", "#4 condition"],
     watchOut:
       "The scale stops at #4. Cars needing full restoration or that do not run sit below the scale entirely and are valued as projects, not as #4 cars.",
@@ -670,7 +670,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     definition:
       "A figure from a published valuation guide for a given model in a given condition grade. Guides are compiled from recorded sales and lag the market, sometimes by several months.",
     watchOut:
-      "Book value is a starting point, not a price. Guides cannot see documentation quality, option content, colour or ownership history, all of which move real prices well outside the published band.",
+      "Book value is a starting point, not a price. Guides cannot see documentation quality, option content, color or ownership history, all of which move real prices well outside the published band.",
     seeAlso: ["condition-1", "condition-4", "comp", "appraisal-vs-valuation"],
   },
   {
@@ -721,7 +721,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Top-end rebuild",
     category: "mechanical",
     definition:
-      "Work confined to the cylinder heads and valvetrain — valves, guides, seats, springs and gaskets — without disturbing the crankshaft, bearings or pistons. Legitimate and common, but it addresses only half the engine.",
+      "Work confined to the cylinder heads and valvetrain (valves, guides, seats, springs and gaskets) without disturbing the crankshaft, bearings or pistons. Legitimate and common, but it addresses only half the engine.",
     watchOut:
       "Frequently described in listings simply as \"engine rebuilt\". A fresh top end on a bottom end with high mileage can mask, and sometimes accelerate, wear below.",
     seeAlso: ["rebuilt-vs-remanufactured", "compression-test", "leak-down-test", "blow-by"],
@@ -741,7 +741,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Leak-down test",
     category: "mechanical",
     definition:
-      "Pressurising each cylinder at top dead centre and measuring the percentage of air escaping, while listening for where it goes — the exhaust indicates exhaust valves, the intake indicates intake valves, the crankcase indicates rings, the cooling system indicates a head gasket or crack.",
+      "Pressurising each cylinder at top dead center and measuring the percentage of air escaping, while listening for where it goes: the exhaust indicates exhaust valves, the intake indicates intake valves, the crankcase indicates rings, the cooling system indicates a head gasket or crack.",
     alsoKnownAs: ["Leakdown test", "Cylinder leakage test"],
     watchOut:
       "The percentage alone means little without the accompanying diagnosis of where the air was going. Ask for both figures and observations.",
@@ -796,7 +796,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "An engine with two camshafts operating the valves in each cylinder head, one for intake and one for exhaust, allowing better breathing and higher engine speeds than a single-camshaft design.",
     alsoKnownAs: ["DOHC", "Double overhead cam", "Bialbero"],
     watchOut:
-      "On a V-configuration engine \"twin-cam\" can mean one camshaft per bank — two in total — rather than four. The unambiguous descriptions are DOHC and quad-cam.",
+      "On a V-configuration engine \"twin-cam\" can mean one camshaft per bank (two in total) rather than four. The unambiguous descriptions are DOHC and quad-cam.",
     seeAlso: ["cam-belt-interval", "hemi", "dry-sump"],
   },
   {
@@ -814,7 +814,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Flat-plane crank",
     category: "mechanical",
     definition:
-      "A V8 crankshaft with its crankpins arranged at 180 degrees, giving even firing between banks, lower rotating mass and higher permissible engine speeds — at the cost of secondary vibration. Characteristic of Ferrari V8s and of some later purpose-built performance engines.",
+      "A V8 crankshaft with its crankpins arranged at 180 degrees, giving even firing between banks, lower rotating mass and higher permissible engine speeds, at the cost of secondary vibration. Characteristic of Ferrari V8s and of some later purpose-built performance engines.",
     alsoKnownAs: ["180-degree crank"],
     seeAlso: ["twin-cam", "dry-sump"],
   },
@@ -823,7 +823,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Limited slip differential",
     category: "mechanical",
     definition:
-      "A differential that limits the speed difference between driven wheels so torque is not lost entirely to the wheel with least grip. Manufacturers marketed their own designs under trade names — Positraction at GM, Traction-Lok at Ford, Sure-Grip at Chrysler.",
+      "A differential that limits the speed difference between driven wheels so torque is not lost entirely to the wheel with least grip. Manufacturers marketed their own designs under trade names: Positraction at GM, Traction-Lok at Ford, Sure-Grip at Chrysler.",
     alsoKnownAs: ["LSD", "Positraction", "Posi", "Sure-Grip", "Traction-Lok"],
     watchOut:
       "Clutch-type units wear out and can be functionally open while still carrying the correct axle tag. A tag is a specification claim, not a working component.",
@@ -834,7 +834,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Overdrive",
     category: "mechanical",
     definition:
-      "An additional ratio above direct drive, reducing engine speed at cruising pace. On older British cars it is typically an electrically engaged epicyclic unit bolted to the back of the gearbox — Laycock de Normanville being the common type — operable in selected gears.",
+      "An additional ratio above direct drive, reducing engine speed at cruising pace. On older British cars it is typically an electrically engaged epicyclic unit bolted to the back of the gearbox (Laycock de Normanville being the common type), operable in selected gears.",
     watchOut:
       "Overdrive was often optional and is a meaningful value difference. A non-functioning unit is usually a solenoid, an earth or low oil level, but can be an expensive internal rebuild.",
     seeAlso: ["synchro", "limited-slip-differential", "numbers-matching-drivetrain"],
@@ -847,7 +847,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "The synchroniser mechanism that matches shaft speeds so a gear can be engaged without clashing. Worn synchros produce a crunch on a swift change, most commonly into second gear.",
     alsoKnownAs: ["Synchromesh", "Baulk ring"],
     watchOut:
-      "Many pre-war and early post-war gearboxes have no synchro on first, or none at all, and require double-declutching. That is correct operation, not a fault — establish which the car has before diagnosing.",
+      "Many pre-war and early post-war gearboxes have no synchro on first, or none at all, and require double-declutching. That is correct operation, not a fault. Establish which the car has before diagnosing.",
     seeAlso: ["overdrive", "numbers-matching-drivetrain"],
   },
   {
@@ -909,7 +909,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Panel gap",
     category: "bodywork",
     definition:
-      "The spacing between adjacent body panels. Consistency matters more than tightness, and the benchmark is the car's own factory standard — many desirable cars left the line with gaps that would be unacceptable today.",
+      "The spacing between adjacent body panels. Consistency matters more than tightness, and the benchmark is the car's own factory standard: many desirable cars left the line with gaps that would be unacceptable today.",
     watchOut:
       "Uneven gaps indicate a shell that has been apart, hung badly, or damaged. Judge each side against the other and against known-good examples of the same model, not against a modern car.",
     seeAlso: ["shut-line", "rotisserie-restoration", "unibody-vs-body-on-frame"],
@@ -928,10 +928,10 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Respray",
     category: "bodywork",
     definition:
-      "Repainting a car, in whole or in part. The word alone specifies nothing about preparation, extent, or whether the car was disassembled — which is precisely the range that separates a two-thousand pound job from a forty-thousand pound one.",
+      "Repainting a car, in whole or in part. The word alone specifies nothing about preparation, extent, or whether the car was disassembled, which is precisely the range that separates a two-thousand pound job from a forty-thousand pound one.",
     alsoKnownAs: ["Repaint", "Refinish"],
     watchOut:
-      "\"Full respray\" is used both for a bare-metal, glass-out refinish and for a blow-over in the original colour. Ask what came off the car, what was stripped, and who did it.",
+      "\"Full respray\" is used both for a bare-metal, glass-out refinish and for a blow-over in the original color. Ask what came off the car, what was stripped, and who did it.",
     seeAlso: ["blow-over", "bare-metal-respray", "colour-change"],
   },
   {
@@ -942,18 +942,18 @@ export const GLOSSARY: GlossaryTerm[] = [
       "A quick repaint applied over existing paint with minimal preparation and without removing trim, glass or door seals. It improves appearance at distance and lasts poorly, and overspray on rubbers and behind badges is the standard tell.",
     alsoKnownAs: ["Blow-in", "Scuff and shoot"],
     watchOut:
-      "Frequently sold as a respray. A blow-over also hides filler, corrosion and the previous colour, and paint applied over failing paint fails with it.",
+      "Frequently sold as a respray. A blow-over also hides filler, corrosion and the previous color, and paint applied over failing paint fails with it.",
     seeAlso: ["respray", "bare-metal-respray", "colour-change"],
   },
   {
     slug: "colour-change",
-    term: "Colour change",
+    term: "Color change",
     category: "bodywork",
     definition:
-      "A car repainted in a colour other than the one it was built in. Verifiable against the body tag, build sheet or factory record, and visible in door shuts, under carpet and in the boot.",
-    alsoKnownAs: ["Off-colour", "Repainted from original"],
+      "A car repainted in a color other than the one it was built in. Verifiable against the body tag, build sheet or factory record, and visible in door shuts, under carpet and in the boot.",
+    alsoKnownAs: ["Off-color", "Repainted from original"],
     watchOut:
-      "A colour change is a value deduction on documented cars and is regularly omitted from listings. Original-colour evidence is easy to look for and easy for a seller to avoid photographing.",
+      "A color change is a value deduction on documented cars and is regularly omitted from listings. Original-color evidence is easy to look for and easy for a seller to avoid photographing.",
     seeAlso: ["respray", "build-sheet", "fender-tag", "correct-vs-original"],
   },
   {
@@ -972,7 +972,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Rust repair vs rust removal",
     category: "bodywork",
     definition:
-      "Removal means cutting corroded steel out entirely and letting in sound metal. Repair, as commonly practised, can mean anything from that down to treating, filling and painting over corrosion that remains in the panel. Only the first stops the process.",
+      "Removal means cutting corroded steel out entirely and letting in sound metal. Repair, as commonly practiced, can mean anything from that down to treating, filling and painting over corrosion that remains in the panel. Only the first stops the process.",
     watchOut:
       "\"Rust treated\" and \"rust repaired\" are the phrases doing the work here. Ask whether metal was cut out, what was let in, and whether the inner structure behind the visible repair was addressed.",
     seeAlso: ["patch-panel", "replacement-panel", "bondo", "patina"],
@@ -984,7 +984,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     definition:
       "A section of steel fabricated or bought in to replace a localised corroded area, butt-welded or lap-welded into the existing panel. Standard, accepted repair practice when the surrounding metal is sound and the weld is dressed properly.",
     watchOut:
-      "Lap-welded and seam-sealed patches trap moisture and corrode again from behind. Patches over structural areas — sills, floors, chassis rails, suspension mounts — need to be assessed for what they are hiding.",
+      "Lap-welded and seam-sealed patches trap moisture and corrode again from behind. Patches over structural areas (sills, floors, chassis rails, suspension mounts) need to be assessed for what they are hiding.",
     seeAlso: ["replacement-panel", "rust-repair-vs-rust-removal", "bondo"],
   },
   {
@@ -992,7 +992,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Replacement panel",
     category: "bodywork",
     definition:
-      "A complete new panel — wing, door, quarter, floor — fitted in place of the original. May be new old stock, a current manufacturer part, or a reproduction, and the three differ substantially in fit and in effect on originality.",
+      "A complete new panel (wing, door, quarter, floor) fitted in place of the original. May be new old stock, a current manufacturer part, or a reproduction, and the three differ substantially in fit and in effect on originality.",
     watchOut:
       "Reproduction panel quality varies enormously by supplier and model, and poor-fitting reproductions are the usual explanation for inconsistent shut lines on an otherwise smart restoration.",
     seeAlso: ["patch-panel", "shut-line", "panel-gap", "correct-vs-original"],
@@ -1002,7 +1002,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Galvanised chassis",
     category: "bodywork",
     definition:
-      "A chassis given a zinc coating for corrosion protection, either at the factory — as on later Land Rover and some Alfa Romeo and Porsche production — or during restoration, where a bare frame is sent out for hot-dip galvanising.",
+      "A chassis given a zinc coating for corrosion protection, either at the factory (as on later Land Rover and some Alfa Romeo and Porsche production) or during restoration, where a bare frame is sent out for hot-dip galvanising.",
     watchOut:
       "A galvanised replacement chassis is a durability upgrade and an originality question at once, and on some models a replacement frame carries its own identity implications for registration.",
     seeAlso: ["chassis-number", "unibody-vs-body-on-frame", "correct-vs-original"],
@@ -1035,7 +1035,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Clean title",
     category: "paperwork",
     definition:
-      "A US title carrying no damage or history brand. It records that no insurer has declared the car a total loss in a state that reported it — not that the car has never been damaged or repaired.",
+      "A US title carrying no damage or history brand. It records that no insurer has declared the car a total loss in a state that reported it: not that the car has never been damaged or repaired.",
     alsoKnownAs: ["Clear title"],
     watchOut:
       "Cars are moved between states specifically to shed brands, a practice known as title washing. Run the VIN through a national database rather than relying on the physical document.",
@@ -1067,7 +1067,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Bonded title",
     category: "paperwork",
     definition:
-      "A title issued by a state where ownership cannot be documented, backed by a surety bond — typically for one and a half to twice the vehicle's value — that indemnifies any later claimant. The bond usually runs three to five years, after which the brand can generally be removed.",
+      "A title issued by a state where ownership cannot be documented, backed by a surety bond (typically for one and a half to twice the vehicle's value) that indemnifies any later claimant. The bond usually runs three to five years, after which the brand can generally be removed.",
     alsoKnownAs: ["Certificate of title, bonded", "Surety bond title"],
     watchOut:
       "A bonded title is a real title but a visible one, and a prior owner surfacing during the bond period can claim against it. Some states do not offer the process at all.",
@@ -1078,7 +1078,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Jump title",
     category: "paperwork",
     definition:
-      "An open title — one signed by the registered owner but never transferred into a subsequent seller's name, so the buyer receives a document naming someone they have never met.",
+      "An open title: one signed by the registered owner but never transferred into a subsequent seller's name, so the buyer receives a document naming someone they have never met.",
     alsoKnownAs: ["Open title", "Floating title"],
     watchOut:
       "Accepting one leaves you unable to prove the chain between the named owner and yourself, and back taxes, liens or an odometer problem attach to you. It is also illegal in most states.",
@@ -1092,7 +1092,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "The practice of buying a vehicle and reselling it without registering it in the intermediate seller's name, so the title passes from the original owner directly to the final buyer. It is generally illegal, and is done to avoid tax, fees, dealer licensing requirements or disclosure obligations.",
     alsoKnownAs: ["Title skipping", "Curbstoning"],
     watchOut:
-      "Sellers explain the mismatched name as a favour for a friend or a deceased relative's estate. Either explanation may be true; neither removes your exposure if it is not.",
+      "Sellers explain the mismatched name as a favor for a friend or a deceased relative's estate. Either explanation may be true; neither removes your exposure if it is not.",
     seeAlso: ["jump-title", "bill-of-sale-only", "odometer-discrepancy"],
   },
   {
@@ -1121,7 +1121,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "V5C",
     category: "paperwork",
     definition:
-      "The UK vehicle registration certificate issued by the DVLA, recording the registered keeper, the vehicle's technical details and its keeper history. It explicitly states that it is not proof of ownership — it identifies who is responsible for the vehicle, which is not the same person as the legal owner.",
+      "The UK vehicle registration certificate issued by the DVLA, recording the registered keeper, the vehicle's technical details and its keeper history. It explicitly states that it is not proof of ownership: it identifies who is responsible for the vehicle, which is not the same person as the legal owner.",
     alsoKnownAs: ["Logbook", "V5", "Registration document"],
     watchOut:
       "Because it is not a title, UK buyers rely on the keeper record, a finance check and the invoice chain instead. A V5C in the seller's name proves they are the keeper, nothing more.",
@@ -1164,7 +1164,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "TMU",
     category: "paperwork",
     definition:
-      "True mileage unknown. A disclosure that the reading on the odometer cannot be relied upon — because the instrument has been replaced, has rolled over, has failed, or because the history cannot be substantiated.",
+      "True mileage unknown. A disclosure that the reading on the odometer cannot be relied upon: because the instrument has been replaced, has rolled over, has failed, or because the history cannot be substantiated.",
     alsoKnownAs: ["True mileage unknown", "Not actual mileage"],
     watchOut:
       "On a car sold as low-mileage, TMU is the point of the sale. Establish whether the mileage claim rests on documents or on the number in the gauge.",
@@ -1178,7 +1178,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "A title notation that federal odometer disclosure was not required for the transfer. The US exemption period was extended from ten to twenty years effective 1 January 2021, applying on a rolling basis to vehicles of the 2011 model year and later; vehicles of model year 2010 and earlier remain under the old ten-year rule and are exempt.",
     alsoKnownAs: ["Odometer exempt", "Mileage exempt"],
     watchOut:
-      "Exempt does not mean the mileage is unverified in fact — it means nobody was legally required to attest to it. On collector cars this is normal, and mileage claims must rest on the service and ownership record instead.",
+      "Exempt does not mean the mileage is unverified in fact: it means nobody was legally required to attest to it. On collector cars this is normal, and mileage claims must rest on the service and ownership record instead.",
     seeAlso: ["tmu", "odometer-discrepancy", "clean-title"],
   },
 
@@ -1199,7 +1199,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Escrow",
     category: "process",
     definition:
-      "Holding purchase funds with a neutral third party who releases them once agreed conditions are met — typically title transfer and delivery. Standard practice on long-distance and international collector car sales.",
+      "Holding purchase funds with a neutral third party who releases them once agreed conditions are met: typically title transfer and delivery. Standard practice on long-distance and international collector car sales.",
     watchOut:
       "Fraudulent escrow services are a well-established scam, usually introduced by the seller. Verify the escrow company independently and never use one whose details arrived only from the other party.",
     seeAlso: ["lien", "private-treaty", "brokerage"],
@@ -1209,7 +1209,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Transport, open vs enclosed",
     category: "process",
     definition:
-      "Open transport carries cars on an uncovered multi-car trailer — cheaper, more frequent, exposed to weather and road debris. Enclosed transport uses a covered trailer, usually with a lift gate, soft straps and fewer cars per load, at roughly one and a half to two times the cost.",
+      "Open transport carries cars on an uncovered multi-car trailer: cheaper, more frequent, exposed to weather and road debris. Enclosed transport uses a covered trailer, usually with a lift gate, soft straps and fewer cars per load, at roughly one and a half to two times the cost.",
     watchOut:
       "\"Enclosed\" covers everything from a dedicated air-ride single-car van to a shared box trailer with wheel straps. Ask about loading method, tie-down type and how many other cars share the load.",
     seeAlso: ["consignment", "escrow", "agreed-value-vs-stated-value"],
@@ -1252,7 +1252,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "Under agreed value the insurer commits in writing to pay a set sum on a total loss, with no post-loss valuation argument. Under stated value the policy typically pays the stated amount or actual cash value, whichever is lower, so the insurer retains the option of valuing the car itself after the loss.",
     alsoKnownAs: ["Guaranteed value", "Stated amount"],
     watchOut:
-      "The two are marketed in near-identical language. The distinction lives in the policy wording — look for the phrase \"or actual cash value, whichever is less\", which converts the promise into a ceiling.",
+      "The two are marketed in near-identical language. The distinction lives in the policy wording: look for the phrase \"or actual cash value, whichever is less\", which converts the promise into a ceiling.",
     seeAlso: ["appraisal-vs-valuation", "book-value", "transport-open-vs-enclosed"],
   },
   {
@@ -1262,7 +1262,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     definition:
       "The route to a title where ownership cannot be documented: establish the state offers it, obtain a value appraisal, buy a surety bond at the state's required multiple of that value, submit it with a VIN inspection and application, and hold the branded title until the bond period expires.",
     watchOut:
-      "It is a state-level process with no federal equivalent, and eligibility varies — several states will not bond a title for a vehicle over a certain age, and some do not offer bonded titles at all.",
+      "It is a state-level process with no federal equivalent, and eligibility varies: several states will not bond a title for a vehicle over a certain age, and some do not offer bonded titles at all.",
     seeAlso: ["bonded-title", "lost-title", "bill-of-sale-only", "appraisal-vs-valuation"],
   },
 
@@ -1295,7 +1295,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     definition:
       "A NHTSA exemption permitting import of vehicles under twenty-five years old that the agency has determined to be of historical or technological significance, subject to an approved application and an annual mileage limit. Only specific models on NHTSA's list qualify.",
     watchOut:
-      "It waives FMVSS requirements only — EPA emissions compliance still applies separately unless the car is over twenty-one years old. Approval is per-vehicle, not per-model, and the mileage restriction runs with the car.",
+      "It waives FMVSS requirements only: EPA emissions compliance still applies separately unless the car is over twenty-one years old. Approval is per-vehicle, not per-model, and the mileage restriction runs with the car.",
     seeAlso: ["twenty-five-year-rule", "twenty-one-year-epa-rule", "registered-importer", "hs-7"],
   },
   {
@@ -1303,7 +1303,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Registered Importer",
     category: "import",
     definition:
-      "A firm authorised by NHTSA to bring non-conforming vehicles into FMVSS compliance and certify them. Required for any vehicle under twenty-five years old that is not otherwise exempt, and the modification work routinely runs to five figures.",
+      "A firm authorized by NHTSA to bring non-conforming vehicles into FMVSS compliance and certify them. Required for any vehicle under twenty-five years old that is not otherwise exempt, and the modification work routinely runs to five figures.",
     alsoKnownAs: ["RI"],
     watchOut:
       "An RI can only work on models NHTSA has determined are capable of being brought into conformity. If the model is not on that list, no amount of money makes the car importable.",
@@ -1322,13 +1322,13 @@ export const GLOSSARY: GlossaryTerm[] = [
   },
   {
     slug: "grey-market",
-    term: "Grey market",
+    term: "Gray market",
     category: "import",
     definition:
-      "Vehicles imported outside the manufacturer's official distribution channel, typically to a specification never sold in that market. In the US the term attaches particularly to European cars federalised by private importers in the late 1970s and 1980s, before the rules tightened in 1988.",
-    alsoKnownAs: ["Gray market", "Parallel import"],
+      "Vehicles imported outside the manufacturer's official distribution channel, typically to a specification never sold in that market. In the US the term attaches particularly to European cars federalized by private importers in the late 1970s and 1980s, before the rules tightened in 1988.",
+    alsoKnownAs: ["Grey market", "Parallel import"],
     watchOut:
-      "Period grey-market conversions vary hugely in quality and many carry non-original bumpers, lighting and emissions equipment. Whether a car can be returned to original specification and still be registered depends on the state.",
+      "Period gray-market conversions vary hugely in quality and many carry non-original bumpers, lighting and emissions equipment. Whether a car can be returned to original specification and still be registered depends on the state.",
     seeAlso: ["federalised", "registered-importer", "twenty-five-year-rule"],
   },
   {
@@ -1336,7 +1336,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "JDM",
     category: "import",
     definition:
-      "Japanese Domestic Market — a vehicle or part built for sale in Japan rather than for export, generally right-hand drive and often to a different specification than the equivalent export model.",
+      "Japanese Domestic Market: a vehicle or part built for sale in Japan rather than for export, generally right-hand drive and often to a different specification than the equivalent export model.",
     watchOut:
       "The term is used loosely for any Japanese performance car, including US-market ones. It is a specification claim, not a brand: a US-market Supra is not a JDM car, and the difference is material to both value and importability.",
     seeAlso: ["rhd-lhd", "twenty-five-year-rule", "export-certificate", "gentlemens-agreement"],
@@ -1346,20 +1346,20 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "RHD / LHD",
     category: "import",
     definition:
-      "Right-hand drive and left-hand drive. Determines which markets a car was built for and, in collector terms, frequently which market it is worth most in — an original RHD car is generally worth more in a right-hand-drive market and less elsewhere.",
+      "Right-hand drive and left-hand drive. Determines which markets a car was built for and, in collector terms, frequently which market it is worth most in: an original RHD car is generally worth more in a right-hand-drive market and less elsewhere.",
     watchOut:
       "Converted cars exist in both directions and are a substantial value deduction. Conversion evidence shows in the bulkhead, dashboard structure, wiper sweep and pedal box, not in the position of the steering wheel.",
     seeAlso: ["jdm", "grey-market", "federalised"],
   },
   {
     slug: "federalised",
-    term: "Federalised",
+    term: "Federalized",
     category: "import",
     definition:
-      "A vehicle modified to meet US federal safety and emissions requirements so it can be legally sold and registered. Period federalisation typically meant new bumpers, side markers, sealed-beam headlamps, catalysts and speedometer changes.",
-    alsoKnownAs: ["Federalized", "US-spec conversion"],
+      "A vehicle modified to meet US federal safety and emissions requirements so it can be legally sold and registered. Period federalization typically meant new bumpers, side markers, sealed-beam headlamps, catalysts and speedometer changes.",
+    alsoKnownAs: ["Federalised", "US-spec conversion"],
     watchOut:
-      "Some cars described as federalised were never properly certified, and the paperwork trail from the era is often missing. Confirm the car's entry documents exist before assuming its registration is secure.",
+      "Some cars described as federalized were never properly certified, and the paperwork trail from the era is often missing. Confirm the car's entry documents exist before assuming its registration is secure.",
     seeAlso: ["grey-market", "registered-importer", "hs-7", "twenty-one-year-epa-rule"],
   },
   {
@@ -1367,7 +1367,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "Homologation",
     category: "import",
     definition:
-      "Certifying a model as eligible for a class of competition by building a required number of road-going examples to a defined specification. The road cars produced solely to satisfy these rules — homologation specials — are among the most collectable of their eras.",
+      "Certifying a model as eligible for a class of competition by building a required number of road-going examples to a defined specification. The road cars produced solely to satisfy these rules (homologation specials) are among the most collectable of their eras.",
     alsoKnownAs: ["Homologation special"],
     watchOut:
       "The word is also used for regulatory type approval, an unrelated meaning. In a listing it usually signals motorsport eligibility, and the specific claim is worth checking against the FIA homologation papers for that model.",
@@ -1380,7 +1380,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     definition:
       "The FIA category for modified production touring and rally cars that replaced Group B as the World Rally Championship's top class from 1987. Homologation originally required 5,000 identical cars built in twelve consecutive months, reduced to 2,500 in 1993, with smaller evolution runs permitted on top.",
     watchOut:
-      "Because Group A demanded volume production, its homologation specials are far more numerous than Group B's — which is why they are cheaper, not why they are less significant.",
+      "Because Group A demanded volume production, its homologation specials are far more numerous than Group B's, which is why they are cheaper, not why they are less significant.",
     seeAlso: ["group-b", "homologation", "jdm"],
   },
   {
@@ -1443,7 +1443,7 @@ export const GLOSSARY_SOURCES: { title: string; url: string; publisher: string }
     publisher: "Ferrari",
   },
   {
-    title: "The US 25-Year Car Import Rule — What It Means",
+    title: "The US 25-Year Car Import Rule: What It Means",
     url: "https://www.jdmbuysell.com/learn/topics/25-year-rule/",
     publisher: "JDMbuysell",
   },

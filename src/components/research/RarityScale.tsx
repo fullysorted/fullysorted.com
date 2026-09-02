@@ -53,9 +53,9 @@ function neighborText(total: number, make: string, model: string): string {
   if (lower && higher)
     return `With about ${total.toLocaleString()} built, the ${car} is rarer than a ${higher.label} (~${fmt(higher.n)}) yet more common than a ${lower.label} (~${fmt(lower.n)}).`;
   if (!lower && higher)
-    return `At about ${total.toLocaleString()} built, the ${car} is among the rarest cars on this scale — rarer even than a ${higher.label} (~${fmt(higher.n)}).`;
+    return `At about ${total.toLocaleString()} built, the ${car} is among the rarest cars on this scale, rarer even than a ${higher.label} (~${fmt(higher.n)}).`;
   if (lower && !higher)
-    return `At about ${total.toLocaleString()} built, the ${car} sits among the most widely produced — more common than a ${lower.label} (~${fmt(lower.n)}).`;
+    return `At about ${total.toLocaleString()} built, the ${car} sits among the most widely produced, more common than a ${lower.label} (~${fmt(lower.n)}).`;
   return `About ${total.toLocaleString()} were built.`;
 }
 

@@ -135,11 +135,11 @@ export default function SellForm() {
         }));
       } else {
         const data = await res.json();
-        setSubmitError(data.error || 'AI service unavailable — you can write your own description below.');
+        setSubmitError(data.error || 'AI service unavailable. You can write your own description below.');
       }
     } catch (error) {
       console.error('Failed to generate description:', error);
-      setSubmitError('AI service unavailable — you can write your own description below.');
+      setSubmitError('AI service unavailable. You can write your own description below.');
     } finally {
       setIsGenerating(false);
     }
@@ -255,13 +255,12 @@ export default function SellForm() {
           {/* Early adopter banner */}
           {isEarlyAdopter && (
             <div className="bg-green-light border border-green rounded-xl p-4 flex items-start gap-3">
-              <span className="text-2xl">🎉</span>
               <div>
-                <p className="font-semibold text-green-dark">Early Adopter — Your listing is FREE!</p>
+                <p className="font-semibold text-green-dark">Early adopter: your listing is free.</p>
                 <p className="text-green-dark text-sm mt-0.5">
                   You&apos;re one of our first sellers.{' '}
-                  {earlyAdopterSpotsRemaining} spot{earlyAdopterSpotsRemaining !== 1 ? 's' : ''} remaining.
-                  Choose any plan — we&apos;ll waive the fee.
+                  {earlyAdopterSpotsRemaining}{' '}{earlyAdopterSpotsRemaining === 1 ? 'spot' : 'spots'} remaining.
+                  Choose any plan and we&apos;ll waive the fee.
                 </p>
               </div>
             </div>
@@ -341,7 +340,7 @@ export default function SellForm() {
           </div>
 
           <p className="text-xs text-text-tertiary text-center">
-            Not sure? Featured is our most popular option — {AI_ASSIST_ENABLED ? 'AI write-up, social share, and 60-day listing.' : 'social share, more photos, and a 60-day listing.'}
+            Not sure? Featured is our most popular option: {AI_ASSIST_ENABLED ? 'AI write-up, social share, and 60-day listing.' : 'social share, more photos, and a 60-day listing.'}
           </p>
         </div>
       )}
@@ -351,7 +350,7 @@ export default function SellForm() {
         <div className="space-y-6">
           <div>
             <h2 className="font-display text-2xl font-bold tracking-tight text-foreground mb-1">Tell us about your car</h2>
-            <p className="text-text-secondary">The basics — year, make, model.</p>
+            <p className="text-text-secondary">The basics: year, make, model.</p>
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div>
@@ -472,7 +471,7 @@ export default function SellForm() {
         <div className="space-y-6">
           <div>
             <h2 className="font-display text-2xl font-bold tracking-tight text-foreground mb-1">Tell the story</h2>
-            <p className="text-text-secondary">Add your notes, then let AI write the listing in an enthusiast&apos;s voice.</p>
+            <p className="text-text-secondary">Add your notes below, then write the listing in your own voice.</p>
           </div>
           <div>
             <label className={labelClass}>Your Notes</label>
@@ -522,7 +521,7 @@ export default function SellForm() {
               <div>
                 <label className={labelClass}>{AI_ASSIST_ENABLED ? "AI-Generated Description" : "Description"}</label>
                 <textarea value={form.description} onChange={(e) => updateField('description', e.target.value)} rows={8} className={`${inputClass} resize-none`} />
-                <p className="text-xs text-text-tertiary mt-1">Feel free to edit — this is your listing.</p>
+                <p className="text-xs text-text-tertiary mt-1">Feel free to edit. This is your listing.</p>
               </div>
               {form.highlights.length > 0 && (
                 <div>
@@ -542,7 +541,7 @@ export default function SellForm() {
                   <label className={labelClass}>Expert Take</label>
                   <div className="bg-accent-light border-l-4 border-accent px-4 py-3 rounded-r-lg">
                     <p className="text-sm italic text-foreground">&ldquo;{form.expertTake}&rdquo;</p>
-                    <p className="text-xs text-accent mt-1">— Fully Sorted</p>
+                    <p className="text-xs text-accent mt-1">Fully Sorted</p>
                   </div>
                 </div>
               )}
@@ -644,7 +643,7 @@ export default function SellForm() {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="font-semibold text-lg">
-                  {isEarlyAdopter ? '🎉 Early Adopter — Free Listing!' : `${selectedTierConfig.name} Listing`}
+                  {isEarlyAdopter ? 'Early adopter: free listing' : `${selectedTierConfig.name} Listing`}
                 </p>
                 <p className="text-stone-300 text-sm">
                   {isEarlyAdopter

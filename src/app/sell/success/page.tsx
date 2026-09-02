@@ -47,10 +47,10 @@ function SuccessInner() {
 
           <p className="text-text-secondary mb-6 text-lg">
             {isDev
-              ? "Your listing has been submitted. Payments aren't configured on this deployment, so nothing was charged — I'll review it and follow up."
+              ? "Your listing has been submitted. Payments aren't configured on this deployment, so nothing was charged. We'll review it and follow up."
               : isFree
-              ? "Your listing has been submitted as a founding-member free listing — nothing to pay. I'll review it personally and get it live within one business day."
-              : "Your listing has been submitted and payment received. I'll review it personally and get it live within one business day."}
+              ? "Your listing has been submitted as a founding-member free listing, so there's nothing to pay. We'll review it personally and get it live within one business day."
+              : "Your listing has been submitted and payment received. We'll review it personally and get it live within one business day."}
           </p>
 
           <div className="bg-accent-light rounded-xl p-4 mb-8 text-left">
@@ -58,7 +58,7 @@ function SuccessInner() {
               <strong className="text-accent">What happens next:</strong>
             </p>
             <ul className="text-text-secondary text-sm mt-2 space-y-1.5">
-              <li>1. I review your listing for accuracy and completeness</li>
+              <li>1. We review your listing for accuracy and completeness</li>
               <li>2. Your description gets a human check before it goes live</li>
               <li>3. Your listing goes live on the marketplace</li>
               <li>4. You get an email confirmation with your listing link</li>
@@ -82,7 +82,7 @@ function SuccessInner() {
         </div>
 
         <p className="text-text-tertiary text-sm mt-6">
-          Questions? Email me at chris@fullysorted.com
+          Questions? Email us at chris@fullysorted.com
         </p>
       </motion.div>
     </main>

@@ -34,14 +34,14 @@ export function SubmitSaleForm() {
         setMailto(d.mailto);
         setError(d.error);
       } else setError(d.error || "Something went wrong.");
-    } catch { setError("Couldn't reach the server — check your connection and try again."); }
+    } catch { setError("Couldn't reach the server. Check your connection and try again."); }
     setBusy(false);
   }
 
   if (done) return (
     <div className="max-w-md mx-auto text-center py-16">
       <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color: "#4b8b2e" }} />
-      <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground mb-2">Thanks — got it.</h2>
+      <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground mb-2">Thanks, got it.</h2>
       <p className="text-sm text-text-secondary mb-6">We review every submission before it appears in the data, so it stays trustworthy. Add another, or explore the guides.</p>
       <div className="flex gap-3 justify-center">
         <button onClick={() => { setDone(false); setConsent(false); setF({ make: "", model: "", year: "", trim: "", salePrice: "", saleDate: "", venue: "", mileage: "", exteriorColor: "", vin: "", location: "", sourceUrl: "", notes: "", name: "", email: "" }); }}
@@ -65,7 +65,7 @@ export function SubmitSaleForm() {
         <div className="col-span-1"><label className={label}>Color</label><input className={input} value={f.exteriorColor} onChange={(e) => set("exteriorColor", e.target.value)} placeholder="Grand Prix White" /></div>
         <div className="col-span-1"><label className={label}>VIN / chassis</label><input className={input} value={f.vin} onChange={(e) => set("vin", e.target.value)} placeholder="Optional" /></div>
         <div className="col-span-2 sm:col-span-3"><label className={label}>Proof / source link</label><input className={input} value={f.sourceUrl} onChange={(e) => set("sourceUrl", e.target.value)} placeholder="Link to the listing or result (helps us verify faster)" /></div>
-        <div className="col-span-2 sm:col-span-3"><label className={label}>Notes</label><input className={input} value={f.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Anything notable — condition, options, provenance" /></div>
+        <div className="col-span-2 sm:col-span-3"><label className={label}>Notes</label><input className={input} value={f.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Anything notable: condition, options, provenance" /></div>
         <div className="col-span-1"><label className={label}>Your name</label><input className={input} value={f.name} onChange={(e) => set("name", e.target.value)} /></div>
         <div className="col-span-1 sm:col-span-2"><label className={label}>Your email</label><input type="email" className={input} value={f.email} onChange={(e) => set("email", e.target.value)} placeholder="So we can follow up if needed" /></div>
       </div>
@@ -100,7 +100,7 @@ export function SubmitSaleForm() {
         className="mt-5 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors disabled:opacity-60">
         {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShieldCheck className="w-4 h-4" />} Submit sale
       </button>
-      <p className="text-[11px] text-text-tertiary mt-3">Reviewed before it appears in the data. We only ever publish the facts of a sale — never your personal details.</p>
+      <p className="text-[11px] text-text-tertiary mt-3">Reviewed before it appears in the data. We only ever publish the facts of a sale, never your personal details.</p>
     </form>
   );
 }

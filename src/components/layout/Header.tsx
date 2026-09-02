@@ -24,10 +24,10 @@ const researchMenu: NavMenu = {
   items: [
     { href: "/research/models", label: "Model Histories", desc: "Cited history, specs & production, model by model" },
     ...(VALUE_GUIDE_PUBLIC
-      ? [{ href: "/value-guide", label: "Value Guide", desc: "What any collector car is worth — real sold-price comps" }]
+      ? [{ href: "/value-guide", label: "Value Guide", desc: "What any collector car is worth: real sold-price comps" }]
       : []),
-    { href: "/research/compare", label: "Compare Models", desc: "Two cars head to head — rarity, value & specs" },
-    { href: "/vin", label: "VIN Decoder", desc: "Decode any 1981+ VIN — specs & open recalls" },
+    { href: "/research/compare", label: "Compare Models", desc: "Two cars head to head: rarity, value & specs" },
+    { href: "/vin", label: "VIN Decoder", desc: "Decode any 1981+ VIN: specs & open recalls" },
     { href: "/research", label: "Market Analysis", desc: "Segment prices & written market analysis", divider: true },
   ],
 };
@@ -40,7 +40,7 @@ const servicesMenu: NavMenu = {
   label: "Services",
   items: [
     { href: "/services", label: "Services directory", desc: "Find a specialist business, request a quote" },
-    { href: "/gigs", label: "Fixed-price gigs", desc: "Book a productized service, upfront pricing" },
+    { href: "/gigs", label: "Fixed-price gigs", desc: "Upfront-priced service packages, opening soon" },
     { href: "/services/guide", label: "Provider playbook", desc: "How to get booked, tailored by trade" },
     { href: "/services/apply", label: "List your services", desc: "Become a provider on Fully Sorted", divider: true },
   ],

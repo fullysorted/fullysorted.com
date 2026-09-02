@@ -29,7 +29,7 @@ import {
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: "Running the Business — A Guide for Collector-Car Specialists",
+  title: "Running the Business: A Guide for Collector-Car Specialists",
   description:
     "Sole proprietor or LLC, what self-employment tax actually costs, why everyone wants a W-9, which insurance covers a customer's car, and how to get paid. A plain guide for independent specialists.",
   alternates: { canonical: "/services/guide/business" },
@@ -95,9 +95,9 @@ function Callout({ c }: { c: GuideCallout }) {
 const guideSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "Running the Business — A Guide for Collector-Car Specialists",
+  headline: "Running the Business: A Guide for Collector-Car Specialists",
   description:
-    "Entity choice, self-employment tax, W-9s and 1099s, insurance, and getting paid — written for independent collector-car specialists.",
+    "Entity choice, self-employment tax, W-9s and 1099s, insurance, and getting paid: written for independent collector-car specialists.",
   url: "https://fullysorted.com/services/guide/business",
   publisher: { "@id": "https://fullysorted.com/#organization" },
   articleSection: BUSINESS_GUIDE.map((c) => c.title),
@@ -175,7 +175,7 @@ export default function BusinessGuidePage() {
             What&rsquo;s in here
           </h2>
           <p className="text-sm text-text-secondary mb-6">
-            Read it in order the first time. After that, it is a reference &mdash; most people come
+            Read it in order the first time. After that, it is a reference: most people come
             back for chapters three and four.
           </p>
           <ol className="space-y-2">
@@ -308,8 +308,8 @@ export default function BusinessGuidePage() {
             Where the numbers come from
           </h2>
           <p className="text-sm text-text-secondary mb-5">
-            Every figure above traces to one of these. Thresholds move &mdash; sometimes retroactively
-            &mdash; so if you are reading this well after {TAX_YEAR}, check the primary source rather
+            Every figure above traces to one of these. Thresholds move, sometimes retroactively,
+            so if you are reading this well after {TAX_YEAR}, check the primary source rather
             than trusting the number here.
           </p>
           <ul className="space-y-2">
@@ -348,7 +348,7 @@ export default function BusinessGuidePage() {
           </h2>
           <p className="text-sm text-text-secondary max-w-xl mx-auto mb-7">
             The business side is table stakes. Getting booked is the job. Your trade has its own
-            playbook &mdash; gig structures, real price bands, and what a portfolio has to show
+            playbook: gig structures, real price bands, and what a portfolio has to show
             before a collector will hand over the keys.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">

@@ -39,23 +39,23 @@ export const WORK_SETTINGS: WorkSetting[] = [
   {
     key: 'workshop',
     providerLabel: 'Customers bring the car to me',
-    providerHint: 'A workshop, unit, studio or yard — anywhere with an address a car turns up at.',
+    providerHint: 'A workshop, unit, studio or yard: anywhere with an address a car turns up at.',
     ownerLabel: 'You take the car to them',
-    ownerBlurb: 'Work happens at their premises — you drop the car off.',
+    ownerBlurb: 'Work happens at their premises. You drop the car off.',
   },
   {
     key: 'mobile',
     providerLabel: 'I travel to the car',
     providerHint: 'Mobile work at the owner’s home, storage unit, or wherever the car is kept.',
     ownerLabel: 'They come to you',
-    ownerBlurb: 'Mobile — they come to wherever the car is.',
+    ownerBlurb: 'Mobile: they come to wherever the car is.',
   },
   {
     key: 'remote',
     providerLabel: 'The work is off-site or remote',
-    providerHint: 'Desk appraisals, document and history research, buying advice, brokerage — no hands on the car, or the car ships to them.',
+    providerHint: 'Desk appraisals, document and history research, buying advice, brokerage. No hands on the car, or the car ships to them.',
     ownerLabel: 'Remote or off-site',
-    ownerBlurb: 'Handled off-site — remotely, or with the car shipped to them.',
+    ownerBlurb: 'Handled off-site: remotely, or with the car shipped to them.',
   },
 ];
 
@@ -117,26 +117,4 @@ export function normalizeTeamSize(v: unknown): TeamSizeKey | null {
 export function teamSizeLabel(v: unknown): string | null {
   const key = normalizeTeamSize(v);
   return key ? TEAM_BY_KEY.get(key)!.ownerLabel : null;
-}
-
-/**
- * The travel radius a row should actually store, given what it says about
- * where it works.
- *
- * One rule, one place. A provider who drops "I travel to the car" must not keep
- * a stale "travels about 75 miles" line on a public profile that no longer
- * claims to travel anywhere — and this is decided on FOUR write paths (the
- * public application, the provider dashboard, the team console's add form and
- * its edit panel), which is three too many to re-derive by hand.
- *
- * Returns null for "store nothing": not mobile, blank, unparseable, or zero.
- * Clamped, because a provider typing 99999 into "how far do you travel" has
- * slipped rather than made a statement.
- */
-export function radiusForSettings(settings: unknown, raw: unknown): number | null {
-  if (!normalizeWorkSettings(settings).includes('mobile')) return null;
-  if (raw === null || raw === undefined || raw === '') return null;
-  const n = typeof raw === 'number' ? raw : parseInt(String(raw).replace(/[^0-9]/g, ''), 10);
-  if (!Number.isFinite(n) || n <= 0) return null;
-  return Math.min(Math.round(n), 3_000);
 }

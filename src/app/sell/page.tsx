@@ -3,8 +3,8 @@ import SellForm from './SellForm';
 
 export const metadata = {
   alternates: { canonical: "/sell" },
-  title: 'Sell Your Collector Car for $9.99',
-  description: 'List your collector car for $9.99. Simple flat-fee listings. AI-assisted listings, full-resolution photos, and direct buyer messaging. Built by collectors, for collectors.',
+  title: 'Sell Your Collector Car from $9.99',
+  description: 'List your collector car from $9.99. Simple flat-fee listings. Full-resolution photos and direct buyer messaging. Built by collectors, for collectors.',
 };
 
 export default function SellPage() {
@@ -42,13 +42,13 @@ export default function SellPage() {
               ))}
             </span>
             <span className="text-stone-200 text-xs font-bold uppercase tracking-widest">
-              Built by a 25-year collector car veteran
+              Built by collectors, for collectors
             </span>
           </div>
 
           <h1 className="font-display font-semibold tracking-tight text-4xl md:text-6xl mb-4 leading-[1.05]">
             Sell your collector car<br />
-            <span className="text-gold">for $9.99.</span>
+            <span className="text-gold">from $9.99.</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-stone-200 max-w-2xl mx-auto mb-6 font-medium">
@@ -61,7 +61,7 @@ export default function SellPage() {
               ✓ Direct buyer contact
             </span>
             <span className="bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-stone-100">
-              ✓ AI-assisted listing
+              ✓ Full-resolution photos
             </span>
             <span className="bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-stone-100">
               ✓ $0 buyer&apos;s premium
@@ -72,7 +72,7 @@ export default function SellPage() {
           <p className="text-stone-300 text-sm max-w-xl mx-auto">
             Most collector-car listing sites charge a 4.5–5% success fee when your car sells.
             On a $50,000 sale, that&rsquo;s $2,250+ out of your pocket.
-            Fully Sorted is <strong className="text-gold">$9.99 flat</strong> &mdash; one listing fee, paid up front.
+            Fully Sorted is a flat fee <strong className="text-gold">from $9.99</strong>, paid once, up front.
           </p>
         </div>
       </section>
