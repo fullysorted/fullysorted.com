@@ -17,9 +17,9 @@ interface FeaturedListingsProps {
 }
 
 const valueProps = [
-  // "From", not a flat "$9.99" — there are three tiers and an early-adopter
-  // free window, and the CTA band and /pricing both already say "from".
-  { stat: "From $9.99", label: "One-time listing fee, paid up front. First 100 cars free." },
+  // No listing fee (decision 2026-09-01: free both sides, no take rate). Do
+  // not put a number back here; /pricing is the one place fees are stated.
+  { stat: "Free", label: "No listing fee. No commission when it sells." },
   { stat: "P2P", label: "Direct owner-to-owner. No dealers in the middle." },
   { stat: "$0", label: "Buyer's premium. The price you see is the price you pay." },
 ];
@@ -136,14 +136,14 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
               Be the first to list
             </p>
             <p className="mb-5 text-sm" style={{ color: "#9a9a8a" }}>
-              From $9.99 · First 100 listings free
+              Free to list. No buyer&apos;s premium.
             </p>
             <Link
               href="/sell"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl hover:opacity-90 transition-opacity"
               style={{ background: "#1E6091" }}
             >
-              List your car from $9.99
+              List your car
             </Link>
           </div>
         )}
