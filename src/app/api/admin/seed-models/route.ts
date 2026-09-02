@@ -75,7 +75,21 @@ import { seed510 } from '@/lib/data/model-seed-510';
 import { seed300zxZ32 } from '@/lib/data/model-seed-300zx-z32';
 import { seedS2000 } from '@/lib/data/model-seed-s2000';
 import { seedLandCruiser80 } from '@/lib/data/model-seed-land-cruiser-80';
+// Fourth research wave (2026-09-02) — Ferrari, 12 cited histories.
+import { seed250GtLusso } from '@/lib/data/model-seed-250-gt-lusso';
+import { seed275Gtb } from '@/lib/data/model-seed-275-gtb';
+import { seed330Gtc } from '@/lib/data/model-seed-330-gtc';
+import { seed365Gtb4Daytona } from '@/lib/data/model-seed-365-gtb4-daytona';
+import { seed512Bb } from '@/lib/data/model-seed-512-bb';
+import { seed288Gto } from '@/lib/data/model-seed-288-gto';
+import { seed348 } from '@/lib/data/model-seed-348';
+import { seed456 } from '@/lib/data/model-seed-456';
+import { seed550Maranello } from '@/lib/data/model-seed-550-maranello';
+import { seed360 } from '@/lib/data/model-seed-360';
+import { seedF50 } from '@/lib/data/model-seed-f50';
+import { seedEnzo } from '@/lib/data/model-seed-enzo';
 // All researched model drafts to seed (status='draft' for human review).
+// Ferrari wave (2026-09-02) sits at indices 73-84: seed with ?offset=73&limit=6 then ?offset=79&limit=6.
 const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx, seedCorvetteC2, seedMustang1stGen, seed930Turbo, seedRx7Fd, seedETypeS1, seedBronco1stGen, seedFj40, seedW113Pagoda, seedBmw2002, seedSkylineR34, seedCountach, seedTestarossa, seedShelbyCobra, seedDeLoreanDmc12, seedBmwIsetta, seedAmphicar770, seed356, seedCitroenDs,
   seedSkylineR32, seedCarrera32, seed944Turbo, seedDefender, seed300SL, seedType2Bus, seedCorvetteC3, seedCharger2ndGen, seedAlfaSpider, seedDeltaIntegrale, seedF40, seedLandCruiser60,
   seedCamaro1stGen, seedChevelleSs, seedCorvetteC1, seedCorvetteC4Zr1, seedBarracudaEBody,
@@ -84,7 +98,9 @@ const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, see
   seed190ECosworth, seedUrQuattro, seedGolfGtiMk1, seedDino246, seed328, seedF355, seedMiura,
   seedStratos, seedPantera, seedMgb, seedTr6, seedAustinHealey3000, seedClassicMini,
   seedRangeRoverClassic, seedMx5Na, seedRx7Fc, seed510, seed300zxZ32, seedS2000,
-  seedLandCruiser80];
+  seedLandCruiser80,
+  seed250GtLusso, seed275Gtb, seed330Gtc, seed365Gtb4Daytona, seed512Bb, seed288Gto,
+  seed348, seed456, seed550Maranello, seed360, seedF50, seedEnzo];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {
