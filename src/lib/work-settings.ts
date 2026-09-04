@@ -118,3 +118,25 @@ export function teamSizeLabel(v: unknown): string | null {
   const key = normalizeTeamSize(v);
   return key ? TEAM_BY_KEY.get(key)!.ownerLabel : null;
 }
+
+/**
+ * The travel radius a row should actually store, given what it says about
+ * where it works.
+ *
+ * One rule, one place. A provider who drops "I travel to the car" must not keep
+ * a stale "travels about 75 miles" line on a public profile that no longer
+ * claims to travel anywhere, and this is decided on FOUR write paths (the
+ * public application, the provider dashboard, the team console's add form and
+ * its edit panel), which is three too many to re-derive by hand.
+ *
+ * Returns null for "store nothing": not mobile, blank, unparseable, or zero.
+ * Clamped, because a provider typing 99999 into "how far do you travel" has
+ * slipped rather than made a statement.
+ */
+export function radiusForSettings(settings: unknown, raw: unknown): number | null {
+  if (!normalizeWorkSettings(settings).includes('mobile')) return null;
+  if (raw === null || raw === undefined || raw === '') return null;
+  const n = typeof raw === 'number' ? raw : parseInt(String(raw).replace(/[^0-9]/g, ''), 10);
+  if (!Number.isFinite(n) || n <= 0) return null;
+  return Math.min(Math.round(n), 3_000);
+}

@@ -160,11 +160,11 @@ body {
 /* Article body typography */
 .article-body {
   color: #3a3a30;
-  line-height: 1.8;
+  line-height: 1.7;
   font-size: 1.0625rem;
 }
 .article-body p {
-  margin-bottom: 1.25em;
+  margin-bottom: 1.1em;
 }
 .article-body h2 {
   font-family: var(--font-fraunces, 'Fraunces', Georgia, serif);

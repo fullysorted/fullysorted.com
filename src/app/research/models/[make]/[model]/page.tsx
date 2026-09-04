@@ -43,6 +43,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/** "power_turbo_s_and_1989_on" → "Power, Turbo S and 1989 on" is too clever; "Power turbo s and 1989 on" is honest and readable. */
+function specLabel(key: string): string {
+  const words = key.replace(/_/g, " ").trim();
+  return words.charAt(0).toUpperCase() + words.slice(1);
+}
+
 const CONFIDENCE_STYLE: Record<string, { bg: string; fg: string; label: string }> = {
   high: { bg: "rgba(106,176,76,0.12)", fg: "#3d7a2a", label: "Well documented" },
   medium: { bg: "rgba(176,141,63,0.14)", fg: "#8a6d2f", label: "Reasonably documented" },
@@ -337,16 +343,18 @@ export default async function ModelPage({ params }: Props) {
                   <Gauge className="w-4 h-4" style={{ color: "#1E6091" }} />
                   <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#6b6b5e" }}>Key Specs</p>
                 </div>
-                <table className="w-full text-sm">
-                  <tbody>
-                    {Object.entries(m.specs).map(([k, v], i) => (
-                      <tr key={k} style={{ borderTop: i === 0 ? "none" : "1px solid rgba(0,0,0,0.05)" }}>
-                        <td className="px-5 py-2.5 align-top w-2/5" style={{ color: "#9a9a8a" }}>{k}</td>
-                        <td className="px-5 py-2.5" style={{ color: "#1a1a18" }}>{v}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                {/* Stacked rows, not a two-column table: keys are stored as
+                    snake_case (one unbreakable word), which forced the key
+                    column to ~230px inside a 256px sidebar and squeezed the
+                    values to a letter per line. */}
+                <dl className="text-sm">
+                  {Object.entries(m.specs).map(([k, v], i) => (
+                    <div key={k} className="px-5 py-2.5" style={{ borderTop: i === 0 ? "none" : "1px solid rgba(0,0,0,0.05)" }}>
+                      <dt className="text-[11px] font-semibold tracking-[0.12em] uppercase" style={{ color: "#9a9a8a" }}>{specLabel(k)}</dt>
+                      <dd className="mt-0.5 leading-snug break-words" style={{ color: "#1a1a18" }}>{String(v)}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             )}
 
