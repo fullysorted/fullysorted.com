@@ -52,8 +52,8 @@ export default function PricingPage() {
           </div>
           <h1 className="font-display font-semibold tracking-tight text-4xl md:text-5xl mb-4 leading-[1.08]">Simple, Honest Pricing</h1>
           <p className="text-xl text-stone-300 max-w-2xl mx-auto">
-            No hidden fees. No dealer markups. Just a one-time listing fee
-            to get your car in front of serious collectors.
+            No hidden fees. No buyer&apos;s premium. Just a one-time listing fee
+            to get your car in front of serious collectors. Dealers pay the same as everyone.
           </p>
         </div>
       </section>
@@ -206,6 +206,14 @@ export default function PricingPage() {
             );
           })}
         </div>
+
+        {/* Dealers: same tiers, same fee. Packages exist as a conversation,
+            not a price, until they actually exist. */}
+        <p className="text-sm text-center mt-8 max-w-2xl mx-auto" style={{ color: "#6b6b5e" }}>
+          Dealers and consignment houses list on the same tiers at the same fee. Every dealer
+          listing is marked as one, with the standard disclosures. Listing several cars?{" "}
+          <Link href="/contact" className="font-semibold" style={{ color: "#1E6091" }}>Ask about a package</Link>.
+        </p>
 
         {/* Feature comparison table */}
         <div className="mt-16">

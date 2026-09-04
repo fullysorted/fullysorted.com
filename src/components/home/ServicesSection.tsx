@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { SERVICE_CATEGORIES, REFERRAL_SERVICES } from "@/lib/service-categories";
+import { TRADE_CATEGORIES, REFERRAL_SERVICES } from "@/lib/service-categories";
 
 /**
  * Homepage services section.
@@ -25,7 +25,7 @@ const GOLD = "#B08D3F";
 const RULE = "rgba(26,26,24,0.12)";
 
 export function ServicesSection() {
-  const verbs = SERVICE_CATEGORIES.map((c) => c.verb.toLowerCase());
+  const verbs = TRADE_CATEGORIES.map((c) => c.verb.toLowerCase());
   const verbLine =
     verbs.length > 1
       ? verbs.slice(0, -1).join(", ") + " and " + verbs[verbs.length - 1]
@@ -59,7 +59,7 @@ export function ServicesSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
-          {SERVICE_CATEGORIES.map((c, i) => (
+          {TRADE_CATEGORIES.map((c, i) => (
             <motion.div
               key={c.key}
               initial={{ opacity: 0, y: 16 }}
@@ -121,7 +121,7 @@ export function ServicesSection() {
             >
               <div className="lg:col-span-3 flex items-baseline gap-3">
                 <span className="price-display text-xs tabular-nums" style={{ color: MUTED }}>
-                  {String(SERVICE_CATEGORIES.length + i + 1).padStart(2, "0")}
+                  {String(TRADE_CATEGORIES.length + i + 1).padStart(2, "0")}
                 </span>
                 <span className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                   {r.verb}

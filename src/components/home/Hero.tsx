@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Search, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { SERVICE_CATEGORIES, type ServiceCategoryKey } from "@/lib/service-categories";
+import { TRADE_CATEGORIES, type ServiceCategoryKey } from "@/lib/service-categories";
 
 /*
    Services-first hero.
@@ -29,9 +29,9 @@ const RULE = "rgba(26,26,24,0.12)";
  * Showcase copy per category. Photos live in public/images/services (credits
  * in CREDITS.md there) and are named by category key, so adding a category to
  * lib/service-categories and dropping in a photo is the whole job. Order comes
- * from SERVICE_CATEGORIES, which is the ownership year.
+ * from TRADE_CATEGORIES, which is the ownership year.
  */
-const SHOWCASE: Record<ServiceCategoryKey, { tagline: string; desc: string }> = {
+const SHOWCASE: Partial<Record<ServiceCategoryKey, { tagline: string; desc: string }>> = {
   inspection: {
     tagline: "Know before the wire goes",
     desc: "A trusted set of eyes on the car before you commit. Compression numbers, panel gaps, the things sellers do not photograph.",
@@ -66,7 +66,7 @@ const SHOWCASE: Record<ServiceCategoryKey, { tagline: string; desc: string }> = 
   },
 };
 
-const slides = SERVICE_CATEGORIES.map((c) => ({
+const slides = TRADE_CATEGORIES.map((c) => ({
   key: c.key,
   title: c.longLabel,
   verb: c.verb,
@@ -253,7 +253,7 @@ function ServiceShowcase() {
 
 // Every live category, in the canonical order. These use the SHORT label:
 // sitting directly under a search box they read as filters.
-const quickPicks = SERVICE_CATEGORIES.map((c) => ({ label: c.label, type: c.key as string }));
+const quickPicks = TRADE_CATEGORIES.map((c) => ({ label: c.label, type: c.key as string }));
 
 export function Hero() {
   return (

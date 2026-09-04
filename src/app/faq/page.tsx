@@ -155,7 +155,12 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "How is this different from an auction site?",
-        a: `Curated online auction sites are time-limited and take a percentage of the sale: usually four to five percent, as a buyer's premium or a seller's fee. Classifieds sites typically charge $50–$99 to list. Fully Sorted is flat-fee and peer-to-peer: one payment up front from $${std}, no clock, and the buyer talks to the owner rather than to a middleman.`,
+        a: `Curated online auction sites are time-limited and take a percentage of the sale: usually four to five percent, as a buyer's premium or a seller's fee. Classifieds sites typically charge $50–$99 to list. Fully Sorted is flat-fee: one payment up front from $${std}, no clock, and the buyer talks to the seller rather than to a middleman.`,
+      },
+      {
+        q: "Do dealers list here too?",
+        a: `Yes, since September 2026. A dealer pays the same listing fee as a private owner, and every dealer listing is marked as one, with the dealership name, its licence number where given, and a standing note that documentation fees, tax and registration are set by the dealer and are not in the asking price. Dealers and consignment houses also have their own section of the business directory. Dealers listing several cars can ask us about a package.`,
+        link: { href: "/contact", label: "Ask about a dealer package" },
       },
       {
         q: "Can I get a car inspected before I buy it here?",

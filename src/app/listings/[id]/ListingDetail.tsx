@@ -20,7 +20,9 @@ import {
   Camera,
   Mail,
   ClipboardCheck,
+  Store,
 } from "lucide-react";
+import { DEALER_DISCLOSURE } from "@/lib/dealer";
 import { formatPrice, formatMileage, cn } from "@/lib/utils";
 import type { Vehicle } from "@/lib/sample-data";
 import { motion, AnimatePresence } from "framer-motion";
@@ -78,6 +80,11 @@ function PhotoGallery({ vehicle }: { vehicle: Vehicle }) {
               style={{ background: "#6ab04c" }}
             >
               <CheckCircle className="w-3 h-3" /> Sorted Price
+            </span>
+          )}
+          {vehicle.sellerType === "dealer" && (
+            <span className="px-3 py-1 text-xs font-bold text-white rounded-lg shadow-lg" style={{ background: "#1a1a18" }}>
+              Dealer
             </span>
           )}
         </div>
@@ -502,8 +509,33 @@ export function ListingDetail({ vehicle }: Props) {
                   <Cog className="w-4 h-4" />
                   {vehicle.transmission}
                 </span>
+                <span className="flex items-center gap-1">
+                  <Store className="w-4 h-4" />
+                  {vehicle.sellerType === "dealer" ? `Dealer${vehicle.dealerName ? `: ${vehicle.dealerName}` : ""}` : "Private seller"}
+                </span>
               </div>
             </div>
+
+            {/* Dealer disclosure. Every dealer listing carries it; the copy
+                lives in lib/dealer.ts so the sell form promises what the
+                page shows. */}
+            {vehicle.sellerType === "dealer" && (
+              <div className="rounded-2xl p-5" style={{ background: "#F5EFE6", border: "1px solid rgba(176,141,63,0.28)" }}>
+                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#8a6d2f" }}>Dealer listing</p>
+                <p className="text-sm font-semibold text-stone-900">
+                  Offered by {vehicle.dealerName || "a licensed dealer"}
+                  {vehicle.dealerLicense ? <span className="font-normal text-stone-500">, licence {vehicle.dealerLicense}</span> : null}
+                </p>
+                {vehicle.dealerFeesNote && (
+                  <p className="text-sm text-stone-700 mt-1">Fees stated by the dealer: {vehicle.dealerFeesNote}</p>
+                )}
+                <ul className="mt-3 space-y-1.5 text-xs leading-relaxed text-stone-600 list-disc pl-4">
+                  {DEALER_DISCLOSURE.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Expert Take */}
             {vehicle.chrisTake && (
@@ -634,6 +666,11 @@ export function ListingDetail({ vehicle }: Props) {
               <p className="price-display text-3xl text-stone-900">
                 {formatPrice(vehicle.price)}
               </p>
+              {vehicle.sellerType === "dealer" && (
+                <p className="text-xs text-stone-500 mt-1">
+                  Dealer price. {vehicle.dealerFeesNote ? vehicle.dealerFeesNote : "Doc fees, tax and registration are set by the dealer and not included."}
+                </p>
+              )}
 
               {/* Pricing Verdict */}
               {vehicle.compCount > 0 && vehicle.compAvg > 0 && vehicle.compAvg !== vehicle.price && (

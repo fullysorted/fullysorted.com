@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
-import { SERVICE_CATEGORIES } from "@/lib/service-categories";
+import { TRADE_CATEGORIES } from "@/lib/service-categories";
 
 /**
  * /about
@@ -76,7 +76,7 @@ function Caption({ children }: { children: React.ReactNode }) {
 }
 
 export default function AboutPage() {
-  const verbs = SERVICE_CATEGORIES.map((c) => c.verb.toLowerCase());
+  const verbs = TRADE_CATEGORIES.map((c) => c.verb.toLowerCase());
   const verbLine = verbs.slice(0, -1).join(", ") + " and " + verbs[verbs.length - 1];
 
   return (
@@ -213,8 +213,8 @@ export default function AboutPage() {
           </div>
 
           {/* Timeline rule */}
-          <div className="hidden lg:grid mb-6" style={{ gridTemplateColumns: `repeat(${SERVICE_CATEGORIES.length}, minmax(0, 1fr))` }}>
-            {SERVICE_CATEGORIES.map((c, i) => (
+          <div className="hidden lg:grid mb-6" style={{ gridTemplateColumns: `repeat(${TRADE_CATEGORIES.length}, minmax(0, 1fr))` }}>
+            {TRADE_CATEGORIES.map((c, i) => (
               <div key={c.key} className="relative pt-4">
                 <span className="absolute top-0 left-0 right-0 h-px" style={{ background: RULE }} aria-hidden />
                 <span className="absolute -top-[3px] left-0 h-[7px] w-[7px] rounded-full" style={{ background: i === 0 ? GOLD : INK }} aria-hidden />
@@ -224,7 +224,7 @@ export default function AboutPage() {
           </div>
 
           <ol className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {SERVICE_CATEGORIES.map((c, i) => (
+            {TRADE_CATEGORIES.map((c, i) => (
               <li key={c.key}>
                 <Link
                   href={`/services?type=${c.key}`}
@@ -289,7 +289,7 @@ export default function AboutPage() {
           {[
             { t: "For owners", d: "Search by the job. Read what other owners said. Send a brief. Review the work afterwards." },
             { t: "For specialists", d: "One application, one profile, your reviews under your name. Leads arrive with the job already described." },
-            { t: "For buyers and sellers", d: "A direct owner-to-owner marketplace. No auction clock, no buyer's premium, and a research hub of model histories and market data." },
+            { t: "For buyers and sellers", d: "A marketplace where every listing says whether an owner or a dealer is selling. No auction clock, no buyer's premium, and a research hub of model histories and market data." },
           ].map((x) => (
             <div key={x.t} className="rounded-xl p-6" style={{ background: PAPER, border: `1px solid ${RULE}`, borderTop: `3px solid ${INK}` }}>
               <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: BLUE }}>{x.t}</h3>

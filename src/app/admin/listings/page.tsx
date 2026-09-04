@@ -17,6 +17,7 @@ interface Listing {
   seller_name: string; seller_email: string; message_count: number;
   admin_notes: string; denied_reason: string; sold_price: number;
   chris_take: string; created_at: string; sold_at: string; published_at: string;
+  seller_type?: string; dealer_name?: string | null; dealer_license?: string | null; dealer_fees_note?: string | null;
 }
 
 const STATUS_OPTIONS = ["all", "pending", "active", "sold", "denied", "draft"];
@@ -225,6 +226,13 @@ function ListingsContent() {
                   {l.seller_email && (
                     <p className="text-xs text-text-tertiary mt-1">
                       Seller: {l.seller_name || "—"} · {l.seller_email}
+                    </p>
+                  )}
+                  {l.seller_type === "dealer" && (
+                    <p className="text-xs mt-1 font-semibold" style={{ color: "#8a6d2f" }}>
+                      Dealer listing: {l.dealer_name || "no name given"}
+                      {l.dealer_license ? ` · licence ${l.dealer_license}` : " · no licence number"}
+                      {l.dealer_fees_note ? ` · fees: ${l.dealer_fees_note}` : ""}
                     </p>
                   )}
                 </div>

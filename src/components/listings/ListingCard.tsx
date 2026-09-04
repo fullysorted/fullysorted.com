@@ -47,6 +47,11 @@ export function ListingCard({ vehicle, index = 0 }: ListingCardProps) {
                 Sorted Price
               </span>
             )}
+            {vehicle.sellerType === "dealer" && (
+              <span className="px-2.5 py-1 text-xs font-semibold rounded-md" style={{ background: "#1a1a18", color: "#fff" }} title="Offered by a licensed dealer">
+                Dealer
+              </span>
+            )}
           </div>
 
           {/* Photo Count */}

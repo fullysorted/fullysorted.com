@@ -20,7 +20,7 @@ const valueProps = [
   // "From", not a flat "$9.99": there are three tiers and an early-adopter
   // free window, and the CTA band and /pricing both already say "from".
   { stat: "From $9.99", label: "One-time listing fee, paid up front. First 100 cars free." },
-  { stat: "P2P", label: "Direct owner-to-owner. No dealers in the middle." },
+  { stat: "Marked", label: "Private seller or dealer, each listing says which. No middleman either way." },
   { stat: "$0", label: "Buyer's premium. The price you see is the price you pay." },
 ];
 
@@ -51,8 +51,8 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
               When it&apos;s time to buy or sell
             </h2>
             <p className="mt-1 text-sm max-w-xl" style={{ color: "#6b6b5e" }}>
-              Once your car is sorted, sell it the direct way: owner to owner,
-              simple flat listing fees, no auction clock and no buyer&apos;s premium.
+              Once your car is sorted, sell it the simple way: a flat listing fee,
+              no auction clock and no buyer&apos;s premium, whether you are an owner or a dealer.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">

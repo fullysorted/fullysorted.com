@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight } from 'lucide-react';
+import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { SERVICE_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
+import { SERVICE_CATEGORIES, TRADE_CATEGORIES, SALES_CATEGORIES, CATEGORY_TINTS, categoryGroup } from '@/lib/service-categories';
 import { ratingDisplay } from '@/lib/reviews';
 import {
   WORK_SETTINGS,
@@ -29,6 +29,8 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   storage: <Warehouse className="w-5 h-5" />,
   restoration: <Hammer className="w-5 h-5" />,
   bodywork: <Shield className="w-5 h-5" />,
+  dealer: <Store className="w-5 h-5" />,
+  consignment: <Handshake className="w-5 h-5" />,
 };
 const CATEGORIES = [
   { key: 'all', label: 'All Services', icon: <Sparkles className="w-5 h-5" /> },
@@ -36,6 +38,9 @@ const CATEGORIES = [
     key: c.key, label: c.label, icon: CATEGORY_ICONS[c.key],
   })),
 ];
+// Two chip rows: the trades, then buying and selling. Same list, split by group.
+const TRADE_CHIPS = CATEGORIES.filter((c) => c.key === 'all' || TRADE_CATEGORIES.some((t) => t.key === c.key));
+const SALES_CHIPS = CATEGORIES.filter((c) => SALES_CATEGORIES.some((t) => t.key === c.key));
 
 type CategoryKey = string;
 
@@ -58,6 +63,9 @@ interface Provider {
   // Where the work happens. Replaces providerType, which used to cut this
   // directory into "shops" and "freelancers" — see lib/work-settings.ts.
   workSettings?: string[] | null;
+  /** Extra category keys beyond the headline one. A dealer with a workshop
+      carries 'mechanical' here and appears in both sections. */
+  serviceTypes?: string[] | null;
   teamSize?: string | null;
   serviceRadiusMiles?: number | null;
   specialties: string[];
@@ -312,7 +320,10 @@ export default function ServicesDirectory() {
   }, []);
 
   const matches = (p: Provider) => {
-    const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+    const matchesCategory =
+      activeCategory === 'all' ||
+      p.category === activeCategory ||
+      (Array.isArray(p.serviceTypes) && p.serviceTypes.includes(activeCategory));
     // A provider with no work_settings answer has not said no — they have said
     // nothing, and most of the seeded rows predate the question entirely.
     // Hiding them from a filter would make the directory look emptier than it
@@ -346,9 +357,9 @@ export default function ServicesDirectory() {
         />
       </div>
 
-      {/* Category Filter */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {CATEGORIES.map((cat) => (
+      {/* Category Filter: the trades, then buying and selling */}
+      <div className="flex flex-wrap gap-2 mb-3">
+        {TRADE_CHIPS.map((cat) => (
           <button
             key={cat.key}
             onClick={() => setActiveCategory(cat.key)}
@@ -356,6 +367,25 @@ export default function ServicesDirectory() {
               activeCategory === cat.key
                 ? 'bg-accent text-white shadow-md'
                 : 'bg-white text-stone-600 border border-stone-200 hover:bg-accent hover:border-accent hover:text-white'
+            }`}
+          >
+            {cat.icon}
+            {cat.label}
+          </button>
+        ))}
+      </div>
+      <div className="flex flex-wrap items-center gap-2 mb-8">
+        <span className="text-xs font-semibold uppercase tracking-widest text-stone-400 mr-1">
+          Buying and selling
+        </span>
+        {SALES_CHIPS.map((cat) => (
+          <button
+            key={cat.key}
+            onClick={() => setActiveCategory(cat.key)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              activeCategory === cat.key
+                ? 'bg-stone-900 text-white shadow-md'
+                : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-900 hover:border-stone-900 hover:text-white'
             }`}
           >
             {cat.icon}
@@ -411,7 +441,7 @@ export default function ServicesDirectory() {
         </div>
       )}
 
-      {!loading && !loadFailed && (
+      {!loading && !loadFailed && activeCategory !== 'all' && (
         <ResultsGrid
           providers={filtered}
           count={filtered.length}
@@ -421,6 +451,35 @@ export default function ServicesDirectory() {
               : 'Nobody matches that yet. Tell us who should be here and we will go and ask them.'
           }
         />
+      )}
+      {/* With no category chosen, dealers and consignment houses sit in their
+          own section under the trades. A provider whose headline is a sales
+          category but who also carries a trade in service_types shows in both. */}
+      {!loading && !loadFailed && activeCategory === 'all' && (
+        <>
+          <ResultsGrid
+            providers={filtered.filter((p) => categoryGroup(p.category) === 'trade' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'trade'))}
+            count={filtered.filter((p) => categoryGroup(p.category) === 'trade' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'trade')).length}
+            emptyLine={
+              providers.length === 0
+                ? "We're building the directory now. Apply below to be one of the first listed."
+                : 'Nobody matches that yet. Tell us who should be here and we will go and ask them.'
+            }
+          />
+          {filtered.some((p) => categoryGroup(p.category) === 'sales' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'sales')) && (
+            <>
+              <div className="flex items-baseline justify-between gap-4 mb-1 pt-2" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+                <h2 className="font-display font-semibold tracking-tight text-2xl text-stone-900 mt-4">Buying and selling</h2>
+                <p className="text-xs text-stone-500 mt-4">Dealers and consignment houses. Marked as such on every listing they post.</p>
+              </div>
+              <ResultsGrid
+                providers={filtered.filter((p) => categoryGroup(p.category) === 'sales' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'sales'))}
+                count={filtered.filter((p) => categoryGroup(p.category) === 'sales' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'sales')).length}
+                emptyLine=""
+              />
+            </>
+          )}
+        </>
       )}
 
       {/* CTA to Apply */}
@@ -440,7 +499,7 @@ export default function ServicesDirectory() {
         <h3 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-white mb-3">Join the Directory</h3>
         <p className="text-stone-200 mb-2 font-medium">Are you a specialist? Get listed.</p>
         <p className="text-stone-300 mb-6 max-w-xl mx-auto">
-          If you do exceptional work with collector cars (inspection, transport, mechanical, body and paint, restoration, detailing, storage, or photography), apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.
+          If you do exceptional work with collector cars (inspection, transport, mechanical, body and paint, restoration, detailing, storage, or photography), or you buy, sell or consign them as a licensed dealer, apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link

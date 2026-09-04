@@ -44,6 +44,7 @@ export async function GET() {
         // legal form that was wrong on every live row. work_settings is what
         // replaced it.
         workSettings: schema.serviceProviders.workSettings,
+        serviceTypes: schema.serviceProviders.serviceTypes,
         teamSize: schema.serviceProviders.teamSize,
         serviceRadiusMiles: schema.serviceProviders.serviceRadiusMiles,
         headline: schema.serviceProviders.headline,

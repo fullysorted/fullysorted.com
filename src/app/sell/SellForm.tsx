@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import PhotoUploader from '@/components/upload/PhotoUploader';
 import { LISTING_TIERS, type ListingTier, getMaxPhotos } from '@/lib/listing-tiers';
+import { SELLER_TYPES, DEALER_ATTESTATION, type SellerType } from '@/lib/dealer';
 
 const CATEGORIES = ['Muscle', 'European', 'JDM', 'Vintage', 'Modern Classic', 'Barn Find', 'Truck / SUV', 'Other'];
 const TRANSMISSIONS = ['Manual', 'Automatic'];
@@ -76,7 +77,16 @@ export default function SellForm() {
     description: '',
     highlights: [] as string[],
     expertTake: '',
+    // Who is selling. Dealers list at the same fee; the listing is badged and
+    // carries the disclosures in lib/dealer.ts.
+    sellerType: 'private' as SellerType,
+    dealerName: '',
+    dealerLicense: '',
+    dealerFeesNote: '',
   });
+  const [dealerAttested, setDealerAttested] = useState(false);
+  const isDealer = form.sellerType === 'dealer';
+  const dealerReady = !isDealer || (form.dealerName.trim().length > 0 && dealerAttested);
 
   // Check early adopter status on mount
   useEffect(() => {
@@ -155,6 +165,7 @@ export default function SellForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...form,
+          dealerAttested,
           aiDescription: form.description,
           photos: photos.map((p) => p.url),
           heroPhoto: photos.find((p) => p.isHero)?.url || photos[0]?.url || null,
@@ -398,6 +409,51 @@ export default function SellForm() {
       {/* ─── Step 3: Details & Photos ───────────────────────── */}
       {step === 'details' && (
         <div className="space-y-6">
+
+          {/* Who is selling */}
+          <div className="bg-white rounded-xl border border-border p-5">
+            <label className={labelClass}>Who is selling this car?</label>
+            <div className="grid sm:grid-cols-2 gap-3 mt-1">
+              {SELLER_TYPES.map((t) => (
+                <button
+                  key={t.value}
+                  type="button"
+                  onClick={() => updateField('sellerType', t.value)}
+                  className={`text-left rounded-lg border px-4 py-3 transition-colors ${form.sellerType === t.value ? 'border-accent bg-accent-light' : 'border-border hover:border-border-medium'}`}
+                  aria-pressed={form.sellerType === t.value}
+                >
+                  <p className="text-sm font-semibold text-foreground">{t.label}</p>
+                  <p className="text-xs text-text-secondary mt-0.5">{t.hint}</p>
+                </button>
+              ))}
+            </div>
+            {isDealer && (
+              <div className="mt-4 space-y-4">
+                <p className="text-xs text-text-secondary">
+                  Same listing fee as a private seller. The listing is marked as a dealer listing and carries the standard dealer disclosures. Listing several cars? <a href="/contact" className="font-semibold text-accent">Ask about a package</a>.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelClass}>Dealership name *</label>
+                    <input type="text" value={form.dealerName} onChange={(e) => updateField('dealerName', e.target.value)} placeholder="Symbolic International" className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Dealer licence number</label>
+                    <input type="text" value={form.dealerLicense} onChange={(e) => updateField('dealerLicense', e.target.value)} placeholder="State licence or bond number" className={inputClass} />
+                  </div>
+                </div>
+                <div>
+                  <label className={labelClass}>Fees the buyer should expect</label>
+                  <input type="text" value={form.dealerFeesNote} onChange={(e) => updateField('dealerFeesNote', e.target.value)} placeholder="$85 documentation fee; tax and registration extra" className={inputClass} />
+                  <p className="text-xs text-text-tertiary mt-1">Shown on the listing next to the asking price. Leave blank and the listing says fees are set by the dealer and not included.</p>
+                </div>
+                <label className="flex items-start gap-3 text-sm text-text-secondary cursor-pointer">
+                  <input type="checkbox" checked={dealerAttested} onChange={(e) => setDealerAttested(e.target.checked)} className="mt-1" />
+                  <span>{DEALER_ATTESTATION}</span>
+                </label>
+              </div>
+            )}
+          </div>
           <div>
             <h2 className="font-display text-2xl font-bold tracking-tight text-foreground mb-1">The specifics</h2>
             <p className="text-text-secondary">Mileage, colors, location, price, and photos.</p>
@@ -622,6 +678,7 @@ export default function SellForm() {
               {form.interiorColor && <div><span className="text-text-tertiary">Interior:</span> <span className="text-foreground">{form.interiorColor}</span></div>}
               {form.city && <div><span className="text-text-tertiary">Location:</span> <span className="text-foreground">{form.city}, {form.state}</span></div>}
               {form.category && <div><span className="text-text-tertiary">Category:</span> <span className="text-foreground">{form.category}</span></div>}
+              <div><span className="text-text-tertiary">Seller:</span> <span className="text-foreground">{isDealer ? `Dealer, ${form.dealerName || 'name missing'}` : 'Private owner'}</span></div>
             </div>
             {form.price && (
               <div className="pt-3 border-t border-border">
@@ -668,7 +725,7 @@ export default function SellForm() {
             )}
             <button
               onClick={handleSubmitAndPay}
-              disabled={isSubmitting || !form.year || !form.make || !form.model || !form.price}
+              disabled={isSubmitting || !form.year || !form.make || !form.model || !form.price || !dealerReady}
               className="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white px-6 py-4 rounded-xl font-semibold text-lg transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
             >
               {isSubmitting ? (

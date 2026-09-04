@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | Fully Sorted",
   },
   description:
-    "Find owner-reviewed specialists for everything your collector car needs: inspection, transport, mechanical work, body work and paint, restoration, detailing, storage and photography. Plus a direct owner-to-owner marketplace and a research center built on real sold prices.",
+    "Find owner-reviewed specialists for everything your collector car needs: inspection, transport, mechanical work, body work and paint, restoration, detailing, storage and photography. Plus a marketplace of private and dealer listings and a research center built on real sold prices.",
   keywords: [
     "collector car services",
     "classic car specialists",

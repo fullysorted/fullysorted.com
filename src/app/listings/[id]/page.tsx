@@ -47,6 +47,10 @@ function dbListingToVehicle(listing: any): Vehicle {
     comments: 0,
     featured: listing.featured ?? false,
     sortedPrice: listing.sortedPrice ?? false,
+    sellerType: listing.sellerType === 'dealer' ? 'dealer' : 'private',
+    dealerName: listing.dealerName ?? null,
+    dealerLicense: listing.dealerLicense ?? null,
+    dealerFeesNote: listing.dealerFeesNote ?? null,
     description: listing.aiDescription || listing.description || '',
     chrisTake: listing.chrisTake ?? '',
     compAvg: listing.compAvg ?? listing.price ?? 0,
@@ -138,6 +142,10 @@ export default async function ListingPage({ params }: Props) {
       price: vehicle.price.toString(),
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
+      // Google reads offeredBy to tell dealer inventory from private sales.
+      offeredBy: vehicle.sellerType === "dealer"
+        ? { "@type": "AutoDealer", name: vehicle.dealerName || "Licensed dealer" }
+        : { "@type": "Person", name: "Private seller" },
     },
   };
 

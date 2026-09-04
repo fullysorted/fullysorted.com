@@ -7,8 +7,9 @@
  * "valuation" that the directory cannot filter for, and why promoting a
  * category meant editing six files.
  *
- * WHAT IS LIVE: the six recurring trades — photography, inspection, detailing,
- * storage, transport and mechanical — plus restoration and body & paint.
+ * WHAT IS LIVE: the eight trades (inspection, transport, mechanical, body &
+ * paint, restoration, detailing, storage, photography) plus, since 2026-09-04,
+ * two buying-and-selling categories: dealers and consignment.
  *
  * Restoration and body & paint were held back at first because both are
  * month-long project work bought on long referral cycles. They were switched on
@@ -32,7 +33,19 @@ export type ServiceCategoryKey =
   | 'transport'
   | 'mechanical'
   | 'restoration'
-  | 'bodywork';
+  | 'bodywork'
+  | 'dealer'
+  | 'consignment';
+
+/**
+ * 'trade' is work done TO a car: the eight ownership-year categories that the
+ * homepage tells as a story. 'sales' is the buying-and-selling side, added
+ * 2026-09-04 when the "no dealers" positioning was retired: dealers and
+ * consignment houses list in the directory in their own section, and a dealer
+ * that also runs a workshop can carry a trade category as well (headline
+ * `category` plus `service_types`).
+ */
+export type ServiceCategoryGroup = 'trade' | 'sales';
 
 export interface ServiceCategory {
   key: ServiceCategoryKey;
@@ -50,6 +63,8 @@ export interface ServiceCategory {
   active: boolean;
   /** Accent used for category tiles and headers. */
   tint: string;
+  /** Which side of the directory this sits on. Defaults to 'trade'. */
+  group?: ServiceCategoryGroup;
 }
 
 /** Every category the platform has ever had a label for, active or not. */
@@ -134,6 +149,29 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     active: true,
     tint: '#B08D3F',
   },
+  // ── Buying and selling ─────────────────────────────────────────────────
+  {
+    key: 'dealer',
+    label: 'Dealers',
+    longLabel: 'Collector Car Dealer',
+    verb: 'Sell it',
+    blurb: 'Licensed dealers who buy, sell and source collector cars. Marked as dealers wherever they appear, including the marketplace.',
+    askedFor: 'A dealer to buy from or sell to',
+    active: true,
+    tint: '#1a1a18',
+    group: 'sales',
+  },
+  {
+    key: 'consignment',
+    label: 'Consignment',
+    longLabel: 'Consignment Sales',
+    verb: 'Sell it for you',
+    blurb: 'They market and sell the car on your behalf for a fee or a percentage, and you keep the title until it sells.',
+    askedFor: 'Someone to sell it for me',
+    active: true,
+    tint: '#4a4a40',
+    group: 'sales',
+  },
 ];
 
 /**
@@ -142,6 +180,16 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
  * dashboards. Order here is the order everywhere.
  */
 export const SERVICE_CATEGORIES: ServiceCategory[] = ALL_CATEGORIES.filter((c) => c.active);
+
+/** The eight trades, in ownership-year order. This is what the homepage tells as a story. */
+export const TRADE_CATEGORIES: ServiceCategory[] = SERVICE_CATEGORIES.filter((c) => (c.group ?? 'trade') === 'trade');
+
+/** Dealers and consignment: the buying-and-selling side of the directory. */
+export const SALES_CATEGORIES: ServiceCategory[] = SERVICE_CATEGORIES.filter((c) => c.group === 'sales');
+
+export function categoryGroup(key: string): ServiceCategoryGroup {
+  return ALL_CATEGORIES.find((c) => c.key === key)?.group ?? 'trade';
+}
 
 /** Option list for apply forms and dashboards. */
 export const CATEGORY_OPTIONS = SERVICE_CATEGORIES.map((c) => ({

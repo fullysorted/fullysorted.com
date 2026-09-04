@@ -669,7 +669,7 @@ export default function WhereToBuyPage() {
               {
                 href: "/browse",
                 title: "Browse cars for sale",
-                blurb: "Owner-to-owner listings on this site, with the flat listing fee stated up front.",
+                blurb: "Private and dealer listings on this site, each marked as which, with the flat listing fee stated up front.",
               },
             ].map((c) => (
               <Link

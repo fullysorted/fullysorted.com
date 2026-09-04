@@ -34,7 +34,7 @@ export const organizationSchema = {
   },
   image: "https://fullysorted.com/opengraph-image.png",
   description:
-    "A collector car services hub: an owner-reviewed directory of specialists for inspection, detailing, transport, mechanical, restoration and body work, alongside a direct owner-to-owner marketplace with flat listing fees and a research center built on real sold prices.",
+    "A collector car services hub: an owner-reviewed directory of specialists for inspection, detailing, transport, mechanical, restoration and body work, alongside a marketplace of private and dealer listings with flat listing fees and a research center built on real sold prices.",
   foundingDate: "2025",
   founder: {
     "@type": "Person",

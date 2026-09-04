@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { normalizeSellerType } from '@/lib/dealer';
 import { FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
 import { rateLimit } from '@/lib/rate-limit';
 
@@ -75,7 +76,21 @@ export async function POST(request: NextRequest) {
       drivetrain, exteriorColor, interiorColor, bodyStyle, category,
       city, state, zipCode, description, aiDescription, highlights,
       chrisTake, photos, tier,
+      sellerType: rawSellerType, dealerName, dealerLicense, dealerFeesNote, dealerAttested,
     } = body;
+
+    // Dealer listings: the badge and disclosures hang off seller_type, so it
+    // must be one of two known values, and a dealer must name the business
+    // and accept the attestation before the listing exists at all.
+    const sellerType = normalizeSellerType(rawSellerType);
+    if (sellerType === 'dealer') {
+      if (!dealerName || !String(dealerName).trim()) {
+        return NextResponse.json({ error: 'Dealer listings need the dealership name' }, { status: 400 });
+      }
+      if (dealerAttested !== true) {
+        return NextResponse.json({ error: 'Dealer listings require the dealer attestation' }, { status: 400 });
+      }
+    }
 
     if (!year || !make || !model || !price) {
       return NextResponse.json(
@@ -101,7 +116,8 @@ export async function POST(request: NextRequest) {
         exterior_color, interior_color, body_style, category,
         city, state, zip_code, description, ai_description,
         highlights, chris_take, photos, hero_photo,
-        status, featured, sorted_price
+        status, featured, sorted_price,
+        seller_type, dealer_name, dealer_license, dealer_fees_note
       ) VALUES (
         ${slug}, ${selectedTier}, ${isFreeEarlyAdopter},
         ${parseInt(year)}, ${cap(make, 60)}, ${cap(model, 60)}, ${cap(trim, 60)},
@@ -113,7 +129,10 @@ export async function POST(request: NextRequest) {
         ${cap(description, 8000)}, ${cap(aiDescription, 8000)},
         ${JSON.stringify((Array.isArray(highlights) ? highlights : []).slice(0, 20).map((h: unknown) => String(h).slice(0, 200)))}, ${cap(chrisTake, 4000)},
         ${JSON.stringify((Array.isArray(photos) ? photos : []).slice(0, 40).map((p: unknown) => String(p).slice(0, 500)))}, ${photos?.[0] ? String(photos[0]).slice(0, 500) : null},
-        'pending', ${isFeatured}, false
+        'pending', ${isFeatured}, false,
+        ${sellerType}, ${sellerType === 'dealer' ? cap(dealerName, 200) : null},
+        ${sellerType === 'dealer' ? cap(dealerLicense, 100) : null},
+        ${sellerType === 'dealer' ? cap(dealerFeesNote, 1000) : null}
       )
       RETURNING *
     `;

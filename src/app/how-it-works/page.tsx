@@ -245,7 +245,8 @@ export default function HowItWorksPage() {
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
             Fully Sorted is a collector car services hub first: an owner-reviewed
             directory of the people who do the work. Alongside it sits a
-            direct owner-to-owner marketplace with flat listing fees, and a
+            marketplace with flat listing fees, where every car says whether a
+            private owner or a dealer is selling it, and a
             research center built on real sold prices.
           </p>
 

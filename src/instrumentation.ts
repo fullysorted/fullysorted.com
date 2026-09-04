@@ -188,6 +188,11 @@ export async function register() {
     await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS admin_notes TEXT`;
     await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS denied_reason TEXT`;
     await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS sold_price INTEGER`;
+    // Dealer listings (2026-09-04). Same commit as the schema.ts columns.
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS seller_type VARCHAR(20) NOT NULL DEFAULT 'private'`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS dealer_name VARCHAR(200)`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS dealer_license VARCHAR(100)`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS dealer_fees_note TEXT`;
 
     // The shape /api/messages actually inserts into. This declaration used to
     // say `content`/`read`, which no code has ever written — see the repair

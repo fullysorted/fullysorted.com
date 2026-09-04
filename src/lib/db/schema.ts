@@ -71,6 +71,15 @@ export const listings = pgTable('listings', {
 
   // Ownership
   sellerId: integer('seller_id').references(() => users.id),
+  // Who is selling. 'private' (default) or 'dealer'. Dealer listings are
+  // badged and carry the disclosures in lib/dealer.ts. Columns are added at
+  // boot in src/instrumentation.ts; a bare .select() emits every column here,
+  // so schema and DB must move together or every listing page breaks.
+  sellerType: varchar('seller_type', { length: 20 }).default('private').notNull(),
+  dealerName: varchar('dealer_name', { length: 200 }),
+  dealerLicense: varchar('dealer_license', { length: 100 }),
+  /** The dealer's own fee disclosure, e.g. "$85 doc fee, tax and registration extra". */
+  dealerFeesNote: text('dealer_fees_note'),
 
   // Timestamps
   createdAt: timestamp('created_at').defaultNow().notNull(),

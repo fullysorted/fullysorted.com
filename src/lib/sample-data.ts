@@ -22,6 +22,11 @@ export interface Vehicle {
   comments: number;
   featured: boolean;
   sortedPrice: boolean;
+  /** 'private' unless a licensed dealer listed it (lib/dealer.ts). */
+  sellerType?: "private" | "dealer";
+  dealerName?: string | null;
+  dealerLicense?: string | null;
+  dealerFeesNote?: string | null;
   description: string;
   chrisTake: string;
   compAvg: number;

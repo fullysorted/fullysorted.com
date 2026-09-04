@@ -33,7 +33,7 @@ function stateOf(loc?: string | null): string {
 
 const EMPTY_FILTERS = {
   yearMin: "", yearMax: "", priceMin: "", priceMax: "",
-  transmission: "Any", condition: "Any", location: "Anywhere",
+  transmission: "Any", condition: "Any", location: "Anywhere", seller: "Any",
 };
 
 export function BrowseClient({ initialListings, hasRealListings = false }: BrowseClientProps) {
@@ -84,6 +84,8 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
         !(v.transmission ?? "").toLowerCase().includes(filters.transmission.toLowerCase())) return false;
     if (filters.condition !== "Any" && v.condition !== filters.condition) return false;
     if (filters.location !== "Anywhere" && stateOf(v.location) !== filters.location) return false;
+    if (filters.seller === "Private" && v.sellerType === "dealer") return false;
+    if (filters.seller === "Dealer" && v.sellerType !== "dealer") return false;
 
     return matchesCategory && matchesSearch;
   }), [initialListings, activeCategory, searchQuery, filters]);
@@ -131,7 +133,7 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
             </h1>
             <p className="text-sm mb-8 text-white/75">
               {hasRealListings
-                ? `${initialListings.length} ${initialListings.length === 1 ? "car" : "cars"} available · No dealers, direct from owners`
+                ? `${initialListings.length} ${initialListings.length === 1 ? "car" : "cars"} available · Private sellers and dealers, each marked as which`
                 : "No listings yet · Be the first to list your car"}
             </p>
           </motion.div>
@@ -205,7 +207,7 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
 
         {/* Filter Panel */}
         {showFilters && (
-          <div className="bg-white border border-stone-200 rounded-2xl p-5 mb-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 shadow-sm">
+          <div className="bg-white border border-stone-200 rounded-2xl p-5 mb-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 shadow-sm">
             <div>
               <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider block mb-1.5">
                 Year Range
@@ -273,6 +275,17 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
                 {locationOptions.map((loc) => (
                   <option key={loc}>{loc}</option>
                 ))}
+              </select>
+            </div>
+            <div>
+              <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider block mb-1.5">
+                Seller
+              </label>
+              <select value={filters.seller} onChange={(e) => setFilter("seller", e.target.value)}
+                className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent bg-white">
+                <option>Any</option>
+                <option>Private</option>
+                <option>Dealer</option>
               </select>
             </div>
             {filtersActive && (
