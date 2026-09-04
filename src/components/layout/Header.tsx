@@ -63,6 +63,54 @@ const navEntries: NavEntry[] = [
   { kind: "link", href: "/about", label: "About" },
 ];
 
+type DropdownItem = { href: string; label: string; desc: string; divider?: boolean };
+
+/**
+ * Hover/focus dropdown that actually closes after you pick something. The
+ * header persists across client-side navigation, so the clicked link kept
+ * focus (focus-within held the menu open) and the cursor was still over the
+ * panel (hover held it open). On click we blur the link and suppress the
+ * open state until the pointer leaves the trigger.
+ */
+function DesktopDropdown({ label, items }: { label: string; items: DropdownItem[] }) {
+  const [suppressed, setSuppressed] = useState(false);
+  const open = suppressed
+    ? ""
+    : "group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0";
+  return (
+    <div className="relative group" onMouseLeave={() => setSuppressed(false)}>
+      <button
+        type="button"
+        className="px-3 py-2 text-sm font-medium text-text-secondary group-hover:text-foreground group-focus-within:text-foreground rounded-lg group-hover:bg-surface transition-colors inline-flex items-center gap-1"
+        aria-haspopup="true"
+      >
+        {label}
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${suppressed ? "" : "group-hover:rotate-180"}`} />
+      </button>
+      <div className={`absolute left-0 top-full pt-2 w-72 opacity-0 invisible translate-y-1 ${open} transition-all duration-150 z-50`}>
+        <div className="rounded-xl bg-white border border-border shadow-[0_16px_40px_-16px_rgba(26,26,24,0.28)] p-2">
+          {items.map((it) => (
+            <div key={it.href}>
+              {it.divider && <div className="border-t border-border my-1.5" />}
+              <Link
+                href={it.href}
+                className="block px-3 py-2 rounded-lg hover:bg-surface transition-colors"
+                onClick={(e) => {
+                  e.currentTarget.blur();
+                  setSuppressed(true);
+                }}
+              >
+                <p className="text-sm font-semibold text-foreground">{it.label}</p>
+                <p className="text-xs text-text-secondary mt-0.5">{it.desc}</p>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isSignedIn, isLoaded } = useAuth();
@@ -106,25 +154,7 @@ export function Header() {
                 {entry.label}
               </Link>
             ) : (
-              <div key={entry.label} className="relative group">
-                <button className="px-3 py-2 text-sm font-medium text-text-secondary group-hover:text-foreground group-focus-within:text-foreground rounded-lg group-hover:bg-surface transition-colors inline-flex items-center gap-1">
-                  {entry.label}
-                  <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
-                </button>
-                <div className="absolute left-0 top-full pt-2 w-72 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-150 z-50">
-                  <div className="rounded-xl bg-white border border-border shadow-[0_16px_40px_-16px_rgba(26,26,24,0.28)] p-2">
-                    {entry.items.map((it) => (
-                      <div key={it.href}>
-                        {it.divider && <div className="border-t border-border my-1.5" />}
-                        <Link href={it.href} className="block px-3 py-2 rounded-lg hover:bg-surface transition-colors">
-                          <p className="text-sm font-semibold text-foreground">{it.label}</p>
-                          <p className="text-xs text-text-secondary mt-0.5">{it.desc}</p>
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <DesktopDropdown key={entry.label} label={entry.label} items={entry.items} />
             ))}
           </nav>
 
