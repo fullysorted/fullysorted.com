@@ -4,6 +4,8 @@
  */
 export const seed288Gto = {
  "slug": "ferrari/288-gto",
+ "heroPhoto": "/images/models/ferrari-288-gto.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "288 GTO",
  "generation": null,

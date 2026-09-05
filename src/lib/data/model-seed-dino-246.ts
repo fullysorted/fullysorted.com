@@ -4,6 +4,8 @@
  */
 export const seedDino246 = {
  "slug": "ferrari/dino-246",
+ "heroPhoto": "/images/models/ferrari-dino-246.jpg",
+ "heroPhotoCredit": "Photo: Pedro Ribeiro Sim\u00f5es from Lisboa, Portugal, CC BY 2.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "Dino 246",
  "generation": "Dino 246 GT and GTS",

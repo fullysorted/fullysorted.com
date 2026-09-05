@@ -204,6 +204,20 @@ export default async function ModelPage({ params }: Props) {
               <strong>{m.production_total.toLocaleString()}</strong> built · {(m.body_styles || []).join(" · ")}
             </p>
           )}
+          {m.hero_photo && (
+            <figure className="mt-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={m.hero_photo}
+                alt={`${m.make} ${m.model}${generation ? ` (${generation})` : ""}`}
+                className="w-full aspect-[3/2] object-cover rounded-2xl"
+                style={{ background: "#eee" }}
+              />
+              {m.hero_photo_credit && (
+                <figcaption className="text-xs mt-2" style={{ color: "#9a9a8a" }}>{m.hero_photo_credit}</figcaption>
+              )}
+            </figure>
+          )}
         </div>
       </div>
 

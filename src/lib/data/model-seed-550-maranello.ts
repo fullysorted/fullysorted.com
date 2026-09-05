@@ -4,6 +4,8 @@
  */
 export const seed550Maranello = {
  "slug": "ferrari/550-maranello",
+ "heroPhoto": "/images/models/ferrari-550-maranello.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "550 Maranello",
  "generation": "550 Maranello and Barchetta",

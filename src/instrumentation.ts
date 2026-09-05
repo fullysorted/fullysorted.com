@@ -475,6 +475,10 @@ export async function register() {
     await sql`CREATE INDEX IF NOT EXISTS model_contributions_status ON model_contributions(status)`;
     await sql`CREATE INDEX IF NOT EXISTS model_contributions_model ON model_contributions(model_id, status)`;
 
+    // Model-history hero photos (2026-09-05). vehicle_models is created lazily by
+    // /api/admin/seed-models, so guard the ALTER on the table existing.
+    await sql`ALTER TABLE IF EXISTS vehicle_models ADD COLUMN IF NOT EXISTS hero_photo_credit TEXT`;
+
     // ─── Chassis Register ────────────────────────────────────────────────────
     // See schema.ts: one row per car, every fact an event with a source URL.
     // vehicle_models is created lazily by /api/admin/seed-models, so the FK is

@@ -4,6 +4,8 @@
  */
 export const seed330Gtc = {
  "slug": "ferrari/330-gtc",
+ "heroPhoto": "/images/models/ferrari-330-gtc.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "330 GTC",
  "generation": "330 GTC and GTS",

@@ -4,6 +4,8 @@
  */
 export const seed360 = {
  "slug": "ferrari/360",
+ "heroPhoto": "/images/models/ferrari-360.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "360",
  "generation": "Modena, Spider, Challenge Stradale",

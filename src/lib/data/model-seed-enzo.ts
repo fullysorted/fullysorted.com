@@ -4,6 +4,8 @@
  */
 export const seedEnzo = {
  "slug": "ferrari/enzo",
+ "heroPhoto": "/images/models/ferrari-enzo.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "Enzo",
  "generation": null,

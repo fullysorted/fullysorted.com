@@ -4,6 +4,8 @@
  */
 export const seed456 = {
  "slug": "ferrari/456",
+ "heroPhoto": "/images/models/ferrari-456.jpg",
+ "heroPhotoCredit": "Photo: Charles from Port Chester, New York, CC BY 2.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "456",
  "generation": "456 GT, GTA, 456M",

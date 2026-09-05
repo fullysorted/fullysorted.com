@@ -21,7 +21,11 @@ const range = (k, lo, hi) => { const n = len(o[k]); if (n < lo) fails.push(`${k}
 for (const k of ["slug", "make", "model", "yearStart", "yearEnd", "overallConfidence"]) if (o[k] == null) fails.push(`${k} missing`);
 if (o.slug && !/^[a-z0-9-]+\/[a-z0-9-]+$/.test(o.slug)) fails.push(`slug must be make/model lowercase kebab: ${o.slug}`);
 if ("status" in o) fails.push("status must not be set (route sets draft)");
-if ("heroPhoto" in o) fails.push("heroPhoto must be omitted");
+// heroPhoto is allowed since 2026-09-05: a site-relative path under /images/models/ plus a credit line.
+if ("heroPhoto" in o && o.heroPhoto != null) {
+  if (!/^\/images\/models\/[a-z0-9-]+\.(jpg|webp)$/.test(o.heroPhoto)) fails.push(`heroPhoto must be /images/models/<slug>.jpg: ${o.heroPhoto}`);
+  if (!o.heroPhotoCredit) fails.push("heroPhotoCredit required when heroPhoto is set (Commons attribution)");
+}
 for (const k of ["generation", "generationCode", "trim"]) if (!(k in o)) fails.push(`${k} must be present (value or null)`);
 // DB column limits (VARCHAR) — an overflow 500s the whole seed run
 const lim = { make: 100, model: 200, generation: 100, generationCode: 50, trim: 200, slug: 300, overallConfidence: 20 };

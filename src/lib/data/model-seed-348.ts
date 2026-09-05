@@ -4,6 +4,8 @@
  */
 export const seed348 = {
  "slug": "ferrari/348",
+ "heroPhoto": "/images/models/ferrari-348.jpg",
+ "heroPhotoCredit": "Photo: Matti Blume, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "348",
  "generation": "TB/TS, GTB/GTS, Spider",

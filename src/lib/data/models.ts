@@ -76,6 +76,7 @@ export interface VehicleModelRow {
   common_problems: string | null;
   value_trajectory: string | null;
   hero_photo: string | null;
+  hero_photo_credit: string | null;
   overall_confidence: string | null;
   status: string;
   published_at: string | null;

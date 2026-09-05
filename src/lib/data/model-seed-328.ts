@@ -4,6 +4,8 @@
  */
 export const seed328 = {
  "slug": "ferrari/328",
+ "heroPhoto": "/images/models/ferrari-328.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "328 GTB / GTS",
  "generation": "328",

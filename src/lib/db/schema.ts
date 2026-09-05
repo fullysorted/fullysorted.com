@@ -448,6 +448,8 @@ export const vehicleModels = pgTable('vehicle_models', {
   valueTrajectory: text('value_trajectory'),
 
   heroPhoto: text('hero_photo'),
+  // Attribution for a Commons/CC hero ("Photo: Name, CC BY-SA 4.0"). Null when the photo is ours.
+  heroPhotoCredit: text('hero_photo_credit'),
 
   // Governance / truth-seeking
   overallConfidence: varchar('overall_confidence', { length: 20 }).default('medium'), // high, medium, low

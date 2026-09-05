@@ -4,6 +4,8 @@
  */
 export const seed365Gtb4Daytona = {
  "slug": "ferrari/365-gtb4-daytona",
+ "heroPhoto": "/images/models/ferrari-365-gtb4-daytona.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "365 GTB/4 Daytona",
  "generation": "Berlinetta and GTS/4 Spider",

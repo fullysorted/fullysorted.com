@@ -4,6 +4,8 @@
  */
 export const seed275Gtb = {
  "slug": "ferrari/275-gtb",
+ "heroPhoto": "/images/models/ferrari-275-gtb.jpg",
+ "heroPhotoCredit": "Photo: MrWalkr, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "275 GTB",
  "generation": "275 GTB and GTB/4",

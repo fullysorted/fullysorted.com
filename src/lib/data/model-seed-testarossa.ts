@@ -4,6 +4,8 @@
  */
 export const seedTestarossa = {
  "slug": "ferrari/testarossa",
+ "heroPhoto": "/images/models/ferrari-testarossa.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "Testarossa",
  "generation": "Testarossa",

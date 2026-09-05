@@ -65,7 +65,8 @@ export const seed308 = {
     'Wheelbase': '2,340 mm (92.1 in)',
     'Designer': 'Leonardo Fioravanti at Pininfarina; bodies built by Scaglietti',
   },
-  heroPhoto: null as string | null,
+  heroPhoto: "/images/models/ferrari-308-gtb-gts.jpg" as string | null,
+  heroPhotoCredit: "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons" as string | null,
   overallConfidence: 'high' as const,
 
   summary: `The Ferrari 308 is the car that put a mid-engined V8 Ferrari within reach of a generation — and, thanks to Magnum, P.I., into millions of living rooms. Launched at the 1975 Paris show, it marked the return of Pininfarina styling after the angular, Bertone-designed Dino 308 GT4 2+2. Leonardo Fioravanti’s shape, built by Scaglietti, is widely regarded as one of the most beautiful production Ferraris ever made.

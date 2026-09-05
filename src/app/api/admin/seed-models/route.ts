@@ -166,6 +166,7 @@ export async function POST(request: NextRequest) {
     common_problems TEXT,
     value_trajectory TEXT,
     hero_photo TEXT,
+    hero_photo_credit TEXT,
     overall_confidence VARCHAR(20) DEFAULT 'medium',
     status VARCHAR(20) NOT NULL DEFAULT 'draft',
     reviewed_by VARCHAR(255),
@@ -230,6 +231,10 @@ export async function POST(request: NextRequest) {
   const batch = SEEDS.slice(offset, offset + limit);
 
   for (const s of batch) {
+  // Optional per-seed hero photo; most seeds do not carry one yet.
+  const hero = s as unknown as { heroPhoto?: string | null; heroPhotoCredit?: string | null };
+  const heroPhoto = hero.heroPhoto ?? null;
+  const heroPhotoCredit = hero.heroPhotoCredit ?? null;
   const existing = (await sql`SELECT id FROM vehicle_models WHERE slug = ${s.slug} LIMIT 1`) as { id: number }[];
   let modelId: number;
 
@@ -245,6 +250,7 @@ export async function POST(request: NextRequest) {
         summary=${s.summary}, history=${s.history}, market_notes=${s.marketNotes},
         what_to_look_for=${s.whatToLookFor}, common_problems=${s.commonProblems},
         value_trajectory=${s.valueTrajectory}, overall_confidence=${s.overallConfidence},
+        hero_photo=COALESCE(${heroPhoto}, hero_photo), hero_photo_credit=COALESCE(${heroPhotoCredit}, hero_photo_credit),
         ai_model='human-researched (pilot)', generated_at=NOW(), updated_at=NOW()
       WHERE id=${modelId}
     `;
@@ -257,13 +263,13 @@ export async function POST(request: NextRequest) {
         (slug, make, model, generation, generation_code, year_start, year_end,
          body_styles, engines, production_total, production_notes, notable_trims, specs,
          summary, history, market_notes, what_to_look_for, common_problems, value_trajectory,
-         overall_confidence, status, ai_model, generated_at)
+         overall_confidence, status, ai_model, generated_at, hero_photo, hero_photo_credit)
       VALUES
         (${s.slug}, ${s.make}, ${s.model}, ${s.generation}, ${s.generationCode}, ${s.yearStart}, ${s.yearEnd},
          ${JSON.stringify(s.bodyStyles)}, ${JSON.stringify(s.engines)}, ${s.productionTotal}, ${s.productionNotes},
          ${JSON.stringify(s.notableTrims)}, ${JSON.stringify(s.specs)},
          ${s.summary}, ${s.history}, ${s.marketNotes}, ${s.whatToLookFor}, ${s.commonProblems}, ${s.valueTrajectory},
-         ${s.overallConfidence}, 'draft', 'human-researched (pilot)', NOW())
+         ${s.overallConfidence}, 'draft', 'human-researched (pilot)', NOW(), ${heroPhoto}, ${heroPhotoCredit})
       RETURNING id
     `) as { id: number }[];
     modelId = inserted[0].id;

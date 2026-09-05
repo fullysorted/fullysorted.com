@@ -4,6 +4,8 @@
  */
 export const seedF355 = {
  "slug": "ferrari/f355",
+ "heroPhoto": "/images/models/ferrari-f355.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "F355",
  "generation": "F355",

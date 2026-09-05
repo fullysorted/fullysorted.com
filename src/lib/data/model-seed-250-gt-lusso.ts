@@ -4,6 +4,8 @@
  */
 export const seed250GtLusso = {
  "slug": "ferrari/250-gt-lusso",
+ "heroPhoto": "/images/models/ferrari-250-gt-lusso.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "250 GT Lusso",
  "generation": "Tipo 168/U (Berlinetta Lusso)",

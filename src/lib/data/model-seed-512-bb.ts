@@ -4,6 +4,8 @@
  */
 export const seed512Bb = {
  "slug": "ferrari/512-bb",
+ "heroPhoto": "/images/models/ferrari-512-bb.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "512 BB",
  "generation": "512 BB and BBi",

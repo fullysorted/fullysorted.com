@@ -14,6 +14,7 @@ export interface ModelCardItem {
   year_end: number | null;
   production_total: number | null;
   summary: string | null;
+  hero_photo?: string | null;
   overall_confidence: string | null;
   source_count: number;
   claim_count: number;
@@ -51,6 +52,16 @@ export function ModelCard({ m, showMake = true }: { m: ModelCardItem; showMake?:
       className="flex flex-col p-5 bg-white hover:shadow-md hover:-translate-y-0.5 transition-all group rounded-xl"
       style={{ border: "1px solid rgba(0,0,0,0.08)", borderTop: "2px solid #1a1a18" }}
     >
+      {m.hero_photo && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={m.hero_photo}
+          alt={`${m.make} ${m.model}`}
+          loading="lazy"
+          className="w-full aspect-[3/2] object-cover rounded-lg mb-4"
+          style={{ background: "#eee" }}
+        />
+      )}
       {showMake && (
         <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#6b6b5e" }}>{m.make}</span>
       )}

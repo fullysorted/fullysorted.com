@@ -4,6 +4,8 @@
  */
 export const seedF40 = {
  "slug": "ferrari/f40",
+ "heroPhoto": "/images/models/ferrari-f40.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "F40",
  "generation": "F40",
