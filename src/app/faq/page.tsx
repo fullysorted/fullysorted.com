@@ -119,7 +119,7 @@ const SECTIONS: FaqSection[] = [
     items: [
       {
         q: "What does it cost to be listed?",
-        a: "Founding specialists list free while we are building out the directory. There are two ways to be on here: a directory profile, where owners find you and request quotes, and fixed-price gigs, where you package what you do at a set price and owners book it directly.",
+        a: "The first 100 specialists to join are founding members, and founding members lock in a free directory listing for life. We may one day offer paid tools to shops, but nobody will ever pay to appear in the directory ahead of anyone else, and a founding member's listing stays free whatever we add later. There are two ways to be on here: a directory profile, where owners find you and request quotes, and fixed-price gigs, where you package what you do at a set price and owners book it directly.",
         link: { href: "/services/apply", label: "Get listed" },
       },
       {

@@ -62,9 +62,9 @@ export default function PricingPage() {
       <section className="bg-accent text-white py-5">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <p className="text-lg font-semibold">
-            Early on purpose: founding specialists are listed <strong>free</strong>, and the
-            first {FREE_LISTINGS_THRESHOLD} cars listed are <strong>free</strong> too.
-            Get in early.
+            Early on purpose: the first 100 specialists to join are founding members and
+            <strong> lock in a free listing for life</strong>. The first {FREE_LISTINGS_THRESHOLD} cars
+            listed are <strong>free</strong> too. Get in early.
           </p>
         </div>
       </section>
@@ -103,7 +103,7 @@ export default function PricingPage() {
             {
               title: "What the provider will pay",
               price: PLATFORM_FEE_PCT_LABEL,
-              body: `When fixed-price gigs open, we'll take ${PLATFORM_FEE_PCT_LABEL} of a completed gig, deducted from the provider payout. Listing a business and receiving quote requests is free.`,
+              body: `When fixed-price gigs open, we'll take ${PLATFORM_FEE_PCT_LABEL} of a completed gig, deducted from the provider payout. Listing a business and receiving quote requests is free today, and the first 100 founding specialists keep it free for life.`,
               highlight: false,
             },
           ].map((c) => (

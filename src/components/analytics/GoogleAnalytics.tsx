@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import { useConsent } from "./useConsent";
 
 /**
  * Google Analytics 4 (gtag.js).
@@ -45,7 +46,10 @@ const DEFAULT_GA_ID = "GT-5DC8S73";
 
 export function GoogleAnalytics() {
   const gaId = process.env.NEXT_PUBLIC_GA_ID || DEFAULT_GA_ID;
-  if (!gaId) return null;
+  // Analytics is not an essential cookie. It loads only after "Accept all"
+  // in the cookie banner (see lib/consent.ts); GPC forces it off.
+  const consent = useConsent();
+  if (!gaId || consent !== "all") return null;
 
   return (
     <>

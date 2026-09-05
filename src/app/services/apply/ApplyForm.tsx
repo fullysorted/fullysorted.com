@@ -178,7 +178,7 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
 
       <div className="grid md:grid-cols-3 gap-6 mb-12">
         {[
-          { Icon: Shield, color: 'text-accent', title: 'Free for founding providers', body: 'Founding specialists are listed free while we build out the directory, with founding-provider placement.' },
+          { Icon: Shield, color: 'text-accent', title: 'Free for life for founding providers', body: 'The first 100 specialists to join are founding members. Your directory listing is free now and stays free for life, whatever we add later.' },
           { Icon: Star, color: 'text-blue', title: 'In front of serious collectors', body: 'The people searching this directory are actively buying and maintaining collector cars.' },
           { Icon: Sparkles, color: 'text-gold', title: 'Inquiries come straight to you', body: 'An owner who picks you emails you. We do not fan your inquiry out to four competitors.' },
         ].map(({ Icon, color, title, body }, i) => (

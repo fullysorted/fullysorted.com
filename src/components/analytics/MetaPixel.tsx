@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import { useConsent } from "./useConsent";
 
 /**
  * Meta (Facebook) Pixel base code.
@@ -13,7 +14,11 @@ import Script from "next/script";
  */
 export function MetaPixel() {
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
-  if (!pixelId) return null;
+  // Loads only after the visitor chooses "Accept all" (see lib/consent.ts).
+  // The Meta Pixel is "sharing" for cross-context advertising under the CPRA,
+  // so it must be off by default and off whenever Global Privacy Control is on.
+  const consent = useConsent();
+  if (!pixelId || consent !== "all") return null;
 
   return (
     <>

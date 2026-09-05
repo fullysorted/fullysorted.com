@@ -159,8 +159,8 @@ export function Footer() {
         >
           <p className="text-xs" style={{ color: "rgba(230,238,247,0.38)" }}>
             &copy; {new Date().getFullYear()} Fully Sorted. All rights reserved. &nbsp;·&nbsp;{" "}
-            <Link href="/privacy" className="hover:text-white transition-colors" style={{ color: "rgba(230,238,247,0.38)" }}>
-              Do Not Sell My Info
+            <Link href="/privacy#your-choices" className="hover:text-white transition-colors" style={{ color: "rgba(230,238,247,0.38)" }}>
+              Do Not Sell or Share My Personal Information
             </Link>
           </p>
           <div className="flex items-center gap-6">
