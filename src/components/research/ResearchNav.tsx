@@ -9,6 +9,7 @@ import {
   Gavel,
   Ship,
   Library,
+  Hash,
 } from "lucide-react";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
@@ -35,6 +36,7 @@ import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
  */
 export type ResearchSection =
   | "models"
+  | "register"
   | "guides"
   | "value"
   | "compare"
@@ -61,6 +63,14 @@ const ITEMS: Item[] = [
     blurb: "Cited history, specs and production, model by model",
     group: "car",
     icon: <BookOpen className="w-4 h-4" />,
+  },
+  {
+    key: "register",
+    href: "/register",
+    label: "Chassis Register",
+    blurb: "Individual cars by chassis number, every fact with a source",
+    group: "car",
+    icon: <Hash className="w-4 h-4" />,
   },
   {
     key: "guides",

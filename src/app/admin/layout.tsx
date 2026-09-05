@@ -17,6 +17,7 @@ import {
   ExternalLink,
   Zap,
   Star,
+  Hash,
 } from "lucide-react";
 
 const nav = [
@@ -30,6 +31,7 @@ const nav = [
   // The model-contribution review queue. It is the destination the provider
   // notification email points at, and it was in no nav.
   { href: "/admin/contributions", label: "Contributions", icon: MessageSquare },
+  { href: "/admin/register", label: "Register", icon: Hash },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

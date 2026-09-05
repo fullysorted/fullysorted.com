@@ -4,6 +4,7 @@ import { events } from "@/lib/events";
 import { getPublishedModels } from "@/lib/data/models";
 import { getActiveGigs } from "@/lib/data/gigs";
 import { getPublicProviderSlugs } from "@/lib/data/providers";
+import { getRegisterModels, getAllPublishedChassisPaths } from "@/lib/data/register";
 import { PROVIDER_TRACKS } from "@/lib/data/providerTracks";
 import { isServiceCategory } from "@/lib/service-categories";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
@@ -29,6 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/research/glossary`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     // Was absent despite carrying its own metadata and canonical.
     { url: `${base}/research/compare`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${base}/register`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${base}/gigs`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/vin`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
@@ -139,6 +141,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     listingPages = [];
   }
 
+  // Chassis Register: model registers and every published chassis page
+  // (empty at build with no DB — safe).
+  let registerPages: MetadataRoute.Sitemap = [];
+  try {
+    const { data: registerModels } = await getRegisterModels();
+    registerPages = registerModels.map((m) => ({
+      url: `${base}/register/${m.model_slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+    const chassisPaths = await getAllPublishedChassisPaths();
+    for (const c of chassisPaths) {
+      registerPages.push({
+        url: `${base}/register/${c.model_slug}/${encodeURIComponent(c.chassis)}`,
+        lastModified: c.updated_at ? new Date(c.updated_at) : now,
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      });
+    }
+  } catch {
+    registerPages = [];
+  }
+
   // Active public gigs (empty at build with no DB — safe).
   let gigPages: MetadataRoute.Sitemap = [];
   try {
@@ -153,5 +179,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     gigPages = [];
   }
 
-  return [...staticPages, ...trackPages, ...articlePages, ...eventPages, ...modelPages, ...providerPages, ...gigPages, ...listingPages];
+  return [...staticPages, ...trackPages, ...articlePages, ...eventPages, ...modelPages, ...registerPages, ...providerPages, ...gigPages, ...listingPages];
 }

@@ -475,6 +475,81 @@ export async function register() {
     await sql`CREATE INDEX IF NOT EXISTS model_contributions_status ON model_contributions(status)`;
     await sql`CREATE INDEX IF NOT EXISTS model_contributions_model ON model_contributions(model_id, status)`;
 
+    // ─── Chassis Register ────────────────────────────────────────────────────
+    // See schema.ts: one row per car, every fact an event with a source URL.
+    // vehicle_models is created lazily by /api/admin/seed-models, so the FK is
+    // nullable and the register keys on model_slug; model_id is a convenience.
+    await sql`
+      CREATE TABLE IF NOT EXISTS registry_chassis (
+        id SERIAL PRIMARY KEY,
+        model_id INTEGER,
+        model_slug VARCHAR(300) NOT NULL,
+        chassis VARCHAR(64) NOT NULL,
+        vin VARCHAR(32),
+        build_year INTEGER,
+        variant VARCHAR(80),
+        market_spec VARCHAR(40),
+        exterior_color VARCHAR(80),
+        interior_color VARCHAR(80),
+        engine_number VARCHAR(64),
+        notes TEXT,
+        confidence VARCHAR(20) DEFAULT 'medium',
+        status VARCHAR(20) NOT NULL DEFAULT 'published',
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        UNIQUE (model_slug, chassis)
+      )
+    `;
+    await sql`CREATE INDEX IF NOT EXISTS registry_chassis_model ON registry_chassis(model_slug, status)`;
+    await sql`CREATE INDEX IF NOT EXISTS registry_chassis_vin ON registry_chassis(vin)`;
+    await sql`
+      CREATE TABLE IF NOT EXISTS registry_events (
+        id SERIAL PRIMARY KEY,
+        chassis_id INTEGER NOT NULL REFERENCES registry_chassis(id) ON DELETE CASCADE,
+        event_type VARCHAR(30) NOT NULL,
+        event_date VARCHAR(10),
+        title VARCHAR(300) NOT NULL,
+        venue VARCHAR(200),
+        location VARCHAR(200),
+        outcome VARCHAR(30),
+        price_amount NUMERIC(14,2),
+        price_currency VARCHAR(3),
+        estimate_low NUMERIC(14,2),
+        estimate_high NUMERIC(14,2),
+        mileage INTEGER,
+        mileage_unit VARCHAR(5),
+        details TEXT,
+        source_url TEXT NOT NULL,
+        source_title VARCHAR(300),
+        source_publisher VARCHAR(120),
+        source_type VARCHAR(30),
+        status VARCHAR(20) NOT NULL DEFAULT 'confirmed',
+        conflict_note TEXT,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+    await sql`CREATE INDEX IF NOT EXISTS registry_events_chassis ON registry_events(chassis_id, event_date)`;
+    await sql`
+      CREATE TABLE IF NOT EXISTS registry_submissions (
+        id SERIAL PRIMARY KEY,
+        model_slug VARCHAR(300) NOT NULL,
+        chassis VARCHAR(64) NOT NULL,
+        vin VARCHAR(32),
+        kind VARCHAR(20) NOT NULL DEFAULT 'event',
+        body TEXT NOT NULL,
+        event_date VARCHAR(10),
+        source_url TEXT,
+        submitter_name VARCHAR(255),
+        submitter_email VARCHAR(255),
+        submitter_relation VARCHAR(40),
+        status VARCHAR(20) NOT NULL DEFAULT 'pending',
+        admin_note TEXT,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        reviewed_at TIMESTAMP
+      )
+    `;
+    await sql`CREATE INDEX IF NOT EXISTS registry_submissions_status ON registry_submissions(status)`;
+
     console.log('[Fully Sorted] DB schema verified/migrated on startup.');
   } catch (err) {
     // Never crash the server over a migration — just log

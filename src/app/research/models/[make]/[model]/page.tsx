@@ -14,6 +14,7 @@ import { ContributeBox } from "@/components/research/ContributeBox";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 import { renderMarkdownLite as renderMarkdown } from "@/lib/markdown-lite";
 import { MarqueNotice } from "@/components/research/MarqueNotice";
+import { getRegisterCountForModel } from "@/lib/data/register";
 
 export const revalidate = 3600;
 
@@ -105,6 +106,7 @@ export default async function ModelPage({ params }: Props) {
 
   const snapshot = await getModelMarketSnapshot(m.make, m.model);
   const forSale = await getActiveListingsForModel(m.make, m.model);
+  const registerCount = await getRegisterCountForModel(m.slug);
 
   const name = modelDisplayName(m);
   // "F40 (F40)": a generation that merely repeats the model name is noise.
@@ -336,6 +338,16 @@ export default async function ModelPage({ params }: Props) {
 
           {/* Sidebar */}
           <div className="space-y-6">
+            {/* Chassis register cross-link, only when there is one to open. */}
+            {registerCount > 0 && (
+              <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#6b6b5e" }}>Chassis register</p>
+                <p className="text-sm mb-2" style={{ color: "#1a1a18" }}>{registerCount.toLocaleString()} {registerCount === 1 ? "car" : "cars"} recorded by chassis number</p>
+                <Link href={`/register/${m.slug}`} className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
+                  Open the register <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            )}
             {/* Specs */}
             {m.specs && Object.keys(m.specs).length > 0 && (
               <div className="rounded-2xl bg-white overflow-hidden" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>

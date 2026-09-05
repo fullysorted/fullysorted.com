@@ -509,6 +509,38 @@ export async function notifyModelContribution(d: {
   });
 }
 
+// A reader submits a record, a correction or an ownership note to the Chassis
+// Register. Pending until approved in /admin/register. The submitter's name
+// and email go to Chris only and are never rendered on the register.
+export async function notifyRegisterSubmission(d: {
+  modelSlug: string;
+  chassis: string;
+  vin?: string | null;
+  kind: string;
+  body: string;
+  eventDate?: string | null;
+  sourceUrl?: string | null;
+  relation?: string | null;
+  name?: string | null;
+  email?: string | null;
+}) {
+  const kindLabel = d.kind === "correction" ? "Correction" : d.kind === "ownership" ? "Owner report" : "Record";
+  return sendEmail({
+    subject: `Register ${kindLabel.toLowerCase()}: ${d.modelSlug} chassis ${d.chassis}`,
+    html: `
+      <h2>Chassis register: ${esc(kindLabel)}</h2>
+      <p><strong>Model:</strong> ${esc(d.modelSlug)}<br/>
+         <strong>Chassis:</strong> ${esc(d.chassis)}${d.vin ? `<br/><strong>VIN:</strong> ${esc(d.vin)}` : ""}${d.eventDate ? `<br/><strong>Date:</strong> ${esc(d.eventDate)}` : ""}</p>
+      <blockquote style="border-left:3px solid #1E6091;padding-left:12px;color:#333">
+        ${esc(d.body).replace(/\n/g, "<br/>")}
+      </blockquote>
+      ${d.sourceUrl ? `<p><strong>Source given:</strong> <a href="${safeUrl(d.sourceUrl)}">${esc(d.sourceUrl)}</a></p>` : "<p><em>No source supplied. If approved, the event will cite the submission itself.</em></p>"}
+      <p><strong>From:</strong> ${esc(d.name || "anonymous")}${d.email ? ` &lt;${esc(d.email)}&gt;` : ""}${d.relation ? `, ${esc(d.relation.replace(/_/g, " "))}` : ""}</p>
+      <p style="color:#6b6b5e;font-size:13px">Nothing is public until you approve it in /admin/register. Approval publishes an owner-reported event; the name and email stay private.</p>
+    `,
+  });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Provider reviews — client invite + moderation notice
 // ─────────────────────────────────────────────────────────────────────────────

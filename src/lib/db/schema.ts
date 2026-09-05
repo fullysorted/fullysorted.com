@@ -572,6 +572,80 @@ export const providerReviews = pgTable('provider_reviews', {
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
+// ─── Chassis Register ───────────────────────────────────────────────────────
+// One row per physical car, keyed by model slug + chassis number. The register
+// never asserts a car's history in prose: every fact about a chassis is an
+// EVENT row with a source URL, and the page renders the events it has and says
+// plainly where the record is silent. Nothing here is generated; an LLM only
+// ever extracts a fact from a cited page into a row. Owner submissions land in
+// registry_submissions and reach these tables only after admin approval.
+// Owner names are never stored on a chassis or event row (privacy), only public
+// facts already published by the cited source.
+export const registryChassis = pgTable('registry_chassis', {
+  id: serial('id').primaryKey(),
+  modelId: integer('model_id').references(() => vehicleModels.id, { onDelete: 'set null' }),
+  modelSlug: varchar('model_slug', { length: 300 }).notNull(), // "ferrari/f40"
+  chassis: varchar('chassis', { length: 64 }).notNull(),       // canonical serial, e.g. "84028"
+  vin: varchar('vin', { length: 32 }),                          // full VIN where the source published it
+  buildYear: integer('build_year'),                             // model year as titled by the source
+  variant: varchar('variant', { length: 80 }),                  // "F40", "F40 LM", "F40 GTE", "F40 Competizione"
+  marketSpec: varchar('market_spec', { length: 40 }),           // "US", "Europe", "Japan" ... only when sourced
+  exteriorColor: varchar('exterior_color', { length: 80 }),
+  interiorColor: varchar('interior_color', { length: 80 }),
+  engineNumber: varchar('engine_number', { length: 64 }),
+  notes: text('notes'),                                         // factual, cited-in-events only
+  confidence: varchar('confidence', { length: 20 }).default('medium'),
+  status: varchar('status', { length: 20 }).default('published').notNull(), // published | draft | hidden
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+export const registryEvents = pgTable('registry_events', {
+  id: serial('id').primaryKey(),
+  chassisId: integer('chassis_id').references(() => registryChassis.id, { onDelete: 'cascade' }).notNull(),
+  eventType: varchar('event_type', { length: 30 }).notNull(),   // auction | private_sale | listing | show | registry | factory | service | article
+  eventDate: varchar('event_date', { length: 10 }),             // ISO date or partial: "2019-08-16", "2019-08", "2019"
+  title: varchar('title', { length: 300 }).notNull(),           // "RM Sotheby's Monterey, Lot 245"
+  venue: varchar('venue', { length: 200 }),                     // "RM Sotheby's"
+  location: varchar('location', { length: 200 }),               // "Monterey, California"
+  outcome: varchar('outcome', { length: 30 }),                  // sold | not_sold | withdrawn | listed | shown | unknown
+  priceAmount: decimal('price_amount', { precision: 14, scale: 2 }),
+  priceCurrency: varchar('price_currency', { length: 3 }),
+  estimateLow: decimal('estimate_low', { precision: 14, scale: 2 }),
+  estimateHigh: decimal('estimate_high', { precision: 14, scale: 2 }),
+  mileage: integer('mileage'),
+  mileageUnit: varchar('mileage_unit', { length: 5 }),          // mi | km
+  details: text('details'),                                     // our own short factual note, never copied lot text
+  sourceUrl: text('source_url').notNull(),
+  sourceTitle: varchar('source_title', { length: 300 }),
+  sourcePublisher: varchar('source_publisher', { length: 120 }),
+  sourceType: varchar('source_type', { length: 30 }),           // auction-house | market-data | registry | journalism | manufacturer | club-forum | owner
+  status: varchar('status', { length: 20 }).default('confirmed').notNull(), // confirmed | disputed | owner_reported
+  conflictNote: text('conflict_note'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+// Public submissions ("I own this car", "this record is wrong", "add this
+// event"). Mirrors model_contributions: pending until an admin acts, and the
+// approve path is the ONLY way a submission becomes a chassis or event row.
+export const registrySubmissions = pgTable('registry_submissions', {
+  id: serial('id').primaryKey(),
+  modelSlug: varchar('model_slug', { length: 300 }).notNull(),
+  chassis: varchar('chassis', { length: 64 }).notNull(),
+  vin: varchar('vin', { length: 32 }),
+  kind: varchar('kind', { length: 20 }).default('event').notNull(), // event | correction | ownership
+  body: text('body').notNull(),
+  eventDate: varchar('event_date', { length: 10 }),
+  sourceUrl: text('source_url'),
+  submitterName: varchar('submitter_name', { length: 255 }),
+  submitterEmail: varchar('submitter_email', { length: 255 }),
+  submitterRelation: varchar('submitter_relation', { length: 40 }), // owner | former_owner | dealer | historian | other
+  status: varchar('status', { length: 20 }).default('pending').notNull(), // pending | approved | rejected
+  adminNote: text('admin_note'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  reviewedAt: timestamp('reviewed_at'),
+});
+
 // Type exports for use in components
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -591,3 +665,6 @@ export type GigPackage = typeof gigPackages.$inferSelect;
 export type GigOrder = typeof gigOrders.$inferSelect;
 export type ProviderReview = typeof providerReviews.$inferSelect;
 export type NewProviderReview = typeof providerReviews.$inferInsert;
+export type RegistryChassis = typeof registryChassis.$inferSelect;
+export type RegistryEvent = typeof registryEvents.$inferSelect;
+export type RegistrySubmission = typeof registrySubmissions.$inferSelect;
