@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { AI_ASSIST_ENABLED } from '@/lib/features';
 import { motion } from 'framer-motion';
 import { trackMetaEvent } from '@/components/analytics/MetaPixel';
+import { trackGaEvent } from '@/components/analytics/GoogleAnalytics';
 import {
   Sparkles, Loader2, CheckCircle2, ChevronRight, ChevronLeft,
   Car, DollarSign, FileText, Send, CreditCard, Star, Zap, Lock
@@ -183,6 +184,9 @@ export default function SellForm() {
         value: tierValue,
         currency: 'USD',
       });
+
+      // GA4 key event: listing created, checkout about to start.
+      trackGaEvent('listing_checkout', { tier: form.tier, value: tierValue, currency: 'USD' });
 
       // Step 2: Create checkout session (tier-aware, free check happens server-side)
       const checkoutRes = await fetch('/api/checkout', {

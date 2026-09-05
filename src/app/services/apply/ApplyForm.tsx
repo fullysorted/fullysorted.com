@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 import { WORK_SETTINGS, TEAM_SIZES, type WorkSettingKey } from '@/lib/work-settings';
 import PhotoUpload from '@/components/media/PhotoUpload';
+import { trackGaEvent } from '@/components/analytics/GoogleAnalytics';
 
 const CATEGORIES = CATEGORY_OPTIONS;
 
@@ -87,8 +88,11 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
         }),
       });
       const data = await res.json();
-      if (res.ok) setSubmitted(true);
-      else {
+      if (res.ok) {
+        setSubmitted(true);
+        // GA4 key event: a shop applied to list.
+        trackGaEvent('provider_apply', { work_settings: workSettings.join('|') });
+      } else {
         setDuplicate(!!data.duplicate);
         setError(data.error || 'Something went wrong. Please try again.');
       }

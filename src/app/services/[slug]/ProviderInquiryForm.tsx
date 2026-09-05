@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Loader2, Send, Check, Plus, Minus } from 'lucide-react';
+import { trackGaEvent } from '@/components/analytics/GoogleAnalytics';
 
 // On-site inquiry form for a provider profile.
 //
@@ -127,6 +128,8 @@ export default function ProviderInquiryForm({
       if (!res.ok) throw new Error(data.error || "Couldn't send. Try again in a moment.");
       setRelayed(!!data.relayed);
       setSent(true);
+      // GA4 key event: an enquiry reached a shop. Provider slug only, never PII.
+      trackGaEvent('provider_enquiry', { provider: slug, has_brief: !!buildBrief() });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Couldn't send. Try again in a moment.");
     } finally {
