@@ -1,5 +1,8 @@
-# Fully Sorted — Welcome to AI crawlers and search engines
+# Fully Sorted. AI crawlers and search engines are welcome.
 # https://fullysorted.com
+#
+# Machine-readable index for AI assistants: https://fullysorted.com/llms.txt
+# Sitemap: https://fullysorted.com/sitemap.xml
 
 User-agent: *
 Allow: /
@@ -12,26 +15,92 @@ Disallow: /team
 Disallow: /dashboard
 Disallow: /orders
 Disallow: /review/
+Disallow: /lead/
 Disallow: /services/claim/
 Disallow: /services/link/
 Disallow: /sign-in
 Disallow: /sign-up
 Disallow: /api/
 
-# AI Crawlers — explicitly allowed
+# AI crawlers, explicitly allowed by name. Training crawlers, search-index
+# crawlers and live user-triggered fetchers are all listed; the Disallow
+# block above still applies to each of them.
+
+# OpenAI
 User-agent: GPTBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google
+User-agent: Googlebot
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
 
-User-agent: Googlebot
+# Microsoft / Bing / Copilot
+User-agent: Bingbot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckAssistBot
+Allow: /
+
+# Common Crawl (feeds most open-web training sets)
+User-agent: CCBot
+Allow: /
+
+# Others
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: MistralAI-User
 Allow: /
 
 Sitemap: https://fullysorted.com/sitemap.xml

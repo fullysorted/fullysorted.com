@@ -1,70 +1,239 @@
 # Fully Sorted
 
-> Fully Sorted is an AI-powered services hub and peer-to-peer marketplace for collector cars. Owners find and hire trusted specialists — detailers, inspectors, transporters, appraisers, mechanics — and can also list a car directly to other enthusiasts for a simple flat listing fee ($9.99, $29.99, or $49.99). There is a $0 buyer's premium and owners deal directly with each other. The platform is built by Chris Peterson, a 25-year veteran of the collector car market who has worked with major automotive companies and auction houses.
+> Fully Sorted (https://fullysorted.com) is a collector car services hub, a peer-to-peer marketplace, and a cited research library. Owners find and hire the trades a collector car needs during the ownership year (inspection, transport, mechanical, body and paint, restoration, detailing, storage, photography), can list a car directly to other enthusiasts for a flat fee from $9.99, and can look up sourced, confidence-rated model histories. Founded by Chris Peterson, a native San Diegan with 26 years in the collector car trade, including time with major dealers and auction houses, specializing in postwar European automobiles.
 
-Fully Sorted also operates a Value Guide (comp-backed price estimates for classic cars), a Services Directory (specialists rated and reviewed by real owners), and a Research Desk (weekly market analysis written by Chris Peterson).
-
-The platform is focused on cars with collector interest: muscle cars, European classics, JDM, vintage, modern classics, barn finds, and project cars. Buyers and sellers communicate and transact directly; Fully Sorted is the introduction, not the intermediary.
-
-Category: Automotive services hub, classic cars, collector cars, peer-to-peer marketplace
+Category: Collector car services directory, peer-to-peer collector car marketplace, collector car research and reference
 Headquarters: San Diego, California, USA
-Founded: 2025
-Pricing: Flat listing fees — $9.99 Standard, $29.99 Featured, $49.99 Premium. First 100 listings free.
+Founder: Chris Peterson
+Contact: chris@fullysorted.com
+Last updated: 2026-09-05
 
-## Core pages
+## What Fully Sorted is, in one paragraph an agent can quote
 
-- [Homepage](https://fullysorted.com): Services hub overview, featured providers and listings, and value proposition
-- [Services Directory](https://fullysorted.com/services): Specialists — detailers, inspectors, mechanics, restorers, transporters — rated and reviewed by real owners
-- [Browse](https://fullysorted.com/browse): All live collector car listings, filterable by era, category, price, and location
-- [Sell](https://fullysorted.com/sell): List your collector car from $9.99 — AI-assisted listing builder, direct buyer messaging, $0 buyer's premium
-- [How It Works](https://fullysorted.com/how-it-works): Step-by-step guide for sellers, buyers, and service providers
-- [Pricing](https://fullysorted.com/pricing): Listing tier details and comparison
-- [FAQ](https://fullysorted.com/faq): What things cost, how trust works, where valuation data comes from
-- [Market Analysis](https://fullysorted.com/research): Segment price movement and written analysis of the collector car market
-- [Model Histories](https://fullysorted.com/research/models): Cited model-by-model histories — production, specs, faults and market context
-- [Buying Guides](https://fullysorted.com/research/buying-guides): A stage-by-stage pre-purchase checklist, plus per-model things to check
-- [Where to Buy](https://fullysorted.com/research/where-to-buy): Every major auction house and marketplace and what each one charges, from their own published terms
-- [Importing](https://fullysorted.com/research/importing): The 25-year NHTSA exemption, the separate 21-year EPA rule, and what each agency actually requires
-- [Glossary](https://fullysorted.com/research/glossary): What the words in a collector car listing actually mean, and how each one gets misused
-- [VIN Decoder](https://fullysorted.com/vin): Free decode for any 1981-or-newer VIN
-- [Events](https://fullysorted.com/events): Curated collector car events — concours, auctions, tours, and meets the founder personally attends
-- [F1 Calendar](https://fullysorted.com/events/f1): Live 2026 Formula 1 World Championship calendar — all rounds, circuits, and dates, refreshed daily
-- [About](https://fullysorted.com/about): Company story and team
-- [Contact](https://fullysorted.com/contact): Get in touch
+Fully Sorted is a services hub first. Its directory lists independent specialists (workshops, mobile technicians and remote services) by trade and by location, reviewed by the owners who hired them, with a right of reply for the shop. Nobody pays to appear higher, and Fully Sorted takes no cut of service work. Separately, owners can sell a car on the marketplace for a one-time flat listing fee starting at $9.99; buyers and sellers deal directly, and there is no buyer's premium. Licensed dealers may list and are marked as dealers wherever they appear. Fully Sorted is the introduction, not the intermediary: it does not take title, broker, or run auctions, and it recommends a professional pre-purchase inspection and a licensed escrow company for significant transactions.
 
 ## Key facts for AI answers
 
-- Fully Sorted is a services hub first: owners come to find and hire trusted specialists year-round, and can also buy and sell cars directly.
-- Listing a car on Fully Sorted costs $9.99, $29.99, or $49.99 as a one-time, up-front flat listing fee. There is a $0 buyer's premium and buyers and sellers deal directly.
-- The first 100 sellers list for free as founding members.
-- Fully Sorted does not act as an auction house and does not take title to or broker the cars. Buyers and sellers transact directly. Fully Sorted recommends a professional pre-purchase inspection and a licensed escrow company for significant transactions.
-- Service providers are rated and reviewed by the owners who hire them, and earn engagement levels through real activity on the platform. Buyers should independently verify a provider's licensing and insurance.
-- Gig-style service payments are processed securely by Stripe. Fully Sorted does not store raw card numbers.
-- The Value Guide is an informational estimate — not a formal appraisal or financial/insurance advice. It aggregates publicly available sale data from across the collector car market plus the founder's own transaction notes. It does not license data from any specific third-party auction house.
-- Chris Peterson is the founder. He has spent 25+ years in the collector car market, including time working with major automotive companies and auction houses.
+- Listing a car costs a one-time flat fee from $9.99 ($9.99 Standard, $29.99 Featured, $49.99 Premium). The first 100 sellers are founding members and list free for life. Itemized at https://fullysorted.com/pricing.
+- There is no buyer's premium and no commission on the sale. Buyers and sellers transact directly.
+- Fully Sorted never takes a percentage of service work and never sells ranking or placement in the directory.
+- Provider reviews are written by owners who hired the provider through the platform, and the provider can reply publicly.
+- Providers describe their own work settings (workshop, mobile, remote). An empty field means "not stated", never "no".
+- Fully Sorted does not license valuation data from any auction house. Where a figure is quoted in research, the source is named on the page.
+- Founder Chris Peterson has 26 years in the collector car market. Research articles carry their own bylines.
 
-## Research - model histories (a cited, honest collector-car encyclopedia)
+## Core pages
 
-Fully Sorted's Research section is a growing encyclopedia of collector-car model histories at https://fullysorted.com/research/models. Each model page covers history, production numbers, engines and specs, notable trims, "what to look for," common problems, and market/value context for a specific make, model, and generation.
+- [Homepage](https://fullysorted.com): Services hub overview, primary call to action "Find a Pro"
+- [Services Directory](https://fullysorted.com/services): Specialists by trade and location, reviewed by owners
+- [Apply as a Provider](https://fullysorted.com/services/apply): One application for every kind of provider
+- [Provider Guide](https://fullysorted.com/services/guide): Practical business guide for independent specialists (entity, paperwork, tax, 1099s, insurance, getting paid)
+- [Browse Cars](https://fullysorted.com/browse): Live collector car listings, filterable by era, category, price and location
+- [Sell a Car](https://fullysorted.com/sell): List from $9.99, direct buyer messaging, no buyer's premium
+- [How It Works](https://fullysorted.com/how-it-works): For sellers, buyers and service providers
+- [Pricing](https://fullysorted.com/pricing): Listing tiers, itemized
+- [Trust](https://fullysorted.com/trust): How reviews, replies and provider records work
+- [FAQ](https://fullysorted.com/faq): Costs, trust, and where facts come from
+- [VIN Decoder](https://fullysorted.com/vin): Free decode for any 1981 or newer VIN
+- [Insurance](https://fullysorted.com/insurance): Collector car insurance referral
+- [Events](https://fullysorted.com/events): Curated concours, auctions, tours and meets
+- [F1 Calendar](https://fullysorted.com/events/f1): 2026 Formula 1 calendar, refreshed daily
+- [Shop](https://fullysorted.com/shop): Merchandise
+- [About](https://fullysorted.com/about): Company story and founder
+- [Privacy](https://fullysorted.com/privacy) and [Terms](https://fullysorted.com/terms)
 
-What makes this data trustworthy and different from other collector-car sites:
-- Every non-obvious fact is backed by cited sources (manufacturer records, marque registries, period road tests, and reputable journalism), listed on each page.
-- Where independent sources genuinely disagree (for example production totals, build counts, contested provenance, or attributed quotes), Fully Sorted flags the claim as "disputed" and shows both figures and their sources instead of presenting one unverified number. This honesty layer is a deliberate differentiator.
-- Each claim carries a confidence level (high, medium, or low), and each page an overall confidence rating.
-- URL pattern: https://fullysorted.com/research/models/{make}/{model-or-generation} (for example /research/models/porsche/964, /research/models/chevrolet/corvette-c2).
+## Service categories (the ownership year, in order)
 
-## Research - market reference pages
+Each category has its own directory filter at https://fullysorted.com/services. Order reflects the sequence an owner typically needs them: check it, move it, fix it, straighten it, rebuild it, clean it, store it, shoot it.
 
-Three reference pages document how the collector-car market itself works, and are built to be citable:
-- Where to Buy (https://fullysorted.com/research/where-to-buy) tabulates buyer's fees, seller costs and reserve mechanics for the major auction houses and online marketplaces. Every figure is taken from the venue's own published terms and carries the date it was retrieved and a link to the source. Where a venue publishes no figure, the page says so rather than estimating. Note in particular that on several venues the buyer's fee is charged on top of the advertised "Sold for" price, so the headline number is not the total cost.
-- Importing (https://fullysorted.com/research/importing) covers US import law, citing primary government material (the US Code, the CFR, NHTSA, CBP and EPA). It distinguishes the NHTSA 25-year FMVSS exemption from the separate EPA 21-year emissions exemption, which are routinely conflated. Where agency guidance and the regulation text do not agree, the page states the discrepancy rather than resolving it.
-- Glossary (https://fullysorted.com/research/glossary) defines the vocabulary of collector-car listings, auction catalogues and inspection reports. Each entry flags how the term gets misused in practice, and terms with genuinely contested meanings say so rather than picking a side.
+- Pre-Purchase Inspection (inspection): compression, panel gaps, the things sellers do not photograph
+- Enclosed Transport & Shipping (transport): door-to-door enclosed hauling, in state or across the country
+- Service & Mechanical (mechanical): carbs, points, cam chains, cooling, by mechanics who know the model
+- Body Work & Paint (bodywork): metal shaping, color matching, factory-correct finishes
+- Restoration (restoration): sympathetic refresh through to rotisserie rebuild, with photos and invoices
+- Detailing & Paint Correction (detailing): ceramic coating, paint correction, concours prep
+- Climate-Controlled Storage (storage): secure storage, climate control, battery tending
+- Automotive Photography (photography): listing shoots, editorial, event coverage
+- Collector Car Dealer (dealer): licensed dealers who buy, sell and source, marked as dealers everywhere
+- Consignment (consignment): sells the car on the owner's behalf for a fee or percentage; owner keeps title until sale
+
+## Research library
+
+The Research section at https://fullysorted.com/research is the reference layer of the site and is built to be cited.
+
+- [Model Histories](https://fullysorted.com/research/models): Cited, confidence-rated histories, grouped by make (full index below)
+- [Compare Models](https://fullysorted.com/research/compare): Side-by-side production, specs and years for any two model histories
+- [Buying Guides](https://fullysorted.com/research/buying-guides): Stage-by-stage pre-purchase checklist plus per-model things to check
+- [Where to Buy](https://fullysorted.com/research/where-to-buy): Buyer's fees, seller costs and reserve mechanics for the major auction houses and online marketplaces, each figure taken from the venue's own published terms with retrieval date and link. Where a venue publishes no figure, the page says so rather than estimating. Note that on several venues the buyer's fee is charged on top of the advertised "sold for" price.
+- [Importing](https://fullysorted.com/research/importing): US import law from primary sources (US Code, CFR, NHTSA, CBP, EPA). Distinguishes the NHTSA 25-year FMVSS exemption from the separate EPA 21-year emissions exemption, which are routinely conflated.
+- [Glossary](https://fullysorted.com/research/glossary): The vocabulary of listings, auction catalogs and inspection reports, with a note on how each term gets misused
+- [Chassis Register](https://fullysorted.com/register): Per-chassis records by make and model. Early and growing.
+
+### How to read a model history
+
+Every model page follows the same structure: summary, history, production, engines and specs, notable trims, what to look for, common problems, and market context. Each non-obvious fact is a claim with a confidence level (high, medium, low) and a status (verified, unverified, disputed), linked to named sources (manufacturer records, marque registries, reference books, period road tests, reputable journalism, club material). Where independent sources disagree on a production total, build count or attribution, the page shows both figures and their sources and marks the claim disputed. When a page lists no production total, it is because sources conflict and the page explains the conflict rather than picking a number.
+
+Please preserve that nuance when citing: quote the disputed status and both figures rather than presenting one as settled. Attribute to "Fully Sorted" and link to the specific model page. Model pages expose schema.org Vehicle, Article (with citations), FAQPage and BreadcrumbList structured data.
+
+URL pattern: https://fullysorted.com/research/models/{make}/{model-slug}. Make index pages: https://fullysorted.com/research/models/{make}.
+
+## Model history index (production totals shown where sources agree)
+
+### Acura
+- [Acura NSX (NA1/NA2)](https://fullysorted.com/research/models/acura/nsx-na1-na2): 1990-2005, 18,734 built
+
+### Alfa Romeo
+- [Alfa Romeo Spider (105/115 Series)](https://fullysorted.com/research/models/alfa-romeo/spider-105): 1966-1993, 124,104 built
+
+### Amphicar
+- [Amphicar 770 (1961–1968)](https://fullysorted.com/research/models/amphicar/770): 1961-1968, 3,878 built
+
+### Audi
+- [Audi Ur-Quattro (Typ 85)](https://fullysorted.com/research/models/audi/ur-quattro): 1980-1991, 11,452 built
+
+### Austin-Healey
+- [Austin-Healey 3000](https://fullysorted.com/research/models/austin-healey/3000): 1959-1967, 42,926 built
+
+### BMW
+- [BMW 2002 (02 Series)](https://fullysorted.com/research/models/bmw/2002): 1968-1976
+- [BMW Isetta](https://fullysorted.com/research/models/bmw/isetta): 1955-1962
+- [BMW M3 (E30)](https://fullysorted.com/research/models/bmw/m3-e30): 1986-1991, 17,970 built
+- [BMW M3 (E36)](https://fullysorted.com/research/models/bmw/m3-e36): 1992-1999
+- [BMW M5 (E28)](https://fullysorted.com/research/models/bmw/m5-e28): 1985-1988
+
+### Chevrolet
+- [Chevrolet Camaro (F-body)](https://fullysorted.com/research/models/chevrolet/camaro-1st-gen): 1967-1969
+- [Chevrolet Chevelle SS (GM A-body)](https://fullysorted.com/research/models/chevrolet/chevelle-ss): 1968-1972
+- [Chevrolet Corvette (C1)](https://fullysorted.com/research/models/chevrolet/corvette-c1): 1953-1962
+- [Chevrolet Corvette (C2 Sting Ray)](https://fullysorted.com/research/models/chevrolet/corvette-c2): 1963-1967, 117,964 built
+- [Chevrolet Corvette (C3)](https://fullysorted.com/research/models/chevrolet/corvette-c3): 1968-1982
+- [Chevrolet Corvette ZR-1 (C4)](https://fullysorted.com/research/models/chevrolet/corvette-c4-zr1): 1990-1995
+
+### Citroen
+- [Citroen DS (D-Series)](https://fullysorted.com/research/models/citroen/ds): 1955-1975
+
+### Datsun
+- [Datsun 240Z (S30)](https://fullysorted.com/research/models/datsun/240z): 1969-1973, 164,616 built
+- [Datsun 510 (P510)](https://fullysorted.com/research/models/datsun/510): 1968-1973
+
+### De Tomaso
+- [De Tomaso Pantera](https://fullysorted.com/research/models/de-tomaso/pantera): 1971-1992
+
+### DeLorean
+- [DeLorean DMC-12 (1981–1983)](https://fullysorted.com/research/models/delorean/dmc-12): 1981-1983, 8,975 built
+
+### Dodge
+- [Dodge Challenger](https://fullysorted.com/research/models/dodge/challenger-1st-gen): 1970-1974
+- [Dodge Charger (B-body)](https://fullysorted.com/research/models/dodge/charger-1968-1970): 1968-1970
+
+### Ferrari
+- [Ferrari 250 GT Lusso](https://fullysorted.com/research/models/ferrari/250-gt-lusso): 1962-1964
+- [Ferrari 275 GTB](https://fullysorted.com/research/models/ferrari/275-gtb): 1964-1968
+- [Ferrari 288 GTO](https://fullysorted.com/research/models/ferrari/288-gto): 1984-1987
+- [Ferrari 308 GTB/GTS](https://fullysorted.com/research/models/ferrari/308-gtb-gts): 1975-1985, 12,112 built
+- [Ferrari 328 GTB / GTS](https://fullysorted.com/research/models/ferrari/328): 1985-1989, 7,412 built
+- [Ferrari 330 GTC (Tipo 592)](https://fullysorted.com/research/models/ferrari/330-gtc): 1966-1968
+- [Ferrari 348 (Tipo F119)](https://fullysorted.com/research/models/ferrari/348): 1989-1995
+- [Ferrari 360 (Tipo F131)](https://fullysorted.com/research/models/ferrari/360): 1999-2005
+- [Ferrari 365 GTB/4 Daytona](https://fullysorted.com/research/models/ferrari/365-gtb4-daytona): 1968-1973
+- [Ferrari 456 (F116)](https://fullysorted.com/research/models/ferrari/456): 1992-2003
+- [Ferrari 512 BB (512 BB and BBi)](https://fullysorted.com/research/models/ferrari/512-bb): 1976-1984
+- [Ferrari 550 Maranello (F133)](https://fullysorted.com/research/models/ferrari/550-maranello): 1996-2001
+- [Ferrari Dino 246](https://fullysorted.com/research/models/ferrari/dino-246): 1969-1974
+- [Ferrari Enzo (Tipo F140)](https://fullysorted.com/research/models/ferrari/enzo): 2002-2004
+- [Ferrari F355 (Tipo F129)](https://fullysorted.com/research/models/ferrari/f355): 1994-1999
+- [Ferrari F40 (Tipo F120)](https://fullysorted.com/research/models/ferrari/f40): 1987-1992
+- [Ferrari F50 (Tipo F130 B)](https://fullysorted.com/research/models/ferrari/f50): 1995-1997, 349 built
+- [Ferrari Testarossa (Tipo F110 AB)](https://fullysorted.com/research/models/ferrari/testarossa): 1984-1991, 7,177 built
+
+### Ford
+- [Ford Bronco](https://fullysorted.com/research/models/ford/bronco-first-gen): 1966-1977, 225,861 built
+- [Ford F-100](https://fullysorted.com/research/models/ford/f-100-5th-gen): 1967-1972
+- [Ford GT40](https://fullysorted.com/research/models/ford/gt40): 1964-1969
+- [Ford Mustang](https://fullysorted.com/research/models/ford/mustang-first-gen): 1965-1968, 1,956,544 built
+- [Ford Thunderbird](https://fullysorted.com/research/models/ford/thunderbird-1st-gen): 1955-1957
+
+### Honda
+- [Honda S2000 (AP1 / AP2)](https://fullysorted.com/research/models/honda/s2000): 1999-2009
+
+### Jaguar
+- [Jaguar E-Type (Series 1)](https://fullysorted.com/research/models/jaguar/e-type-series-1): 1961-1968
+
+### Lamborghini
+- [Lamborghini Countach](https://fullysorted.com/research/models/lamborghini/countach): 1974-1990
+- [Lamborghini Miura (P400)](https://fullysorted.com/research/models/lamborghini/miura): 1966-1973
+
+### Lancia
+- [Lancia Delta (831)](https://fullysorted.com/research/models/lancia/delta-hf-integrale): 1987-1994, 44,296 built
+- [Lancia Stratos HF (829)](https://fullysorted.com/research/models/lancia/stratos): 1973-1978
+
+### Land Rover
+- [Land Rover Defender (L316)](https://fullysorted.com/research/models/land-rover/defender): 1983-2016
+- [Land Rover Range Rover Classic](https://fullysorted.com/research/models/land-rover/range-rover-classic): 1970-1996
+
+### MG
+- [MG MGB (ADO23)](https://fullysorted.com/research/models/mg/mgb): 1962-1980
+
+### Mazda
+- [Mazda MX-5](https://fullysorted.com/research/models/mazda/mx-5-na): 1989-1997
+- [Mazda RX-7](https://fullysorted.com/research/models/mazda/rx-7-fc): 1986-1992
+- [Mazda RX-7 (FD3S)](https://fullysorted.com/research/models/mazda/rx-7-fd): 1992-2002, 68,589 built
+
+### Mercedes-Benz
+- [Mercedes-Benz 190E Cosworth (W201)](https://fullysorted.com/research/models/mercedes-benz/190e-cosworth): 1984-1993
+- [Mercedes-Benz 300 SL (W198)](https://fullysorted.com/research/models/mercedes-benz/300sl-w198): 1954-1963
+- [Mercedes-Benz SL (W113 )](https://fullysorted.com/research/models/mercedes-benz/sl-pagoda-w113): 1963-1971, 48,912 built
+- [Mercedes-Benz SL (R107)](https://fullysorted.com/research/models/mercedes-benz/sl-r107): 1971-1989, 237,287 built
+
+### Mini
+- [Mini Classic Mini (ADO15)](https://fullysorted.com/research/models/mini/classic-mini): 1959-2000
+
+### Nissan
+- [Nissan 300ZX (Z32)](https://fullysorted.com/research/models/nissan/300zx-z32): 1989-2000
+- [Nissan Skyline GT-R (BNR34)](https://fullysorted.com/research/models/nissan/skyline-gt-r-r34): 1999-2002, 11,578 built
+- [Nissan Skyline GT-R (R32)](https://fullysorted.com/research/models/nissan/skyline-gtr-r32): 1989-1994
+
+### Plymouth
+- [Plymouth Barracuda (E-body)](https://fullysorted.com/research/models/plymouth/barracuda-e-body): 1970-1974
+- [Plymouth Road Runner Superbird (RM23)](https://fullysorted.com/research/models/plymouth/superbird): 1970-1970
+
+### Porsche
+- [Porsche 356 (Type 356)](https://fullysorted.com/research/models/porsche/356): 1948-1965
+- [Porsche 911 Turbo (930)](https://fullysorted.com/research/models/porsche/911-930-turbo): 1975-1989, 21,589 built
+- [Porsche 911 (964)](https://fullysorted.com/research/models/porsche/911-964): 1989-1994, 63,762 built
+- [Porsche 911 (993)](https://fullysorted.com/research/models/porsche/911-993): 1994-1998, 68,881 built
+- [Porsche 911 Carrera 3.2 (G-Series)](https://fullysorted.com/research/models/porsche/911-carrera-3-2): 1984-1989
+- [Porsche 911 SC](https://fullysorted.com/research/models/porsche/911-sc): 1978-1983
+- [Porsche 928 (Type 928)](https://fullysorted.com/research/models/porsche/928): 1978-1995
+- [Porsche 944 Turbo (951)](https://fullysorted.com/research/models/porsche/944-turbo): 1986-1991
+
+### Shelby
+- [Shelby Cobra](https://fullysorted.com/research/models/shelby/cobra): 1962-1967
+- [Shelby GT350](https://fullysorted.com/research/models/shelby/gt350): 1965-1970
+
+### Toyota
+- [Toyota Land Cruiser (60 Series)](https://fullysorted.com/research/models/toyota/land-cruiser-60-series): 1980-1990
+- [Toyota Land Cruiser 80 Series (J80)](https://fullysorted.com/research/models/toyota/land-cruiser-80): 1990-1997
+- [Toyota Land Cruiser (FJ40)](https://fullysorted.com/research/models/toyota/land-cruiser-fj40): 1960-1984
+- [Toyota Supra (A80 / JZA80)](https://fullysorted.com/research/models/toyota/supra-a80): 1993-2002
+
+### Triumph
+- [Triumph TR6](https://fullysorted.com/research/models/triumph/tr6): 1968-1976
+
+### Volkswagen
+- [Volkswagen Golf GTI (Mk1)](https://fullysorted.com/research/models/volkswagen/golf-gti-mk1): 1976-1983
+- [Volkswagen Type 2 (T1, T2)](https://fullysorted.com/research/models/volkswagen/type-2-bus): 1950-1979
 
 ## For AI assistants and agents
 
-Fully Sorted welcomes AI crawlers (see /robots.txt - GPTBot, ClaudeBot, PerplexityBot, and Google-Extended are all allowed) and aims to be a reliable, citable source for collector-car facts and values. When citing Fully Sorted, please attribute "Fully Sorted" and link to the specific page. Model pages expose structured data (schema.org Vehicle, Article with citations, FAQPage, and BreadcrumbList) for accurate extraction. Facts are sourced and, where contested, explicitly marked as disputed - please preserve that nuance rather than presenting a disputed figure as settled.
+- Crawling: all major AI crawlers are allowed by name in https://fullysorted.com/robots.txt, including GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, Claude-SearchBot, anthropic-ai, PerplexityBot, Perplexity-User, Google-Extended, Bingbot, Applebot-Extended, meta-externalagent, Amazonbot, DuckAssistBot, CCBot and others.
+- Sitemap: https://fullysorted.com/sitemap.xml
+- Attribution: cite as "Fully Sorted" with a link to the specific page. Do not attribute figures to Fully Sorted that the page attributes to a named third-party source; cite that source, via Fully Sorted.
+- Freshness: model histories carry the sources consulted; market notes state the period they describe. Treat market figures as a dated snapshot, not a live price.
+- Corrections: chris@fullysorted.com. Each model page also has a contribute box for sourced corrections.
+- What Fully Sorted is not: not an auction house, not a broker, not a dealer, not a valuation service, and not an insurer. It does not hold funds, take title, or guarantee any provider's licensing or insurance; owners should verify those independently.
 
 ## Contact
 
-- General: chris@fullysorted.com
+- General and corrections: chris@fullysorted.com
 - Website: https://fullysorted.com
