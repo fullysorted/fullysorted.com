@@ -153,7 +153,7 @@ one `sourceRef` needs a reason to be single-sourced.
 
 ## 6. Market data protocol
 
-- Primary: **classic.com**. Every figure stamped **"as of August 2026"** in the
+- Primary: **classic.com**. Every figure stamped **"as of September 2026"** in the
   prose. A market number without a date is a future lie.
 - **Known-blocked to automated retrieval — never cite from memory:**
   Bring a Trailer (403), Hagerty valuation pages (redirect-loop),
@@ -211,7 +211,7 @@ the device. Do not use the device as your draft surface.
 2. Every `sourceRefs` entry resolves to a `ref` in `sources`.
 3. Every `status: "disputed"` claim has a `conflictNote`.
 4. No banned copy present.
-5. Every market figure carries its "as of August 2026" stamp.
+5. Every market figure carries its "as of September 2026" stamp.
 
 ## 10. Your return value
 
