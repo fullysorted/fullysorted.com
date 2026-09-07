@@ -79,6 +79,51 @@ export async function register() {
   }
 
   // ─────────────────────────────────────────────────────────────────────────
+  // USERS -- the identity spine (2026-09-06). ORM-CRITICAL.
+  //
+  // These columns are declared in schema.ts, so Drizzle names every one of them
+  // in the SQL it emits for `users`. A column here that the database lacks
+  // breaks EVERY read and write of the table, not just the feature that added
+  // it. Same failure mode as the 2026-08-22 provider outage. Own try/catch,
+  // runs before anything that could throw for another reason.
+  //
+  // Backfilling status: every row that predates this block was created by a
+  // real signed-in path, so it is 'active', not 'shadow'. New rows default to
+  // 'shadow' and are promoted on first sign-in.
+  // ─────────────────────────────────────────────────────────────────────────
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS clerk_user_id VARCHAR(255)`;
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'shadow'`;
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS handle VARCHAR(40)`;
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS bio TEXT`;
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS location VARCHAR(120)`;
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS phone VARCHAR(40)`;
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS last_seen_at TIMESTAMP`;
+
+    // One Clerk account can never own two rows, and one handle is one person.
+    // Partial indexes so the many NULLs do not collide with each other.
+    await sql`CREATE UNIQUE INDEX IF NOT EXISTS users_clerk_user_id_idx
+              ON users (clerk_user_id) WHERE clerk_user_id IS NOT NULL`;
+    await sql`CREATE UNIQUE INDEX IF NOT EXISTS users_handle_idx
+              ON users (LOWER(handle)) WHERE handle IS NOT NULL`;
+    // Email is the join key. It is already UNIQUE, but the lookup is
+    // case-insensitive in lib/identity.ts, so give it a matching index.
+    await sql`CREATE INDEX IF NOT EXISTS users_email_lower_idx ON users (LOWER(email))`;
+
+    // Rows that existed before shadow accounts did are real accounts.
+    await sql`UPDATE users SET status = 'active'
+              WHERE status = 'shadow' AND created_at < '2026-09-06'`;
+  } catch (err) {
+    console.error(
+      '[Fully Sorted] CRITICAL: could not ensure ORM-critical users columns. ' +
+        'Every read and write of users will fail until this is resolved:',
+      err,
+    );
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
   // MESSAGES — every directory lead and every listing enquiry lands here.
   //
   // Its own try/catch for the same reason as the block above: if this table is

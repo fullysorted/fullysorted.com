@@ -1,14 +1,50 @@
 import { pgTable, serial, text, integer, boolean, timestamp, decimal, jsonb, varchar } from 'drizzle-orm/pg-core';
 
 // ─── Users ───────────────────────────────────────────────
+// The identity spine. EMAIL is the join key, lowercased and trimmed on every
+// write (see lib/identity.ts). Everything a person does on the site hangs off
+// this row, whether or not they have ever signed in.
+//
+// Before 2026-09-06 this table was orphaned: nothing read it and nothing wrote
+// it, while the real signed-in identity was a loose `clerk_user_id` string on
+// service_providers and gig_orders. Two identity systems, no join. This is the
+// join.
+//
+// SHADOW ROWS: status defaults to 'shadow'. A shadow row is created the moment
+// an email address touches the site (an enquiry, a review, a registry
+// submission) with NO signup, NO password and NO email sent. It is a filing
+// cabinet, not an account. When that person later signs in with the same
+// address the row is claimed and everything they already did becomes theirs.
+// That is what lets the account be the save button rather than the turnstile.
+//
+// A SHADOW ROW IS NOT A MAILING LIST. Consent to be emailed lives where it
+// always did (the form the person actually filled in, and outreach_suppression).
+// Never derive a send from the existence of a row here.
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
   email: varchar('email', { length: 255 }).notNull().unique(),
   name: varchar('name', { length: 255 }),
   avatarUrl: text('avatar_url'),
-  role: varchar('role', { length: 50 }).default('user').notNull(), // user, admin, chris
+  role: varchar('role', { length: 50 }).default('user').notNull(), // user, rep, admin, chris
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
+
+  // ── Identity spine (2026-09-06) ───────────────────────────────────────────
+  // Clerk is an ATTRIBUTE of a user, not the identity itself. Nullable until
+  // the person signs in; unique so one Clerk account can never own two rows.
+  clerkUserId: varchar('clerk_user_id', { length: 255 }),
+  // shadow  = created from an email we saw, never signed in
+  // active  = has signed in at least once
+  // suspended = blocked by an admin
+  status: varchar('status', { length: 20 }).default('shadow').notNull(),
+  // Only set when the member chooses a public profile. No handle, no public page.
+  handle: varchar('handle', { length: 40 }),
+  bio: text('bio'),
+  // City-level only. Never store or render anything finer for a member: a
+  // public Stable plus a street address is a theft catalogue.
+  location: varchar('location', { length: 120 }),
+  phone: varchar('phone', { length: 40 }),
+  lastSeenAt: timestamp('last_seen_at'),
 });
 
 // ─── Listings ────────────────────────────────────────────
