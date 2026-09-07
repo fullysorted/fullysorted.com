@@ -519,3 +519,20 @@ a Stable is not refused because a listing still points at it; and the public
 identify route got a six second timeout on the NHTSA lookup, because an
 unbounded fetch on a public endpoint is a way to tie up a function with somebody
 else's outage.
+
+### Closing the last review item, 2026-09-07
+
+**Stripe attributed listings from an address the payer typed.**
+`customer_details.email` is whatever somebody types into Stripe's checkout form.
+It is never verified, so on its own it could attribute a listing to a stranger's
+user row.
+
+`/api/checkout` now resolves the signed-in member, when there is one, and carries
+their id in the session metadata. The webhook prefers that over the typed
+address, because it is an authenticated fact rather than a form field. A
+signed-out seller still falls back to the typed email, which is the old
+behaviour and no worse than it was. Both paths stay guarded on
+`seller_id IS NULL`, and identity failures never block a sale.
+
+The real fix remains Phase 2's shape: the car exists in a Stable before the
+listing does, so the seller is known before money is involved.

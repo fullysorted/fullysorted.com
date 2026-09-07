@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripe, LISTING_TIERS, LISTING_FEE_CURRENCY, type ListingTier } from '@/lib/stripe';
+import { resolveCurrentUser } from '@/lib/identity';
 
 async function getDbSql() {
   if (!process.env.DATABASE_URL) return null;
@@ -88,6 +89,24 @@ export async function POST(request: NextRequest) {
 
     const vehicleTitle = `${year} ${String(make).substring(0, 50)} ${String(model).substring(0, 50)}`;
 
+    // Who is selling this car.
+    //
+    // The webhook has always had to fall back to the address the payer TYPES
+    // into Stripe's checkout form, because the sell form never asks for one.
+    // That address is unverified: type a stranger's address and the listing
+    // gets attributed to their user row.
+    //
+    // If the seller happens to be signed in, we know exactly who they are, so
+    // carry that through in metadata and let the webhook prefer it. Null for a
+    // signed-out seller, which is the old behaviour and no worse than it was.
+    let sellerUserId: string = '';
+    try {
+      const me = await resolveCurrentUser();
+      if (me) sellerUserId = String(me.id);
+    } catch {
+      // Never let identity block a sale.
+    }
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -108,6 +127,7 @@ export async function POST(request: NextRequest) {
       cancel_url: `${origin}/sell`,
       metadata: {
         listingId: String(listingId || ''),
+        sellerUserId,
         year: String(year || ''),
         make: String(make).substring(0, 50),
         model: String(model).substring(0, 50),

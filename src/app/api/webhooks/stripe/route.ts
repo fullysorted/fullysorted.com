@@ -137,11 +137,24 @@ export async function POST(request: NextRequest) {
         // live; nothing here is worth failing the webhook over.
         try {
           const { getOrCreateUserByEmail } = await import('@/lib/identity');
-          const payerEmail = session.customer_details?.email ?? null;
-          const seller = await getOrCreateUserByEmail({
-            email: payerEmail,
-            name: session.customer_details?.name ?? null,
-          });
+
+          // Prefer the signed-in member the checkout session was created for.
+          // /api/checkout puts their id in metadata when it knows it, and that
+          // is an authenticated fact. `customer_details.email` is whatever the
+          // payer typed into Stripe's form: it is never verified, so on its own
+          // it can attribute a listing to a stranger's user row.
+          const claimedId = Number(session.metadata?.sellerUserId || 0);
+          let seller: { id: number } | null =
+            Number.isFinite(claimedId) && claimedId > 0 ? { id: claimedId } : null;
+
+          if (!seller) {
+            const payerEmail = session.customer_details?.email ?? null;
+            seller = await getOrCreateUserByEmail({
+              email: payerEmail,
+              name: session.customer_details?.name ?? null,
+            });
+          }
+
           if (seller) {
             await db
               .update(schema.listings)
