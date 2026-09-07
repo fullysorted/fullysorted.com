@@ -536,3 +536,130 @@ behaviour and no worse than it was. Both paths stay guarded on
 
 The real fix remains Phase 2's shape: the car exists in a Stable before the
 listing does, so the seller is known before money is involved.
+
+---
+
+## THE SELL FLOW, 2026-09-07 (uncommitted)
+
+Chris: the page reads cheap. It did, and the cause was structural rather than
+cosmetic.
+
+**Step one was "Choose Plan".** The first thing the site did to a seller was ask
+for money, before it knew anything about the car. Somebody with a
+numbers-matching car was picking a $9.99 tier before a single question had been
+asked about it. That is what made it feel cheap: not the amount, the sequence.
+
+Step order is now Your Car, Details & Photos, Description, Choose Plan, Review &
+Pay. Same five steps, the money moved to fourth. The fee is a detail you settle
+once the listing exists and is worth paying for.
+
+**The form was a used-car form.** Year, make, model, trim, placeholders "Ford"
+and "Mustang", and not one field for the things a collector car is actually
+identified by. The vehicle step now opens with a VIN-or-chassis-or-plain-text
+lookup that fills the form in, and carries a Numbers block underneath: VIN,
+chassis / serial number, engine number, matching numbers, and known history.
+
+All of them optional, and the copy says so, because a 17-digit VIN only exists
+from 1981. For most of what this site is for, the chassis number IS the
+identity, and a form that insists on a VIN is a form that tells the owner of a
+275 GTB he does not qualify.
+
+The history field says "leave it blank rather than guessing. An empty field says
+nothing; a wrong one gets found out." That is the register's standard applied to
+a listing.
+
+**The lookup reuses `/api/stable/identify`**, the same endpoint The Stable uses,
+so a seller and an owner get the same answer about the same car. It decodes a
+VIN where there is one, reads the text where there is not, and matches the
+generation page: "We have a history for this one." That line, on the sell page,
+is the whole argument for listing here rather than anywhere else.
+
+It only ever FILLS BLANKS. Anything already typed wins, because a person who has
+corrected a field should not watch a lookup undo it.
+
+**Schema:** `listings` gains `chassis`, `engine_number`, `matching_numbers`
+(yes | no | unknown, validated server-side) and `provenance`. ALTERs are in the
+Stable block, which already owns listings. `vin` already existed and was never
+collected by anything.
+
+**NOT touched: the hero.** It carries live ad traffic and it is the page the
+Meta campaign points at. Four separate price statements sit above the fold, the
+h1 puts "from $9.99" in gold on its own line, and the closing paragraph does 4.5
+percent arithmetic on a $50,000 sale. That is the loudest cheap signal on the
+page and it is a copy decision on live ad creative, so it stays until Chris says
+otherwise.
+
+**Next, and it closes a hole:** step one now knows what the car is before the
+listing is created, so it can create or match a Stable vehicle and set
+`listings.vehicle_id` at creation. That makes "add the car, then list it" real
+and removes the last dependence on the address a payer types into Stripe.
+
+### Making the whole flow easy, 2026-09-07
+
+Chris: this whole flow needs to be super easy. It was five steps and about
+thirty fields, and the numbers block added earlier the same day made it worse.
+A man photographing a 911 in his driveway on a phone was being asked for a ZIP
+code and a drivetrain before he could get a price on the screen. Nobody
+finishes that.
+
+**Three steps: Your Car, Describe It, Publish.** Choose Plan and Review & Pay
+were separate screens; picking a tier and paying for it is one decision, so they
+are now one screen. Details & Photos was absorbed into Your Car.
+
+**Four required fields in the entire flow: year, make, model, price.** The step
+says so out loud, then: "That is enough to publish. Anything you add here makes
+the listing better, and none of it is required."
+
+**Everything else is folded away**, in four groups shut by default: Specs,
+Numbers, Where the car is, Who is selling. Built on native `<details>`, so they
+work without JavaScript, keyboard and screen readers get them for free, and
+find-in-page can open them. The seller-type group opens itself when the seller
+has said they are a dealer, because it then contains fields that genuinely are
+required.
+
+**Price and photos moved up**, next to year/make/model. They were buried in step
+two under mileage, gearbox, colors and a ZIP code. Price is the field the seller
+came to fill in.
+
+**The draft is kept.** Every change is written to `localStorage`, restored on
+return with a line saying so and a "Start fresh" link, and cleared the moment
+the listing is created. Somebody loses signal in a driveway or takes a call, and
+thirty fields used to go with it. Nobody retypes thirty fields; they just do not
+come back.
+
+The photo limit still follows the tier, which is now chosen at the end, so the
+label says up to N on the Standard plan and that a bigger plan can be picked
+later. Honest, and it does not block anybody.
+
+### The /sell hero, 2026-09-07 (Chris asked for it explicitly)
+
+It carried four separate price statements above the fold. The h1 put "from
+$9.99" in gold on its own line, then a flat-fee subhead, then a buyer's-premium
+pill, then a paragraph doing percentage arithmetic on a $50,000 sale. A man with
+a numbers-matching car read all of that before the page said one word about his
+car.
+
+Now:
+
+- **H1:** "Sell your collector car to people who know what it is."
+- **Subhead:** chassis numbers, history and full-resolution photographs, on a
+  listing that links to our own research on the model. Which is now true, and is
+  the only thing here nobody else can say.
+- **Pills** say what the listing carries rather than what it costs: chassis and
+  VIN on the listing, full-resolution photos, direct buyer contact.
+- **One line about money**, stated plainly and then dropped: a flat listing fee
+  from $9.99, paid once, up front, no commission when it sells and no buyer's
+  premium.
+- **The 4.5 to 5 percent comparison moved to the Publish step**, next to the tier
+  cards, at the one moment a seller is actually weighing what to pay. It is a
+  good argument. It was just in the wrong place, doing the opposite of its job.
+
+Untouched: the hero image, the accent line, the overlay, the grain, and the
+"Built by collectors, for collectors" badge, which is the one piece of that hero
+that was already doing the right work.
+
+**Also untouched, deliberately: the page metadata.** The title still reads "Sell
+Your Collector Car from $9.99". That is an ad and search asset rather than
+something a visitor reads on the page, and keeping the fee there preserves
+message match with the Meta campaign while the page itself now leads with the
+car. Worth a separate decision, not a silent edit.

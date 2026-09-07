@@ -65,6 +65,9 @@ export async function GET() {
   }
 }
 
+/** Only these three ever reach the column; anything else is stored as unknown. */
+const MATCHING = ['yes', 'no', 'unknown'];
+
 export async function POST(request: NextRequest) {
   // Abuse control: cap listing-creation rate per client (spam / content injection).
   const limited = rateLimit(request, 'listings', 10, 60_000);
@@ -76,6 +79,7 @@ export async function POST(request: NextRequest) {
       drivetrain, exteriorColor, interiorColor, bodyStyle, category,
       city, state, zipCode, description, aiDescription, highlights,
       chrisTake, photos, tier,
+      vin, chassis, engineNumber, matchingNumbers, provenance,
       sellerType: rawSellerType, dealerName, dealerLicense, dealerFeesNote, dealerAttested,
     } = body;
 
@@ -117,7 +121,8 @@ export async function POST(request: NextRequest) {
         city, state, zip_code, description, ai_description,
         highlights, chris_take, photos, hero_photo,
         status, featured, sorted_price,
-        seller_type, dealer_name, dealer_license, dealer_fees_note
+        seller_type, dealer_name, dealer_license, dealer_fees_note,
+        vin, chassis, engine_number, matching_numbers, provenance
       ) VALUES (
         ${slug}, ${selectedTier}, ${isFreeEarlyAdopter},
         ${parseInt(year)}, ${cap(make, 60)}, ${cap(model, 60)}, ${cap(trim, 60)},
@@ -132,7 +137,10 @@ export async function POST(request: NextRequest) {
         'pending', ${isFeatured}, false,
         ${sellerType}, ${sellerType === 'dealer' ? cap(dealerName, 200) : null},
         ${sellerType === 'dealer' ? cap(dealerLicense, 100) : null},
-        ${sellerType === 'dealer' ? cap(dealerFeesNote, 1000) : null}
+        ${sellerType === 'dealer' ? cap(dealerFeesNote, 1000) : null},
+        ${cap(vin, 17)}, ${cap(chassis, 64)}, ${cap(engineNumber, 64)},
+        ${MATCHING.includes(String(matchingNumbers)) ? String(matchingNumbers) : null},
+        ${cap(provenance, 2000)}
       )
       RETURNING *
     `;

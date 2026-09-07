@@ -58,6 +58,13 @@ export const listings = pgTable('listings', {
   model: varchar('model', { length: 200 }).notNull(),
   trim: varchar('trim', { length: 200 }),
   vin: varchar('vin', { length: 17 }),
+  // Collector identity (2026-09-07). A 17-digit VIN only exists from 1981, so
+  // for most of what this site is for the chassis or serial number IS the
+  // identity. Never required, any of them.
+  chassis: varchar('chassis', { length: 64 }),
+  engineNumber: varchar('engine_number', { length: 64 }),
+  matchingNumbers: varchar('matching_numbers', { length: 20 }), // yes | no | unknown
+  provenance: text('provenance'),
 
   // Details
   mileage: integer('mileage'),

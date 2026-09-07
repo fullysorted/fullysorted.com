@@ -46,33 +46,41 @@ export default function SellPage() {
             </span>
           </div>
 
+          {/* The car leads. The fee is a fact, not the headline.
+              Until 2026-09-07 this hero carried four separate price statements
+              above the fold: the h1 put "from $9.99" in gold on its own line,
+              then a flat-fee subhead, then a buyer's-premium pill, then a
+              paragraph doing percentage arithmetic on a $50,000 sale. A man
+              with a numbers-matching car read all of that before the page said
+              one word about his car. The fee comparison now lives on the
+              Publish step, where somebody is actually deciding to pay it. */}
           <h1 className="font-display font-semibold tracking-tight text-4xl md:text-6xl mb-4 leading-[1.05]">
-            Sell your collector car<br />
-            <span className="text-gold">from $9.99.</span>
+            Sell your collector car to<br />
+            <span className="text-gold">people who know what it is.</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-stone-200 max-w-2xl mx-auto mb-6 font-medium">
-            One flat fee. No surprises.
+            Chassis numbers, history and full-resolution photographs, on a listing
+            that links to our own research on the model.
           </p>
 
-          {/* Three trust pills */}
+          {/* Three trust pills: what the listing carries, not what it costs */}
           <div className="flex flex-wrap justify-center gap-3 mb-6 text-sm">
             <span className="bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-stone-100">
-              ✓ Direct buyer contact
+              ✓ Chassis and VIN on the listing
             </span>
             <span className="bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-stone-100">
               ✓ Full-resolution photos
             </span>
             <span className="bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-stone-100">
-              ✓ $0 buyer&apos;s premium
+              ✓ Direct buyer contact
             </span>
           </div>
 
-          {/* The math anchor — this is the line the ads echo */}
+          {/* One line about money, stated plainly and then dropped. */}
           <p className="text-stone-300 text-sm max-w-xl mx-auto">
-            Most collector-car listing sites charge a 4.5–5% success fee when your car sells.
-            On a $50,000 sale, that&rsquo;s $2,250+ out of your pocket.
-            Fully Sorted is a flat fee <strong className="text-gold">from $9.99</strong>, paid once, up front.
+            A flat listing fee <strong className="text-gold">from $9.99</strong>, paid once,
+            up front. No commission when it sells, and no buyer&rsquo;s premium.
           </p>
         </div>
       </section>

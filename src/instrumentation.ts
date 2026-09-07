@@ -752,6 +752,14 @@ export async function register() {
     // surfaced as "could not delete" is not.
     await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS vehicle_id INTEGER REFERENCES vehicles(id) ON DELETE SET NULL`;
     await sql`CREATE INDEX IF NOT EXISTS listings_vehicle_idx ON listings (vehicle_id)`;
+
+    // Collector identity on a listing (2026-09-07). Declared in schema.ts,
+    // therefore ORM-critical for listings: without these, every listing read
+    // fails, not just the new fields.
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS chassis VARCHAR(64)`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS engine_number VARCHAR(64)`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS matching_numbers VARCHAR(20)`;
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS provenance TEXT`;
   } catch (err) {
     console.error(
       '[Fully Sorted] CRITICAL: could not ensure Stable tables. ' +
