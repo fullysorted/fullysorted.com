@@ -124,6 +124,12 @@ export async function ensureReviewTable(sql: Sql): Promise<void> {
   // here too or a deployed environment silently misses it.
   await sql`ALTER TABLE provider_reviews ADD COLUMN IF NOT EXISTS reminder_sent_at TIMESTAMPTZ`;
   await sql`ALTER TABLE provider_reviews ADD COLUMN IF NOT EXISTS expired_at TIMESTAMPTZ`;
+  // The identity spine (2026-09-07). This table is created HERE, not in
+  // instrumentation.ts, so this is the only place guaranteed to run after it
+  // exists. Declared in schema.ts, therefore ORM-critical: without it every
+  // read of provider_reviews fails.
+  await sql`ALTER TABLE provider_reviews ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+  await sql`CREATE INDEX IF NOT EXISTS provider_reviews_user_idx ON provider_reviews (user_id)`;
   await sql`CREATE INDEX IF NOT EXISTS provider_reviews_provider_idx ON provider_reviews (provider_id, status)`;
   await sql`CREATE INDEX IF NOT EXISTS provider_reviews_token_idx ON provider_reviews (review_token)`;
   await sql`CREATE INDEX IF NOT EXISTS provider_reviews_status_idx ON provider_reviews (status, created_at DESC)`;

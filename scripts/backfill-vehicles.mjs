@@ -61,20 +61,29 @@ async function main() {
       // vehicle records the sale rather than disappearing with the listing.
       const status = l.status === 'sold' ? 'sold' : 'owned';
 
-      const [v] = await sql`
-        INSERT INTO vehicles
-          (user_id, year, make, model, trim, vin, mileage, hero_photo, photos,
-           visibility, status)
-        VALUES
-          (${l.seller_id}, ${l.year}, ${l.make}, ${l.model}, ${l.trim},
-           ${l.vin}, ${l.mileage}, ${l.hero_photo},
-           ${JSON.stringify(Array.isArray(l.photos) ? l.photos : [])}::jsonb,
-           'private', ${status})
-        RETURNING id
+      // INSERT and UPDATE in ONE statement. Run as two, a crash in between
+      // leaves a vehicle nothing points at, and the next run -- which still
+      // sees vehicle_id IS NULL -- creates a second one. A CTE closes that
+      // window entirely.
+      const done = await sql`
+        WITH v AS (
+          INSERT INTO vehicles
+            (user_id, year, make, model, trim, vin, mileage, hero_photo, photos,
+             visibility, status)
+          VALUES
+            (${l.seller_id}, ${l.year}, ${l.make}, ${l.model}, ${l.trim},
+             ${l.vin}, ${l.mileage}, ${l.hero_photo},
+             ${JSON.stringify(Array.isArray(l.photos) ? l.photos : [])}::jsonb,
+             'private', ${status})
+          RETURNING id
+        )
+        UPDATE listings SET vehicle_id = v.id, updated_at = NOW()
+          FROM v
+         WHERE listings.id = ${l.id} AND listings.vehicle_id IS NULL
+        RETURNING listings.id
       `;
-
-      await sql`UPDATE listings SET vehicle_id = ${v.id} WHERE id = ${l.id} AND vehicle_id IS NULL`;
-      made++;
+      if (done.length) made++;
+      else console.warn(`  listing #${l.id} was already linked, skipped`);
     } catch (err) {
       failed++;
       console.error(`  listing #${l.id} failed: ${err.message.split('\n')[0]}`);

@@ -152,6 +152,53 @@ async function main() {
     }
   }
 
+  // ── Point the historic rows at the people who wrote them ────────────────
+  // Creating the users rows is only half the promise. Without this, a member
+  // signs in, /account queries `messages WHERE user_id = ?` and shows nothing,
+  // and the whole "your history is already here" moment does not happen.
+  //
+  // Written as five explicit statements because a table name cannot be
+  // parameterised. Each is idempotent (`user_id IS NULL`) and each is caught
+  // on its own, so a table that does not exist in this environment costs one
+  // link, not the run.
+  const link = async (label, fn) => {
+    try {
+      const rows = await fn();
+      console.log(`  linked ${label}: ${rows.length ?? 0}`);
+    } catch (err) {
+      console.warn(`  skipped ${label}: ${err.message.split('\n')[0]}`);
+    }
+  };
+
+  console.log('\nLinking existing rows to their people:');
+  await link('enquiries', () => sql`
+    UPDATE messages m SET user_id = u.id FROM users u
+     WHERE m.user_id IS NULL AND LOWER(TRIM(m.sender_email)) = u.email
+    RETURNING m.id`);
+  await link('reviews', () => sql`
+    UPDATE provider_reviews r SET user_id = u.id FROM users u
+     WHERE r.user_id IS NULL AND LOWER(TRIM(r.author_email)) = u.email
+    RETURNING r.id`);
+  await link('register submissions', () => sql`
+    UPDATE registry_submissions s SET user_id = u.id FROM users u
+     WHERE s.user_id IS NULL AND LOWER(TRIM(s.submitter_email)) = u.email
+    RETURNING s.id`);
+  await link('gig orders', () => sql`
+    UPDATE gig_orders o SET buyer_user_id = u.id FROM users u
+     WHERE o.buyer_user_id IS NULL AND LOWER(TRIM(o.buyer_email)) = u.email
+    RETURNING o.id`);
+  await link('directory applications', () => sql`
+    UPDATE provider_applications a SET user_id = u.id FROM users u
+     WHERE a.user_id IS NULL AND LOWER(TRIM(a.email)) = u.email
+    RETURNING a.id`);
+
+  // NOT done here, on purpose: copying service_providers.clerk_user_id onto the
+  // matching users row. The address on a provider row is the BUSINESS address,
+  // which is often not the address that person signed in with. Binding on it
+  // would attach a Clerk account to the wrong row, and a wrong binding is far
+  // worse than a late one. resolveCurrentUser() binds the correct row from
+  // their verified Clerk address the next time they sign in.
+
   const [{ count: after }] = await sql`SELECT COUNT(*)::int AS count FROM users`;
   console.log(`\nCreated:  ${created}`);
   console.log(`Existing: ${filled}`);

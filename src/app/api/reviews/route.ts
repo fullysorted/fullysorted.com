@@ -118,8 +118,9 @@ export async function POST(request: NextRequest) {
   const businessName = String(invite.business_name);
 
   // Identity spine (2026-09-06). The address the invite was mailed to is the
-  // verified one, so that is what we file under -- never a name typed into the
-  // form. author_email stays on the row as the audit trail.
+  // verified one, so that is what the row is filed under. The typed name is
+  // passed only to fill a blank on a brand new row and can never overwrite an
+  // existing one. author_email stays on the row as the audit trail.
   const reviewer = await getOrCreateUserByEmail({
     email: invite.author_email as string | null,
     name: authorName,

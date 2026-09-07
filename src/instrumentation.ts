@@ -639,16 +639,30 @@ export async function register() {
   try {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(process.env.DATABASE_URL);
-    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
-    await sql`ALTER TABLE provider_reviews ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
-    await sql`ALTER TABLE registry_submissions ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
-    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS buyer_user_id INTEGER REFERENCES users(id)`;
-    await sql`ALTER TABLE provider_applications ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+    // ALTER TABLE **IF EXISTS**, and it matters more than it looks.
+    //
+    // `provider_reviews` is NOT created in this file. It is created lazily by
+    // ensureReviewTable() in lib/reviews.ts on the first review request. So on
+    // any database where no review has happened yet -- a fresh preview branch,
+    // a new environment -- a bare ALTER on it throws, this whole try/catch
+    // aborts, and every statement AFTER it is silently skipped. That would
+    // leave gig_orders.buyer_user_id and provider_applications.user_id
+    // missing while schema.ts declares them, which breaks every read of both
+    // tables. That is the 2026-08-22 outage repeated exactly.
+    //
+    // IF EXISTS turns a missing table into a notice instead of an error, so
+    // the statements below it still run. The provider_reviews column is added
+    // by ensureReviewTable() as well, which is the only place guaranteed to
+    // run after that table exists.
+    await sql`ALTER TABLE IF EXISTS messages ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+    await sql`ALTER TABLE IF EXISTS provider_reviews ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+    await sql`ALTER TABLE IF EXISTS registry_submissions ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+    await sql`ALTER TABLE IF EXISTS gig_orders ADD COLUMN IF NOT EXISTS buyer_user_id INTEGER REFERENCES users(id)`;
+    await sql`ALTER TABLE IF EXISTS provider_applications ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
 
     // "Everything this person has ever done" is the query the admin user page
     // is built on, so each of these is indexed from the start.
     await sql`CREATE INDEX IF NOT EXISTS messages_user_idx ON messages (user_id)`;
-    await sql`CREATE INDEX IF NOT EXISTS provider_reviews_user_idx ON provider_reviews (user_id)`;
     await sql`CREATE INDEX IF NOT EXISTS registry_submissions_user_idx ON registry_submissions (user_id)`;
     await sql`CREATE INDEX IF NOT EXISTS gig_orders_buyer_user_idx ON gig_orders (buyer_user_id)`;
     await sql`CREATE INDEX IF NOT EXISTS provider_applications_user_idx ON provider_applications (user_id)`;
@@ -732,7 +746,11 @@ export async function register() {
               ON vehicle_records (vehicle_id, occurred_on DESC)`;
 
     // Declared in schema.ts, so ORM-critical for the listings table itself.
-    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS vehicle_id INTEGER REFERENCES vehicles(id)`;
+    // ON DELETE SET NULL: a member deleting a car from their Stable must not be
+    // refused because a listing still points at it. The listing survives the
+    // car with a null link, which is recoverable; a foreign key violation
+    // surfaced as "could not delete" is not.
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS vehicle_id INTEGER REFERENCES vehicles(id) ON DELETE SET NULL`;
     await sql`CREATE INDEX IF NOT EXISTS listings_vehicle_idx ON listings (vehicle_id)`;
   } catch (err) {
     console.error(

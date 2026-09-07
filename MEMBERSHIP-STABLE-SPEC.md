@@ -444,3 +444,78 @@ Then: the lead-outcome link a shop clicks extended one notch to "did this job
 happen?", and review invitations, both writing dated `vehicle_records` rows with
 the shop's name on them. After that first checklist the owner should essentially
 never fill in a form again.
+
+---
+
+## ADVERSARIAL REVIEW + HARDENING, 2026-09-07
+
+A second model reviewed the whole change set before deploy. It earned its keep.
+Seven real defects, all now fixed. Ownership and privacy came back clean: no
+cross-member read, write or delete path, every query scoped by `user_id`,
+visibility hard-coded private, and the public identify route writes nothing.
+
+**1. The migration block could silently half-run.** `provider_reviews` is NOT
+created in `instrumentation.ts`. It is created lazily by `ensureReviewTable()`
+in `lib/reviews.ts`, on the first review request. So on any database where no
+review has happened yet, a bare `ALTER TABLE provider_reviews` throws, the whole
+try/catch aborts, and every statement after it is skipped, leaving
+`gig_orders.buyer_user_id` and `provider_applications.user_id` missing while
+schema.ts declares them. That breaks every read of both tables. The 2026-08-22
+outage, rebuilt by hand.
+
+Fixed with `ALTER TABLE IF EXISTS` on all five, so a missing table is a notice
+rather than an error, plus the `provider_reviews.user_id` ALTER moved into
+`ensureReviewTable()`, which is the only place guaranteed to run after that
+table exists. **Carry this forward: `provider_reviews` migrations belong in
+`lib/reviews.ts`, not `instrumentation.ts`.**
+
+**2. Account takeover through an unverified address.** `resolveCurrentUser` took
+the primary email or, failing that, `emailAddresses[0]`, and claimed the shadow
+row for it without checking verification. A shadow row holds everything an
+address has ever done: enquiries with a phone number and car brief attached,
+reviews, registry submissions. So anyone who could type a stranger's address
+into a signup form and get past Clerk unverified would inherit all of it.
+
+Now: primary address only, and only when `verification.status === 'verified'`.
+No fallback to `emailAddresses[0]`, because an unverified address that happens
+to sort first is precisely the attack. An unverified session simply has no user
+row until the address is confirmed.
+
+**3. Anyone could set your display name.** The claim used
+`name = COALESCE(name, clerkName)`, so a name written by an unauthenticated form
+won permanently. POST an enquiry as someone else's address with any name you
+like and they are greeted by it forever. Reversed: Clerk's copy is the verified
+source and now overwrites.
+
+**4. A changed Clerk email stranded the next person.** If a member changed their
+primary address, `users.email` kept the old one. The next person to sign up with
+that freed-up address hit a row they could not claim, `claimUserForClerk`
+returned null, and they were signed in but permanently locked out of `/account`
+and the Stable. The bound row's email now syncs to the account's primary
+address, skipped silently if that address is taken. Still no auto-merging.
+
+**5. Signing in un-suspended a suspended account.** The claim set
+`status = 'active'` unconditionally. Now suspended stays suspended, and
+`resolveCurrentUser` returns null for a suspended row.
+
+**6. The user backfill created rows but linked nothing.** It filed a `users` row
+per address and never set `user_id` on the historic messages, reviews, register
+submissions, gig orders or applications, so the promised "your history is
+already here" moment would not have happened. Five idempotent UPDATE statements
+added, each caught on its own.
+
+It still does NOT copy `service_providers.clerk_user_id` onto the matching user,
+deliberately: that address is the BUSINESS address, often not the one the person
+signed in with, and a wrong binding is far worse than a late one.
+`resolveCurrentUser` binds the right row from their verified address on their
+next sign-in.
+
+**7. The vehicle backfill could duplicate on a re-run.** INSERT then UPDATE as
+two statements leaves an orphan vehicle if it crashes in between, and the next
+run creates a second one. Now a single CTE.
+
+Also: `listings.vehicle_id` gained `ON DELETE SET NULL`, so deleting a car from
+a Stable is not refused because a listing still points at it; and the public
+identify route got a six second timeout on the NHTSA lookup, because an
+unbounded fetch on a public endpoint is a way to tie up a function with somebody
+else's outage.

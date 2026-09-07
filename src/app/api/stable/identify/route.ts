@@ -43,10 +43,25 @@ export async function POST(request: NextRequest) {
 
   const candidate = input.replace(/\s/g, '').toUpperCase();
 
+  /**
+   * NHTSA's vPIC is a free government service and is occasionally slow. This
+   * route is public and rate limited per IP, so an unbounded fetch is a way to
+   * tie up a serverless function with someone else's outage. Six seconds, then
+   * fall back to reading the text, which for a collector car is often the
+   * better answer anyway.
+   */
+  const withTimeout = <T,>(p: Promise<T>, ms = 6000): Promise<T> =>
+    Promise.race([
+      p,
+      new Promise<T>((_, reject) =>
+        setTimeout(() => reject(new Error('VIN lookup timed out')), ms),
+      ),
+    ]);
+
   if (isPlausibleVin(candidate)) {
     vin = candidate;
     try {
-      const decoded = await decodeVin(candidate);
+      const decoded = await withTimeout(decodeVin(candidate));
       year = decoded.modelYear ? parseInt(decoded.modelYear, 10) || null : null;
       make = decoded.make;
       model = decoded.model;

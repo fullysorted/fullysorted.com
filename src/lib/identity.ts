@@ -193,6 +193,23 @@ export async function claimUserForClerk(input: {
   const existing = await getUserByClerkId(input.clerkUserId);
   if (existing) {
     await touch(existing.id);
+    // Keep the spine's email in step with the account. Without this, a member
+    // who changes their address in Clerk leaves their OLD address sitting in
+    // users.email, and the next person to sign up with that freed-up address
+    // collides with a row they cannot claim and cannot escape. Skipped
+    // silently if the new address is already taken -- rule 3, no auto-merging.
+    const wanted = normalizeEmail(input.email);
+    if (wanted && wanted !== existing.email) {
+      try {
+        await sql`
+          UPDATE users SET email = ${wanted}, updated_at = NOW()
+           WHERE id = ${existing.id}
+             AND NOT EXISTS (SELECT 1 FROM users WHERE LOWER(email) = ${wanted})
+        `;
+      } catch (err) {
+        console.error('[identity] email sync skipped:', err);
+      }
+    }
     return existing;
   }
 
@@ -215,9 +232,16 @@ export async function claimUserForClerk(input: {
     const rows = (await sql`
       UPDATE users
          SET clerk_user_id = ${input.clerkUserId},
-             status        = 'active',
-             avatar_url    = COALESCE(avatar_url, ${input.avatarUrl ?? null}),
-             name          = COALESCE(name, ${input.name?.trim() || null}),
+             -- A suspended row stays suspended. Signing in is not a way to
+             -- undo a ban.
+             status        = CASE WHEN status = 'suspended' THEN 'suspended' ELSE 'active' END,
+             -- Clerk's copy WINS here, and that is deliberate. A shadow row's
+             -- name came from an unauthenticated form: anyone can POST an
+             -- enquiry as someone else's address with any name they like, and
+             -- COALESCE would have made that stick forever. The signed-in
+             -- account is the verified source, so it overwrites.
+             avatar_url    = COALESCE(${input.avatarUrl ?? null}, avatar_url),
+             name          = COALESCE(${input.name?.trim() || null}, name),
              last_seen_at  = NOW(),
              updated_at    = NOW()
        WHERE id = ${base.id}
@@ -270,6 +294,7 @@ export async function resolveCurrentUser(): Promise<IdentityUser | null> {
     // Fast path: already bound, no call to Clerk's API needed.
     const known = await getUserByClerkId(userId);
     if (known) {
+      if (known.status === 'suspended') return null;
       await touch(known.id);
       return known;
     }
@@ -278,16 +303,32 @@ export async function resolveCurrentUser(): Promise<IdentityUser | null> {
     const cu = await currentUser();
     if (!cu) return null;
 
-    const primary =
-      cu.emailAddresses?.find((e) => e.id === cu.primaryEmailAddressId) ??
-      cu.emailAddresses?.[0];
+    // ONLY the primary address, and ONLY if Clerk says it is verified.
+    //
+    // This is the security boundary of the whole shadow-account design. A
+    // shadow row holds everything an address has ever done on the site: its
+    // enquiries, the phone number and car brief attached to them, its reviews,
+    // its registry submissions. Claiming one on an UNVERIFIED address would
+    // mean anyone who can type victim@example.com into a signup form inherits
+    // all of it.
+    //
+    // So there is no fallback to emailAddresses[0]: an unverified address that
+    // happens to sort first is exactly the attack. An unverified session simply
+    // has no user row until the address is confirmed, which costs that person
+    // nothing except a verification click.
+    const primary = cu.emailAddresses?.find(
+      (e) => e.id === cu.primaryEmailAddressId,
+    );
+    if (!primary || primary.verification?.status !== 'verified') {
+      return null;
+    }
 
     const name =
       [cu.firstName, cu.lastName].filter(Boolean).join(' ').trim() || null;
 
     return await claimUserForClerk({
       clerkUserId: userId,
-      email: primary?.emailAddress,
+      email: primary.emailAddress,
       name,
       avatarUrl: cu.imageUrl ?? null,
     });
