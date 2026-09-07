@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
 import { ensureReviewTable, normalizeRating } from '@/lib/reviews';
+import { getOrCreateUserByEmail } from '@/lib/identity';
 
 async function getSql() {
   const { neon } = await import('@neondatabase/serverless');
@@ -86,7 +87,7 @@ export async function POST(request: NextRequest) {
   await ensureReviewTable(sql);
 
   const [invite] = await sql`
-    SELECT r.id, r.provider_id, r.status, r.token_used_at, r.work_type,
+    SELECT r.id, r.provider_id, r.status, r.token_used_at, r.work_type, r.author_email,
            p.business_name, p.email AS provider_email
     FROM provider_reviews r
     JOIN service_providers p ON p.id = r.provider_id
@@ -116,6 +117,14 @@ export async function POST(request: NextRequest) {
   const reviewId = Number(invite.id);
   const businessName = String(invite.business_name);
 
+  // Identity spine (2026-09-06). The address the invite was mailed to is the
+  // verified one, so that is what we file under -- never a name typed into the
+  // form. author_email stays on the row as the audit trail.
+  const reviewer = await getOrCreateUserByEmail({
+    email: invite.author_email as string | null,
+    name: authorName,
+  });
+
   const result = await deliver({
     label: `provider review (${businessName})`,
     save: async () => {
@@ -129,6 +138,7 @@ export async function POST(request: NextRequest) {
             rating = ${rating},
             body = ${text},
             status = 'pending',
+            user_id = COALESCE(user_id, ${reviewer?.id ?? null}),
             token_used_at = NOW(),
             review_token = NULL,
             updated_at = NOW()

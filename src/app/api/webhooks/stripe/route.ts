@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
     if (listing_id && process.env.DATABASE_URL) {
       try {
         const { getDb, schema } = await import('@/lib/db');
-        const { eq } = await import('drizzle-orm');
+        const { eq, and, isNull } = await import('drizzle-orm');
         const db = getDb();
 
         await db
@@ -122,6 +122,39 @@ export async function POST(request: NextRequest) {
           .where(eq(schema.listings.id, parseInt(listing_id)));
 
         console.log(`Listing #${listing_id} activated successfully`);
+
+        // ── Identity spine (2026-09-06) ───────────────────────────────────
+        // This is the ONLY place a seller's email exists. The sell form never
+        // asks for one and /api/listings never stored one, so listings.seller_id
+        // has been declared and unwritten since the day it was added. Stripe
+        // collects the address at checkout, so this is where the car finally
+        // gets an owner.
+        //
+        // Guarded on seller_id IS NULL: a listing already claimed by a member
+        // is never re-pointed by a later payment on the same row.
+        //
+        // Its own try/catch. Stripe has the money and the listing is already
+        // live; nothing here is worth failing the webhook over.
+        try {
+          const { getOrCreateUserByEmail } = await import('@/lib/identity');
+          const payerEmail = session.customer_details?.email ?? null;
+          const seller = await getOrCreateUserByEmail({
+            email: payerEmail,
+            name: session.customer_details?.name ?? null,
+          });
+          if (seller) {
+            await db
+              .update(schema.listings)
+              .set({ sellerId: seller.id, updatedAt: new Date() })
+              .where(and(
+                eq(schema.listings.id, parseInt(listing_id)),
+                isNull(schema.listings.sellerId),
+              ));
+            console.log(`Listing #${listing_id} attributed to user #${seller.id}`);
+          }
+        } catch (idErr) {
+          console.error('Failed to attribute listing to a user:', idErr);
+        }
 
         // Send email notification to Chris
         try {

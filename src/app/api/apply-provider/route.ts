@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rate-limit";
 import { deliver, undeliverableResponse } from "@/lib/submissions";
+import { getOrCreateUserByEmail } from '@/lib/identity';
 
 export async function POST(request: NextRequest) {
   const limited = rateLimit(request, "apply-provider", 5, 60_000);
@@ -53,6 +54,11 @@ export async function POST(request: NextRequest) {
     // application is safe. Both used to be swallowed and the route returned
     // success regardless, so an application could vanish behind a green
     // checkmark. Success is now reported only if at least one channel worked.
+    // Identity spine (2026-09-06). A shop that applied to the directory is a
+    // person who came to us, so they get a row. This is also what the account
+    // link flow will match against when they claim their listing.
+    const applicant = await getOrCreateUserByEmail({ email, name: ownerName });
+
     const result = await deliver({
       label: `provider application (${businessName})`,
       save: process.env.DATABASE_URL
@@ -74,6 +80,7 @@ export async function POST(request: NextRequest) {
               whyList: whyList || null,
               referredBy: referredBy || null,
               status: "pending",
+              userId: applicant?.id ?? null,
             });
           }
         : undefined,

@@ -303,3 +303,66 @@ foreign key alongside the email string they already write: `/api/messages`,
 since it was declared), `/api/reviews`, `/api/register` submissions,
 `/api/gigs/order`. Keep writing the email string. It is the audit trail and the
 fallback. Still nothing visible on the site.
+
+---
+
+## PHASE 1 -- BUILT 2026-09-07 (uncommitted)
+
+Every inbound write now records WHO, not just an email string. Ten files, tsc
+and eslint clean, no new lint errors.
+
+**Schema + migration.** `user_id` (nullable, `REFERENCES users(id)`) added to
+`messages`, `provider_reviews`, `registry_submissions` and
+`provider_applications`; `buyer_user_id` on `gig_orders`. Matching
+`ADD COLUMN IF NOT EXISTS` in a new ORM-critical block placed at the END of
+`register()`, because every one of those tables is created earlier in that file
+and a fresh database would otherwise fail all five and heal only on the second
+boot. Indexes on all of them plus `listings(seller_id)`, because "everything
+this person has ever done" is the query the admin user page will be built on.
+A `CREATE TABLE IF NOT EXISTS users` was also added to the top of the Phase 0
+block for the same fresh-database reason.
+
+**Write paths.** `/api/messages`, `/api/register/submit`, `/api/reviews`,
+`/api/gigs/order`, `/api/apply-provider` each call `getOrCreateUserByEmail`
+before saving and set the foreign key. Every email column beside them keeps
+being written: the string is the audit trail, the id is the join.
+
+On reviews the id comes from `provider_reviews.author_email` (the address the
+invite was actually mailed to), never from a name typed into the form, and the
+update uses `COALESCE(user_id, ...)` so a claim is never overwritten.
+
+### The finding: the sell flow has never captured a seller
+`POST /api/listings` stores no email, phone or name for the seller. Not one.
+Which means `listings.seller_id` was not merely unwritten, it was unwritable:
+there was no address to write it from. The only place a seller's address exists
+anywhere in the system is Stripe's `customer_details.email` at checkout.
+
+So the attribution now happens in the Stripe webhook, on
+`checkout.session.completed`, guarded on `seller_id IS NULL` so a listing
+already claimed by a member is never re-pointed by a later payment, in its own
+try/catch because Stripe has the money and the listing is already live.
+
+Two consequences to carry:
+1. **Free early-adopter listings still have no owner.** They never touch Stripe,
+   so nothing attributes them. Phase 2 fixes this properly by making the car
+   exist before the listing does.
+2. **Existing listings have no seller and cannot get one retroactively.** There
+   is no stored address to match on. Attributing them needs a human in
+   `/admin`, which is Phase 4.
+
+### Also shipped: `/account`
+Not planned for Phase 1, but the header's "Dashboard" link sent every signed-in
+person to `/dashboard/provider`, which opens by asking them to list a service.
+That assumed every account holder is a shop. Most are car owners, and being
+asked to advertise a business you do not run is a strange way to be welcomed.
+`/account` was already in the middleware's protected list and did not exist, so
+it 404'd.
+
+`/account` now leads with the member's cars, then their enquiries, then service
+bookings, and mentions the shop last -- and the shop panel only appears when a
+provider row is actually linked to their Clerk account. Otherwise there is one
+quiet line at the bottom: "Work on cars for a living? List your business."
+Header now points at `/account` and the label reads "Account".
+
+It shows only what is true. Until listings start being attributed by the
+webhook, most accounts will correctly show an empty "Your cars".

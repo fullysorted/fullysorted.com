@@ -187,6 +187,9 @@ export const messages = pgTable('messages', {
   providerId: integer('provider_id'),
   senderName: varchar('sender_name', { length: 255 }).notNull(),
   senderEmail: varchar('sender_email', { length: 255 }).notNull(),
+  // Identity spine (2026-09-06). Nullable and additive: the email string
+  // beside it is still written and is still the audit trail.
+  userId: integer('user_id').references(() => users.id),
   senderPhone: varchar('sender_phone', { length: 50 }),
   messageText: text('message_text').notNull(),
   type: varchar('type', { length: 50 }).default('inquiry').notNull(), // inquiry, offer, contact
@@ -221,6 +224,9 @@ export const messages = pgTable('messages', {
 
 export const providerApplications = pgTable('provider_applications', {
   id: serial('id').primaryKey(),
+  // Identity spine (2026-09-06). Nullable and additive: the email string
+  // beside it is still written and is still the audit trail.
+  userId: integer('user_id').references(() => users.id),
   businessName: varchar('business_name', { length: 255 }).notNull(),
   ownerName: varchar('owner_name', { length: 255 }).notNull(),
   category: varchar('category', { length: 100 }).notNull(),
@@ -412,6 +418,8 @@ export const gigOrders = pgTable('gig_orders', {
   providerId: integer('provider_id').references(() => serviceProviders.id).notNull(),
   buyerName: varchar('buyer_name', { length: 255 }),
   buyerEmail: varchar('buyer_email', { length: 255 }),
+  // Identity spine (2026-09-06). The buyer as a user row, not a loose string.
+  buyerUserId: integer('buyer_user_id').references(() => users.id),
   amount: integer('amount'),                              // USD, gross
   platformFee: integer('platform_fee'),                  // computed, not charged yet
   status: varchar('status', { length: 30 }).default('inquiry').notNull(), // inquiry, accepted, in_progress, delivered, completed, cancelled
@@ -586,6 +594,9 @@ export const providerReviews = pgTable('provider_reviews', {
   // Author — email is stored for audit/dispute and is NEVER rendered publicly.
   authorName: varchar('author_name', { length: 255 }).notNull(),
   authorEmail: varchar('author_email', { length: 255 }),
+  // Identity spine (2026-09-06). Nullable and additive: the email string
+  // beside it is still written and is still the audit trail.
+  userId: integer('user_id').references(() => users.id),
   vehicle: varchar('vehicle', { length: 200 }),   // "1973 911 T"
   workType: varchar('work_type', { length: 120 }), // "Pre-purchase inspection"
   workDate: varchar('work_date', { length: 40 }),
@@ -677,6 +688,9 @@ export const registrySubmissions = pgTable('registry_submissions', {
   sourceUrl: text('source_url'),
   submitterName: varchar('submitter_name', { length: 255 }),
   submitterEmail: varchar('submitter_email', { length: 255 }),
+  // Identity spine (2026-09-06). Nullable and additive: the email string
+  // beside it is still written and is still the audit trail.
+  userId: integer('user_id').references(() => users.id),
   submitterRelation: varchar('submitter_relation', { length: 40 }), // owner | former_owner | dealer | historian | other
   status: varchar('status', { length: 20 }).default('pending').notNull(), // pending | approved | rejected
   adminNote: text('admin_note'),

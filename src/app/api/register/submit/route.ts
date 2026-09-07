@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
 import { normalizeChassis, normalizeVin } from '@/lib/register/chassis';
+import { getOrCreateUserByEmail } from '@/lib/identity';
 
 /**
  * POST /api/register/submit, public. A reader adds a record, corrects one, or
@@ -73,6 +74,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'An email address is needed in case we have a question.' }, { status: 400 });
   }
 
+  // Identity spine (2026-09-06). An 'ownership' submission is somebody telling
+  // us they own a car in the register. That is the single most valuable thing
+  // a stranger can hand us, and until now it was filed under a string.
+  const submitter = await getOrCreateUserByEmail({ email, name });
+
   const result = await deliver({
     label: `register ${kind}`,
     save: process.env.DATABASE_URL
@@ -82,9 +88,9 @@ export async function POST(req: NextRequest) {
           await sql`
             INSERT INTO registry_submissions
               (model_slug, chassis, vin, kind, body, event_date, source_url,
-               submitter_name, submitter_email, submitter_relation, status)
+               submitter_name, submitter_email, submitter_relation, status, user_id)
             VALUES (${modelSlug}, ${chassis}, ${vin}, ${kind}, ${text}, ${eventDate}, ${sourceUrl},
-                    ${name}, ${email}, ${relation}, 'pending')
+                    ${name}, ${email}, ${relation}, 'pending', ${submitter?.id ?? null})
           `;
         }
       : undefined,

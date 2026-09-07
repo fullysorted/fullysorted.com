@@ -94,6 +94,20 @@ export async function register() {
   try {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(process.env.DATABASE_URL);
+    // This block runs BEFORE the CREATE TABLE section further down, so on a
+    // brand new database every ALTER below would fail on a missing table and
+    // only heal on the second boot. Create it here instead. Idempotent.
+    await sql`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        name VARCHAR(255),
+        avatar_url TEXT,
+        role VARCHAR(50) NOT NULL DEFAULT 'user',
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
     await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS clerk_user_id VARCHAR(255)`;
     await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'shadow'`;
     await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS handle VARCHAR(40)`;
@@ -603,5 +617,48 @@ export async function register() {
   } catch (err) {
     // Never crash the server over a migration — just log
     console.error('[Fully Sorted] DB migration warning:', err);
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // IDENTITY FOREIGN KEYS (2026-09-06). ORM-CRITICAL for five tables.
+  //
+  // Phase 1 of the membership build: every inbound write now also records WHO,
+  // not just an email string. These columns are declared in schema.ts, so
+  // Drizzle names them in the SQL it emits for messages, provider_reviews,
+  // registry_submissions, gig_orders and provider_applications. Missing here =
+  // every read of those five tables fails. Same rule as always.
+  //
+  // Deliberately LAST in register(): every table below is created earlier in
+  // this file, and a fresh database would otherwise fail all five and heal
+  // only on the second boot.
+  //
+  // Every column is NULLABLE and every email column beside it keeps being
+  // written. The string is the audit trail and the fallback; the id is the
+  // join. Nothing reads these yet, so nothing can regress.
+  // ─────────────────────────────────────────────────────────────────────────
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+    await sql`ALTER TABLE provider_reviews ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+    await sql`ALTER TABLE registry_submissions ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+    await sql`ALTER TABLE gig_orders ADD COLUMN IF NOT EXISTS buyer_user_id INTEGER REFERENCES users(id)`;
+    await sql`ALTER TABLE provider_applications ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+
+    // "Everything this person has ever done" is the query the admin user page
+    // is built on, so each of these is indexed from the start.
+    await sql`CREATE INDEX IF NOT EXISTS messages_user_idx ON messages (user_id)`;
+    await sql`CREATE INDEX IF NOT EXISTS provider_reviews_user_idx ON provider_reviews (user_id)`;
+    await sql`CREATE INDEX IF NOT EXISTS registry_submissions_user_idx ON registry_submissions (user_id)`;
+    await sql`CREATE INDEX IF NOT EXISTS gig_orders_buyer_user_idx ON gig_orders (buyer_user_id)`;
+    await sql`CREATE INDEX IF NOT EXISTS provider_applications_user_idx ON provider_applications (user_id)`;
+    await sql`CREATE INDEX IF NOT EXISTS listings_seller_idx ON listings (seller_id)`;
+  } catch (err) {
+    console.error(
+      '[Fully Sorted] CRITICAL: could not ensure identity foreign keys. ' +
+        'Reads of messages, provider_reviews, registry_submissions, gig_orders ' +
+        'and provider_applications will fail until this is resolved:',
+      err,
+    );
   }
 }

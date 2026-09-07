@@ -3,6 +3,7 @@ import { rateLimit } from '@/lib/rate-limit';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
 import { randomBytes } from 'crypto';
 import { resolveRelay, isEmailAddress, normalizeBrief, briefToText, type Relay } from '@/lib/leads';
+import { getOrCreateUserByEmail } from '@/lib/identity';
 
 // POST /api/messages — public. A buyer contacts a seller about a listing, or an
 // owner contacts a shop through its directory profile.
@@ -63,6 +64,11 @@ export async function POST(request: NextRequest) {
   const actionToken = randomBytes(24).toString('base64url');
   let savedRow = false;
 
+  // Identity spine (2026-09-06). File the sender as a user row before saving,
+  // so a member who signs in later inherits every enquiry they ever sent.
+  // Additive and failure-tolerant: a null here costs the join, never the lead.
+  const senderUser = await getOrCreateUserByEmail({ email: senderEmail, name: senderName });
+
   // A relay lookup failure must never cost us the lead — fall back to Chris.
   let relay: Relay = null;
   if (process.env.DATABASE_URL) {
@@ -84,13 +90,14 @@ export async function POST(request: NextRequest) {
           // ALTER per insert was cheap insurance for one column and would not
           // stay cheap for eight.
           await sql`
-            INSERT INTO messages (listing_id, listing_slug, listing_title, provider_id, sender_name, sender_email, sender_phone, message_text, type, offer_amount, status, brief, action_token)
+            INSERT INTO messages (listing_id, listing_slug, listing_title, provider_id, sender_name, sender_email, sender_phone, message_text, type, offer_amount, status, brief, action_token, user_id)
             VALUES (
               ${listingId || null}, ${listingSlug || null}, ${listingTitle || null},
               ${relay?.providerId ?? null},
               ${senderName}, ${senderEmail.trim()}, ${senderPhone || null},
               ${fullText}, ${kind}, ${offerAmount || null}, 'new',
-              ${brief ? JSON.stringify(brief) : null}, ${actionToken}
+              ${brief ? JSON.stringify(brief) : null}, ${actionToken},
+              ${senderUser?.id ?? null}
             )
           `;
           savedRow = true;

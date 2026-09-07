@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, schema } from '@/lib/db';
 import { eq, and } from 'drizzle-orm';
+import { getOrCreateUserByEmail } from '@/lib/identity';
 
 // POST /api/gigs/order — buyer requests a gig (lead/inquiry).
 // Payments are NOT processed here — this creates a 'inquiry' order row and
@@ -39,12 +40,16 @@ export async function POST(request: NextRequest) {
       if (pkg) { amount = pkg.price; tier = pkg.tier; }
     }
 
+    // Identity spine (2026-09-06).
+    const buyerUser = await getOrCreateUserByEmail({ email: buyerEmail, name: buyerName });
+
     await db.insert(schema.gigOrders).values({
       gigId: gig.id,
       packageId: packageId ? Number(packageId) : null,
       providerId: gig.providerId,
       buyerName,
       buyerEmail,
+      buyerUserId: buyerUser?.id ?? null,
       amount,
       status: 'inquiry',
       requirementsText: message || null,

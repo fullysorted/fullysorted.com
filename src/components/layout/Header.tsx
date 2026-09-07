@@ -189,10 +189,10 @@ export function Header() {
                   My Orders
                 </Link>
                 <Link
-                  href="/dashboard/provider"
+                  href="/account"
                   className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
                 >
-                  Dashboard
+                  Account
                 </Link>
                 <UserButton
                   appearance={{
@@ -296,11 +296,11 @@ export function Header() {
                 My Orders
               </Link>
               <Link
-                href="/dashboard/provider"
+                href="/account"
                 onClick={close}
                 className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
               >
-                Dashboard
+                Account
               </Link>
               <div className="flex items-center justify-center px-4 py-3">
                 <UserButton />
