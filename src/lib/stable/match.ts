@@ -113,17 +113,25 @@ export async function parseCarText(input: string): Promise<{
  * owner to the 911 page is worse than sending him nowhere: the first costs us
  * the moment, the second costs us his trust in everything else on the page.
  */
+export type ModelLookup = {
+  /** The one right answer, or null when there is not one. */
+  match: ModelMatch | null;
+  /** Set only when several generations fit equally well and the caller should ask. */
+  alternatives: ModelMatch[];
+};
+
 export async function matchModelPage(input: {
   make: string | null | undefined;
   model: string | null | undefined;
   year?: number | null;
-}): Promise<ModelMatch | null> {
+}): Promise<ModelLookup> {
   const make = String(input.make ?? '').trim();
   const model = String(input.model ?? '').trim();
-  if (!make && !model) return null;
+  const EMPTY: ModelLookup = { match: null, alternatives: [] };
+  if (!make && !model) return EMPTY;
 
   const sql = await db();
-  if (!sql) return null;
+  if (!sql) return EMPTY;
 
   let rows: Row[];
   try {
@@ -136,13 +144,14 @@ export async function matchModelPage(input: {
     `) as Row[];
   } catch (err) {
     console.error('[stable/match] lookup failed:', err);
-    return null;
+    return EMPTY;
   }
-  if (!rows.length) return null;
+  if (!rows.length) return EMPTY;
 
   const wantModel = norm(model);
   const year = input.year ?? null;
 
+  const scored: { row: Row; score: number }[] = [];
   let best: { row: Row; score: number } | null = null;
 
   for (const r of rows) {
@@ -171,24 +180,50 @@ export async function matchModelPage(input: {
       else score -= 4; // Wrong generation. Actively disqualify it.
     }
 
+    scored.push({ row: r, score });
     if (!best || score > best.score) best = { row: r, score };
   }
 
   // Threshold. A make match alone scores 0 and must not resolve to whichever
   // model page happened to sort first.
-  if (!best || best.score < 4) return null;
+  if (!best || best.score < 4) return { match: null, alternatives: [] };
 
-  const r = best.row;
-  return {
-    slug: String(r.slug),
-    make: String(r.make),
-    model: String(r.model),
-    generation: r.generation ? String(r.generation) : null,
-    yearStart: r.year_start == null ? null : Number(r.year_start),
-    yearEnd: r.year_end == null ? null : Number(r.year_end),
-    heroPhoto: r.hero_photo ? String(r.hero_photo) : null,
-    confidence: best.score >= 6 ? 'high' : 'medium',
+  // ── Ambiguity ────────────────────────────────────────────────────────────
+  // Found in production 2026-09-07: "1985 Porsche 911" resolved to the 930
+  // Turbo. Three published generations cover a 1985 911 -- the Carrera 3.2,
+  // the SC and the Turbo -- and the query said nothing to separate them, so
+  // scoring them equally meant whichever row sorted first won. A man with a
+  // Carrera was being shown the Turbo's page and told it was his car.
+  //
+  // When nothing in the input distinguishes the top candidates, the honest
+  // answer is not the first one. It is to say there are several and let him
+  // pick. Same rule as everywhere else here: a wrong model page is worse than
+  // no model page.
+  const near = scored
+    .filter((c) => c.score >= best!.score - 1)
+    .sort((a, b) => b.score - a.score);
+
+  const distinct = new Set(near.map((c) => String(c.row.slug)));
+  const ambiguous = distinct.size > 1;
+
+  const shape = (c: { row: Row; score: number }): ModelMatch => {
+    const r = c.row;
+    return {
+      slug: String(r.slug),
+      make: String(r.make),
+      model: String(r.model),
+      generation: r.generation ? String(r.generation) : null,
+      yearStart: r.year_start == null ? null : Number(r.year_start),
+      yearEnd: r.year_end == null ? null : Number(r.year_end),
+      heroPhoto: r.hero_photo ? String(r.hero_photo) : null,
+      confidence: c.score >= 6 ? 'high' : 'medium',
+    };
   };
+
+  if (ambiguous) {
+    return { match: null, alternatives: near.slice(0, 4).map(shape) };
+  }
+  return { match: shape(best), alternatives: [] };
 }
 
 /**

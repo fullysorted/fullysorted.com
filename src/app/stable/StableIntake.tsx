@@ -24,7 +24,7 @@ type ModelPage = {
   generation: string | null;
   yearStart: number | null;
   yearEnd: number | null;
-} | null;
+};
 
 type Specialist = {
   slug: string;
@@ -36,7 +36,9 @@ type Specialist = {
 type Identified = {
   car: { year: number | null; make: string | null; model: string | null; trim: string | null; vin: string | null };
   vinNote: string | null;
-  modelPage: ModelPage;
+  modelPage: ModelPage | null;
+  /** Several generations fit and nothing in the input separated them. */
+  modelAlternatives?: ModelPage[];
   specialists: Specialist[];
 };
 
@@ -49,6 +51,7 @@ export function StableIntake() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<Identified | null>(null);
+  const [chosen, setChosen] = useState<ModelPage | null>(null);
   const [saved, setSaved] = useState(false);
 
   // Pick the car back up after a sign-in round trip.
@@ -92,7 +95,11 @@ export function StableIntake() {
       const res = await fetch('/api/stable/vehicles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...result.car, modelSlug: result.modelPage?.slug ?? null }),
+        body: JSON.stringify({
+          ...result.car,
+          // Whichever generation he picked, or the one we were sure of.
+          modelSlug: (chosen ?? result.modelPage)?.slug ?? null,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Could not save that.');
@@ -110,6 +117,7 @@ export function StableIntake() {
 
   function startOver() {
     setResult(null);
+    setChosen(null);
     setSaved(false);
     setInput('');
     try { sessionStorage.removeItem(PENDING_KEY); } catch {}
@@ -179,6 +187,42 @@ export function StableIntake() {
                   ? `, ${result.modelPage.yearStart}${result.modelPage.yearEnd ? `–${result.modelPage.yearEnd}` : ''}`
                   : ''}
               </Link>
+            </div>
+          )}
+
+          {/* Several generations fit, and nothing he typed separated them.
+              "1985 Porsche 911" is genuinely three different cars, so ask him
+              instead of picking one and calling it his. */}
+          {!result.modelPage && (result.modelAlternatives?.length ?? 0) > 0 && (
+            <div className="mt-5 rounded-xl border border-border bg-white p-4">
+              <p className="text-sm text-text-secondary mb-2">
+                {chosen ? 'Filed as:' : 'A few of these fit. Which one is yours?'}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {result.modelAlternatives!.map((m) => (
+                  <button
+                    key={m.slug}
+                    type="button"
+                    onClick={() => setChosen(chosen?.slug === m.slug ? null : m)}
+                    className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
+                      chosen?.slug === m.slug
+                        ? 'border-accent bg-accent-light text-foreground'
+                        : 'border-border text-accent hover:border-accent'
+                    }`}
+                    aria-pressed={chosen?.slug === m.slug}
+                  >
+                    {m.model}{m.generation ? ` (${m.generation})` : ''}
+                  </button>
+                ))}
+              </div>
+              {chosen && (
+                <a
+                  href={`/research/${chosen.slug}`}
+                  className="inline-block mt-3 text-sm text-accent hover:underline"
+                >
+                  Read its history
+                </a>
+              )}
             </div>
           )}
 

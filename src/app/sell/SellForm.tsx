@@ -94,7 +94,9 @@ export default function SellForm() {
   const [lookup, setLookup] = useState('');
   const [lookingUp, setLookingUp] = useState(false);
   const [lookupError, setLookupError] = useState<string | null>(null);
-  const [matchedModel, setMatchedModel] = useState<{ slug: string; make: string; model: string; generation: string | null } | null>(null);
+  type Matched = { slug: string; make: string; model: string; generation: string | null };
+  const [matchedModel, setMatchedModel] = useState<Matched | null>(null);
+  const [modelChoices, setModelChoices] = useState<Matched[]>([]);
   const [lookupNote, setLookupNote] = useState<string | null>(null);
 
   const [form, setForm] = useState({
@@ -212,6 +214,7 @@ export default function SellForm() {
     setLookupError(null);
     setLookupNote(null);
     setMatchedModel(null);
+    setModelChoices([]);
     try {
       const res = await fetch('/api/stable/identify', {
         method: 'POST',
@@ -231,6 +234,7 @@ export default function SellForm() {
         vin: prev.vin || car.vin || '',
       }));
       if (data.modelPage) setMatchedModel(data.modelPage);
+      if (Array.isArray(data.modelAlternatives)) setModelChoices(data.modelAlternatives);
       if (data.vinNote) setLookupNote(data.vinNote);
       if (!car.make && !car.model) {
         setLookupError('Nothing came back for that. Fill it in below and carry on.');
@@ -581,8 +585,32 @@ export default function SellForm() {
                     {matchedModel.make} {matchedModel.model}
                     {matchedModel.generation ? ` (${matchedModel.generation})` : ''}
                   </a>
-                  . It will be linked from your listing.
+                  .
                 </span>
+              </div>
+            )}
+
+            {/* Several generations fit. Ask rather than pick one for him:
+                "1985 Porsche 911" is genuinely three different cars. */}
+            {!matchedModel && modelChoices.length > 0 && (
+              <div className="mt-4">
+                <p className="text-sm text-text-secondary mb-2">
+                  A few of these fit. Which one is yours?
+                </p>
+                <ul className="flex flex-wrap gap-2">
+                  {modelChoices.map((m) => (
+                    <li key={m.slug}>
+                      <a
+                        href={`/research/${m.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block rounded-full border border-border bg-white px-3 py-1.5 text-sm text-accent hover:border-accent"
+                      >
+                        {m.model}{m.generation ? ` (${m.generation})` : ''}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>

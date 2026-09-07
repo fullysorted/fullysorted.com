@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
     model = parsed.model;
   }
 
-  const [modelPage, specialists] = await Promise.all([
+  const [lookupResult, specialists] = await Promise.all([
     matchModelPage({ make, model, year }),
     specialistsForMake(make),
   ]);
@@ -102,7 +102,11 @@ export async function POST(request: NextRequest) {
     car: { year, make, model, trim, vin },
     vinNote,
     // Null when we are not confident. A wrong model page is worse than none.
-    modelPage,
+    modelPage: lookupResult.match,
+    // Set when several published generations fit the car equally well and
+    // nothing in the input separates them. The caller should ask rather than
+    // pick: "1985 Porsche 911" is genuinely three different cars.
+    modelAlternatives: lookupResult.alternatives,
     specialists,
   });
 }

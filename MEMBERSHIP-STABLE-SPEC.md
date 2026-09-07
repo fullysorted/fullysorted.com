@@ -663,3 +663,54 @@ Your Collector Car from $9.99". That is an ad and search asset rather than
 something a visitor reads on the page, and keeping the fee there preserves
 message match with the Meta campaign while the page itself now leads with the
 car. Worth a separate decision, not a silent edit.
+
+---
+
+## PRODUCTION VERIFICATION + TWO FIXES, 2026-09-07 (post-deploy)
+
+Smoke tested the live site after Chris pushed. Everything that reads the altered
+tables is healthy: homepage, /sell, /browse, /services, /research, the provider
+detail page and `/api/providers` all 200 and return real rows, so none of the
+three ORM-critical blocks broke a read. `/stable` is live. `/api/stable/vehicles`
+returns 401 signed out. `/account` 404s signed out, which is this app's
+documented behaviour for a Clerk-protected route.
+
+Note for future testing: **www is canonical.** A POST to the apex host returns a
+redirect that curl will not follow without `-L`, which looks exactly like an
+empty response and wasted a round of debugging.
+
+### The matcher works
+```
+1972 Datsun 240Z   -> datsun/240z          S30    1969-1973   high
+1990 Porsche 911   -> porsche/911-964      964    1989-1994   high
+1995 Porsche 911   -> porsche/911-993      993    1994-1998   high
+1989 BMW M3        -> bmw/m3-e30           E30    1986-1991   high
+1993 Toyota Supra  -> toyota/supra-a80     A80    1993-2002   high
+1967 Ford Mustang  -> ford/mustang-first-gen      1965-1968   high
+my old truck       -> none
+```
+The 964 and 993 splitting on a five-year gap is the whole point of the function,
+and it does it.
+
+### Fix 1: it was confidently wrong about a 1985 911
+`1985 Porsche 911` returned the 930 Turbo. Three published generations cover a
+1985 911 (Carrera 3.2, SC, Turbo) and the input said nothing to separate them,
+so they scored identically and whichever row sorted first won. A man with a
+Carrera was being shown the Turbo's page and told it was his car.
+
+`matchModelPage` now detects that. When more than one distinct model sits within
+a point of the best score, it returns no match and a list of the candidates
+instead. The Stable asks "A few of these fit. Which one is yours?" and files the
+car under whichever he picks; the sell form shows the same candidates as links.
+Same rule as everywhere else here: a wrong model page is worse than none.
+
+### Fix 2: the sell form claimed something that was not true
+The match line said "It will be linked from your listing." Nothing implements
+that. `listings` has no `model_slug` column and the listing page renders no such
+link. Copy corrected to stop claiming it, per the standing rule about never
+making live claims for features that are off.
+
+**Worth building next, and small:** add `listings.model_slug`, store the matched
+or chosen generation at listing creation, and render "History of this model" on
+the listing page. Then the claim becomes true and every listing feeds the
+research hub, which is the whole flywheel.
