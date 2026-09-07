@@ -654,19 +654,38 @@ export async function register() {
     // the statements below it still run. The provider_reviews column is added
     // by ensureReviewTable() as well, which is the only place guaranteed to
     // run after that table exists.
-    await sql`ALTER TABLE IF EXISTS messages ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
-    await sql`ALTER TABLE IF EXISTS provider_reviews ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
-    await sql`ALTER TABLE IF EXISTS registry_submissions ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
-    await sql`ALTER TABLE IF EXISTS gig_orders ADD COLUMN IF NOT EXISTS buyer_user_id INTEGER REFERENCES users(id)`;
-    await sql`ALTER TABLE IF EXISTS provider_applications ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`;
+    // ONE STATEMENT PER try/catch, and this is the whole lesson of this file.
+    //
+    // ALTER TABLE IF EXISTS survives a missing table. CREATE INDEX has no such
+    // guard: `CREATE INDEX IF NOT EXISTS x ON missing_table (col)` throws, and
+    // in a shared try/catch that one throw skips every statement after it.
+    //
+    // Proven on 2026-09-07 by running this file against an empty database for
+    // the first time: `registry_submissions` does not exist on a fresh
+    // database, its index threw, and the listings and gig_orders indexes below
+    // it were silently never created. A missing index is survivable; the habit
+    // that produced it is what caused the 2026-08-22 outage.
+    const step = async (label: string, run: () => Promise<unknown>) => {
+      try {
+        await run();
+      } catch (err) {
+        console.error(`[Fully Sorted] identity migration step "${label}" failed:`, err);
+      }
+    };
+
+    await step('messages.user_id', () => sql`ALTER TABLE IF EXISTS messages ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`);
+    await step('provider_reviews.user_id', () => sql`ALTER TABLE IF EXISTS provider_reviews ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`);
+    await step('registry_submissions.user_id', () => sql`ALTER TABLE IF EXISTS registry_submissions ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`);
+    await step('gig_orders.buyer_user_id', () => sql`ALTER TABLE IF EXISTS gig_orders ADD COLUMN IF NOT EXISTS buyer_user_id INTEGER REFERENCES users(id)`);
+    await step('provider_applications.user_id', () => sql`ALTER TABLE IF EXISTS provider_applications ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id)`);
 
     // "Everything this person has ever done" is the query the admin user page
     // is built on, so each of these is indexed from the start.
-    await sql`CREATE INDEX IF NOT EXISTS messages_user_idx ON messages (user_id)`;
-    await sql`CREATE INDEX IF NOT EXISTS registry_submissions_user_idx ON registry_submissions (user_id)`;
-    await sql`CREATE INDEX IF NOT EXISTS gig_orders_buyer_user_idx ON gig_orders (buyer_user_id)`;
-    await sql`CREATE INDEX IF NOT EXISTS provider_applications_user_idx ON provider_applications (user_id)`;
-    await sql`CREATE INDEX IF NOT EXISTS listings_seller_idx ON listings (seller_id)`;
+    await step('messages idx', () => sql`CREATE INDEX IF NOT EXISTS messages_user_idx ON messages (user_id)`);
+    await step('registry_submissions idx', () => sql`CREATE INDEX IF NOT EXISTS registry_submissions_user_idx ON registry_submissions (user_id)`);
+    await step('gig_orders idx', () => sql`CREATE INDEX IF NOT EXISTS gig_orders_buyer_user_idx ON gig_orders (buyer_user_id)`);
+    await step('provider_applications idx', () => sql`CREATE INDEX IF NOT EXISTS provider_applications_user_idx ON provider_applications (user_id)`);
+    await step('listings seller idx', () => sql`CREATE INDEX IF NOT EXISTS listings_seller_idx ON listings (seller_id)`);
   } catch (err) {
     console.error(
       '[Fully Sorted] CRITICAL: could not ensure identity foreign keys. ' +
