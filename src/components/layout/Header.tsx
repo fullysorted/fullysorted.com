@@ -189,6 +189,12 @@ export function Header() {
                   My Orders
                 </Link>
                 <Link
+                  href="/stable"
+                  className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
+                >
+                  The Stable
+                </Link>
+                <Link
                   href="/account"
                   className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
                 >
@@ -294,6 +300,13 @@ export function Header() {
                 className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
               >
                 My Orders
+              </Link>
+              <Link
+                href="/stable"
+                onClick={close}
+                className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
+              >
+                The Stable
               </Link>
               <Link
                 href="/account"

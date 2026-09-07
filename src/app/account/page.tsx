@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { resolveCurrentUser } from '@/lib/identity';
+import { listVehicles } from '@/lib/stable/vehicles';
 
 export const metadata: Metadata = { title: 'Your account', robots: { index: false } };
 export const dynamic = 'force-dynamic';
@@ -95,7 +96,10 @@ export default async function AccountPage() {
     );
   }
 
-  const { cars, enquiries, provider } = await load(user.id, user.clerkUserId);
+  const [{ cars, enquiries, provider }, vehicles] = await Promise.all([
+    load(user.id, user.clerkUserId),
+    listVehicles(user.id),
+  ]);
   const firstName = user.name?.split(' ')[0];
 
   return (
@@ -106,51 +110,65 @@ export default async function AccountPage() {
         </h1>
         <p className="text-sm text-text-secondary mb-8">{user.email}</p>
 
-        {/* ── The cars. Always first. ─────────────────────────────────────── */}
+        {/* ── The Stable. Always first. A car does not have to be for sale. ─ */}
         <Panel
-          title="Your cars"
+          title="Your Stable"
           action={
-            cars.length > 0 ? (
-              <Link href="/sell" className="text-sm font-medium text-accent hover:underline">
-                Add another
-              </Link>
-            ) : null
+            <Link href="/stable" className="text-sm font-medium text-accent hover:underline">
+              {vehicles.length > 0 ? 'Open' : 'Add a car'}
+            </Link>
           }
         >
-          {cars.length === 0 ? (
-            <div>
-              <p className="text-sm text-text-secondary mb-4">
-                Nothing here yet. Add a car and this becomes the place its record lives:
-                what it is, what has been done to it, and who did the work.
-              </p>
-              <Link
-                href="/sell"
-                className="inline-block px-4 py-2.5 text-sm font-medium rounded-lg bg-accent text-white hover:opacity-90 transition-opacity"
-              >
-                Add a car
-              </Link>
-            </div>
+          {vehicles.length === 0 ? (
+            <p className="text-sm text-text-secondary">
+              Nothing in it yet. Put a car in and this becomes the place its record
+              lives: what it is, what has been done to it, and who did the work.
+            </p>
           ) : (
             <ul className="divide-y divide-border">
-              {cars.map((c) => (
-                <li key={String(c.id)} className="py-3 flex items-center justify-between gap-4">
-                  <div className="min-w-0">
-                    <Link
-                      href={`/listings/${String(c.slug)}`}
-                      className="font-medium text-foreground hover:text-accent truncate block"
-                    >
-                      {String(c.year)} {String(c.make)} {String(c.model)}
-                    </Link>
-                    <p className="text-xs text-text-secondary mt-0.5 capitalize">
-                      {String(c.status)}
-                      {c.price ? ` · $${Number(c.price).toLocaleString()}` : ''}
-                    </p>
-                  </div>
+              {vehicles.map((v) => (
+                <li key={v.id} className="py-3">
+                  <p className="font-medium text-foreground">
+                    {v.nickname || [v.year, v.make, v.model].filter(Boolean).join(' ') || 'Untitled car'}
+                  </p>
+                  <p className="text-xs text-text-secondary mt-0.5">
+                    {v.visibility === 'private' ? 'Private' : 'Public'}
+                    {v.chassisId ? ' · in the chassis register' : ''}
+                  </p>
                 </li>
               ))}
             </ul>
           )}
         </Panel>
+
+        {/* ── Cars actually on the marketplace ────────────────────────────── */}
+        {cars.length > 0 && (
+          <Panel
+            title="Listed for sale"
+            action={
+              <Link href="/sell" className="text-sm font-medium text-accent hover:underline">
+                List another
+              </Link>
+            }
+          >
+            <ul className="divide-y divide-border">
+              {cars.map((c) => (
+                <li key={String(c.id)} className="py-3">
+                  <Link
+                    href={`/listings/${String(c.slug)}`}
+                    className="font-medium text-foreground hover:text-accent truncate block"
+                  >
+                    {String(c.year)} {String(c.make)} {String(c.model)}
+                  </Link>
+                  <p className="text-xs text-text-secondary mt-0.5 capitalize">
+                    {String(c.status)}
+                    {c.price ? ` · $${Number(c.price).toLocaleString()}` : ''}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </Panel>
+        )}
 
         {/* ── Enquiries they sent ─────────────────────────────────────────── */}
         {enquiries.length > 0 && (

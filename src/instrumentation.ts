@@ -661,4 +661,84 @@ export async function register() {
       err,
     );
   }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // THE STABLE (2026-09-07). ORM-CRITICAL for vehicles, vehicle_records and
+  // listings.
+  //
+  // A car that exists whether or not it is for sale. `listings.vehicle_id` is
+  // NULLABLE and backfilled by scripts/backfill-vehicles.mjs, so every listing
+  // read keeps working from the moment this deploys.
+  //
+  // Runs after the identity block: vehicles references users(id), and the
+  // chassis link points at registry_chassis, both of which exist by now.
+  // ─────────────────────────────────────────────────────────────────────────
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS vehicles (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL REFERENCES users(id),
+        year INTEGER,
+        make VARCHAR(100),
+        model VARCHAR(200),
+        trim VARCHAR(200),
+        body_style VARCHAR(100),
+        exterior_color VARCHAR(100),
+        interior_color VARCHAR(100),
+        vin VARCHAR(32),
+        chassis VARCHAR(64),
+        model_slug VARCHAR(300),
+        chassis_id INTEGER,
+        mileage INTEGER,
+        mileage_unit VARCHAR(5),
+        nickname VARCHAR(120),
+        story TEXT,
+        photos JSONB DEFAULT '[]'::JSONB,
+        hero_photo TEXT,
+        visibility VARCHAR(20) NOT NULL DEFAULT 'private',
+        status VARCHAR(20) NOT NULL DEFAULT 'owned',
+        acquired_at VARCHAR(10),
+        sold_at VARCHAR(10),
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+    await sql`CREATE INDEX IF NOT EXISTS vehicles_user_idx ON vehicles (user_id, created_at DESC)`;
+    await sql`CREATE INDEX IF NOT EXISTS vehicles_model_slug_idx ON vehicles (model_slug)`;
+    await sql`CREATE INDEX IF NOT EXISTS vehicles_chassis_idx ON vehicles (chassis_id)`;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS vehicle_records (
+        id SERIAL PRIMARY KEY,
+        vehicle_id INTEGER NOT NULL REFERENCES vehicles(id) ON DELETE CASCADE,
+        kind VARCHAR(30) NOT NULL,
+        occurred_on VARCHAR(10),
+        title VARCHAR(300) NOT NULL,
+        details TEXT,
+        provider_id INTEGER,
+        cost_amount NUMERIC(12,2),
+        cost_currency VARCHAR(3),
+        documents JSONB DEFAULT '[]'::JSONB,
+        photos JSONB DEFAULT '[]'::JSONB,
+        visibility VARCHAR(20) NOT NULL DEFAULT 'private',
+        created_by INTEGER REFERENCES users(id),
+        created_at TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+    await sql`CREATE INDEX IF NOT EXISTS vehicle_records_vehicle_idx
+              ON vehicle_records (vehicle_id, occurred_on DESC)`;
+
+    // Declared in schema.ts, so ORM-critical for the listings table itself.
+    await sql`ALTER TABLE listings ADD COLUMN IF NOT EXISTS vehicle_id INTEGER REFERENCES vehicles(id)`;
+    await sql`CREATE INDEX IF NOT EXISTS listings_vehicle_idx ON listings (vehicle_id)`;
+  } catch (err) {
+    console.error(
+      '[Fully Sorted] CRITICAL: could not ensure Stable tables. ' +
+        'Every listing read will fail if listings.vehicle_id is missing:',
+      err,
+    );
+  }
 }

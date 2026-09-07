@@ -366,3 +366,81 @@ Header now points at `/account` and the label reads "Account".
 
 It shows only what is true. Until listings start being attributed by the
 webhook, most accounts will correctly show an empty "Your cars".
+
+---
+
+## PHASE 2 -- BUILT 2026-09-07 (uncommitted). THE STABLE IS REAL.
+
+Ten files. Typechecks, lints, and a full `next build` passes end to end.
+
+### Schema
+`vehicles` and `vehicle_records` created; `listings.vehicle_id` added, nullable.
+ALTERs sit in a third ORM-critical block at the end of `register()`, after the
+identity block, because `vehicles` references `users(id)` and the chassis link
+points at `registry_chassis`. Every existing listing read keeps working from the
+moment this deploys, because `vehicle_id` is nullable and backfilled separately.
+
+Every car is `visibility = 'private'`. There is no code path that creates a
+public one. Location is not stored on a vehicle at all.
+
+### `src/lib/stable/match.ts` -- the highest-leverage function in the project
+`make + model + year -> the published research page for that GENERATION`.
+
+NHTSA hands back "PORSCHE / 911 / 2013". Model pages are slugged by generation
+with `year_start` / `year_end` on the row. Without this, a VIN decode is a table
+of specifications that every site has. With it, the decode lands on his car's
+page. Scoring runs in JavaScript, not SQL: fewer than a hundred published models,
+a handful per make, and the ranking rules are easier to be wrong about in one
+readable place than inside a CASE expression.
+
+Exact model name +4, containment +2, a generation code typed into the field +3,
+year inside the generation span +3, year OUTSIDE it **-4**. Threshold 4, and it
+returns null below that. Sending a Boxster owner to the 911 page is worse than
+sending him nowhere: the first costs the moment, the second costs his trust in
+everything else on the page.
+
+`parseCarText` pulls "1972 Datsun 240Z" apart. The year is the anchor wherever it
+appears; the make is matched against makes we actually publish, longest name
+first, so "Land Rover Defender" never becomes make "Land".
+
+### The intake, exactly as settled on 2026-08-31
+`/stable` is deliberately **PUBLIC**. A signed-out visitor gets the whole payoff
+before anything is asked of them: the car, its research page, shops that work on
+that marque. Only then does anything mention keeping it. Protecting the route
+would put the wall back.
+
+An identified car is held in `sessionStorage`, so signing in does not throw it
+away and make them type it twice. That is the difference between the account
+being a save button and being a wall.
+
+The specialists block renders only when it is non-empty. `service_providers.marques`
+still has no data, so it will be empty for a while, and an empty "specialists near
+you" heading is a worse first impression than no heading at all.
+
+### Files
+`src/lib/stable/match.ts`, `src/lib/stable/vehicles.ts` (ownership enforced in the
+WHERE clause of every query, never in a component), `POST /api/stable/identify`
+(public, writes nothing), `/api/stable/vehicles` (GET/POST/DELETE, signed in),
+`/stable` + `StableIntake.tsx`, `/account` reworked so Your Stable is first and
+"Listed for sale" is a separate panel, `scripts/backfill-vehicles.mjs`, and The
+Stable added to the header's signed-in cluster only -- the public nav order stays
+Services, Marketplace, Research.
+
+### Deploy order
+1. Ship. The three ORM-critical blocks run at boot, in order.
+2. Check the boot log for `CRITICAL: could not ensure Stable tables`.
+3. `DATABASE_URL='...' node scripts/backfill-vehicles.mjs --dry` then for real.
+   It reports how many listings have no owner at all and skips them.
+
+### Phase 2b, not built
+The model-specific checklist. Generate yes / no / don't-know items from
+`vehicle_models.commonProblems` and `whatToLookFor`, already written and cited for
+85 models. Recognition is cheap, recall is expensive, and every "no" is a job that
+maps to a provider. This is the part that makes the Stable something people open
+on a Tuesday rather than a list of cars, and `vehicle_records` is already shaped
+for the answers.
+
+Then: the lead-outcome link a shop clicks extended one notch to "did this job
+happen?", and review invitations, both writing dated `vehicle_records` rows with
+the shop's name on them. After that first checklist the owner should essentially
+never fill in a form again.

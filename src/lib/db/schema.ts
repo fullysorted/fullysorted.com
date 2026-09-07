@@ -107,6 +107,11 @@ export const listings = pgTable('listings', {
 
   // Ownership
   sellerId: integer('seller_id').references(() => users.id),
+  // The Stable (2026-09-07). A listing is an EVENT on a car, not the car
+  // itself. Nullable and backfilled, so every existing listing keeps working
+  // exactly as it did. When the listing sells, the vehicle survives it -- that
+  // is the whole point of "the record is the product".
+  vehicleId: integer('vehicle_id'),
   // Who is selling. 'private' (default) or 'dealer'. Dealer listings are
   // badged and carry the disclosures in lib/dealer.ts. Columns are added at
   // boot in src/instrumentation.ts; a bare .select() emits every column here,
@@ -696,6 +701,80 @@ export const registrySubmissions = pgTable('registry_submissions', {
   adminNote: text('admin_note'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   reviewedAt: timestamp('reviewed_at'),
+});
+
+// ─── The Stable (2026-09-07) ─────────────────────────────
+// A car a member owns, whether or not it is for sale, and whether or not it
+// ever will be. This is the durable record; listings, register entries and
+// service history all hang off it.
+//
+// PRIVACY: visibility defaults to 'private'. A public Stable is a theft
+// catalogue -- cars, values, modifications and a location in one place -- so
+// nothing here is public until the owner says so, per car, and location is
+// never stored finer than a city.
+export const vehicles = pgTable('vehicles', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id').references(() => users.id).notNull(),
+
+  year: integer('year'),
+  make: varchar('make', { length: 100 }),
+  model: varchar('model', { length: 200 }),
+  trim: varchar('trim', { length: 200 }),
+  bodyStyle: varchar('body_style', { length: 100 }),
+  exteriorColor: varchar('exterior_color', { length: 100 }),
+  interiorColor: varchar('interior_color', { length: 100 }),
+
+  vin: varchar('vin', { length: 32 }),
+  chassis: varchar('chassis', { length: 64 }),
+  // The published research page for this car's generation, resolved at intake
+  // by lib/stable/match.ts. This is what turns "a 2013 Porsche 911" into
+  // "porsche/911-991" and makes the encyclopedia HIS car's page.
+  modelSlug: varchar('model_slug', { length: 300 }),
+  // Set only when the car matches a row in the chassis register. A match shows
+  // the public history we already researched; it NEVER asserts ownership.
+  // Ownership is only ever established by an approved registry submission.
+  chassisId: integer('chassis_id'),
+
+  mileage: integer('mileage'),
+  mileageUnit: varchar('mileage_unit', { length: 5 }),   // mi | km
+
+  nickname: varchar('nickname', { length: 120 }),
+  story: text('story'),                                   // the owner's own words
+  photos: jsonb('photos').$type<string[]>().default([]),
+  heroPhoto: text('hero_photo'),
+
+  visibility: varchar('visibility', { length: 20 }).default('private').notNull(),
+  status: varchar('status', { length: 20 }).default('owned').notNull(), // owned | sold | former | wanted
+
+  acquiredAt: varchar('acquired_at', { length: 10 }),     // ISO or partial, like registry_events
+  soldAt: varchar('sold_at', { length: 10 }),
+
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+// What has actually been done to the car. This is the answer to "nobody owns
+// the record of what has been done to a car".
+//
+// The owner should rarely type one of these by hand. They arrive from things
+// already shipped: the lead-outcome link a shop clicks from its email, a
+// review (which is already a dated record of work done), and the car brief on
+// an enquiry. provider_id is set when the work came through us.
+export const vehicleRecords = pgTable('vehicle_records', {
+  id: serial('id').primaryKey(),
+  vehicleId: integer('vehicle_id').references(() => vehicles.id, { onDelete: 'cascade' }).notNull(),
+  kind: varchar('kind', { length: 30 }).notNull(), // service | restoration | modification | inspection | show | mileage | document | note
+  occurredOn: varchar('occurred_on', { length: 10 }),
+  title: varchar('title', { length: 300 }).notNull(),
+  details: text('details'),
+  providerId: integer('provider_id'),
+  costAmount: decimal('cost_amount', { precision: 12, scale: 2 }),
+  costCurrency: varchar('cost_currency', { length: 3 }),
+  documents: jsonb('documents').$type<string[]>().default([]),
+  photos: jsonb('photos').$type<string[]>().default([]),
+  visibility: varchar('visibility', { length: 20 }).default('private').notNull(),
+  createdBy: integer('created_by').references(() => users.id),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
 // Type exports for use in components
