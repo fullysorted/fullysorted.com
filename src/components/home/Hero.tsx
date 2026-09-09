@@ -66,7 +66,10 @@ const SHOWCASE: Partial<Record<ServiceCategoryKey, { tagline: string; desc: stri
   },
 };
 
-const slides = TRADE_CATEGORIES.map((c) => ({
+// A category only joins the slider once it has SHOWCASE copy and a photo at
+// public/images/services/<key>.jpg. Newer categories still appear everywhere
+// else (quick picks, homepage cards, directory) until a photo is shot.
+const slides = TRADE_CATEGORIES.filter((c) => SHOWCASE[c.key]).map((c) => ({
   key: c.key,
   title: c.longLabel,
   verb: c.verb,

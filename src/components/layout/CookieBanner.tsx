@@ -8,6 +8,12 @@ import { useGPC, useStoredConsent } from "@/components/analytics/useConsent";
  * Consent banner. Two real choices, both one click, neither pre-selected.
  * "Essential only" is a full answer, not a dark-pattern "manage settings" trip.
  *
+ * On mobile the banner is lifted clear of MobileNav (h-16, fixed bottom-0,
+ * same z-50, rendered earlier in layout.tsx so the banner paints over it).
+ * Without the offset the cookie question sits directly on top of the primary
+ * nav bar and a first-time visitor on a phone cannot tap Services, Browse,
+ * Sell or Research until they answer it.
+ *
  * Nothing non-essential (Google Analytics, Meta Pixel) loads until the visitor
  * picks "Accept all". A Global Privacy Control signal is treated as "essential
  * only" and the banner says so instead of asking.
@@ -26,7 +32,7 @@ export function CookieBanner() {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-4 sm:pb-6 pointer-events-none"
+      className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-6 pointer-events-none"
       aria-live="polite"
       role="dialog"
       aria-label="Cookie choices"

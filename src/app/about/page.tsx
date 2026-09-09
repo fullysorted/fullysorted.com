@@ -16,7 +16,7 @@ import { TRADE_CATEGORIES } from "@/lib/service-categories";
  *
  * Design elements are drawn from the content, not added on top of it: the
  * "sorted" definition becomes an inspection-card checklist, the ownership year
- * is a rail of the same eight photographs the homepage uses, and the facts
+ * is a rail of the same photographs the homepage uses, and the facts
  * strip only carries numbers that are true.
  */
 
@@ -192,7 +192,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* The ownership year: a rail of the eight trades */}
+      {/* The ownership year: a rail of the trades */}
       <section style={{ background: PAPER, borderTop: `1px solid ${RULE}`, borderBottom: `1px solid ${RULE}` }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-10">
@@ -204,9 +204,9 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-7 lg:col-start-6 text-base sm:text-lg leading-relaxed" style={{ color: "#3a3a30" }}>
               <p>
-                Eight trades, in the order a car usually meets them. {verbLine.charAt(0).toUpperCase() + verbLine.slice(1)}.
-                Buy it, get it home, keep it right, keep it clean, put it away, and one
-                day sell it well. Every specialist on the platform is listed under one
+                Ten trades, in the order a car usually meets them. {verbLine.charAt(0).toUpperCase() + verbLine.slice(1)}.
+                Buy it, get it home, make it legal, keep it right, keep it clean, put it
+                away, and one day sell it well. Every specialist on the platform is listed under one
                 of these, so you search for the job, not the jargon.
               </p>
             </div>

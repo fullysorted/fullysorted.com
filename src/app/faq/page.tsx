@@ -87,7 +87,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "What trades can I find right now?",
-        a: "Eight: pre-purchase inspection, enclosed transport and shipping, service and mechanical work, body work and paint, restoration, detailing and paint correction, climate-controlled storage, and automotive photography. Between them they cover the whole ownership year.",
+        a: "Ten: pre-purchase inspection, enclosed transport and shipping, title and registration services, service and mechanical work, body work and paint, restoration, upholstery and interior trim, detailing and paint correction, climate-controlled storage, and automotive photography. Between them they cover the whole ownership year.",
         link: { href: "/services", label: "Browse the directory" },
       },
       {

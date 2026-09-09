@@ -7,9 +7,12 @@
  * "valuation" that the directory cannot filter for, and why promoting a
  * category meant editing six files.
  *
- * WHAT IS LIVE: the eight trades (inspection, transport, mechanical, body &
- * paint, restoration, detailing, storage, photography) plus, since 2026-09-04,
- * two buying-and-selling categories: dealers and consignment.
+ * WHAT IS LIVE: the ten trades (inspection, transport, title & registration,
+ * mechanical, body & paint, restoration, upholstery, detailing, storage,
+ * photography) plus, since 2026-09-04, two buying-and-selling categories:
+ * dealers and consignment. Upholstery and title & registration were added
+ * 2026-09-09: interior work was being logged as restoration, and title work
+ * had nowhere to sit at all.
  *
  * Restoration and body & paint were held back at first because both are
  * month-long project work bought on long referral cycles. They were switched on
@@ -17,9 +20,10 @@
  * category to file them under, a rotisserie house gets logged as "mechanical"
  * and its public page reads "is a mechanical specialist".
  *
- * ORDER IS THE OWNERSHIP YEAR (set 2026-09-01): buy it (inspection), get it
- * home (transport), keep it right (mechanical, body & paint, restoration),
- * keep it clean (detailing), put it away (storage), sell it (photography).
+ * ORDER IS THE OWNERSHIP YEAR (set 2026-09-01, extended 2026-09-09): buy it
+ * (inspection), get it home (transport), make it legal (title & registration),
+ * keep it right (mechanical, body & paint, restoration, upholstery), keep it
+ * clean (detailing), put it away (storage), sell it (photography).
  * The homepage reads the list left to right as a story, so keep it that way.
  *
  * Set `active: false` to retire a category. Labels and tints resolve for
@@ -34,11 +38,13 @@ export type ServiceCategoryKey =
   | 'mechanical'
   | 'restoration'
   | 'bodywork'
+  | 'upholstery'
+  | 'titling'
   | 'dealer'
   | 'consignment';
 
 /**
- * 'trade' is work done TO a car: the eight ownership-year categories that the
+ * 'trade' is work done TO a car: the ten ownership-year categories that the
  * homepage tells as a story. 'sales' is the buying-and-selling side, added
  * 2026-09-04 when the "no dealers" positioning was retired: dealers and
  * consignment houses list in the directory in their own section, and a dealer
@@ -90,6 +96,16 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     tint: '#2C4A63',
   },
   {
+    key: 'titling',
+    longLabel: 'Title & Registration Services',
+    label: 'Title & Registration',
+    verb: 'Register it',
+    blurb: 'Out-of-state titles, bonded titles, imports, lost paperwork, DMV registration. The people who make a car legal to drive without you standing in a line.',
+    askedFor: 'Help getting it titled',
+    active: true,
+    tint: '#5A4E7C',
+  },
+  {
     key: 'mechanical',
     label: 'Mechanics',
     longLabel: 'Service & Mechanical',
@@ -118,6 +134,16 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     askedFor: 'Restoration work',
     active: true,
     tint: '#7a4a5a',
+  },
+  {
+    key: 'upholstery',
+    label: 'Upholstery',
+    longLabel: 'Upholstery & Interior Trim',
+    verb: 'Trim it',
+    blurb: 'Leather, vinyl, cloth, carpet, headliners and convertible hoods. Retrim to the original pattern and grain, or put right the one seat that gives the car away.',
+    askedFor: 'A retrim, or one seat sorted',
+    active: true,
+    tint: '#6E4B3A',
   },
   {
     key: 'detailing',
@@ -181,7 +207,7 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
  */
 export const SERVICE_CATEGORIES: ServiceCategory[] = ALL_CATEGORIES.filter((c) => c.active);
 
-/** The eight trades, in ownership-year order. This is what the homepage tells as a story. */
+/** The ten trades, in ownership-year order. This is what the homepage tells as a story. */
 export const TRADE_CATEGORIES: ServiceCategory[] = SERVICE_CATEGORIES.filter((c) => (c.group ?? 'trade') === 'trade');
 
 /** Dealers and consignment: the buying-and-selling side of the directory. */

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake } from 'lucide-react';
+import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake, Armchair, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -29,6 +29,8 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   storage: <Warehouse className="w-5 h-5" />,
   restoration: <Hammer className="w-5 h-5" />,
   bodywork: <Shield className="w-5 h-5" />,
+  upholstery: <Armchair className="w-5 h-5" />,
+  titling: <FileText className="w-5 h-5" />,
   dealer: <Store className="w-5 h-5" />,
   consignment: <Handshake className="w-5 h-5" />,
 };
