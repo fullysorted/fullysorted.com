@@ -75,6 +75,24 @@ function Caption({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * Categories that actually have a photo at public/images/services/<key>.jpg.
+ * Upholstery and title & registration were added 2026-09-09 and have not been
+ * shot yet, so their cards render as a solid tint panel rather than firing a
+ * 404 at a file that is not there. Add the key here the moment the photo lands
+ * (and credit it in that folder's CREDITS.md).
+ */
+const CATEGORY_PHOTOS = new Set([
+  "inspection",
+  "transport",
+  "mechanical",
+  "bodywork",
+  "restoration",
+  "detailing",
+  "storage",
+  "photography",
+]);
+
 export default function AboutPage() {
   const verbs = TRADE_CATEGORIES.map((c) => c.verb.toLowerCase());
   const verbLine = verbs.slice(0, -1).join(", ") + " and " + verbs[verbs.length - 1];
@@ -231,17 +249,19 @@ export default function AboutPage() {
                   className="group block overflow-hidden rounded-xl bg-white transition-transform hover:-translate-y-0.5"
                   style={{ border: `1px solid ${RULE}` }}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden" style={{ background: NAVY }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`/images/services/${c.key}.jpg`}
-                      alt=""
-                      width={640}
-                      height={480}
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
+                  <div className="relative aspect-[4/3] overflow-hidden" style={{ background: CATEGORY_PHOTOS.has(c.key) ? NAVY : c.tint }}>
+                    {CATEGORY_PHOTOS.has(c.key) && (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        src={`/images/services/${c.key}.jpg`}
+                        alt=""
+                        width={640}
+                        height={480}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    )}
                     <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(15,32,50,0.7) 0%, rgba(15,32,50,0) 55%)" }} aria-hidden />
                     <span className="absolute left-3 bottom-2.5 price-display text-xs text-white/85">{String(i + 1).padStart(2, "0")}</span>
                   </div>

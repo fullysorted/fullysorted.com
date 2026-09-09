@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, Wrench, Car, LineChart, ShieldCheck, HelpCircle } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD } from "@/lib/listing-tiers";
+import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD, FOUNDING_PROVIDER_THRESHOLD } from "@/lib/listing-tiers";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -119,7 +119,7 @@ const SECTIONS: FaqSection[] = [
     items: [
       {
         q: "What does it cost to be listed?",
-        a: "The first 100 specialists to join are founding members, and founding members lock in a free directory listing for life. We may one day offer paid tools to shops, but nobody will ever pay to appear in the directory ahead of anyone else, and a founding member's listing stays free whatever we add later. There are two ways to be on here: a directory profile, where owners find you and request quotes, and fixed-price gigs, where you package what you do at a set price and owners book it directly.",
+        a: `The first ${FOUNDING_PROVIDER_THRESHOLD} specialists to join are founding members, and founding members lock in a free directory listing for life. We may one day offer paid tools to shops, but nobody will ever pay to appear in the directory ahead of anyone else, and a founding member's listing stays free whatever we add later. There are two ways to be on here: a directory profile, where owners find you and request quotes, and fixed-price gigs, where you package what you do at a set price and owners book it directly.`,
         link: { href: "/services/apply", label: "Get listed" },
       },
       {

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { AI_ASSIST_ENABLED } from '@/lib/features';
 import Image from 'next/image';
 import { CheckCircle2, Star } from 'lucide-react';
-import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
+import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD, FOUNDING_PROVIDER_THRESHOLD } from '@/lib/listing-tiers';
 import { PLATFORM_FEE_PCT_LABEL } from '@/lib/payments';
 
 export const metadata = {
@@ -62,7 +62,7 @@ export default function PricingPage() {
       <section className="bg-accent text-white py-5">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <p className="text-lg font-semibold">
-            Early on purpose: the first 100 specialists to join are founding members and
+            Early on purpose: the first {FOUNDING_PROVIDER_THRESHOLD} specialists to join are founding members and
             <strong> lock in a free listing for life</strong>. The first {FREE_LISTINGS_THRESHOLD} cars
             listed are <strong>free</strong> too. Get in early.
           </p>
@@ -103,7 +103,7 @@ export default function PricingPage() {
             {
               title: "What the provider will pay",
               price: PLATFORM_FEE_PCT_LABEL,
-              body: `When fixed-price gigs open, we'll take ${PLATFORM_FEE_PCT_LABEL} of a completed gig, deducted from the provider payout. Listing a business and receiving quote requests is free today, and the first 100 founding specialists keep it free for life.`,
+              body: `When fixed-price gigs open, we'll take ${PLATFORM_FEE_PCT_LABEL} of a completed gig, deducted from the provider payout. Listing a business and receiving quote requests is free today, and the first ${FOUNDING_PROVIDER_THRESHOLD} founding specialists keep it free for life.`,
               highlight: false,
             },
           ].map((c) => (

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PLATFORM_FEE_PCT_LABEL } from "@/lib/payments";
-import { FREE_LISTINGS_THRESHOLD } from "@/lib/listing-tiers";
+import { FREE_LISTINGS_THRESHOLD, FOUNDING_PROVIDER_THRESHOLD } from "@/lib/listing-tiers";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
@@ -253,7 +253,7 @@ export default function TermsPage() {
                   work.
                 </>,
                 <>
-                  <strong>Founding members.</strong> The first {FREE_LISTINGS_THRESHOLD} providers
+                  <strong>Founding members.</strong> The first {FOUNDING_PROVIDER_THRESHOLD} providers
                   accepted into the directory are founding members. A founding member&apos;s
                   directory listing is free and remains free for as long as the provider stays in
                   good standing under these Terms, regardless of any fees we may introduce for

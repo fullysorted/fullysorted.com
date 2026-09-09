@@ -85,9 +85,22 @@ export const LISTING_TIERS: Record<ListingTier, TierConfig> = {
   },
 };
 
-// Early adopter free thresholds
+// Early adopter free thresholds.
+//
+// FREE_LISTINGS_THRESHOLD is about CARS: the first N listings on the
+// marketplace are free. It is quoted in /terms section 9, and the listings
+// API and listing-store both gate free listings on it. Changing it changes
+// what the marketplace charges.
+//
+// FOUNDING_PROVIDER_THRESHOLD is about SHOPS, and is deliberately a separate
+// number. It is the founding-member cap quoted in /terms section 6, /pricing,
+// /faq and the apply form: the first N providers accepted into the directory
+// keep a free listing for life. It used to share FREE_LISTINGS_THRESHOLD,
+// which meant raising the founding cap silently gave away free car listings
+// too. Do not merge these two again.
 export const FREE_LISTINGS_THRESHOLD = 100;
 export const FREE_USERS_THRESHOLD = 100;
+export const FOUNDING_PROVIDER_THRESHOLD = 500;
 
 // Helpers
 export function getTierConfig(tier: ListingTier): TierConfig {
