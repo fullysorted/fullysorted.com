@@ -94,6 +94,7 @@ import { seed914 } from '@/lib/data/model-seed-914';
 import { seed924 } from '@/lib/data/model-seed-924';
 import { seed944 } from '@/lib/data/model-seed-944';
 import { seed968 } from '@/lib/data/model-seed-968';
+import { seedF430 } from '@/lib/data/model-seed-f430';
 // All researched model drafts to seed (status='draft' for human review).
 // Ferrari wave (2026-09-02) sits at indices 73-84: seed with ?offset=73&limit=6 then ?offset=79&limit=6.
 const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx, seedCorvetteC2, seedMustang1stGen, seed930Turbo, seedRx7Fd, seedETypeS1, seedBronco1stGen, seedFj40, seedW113Pagoda, seedBmw2002, seedSkylineR34, seedCountach, seedTestarossa, seedShelbyCobra, seedDeLoreanDmc12, seedBmwIsetta, seedAmphicar770, seed356, seedCitroenDs,
@@ -107,7 +108,7 @@ const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, see
   seedLandCruiser80,
   seed250GtLusso, seed275Gtb, seed330Gtc, seed365Gtb4Daytona, seed512Bb, seed288Gto,
   seed348, seed456, seed550Maranello, seed360, seedF50, seedEnzo,
-  seed911LongHood, seed912, seed914, seed924, seed944, seed968];
+  seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {
