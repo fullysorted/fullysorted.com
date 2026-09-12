@@ -342,6 +342,7 @@ export function Hero() {
                 ))}
               </div>
             </motion.div>
+
           </div>
 
           {/* RIGHT: the ownership year, one service at a time */}

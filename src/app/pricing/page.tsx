@@ -272,9 +272,9 @@ export default function PricingPage() {
           <div className="relative">
           <h3 className="font-display text-2xl font-bold tracking-tight mb-2">One flat fee. No surprises.</h3>
           <p className="text-stone-300 max-w-xl mx-auto">
-            Most collector-car listing sites run an auction clock and layer fees onto the
-            final price. Fully Sorted keeps it simple: a <strong className="text-gold">one-time
-            flat listing fee</strong>, up front, with no hidden charges along the way.
+            A <strong className="text-gold">one-time flat listing fee</strong>, paid up front.
+            No percentage of the sale, no buyer&apos;s premium, and nothing else to pay
+            however much the car makes.
           </p>
           <Link
             href="/sell"

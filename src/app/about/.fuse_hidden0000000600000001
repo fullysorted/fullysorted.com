@@ -110,6 +110,7 @@ export default function AboutPage() {
             year, ranked by the owners who used them. Built from inside the hobby,
             by people who have spent their lives around these cars.
           </p>
+
         </div>
       </section>
 

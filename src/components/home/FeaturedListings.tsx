@@ -20,7 +20,7 @@ const valueProps = [
   // "From", not a flat "$9.99": there are three tiers and an early-adopter
   // free window, and the CTA band and /pricing both already say "from".
   { stat: "From $9.99", label: "One-time listing fee, paid up front. First 100 cars free." },
-  { stat: "Marked", label: "Private seller or dealer, each listing says which. No middleman either way." },
+  { stat: "Marked", label: "Private seller or dealer, each listing says which." },
   { stat: "$0", label: "Buyer's premium. The price you see is the price you pay." },
 ];
 

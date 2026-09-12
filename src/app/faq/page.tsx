@@ -155,7 +155,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "How is this different from an auction site?",
-        a: `Curated online auction sites are time-limited and take a percentage of the sale: usually four to five percent, as a buyer's premium or a seller's fee. Classifieds sites typically charge $50–$99 to list. Fully Sorted is flat-fee: one payment up front from $${std}, no clock, and the buyer talks to the seller rather than to a middleman.`,
+        a: `There is no clock and no bidding. You set an asking price, the listing stays up until the car sells or you take it down, and buyers contact you directly. The cost is one flat fee paid up front, from $${std}, with no buyer's premium and no percentage of the sale.`,
       },
       {
         q: "Do dealers list here too?",
@@ -217,7 +217,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "How many sales do you need before you'll give me a number?",
-        a: "We publish the rule, which as far as we know nobody else does. One or two sales: no estimate at all, just the sales themselves. Three to five: a range, no midpoint: too few results to put a single number on a car honestly. Six to eight: a median worth using, framed as a reasonable read rather than a precise one. Nine or more: a median we will stand behind. Twenty or more before we will show you a trend. If you ever see a confident number on this site, it is because it earned it.",
+        a: "We publish the rule. One or two sales: no estimate at all, just the sales themselves. Three to five: a range, no midpoint: too few results to put a single number on a car honestly. Six to eight: a median worth using, framed as a reasonable read rather than a precise one. Nine or more: a median we will stand behind. Twenty or more before we will show you a trend. If you ever see a confident number on this site, it is because it earned it.",
       },
       {
         q: "Why do you lead with a median instead of an average?",
@@ -238,7 +238,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "Can I submit a sale you've missed?",
-        a: "Please do. Owner-submitted sale results (especially private sales that never hit a public auction) are some of the most useful data we get, because they are the half of the market nobody else records.",
+        a: "Please do. Owner-submitted sale results, especially private sales that never hit a public auction, are some of the most useful data we get.",
         link: { href: "/submit-sale", label: "Submit a sale result" },
       },
     ],

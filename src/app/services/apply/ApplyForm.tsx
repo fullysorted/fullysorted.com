@@ -185,7 +185,7 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
         {[
           { Icon: Shield, color: 'text-accent', title: 'Free for life for founding providers', body: `The first ${FOUNDING_PROVIDER_THRESHOLD} specialists to join are founding members. Your directory listing is free now and stays free for life, whatever we add later.` },
           { Icon: Star, color: 'text-blue', title: 'In front of serious collectors', body: 'The people searching this directory are actively buying and maintaining collector cars.' },
-          { Icon: Sparkles, color: 'text-gold', title: 'Inquiries come straight to you', body: 'An owner who picks you emails you. We do not fan your inquiry out to four competitors.' },
+          { Icon: Sparkles, color: 'text-gold', title: 'Inquiries come straight to you', body: 'An owner who picks you emails you, and the conversation stays between the two of you.' },
         ].map(({ Icon, color, title, body }, i) => (
           <motion.div
             key={title}
