@@ -31,6 +31,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const desc =
     (m.summary || "").replace(/[#*]/g, "").slice(0, 155) ||
     `History, specs, production numbers and buyer's notes for the ${name}.`;
+  // Link previews (iMessage, Slack, LinkedIn, mail clients that unfurl) need an absolute image.
+  const ogImage = m.hero_photo
+    ? `https://fullysorted.com${m.hero_photo}`
+    : "https://fullysorted.com/opengraph-image.png";
   return {
     title: `${name}: History, Specs and Buyer's Guide`,
     description: desc,
@@ -40,6 +44,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${name}: History, Specs and Buyer's Guide`,
       description: desc,
       url: `https://fullysorted.com/research/models/${m.slug}`,
+      siteName: "Fully Sorted",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${name}: History, Specs and Buyer's Guide`,
+      description: desc,
+      images: [ogImage],
     },
   };
 }

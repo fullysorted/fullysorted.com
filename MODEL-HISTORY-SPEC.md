@@ -170,7 +170,7 @@ one `sourceRef` needs a reason to be single-sourced.
 
 ## 7. Voice
 
-British-inflected, unhurried, factual. The register of a good marque registry
+Unhurried, factual, US spelling (color, liter, curb weight, aluminum, percent, catalog). US market only: every price in US dollars from US sources; never quote pounds sterling or UK asking prices, and never lean on UK-market buyer guides for values. The 360 and older exemplars predate this rule; the spec wins. The register of a good marque registry
 newsletter, not a listing site. Specific over emphatic: "213 cars were
 federalised for the United States" does the work that "incredibly rare" does not.
 
