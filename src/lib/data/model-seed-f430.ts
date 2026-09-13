@@ -26,7 +26,7 @@ export const seedF430 = {
   "4.3-liter V8 quoted at up to 550 CV in Kessel-built GT3 specification"
  ],
  "productionTotal": null,
- "productionNotes": "No single total is asserted because credible sources disagree at every level except the 16M. For the whole family, Wikipedia cites Sports Car Market (August 2024) for an estimated 16,750 cars built between 2005 and 2009; Supercar Nostalgia says 'around 14,000 were completed with the slight majority having been Coupes'; duPont Registry works from about 15,000. Supercars.net breaks the road cars down as approximately 6,280 berlinettas and approximately 7,720 Spiders, which sums to 14,000 but reverses Supercar Nostalgia's claim about which body style led, and no source consulted here reconciles the two. Ferrari's own past-model pages consulted give no production figure for any variant. The 430 Scuderia is similarly unsettled: Supercar Nostalgia says 'somewhere in the region of 1750 to 2000 are believed to have been completed', Sports Car Market's auction profile says approximately 1,900, duPont Registry says 1,800, and Supercars.net says approximately 2,500. The Scuderia Spider 16M is the one firm number, stated as 499 by Ferrari's launch communication as relayed by Autoblog in November 2008 and repeated by RM Sotheby's catalogs, Supercar Nostalgia and classic.com; a UK auction catalog adds that 49 of the 499 were supplied to the United Kingdom. Transmission split is quoted rather than counted: Magneto, Petrolicious and duPont Registry all put manual gearboxes at roughly 10 percent of road-car output, which on a 15,000-car base implies about 1,500 manuals, though none of the three cites a factory source. For the race cars, Girardo & Co states that Michelotto built just 42 F430 GT/GTCs; Wikipedia's separate F430 Challenge article gives 142 Challenge cars built from 2007 to 2010, which sits awkwardly with RM Sotheby's statement that Kessel Racing alone upgraded 54 Challenge chassis to GT3 specification, and with Ferrari's own page dating the Challenge to the 2006 season. That conflict is not resolved by any source consulted here."
+ "productionNotes": "Ferrari has never published production figures for the F430, and no source consulted here works from a factory count. Supercar Nostalgia states the position plainly: Ferrari is 'still yet to publish precise production numbers for any of the regular F430 variants'. Ferrari's own past-model pages for the F430, the 430 Scuderia, the 16M and the GTC carry no figure at all. For the road cars as a whole the only authored estimate is Sports Car Market's, which gives 16,750 including coupes and Spiders and flags it as an estimate; the widely repeated 14,000 and 15,000 figures trace to nothing. Roughly 14,000 to 17,000 is as far as the evidence goes. No coupe versus Spider split is printed here. The one breakdown in circulation, about 6,280 berlinettas against about 7,720 Spiders, is single-sourced, uncited, sums to exactly 14,000, which suggests it was divided out of a round total rather than counted, and it reverses Supercar Nostalgia's statement that the slight majority were coupes. The 430 Scuderia was series production, not a limited edition, which is why no exact figure exists: Supercar Nostalgia gives 1,750 to 2,000 and Sports Car Market estimates 1,900, so approximately 1,750 to 2,000 is used here. The 2,500 figure is dropped as an unsourced outlier carrying a wrong end date. The Scuderia Spider 16M is firm at 499, from Ferrari's November 2008 announcement and repeated in Gooding's 2020 and RM Sotheby's 2026 catalog descriptions tied to named chassis. The F430 Challenge is put at approximately 142 on trade consensus only, with the run dated from 2006 to 2009 or 2010 rather than Wikipedia's 2007 to 2010. Michelotto GT and GTC output is unresolved at approximately 40, with 38, 42 and 53 all in print. Kessel Racing converted 54 Challenge chassis to GT3 specification and upgraded 25 of those to Scuderia specification. Manual gearboxes are put at roughly 10 percent of output, never confirmed, and no source gives a split by body style. The SP1 is one car. The Bio Fuel Spider was a 2008 show concept."
  ,
  "notableTrims": [
   {
@@ -55,7 +55,7 @@ export const seedF430 = {
   },
   {
    "name": "F430 GT and GTC (2006-2009)",
-   "note": "Built by Michelotto Automobili with Ferrari Corse Clienti for GT2, with the V8 de-stroked to roughly 4.0 liters to suit the class rules. Won FIA GT2 manufacturers' and drivers' titles in 2006 and 2007, the ALMS GT2 manufacturers' title in 2007 and the GT2 class at Le Mans in 2008. Girardo & Co puts the total at 42 cars."
+   "note": "Built by Michelotto Automobili with Ferrari Corse Clienti for GT2, with the V8 de-stroked to roughly 4.0 liters to suit the class rules. Won FIA GT2 manufacturers' and drivers' titles in 2006 and 2007, the ALMS GT2 manufacturers' title in 2007 and the GT2 class at Le Mans in 2008. Output is unresolved at roughly 40 cars: Girardo & Co says 42, Artcurial's 2018 catalog says 38 operational examples and the tech-racingcars register says 53 built for racing."
   },
   {
    "name": "F430 SP1 and the Bio-Fuel Spider",
@@ -171,13 +171,130 @@ export const seedF430 = {
    "notes": "Specialist reference: Scuderia production 'somewhere in the region of 1750 to 2000 are believed to have been completed', 16M limited to 499; engine F136 ED, 4,308 cc, 92 x 81 mm, 503 bhp at 8,500 rpm, 347 lb-ft at 5,250 rpm, compression raised to 11.88:1 from 11.3:1; 1,350 kg Scuderia and 1,440 kg 16M; 0-62 mph 3.6 s and 3.7 s, 198 and 196 mph; Superfast2 with 60 ms shifts, F1-Trac and E-Diff2; 398 mm front and 350 mm rear carbon-ceramic discs; titanium springs and hollow anti-roll bars; July 2007 unveiling, Frankfurt September 2007, 16M announced November 2008, production ended summer 2009."
   },
   {
-   "ref": "supercars-net-f430",
-   "title": "Ferrari 430: The Ultimate Guide",
-   "url": "https://www.supercars.net/blog/all-brands/ferrari/ferrari-f430/",
-   "publisher": "Supercars.net",
+   "ref": "ferrari-f430",
+   "title": "Ferrari F430 (2004)",
+   "url": "https://www.ferrari.com/en-EN/auto/f430",
+   "publisher": "Ferrari S.p.A.",
+   "sourceType": "manufacturer",
+   "reliability": "high",
+   "notes": "Ferrari's past-model record for the F430 berlinetta, describing a V8-engined berlinetta carrying technologies drawn from the Formula 1 racing division. Used here as manufacturer evidence that Ferrari publishes no production figure for the base car, which together with its 430 Scuderia, 16M and GTC pages establishes that no factory count exists for any variant of the family."
+  },
+  {
+   "ref": "scm-f430-spider",
+   "title": "2007 Ferrari F430 Spider",
+   "url": "https://www.sportscarmarket.com/profile/2007-ferrari-f430-spider",
+   "publisher": "Sports Car Market",
+   "sourceType": "journalism",
+   "reliability": "high",
+   "notes": "Auction profile by Steve Ahlgrim dated 13 June 2024, carrying the specification box entry 'Number Produced: 16,750 (estimated, including coupes and Spiders)'. This is the origin of the 16,750 figure that Wikipedia reproduces and attributes to Sports Car Market, and it is the only authored, attributable estimate of total F430 road-car output found. It gives no split between coupe and Spider and flags its own figure as an estimate."
+  },
+  {
+   "ref": "artcurial-gtc",
+   "title": "2007 Ferrari F430 GTC n 2456, Michelotto, ex-Risi Competizione",
+   "url": "https://www.artcurial.com/en/sales/3279/lots/90-a",
+   "publisher": "Artcurial Motorcars",
+   "sourceType": "auction-house",
+   "reliability": "high",
+   "notes": "Catalog entry for chassis F131 EVOGT #2456, engine F136GT #037, sold at Retromobile 2018 for 417,200 euros against a 400,000 to 600,000 euro estimate. States the GTC was 'construite en 38 exemplaires operationnels', that is built in 38 operational examples. The lowest of the three Michelotto figures found and independent of the dealer sources, with the qualifier 'operational' possibly explaining part of the spread."
+  },
+  {
+   "ref": "techracingcars-f430gt",
+   "title": "Ferrari F430 GT, group GT2 (2006)",
+   "url": "http://tech-racingcars.wikidot.com/ferrari-f430-gt",
+   "publisher": "Racing Cars technical register",
+   "sourceType": "registry",
+   "reliability": "medium",
+   "notes": "Hobbyist race-car register for the GT2 car: states '53 units built for racing', gives homologation number GT2 004 with a homologation start of 1 March 2007, notes the designation changed from F430 GT to F430 GTC during 2008, and lists individual chassis such as F131EVOGT2406 and F131EVOGTC2622 through the 2006 to 2009 seasons. The highest of the three Michelotto counts, most likely because it counts evolutions and rebuilt cars separately."
+  },
+  {
+   "ref": "goodcarbadcar-f430",
+   "title": "Ferrari F430 Sales Figures",
+   "url": "https://www.goodcarbadcar.net/ferrari-f430-sales-figures/",
+   "publisher": "GoodCarBadCar",
+   "sourceType": "market-data",
+   "reliability": "medium",
+   "notes": "The only hard year-by-year dataset found for the model, and it is European registrations rather than production: 41 in 2004, 1,416 in 2005, 1,415 in 2006, 1,509 in 2007, 2,053 in 2008, 1,257 in 2009 and 170 in 2010, totalling 8,861. Consistent with a worldwide total in the middle teens of thousands but cannot settle it, and carries no split by body style, transmission or variant."
+  },
+  {
+   "ref": "lbi-challenge",
+   "title": "2006 Ferrari F430 Challenge",
+   "url": "https://lbilimited.com/offerings/2006-ferrari-f430-challenge/",
+   "publisher": "LBI Limited",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Gives a variant-by-variant production breakdown found nowhere else consulted: approximately 6,280 F430 berlinettas, approximately 7,720 F430 Spiders, approximately 2,500 430 Scuderias and 499 Scuderia Spider 16Ms, with the Spider outnumbering the coupe. Also lists the full nine-variant family including Challenge, GTC, GT3, Biofuel and SP1. Its quoted standard torque of 299 lb-ft is an outlier against every other source and is not used here."
+   "notes": "Dealer record for chassis 145769, engine 101685, produced February 2006 with about 2,500 miles from new, page last modified 19 June 2017. States that 'an approximate 142 units were built for the 430 Challenge Series'. The earliest instance of the 142 figure found, and its own car's February 2006 build date contradicts the 2007 start date Wikipedia attaches to that same figure."
+  },
+  {
+   "ref": "gooding-pb19-challenge",
+   "title": "2007 Ferrari F430 Challenge, Pebble Beach 2019",
+   "url": "https://www.goodingco.com/lot/2007-ferrari-f430-challenge-2/",
+   "publisher": "Gooding & Company",
+   "sourceType": "auction-house",
+   "reliability": "high",
+   "notes": "Catalog entry for chassis ZFFEX63X000152244 offered at Pebble Beach in 2019, headed 'One of 142 F430 Challenge Race Cars Produced'. Second independent trade statement of the 142 figure and the only auction-house instance of it found, though it may itself be reading the same unattributed encyclopedia entry rather than a factory list."
+  },
+  {
+   "ref": "gooding-am20-16m",
+   "title": "2009 Ferrari Scuderia Spider 16M, Amelia Island 2020",
+   "url": "https://www.goodingco.com/lot/2009-ferrari-scuderia-spider-16m-2/",
+   "publisher": "Gooding & Company",
+   "sourceType": "auction-house",
+   "reliability": "high",
+   "notes": "Catalog entry for chassis ZFFKW66AX90167474 offered at Amelia Island in 2020, headed 'One of Just 499 Scuderia Spider 16Ms Built'. Catalog-grade corroboration of the 499 figure tied to a named chassis, independent of the RM Sotheby's descriptions and of the press reporting of Ferrari's November 2008 announcement. Gives no United States allocation."
+  },
+  {
+   "ref": "rm-cc26-16m",
+   "title": "2009 Ferrari Scuderia Spider 16M, Cavallino Palm Beach 2026",
+   "url": "https://rmsothebys.com/auctions/cc26/lots/r0004-2009-ferrari-scuderia-spider-16m/",
+   "publisher": "RM Sotheby's",
+   "sourceType": "auction-house",
+   "reliability": "high",
+   "notes": "Sold $1,105,000 at Cavallino Palm Beach, lot 107. Chassis ZFFKW66A590168550, 5,941 miles, Blu Pozzi over Terra Bruciata. States 'one of 499 built to commemorate Ferrari's 16th Formula 1 World Championship Constructors' title' and describes the car as believed to be the only United States delivery example in that color scheme, which implies a United States subset without quantifying one. The strongest recent catalog statement of the 499 figure found."
+  },
+  {
+   "ref": "collectingcars-pricing",
+   "title": "Ferrari F430 Price Guide: key variants and what to pay",
+   "url": "https://collectingcars.com/articles/what-to-pay-for-a-ferrari-f430",
+   "publisher": "Collecting Cars",
+   "sourceType": "specialist",
+   "reliability": "medium",
+   "notes": "Price guide dated November 2025. States that 'officially just 499 examples of the Scuderia Spider 16M were built' and, importantly for the tally used here, that the 430 Scuderia 'was not a limited production model', while giving no number for it. Useful negative evidence from a trade source: it explains why no exact Scuderia figure exists rather than inventing one."
+  },
+  {
+   "ref": "hagerty-gated",
+   "title": "Gated Community: Do converted-manual Ferraris get the same respect?",
+   "url": "https://www.hagerty.com/media/market-trends/hagerty-insider/gated-community-do-converted-manual-ferraris-get-the-same-respect/",
+   "publisher": "Hagerty",
+   "sourceType": "journalism",
+   "reliability": "high",
+   "notes": "Editorial market piece dated May 2023 on factory versus converted manual Ferraris. States that 'for the F430, the rare manual car can be worth twice as much' but gives no production count and no manual share. Cited here as negative evidence: the outlet with the deepest transaction data on this exact question declines to quantify the manual split that other guides put at roughly 10 percent."
+  },
+  {
+   "ref": "dhrofgo-gt3",
+   "title": "2006/2010 Ferrari F430 GT3 Scuderia by Kessel",
+   "url": "https://www.dhrofgo.com/product-page/2006-ferrari-f430-gt3-scuderia-by-kessel",
+   "publisher": "Duncan Hamilton ROFGO",
+   "sourceType": "specialist",
+   "reliability": "medium",
+   "notes": "Dealer record describing the car as 'the 25th of 54 Ferrari F430s built to GT3 specification by Ferrari Racing Partner Kessel Racing', with the later Scuderia specification 'a transformation applied to only 25 cars worldwide' and this car number 22 of those 25. Independent trade corroboration of both the 54 conversion figure and the 25 Scuderia upgrades stated by RM Sotheby's."
+  },
+  {
+   "ref": "hpc-gt3",
+   "title": "Ferrari F430 GT3",
+   "url": "https://highperformanceclassics.com/store/cars/ferrari-f430-gt3/",
+   "publisher": "High Performance Classics",
+   "sourceType": "specialist",
+   "reliability": "medium",
+   "notes": "Dealer record for chassis ZFFEX63X000153322, completed March 2007, described as 'one of only 54 GT3 cars built by Kessel Racing in Lugano, Switzerland'. A third independent trade statement of the 54-car GT3 conversion figure, which strengthens the consensus while leaving the origin with Kessel itself rather than with any published factory or sanctioning-body list."
+  },
+  {
+   "ref": "carrozzieri-sp1",
+   "title": "The Ferrari F430 SP1: the special one-off designed by Fioravanti",
+   "url": "https://www.carrozzieri-italiani.com/listing/ferrari-f430-sp1/",
+   "publisher": "Carrozzieri Italiani",
+   "sourceType": "specialist",
+   "reliability": "medium",
+   "notes": "Italian coachbuilding reference for the SP1: states 'Units built: 1', dates the car to 2008, confirms it was built on the F430 platform and was commissioned by Junichiro Hiramatsu, described as a Japanese businessman and Ferrari collector. Independent of Wikipedia and confirms the one-off count used in the production tally here."
   },
   {
    "ref": "magneto-guide",
@@ -554,82 +671,114 @@ export const seedF430 = {
   },
   {
    "section": "production",
-   "claimText": "No total F430 production figure is asserted here because credible sources give 14,000, about 15,000 and 16,750, and Ferrari's own past-model pages give none.",
+   "claimText": "No total F430 production figure is asserted here. Ferrari has never published one, the only authored estimate is Sports Car Market's 16,750 for coupes and Spiders combined, and the competing 14,000 and 15,000 figures are untraceable, so the honest statement is roughly 14,000 to 17,000 road cars.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
+    "scm-f430-spider",
     "wikipedia-f430",
     "supercarnostalgia-f430",
-    "supercars-net-f430",
     "dupont-manual",
+    "ferrari-f430",
     "ferrari-430-scuderia",
-    "ferrari-16m"
+    "ferrari-16m",
+    "goodcarbadcar-f430"
    ],
-   "conflictNote": "Wikipedia cites Sports Car Market (August 2024) for an estimated 16,750 cars. Supercar Nostalgia states 'around 14,000'. Supercars.net's variant breakdown of about 6,280 berlinettas and 7,720 Spiders also sums to 14,000. duPont Registry works from about 15,000. Ferrari's own pages for the 430 Scuderia and 16M carry no production data at all. Not resolved by any source consulted here, so productionTotal is null."
+   "conflictNote": "Sports Car Market, Steve Ahlgrim, 13 June 2024, states 'Number Produced: 16,750 (estimated, including coupes and Spiders)'; Wikipedia reproduces that figure and attributes it to the same article. Supercar Nostalgia states 'around 14,000 were completed' and separately records that Ferrari is 'still yet to publish precise production numbers for any of the regular F430 variants'. duPont Registry works from 15,000 and cites nothing. Ferrari's own pages for the F430, the 430 Scuderia and the 16M carry no production data at all. GoodCarBadCar's 8,861 European registrations for 2004 to 2010 are consistent with a worldwide total in the middle teens of thousands but are registrations, not production, and cannot arbitrate. No coupe versus Spider split is asserted either: the only breakdown in circulation is single-sourced, uncited, sums to exactly 14,000 and reverses Supercar Nostalgia's statement that coupes were the slight majority, so it is dropped. This is unresolved by every source consulted here, which is why productionTotal is null."
   },
   {
    "section": "production",
-   "claimText": "Sources disagree on whether the coupe or the Spider was the bigger seller: Supercar Nostalgia says the slight majority were coupes, while Supercars.net's breakdown of approximately 6,280 berlinettas against approximately 7,720 Spiders says the opposite.",
-   "confidence": "low",
-   "status": "disputed",
-   "sourceRefs": [
-    "supercarnostalgia-f430",
-    "supercars-net-f430",
-    "classic-f430"
-   ],
-   "conflictNote": "Supercar Nostalgia states around 14,000 cars with 'the slight majority having been Coupes' and notes Ferrari published no breakdown. Supercars.net gives approximately 6,280 berlinettas and approximately 7,720 Spiders, reversing the order. classic.com's current for-sale counts of 25 berlinettas against 41 Spiders are consistent with the Spider having been the bigger seller but are inventory, not production, and settle nothing. Unresolved."
-  },
-  {
-   "section": "production",
-   "claimText": "430 Scuderia production is quoted as somewhere between 1,750 and 2,500 cars, with no source consulted citing a factory figure.",
+   "claimText": "430 Scuderia output is best stated as approximately 1,750 to 2,000 cars, with Sports Car Market estimating 1,900. The car was series production rather than a limited edition, which is why no exact figure exists and why auction catalogs decline to print one.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
     "supercarnostalgia-scuderia",
     "scm-scuderia",
     "dupont-manual",
-    "supercars-net-f430"
+    "collectingcars-pricing",
+    "ferrari-430-scuderia",
+    "rm-mc26-scuderia",
+    "rm-az25-scuderia"
    ],
-   "conflictNote": "Supercar Nostalgia states 'somewhere in the region of 1750 to 2000 are believed to have been completed'. Sports Car Market states approximately 1,900. duPont Registry states 1,800. Supercars.net states approximately 2,500. None cites a factory source, and Ferrari's own page for the model carries no figure. Unresolved."
+   "conflictNote": "Supercar Nostalgia, 2 October 2023, states 'somewhere in the region of 1750 to 2000 are believed to have been completed'. Sports Car Market, 18 March 2022, gives 'Number Produced: 1,900 (estimated)'. duPont Registry gives 1,800 with no source, which reads as a rounding of the same band. A widely copied 2,500 figure is dropped here as an unsourced outlier that also carries a wrong 2010 end date. Collecting Cars, November 2025, states the Scuderia 'was not a limited production model' and gives no number, and Ferrari's own page gives none. Four RM Sotheby's Scuderia lot descriptions checked print no production figure at all, which is what catalogers do when nothing is citable. Unresolved, and no factory count exists to resolve it."
   },
   {
    "section": "production",
-   "claimText": "The Scuderia Spider 16M is the one F430 variant whose production figure no consulted source disputes: 499 cars, announced in November 2008, pre-sold to existing clients and delivered from early 2009, with 49 of them supplied to the United Kingdom.",
+   "claimText": "The Scuderia Spider 16M was built in a stated series of 499 cars, announced by Ferrari in November 2008, pre-sold to existing clients and delivered from early 2009, with 49 of them supplied to the United Kingdom. It is the one F430 variant whose production figure no consulted source disputes.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
     "wikipedia-f430",
     "supercarnostalgia-scuderia",
+    "gooding-am20-16m",
+    "rm-cc26-16m",
     "rm-pa24-16m",
     "classic-16m",
     "scm-scuderia",
+    "collectingcars-pricing",
     "iconic-nec21-16m"
    ]
   },
   {
    "section": "production",
-   "claimText": "Manual gearboxes are consistently put at roughly 10 percent of F430 road-car production, which on a 15,000-car base implies about 1,500 cars, though no source consulted cites a factory count.",
+   "claimText": "F430 Challenge production is put at approximately 142 cars, and the run is dated from the 2006 season rather than the 2007 start that the same figure is usually printed with. No factory or sanctioning-body list supports the number.",
    "confidence": "medium",
    "status": "unverified",
    "sourceRefs": [
-    "magneto-guide",
-    "dupont-manual",
-    "petrolicious-guide"
+    "lbi-challenge",
+    "gooding-pb19-challenge",
+    "wikipedia-f430-challenge",
+    "ferrari-f430-challenge",
+    "sbr-challenge"
    ]
   },
   {
    "section": "production",
-   "claimText": "Race-car production figures are partial and mutually awkward: Girardo & Co states Michelotto built 42 F430 GT/GTCs, Wikipedia gives 142 F430 Challenge cars built from 2007 to 2010, and RM Sotheby's states that Kessel Racing alone upgraded 54 Challenge chassis to GT3 specification.",
+   "claimText": "Michelotto-built F430 GT and GTC output is unresolved at approximately 40 cars, with published figures ranging from 38 to 53 depending on whether successive evolutions and rebuilt cars are counted as separate chassis.",
    "confidence": "low",
    "status": "disputed",
    "sourceRefs": [
     "girardo-f430-gt",
-    "wikipedia-f430-challenge",
-    "rm-ps-gt3-kessel",
-    "ferrari-f430-challenge",
-    "sbr-challenge"
+    "artcurial-gtc",
+    "techracingcars-f430gt",
+    "ferrari-f430-gtc",
+    "classic-gtc"
    ],
-   "conflictNote": "Wikipedia's F430 Challenge article gives 142 cars built 2007-2010 and attributes the figure to nothing. Ferrari's own page dates the Challenge to the 2006 season and SBR Race Engineering says it replaced the 360 Challenge completely by 2007, so the 2007 start date is itself doubtful. RM Sotheby's states Kessel Racing upgraded 54 Challenge chassis to GT3, which would be well over a third of a 142-car run by one team alone. Girardo & Co's 42 F430 GT/GTCs is separate and uncontradicted but single-sourced. Unresolved."
+   "conflictNote": "Girardo & Co states 'Michelotto built just 42 F430 GT/Cs'. Artcurial's Retromobile 2018 catalog for chassis F131 EVOGT #2456 states the car was built in 38 operational examples. The tech-racingcars register states '53 units built for racing' and lists chassis across the 2006 to 2009 seasons. The three did not copy one another, and the spread is most likely definitional, since Michelotto built successive evolutions from 2006 through 2009 and rebuilt or rebodied cars, so chassis counted and cars campaigned are different questions. Ferrari's own GTC page gives no figure. Unresolved, and a bare 42 should not be printed as fact."
+  },
+  {
+   "section": "production",
+   "claimText": "Kessel Racing converted 54 F430 Challenge chassis to GT3 specification, of which 25 were later upgraded to Scuderia or Evo GT3 specification, seven of them in 2010. Three trade sources state the figures and all trace back to Kessel as the single builder.",
+   "confidence": "medium",
+   "status": "unverified",
+   "sourceRefs": [
+    "rm-ps-gt3-kessel",
+    "dhrofgo-gt3",
+    "hpc-gt3"
+   ]
+  },
+  {
+   "section": "production",
+   "claimText": "Manual gearboxes are put at roughly 10 percent of F430 road-car output by three independent guides, but the figure has never been confirmed by Ferrari, none of the guides cites a source, and no source gives a split between berlinetta and Spider.",
+   "confidence": "low",
+   "status": "unverified",
+   "sourceRefs": [
+    "magneto-guide",
+    "dupont-manual",
+    "petrolicious-guide",
+    "hagerty-gated"
+   ]
+  },
+  {
+   "section": "production",
+   "claimText": "The SP1 was built as a single car in 2008 on the F430 platform, commissioned by Junichiro Hiramatsu and designed by Leonardo Fioravanti, and sources agree on the count of one.",
+   "confidence": "high",
+   "status": "verified",
+   "sourceRefs": [
+    "carrozzieri-sp1",
+    "wikipedia-special-projects",
+    "wikipedia-f430"
+   ]
   },
   {
    "section": "history",
@@ -662,7 +811,7 @@ export const seedF430 = {
    "sourceRefs": [
     "wikipedia-special-projects",
     "wikipedia-f430",
-    "supercars-net-f430"
+    "carrozzieri-sp1"
    ]
   },
   {
@@ -672,8 +821,7 @@ export const seedF430 = {
    "status": "verified",
    "sourceRefs": [
     "autoblog-biofuel",
-    "wikipedia-f430",
-    "supercars-net-f430"
+    "wikipedia-f430"
    ]
   },
   {
