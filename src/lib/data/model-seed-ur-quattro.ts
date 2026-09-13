@@ -15,26 +15,26 @@ export const seedUrQuattro = {
   "2-door coupe on the Audi 80 (B2) floorpan, with blistered arches and a fixed roof"
  ],
  "engines": [
-  "2,144 cc WR turbocharged inline five, SOHC 10-valve, KKK K26 at 0.68 bar with intercooler, Bosch K-Jetronic, 200 bhp at 5,500 rpm and 210 lb-ft at 3,500 rpm (1980-1988)",
-  "2,144 cc WX turbocharged inline five, catalysed and recammed for the United States, Canada, Switzerland and Japan, 160 bhp; a 165 bhp GV variant is also listed for Sweden and Switzerland from 1985",
-  "2,226 cc MB turbocharged inline five, SOHC 10-valve with water-cooled turbo, 200 bhp at 5,500 rpm and 270 lb-ft at 3,000 rpm (1987-1988)",
-  "2,226 cc RR turbocharged inline five, DOHC 20-valve, 0.84 bar, 9.3:1, Bosch Motronic and twin catalysts, 220 bhp at 5,900 rpm (1989-1991)",
-  "2,133 cc KW all-alloy turbocharged inline five, DOHC 20-valve, KKK K27 at 1.2 bar, 306 bhp at 6,700 rpm - Sport quattro only"
+  "2,144 cc WR turbocharged inline five, SOHC 10-valve, KKK K26 at 0.68 bar with intercooler, Bosch K-Jetronic, 200 hp at 5,500 rpm and 210 lb-ft at 3,500 rpm (1980-1988)",
+  "2,144 cc WX turbocharged inline five, catalyzed and recammed for the United States, Canada, Switzerland and Japan, 160 hp; a 165 hp GV variant is also listed for Sweden and Switzerland from 1985",
+  "2,226 cc MB turbocharged inline five, SOHC 10-valve with water-cooled turbo, 200 hp at 5,500 rpm and 270 lb-ft at 3,000 rpm (1987-1988)",
+  "2,226 cc RR turbocharged inline five, DOHC 20-valve, 0.84 bar, 9.3:1, Bosch Motronic and twin catalysts, 220 hp at 5,900 rpm (1989-1991)",
+  "2,133 cc KW all-alloy turbocharged inline five, DOHC 20-valve, KKK K27 at 1.2 bar, 306 hp at 6,700 rpm - Sport quattro only"
  ],
  "productionTotal": 11452,
- "productionNotes": "The long-wheelbase road car carries one of the better-documented totals of its era: 11,452 cars between the March 1980 Geneva launch and the last example on 17 May 1991. Audi's own fortieth-anniversary material, Wikipedia and the Classics World and Octane buying guides all give that figure, and the year-by-year table at ableitet.no (292 in 1980, then 1,956, 1,935, 1,455, 1,567, 1,530, 774, 435, 610, 462, 413 and 23 in 1991) sums to exactly 11,452. Audi states the run was originally planned at around 400 cars. North American supply was small - 664 to the United States and 99 to Canada, all with the detuned 160 bhp WX engine - and right-hand drive did not begin until October 1982.\n\nTwo sub-counts are not settled. The 20-valve RR run is given as 934 cars built between August 1989 and 17 May 1991 by Supercar Nostalgia, while the ableitet.no year table shows 462, 413 and 23 for 1989-91, which is 898; 1989 was a split year in which ten-valve cars were still delivered, so the two cannot be reconciled without knowing where each drew the line. The Sport quattro is worse: Audi and most specialists say 214, Wikipedia and Hagerty say 224, Sports Car Market splits 214 into 164 road cars and 50 competition cars, and RM Sotheby's has catalogued the model variously as one of 214, one of 164, and 214 built of which 161 were road versions. The Group 4 and Group B works cars - A1, A2, S1 and S1 E2 - were built and rebuilt on a separate programme and belong to none of these totals.",
+ "productionNotes": "The long-wheelbase road car carries one of the better-documented totals of its era: 11,452 cars between the March 1980 Geneva launch and the last example on 17 May 1991. Audi's own fortieth-anniversary material, Wikipedia and the Classics World and Octane buying guides all give that figure, and the year-by-year table at ableitet.no (292 in 1980, then 1,956, 1,935, 1,455, 1,567, 1,530, 774, 435, 610, 462, 413 and 23 in 1991) sums to exactly 11,452. Audi states the run was originally planned at around 400 cars. North American supply was small - 664 to the United States and 99 to Canada, all with the detuned 160 hp WX engine - and right-hand drive did not begin until October 1982.\n\nTwo sub-counts are not settled. The 20-valve RR run is given as 934 cars built between August 1989 and 17 May 1991 by Supercar Nostalgia, while the ableitet.no year table shows 462, 413 and 23 for 1989-91, which is 898; 1989 was a split year in which ten-valve cars were still delivered, so the two cannot be reconciled without knowing where each drew the line. The Sport quattro is worse: Audi and most specialists say 214, Wikipedia and Hagerty say 224, Sports Car Market splits 214 into 164 road cars and 50 competition cars, and RM Sotheby's has catalogued the model variously as one of 214, one of 164, and 214 built of which 161 were road versions. The Group 4 and Group B works cars - A1, A2, S1 and S1 E2 - were built and rebuilt on a separate program and belong to none of these totals.",
  "notableTrims": [
   {
    "name": "quattro (WR, 1980-1988)",
-   "note": "The original: 2,144 cc 10-valve turbo five, manually locked centre and rear differentials, 6x15 Ronal alloys to 1984 and 8x15 after. Pre-1985 shells were not galvanised, so condition rather than year decides value."
+   "note": "The original: 2,144 cc 10-valve turbo five, manually locked center and rear differentials, 6x15 Ronal alloys to 1984 and 8x15 after. Pre-1985 shells were not galvanised, so condition rather than year decides value."
   },
   {
    "name": "quattro (WX / GV emissions cars)",
-   "note": "The 160 bhp WX for the United States, Canada, Switzerland and Japan, and the 165 bhp GV listed for Sweden and Switzerland from 1985. All 664 US and 99 Canadian cars are WX, some 40 bhp down on European output."
+   "note": "The 160 hp WX for the United States, Canada, Switzerland and Japan, and the 165 hp GV listed for Sweden and Switzerland from 1985. All 664 US and 99 Canadian cars are WX, some 40 hp down on European output."
   },
   {
    "name": "quattro (MB, 1987-1988)",
-   "note": "2,226 cc, still 10-valve, but with a water-cooled turbocharger and the Torsen torque-sensing centre differential in place of the manual lock. Torque rose to 270 lb-ft at 3,000 rpm; the driveline change matters more than the power."
+   "note": "2,226 cc, still 10-valve, but with a water-cooled turbocharger and the Torsen torque-sensing center differential in place of the manual lock. Torque rose to 270 lb-ft at 3,000 rpm; the driveline change matters more than the power."
   },
   {
    "name": "Edition Speciale (1988)",
@@ -42,11 +42,11 @@ export const seedUrQuattro = {
   },
   {
    "name": "quattro 20V (RR, 1989-1991)",
-   "note": "The final specification: 2,226 cc twin-cam 20-valve, 220 bhp at 5,900 rpm, twin catalysts, 143 mph. Rated by specialists as the most durable of the three engines and the most sought-after road car in the range."
+   "note": "The final specification: 2,226 cc twin-cam 20-valve, 220 hp at 5,900 rpm, twin catalysts, 143 mph. Rated by specialists as the most durable of the three engines and the most sought-after road car in the range."
   },
   {
    "name": "Sport quattro (1984-1986)",
-   "note": "Wheelbase cut 320 mm to 2,204 mm, all-alloy 20-valve KW engine at 306 bhp, Kevlar and glassfibre panels over a steel base with Audi 80 doors, left-hand drive only. Built to homologate the Group B car; the count is disputed."
+   "note": "Wheelbase cut 320 mm to 2,204 mm, all-alloy 20-valve KW engine at 306 hp, Kevlar and glassfiber panels over a steel base with Audi 80 doors, left-hand drive only. Built to homologate the Group B car; the count is disputed."
   },
   {
    "name": "quattro A1 / A2 / S1 works rally cars",
@@ -54,29 +54,29 @@ export const seedUrQuattro = {
   }
  ],
  "specs": {
-  "layout": "Front longitudinal engine, permanent four-wheel drive with lockable centre and rear differentials",
+  "layout": "Front longitudinal engine, permanent four-wheel drive with lockable center and rear differentials",
   "chassis": "Pressed-steel unitary bodyshell on the Audi 80 (B2) platform; partial galvanising from 1985, more extensive from 1988",
   "engine": "Turbocharged inline five: 2,144 cc WR 10-valve to 1988, 2,226 cc MB 10-valve 1987-88, 2,226 cc RR 20-valve DOHC 1989-91",
   "bore_stroke": "79.5 mm x 86.4 mm (WR); 81.0 mm x 86.4 mm (MB and RR)",
-  "power": "200 bhp at 5,500 rpm (WR and MB); 220 bhp at 5,900 rpm (RR); 160 bhp (WX, North America) - manufacturer figures",
+  "power": "200 hp at 5,500 rpm (WR and MB); 220 hp at 5,900 rpm (RR); 160 hp (WX, North America) - manufacturer figures",
   "torque": "210 lb-ft at 3,500 rpm (WR); 270 lb-ft at 3,000 rpm (MB); RR quoted at 309 lb-ft by Supercar Nostalgia, a figure other guides do not repeat",
   "induction": "KKK K26 at 0.68 bar with intercooler and Bosch K-Jetronic (WR); water-cooled turbo (MB); 0.84 bar, 9.3:1, Bosch Motronic and twin catalysts (RR)",
-  "transmission": "Five-speed manual only; manually locked centre differential to 1986, Torsen torque-sensing centre differential from the 1987 model year",
-  "drivetrain_detail": "Drilled-out 263 mm hollow secondary shaft in the gearbox feeding the centre differential, with a second shaft running inside it to the front axle; 50:50 nominal split",
-  "weight": "1,300 kg (WR); 1,335 kg (MB); 1,380 kg (RR)",
+  "transmission": "Five-speed manual only; manually locked center differential to 1986, Torsen torque-sensing center differential from the 1987 model year",
+  "drivetrain_detail": "Drilled-out 263 mm hollow secondary shaft in the gearbox feeding the center differential, with a second shaft running inside it to the front axle; 50:50 nominal split",
+  "weight": "2,866 lb (WR); 2,943 lb (MB); 3,042 lb (RR)",
   "wheelbase": "2,524 mm road car; 2,204 mm Sport quattro",
   "brakes": "Hydraulically assisted discs, 280 mm ventilated front and 245 mm solid rear, fore-and-aft dual circuit; ABS standard from the 1984 model year",
   "suspension": "Independent MacPherson struts front and rear; ride height lowered about 20 mm for 1984",
   "acceleration": "7.1 sec to 62 mph (WR); 6.5 sec to 62 mph (RR) - manufacturer claims",
   "top_speed": "137 mph (WR); 143 mph (RR) - manufacturer claims",
-  "instrumentation": "Analogue to 1983, then a green LCD digital cluster with a German-language voice synthesiser on WR cars, later revised in colour",
-  "fuel_tank": "90 litres"
+  "instrumentation": "Analogue to 1983, then a green LCD digital cluster with a German-language voice synthesiser on WR cars, later revised in color",
+  "fuel_tank": "90 liters"
  },
- "summary": "The Audi Quattro of 1980-1991 - called the Ur-Quattro since, to separate the car from the drivetrain that took its name - is the machine that moved four-wheel drive out of agriculture and into performance. The idea came from winter testing in Scandinavia in 1976-77, where a Volkswagen Iltis military vehicle outran far more powerful front-drive Audi prototypes on snow. The packaging problem was solved by a drilled-out 263 mm hollow secondary shaft in the gearbox: one shaft drove the centre differential while a second ran inside it to the front axle, so there was no separate transfer case and very little added bulk. Presented at Geneva on 3 March 1980 with a 2,144 cc turbocharged five-cylinder of 200 PS, it was planned as a homologation run of about 400 cars and stayed in production for eleven years and 11,452 of them. Group B rallying made its reputation, the short-wheelbase Sport quattro homologated the extreme version of it, and the 20-valve cars of 1989-91 closed the run.",
- "history": "## An Iltis in the Snow\nThe quattro began as an observation rather than a project. During winter testing in Scandinavia in 1976-77, Audi engineers found that a Volkswagen Iltis - a slab-sided four-wheel-drive military light utility with a 75 PS four-cylinder - could stay with, and on snow outrun, far more powerful front-drive Audi prototypes. Chassis engineer Jorg Bensinger is the name usually attached to the insight; Walter Treser, director of pre-development, was given twelve engineers in February 1977 to turn it into a car, with Ferdinand Piech behind them. The Iltis was not merely inspirational: the ur-quattro's lockable rear differential was developed from the Iltis unit, and an Audi-prepared Iltis won the 1980 Paris-Dakar outright while the road car was being launched.\n\n## The Hollow Shaft\nFour-wheel drive was not new. What was new was making it light and compact enough that a saloon-based coupe could carry it without a transfer case slung alongside the gearbox. Audi's answer was a drilled-out 263 mm secondary shaft in the transmission: the hollow outer shaft drove a bevel-gear centre differential at the rear of the gearbox, while a slim shaft running inside it took drive forward to the front differential. The split was a nominal 50:50, against the 33:67 of the Jensen FF, and both centre and rear differentials could be locked - by cable, then pneumatically, then by rotary switch from 1986. The centre differential weighed about five kilograms. From the 1987 model year a Torsen torque-sensing unit replaced the manual centre lock, ending the era in which the driver had to remember to unlock it.\n\n## Group B and the Sport quattro\nAudi entered rallying in 1980 as a development season, and in 1981 Michele Mouton became the first woman to win a World Championship rally. The quattro took the manufacturers' title in 1982 and 1984, with Hannu Mikkola taking the drivers' championship in 1983 and Stig Blomqvist in 1984. By 1984 the long wheelbase and nose-heavy layout were being punished by mid-engined Group B rivals, and Audi's answer was the Sport quattro: 320 mm cut from the wheelbase, an all-alloy 20-valve five of 306 bhp, Kevlar and glassfibre panels over a steel base still using Audi 80 doors. It was homologated on 1 May 1984 and competed two days later on the Tour de Corse. The works cars evolved beyond it into the S1 and S1 E2, quoted officially at 480 PS and believed to be well past 500, and finished by winning Pikes Peak three years running from 1985.\n\n## WR, MB, RR\nThe road car changed less than its reputation suggests. The WR - 2,144 cc, single cam, ten valves, 200 bhp - ran from launch to 1988, gathering ABS as standard, eight-inch wheels and a 20 mm lower ride height for 1984, and a raked grille and headlamps for 1985. In 1987 the MB brought 2,226 cc, a water-cooled turbocharger and the Torsen differential. Then in 1989 came the RR: the same 2,226 cc block under a twin-cam 20-valve head, with higher compression, more boost, Bosch Motronic and twin catalytic converters, for 220 bhp at 5,900 rpm and 143 mph. It is the engine specialists rate most highly, and the last; the final car left Ingolstadt on 17 May 1991.\n\n## The Talking Dashboard\nFrom late 1983 the quattro received a green LCD instrument cluster, and with it something stranger: an autocheck system monitoring around twenty sensors that spoke its warnings aloud in German through the car's speakers, ranked by severity so that a brake fault took precedence over washer fluid. The voice belonged to Patrizia Lipp, and the 1983-84 units used a National Semiconductor Digitalker chip. Warning lights were ordinary for the period; a car that told you it had had enough was not. The display colour was revised later in the run, and an early digital cluster paired with a synthesiser nobody now supports is among the harder ownership problems the car sets.",
- "marketNotes": "The aggregate figures mislead if read alone, because competition cars and Sport quattros sit in the same database as ordinary coupes. As of August 2026, classic.com records an average sale price of $123,888 across all Audi Quattro listings, but its lowest recorded result is $5,040 for a 1983 car on 26 October 2024 and its highest visible is EUR 862,500 for a 1983 car sold through Bonhams on 24 April 2026 in Corsica - a competition car, and classic.com does not state whether that figure is hammer or premium-inclusive. Sport quattros trade in a market of their own: RM sold chassis 905147 for $401,500 at Arizona in January 2015 and the same car for $665,000 at Arizona in January 2024, a UK-delivered 1986 example for GBP 403,200 at London in 2016, and a heavily modified 435 bhp car with United States competition history for $643,000 at Monterey in 2025. Octane's published UK guidance puts the best ten-valve road cars at GBP 55,000-90,000 and 20-valve cars at GBP 75,000-100,000 and above; it carries no date of its own and reads best against the auction record rather than instead of it.",
- "whatToLookFor": "Establish which car it is before anything else. WR, MB and RR are three different propositions, and a 1989 car can be a late ten-valve or an early 20-valve depending on build date, so match the code on the block to the paperwork rather than to the badge. Galvanising is the other dividing line: shells before 1985 had none and cars from 1988 are the best protected, so sills, door bottoms, wheelarch lips and panel seams all want a torch, with incorrect jacking the usual cause of sill damage. Work the differential locks through their full travel and confirm the tell-tales light: pneumatic centre locks seize on cars used gently for years, and a lock that will not disengage is worse than one that will not engage. A tick during warm-up points to a cracked exhaust manifold, itself usually a symptom of a collapsed right-hand engine mount. Blue smoke under load is turbo seals or valve guides. Check the external oil cooler behind the front bumper for corroded unions, ask when the cam belt was last done, and on 20-valve cars inspect the rear subframe for cracking. Then work every function of the digital cluster and, if fitted, the voice system: with window motors, ABS sensors and much interior trim no longer available, a dead dash is a permanent condition rather than a fault to be quoted for.",
- "commonProblems": "Corrosion is the first and largest bill, particularly on pre-1985 cars, compounded by panels Audi no longer supplies - wings, bonnets and boot lids among them, with post-1987 plastic bootlids needing specialist repair. Mechanically the ten-valve engines are the weaker pair: Octane suggests early 2.1-litre units may want rebuilding around 150,000 miles where later MB and RR engines run past 200,000 on proper servicing, and the 20-valve is the unit specialists rate highest. Cracked exhaust manifolds following engine-mount failure are a known pattern and expensive in parts alone. Turbocharger bearing and seal failure is common, aggravated on the MB by the absence of the water cooling fitted later. Oval bore wear, worn valve guides and corroded oil-cooler joints all appear. Gearboxes are heavy in action and weak on synchromesh. Differential-lock actuators and rear differential seals leak or seize. The brakes use hydraulic assistance fed from the steering pump - shared on WR cars to 1987, a tandem arrangement on MB and RR cars from 1988 - and the two take different fluids: ATF in the later green mineral-oil system will destroy seals. Fuel tanks weep at the seam welds, and the wiring deteriorates at its connections.",
+ "summary": "The Audi Quattro of 1980-1991 - called the Ur-Quattro since, to separate the car from the drivetrain that took its name - is the machine that moved four-wheel drive out of agriculture and into performance. The idea came from winter testing in Scandinavia in 1976-77, where a Volkswagen Iltis military vehicle outran far more powerful front-drive Audi prototypes on snow. The packaging problem was solved by a drilled-out 263 mm hollow secondary shaft in the gearbox: one shaft drove the center differential while a second ran inside it to the front axle, so there was no separate transfer case and very little added bulk. Presented at Geneva on 3 March 1980 with a 2,144 cc turbocharged five-cylinder of 197 hp, it was planned as a homologation run of about 400 cars and stayed in production for eleven years and 11,452 of them. Group B rallying made its reputation, the short-wheelbase Sport quattro homologated the extreme version of it, and the 20-valve cars of 1989-91 closed the run.",
+ "history": "## An Iltis in the Snow\nThe quattro began as an observation rather than a project. During winter testing in Scandinavia in 1976-77, Audi engineers found that a Volkswagen Iltis - a slab-sided four-wheel-drive military light utility with a 74 hp four-cylinder - could stay with, and on snow outrun, far more powerful front-drive Audi prototypes. Chassis engineer Jorg Bensinger is the name usually attached to the insight; Walter Treser, director of pre-development, was given twelve engineers in February 1977 to turn it into a car, with Ferdinand Piech behind them. The Iltis was not merely inspirational: the ur-quattro's lockable rear differential was developed from the Iltis unit, and an Audi-prepared Iltis won the 1980 Paris-Dakar outright while the road car was being launched.\n\n## The Hollow Shaft\nFour-wheel drive was not new. What was new was making it light and compact enough that a sedan-based coupe could carry it without a transfer case slung alongside the gearbox. Audi's answer was a drilled-out 263 mm secondary shaft in the transmission: the hollow outer shaft drove a bevel-gear center differential at the rear of the gearbox, while a slim shaft running inside it took drive forward to the front differential. The split was a nominal 50:50, against the 33:67 of the Jensen FF, and both center and rear differentials could be locked - by cable, then pneumatically, then by rotary switch from 1986. The center differential weighed about five kilograms. From the 1987 model year a Torsen torque-sensing unit replaced the manual center lock, ending the era in which the driver had to remember to unlock it.\n\n## Group B and the Sport quattro\nAudi entered rallying in 1980 as a development season, and in 1981 Michele Mouton became the first woman to win a World Championship rally. The quattro took the manufacturers' title in 1982 and 1984, with Hannu Mikkola taking the drivers' championship in 1983 and Stig Blomqvist in 1984. By 1984 the long wheelbase and nose-heavy layout were being punished by mid-engined Group B rivals, and Audi's answer was the Sport quattro: 320 mm cut from the wheelbase, an all-alloy 20-valve five of 306 hp, Kevlar and glassfiber panels over a steel base still using Audi 80 doors. It was homologated on 1 May 1984 and competed two days later on the Tour de Corse. The works cars evolved beyond it into the S1 and S1 E2, quoted officially at 473 hp and believed to be well past 500, and finished by winning Pikes Peak three years running from 1985.\n\n## WR, MB, RR\nThe road car changed less than its reputation suggests. The WR - 2,144 cc, single cam, ten valves, 200 hp - ran from launch to 1988, gathering ABS as standard, eight-inch wheels and a 20 mm lower ride height for 1984, and a raked grille and headlamps for 1985. In 1987 the MB brought 2,226 cc, a water-cooled turbocharger and the Torsen differential. Then in 1989 came the RR: the same 2,226 cc block under a twin-cam 20-valve head, with higher compression, more boost, Bosch Motronic and twin catalytic converters, for 220 hp at 5,900 rpm and 143 mph. It is the engine specialists rate most highly, and the last; the final car left Ingolstadt on 17 May 1991.\n\n## The Talking Dashboard\nFrom late 1983 the quattro received a green LCD instrument cluster, and with it something stranger: an autocheck system monitoring around twenty sensors that spoke its warnings aloud in German through the car's speakers, ranked by severity so that a brake fault took precedence over washer fluid. The voice belonged to Patrizia Lipp, and the 1983-84 units used a National Semiconductor Digitalker chip. Warning lights were ordinary for the period; a car that told you it had had enough was not. The display color was revised later in the run, and an early digital cluster paired with a synthesiser nobody now supports is among the harder ownership problems the car sets.",
+ "marketNotes": "The aggregate figures mislead if read alone, because competition cars and Sport quattros sit in the same database as ordinary coupes. As of August 2026, classic.com records an average sale price of $123,888 across all Audi Quattro listings, but its lowest recorded result is $5,040 for a 1983 car on 26 October 2024 and its highest visible is EUR 862,500 for a 1983 car sold through Bonhams on 24 April 2026 in Corsica - a competition car, and classic.com does not state whether that figure is hammer or premium-inclusive. Sport quattros trade in a market of their own: RM sold chassis 905147 for $401,500 at Arizona in January 2015 and the same car for $665,000 at Arizona in January 2024, a UK-delivered 1986 example for GBP 403,200 at London in 2016, and a heavily modified 435 hp car with United States competition history for $643,000 at Monterey in 2025. Octane's published UK guidance puts the best ten-valve road cars at GBP 55,000-90,000 and 20-valve cars at GBP 75,000-100,000 and above; it carries no date of its own and reads best against the auction record rather than instead of it.",
+ "whatToLookFor": "Establish which car it is before anything else. WR, MB and RR are three different propositions, and a 1989 car can be a late ten-valve or an early 20-valve depending on build date, so match the code on the block to the paperwork rather than to the badge. Galvanising is the other dividing line: shells before 1985 had none and cars from 1988 are the best protected, so sills, door bottoms, wheel arch lips and panel seams all want a torch, with incorrect jacking the usual cause of sill damage. Work the differential locks through their full travel and confirm the tell-tales light: pneumatic center locks seize on cars used gently for years, and a lock that will not disengage is worse than one that will not engage. A tick during warm-up points to a cracked exhaust manifold, itself usually a symptom of a collapsed right-hand engine mount. Blue smoke under load is turbo seals or valve guides. Check the external oil cooler behind the front bumper for corroded unions, ask when the cam belt was last done, and on 20-valve cars inspect the rear subframe for cracking. Then work every function of the digital cluster and, if fitted, the voice system: with window motors, ABS sensors and much interior trim no longer available, a dead dash is a permanent condition rather than a fault to be quoted for.",
+ "commonProblems": "Corrosion is the first and largest bill, particularly on pre-1985 cars, compounded by panels Audi no longer supplies - wings, hoods and boot lids among them, with post-1987 plastic bootlids needing specialist repair. Mechanically the ten-valve engines are the weaker pair: Octane suggests early 2.1-liter units may want rebuilding around 150,000 miles where later MB and RR engines run past 200,000 on proper servicing, and the 20-valve is the unit specialists rate highest. Cracked exhaust manifolds following engine-mount failure are a known pattern and expensive in parts alone. Turbocharger bearing and seal failure is common, aggravated on the MB by the absence of the water cooling fitted later. Oval bore wear, worn valve guides and corroded oil-cooler joints all appear. Gearboxes are heavy in action and weak on synchromesh. Differential-lock actuators and rear differential seals leak or seize. The brakes use hydraulic assistance fed from the steering pump - shared on WR cars to 1987, a tandem arrangement on MB and RR cars from 1988 - and the two take different fluids: ATF in the later green mineral-oil system will destroy seals. Fuel tanks weep at the seam welds, and the wiring deteriorates at its connections.",
  "valueTrajectory": "For most of its life this was a cheap fast Audi, and a generation of them was scrapped or modified accordingly. The re-rating began around 2015 and has been steep: Hagerty's tracking shows a condition-2 standard Quattro rising roughly 237 per cent over ten years, from about $20,000 to $55,600, with the Sport quattro up around 415 per cent to $458,000. The auction record for the short-wheelbase car makes the point more bluntly: chassis 905147 took $401,500 at RM Arizona in January 2015 and $665,000 at the same sale in January 2024. Two forces are working. The first is the 1980s Group B cohort re-rating as a group, as the people who watched those rallies reach the age at which they buy. The second is attrition: 11,452 is a small number to begin with, corrosion took many of the early cars, and unrepeatable parts mean one that has gone too far cannot economically come back. As of August 2026 the gap between a documented, unmodified, structurally sound car and a tidy-looking one continues to widen, and 20-valve cars sit clearly above ten-valves in every guide consulted.",
  "overallConfidence": "high",
  "sources": [
@@ -87,7 +87,7 @@ export const seedUrQuattro = {
    "publisher": "AUDI AG (Audi MediaCenter)",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Audi's technical account: the 1976-77 Sweden tests where the Iltis beat stronger front-drive prototypes; the drilled-out 263 mm secondary shaft driving a manually locking bevel-gear centre differential at 50:50; Torsen from 1986."
+   "notes": "Audi's technical account: the 1976-77 Sweden tests where the Iltis beat stronger front-drive prototypes; the drilled-out 263 mm secondary shaft driving a manually locking bevel-gear center differential at 50:50; Torsen from 1986."
   },
   {
    "ref": "audi-40-figures",
@@ -114,7 +114,7 @@ export const seedUrQuattro = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "What the Iltis was: a VW military light utility built from summer 1978, 1.7-litre four of 75 PS, four-wheel drive with optional diff locks, its drivetrain the stated basis of quattro; an Audi-prepared Iltis won the 1980 Paris-Dakar."
+   "notes": "What the Iltis was: a VW military light utility built from summer 1978, 1.7-liter four of 74 hp, four-wheel drive with optional diff locks, its drivetrain the stated basis of quattro; an Audi-prepared Iltis won the 1980 Paris-Dakar."
   },
   {
    "ref": "supercarnostalgia-ur",
@@ -123,7 +123,7 @@ export const seedUrQuattro = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "WR specification (2,144 cc, 79.5 x 86.4 mm, K26 at 0.68 bar, K-Jetronic, 200 bhp at 5,500 rpm, 210 lb-ft, 1,300 kg, 2,524 mm wheelbase) and the model-year changes: ABS and 8-inch wheels and 20 mm lower ride 1984, rotary diff switch 1986, Torsen 1987, RHD from October 1982, WX 160 bhp export engine."
+   "notes": "WR specification (2,144 cc, 79.5 x 86.4 mm, K26 at 0.68 bar, K-Jetronic, 200 hp at 5,500 rpm, 210 lb-ft, 2,866 lb, 2,524 mm wheelbase) and the model-year changes: ABS and 8-inch wheels and 20 mm lower ride 1984, rotary diff switch 1986, Torsen 1987, RHD from October 1982, WX 160 hp export engine."
   },
   {
    "ref": "supercarnostalgia-rr",
@@ -132,7 +132,7 @@ export const seedUrQuattro = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "MB and RR both 2,226 cc at 81.0 x 86.4 mm; MB 200 bhp, 270 lb-ft at 3,000 rpm; RR 220 bhp at 5,900 rpm, boost 0.56 to 0.84 bar, compression 8.6 to 9.3:1, Motronic and twin catalysts, 1,380 kg, 143 mph; states 934 RR cars built August 1989 to 17 May 1991."
+   "notes": "MB and RR both 2,226 cc at 81.0 x 86.4 mm; MB 200 hp, 270 lb-ft at 3,000 rpm; RR 220 hp at 5,900 rpm, boost 0.56 to 0.84 bar, compression 8.6 to 9.3:1, Motronic and twin catalysts, 3,042 lb, 143 mph; states 934 RR cars built August 1989 to 17 May 1991."
   },
   {
    "ref": "supercarnostalgia-sport",
@@ -141,7 +141,7 @@ export const seedUrQuattro = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Sport quattro: 214 built February 1984 to January 1986 of which 164 sold to customers, plus five from leftover parts in 1988; wheelbase cut 320 mm to 2,204 mm; 1,273 kg; KW engine 2,133 cc, K27 at 1.2 bar, 306 bhp; homologated 1 May 1984, raced two days later."
+   "notes": "Sport quattro: 214 built February 1984 to January 1986 of which 164 sold to customers, plus five from leftover parts in 1988; wheelbase cut 320 mm to 2,204 mm; 2,806 lb; KW engine 2,133 cc, K27 at 1.2 bar, 306 hp; homologated 1 May 1984, raced two days later."
   },
   {
    "ref": "ableitet-production",
@@ -168,7 +168,7 @@ export const seedUrQuattro = {
    "publisher": "Octane",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Evolution and UK values: Iltis-derived drive tested in Audi 80 prototypes; 2.2 litres and Torsen from 1987, RR at 220 bhp from 1989; early 2.1 engines wanting rebuilds near 150,000 miles against 200,000-plus for MB and RR; GBP 55,000-90,000 for the best ten-valves, GBP 75,000-100,000-plus for 20-valves."
+   "notes": "Evolution and UK values: Iltis-derived drive tested in Audi 80 prototypes; 2.2 liters and Torsen from 1987, RR at 220 hp from 1989; early 2.1 engines wanting rebuilds near 150,000 miles against 200,000-plus for MB and RR; GBP 55,000-90,000 for the best ten-valves, GBP 75,000-100,000-plus for 20-valves."
   },
   {
    "ref": "motorsport-april-1980",
@@ -177,7 +177,7 @@ export const seedUrQuattro = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Period launch report from the month of the Geneva debut: a tubular output shaft driving the centre differential with a thin shaft inside it to the front differential; an inter-axle differential adapted from VW Polo parts; a rear differential 'developed from the Iltis'; 50/50 against the Jensen FF's 33/67."
+   "notes": "Period launch report from the month of the Geneva debut: a tubular output shaft driving the center differential with a thin shaft inside it to the front differential; an inter-axle differential adapted from VW Polo parts; a rear differential 'developed from the Iltis'; 50/50 against the Jensen FF's 33/67."
   },
   {
    "ref": "silodrome-group4",
@@ -222,7 +222,7 @@ export const seedUrQuattro = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $665,000 at Arizona 2024, chassis WAUZZZ85ZEA905147, 8,806 km. Catalogue states 'one of just 214 Sport Quattros constructed' - the same house's alternative to the 164 used at Monterey 2025, and the same chassis RM sold in 2015."
+   "notes": "Sold $665,000 at Arizona 2024, chassis WAUZZZ85ZEA905147, 5,472 miles. Catalogue states 'one of just 214 Sport Quattros constructed' - the same house's alternative to the 164 used at Monterey 2025, and the same chassis RM sold in 2015."
   },
   {
    "ref": "rm-lf16-sport",
@@ -231,7 +231,7 @@ export const seedUrQuattro = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold GBP 403,200 at London 2016, chassis WAUZZZ85ZEA905076, one of five delivered new to the UK. States that of 214 Sport quattros produced 'only 161 were homologated road versions'; describes the all-alloy 2,133 cc 20-valve five and Kevlar and fibreglass panels saving about 180 kg."
+   "notes": "Sold GBP 403,200 at London 2016, chassis WAUZZZ85ZEA905076, one of five delivered new to the UK. States that of 214 Sport quattros produced 'only 161 were homologated road versions'; describes the all-alloy 2,133 cc 20-valve five and Kevlar and fiberglass panels saving about 397 lb."
   },
   {
    "ref": "scm-sport-2015",
@@ -249,7 +249,7 @@ export const seedUrQuattro = {
    "publisher": "Exclusive Car Registry",
    "sourceType": "registry",
    "reliability": "medium",
-   "notes": "Registry listing individual cars by colour and specification. States 214 road-going Sport quattros produced and that Audi had to build 200 units for Group B homologation - the requirement explaining why the figure sits just above 200."
+   "notes": "Registry listing individual cars by color and specification. States 214 road-going Sport quattros produced and that Audi had to build 200 units for Group B homologation - the requirement explaining why the figure sits just above 200."
   },
   {
    "ref": "isham-brakes",
@@ -285,7 +285,7 @@ export const seedUrQuattro = {
   },
   {
    "section": "specs",
-   "claimText": "The packaging solution was a drilled-out 263 mm hollow secondary shaft in the gearbox: the hollow outer shaft drove a bevel-gear centre differential while a slim shaft inside it took drive to the front differential, giving a nominal 50:50 split without a transfer case. The lockable rear differential was developed from the Iltis unit, and a Torsen torque-sensing unit replaced the manual centre lock from the 1987 model year.",
+   "claimText": "The packaging solution was a drilled-out 263 mm hollow secondary shaft in the gearbox: the hollow outer shaft drove a bevel-gear center differential while a slim shaft inside it took drive to the front differential, giving a nominal 50:50 split without a transfer case. The lockable rear differential was developed from the Iltis unit, and a Torsen torque-sensing unit replaced the manual center lock from the 1987 model year.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -298,7 +298,7 @@ export const seedUrQuattro = {
   },
   {
    "section": "history",
-   "claimText": "The quattro was presented at the Geneva Motor Show on 3 March 1980 with a 147 kW (200 PS) turbocharged five-cylinder engine at a German launch price of DM 49,990.",
+   "claimText": "The quattro was presented at the Geneva Motor Show on 3 March 1980 with a 197 hp (197 hp) turbocharged five-cylinder engine at a German launch price of DM 49,990.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -309,7 +309,7 @@ export const seedUrQuattro = {
   },
   {
    "section": "production",
-   "claimText": "11,452 long-wheelbase quattro road cars were built between the March 1980 launch and the final example on 17 May 1991, against an original plan of about 400 cars; North American supply was limited to 664 for the United States and 99 for Canada, all with the detuned 160 bhp WX engine, and right-hand-drive production did not begin until October 1982.",
+   "claimText": "11,452 long-wheelbase quattro road cars were built between the March 1980 launch and the final example on 17 May 1991, against an original plan of about 400 cars; North American supply was limited to 664 for the United States and 99 for Canada, all with the detuned 160 hp WX engine, and right-hand-drive production did not begin until October 1982.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -353,7 +353,7 @@ export const seedUrQuattro = {
   },
   {
    "section": "specs",
-   "claimText": "The original WR engine is a 2,144 cc single-overhead-cam turbocharged inline five of 79.5 x 86.4 mm running a KKK K26 at 0.68 bar with an intercooler and Bosch K-Jetronic injection, for 200 bhp at 5,500 rpm and 210 lb-ft at 3,500 rpm in a 1,300 kg car on a 2,524 mm wheelbase.",
+   "claimText": "The original WR engine is a 2,144 cc single-overhead-cam turbocharged inline five of 79.5 x 86.4 mm running a KKK K26 at 0.68 bar with an intercooler and Bosch K-Jetronic injection, for 200 hp at 5,500 rpm and 210 lb-ft at 3,500 rpm in a 2,866 lb car on a 2,524 mm wheelbase.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -364,7 +364,7 @@ export const seedUrQuattro = {
   },
   {
    "section": "specs",
-   "claimText": "The MB of 1987-88 took displacement to 2,226 cc with a water-cooled turbocharger, and the RR of 1989-91 kept that displacement under a twin-cam 20-valve head with boost raised to 0.84 bar, compression to 9.3:1, Bosch Motronic management and twin catalytic converters, for 220 bhp at 5,900 rpm and 143 mph.",
+   "claimText": "The MB of 1987-88 took displacement to 2,226 cc with a water-cooled turbocharger, and the RR of 1989-91 kept that displacement under a twin-cam 20-valve head with boost raised to 0.84 bar, compression to 9.3:1, Bosch Motronic management and twin catalytic converters, for 220 hp at 5,900 rpm and 143 mph.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -375,7 +375,7 @@ export const seedUrQuattro = {
   },
   {
    "section": "specs",
-   "claimText": "A green LCD digital instrument cluster was introduced in 1983, but sources disagree on when the display colour changed.",
+   "claimText": "A green LCD digital instrument cluster was introduced in 1983, but sources disagree on when the display color changed.",
    "confidence": "low",
    "status": "disputed",
    "sourceRefs": [
@@ -407,7 +407,7 @@ export const seedUrQuattro = {
   },
   {
    "section": "specs",
-   "claimText": "The Sport quattro cut 320 mm from the wheelbase to 2,204 mm and used an all-aluminium 2,133 cc twin-cam 20-valve five with a KKK K27 at 1.2 bar for 306 bhp at 6,700 rpm, with Kevlar, glassfibre and aluminium panels over a steel base still using Audi 80 doors; it was homologated on 1 May 1984 and raced two days later on the Tour de Corse.",
+   "claimText": "The Sport quattro cut 320 mm from the wheelbase to 2,204 mm and used an all-aluminum 2,133 cc twin-cam 20-valve five with a KKK K27 at 1.2 bar for 306 hp at 6,700 rpm, with Kevlar, glassfiber and aluminum panels over a steel base still using Audi 80 doors; it was homologated on 1 May 1984 and raced two days later on the Tour de Corse.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -418,7 +418,7 @@ export const seedUrQuattro = {
   },
   {
    "section": "problems",
-   "claimText": "Shells built before 1985 were not galvanised and corrode at the sills, door bottoms, wheelarches and panel seams, with partial galvanising from 1985 and more extensive protection from 1988; several body panels, window motors and ABS sensors are no longer available new.",
+   "claimText": "Shells built before 1985 were not galvanised and corrode at the sills, door bottoms, wheel arches and panel seams, with partial galvanising from 1985 and more extensive protection from 1988; several body panels, window motors and ABS sensors are no longer available new.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -459,7 +459,7 @@ export const seedUrQuattro = {
   },
   {
    "section": "market",
-   "claimText": "Sport quattro auction results show a steep re-rating: chassis WAUZZZ85ZEA905147 made $401,500 at RM Auctions Arizona in January 2015 and $665,000 at RM Sotheby's Arizona in January 2024, a UK-delivered 1986 car made GBP 403,200 at RM Sotheby's London in 2016, and a modified 435 bhp car with US competition history made $643,000 at Monterey in 2025.",
+   "claimText": "Sport quattro auction results show a steep re-rating: chassis WAUZZZ85ZEA905147 made $401,500 at RM Auctions Arizona in January 2015 and $665,000 at RM Sotheby's Arizona in January 2024, a UK-delivered 1986 car made GBP 403,200 at RM Sotheby's London in 2016, and a modified 435 hp car with US competition history made $643,000 at Monterey in 2025.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

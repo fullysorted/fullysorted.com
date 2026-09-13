@@ -17,23 +17,23 @@ export const seed911LongHood = {
   "2-door, 2+2 Targa with stainless-steel roll hoop, removable roof panel and fixed glass rear window (1969-1973)"
  ],
  "engines": [
-  "1,991 cc Type 901/01 air-cooled SOHC flat-six, twin Solex carburettors, 130 PS (stated at 5,800 rpm by Classic & Sports Car); 911 and 911L 1964-1969",
-  "1,991 cc Type 901/02 air-cooled flat-six, triple-choke Weber 40 IDS carburettors, 160 PS at 6,600 rpm, 132 lb-ft at 5,200 rpm; 911S 1967-1969",
-  "1,991 cc air-cooled flat-six, carburettors, 110 PS; 911T 1968-1969",
-  "2,195 cc air-cooled flat-six: 911T 125 PS (Zenith carburettors), 911E 155 PS and 911S 180 PS (Bosch mechanical fuel injection); model years 1970-1971",
-  "2,341 cc air-cooled flat-six: 911T 130 PS manual (125 PS Sportomatic), 911E 165 PS, 911S 190 PS (Bosch mechanical fuel injection); model years 1972-1973",
-  "2,687 cc Type 911/83 air-cooled flat-six, 90 mm x 70.4 mm, Nikasil-lined cylinders, Bosch mechanical fuel injection, 210 PS at 6,300 rpm, 255 Nm (182 lb-ft) at 5,100 rpm; Carrera RS 2.7, 1973"
+  "1,991 cc Type 901/01 air-cooled SOHC flat-six, twin Solex carburetors, 128 hp (stated at 5,800 rpm by Classic & Sports Car); 911 and 911L 1964-1969",
+  "1,991 cc Type 901/02 air-cooled flat-six, triple-choke Weber 40 IDS carburetors, 158 hp at 6,600 rpm, 132 lb-ft at 5,200 rpm; 911S 1967-1969",
+  "1,991 cc air-cooled flat-six, carburetors, 108 hp; 911T 1968-1969",
+  "2,195 cc air-cooled flat-six: 911T 123 hp (Zenith carburetors), 911E 153 hp and 911S 178 hp (Bosch mechanical fuel injection); model years 1970-1971",
+  "2,341 cc air-cooled flat-six: 911T 128 hp manual (123 hp Sportomatic), 911E 163 hp, 911S 187 hp (Bosch mechanical fuel injection); model years 1972-1973",
+  "2,687 cc Type 911/83 air-cooled flat-six, 90 mm x 70.4 mm, Nikasil-lined cylinders, Bosch mechanical fuel injection, 207 hp at 6,300 rpm, 182 lb-ft at 5,100 rpm; Carrera RS 2.7, 1973"
  ],
  "productionTotal": null,
- "productionNotes": "No two independent sources fetched for this page give the same total for the 1964-1973 long-hood 911, and none explains its method, so the figure is left null. Porsche's own 60th-anniversary press kit states that 81,100 examples of the 911 (and 30,895 of the 912) had been built by the 1973 financial year, and porsche.com's brief history repeats 81,100 for the first generation. The Early 911 Registry, which exists to catalogue these cars, states 80,352 built between 1964 and 1973. Classic & Sports Car's 2018 buyer's guide gives 89,652 for 1964 to 1973, and Sports Car Market's 2018 profile of a 1971 911S says approximately 89,000. The gap of roughly 8,500 cars between the two clusters is larger than any single model year of the early run, and it may turn on whether the count is by financial year, calendar year or model year, whether the 1973-model 2.7 RS is included, or whether 912s are being mixed in; no source consulted resolves it. Below the total, the per-variant figures are more settled. Wikipedia and the Porsche Club of America agree that about 80 cars (Wikipedia: 82) were badged 901 before Peugeot's objection, and Stuttcars' chassis table gives 235 cars for 1964 from chassis 300001, although that table also contains evident errors (its 1965 row repeats 235) and cites no source, so it is used here only for individual rows. Stuttcars lists 22 911R cars for 1968 and, in the rows it labels 1969, 2,418 911T coupes, 1,304 911E coupes and 1,744 911S coupes. Sports Car Market gives 1,430 911S coupes for 1971 and 10,234 cars across all 1971 models. Elferspot gives 5,054 for the 2.4-litre 911S over 1972-1973, and Renndriver puts the 911T at approximately 35,000 across 1967-1973, the highest-volume long-hood variant. For the Carrera RS 2.7 the total of 1,580 is stated identically by Porsche, Wikipedia, RM Sotheby's, Elferspot and Classic Driver; Porsche's breakdown is 200 M471 Sport, 1,308 M472 Touring, 55 racing versions and 17 base (RSH) cars, which sums to 1,580 and therefore includes the RSR. Porsche had planned 500 cars for Group 4 homologation, sold them by the end of November 1972, and reached 1,500 by July 1973.",
+ "productionNotes": "No two independent sources fetched for this page give the same total for the 1964-1973 long-hood 911, and none explains its method, so the figure is left null. Porsche's own 60th-anniversary press kit states that 81,100 examples of the 911 (and 30,895 of the 912) had been built by the 1973 financial year, and porsche.com's brief history repeats 81,100 for the first generation. The Early 911 Registry, which exists to catalog these cars, states 80,352 built between 1964 and 1973. Classic & Sports Car's 2018 buyer's guide gives 89,652 for 1964 to 1973, and Sports Car Market's 2018 profile of a 1971 911S says approximately 89,000. The gap of roughly 8,500 cars between the two clusters is larger than any single model year of the early run, and it may turn on whether the count is by financial year, calendar year or model year, whether the 1973-model 2.7 RS is included, or whether 912s are being mixed in; no source consulted resolves it. Below the total, the per-variant figures are more settled. Wikipedia and the Porsche Club of America agree that about 80 cars (Wikipedia: 82) were badged 901 before Peugeot's objection, and Stuttcars' chassis table gives 235 cars for 1964 from chassis 300001, although that table also contains evident errors (its 1965 row repeats 235) and cites no source, so it is used here only for individual rows. Stuttcars lists 22 911R cars for 1968 and, in the rows it labels 1969, 2,418 911T coupes, 1,304 911E coupes and 1,744 911S coupes. Sports Car Market gives 1,430 911S coupes for 1971 and 10,234 cars across all 1971 models. Elferspot gives 5,054 for the 2.4-liter 911S over 1972-1973, and Renndriver puts the 911T at approximately 35,000 across 1967-1973, the highest-volume long-hood variant. For the Carrera RS 2.7 the total of 1,580 is stated identically by Porsche, Wikipedia, RM Sotheby's, Elferspot and Classic Driver; Porsche's breakdown is 200 M471 Sport, 1,308 M472 Touring, 55 racing versions and 17 base (RSH) cars, which sums to 1,580 and therefore includes the RSR. Porsche had planned 500 cars for Group 4 homologation, sold them by the end of November 1972, and reached 1,500 by July 1973.",
  "notableTrims": [
   {
    "name": "911 2.0 (O-series, 1964-1967) including the 901-badged cars",
-   "note": "The short-wheelbase original with 130 PS, twin Solex carburettors and the dogleg 901 five-speed. About 80 cars left the line badged 901 before Peugeot's objection; classic.com tracks 1964-1965 cars as a separate submarket with a benchmark of $197,375 as of September 2026, well above later 2.0 cars."
+   "note": "The short-wheelbase original with 128 hp, twin Solex carburetors and the dogleg 901 five-speed. About 80 cars left the line badged 901 before Peugeot's objection; classic.com tracks 1964-1965 cars as a separate submarket with a benchmark of $197,375 as of September 2026, well above later 2.0 cars."
   },
   {
    "name": "911S 2.0 (1967-1969)",
-   "note": "160 PS at 6,600 rpm on Weber carburettors and the first application of the forged Fuchs five-spoke wheel. classic.com benchmarks the 1967 coupe at $169,320 and the 1968 coupe at $151,283 as of September 2026, and its August 2026 results ran from $112,000 to $257,600."
+   "note": "158 hp at 6,600 rpm on Weber carburetors and the first application of the forged Fuchs five-spoke wheel. classic.com benchmarks the 1967 coupe at $169,320 and the 1968 coupe at $151,283 as of September 2026, and its August 2026 results ran from $112,000 to $257,600."
   },
   {
    "name": "911 Targa, soft-window (1967-1968)",
@@ -41,49 +41,49 @@ export const seed911LongHood = {
   },
   {
    "name": "911T (1968-1973)",
-   "note": "The entry car, with cast-iron cylinders, carburettors throughout and roughly 35,000 built according to Renndriver, so it is the long-hood most people can actually buy. Four-speed standard, five-speed optional; the Porsche Club of America identified 1969-1973 911Ts as the value play in 2023."
+   "note": "The entry car, with cast-iron cylinders, carburetors throughout and roughly 35,000 built according to Renndriver, so it is the long-hood most people can actually buy. Four-speed standard, five-speed optional; the Porsche Club of America identified 1969-1973 911Ts as the value play in 2023."
   },
   {
    "name": "911E (1969-1973)",
-   "note": "The middle car, with Bosch mechanical fuel injection from 1969 and Boge hydropneumatic self-levelling front struts from 1969 to 1971, which many owners have since replaced with conventional struts. Often the best-equipped car of the three and priced between T and S."
+   "note": "The middle car, with Bosch mechanical fuel injection from 1969 and Boge hydropneumatic self-leveling front struts from 1969 to 1971, which many owners have since replaced with conventional struts. Often the best-equipped car of the three and priced between T and S."
   },
   {
    "name": "911S 2.2 and 2.4 (1970-1973)",
-   "note": "180 PS then 190 PS with mechanical injection, and the long-wheelbase chassis introduced for 1969. Elferspot gives 5,054 2.4 S cars over 1972-1973 and quotes 0-62 mph in 6.6 seconds; the 2.4 S was the basis from which the Carrera RS was developed."
+   "note": "178 hp then 187 hp with mechanical injection, and the long-wheelbase chassis introduced for 1969. Elferspot gives 5,054 2.4 S cars over 1972-1973 and quotes 0-62 mph in 6.6 seconds; the 2.4 S was the basis from which the Carrera RS was developed."
   },
   {
    "name": "911 Carrera RS 2.7 Touring (M472), 1973",
-   "note": "1,308 of the 1,580 RS cars per Porsche, with the 911S interior retained. Homologation special with the 2,687 cc engine, 210 PS, ducktail spoiler and widened rear arches. classic.com's Touring benchmark is $565,671 as of September 2026; RM Sotheby's sold one for $896,000 at Monterey in August 2026."
+   "note": "1,308 of the 1,580 RS cars per Porsche, with the 911S interior retained. Homologation special with the 2,687 cc engine, 207 hp, ducktail spoiler and widened rear arches. classic.com's Touring benchmark is $565,671 as of September 2026; RM Sotheby's sold one for $896,000 at Monterey in August 2026."
   },
   {
    "name": "911 Carrera RS 2.7 Sport / Lightweight (M471), 1973",
-   "note": "200 cars per Porsche at 960 kg, 115 kg lighter than the Touring, with thin-gauge steel and thinner glass. The car that carries the long-hood's highest prices: classic.com records $2,425,000 in August 2022 and a benchmark of $1,117,857 as of September 2026, on a downward trend."
+   "note": "200 cars per Porsche at 2,116 lb, 254 lb lighter than the Touring, with thin-gauge steel and thinner glass. The car that carries the long-hood's highest prices: classic.com records $2,425,000 in August 2022 and a benchmark of $1,117,857 as of September 2026, on a downward trend."
   }
  ],
  "specs": {
   "layout": "Rear-mounted, longitudinal air-cooled flat-six overhung behind the rear axle, rear-wheel drive, 2+2 seating",
   "chassis": "Steel unitary body; wheelbase 2,211 mm from 1964 to the end of the A-series, 2,268 mm from the B-series (model year 1969) after the rear wheels were moved 57 mm aft; Carrera RS rear arches widened 42 mm",
   "engine": "1,991 cc (1964-1969), 2,195 cc (1970-1971), 2,341 cc (1972-1973) air-cooled flat-six with single overhead camshaft per bank; 2,687 cc Type 911/83 with Nikasil-lined cylinders in the 1973 Carrera RS",
-  "induction": "Solex then Weber carburettors on 2.0 cars, Zenith carburettors on 911T, Bosch mechanical fuel injection on 911E and 911S from model year 1969 and on the Carrera RS",
-  "power": "130 PS (911 2.0), 110 PS (911T 2.0), 160 PS at 6,600 rpm (911S 2.0), 125/155/180 PS (T/E/S 2.2), 130/165/190 PS (T/E/S 2.4), 210 PS at 6,300 rpm (Carrera RS 2.7); all manufacturer DIN ratings",
-  "torque": "132 lb-ft at 5,200 rpm quoted for the 2.0 S; 255 Nm (182 lb-ft) at 5,100 rpm for the Carrera RS 2.7 as claimed by Porsche; other variants not consistently quoted by the sources consulted",
+  "induction": "Solex then Weber carburetors on 2.0 cars, Zenith carburetors on 911T, Bosch mechanical fuel injection on 911E and 911S from model year 1969 and on the Carrera RS",
+  "power": "128 hp (911 2.0), 108 hp (911T 2.0), 158 hp at 6,600 rpm (911S 2.0), 125/155/178 hp (T/E/S 2.2), 130/165/187 hp (T/E/S 2.4), 207 hp at 6,300 rpm (Carrera RS 2.7); all manufacturer DIN ratings",
+  "torque": "132 lb-ft at 5,200 rpm quoted for the 2.0 S; 182 lb-ft at 5,100 rpm for the Carrera RS 2.7 as claimed by Porsche; other variants not consistently quoted by the sources consulted",
   "transmission": "Type 901 five-speed manual with dogleg first (four-speed standard on 911T) to 1971; Type 915 five-speed with H-pattern first four gears from 1972; Sportomatic four-speed clutchless semi-automatic optional from 1967-1968",
-  "suspension": "Independent all round with torsion-bar springing; Boge hydropneumatic self-levelling front struts on the 911E from 1969 to 1971",
+  "suspension": "Independent all round with torsion-bar springing; Boge hydropneumatic self-leveling front struts on the 911E from 1969 to 1971",
   "brakes": "Disc brakes all round; larger brakes on the Carrera RS per Wikipedia",
-  "wheels_tyres": "Steel wheels on early cars; forged Fuchs five-spoke alloys introduced with the 911S in 1967; the Carrera RS was the first Porsche with different tyre sizes front and rear",
-  "weight": "1,030 kg quoted for a 1968 911S; Classic & Sports Car gives 2,285-2,442 lb across the run; Carrera RS 960 kg Sport and 1,075 kg Touring as claimed by Porsche",
-  "acceleration": "0-100 km/h in 9.1 s for the 130 PS original (Porsche); 0-60 mph in 7.6 s for a 1968 911S (Drive-My road test data) and 8 s per Classic & Sports Car; 0-62 mph in 6.6 s for the 2.4 S (Elferspot); 0-100 km/h in 5.8 s Sport and 6.3 s Touring for the Carrera RS (Porsche claim)",
-  "top_speed": "210 km/h for the 130 PS original (Porsche); 139 mph for the 1968 911S (Drive-My) or 137 mph (Classic & Sports Car); 240 km/h Touring and over 245 km/h Sport for the Carrera RS (Porsche claim)",
-  "aerodynamics": "Carrera RS was the first series production car with front and rear spoilers; Elferspot credits the ducktail with 4.5 km/h of additional top speed",
-  "price_new": "DM 21,900 for the original 911 (Porsche); £2,600 for a 1968 911S in Britain; £3,671-5,211 across the 1970 range (Classic & Sports Car); $8,975 for a 1971 911S in the United States (Sports Car Market); DM 34,000 for the Carrera RS plus DM 700 for M471 or DM 2,500 for M472 (Porsche)",
+  "wheels_tires": "Steel wheels on early cars; forged Fuchs five-spoke alloys introduced with the 911S in 1967; the Carrera RS was the first Porsche with different tire sizes front and rear",
+  "weight": "2,271 lb quoted for a 1968 911S; Classic & Sports Car gives 2,285-2,442 lb across the run; Carrera RS 2,116 lb Sport and 2,370 lb Touring as claimed by Porsche",
+  "acceleration": "0-62 mph in 9.1 s for the 128 hp original (Porsche); 0-60 mph in 7.6 s for a 1968 911S (Drive-My road test data) and 8 s per Classic & Sports Car; 0-62 mph in 6.6 s for the 2.4 S (Elferspot); 0-62 mph in 5.8 s Sport and 6.3 s Touring for the Carrera RS (Porsche claim)",
+  "top_speed": "130 mph for the 128 hp original (Porsche); 139 mph for the 1968 911S (Drive-My) or 137 mph (Classic & Sports Car); 149 mph Touring and over 152 mph Sport for the Carrera RS (Porsche claim)",
+  "aerodynamics": "Carrera RS was the first series production car with front and rear spoilers; Elferspot credits the ducktail with 3 mph of additional top speed",
+  "price_new": "$8,975 for a 1971 911S in the United States (Sports Car Market); DM 21,900 for the original 911 in Germany and DM 34,000 for the Carrera RS, plus DM 700 for M471 or DM 2,500 for M472 (Porsche)",
   "body_variants": "Coupe throughout; Targa with soft rear window 1967-1968 and fixed glass from 1969"
  },
- "summary": "The Porsche 911 of 1964-1973, the long-hood cars, established the shape and the mechanical logic that every 911 since has been measured against. Shown at Frankfurt in September 1963 as the 901 and renamed after Peugeot objected to the zero in the middle, it went into production on 14 September 1964 with a 1,991 cc air-cooled flat-six of 130 PS hung behind the rear axle, a dogleg five-speed gearbox and torsion-bar suspension. Over nine model years the engine grew to 2.2 and then 2.4 litres, the range split into T, E and S, the Targa arrived, and the wheelbase was stretched 57 mm for 1969 to calm the handling. The run closed with the 1973 Carrera RS 2.7, a homologation special with 210 PS, a ducktail and, in Sport form, 960 kg, which sold three times its planned 500 units. Porsche says 81,100 911s had been built by its 1973 financial year; other sources say 80,352 to 89,652, and the disagreement is set out below. The RS is the market's headline, but the T, E and S coupes and Targas are the cars most people own, and the difference between good and bad examples is mostly in the steel.",
- "history": "## From 356 to 901\n\nPorsche's replacement for the 356 was shown at the Frankfurt Motor Show on 12 September 1963 as the Type 901, with a body by Ferdinand Alexander Porsche, Ferry Porsche's son, and his team. Peugeot held a trademark on three-digit names with a zero in the middle, so the car went on sale as the 911, although the engine type and parts prefixes stayed 901. Production began on 14 September 1964 at DM 21,900. The Porsche Club of America records about 80 cars badged 901 before the change and roughly 150 more built before the end of 1964; Stuttcars' chassis table gives 235 cars for that first year. The engine was a 1,991 cc air-cooled flat-six with a single overhead camshaft per bank, twin Solex carburettors and 130 PS, good for 210 km/h and 0-100 km/h in 9.1 seconds by Porsche's own figures. The four-cylinder 912 followed in 1965.\n\n## S, Targa and the Short-Wheelbase Years\n\nThe 911S arrived for 1967 with 160 PS at 6,600 rpm on Weber carburettors and the forged five-spoke Fuchs wheel, which appeared here for the first time. A period road test recorded 139 mph and 0-60 mph in 7.6 seconds from 1,030 kg. The Targa, previewed at Frankfurt in 1965, entered production in December 1966 with a stainless-steel roll hoop and a zip-out plastic rear window, replaced by fixed glass for 1969. The A-series 1968 cars introduced the 911T with 110 PS and cast-iron cylinders, the 911L, and the Sportomatic clutchless semi-automatic. Stuttcars' chassis table lists 22 911R competition cars for 1968.\n\n## The Long-Wheelbase Chassis and Fuel Injection\n\nFor the 1969 B-series Porsche moved the rear wheels 57 mm aft, taking the wheelbase from 2,211 to 2,268 mm without lengthening the body, the single largest change to the car's behaviour in the run. The same year the E and S received Bosch mechanical fuel injection, and the E gained Boge hydropneumatic self-levelling front struts, which it kept until 1971. The 1970 C-series took the engine to 2,195 cc, giving 125, 155 and 180 PS for T, E and S, and the transaxle was updated with a 225 mm clutch. The E-series of 1972 brought 2,341 cc and 130, 165 and 190 PS, and the new Type 915 gearbox with a conventional H-pattern for the first four gears; Classic & Sports Car calls it the stronger of the two boxes. Elferspot's comparison gives the 2.4 S 0-62 mph in 6.6 seconds, and it was this car, not a lighter one, that Porsche started from when the RS was needed.\n\n## Germany's Fastest Sports Car\n\nThe Carrera RS 2.7 was conceived in May 1972 to homologate the 911 for Group 4, which needed 500 cars. Porsche's own account credits about fifteen engineers, with Hermann Burst and Tilman Brodbeck on the engineering side and Rolf Wiener and Harm Lagaaij on the styling. The engine went to 2,687 cc with Nikasil-lined cylinders and mechanical injection for 210 PS at 6,300 rpm and 255 Nm at 5,100 rpm; the rear arches were widened 42 mm to take wider tyres than the fronts, a first for Porsche, and the ducktail spoiler, patented on 5 August 1972, made it the first series production car with spoilers at both ends. The car was shown at Paris on 5 October 1972 at DM 34,000, with M471 Sport at DM 700 extra and M472 Touring at DM 2,500. The 500 were sold by the end of November, homologation moved to Group 3 after the thousandth car, and production ended at 1,580 in July 1973: 200 Sport, 1,308 Touring, 17 base cars and 55 racing RSRs. Porsche quoted 960 kg for the Sport and 0-100 km/h in 5.8 seconds, claiming the first production car under six seconds, and advertised it as Germany's fastest sports car.\n\n## The Line Closes\n\nThe 1973 model year was the last with the short bumpers and the long bonnet that gave the cars their later name. American bumper rules for 1974 produced the impact-bumper G-series. By then Porsche's press material puts 81,100 911s built, a figure the Early 911 Registry, Sports Car Market and Classic & Sports Car each contradict in a different direction, which is why no single total appears on this page.",
+ "summary": "The Porsche 911 of 1964-1973, the long-hood cars, established the shape and the mechanical logic that every 911 since has been measured against. Shown at Frankfurt in September 1963 as the 901 and renamed after Peugeot objected to the zero in the middle, it went into production on 14 September 1964 with a 1,991 cc air-cooled flat-six of 128 hp hung behind the rear axle, a dogleg five-speed gearbox and torsion-bar suspension. Over nine model years the engine grew to 2.2 and then 2.4 liters, the range split into T, E and S, the Targa arrived, and the wheelbase was stretched 57 mm for 1969 to calm the handling. The run closed with the 1973 Carrera RS 2.7, a homologation special with 207 hp, a ducktail and, in Sport form, 2,116 lb, which sold three times its planned 500 units. Porsche says 81,100 911s had been built by its 1973 financial year; other sources say 80,352 to 89,652, and the disagreement is set out below. The RS is the market's headline, but the T, E and S coupes and Targas are the cars most people own, and the difference between good and bad examples is mostly in the steel.",
+ "history": "## From 356 to 901\n\nPorsche's replacement for the 356 was shown at the Frankfurt Motor Show on 12 September 1963 as the Type 901, with a body by Ferdinand Alexander Porsche, Ferry Porsche's son, and his team. Peugeot held a trademark on three-digit names with a zero in the middle, so the car went on sale as the 911, although the engine type and parts prefixes stayed 901. Production began on 14 September 1964 at DM 21,900. The Porsche Club of America records about 80 cars badged 901 before the change and roughly 150 more built before the end of 1964; Stuttcars' chassis table gives 235 cars for that first year. The engine was a 1,991 cc air-cooled flat-six with a single overhead camshaft per bank, twin Solex carburetors and 128 hp, good for 130 mph and 0-62 mph in 9.1 seconds by Porsche's own figures. The four-cylinder 912 followed in 1965.\n\n## S, Targa and the Short-Wheelbase Years\n\nThe 911S arrived for 1967 with 158 hp at 6,600 rpm on Weber carburetors and the forged five-spoke Fuchs wheel, which appeared here for the first time. A period road test recorded 139 mph and 0-60 mph in 7.6 seconds from 2,271 lb. The Targa, previewed at Frankfurt in 1965, entered production in December 1966 with a stainless-steel roll hoop and a zip-out plastic rear window, replaced by fixed glass for 1969. The A-series 1968 cars introduced the 911T with 108 hp and cast-iron cylinders, the 911L, and the Sportomatic clutchless semi-automatic. Stuttcars' chassis table lists 22 911R competition cars for 1968.\n\n## The Long-Wheelbase Chassis and Fuel Injection\n\nFor the 1969 B-series Porsche moved the rear wheels 57 mm aft, taking the wheelbase from 2,211 to 2,268 mm without lengthening the body, the single largest change to the car's behavior in the run. The same year the E and S received Bosch mechanical fuel injection, and the E gained Boge hydropneumatic self-leveling front struts, which it kept until 1971. The 1970 C-series took the engine to 2,195 cc, giving 125, 155 and 178 hp for T, E and S, and the transaxle was updated with a 225 mm clutch. The E-series of 1972 brought 2,341 cc and 130, 165 and 187 hp, and the new Type 915 gearbox with a conventional H-pattern for the first four gears; Classic & Sports Car calls it the stronger of the two boxes. Elferspot's comparison gives the 2.4 S 0-62 mph in 6.6 seconds, and it was this car, not a lighter one, that Porsche started from when the RS was needed.\n\n## Germany's Fastest Sports Car\n\nThe Carrera RS 2.7 was conceived in May 1972 to homologate the 911 for Group 4, which needed 500 cars. Porsche's own account credits about fifteen engineers, with Hermann Burst and Tilman Brodbeck on the engineering side and Rolf Wiener and Harm Lagaaij on the styling. The engine went to 2,687 cc with Nikasil-lined cylinders and mechanical injection for 207 hp at 6,300 rpm and 188 lb-ft at 5,100 rpm; the rear arches were widened 42 mm to take wider tires than the fronts, a first for Porsche, and the ducktail spoiler, patented on 5 August 1972, made it the first series production car with spoilers at both ends. The car was shown at Paris on 5 October 1972 at DM 34,000, with M471 Sport at DM 700 extra and M472 Touring at DM 2,500. The 500 were sold by the end of November, homologation moved to Group 3 after the thousandth car, and production ended at 1,580 in July 1973: 200 Sport, 1,308 Touring, 17 base cars and 55 racing RSRs. Porsche quoted 2,116 lb for the Sport and 0-62 mph in 5.8 seconds, claiming the first production car under six seconds, and advertised it as Germany's fastest sports car.\n\n## The Line Closes\n\nThe 1973 model year was the last with the short bumpers and the long hood that gave the cars their later name. American bumper rules for 1974 produced the impact-bumper G-series. By then Porsche's press material puts 81,100 911s built, a figure the Early 911 Registry, Sports Car Market and Classic & Sports Car each contradict in a different direction, which is why no single total appears on this page.",
  "marketNotes": "As of September 2026, classic.com's 1964-1973 911 submarket shows an average recorded sale of $115,342 across the F-body, with the 1964-1965 cars benchmarked at $197,375 and the model's ceiling set by a Carrera RS 2.7 Lightweight at $2,425,000 in August 2022. The RS is a separate market. The Touring benchmark is $565,671 and the Lightweight benchmark $1,117,857, the latter trending downward against a Lightweight average sale of $1,229,455; classic.com's most recent Lightweight results are $1,200,000 on 7 July 2026, $805,000 on 20 August 2026 and a Broad Arrow private sale at 950,000 euros on 22 August 2026. RM Sotheby's sold a Tangerine Touring, chassis 9113601556, for $896,000 at Monterey in August 2026 and a Grand Prix White Touring, chassis 9113601272, for 353,750 euros at Paris in January 2026; both are quoted as the house published them and the lot pages do not state whether buyer's premium is included. For the 2.0 S, classic.com's short-wheelbase 911S page gives an average sale of $178,162, a 1967 coupe benchmark of $169,320 and a 1967 Targa benchmark of $211,330, with August 2026 results of $257,600 for a 1967 soft-window Targa at Gooding Christie's, $231,000 for a 1967 S at Mecum Monterey and $112,000 for a 1968 S at Gooding. Renndriver's 911T guide, dated June 2026, puts driver-quality cars at $80,000-120,000, matching-numbers cars at $120,000-175,000 and concours cars at $175,000 and above, and claims a 10-20 percent premium for Targas; Classic & Sports Car's 2018 guide said the opposite, valuing Targas 10 percent below coupes and Sportomatics 20 percent below manuals. That reversal on Targas is unexplained by either source.",
- "whatToLookFor": "The steel decides everything on a long-hood. Classic & Sports Car's guide says rust protection was limited and body condition is paramount, and Renndriver names the longitudinal chassis rails beneath the doors and the battery box area as the places to check first. A car with replaced floors and longitudinals can be sound, but the standard of the repair determines whether the suspension mounts are where Porsche put them and whether the car will pass a specialist's inspection, and Classic & Sports Car's restoration bracket of £15,000-150,000 in 2018 shows how wide the range of outcomes is. Documentation comes next. A Porsche Certificate of Authenticity or the Kardex build record confirms the original engine and gearbox numbers, colour and options, and the auction catalogues for the top results in 2025 and 2026 all lead with it. Matching numbers matter more here than on later 911s because so many early engines were replaced or upgraded in period; the RM Sotheby's Paris 2026 RS Touring carried replacement aluminium crankcase halves from 1987 with restamped numbers, and it sold for less than half the Monterey car. For the Carrera RS, Classic Driver warned as long ago as 2014 that rising values had put non-original cars on the market as the genuine article; the thin-gauge steel and glass of the M471 cars, the M-code on the build record and the engine and gearbox numbers against the Certificate are what a specialist checks, and the RM Sotheby's Monterey 2026 catalogue's note that the last hundred or so cars carry an aluminium rather than magnesium crankcase shows how specific the questions get. Establish which gearbox is fitted, since the dogleg 901 and H-pattern 915 are different in feel and value, whether a Sportomatic car is still one, and whether a 1969-1971 E still has its hydropneumatic struts. A long file of invoices from a marque specialist is worth more than a fresh restoration of unknown scope.",
- "commonProblems": "Almost all early flat-sixes leak oil, and the question is from where and how much; chain-box covers and the crankcase seams are the usual sources. Blue smoke on start-up points to worn valve guides. The camshaft chain tensioners are the mechanical weak point: the original spring-loaded units fail with age, the chain can jump the sprockets and the pistons meet the valves, and Pelican Parts quotes a $6,000-10,000 rebuild when that happens. Porsche's 1984 hydraulically fed Carrera tensioner can be retrofitted to 1969-1983 cars and its presence is now expected on a car that is used. From 1968 the crankcase was magnesium rather than aluminium, which Classic & Sports Car describes as easily weakened, and worn crankcase studs are a recognised consequence; the RM Sotheby's Paris 2026 RS Touring had been running on replacement aluminium case halves since 1987, which shows how long the problem has been addressed that way. Mechanical fuel injection on E and S cars needs proper setting up, and an overhaul was quoted at £500-2,000 in 2018. Gearboxes whine when synchros and bearings are worn, a 901 or 915 rebuild ran £2,500-5,000 in 2018, and a vague shift is often cured by rebushing the linkage. The Boge hydropneumatic front struts fitted to the 911E from 1969 to 1971 are a specialised item and a car that has been converted to conventional struts should say so. None of this is unusual for the period; what separates a good car is whether the work has been done by someone who knows the model.",
- "valueTrajectory": "The long-hood 911 was cheap for a long time. The Porsche Club of America recalls a nice 1971 T Targa offered at $14,000 in 2004, and Classic Driver puts a Carrera RS at around £30,000 in the late 1990s, a fraction of a Ferrari Daytona. The market turned around 2013: early S prices moved from about $75,000 to a quarter of a million within a few years, and a Lightweight RS made $1.42 million at Gooding's Amelia Island sale in 2014. Sports Car Market recorded a retreat from the 2014-2015 peak, reading a 1971 2.2 S at $204,978 at Bonhams Goodwood in September 2018 as an early sign of recovery, and Classic & Sports Car's 2018 guide bracketed average cars at £50,000-250,000. The pandemic added another leg, capped by the $2,425,000 Lightweight in August 2022, and by April 2023 the PCA reported nice 911Ts settling at $75,000-100,000. As of September 2026 the picture is stratified rather than falling: classic.com's Lightweight benchmark of $1,117,857 is trending down while a documented, restored Touring still made $896,000, 2.0 S coupes and Targas sat between $112,000 and $257,600 at the August 2026 Monterey sales, and Renndriver's June 2026 guide places the 911T at $80,000-225,000 by condition. The cars that hold their prices have build records, original engines and sound floors.",
+ "whatToLookFor": "The steel decides everything on a long-hood. Classic & Sports Car's guide says rust protection was limited and body condition is paramount, and Renndriver names the longitudinal chassis rails beneath the doors and the battery box area as the places to check first. A car with replaced floors and longitudinals can be sound, but the standard of the repair determines whether the suspension mounts are where Porsche put them and whether the car will pass a specialist's inspection, and the range of outcomes is wide: a US cost guide from April 2025 puts a basic refresh at $20,000-40,000 and a concours rebuild at $100,000-250,000 and above. Documentation comes next. A Porsche Certificate of Authenticity or the Kardex build record confirms the original engine and gearbox numbers, color and options, and the auction catalogs for the top results in 2025 and 2026 all lead with it. Matching numbers matter more here than on later 911s because so many early engines were replaced or upgraded in period; the RM Sotheby's Paris 2026 RS Touring carried replacement aluminum crankcase halves from 1987 with restamped numbers, and it sold for less than half the Monterey car. For the Carrera RS, Classic Driver warned as long ago as 2014 that rising values had put non-original cars on the market as the genuine article; the thin-gauge steel and glass of the M471 cars, the M-code on the build record and the engine and gearbox numbers against the Certificate are what a specialist checks, and the RM Sotheby's Monterey 2026 catalog's note that the last hundred or so cars carry an aluminum rather than magnesium crankcase shows how specific the questions get. Establish which gearbox is fitted, since the dogleg 901 and H-pattern 915 are different in feel and value, whether a Sportomatic car is still one, and whether a 1969-1971 E still has its hydropneumatic struts. A long file of invoices from a marque specialist is worth more than a fresh restoration of unknown scope.",
+ "commonProblems": "Almost all early flat-sixes leak oil, and the question is from where and how much; chain-box covers and the crankcase seams are the usual sources. Blue smoke on start-up points to worn valve guides. The camshaft chain tensioners are the mechanical weak point: the original spring-loaded units fail with age, the chain can jump the sprockets and the pistons meet the valves, and Pelican Parts quotes a $6,000-10,000 rebuild when that happens. Porsche's 1984 hydraulically fed Carrera tensioner can be retrofitted to 1969-1983 cars and its presence is now expected on a car that is used. From 1968 the crankcase was magnesium rather than aluminum, which Classic & Sports Car describes as easily weakened, and worn crankcase studs are a recognized consequence; the RM Sotheby's Paris 2026 RS Touring had been running on replacement aluminum case halves since 1987, which shows how long the problem has been addressed that way. Mechanical fuel injection on E and S cars needs proper setting up, and MFI Werks in Oregon lists a pump rebuild from $2,900 in labor as of September 2026. Gearboxes whine when synchros and bearings are worn, a US restoration-cost guide published in April 2025 brackets a transmission overhaul at $3,000-8,000, and a vague shift is often cured by rebushing the linkage. The Boge hydropneumatic front struts fitted to the 911E from 1969 to 1971 are a specialized item and a car that has been converted to conventional struts should say so. None of this is unusual for the period; what separates a good car is whether the work has been done by someone who knows the model.",
+ "valueTrajectory": "The long-hood 911 was cheap for a long time. The Porsche Club of America recalls a nice 1971 T Targa offered at $14,000 in 2004, and Classic Driver records the Carrera RS trading in the late 1990s at a fraction of a Ferrari Daytona. The market turned around 2013: early S prices moved from about $75,000 to a quarter of a million within a few years, and a Lightweight RS made $1.42 million at Gooding's Amelia Island sale in 2014. Sports Car Market recorded a retreat from the 2014-2015 peak, reading a 1971 2.2 S at $204,978 at Bonhams Goodwood in September 2018 as an early sign of recovery, while soft-window Targas had taken $148,500 and $285,000 at Gooding Pebble Beach in August 2017. The pandemic added another leg, capped by the $2,425,000 Lightweight in August 2022, and by April 2023 the PCA reported nice 911Ts settling at $75,000-100,000. As of September 2026 the picture is stratified rather than falling: classic.com's Lightweight benchmark of $1,117,857 is trending down while a documented, restored Touring still made $896,000, 2.0 S coupes and Targas sat between $112,000 and $257,600 at the August 2026 Monterey sales, and Renndriver's June 2026 guide places the 911T at $80,000-225,000 by condition. The cars that hold price have build records, original engines and sound floors.",
  "overallConfidence": "medium",
  "sources": [
   {
@@ -93,7 +93,7 @@ export const seed911LongHood = {
    "publisher": "Porsche AG",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Porsche 60th-anniversary press kit: debut at Frankfurt IAA 1963 as type 901, renamed 911 in 1964 because Peugeot held a trademark on sequences with a zero in the middle, production began 14 September 1964, 130 PS and 210 km/h, base price DM 21,900, 912 from 1965, 911 S with 160 PS a year later, Targa unveiled autumn 1965 with stainless roll-over bar; states 81,100 examples of the 911 and 30,895 of the 912 built by the 1973 financial year."
+   "notes": "Porsche 60th-anniversary press kit: debut at Frankfurt IAA 1963 as type 901, renamed 911 in 1964 because Peugeot held a trademark on sequences with a zero in the middle, production began 14 September 1964, 128 hp and 130 mph, base price DM 21,900, 912 from 1965, 911 S with 158 hp a year later, Targa unveiled autumn 1965 with stainless roll-over bar; states 81,100 examples of the 911 and 30,895 of the 912 built by the 1973 financial year."
   },
   {
    "ref": "porsche-newsroom-rs27",
@@ -102,7 +102,7 @@ export const seed911LongHood = {
    "publisher": "Porsche AG",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Porsche's own RS history: 1,580 built as 200 M471 Sport, 1,308 M472 Touring, 55 racing versions and 17 base vehicles; 500 planned for Group 4 homologation and sold by end November 1972, 1,500 reached by July 1973, Group 3 homologation after the 1,000th car; development from May 1972, ducktail patent 5 August 1972, Paris show 5 October 1972; 210 PS at 6,300 rpm, 255 Nm at 5,100 rpm; Sport 960 kg and 115 kg lighter than Touring, 0-100 km/h 5.8 s Sport and 6.3 s Touring, 245+ km/h and 240 km/h; DM 34,000 plus DM 700 for M471 and DM 2,500 for M472; rear arches widened 42 mm, first Porsche with different tyre sizes front and rear, first series car with front and rear spoilers; engineers Hermann Burst and Tilman Brodbeck, stylists Rolf Wiener and Harm Lagaaij."
+   "notes": "Porsche's own RS history: 1,580 built as 200 M471 Sport, 1,308 M472 Touring, 55 racing versions and 17 base vehicles; 500 planned for Group 4 homologation and sold by end November 1972, 1,500 reached by July 1973, Group 3 homologation after the 1,000th car; development from May 1972, ducktail patent 5 August 1972, Paris show 5 October 1972; 207 hp at 6,300 rpm, 188 lb-ft at 5,100 rpm; Sport 2,116 lb and 254 lb lighter than Touring, 0-62 mph 5.8 s Sport and 6.3 s Touring, 245+ km/h and 149 mph; DM 34,000 plus DM 700 for M471 and DM 2,500 for M472; rear arches widened 42 mm, first Porsche with different tire sizes front and rear, first series car with front and rear spoilers; engineers Hermann Burst and Tilman Brodbeck, stylists Rolf Wiener and Harm Lagaaij."
   },
   {
    "ref": "porsche-brief-history",
@@ -111,7 +111,7 @@ export const seed911LongHood = {
    "publisher": "Porsche AG",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Porsche editorial: 1963 Frankfurt debut as 901, renamed 911 after Peugeot's naming claim, designed by F.A. Porsche and his team, 130 PS, 0-100 km/h in 9.1 s, 210 km/h, Targa debut 1965, Carrera RS 2.7 under 1,000 kg; states 81,100 units for the first generation 1963-1973."
+   "notes": "Porsche editorial: 1963 Frankfurt debut as 901, renamed 911 after Peugeot's naming claim, designed by F.A. Porsche and his team, 128 hp, 0-62 mph in 9.1 s, 130 mph, Targa debut 1965, Carrera RS 2.7 under 2,205 lb; states 81,100 units for the first generation 1963-1973."
   },
   {
    "ref": "wikipedia-911-classic",
@@ -120,7 +120,7 @@ export const seed911LongHood = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Aggregated reference: 901 shown 12 September 1963, 82 cars built as 901, engine and parts prefix stayed 901, production from September 1964; outputs 130 PS base, 160 PS at 6,600 rpm 911S, 110 PS 911T, 130 PS 911L, 2,195 cc T/E/S 125/155/180 PS, 2,341 cc T/E/S 130 (125 Sportomatic)/165/190 PS; B-series 1969 moved rear wheels 57 mm aft, wheelbase 2,211 to 2,268 mm; Targa MY1967; Fuchs wheels from 1967 with the S; Type 901 gearbox to 1971 then Type 911 transaxle with 225 mm clutch; Sportomatic from MY1967; RS 2.7: 1,580 made, Type 911/83, 90 x 70.4 mm, 210 PS at 6,300 rpm, Touring 1,075 kg and Sport about 100 kg lighter, larger brakes."
+   "notes": "Aggregated reference: 901 shown 12 September 1963, 82 cars built as 901, engine and parts prefix stayed 901, production from September 1964; outputs 128 hp base, 158 hp at 6,600 rpm 911S, 108 hp 911T, 128 hp 911L, 2,195 cc T/E/S 125/155/178 hp, 2,341 cc T/E/S 130 (125 Sportomatic)/165/187 hp; B-series 1969 moved rear wheels 57 mm aft, wheelbase 2,211 to 2,268 mm; Targa MY1967; Fuchs wheels from 1967 with the S; Type 901 gearbox to 1971 then Type 911 transaxle with 225 mm clutch; Sportomatic from MY1967; RS 2.7: 1,580 made, Type 911/83, 90 x 70.4 mm, 207 hp at 6,300 rpm, Touring 2,370 lb and Sport about 220 lb lighter, larger brakes."
   },
   {
    "ref": "stuttcars-production",
@@ -129,7 +129,7 @@ export const seed911LongHood = {
    "publisher": "Stuttcars",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Chassis-number table 1964-1969 with no source stated and evident errors (the 1965 row repeats 235); used only for individual rows: 1964 chassis 300001-300235, 235 cars; 911R 2.0 for 1968, 22 cars; rows labelled 1969 give 2,418 911T coupes, 1,304 911E coupes and 1,744 911S coupes with chassis prefixes 911010, 911020 and 911030. No 1970-1973 rows and no run total."
+   "notes": "Chassis-number table 1964-1969 with no source stated and evident errors (the 1965 row repeats 235); used only for individual rows: 1964 chassis 300001-300235, 235 cars; 911R 2.0 for 1968, 22 cars; rows labeled 1969 give 2,418 911T coupes, 1,304 911E coupes and 1,744 911S coupes with chassis prefixes 911010, 911020 and 911030. No 1970-1973 rows and no run total."
   },
   {
    "ref": "pca-model-guide",
@@ -138,7 +138,7 @@ export const seed911LongHood = {
    "publisher": "Porsche Club of America",
    "sourceType": "club-forum",
    "reliability": "medium",
-   "notes": "Club model guide dated 20 February 2018: about 80 cars labelled 901 before the change and about 150 more built before the end of 1964; 2.0 litres 1965-1969, 2.2 for 1970-1971, 2.4 for 1972-1973; T, E and S from 1969 with MFI on E and S; wheelbase lengthened 2.5 in for 1969; Sportomatic 1968; first Targa year 1967; Type 915 gearbox from 1972 with H-pattern first four gears; notes the cars regularly exceed six figures."
+   "notes": "Club model guide dated 20 February 2018: about 80 cars labeled 901 before the change and about 150 more built before the end of 1964; 2.0 liters 1965-1969, 2.2 for 1970-1971, 2.4 for 1972-1973; T, E and S from 1969 with MFI on E and S; wheelbase lengthened 2.5 in for 1969; Sportomatic 1968; first Targa year 1967; Type 915 gearbox from 1972 with H-pattern first four gears; notes the cars regularly exceed six figures."
   },
   {
    "ref": "pca-long-hood-2023",
@@ -165,7 +165,7 @@ export const seed911LongHood = {
    "publisher": "Classic & Sports Car",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Buyer's guide, May 2018: 130 bhp at 5,800 rpm on twin Solexes, S 160 bhp on Webers with 0-60 mph 8 s and 137 mph, T 110 bhp four-speed, 2.2 S/E/T 180/155/125 bhp with Zeniths on the T, 2.4 190/165/130 bhp, RS 210 bhp at 6,300 rpm and 182 lb-ft at 5,100 rpm with Nikasil cylinders; Sportomatic from 1967 valued 20 percent below manuals; Targa from December 1966 valued 10 percent below coupes; weights 2,285-2,442 lb; states 89,652 built 1964-1973 and 1,580 RS; oil leaks, valve-guide smoke, rattly chains, post-1968 magnesium case easily weakened, MFI overhaul £500-2,000, gearbox rebuild £2,500-5,000, 901 dogleg and stronger 915 from 1972, rebushing linkage; prices £50,000-250,000 average and £100,000-500,000 show cars, 1970 list £3,671-5,211."
+   "notes": "Buyer's guide, May 2018: 130 hp at 5,800 rpm on twin Solexes, S 160 hp on Webers with 0-60 mph 8 s and 137 mph, T 110 hp four-speed, 2.2 S/E/T 180/155/125 hp with Zeniths on the T, 2.4 190/165/130 hp, RS 210 hp at 6,300 rpm and 182 lb-ft at 5,100 rpm with Nikasil cylinders; Sportomatic from 1967 valued 20 percent below manuals; Targa from December 1966 valued 10 percent below coupes; weights 2,285-2,442 lb; states 89,652 built 1964-1973 and 1,580 RS; oil leaks, valve-guide smoke, rattly chains, post-1968 magnesium case easily weakened, MFI overhaul 500-2,000 pounds, gearbox rebuild 2,500-5,000 pounds, 901 dogleg and stronger 915 from 1972, rebushing linkage; prices 50,000-250,000 pounds average and 100,000-500,000 pounds show cars, 1970 list 3,671-5,211 pounds."
   },
   {
    "ref": "scm-1971-911s",
@@ -174,7 +174,7 @@ export const seed911LongHood = {
    "publisher": "Sports Car Market",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Auction profile: chassis 9111301356, RHD, Metallic Green, sold for $204,978 including buyer's premium at Bonhams Goodwood Revival, 8 September 2018, lot 296, after a restoration costing about £75,000; 1,430 911S coupes built for 1971, 10,234 cars across all 1971 models, approximately 89,000 long-hood 911s 1964-1973; 1971 US list price $8,975; commentary that early 911 prices had declined from the 2014-2015 peak and this result signalled an upturn."
+   "notes": "Auction profile: chassis 9111301356, RHD, Metallic Green, sold for $204,978 including buyer's premium at Bonhams Goodwood Revival, 8 September 2018, lot 296, after a restoration costing about 75,000 pounds; 1,430 911S coupes built for 1971, 10,234 cars across all 1971 models, approximately 89,000 long-hood 911s 1964-1973; 1971 US list price $8,975; commentary that early 911 prices had declined from the 2014-2015 peak and this result signaled an upturn."
   },
   {
    "ref": "drivemy-1968-911s",
@@ -183,7 +183,7 @@ export const seed911LongHood = {
    "publisher": "Drive-My",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Road test of a 1968 911S: 1,991 cc, 160 bhp at 6,600 rpm, 132 lb-ft at 5,200 rpm, four Weber 40 IDS 3C carburettors, 139 mph, 0-60 mph 7.6 s, 1,030 kg, 27 mpg, £2,600 new in Britain in 1968, £80,000-155,000 in 2017; driving impressions of the steering feedback and the recalcitrant dogleg gearbox."
+   "notes": "Road test of a 1968 911S: 1,991 cc, 160 hp at 6,600 rpm, 132 lb-ft at 5,200 rpm, four Weber 40 IDS 3C carburetors, 139 mph, 0-60 mph 7.6 s, 2,271 lb, 27 mpg, 2,600 pounds new in Britain in 1968, 80,000-155,000 pounds in 2017; driving impressions of the steering feedback and the recalcitrant dogleg gearbox."
   },
   {
    "ref": "renndriver-911t",
@@ -192,7 +192,7 @@ export const seed911LongHood = {
    "publisher": "Renndriver",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Specialist guide: 911T built 1967-1973, approximately 35,000 in total and the highest-volume long-hood; 110 hp/116 lb-ft 2.0, 125 hp/130 lb-ft 2.2, 140 hp/144 lb-ft 2.4 (SAE-style figure differing from the 130 PS DIN in other sources); T with cast-iron cylinders and Weber then Zenith carburettors, E with MFI and Boge hydropneumatic front 1969-1971, S with MFI and stiffer suspension; values as of June 2026: $80,000-120,000 driver, $120,000-175,000 matching numbers, $175,000-225,000+ concours, Targa 10-20 percent premium; rust in longitudinals under the doors and battery box, valve-guide smoke; four-speed standard, five-speed optional."
+   "notes": "Specialist guide: 911T built 1967-1973, approximately 35,000 in total and the highest-volume long-hood; 110 hp/116 lb-ft 2.0, 125 hp/130 lb-ft 2.2, 140 hp/144 lb-ft 2.4 (SAE-style figure differing from the 128 hp DIN in other sources); T with cast-iron cylinders and Weber then Zenith carburetors, E with MFI and Boge hydropneumatic front 1969-1971, S with MFI and stiffer suspension; values as of June 2026: $80,000-120,000 driver, $120,000-175,000 matching numbers, $175,000-225,000+ concours, Targa 10-20 percent premium; rust in longitudinals under the doors and battery box, valve-guide smoke; four-speed standard, five-speed optional."
   },
   {
    "ref": "elferspot-s24-rs",
@@ -201,7 +201,7 @@ export const seed911LongHood = {
    "publisher": "Elferspot",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Specialist comparison: 5,054 2.4-litre 911S built; RS 2,687 cc with 20 hp and 39 Nm more than the S, RS priced DM 2,520 above the S in 1972-73, 900 kg ready-to-drive homologation weight, 0-62 mph 5.8 s in Paul Frere's test against 6.6 s for the S 2.4, 40-100 km/h 10.6 s, ducktail worth 4.5 km/h; 1,580 RS built as 1,308 Touring M472 and 200 Sport M471; explains why the S could not have been homologated under FIA tyre-width rules."
+   "notes": "Specialist comparison: 5,054 2.4-liter 911S built; RS 2,687 cc with 20 hp and 29 lb-ft more than the S, RS priced DM 2,520 above the S in 1972-73, 1,984 lb ready-to-drive homologation weight, 0-62 mph 5.8 s in Paul Frere's test against 6.6 s for the S 2.4, 25-62 mph 10.6 s, ducktail worth 3 mph; 1,580 RS built as 1,308 Touring M472 and 200 Sport M471; explains why the S could not have been homologated under FIA tire-width rules."
   },
   {
    "ref": "classicdriver-rs",
@@ -210,7 +210,7 @@ export const seed911LongHood = {
    "publisher": "Classic Driver",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "2014 market article: 500 cars for homologation then a further 1,080, 200 Lightweight M471; RS at about £30,000 in the late 1990s against £60,000-90,000 for a Daytona; Lightweight sold for $1.42 million at Gooding Amelia Island 2014; first 500 Tourings on thinner-gauge steel; warns that rising values had led to non-original cars being marketed as genuine."
+   "notes": "2014 market article: 500 cars for homologation then a further 1,080, 200 Lightweight M471; RS at about 30,000 pounds in the late 1990s against 60,000-90,000 pounds for a Daytona; Lightweight sold for $1.42 million at Gooding Amelia Island 2014; first 500 Tourings on thinner-gauge steel; warns that rising values had led to non-original cars being marketed as genuine."
   },
   {
    "ref": "classic-f-body",
@@ -246,7 +246,7 @@ export const seed911LongHood = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $896,000, Monterey, August 2026, lot 321. Chassis 9113601556, engine 6631513, Tangerine over black Perlon corduroy, delivered new to Italy June 1973, with consignor since 2013, fully restored with numbers-matching engine and correct-type gearbox, one of the final 100 RS 2.7s with the Silumin aluminium crankcase; catalogue states 1,580 built, about 200 M471 and 1,308 M472."
+   "notes": "Sold $896,000, Monterey, August 2026, lot 321. Chassis 9113601556, engine 6631513, Tangerine over black Perlon corduroy, delivered new to Italy June 1973, with consignor since 2013, fully restored with numbers-matching engine and correct-type gearbox, one of the final 100 RS 2.7s with the Silumin aluminum crankcase; catalog states 1,580 built, about 200 M471 and 1,308 M472."
   },
   {
    "ref": "rm-pa26-rs-touring",
@@ -255,7 +255,7 @@ export const seed911LongHood = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold 353,750 euros, Paris, January 2026, lot 172. Chassis 9113601272, Grand Prix White with red stripes and matching wheels, delivered new to Germany May 1973, one owner to 2002, then Belgium, with vendor since May 2013, Pflegepass supplied; December 2025 inspection found the car largely original with possible light competition use and replacement aluminium crankcase halves from 1987 with restamped numbers; catalogue states 1,308 M472 Touring cars."
+   "notes": "Sold 353,750 euros, Paris, January 2026, lot 172. Chassis 9113601272, Grand Prix White with red stripes and matching wheels, delivered new to Germany May 1973, one owner to 2002, then Belgium, with vendor since May 2013, Pflegepass supplied; December 2025 inspection found the car largely original with possible light competition use and replacement aluminum crankcase halves from 1987 with restamped numbers; catalog states 1,308 M472 Touring cars."
   },
   {
    "ref": "pelican-tensioners",
@@ -265,6 +265,42 @@ export const seed911LongHood = {
    "sourceType": "specialist",
    "reliability": "medium",
    "notes": "Technical article: original spring-loaded mechanical chain tensioners tend to fail, the chain can slip off the sprockets and pistons hit valves, a $6,000-10,000 rebuild, with a reader reporting a $4,000 top-end rebuild; Porsche's 1984 tensioner fed by oil pressure with a mechanical spring can be retrofitted to 1969-1983 cars; warns never to let the chain go slack."
+  },
+  {
+   "ref": "mfiwerks-services",
+   "title": "MFI Werks - Services",
+   "url": "https://www.mfiwerks.com/",
+   "publisher": "MFI Werks",
+   "sourceType": "specialist",
+   "reliability": "medium",
+   "notes": "Oregon specialist in Bosch mechanical fuel injection for air-cooled Porsche engines: the services page lists pump rebuilds starting at $2,900 for labor as of September 2026. Used here only for the cost of an MFI pump rebuild in the United States."
+  },
+  {
+   "ref": "newbie911-restoration-costs",
+   "title": "Porsche 911 Restoration: Costs, Process, and Expert Tips",
+   "url": "https://newbie911.com/porsche-911-restoration-costs-process-and-expert-tips/",
+   "publisher": "Newbie911",
+   "sourceType": "specialist",
+   "reliability": "low",
+   "notes": "US cost guide published 1 April 2025 and modified 26 April 2025: project cars at $10,000-30,000 for a neglected example, $30,000-60,000 for a driver and $60,000-100,000 or more for a solid numbers-matching car; basic refresh $20,000-40,000, full concours restoration $100,000-250,000 and above, restomod $150,000-300,000; battery-tray rust repair $3,000-8,000, professional respray $10,000-20,000, engine rebuild $10,000-30,000, transmission overhaul $3,000-8,000, suspension and brake refresh $5,000-12,000, complete rewire $2,000-6,000. Written for the air-cooled 911 generally rather than the long-hood specifically, and cited here only for the scale of the work."
+  },
+  {
+   "ref": "scm-1968-targa",
+   "title": "1968 Porsche 911 Soft-Window Targa",
+   "url": "https://www.sportscarmarket.com/profile/1968-porsche-911-soft-window-targa",
+   "publisher": "Sports Car Market",
+   "sourceType": "journalism",
+   "reliability": "medium",
+   "notes": "Auction profile by Prescott Kelly, 18 September 2017: chassis 11880010, sold for $148,500 including a 10 percent buyer's premium at Gooding's Pebble Beach sale, 18 August 2017, lot 15, against a pre-sale estimate of $175,000-200,000; marked down for poor panel fit, worn trim and more than 100,000 miles, while a better 1967 911S soft-window Targa made $285,000 the following day."
+  },
+  {
+   "ref": "scm-1968-911s-coupe",
+   "title": "1968 Porsche 911S Coupe",
+   "url": "https://www.sportscarmarket.com/profile/1968-porsche-911s-coupe",
+   "publisher": "Sports Car Market",
+   "sourceType": "journalism",
+   "reliability": "medium",
+   "notes": "Auction profile by Jim Schrager, 1 November 2007: chassis 11800073, sold for $63,800 at Gooding's Pebble Beach sale against an estimate of $70,000-95,000, after a restoration costing about $60,000 some twenty years earlier by European Auto Works and German Turbosport in North Carolina; the profile does not state whether the price includes buyer's premium, notes that early 911S cars had seen among the highest rates of appreciation of any Porsche, and concludes that cost-no-object restorations rarely return their spend on production cars."
   }
  ],
  "claims": [
@@ -293,7 +329,7 @@ export const seed911LongHood = {
   },
   {
    "section": "specs",
-   "claimText": "The original engine was a 1,991 cc air-cooled flat-six with a single overhead camshaft per bank and twin Solex carburettors giving 130 PS, for 210 km/h and 0-100 km/h in 9.1 seconds by Porsche's figures; Classic & Sports Car places peak power at 5,800 rpm.",
+   "claimText": "The original engine was a 1,991 cc air-cooled flat-six with a single overhead camshaft per bank and twin Solex carburetors giving 128 hp, for 130 mph and 0-62 mph in 9.1 seconds by Porsche's figures; Classic & Sports Car places peak power at 5,800 rpm.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -305,7 +341,7 @@ export const seed911LongHood = {
   },
   {
    "section": "specs",
-   "claimText": "The 911S of 1967 produced 160 PS at 6,600 rpm on Weber carburettors and introduced the forged Fuchs five-spoke wheel; a road test of a 1968 car recorded 139 mph, 0-60 mph in 7.6 seconds and 1,030 kg, while Classic & Sports Car quotes 137 mph and 8 seconds.",
+   "claimText": "The 911S of 1967 produced 158 hp at 6,600 rpm on Weber carburetors and introduced the forged Fuchs five-spoke wheel; a road test of a 1968 car recorded 139 mph, 0-60 mph in 7.6 seconds and 2,271 lb, while Classic & Sports Car quotes 137 mph and 8 seconds.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -327,7 +363,7 @@ export const seed911LongHood = {
   },
   {
    "section": "specs",
-   "claimText": "The range was split into 911T, 911E and 911S with outputs of 125, 155 and 180 PS at 2,195 cc for 1970-1971 and 130, 165 and 190 PS at 2,341 cc for 1972-1973, the E and S using Bosch mechanical fuel injection from 1969 and the T carburettors throughout.",
+   "claimText": "The range was split into 911T, 911E and 911S with outputs of 125, 155 and 178 hp at 2,195 cc for 1970-1971 and 130, 165 and 187 hp at 2,341 cc for 1972-1973, the E and S using Bosch mechanical fuel injection from 1969 and the T carburetors throughout.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -391,7 +427,7 @@ export const seed911LongHood = {
   },
   {
    "section": "production",
-   "claimText": "Per-variant figures from the sources consulted include 22 911R cars for 1968, 1,430 911S coupes and 10,234 cars of all types for 1971, 5,054 2.4-litre 911S cars over 1972-1973 and approximately 35,000 911Ts over 1967-1973.",
+   "claimText": "Per-variant figures from the sources consulted include 22 911R cars for 1968, 1,430 911S coupes and 10,234 cars of all types for 1971, 5,054 2.4-liter 911S cars over 1972-1973 and approximately 35,000 911Ts over 1967-1973.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -414,7 +450,7 @@ export const seed911LongHood = {
   },
   {
    "section": "specs",
-   "claimText": "The Carrera RS engine is a 2,687 cc Type 911/83 flat-six of 90 x 70.4 mm with Nikasil-lined cylinders and mechanical injection, rated at 210 PS at 6,300 rpm and 255 Nm (182 lb-ft) at 5,100 rpm; Porsche claims 960 kg for the Sport, 1,075 kg for the Touring, 0-100 km/h in 5.8 and 6.3 seconds respectively and 240 km/h for the Touring.",
+   "claimText": "The Carrera RS engine is a 2,687 cc Type 911/83 flat-six of 90 x 70.4 mm with Nikasil-lined cylinders and mechanical injection, rated at 207 hp at 6,300 rpm and 182 lb-ft at 5,100 rpm; Porsche claims 2,116 lb for the Sport, 2,370 lb for the Touring, 0-62 mph in 5.8 and 6.3 seconds respectively and 149 mph for the Touring.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -465,7 +501,7 @@ export const seed911LongHood = {
   },
   {
    "section": "market",
-   "claimText": "Long-hood values rose from a nice 1971 T Targa at $14,000 in 2004 and an RS at about £30,000 in the late 1990s to early S prices of a quarter of a million after 2013 and a $1.42 million Lightweight at Gooding Amelia Island in 2014, retreated from the 2014-2015 peak, and by April 2023 nice 911Ts had settled at $75,000-100,000.",
+   "claimText": "Long-hood values rose from a nice 1971 T Targa at $14,000 in 2004 and a Carrera RS trading at a fraction of a Ferrari Daytona in the late 1990s to early S prices of a quarter of a million after 2013 and a $1.42 million Lightweight at Gooding Amelia Island in 2014, retreated from the 2014-2015 peak, and by April 2023 nice 911Ts had settled at $75,000-100,000.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -486,12 +522,34 @@ export const seed911LongHood = {
   },
   {
    "section": "problems",
-   "claimText": "Rust is the principal risk, with body protection described as limited and the longitudinals under the doors and the battery box area named as vulnerable; almost all early flat-sixes leak oil, blue smoke on start-up indicates worn valve guides, the post-1968 magnesium crankcase is easily weakened, and MFI overhaul and gearbox rebuild were quoted at £500-2,000 and £2,500-5,000 respectively in 2018.",
+   "claimText": "Rust is the principal risk, with body protection described as limited and the longitudinals under the doors and the battery box area named as vulnerable; almost all early flat-sixes leak oil, blue smoke on start-up indicates worn valve guides, the post-1968 magnesium crankcase is easily weakened, MFI Werks in Oregon lists a pump rebuild from $2,900 in labor as of September 2026, and a US restoration-cost guide published in April 2025 brackets a transmission overhaul at $3,000-8,000.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
     "csc-buyers-guide",
-    "renndriver-911t"
+    "renndriver-911t",
+    "mfiwerks-services",
+    "newbie911-restoration-costs"
+   ]
+  },
+  {
+   "section": "problems",
+   "claimText": "A US restoration-cost guide published in April 2025 brackets a basic refresh of an air-cooled 911 at $20,000-40,000 and a full concours restoration at $100,000-250,000 and above, with battery-tray rust repair at $3,000-8,000 and a professional respray at $10,000-20,000, and Sports Car Market's profile of a 1968 911S coupe that carried a restoration of about $60,000 and then sold for $63,800 at Gooding's Pebble Beach sale in 2007 shows that the spend is not recovered as a matter of course.",
+   "confidence": "medium",
+   "status": "verified",
+   "sourceRefs": [
+    "newbie911-restoration-costs",
+    "scm-1968-911s-coupe"
+   ]
+  },
+  {
+   "section": "market",
+   "claimText": "Sports Car Market's auction profiles record a 1968 soft-window Targa, chassis 11880010, at $148,500 including a 10 percent buyer's premium at Gooding's Pebble Beach sale in August 2017, with a better 1967 911S soft-window Targa taking $285,000 the following day, and a 1968 911S coupe, chassis 11800073, at $63,800 at the same house in 2007.",
+   "confidence": "medium",
+   "status": "verified",
+   "sourceRefs": [
+    "scm-1968-targa",
+    "scm-1968-911s-coupe"
    ]
   },
   {

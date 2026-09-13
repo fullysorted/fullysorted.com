@@ -16,16 +16,16 @@ export const seedCamaro1stGen = {
   "2-door convertible"
  ],
  "engines": [
-  "230 cu in (3,769 cc) inline-six, 140 bhp at 4,400 rpm and 220 lb-ft at 1,600 rpm (base), and 250 cu in (4,097 cc) inline-six, 155 bhp at 4,200 rpm",
-  "302 cu in (4,949 cc) DZ small-block V8, 327 block with 283 crankshaft, 11.0:1, single Holley four-barrel, 290 bhp at 5,800 rpm and 290 lb-ft at 4,200 rpm — Z/28 only",
-  "307 cu in (5,031 cc) V8 at 200 bhp (1969 base V8); 327 cu in (5,354 cc) V8 at 210 bhp, or 275 bhp as RPO L30, for 1967-68",
-  "350 cu in (5,735 cc) L48 V8, 295 bhp for 1967-68 and 300 bhp at 4,800 rpm for 1969 — Super Sport; 255 bhp LM1 for 1969",
-  "396 cu in (6,489 cc) big-block V8: L35 325 bhp/4,800 rpm, L34 350 bhp/5,200 rpm, L78 375 bhp/5,600 rpm, L89 aluminium heads optional on the L78 for 1968-69 — Super Sport",
-  "427 cu in (6,997 cc) L72 iron-block V8, 425 bhp at 5,600 rpm and 460 lb-ft at 4,000 rpm — COPO 9561, 1969 only",
-  "427 cu in (6,997 cc) ZL1 all-aluminium V8, 12.5:1, 850 cfm Holley, 430 bhp at 5,200 rpm and 450 lb-ft at 4,400 rpm — COPO 9560, 1969 only"
+  "230 cu in (3,769 cc) inline-six, 140 hp at 4,400 rpm and 220 lb-ft at 1,600 rpm (base), and 250 cu in (4,097 cc) inline-six, 155 hp at 4,200 rpm",
+  "302 cu in (4,949 cc) DZ small-block V8, 327 block with 283 crankshaft, 11.0:1, single Holley four-barrel, 290 hp at 5,800 rpm and 290 lb-ft at 4,200 rpm — Z/28 only",
+  "307 cu in (5,031 cc) V8 at 200 hp (1969 base V8); 327 cu in (5,354 cc) V8 at 210 hp, or 275 hp as RPO L30, for 1967-68",
+  "350 cu in (5,735 cc) L48 V8, 295 hp for 1967-68 and 300 hp at 4,800 rpm for 1969 — Super Sport; 255 hp LM1 for 1969",
+  "396 cu in (6,489 cc) big-block V8: L35 325 hp/4,800 rpm, L34 350 hp/5,200 rpm, L78 375 hp/5,600 rpm, L89 aluminum heads optional on the L78 for 1968-69 — Super Sport",
+  "427 cu in (6,997 cc) L72 iron-block V8, 425 hp at 5,600 rpm and 460 lb-ft at 4,000 rpm — COPO 9561, 1969 only",
+  "427 cu in (6,997 cc) ZL1 all-aluminum V8, 12.5:1, 850 cfm Holley, 430 hp at 5,200 rpm and 450 lb-ft at 4,400 rpm — COPO 9560, 1969 only"
  ],
  "productionTotal": null,
- "productionNotes": "No generation total is asserted here because the published model-year figures do not agree. The Camaro Research Group and Classic Industries both give 220,906 for 1967, 235,147 for 1968 and 243,085 for 1969, a run of 699,138; Wikipedia's first-generation article gives 121,051, 159,087 and 150,078 for the same three years. Neither set is reconciled to the other by any source consulted here, and Classic Industries adds that its own figures 'are not exact' and that neither Chevrolet nor GM knows exactly how many Camaros were delivered. Option-level data is firmer but carries its own warnings. The RPO tables the Research Group publishes are credited to Len Williamson and cover United States plants only, giving Z/28 at 602, 7,199 and 20,302, convertibles at 25,141, 20,440 and 17,573, and the Super Sport engines at L48 29,270/12,496/22,339, L35 4,003/10,773/6,752, L34 2,579 and 2,018, L78 1,138/4,575/3,823 and L89 aluminium heads at 272 and 311. The same document warns that 1967 Z/28 output may have been booked as 327 production and that ZL1 and L72 cars appear to have been counted inside the L78 total — which is why the COPO figures are derived rather than recorded. The Research Group also states that Chevrolet kept no statistics on option combinations, so any number for an RS/SS 396 four-speed convertible is an estimate by construction. Roughly three-quarters of 1967-69 cars were built at Norwood, Ohio and the rest at Van Nuys, California, with further CKD assembly overseas.",
+ "productionNotes": "No generation total is asserted here because the published model-year figures do not agree. The Camaro Research Group and Classic Industries both give 220,906 for 1967, 235,147 for 1968 and 243,085 for 1969, a run of 699,138; Wikipedia's first-generation article gives 121,051, 159,087 and 150,078 for the same three years. Neither set is reconciled to the other by any source consulted here, and Classic Industries adds that its own figures 'are not exact' and that neither Chevrolet nor GM knows exactly how many Camaros were delivered. Option-level data is firmer but carries its own warnings. The RPO tables the Research Group publishes are credited to Len Williamson and cover United States plants only, giving Z/28 at 602, 7,199 and 20,302, convertibles at 25,141, 20,440 and 17,573, and the Super Sport engines at L48 29,270/12,496/22,339, L35 4,003/10,773/6,752, L34 2,579 and 2,018, L78 1,138/4,575/3,823 and L89 aluminum heads at 272 and 311. The same document warns that 1967 Z/28 output may have been booked as 327 production and that ZL1 and L72 cars appear to have been counted inside the L78 total — which is why the COPO figures are derived rather than recorded. The Research Group also states that Chevrolet kept no statistics on option combinations, so any number for an RS/SS 396 four-speed convertible is an estimate by construction. Roughly three-quarters of 1967-69 cars were built at Norwood, Ohio and the rest at Van Nuys, California, with further CKD assembly overseas.",
  "notableTrims": [
   {
    "name": "RS (Rally Sport, RPO Z22)",
@@ -33,7 +33,7 @@ export const seedCamaro1stGen = {
   },
   {
    "name": "SS (Super Sport)",
-   "note": "The 350 cu in L48 was a Camaro exclusive in 1967 at 295 bhp; the 396 big-blocks ran L35, L34 and L78, with L89 aluminium heads for 1968-69. The L78 with those heads is the rarest ordinary route to a big-block, at 272 cars in 1968 and 311 in 1969."
+   "note": "The 350 cu in L48 was a Camaro exclusive in 1967 at 295 hp; the 396 big-blocks ran L35, L34 and L78, with L89 aluminum heads for 1968-69. The L78 with those heads is the rarest ordinary route to a big-block, at 272 cars in 1968 and 311 in 1969."
   },
   {
    "name": "Z/28",
@@ -41,11 +41,11 @@ export const seedCamaro1stGen = {
   },
   {
    "name": "COPO 9561 (L72 427)",
-   "note": "Iron-block 427 at 425 bhp, ordered through Chevrolet's Central Office Production Order system to sidestep the corporate limit on engine size. At $489.75 it undercut an SS 396/375. No factory production record has ever surfaced."
+   "note": "Iron-block 427 at 425 hp, ordered through Chevrolet's Central Office Production Order system to sidestep the corporate limit on engine size. At $489.75 it undercut an SS 396/375. No factory production record has ever surfaced."
   },
   {
    "name": "COPO 9560 (ZL1 427)",
-   "note": "All-aluminium 427 at a rated 430 bhp, 12.5:1 compression and a 103-octane appetite. The engine option alone was $4,160.50 and stickers passed $7,300, which is why Fred Gibb Chevrolet could not sell the fifty it ordered."
+   "note": "All-aluminum 427 at a rated 430 hp, 12.5:1 compression and a 103-octane appetite. The engine option alone was $4,160.50 and stickers passed $7,300, which is why Fred Gibb Chevrolet could not sell the fifty it ordered."
   },
   {
    "name": "Yenko sYc 427",
@@ -53,7 +53,7 @@ export const seedCamaro1stGen = {
   },
   {
    "name": "Z11 Indy Pace Car replica (1969)",
-   "note": "Dover White convertible with Hugger Orange stripes, orange houndstooth trim and a ducted bonnet, the striping package listed at $35 on top of the convertible and RS/SS content. 3,675 built across Norwood and Los Angeles."
+   "note": "Dover White convertible with Hugger Orange stripes, orange houndstooth trim and a ducted hood, the striping package listed at $35 on top of the convertible and RS/SS content. 3,675 built across Norwood and Los Angeles."
   }
  ],
  "specs": {
@@ -61,21 +61,21 @@ export const seedCamaro1stGen = {
   "chassis": "Semi-unibody: unitised passenger cell with a bolt-on front subframe carrying engine, gearbox and front suspension, ending under the doors",
   "wheelbase": "108.0 in (2,743 mm); 186.0 in long and 74.0 in wide for 1969",
   "engine": "230 and 250 cu in inline-sixes; 302, 307, 327, 350 and 396 cu in V8s, plus the special-order 427 — eight engines catalogued for 1967, ten for 1968 and twelve for 1969",
-  "power": "Manufacturer SAE gross ratings from 140 bhp (230 six) to 430 bhp (ZL1 427). Z/28 302 rated 290 bhp at 5,800 rpm; SS 396 L78 375 bhp; COPO L72 425 bhp at 5,600 rpm",
+  "power": "Manufacturer SAE gross ratings from 140 hp (230 six) to 430 hp (ZL1 427). Z/28 302 rated 290 hp at 5,800 rpm; SS 396 L78 375 hp; COPO L72 425 hp at 5,600 rpm",
   "torque": "Z/28 302: 290 lb-ft at 4,200 rpm. SS 396 L78: 415 lb-ft at 3,600 rpm. COPO L72: 460 lb-ft at 4,000 rpm. All manufacturer claims",
   "transmission": "Three-speed manual standard; Muncie M20, M21 and heavy-duty M22 four-speeds; Powerglide, Torque-Drive and Turbo Hydra-Matic automatics. Z/28 four-speed only",
-  "weight": "Approximately 3,135 lb shipping weight for a 1969 Z/28 coupe; no kerb figure is given by the sources consulted",
+  "weight": "Approximately 3,135 lb shipping weight for a 1969 Z/28 coupe; no curb figure is given by the sources consulted",
   "acceleration": "Period magazine tests of the 1969 Z/28 recorded 0-60 mph in 7.1-7.4 s and quarter-miles of 14.34-15.12 s",
   "bore_stroke": "Z/28 302: 4.00 in x 3.00 in, quoted as 4.002 x 3.005 in by the Camaro Research Group",
   "induction": "Single Holley four-barrel on the Z/28; a cross-ram twin four-barrel manifold was sold over the parts counter and never fitted on the assembly line",
   "brakes": "Drums standard; power front discs optional and mandatory on the Z/28. RPO JL8 four-wheel discs offered in 1969 only, 206 cars, at $500.30",
   "rear_axle": "Ten-bolt standard; twelve-bolt on Z/28, Super Sport and COPO cars, with 4.10:1 Positraction on the COPO 427s"
  },
- "summary": "Chevrolet met the Ford Mustang three years late, and with more engine. The Camaro was shown to the press in Detroit on 12 September 1966 and reached dealers on 29 September as a 1967 model, on the new rear-drive F-body it shared with the Pontiac Firebird: a unitised body carrying a bolt-on front subframe for the engine and front suspension, offered as a sport coupe or a convertible. Chevrolet's general manager Pete Estes gave reporters the description that has followed the car ever since, a small vicious animal that eats Mustangs. Across three model years the catalogue ran from a 140 bhp 230 cu in six to a 430 bhp all-aluminium 427, taking in the Rally Sport appearance package with its hidden headlights, the Super Sport with 350 and 396 engines, and the Z/28, a 302 cu in car built in the numbers the Trans-Am rulebook demanded. The 1969 cars were restyled and their model year ran on into November 1969 because the second-generation car was late. Behind all of it sat the COPO order system, through which a handful of dealers obtained 427s that Chevrolet did not officially sell.",
- "history": "## The Answer to the Mustang\nFord had put the Mustang on sale in April 1964 and Chevrolet had nothing to answer it with. Its reply was drawn internally as the F-car styling project under chief designer Henry Haga, with Charles Jordan and Irvin Rybicki contributing under Dave Holls and the interior by Suzanne Vanderbilt and Cathy Kascur. The press saw it in Detroit on 12 September 1966 and it went on sale on 29 September at $2,572 for the sport coupe and $2,809 for the convertible. Pete Estes, then running Chevrolet, supplied the quotable version of the brief: a small vicious animal that eats Mustangs. Chevrolet's own retrospective account is more measured, recording fifteen colours and eight engines.\n\n## Three Model Years, Three Different Cars\nStructurally the Camaro was a semi-unibody, a unitised passenger cell with a bolt-on front subframe that carried the engine and front suspension and ended under the doors. For 1968 the vent windows went, replaced by Astro Ventilation, side marker lights were added to meet federal rules, and the tail lights, grille and console were restyled. For 1969 the body was reworked at the nose, fenders, quarters and tailpan, with triple-lens tail lights and the ignition moved to the steering column. That model year then ran long, into November 1969, because the second-generation car was not ready — one reason 1969 is the largest and the most collected of the three.\n\n## Z/28: Homologation Written Into the Order Book\nRPO Z28 arrived in December 1966, first deliveries in January 1967, and is generally credited to Vince Piggins of Chevrolet's product promotion office. The SCCA's Trans-Am sedan class capped displacement at five litres, so Chevrolet assembled one: a 327 block with a 283 crankshaft, 302 cu in, 11.0:1, a single Holley four-barrel and a rating of 290 bhp at 5,800 rpm that almost nobody has taken at face value. The package was coupe only, four-speed only, without air conditioning and with power front discs mandatory. A cross-ram twin four-barrel manifold was sold over the dealer parts counter but never installed on the line, and for 1969 came the cowl-induction bonnet and, briefly, RPO JL8 four-wheel discs.\n\n## COPO: A Racing Engine Sold Through the Order Desk\nA corporate rule kept engines above 400 cu in out of Chevrolet's intermediate cars, so the 427s reached the Camaro through the Central Office Production Order system, meant for fleet and special equipment. COPO 9561 bought the iron-block L72 at 425 bhp for $489.75, cheaper than an SS 396/375. COPO 9560 bought the all-aluminium ZL1: the engine option alone was $4,160.50 and cars stickered above $7,300. Fred Gibb Chevrolet of La Harpe, Illinois ordered fifty on the understanding the cost would be far lower, could not shift them, and sent some back to be redistributed; sixty-nine were built in all. Don Yenko, swapping 427s into Camaros himself since 1967, ordered his 1969 cars this way instead.\n\n## Trans-Am, and the Title That Was Kept\nPenske Racing and Mark Donohue took the over-two-litre manufacturers' championship for Chevrolet in 1968 and again in 1969, but the second season is remembered for what followed: Donohue's Camaro was found to be under the class minimum weight, the wins were to be stripped and awarded to Ford, and General Motors is recorded as having threatened to pull its money out of the series. The result stood, and the title is still credited to Chevrolet.",
- "marketNotes": "As of August 2026 classic.com puts the average price of a first-generation Camaro at $80,870 across 419 cars listed, with the lowest recorded sale at $11,000 for a 1969 pro-street car on 9 April 2026 — a spread reflecting a market containing everything from six-cylinder coupes to aluminium-block COPOs. The site publishes separate benchmarks by variant, all trending upward: the Z/28 benchmark is $103,174 against an average sale of $109,633, with a high of $330,000 for a 1969 RS Z/28 on 23 January 2026; the COPO benchmark is $186,834 against an average of $176,193, with a high of $440,000 at Barrett-Jackson on 24 January 2026; the ZL-1 benchmark is $894,749 against an average of $710,900, ranging from $159,500 in July 2022 to $1,430,000 at Mecum Indianapolis on 16 May 2026. Lot evidence fills in the shape: RM Sotheby's sold ZL1 number 53 of 69 for $404,250 at Fort Lauderdale in 2016, and a Z11 pace car replica made $53,350 from the John Staluppi Collection in 2012, both as published totals rather than hammer prices. The gap between a documented COPO and a well-presented Z/28 is now roughly an order of magnitude.",
+ "summary": "Chevrolet met the Ford Mustang three years late, and with more engine. The Camaro was shown to the press in Detroit on 12 September 1966 and reached dealers on 29 September as a 1967 model, on the new rear-drive F-body it shared with the Pontiac Firebird: a unitised body carrying a bolt-on front subframe for the engine and front suspension, offered as a sport coupe or a convertible. Chevrolet's general manager Pete Estes gave reporters the description that has followed the car ever since, a small vicious animal that eats Mustangs. Across three model years the catalogue ran from a 140 hp 230 cu in six to a 430 hp all-aluminum 427, taking in the Rally Sport appearance package with its hidden headlights, the Super Sport with 350 and 396 engines, and the Z/28, a 302 cu in car built in the numbers the Trans-Am rulebook demanded. The 1969 cars were restyled and their model year ran on into November 1969 because the second-generation car was late. Behind all of it sat the COPO order system, through which a handful of dealers obtained 427s that Chevrolet did not officially sell.",
+ "history": "## The Answer to the Mustang\nFord had put the Mustang on sale in April 1964 and Chevrolet had nothing to answer it with. Its reply was drawn internally as the F-car styling project under chief designer Henry Haga, with Charles Jordan and Irvin Rybicki contributing under Dave Holls and the interior by Suzanne Vanderbilt and Cathy Kascur. The press saw it in Detroit on 12 September 1966 and it went on sale on 29 September at $2,572 for the sport coupe and $2,809 for the convertible. Pete Estes, then running Chevrolet, supplied the quotable version of the brief: a small vicious animal that eats Mustangs. Chevrolet's own retrospective account is more measured, recording fifteen colors and eight engines.\n\n## Three Model Years, Three Different Cars\nStructurally the Camaro was a semi-unibody, a unitised passenger cell with a bolt-on front subframe that carried the engine and front suspension and ended under the doors. For 1968 the vent windows went, replaced by Astro Ventilation, side marker lights were added to meet federal rules, and the tail lights, grille and console were restyled. For 1969 the body was reworked at the nose, fenders, quarters and tailpan, with triple-lens tail lights and the ignition moved to the steering column. That model year then ran long, into November 1969, because the second-generation car was not ready — one reason 1969 is the largest and the most collected of the three.\n\n## Z/28: Homologation Written Into the Order Book\nRPO Z28 arrived in December 1966, first deliveries in January 1967, and is generally credited to Vince Piggins of Chevrolet's product promotion office. The SCCA's Trans-Am sedan class capped displacement at five liters, so Chevrolet assembled one: a 327 block with a 283 crankshaft, 302 cu in, 11.0:1, a single Holley four-barrel and a rating of 290 hp at 5,800 rpm that almost nobody has taken at face value. The package was coupe only, four-speed only, without air conditioning and with power front discs mandatory. A cross-ram twin four-barrel manifold was sold over the dealer parts counter but never installed on the line, and for 1969 came the cowl-induction hood and, briefly, RPO JL8 four-wheel discs.\n\n## COPO: A Racing Engine Sold Through the Order Desk\nA corporate rule kept engines above 400 cu in out of Chevrolet's intermediate cars, so the 427s reached the Camaro through the Central Office Production Order system, meant for fleet and special equipment. COPO 9561 bought the iron-block L72 at 425 hp for $489.75, cheaper than an SS 396/375. COPO 9560 bought the all-aluminum ZL1: the engine option alone was $4,160.50 and cars stickered above $7,300. Fred Gibb Chevrolet of La Harpe, Illinois ordered fifty on the understanding the cost would be far lower, could not shift them, and sent some back to be redistributed; sixty-nine were built in all. Don Yenko, swapping 427s into Camaros himself since 1967, ordered his 1969 cars this way instead.\n\n## Trans-Am, and the Title That Was Kept\nPenske Racing and Mark Donohue took the over-two-liter manufacturers' championship for Chevrolet in 1968 and again in 1969, but the second season is remembered for what followed: Donohue's Camaro was found to be under the class minimum weight, the wins were to be stripped and awarded to Ford, and General Motors is recorded as having threatened to pull its money out of the series. The result stood, and the title is still credited to Chevrolet.",
+ "marketNotes": "As of August 2026 classic.com puts the average price of a first-generation Camaro at $80,870 across 419 cars listed, with the lowest recorded sale at $11,000 for a 1969 pro-street car on 9 April 2026 — a spread reflecting a market containing everything from six-cylinder coupes to aluminum-block COPOs. The site publishes separate benchmarks by variant, all trending upward: the Z/28 benchmark is $103,174 against an average sale of $109,633, with a high of $330,000 for a 1969 RS Z/28 on 23 January 2026; the COPO benchmark is $186,834 against an average of $176,193, with a high of $440,000 at Barrett-Jackson on 24 January 2026; the ZL-1 benchmark is $894,749 against an average of $710,900, ranging from $159,500 in July 2022 to $1,430,000 at Mecum Indianapolis on 16 May 2026. Lot evidence fills in the shape: RM Sotheby's sold ZL1 number 53 of 69 for $404,250 at Fort Lauderdale in 2016, and a Z11 pace car replica made $53,350 from the John Staluppi Collection in 2012, both as published totals rather than hammer prices. The gap between a documented COPO and a well-presented Z/28 is now roughly an order of magnitude.",
  "whatToLookFor": "Identity comes first, because the Camaro is among the most copied cars in the American hobby and the parts to build a convincing fake are all reproduced. The cowl tag and VIN together establish plant, build week and body, but neither encodes the engine, so a Z/28 claim rests on the DZ block casting and stamping, on a twelve-bolt axle, and ideally on paperwork. For COPO cars the standard of proof is higher: the ZL1 consigned to Mecum's Indianapolis sale in May 2026 came with copies of the chassis and body broadcast sheets and the shipping and sales invoices, and that is now what the market expects rather than what it hopes for. Any ZL1 claim is checked against the VIN list Vince Piggins kept at Chevrolet, published in Super Chevy in August 1981. Structurally, look at the points where the front subframe bolts to the unitised rear structure, at the rocker panels, rear fenders, floor pans, trunk pan and the mounts for the rear shock absorbers. It is common to find both rear quarters, the floors and the trunk metal replaced; the question is how well. On an RS, work the vacuum headlight doors through several cycles from cold.",
- "commonProblems": "Corrosion is the defining problem and it is structural rather than cosmetic. The subframe-to-body mounting points, rocker panels, rear fenders, floor pans, trunk pan and rear shock tower mounts are the recognised sites, and heavy filler is common in place of proper repair. The semi-unibody was never especially stiff; period testers noted body roll and a rear end that moved around when pressed, and a shell cut about for a larger engine, or repaired without attention to the firewall and subframe mounts, will flex. Fifty-year-old wiring is a recurring source of trouble, and a new harness is generally cheaper than chasing faults through the old one. The RS vacuum headlight doors were awkward when new, particularly in ice, and Chevrolet added slots to them for 1969 as a workaround. The engines are the least of it — conventional Chevrolet small- and big-blocks wanting little more than routine ignition and fuel service — though the solid-lifter units, the Z/28 302, the L78 396 and the COPO 427s, need periodic valve adjustment and were never offered with air conditioning. JL8 disc components are scarce, and reproduction panel quality is inconsistent enough that what a restoration is worth depends heavily on which parts went into it.",
+ "commonProblems": "Corrosion is the defining problem and it is structural rather than cosmetic. The subframe-to-body mounting points, rocker panels, rear fenders, floor pans, trunk pan and rear shock tower mounts are the recognized sites, and heavy filler is common in place of proper repair. The semi-unibody was never especially stiff; period testers noted body roll and a rear end that moved around when pressed, and a shell cut about for a larger engine, or repaired without attention to the firewall and subframe mounts, will flex. Fifty-year-old wiring is a recurring source of trouble, and a new harness is generally cheaper than chasing faults through the old one. The RS vacuum headlight doors were awkward when new, particularly in ice, and Chevrolet added slots to them for 1969 as a workaround. The engines are the least of it — conventional Chevrolet small- and big-blocks wanting little more than routine ignition and fuel service — though the solid-lifter units, the Z/28 302, the L78 396 and the COPO 427s, need periodic valve adjustment and were never offered with air conditioning. JL8 disc components are scarce, and reproduction panel quality is inconsistent enough that what a restoration is worth depends heavily on which parts went into it.",
  "valueTrajectory": "First-generation Camaro values have followed the broader American muscle market: a long climb through the 2000s, a correction after 2008, and a renewed rise since the middle of the last decade that has been sharply uneven between specifications. As of August 2026 classic.com shows all of the benchmarks it publishes for the generation trending upward, but at very different levels — an average first-generation car at $80,870, a Z/28 benchmark at $103,174, a COPO at $186,834 and a ZL-1 at $894,749 — and the ZL-1 figure has been pulled hard by a $1,430,000 sale at Mecum Indianapolis in May 2026 against a $159,500 result as recently as July 2022. The effect is stratification rather than a general lift: documented, correctly optioned cars are separating from the rest faster than the rest are moving at all, while ordinary six-cylinder and small-block coupes remain worth roughly what a good restoration costs, which caps them. Because the factory kept no record of option combinations, and no production record for COPO 9561 has been found, provenance paperwork rather than the car itself increasingly sets the price at the top.",
  "overallConfidence": "high",
  "sources": [
@@ -104,7 +104,7 @@ export const seedCamaro1stGen = {
    "publisher": "Camaro Research Group",
    "sourceType": "registry",
    "reliability": "high",
-   "notes": "Z28 introduced December 1966, credited to Vince Piggins; a 4.002 in bore 327 block with a 3.005 in stroke 283 crank to meet the Trans-Am five-litre limit; 'very conservatively rated at 290 hp at 5800 RPM'; 602/7,199/20,302; cross-ram sold through dealers only; JL8 206 cars."
+   "notes": "Z28 introduced December 1966, credited to Vince Piggins; a 4.002 in bore 327 block with a 3.005 in stroke 283 crank to meet the Trans-Am five-liter limit; 'very conservatively rated at 290 hp at 5800 RPM'; 602/7,199/20,302; cross-ram sold through dealers only; JL8 206 cars."
   },
   {
    "ref": "crg-copo",
@@ -140,7 +140,7 @@ export const seedCamaro1stGen = {
    "publisher": "Chevrolet (General Motors)",
    "sourceType": "manufacturer",
    "reliability": "medium",
-   "notes": "Chevrolet's own retrospective: the Camaro as its pony-car entry, launched with fifteen exterior colours and eight engine choices; RS identified by hidden headlights; COPO special orders introduced for 1969; pace car duty in 1967 and 1969."
+   "notes": "Chevrolet's own retrospective: the Camaro as its pony-car entry, launched with fifteen exterior colors and eight engine choices; RS identified by hidden headlights; COPO special orders introduced for 1969; pace car duty in 1967 and 1969."
   },
   {
    "ref": "wikipedia-camaro-gen1",
@@ -167,7 +167,7 @@ export const seedCamaro1stGen = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Chevrolet won the over-two-litre title on six Donohue wins, but records that Donohue ran an underweight Camaro, that the wins were to be stripped and reassigned to Ford, and that GM threatened to withdraw support from the series."
+   "notes": "Chevrolet won the over-two-liter title on six Donohue wins, but records that Donohue ran an underweight Camaro, that the wins were to be stripped and reassigned to Ford, and that GM threatened to withdraw support from the series."
   },
   {
    "ref": "classicindustries-production",
@@ -230,7 +230,7 @@ export const seedCamaro1stGen = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $53,350 from the John Staluppi Collection in 2012: a 350/300 bhp automatic Z11 convertible. Catalogue independently states 3,675 pace cars of all types, this car one of 3,532 civilian replicas."
+   "notes": "Sold for $53,350 from the John Staluppi Collection in 2012: a 350/300 hp automatic Z11 convertible. Catalogue independently states 3,675 pace cars of all types, this car one of 3,532 civilian replicas."
   },
   {
    "ref": "gmauthority-zl1-indy",
@@ -257,7 +257,7 @@ export const seedCamaro1stGen = {
    "publisher": "Heacock Classic",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "302 at 290 bhp/5,800 rpm and 290 lb-ft/4,200 rpm while reporting insiders put real output above 375 bhp; cross-ram about $500 as a dealer option, impractical on the road; JL8 $500.30 and 206 cars; Z/28 602/7,199/20,302; Penske and Donohue taking the 1968 title; 0-60 in 7.1-7.4 s."
+   "notes": "302 at 290 hp/5,800 rpm and 290 lb-ft/4,200 rpm while reporting insiders put real output above 375 hp; cross-ram about $500 as a dealer option, impractical on the road; JL8 $500.30 and 206 cars; Z/28 602/7,199/20,302; Penske and Donohue taking the 1968 title; 0-60 in 7.1-7.4 s."
   },
   {
    "ref": "motorcities-firstgen",
@@ -284,7 +284,7 @@ export const seedCamaro1stGen = {
    "publisher": "Over-Drive Magazine",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Full 1969 dimensional and engine table: 108 in wheelbase, 186.0 in long, 74.0 in wide; 230 six 140 bhp, 250 155 bhp, 307 200 bhp, 350 at 255 and 300 bhp, 302 Z28 290 bhp/290 lb-ft, 396 at 325/350/375 bhp, L72 427 425 bhp/460 lb-ft, ZL1 427 430 bhp/450 lb-ft."
+   "notes": "Full 1969 dimensional and engine table: 108 in wheelbase, 186.0 in long, 74.0 in wide; 230 six 140 hp, 250 155 hp, 307 200 hp, 350 at 255 and 300 hp, 302 Z28 290 hp/290 lb-ft, 396 at 325/350/375 hp, L72 427 425 hp/460 lb-ft, ZL1 427 430 hp/450 lb-ft."
   },
   {
    "ref": "z28net-69specs",
@@ -293,7 +293,7 @@ export const seedCamaro1stGen = {
    "publisher": "Z28.net",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1969 Z/28 detail: 4.00 x 3.00 in bore and stroke, 11.0:1, 290 bhp at 5,800 rpm and 290 lb-ft at 4,200 rpm, close-ratio four-speed, 11 in front discs with 9.5 in rear drums, and approximately 3,135 lb shipping weight."
+   "notes": "1969 Z/28 detail: 4.00 x 3.00 in bore and stroke, 11.0:1, 290 hp at 5,800 rpm and 290 lb-ft at 4,200 rpm, close-ratio four-speed, 11 in front discs with 9.5 in rear drums, and approximately 3,135 lb shipping weight."
   }
  ],
  "claims": [
@@ -333,7 +333,7 @@ export const seedCamaro1stGen = {
   },
   {
    "section": "specs",
-   "claimText": "The Z/28's 302 cu in V8 was assembled from a 327 block and a 283 crankshaft to fit the SCCA Trans-Am five-litre limit, running 11.0:1 compression and a single Holley four-barrel, rated at 290 bhp at 5,800 rpm and 290 lb-ft at 4,200 rpm.",
+   "claimText": "The Z/28's 302 cu in V8 was assembled from a 327 block and a 283 crankshaft to fit the SCCA Trans-Am five-liter limit, running 11.0:1 compression and a single Holley four-barrel, rated at 290 hp at 5,800 rpm and 290 lb-ft at 4,200 rpm.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -345,14 +345,14 @@ export const seedCamaro1stGen = {
   },
   {
    "section": "specs",
-   "claimText": "The 290 bhp rating for the Z/28 302 is widely held to understate the engine's real output, but no primary dynamometer record supports a specific alternative figure.",
+   "claimText": "The 290 hp rating for the Z/28 302 is widely held to understate the engine's real output, but no primary dynamometer record supports a specific alternative figure.",
    "confidence": "low",
    "status": "unverified",
    "sourceRefs": [
     "crg-z28",
     "heacock-69z28"
    ],
-   "conflictNote": "The Camaro Research Group calls the engine very conservatively rated; Heacock Classic reports that insiders put real output above 375 bhp. Neither cites a dynamometer sheet, and the true figure cannot be resolved from the sources consulted here."
+   "conflictNote": "The Camaro Research Group calls the engine very conservatively rated; Heacock Classic reports that insiders put real output above 375 hp. Neither cites a dynamometer sheet, and the true figure cannot be resolved from the sources consulted here."
   },
   {
    "section": "production",
@@ -429,7 +429,7 @@ export const seedCamaro1stGen = {
   },
   {
    "section": "history",
-   "claimText": "COPO 9561 added the 425 bhp L72 427 for $489.75, less than an SS 396/375, while COPO 9560 added the all-aluminium ZL1 427 at $4,160.50 for the engine option alone, taking sticker prices past $7,300 and leaving Fred Gibb Chevrolet unable to sell the fifty cars it had ordered.",
+   "claimText": "COPO 9561 added the 425 hp L72 427 for $489.75, less than an SS 396/375, while COPO 9560 added the all-aluminum ZL1 427 at $4,160.50 for the engine option alone, taking sticker prices past $7,300 and leaving Fred Gibb Chevrolet unable to sell the fifty cars it had ordered.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -440,7 +440,7 @@ export const seedCamaro1stGen = {
   },
   {
    "section": "history",
-   "claimText": "Penske Racing and Mark Donohue took the over-two-litre Trans-Am manufacturers' championship for Chevrolet in 1968 and again in 1969, but the 1969 title was retained only after Donohue's Camaro was found to be underweight and General Motors reportedly threatened to withdraw its support from the series rather than see the wins reassigned to Ford.",
+   "claimText": "Penske Racing and Mark Donohue took the over-two-liter Trans-Am manufacturers' championship for Chevrolet in 1968 and again in 1969, but the 1969 title was retained only after Donohue's Camaro was found to be underweight and General Motors reportedly threatened to withdraw its support from the series rather than see the wins reassigned to Ford.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [

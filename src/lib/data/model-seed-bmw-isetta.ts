@@ -1,5 +1,5 @@
 /**
- * Researched model draft — BMW Isetta (1955-1962).
+ * Researched model draft - BMW Isetta (1955-1962).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedBmwIsetta = {
@@ -15,11 +15,11 @@ export const seedBmwIsetta = {
   "1-door 2-seat coupe, front-hinged door, fixed 'bubble' side windows (1955-1956)",
   "1-door 2-seat coupe with sliding side windows - Moto Coupe DeLuxe, later Export (from October 1956)",
   "3-wheel 1-door coupe, built at Brighton and by BMW for markets Brighton did not serve",
-  "2-door 4-seat saloon, front-hinged door plus a right-hand side door (BMW 600, 1957-1959)"
+  "2-door 4-seat sedan, front-hinged door plus a right-hand side door (BMW 600, 1957-1959)"
  ],
  "engines": [
-  "247 cc air-cooled single-cylinder four-stroke from the BMW R25 motorcycle, 12 PS (8.8 kW) at 5,800 rpm - Isetta 250",
-  "297 cc air-cooled single-cylinder four-stroke, 72 x 73 mm, 13 PS (9.6 kW) at 5,200 rpm, 18.4 Nm at 4,600 rpm - Isetta 300 (RM Sotheby's and Hagerty call it 298 cc)",
+  "247 cc air-cooled single-cylinder four-stroke from the BMW R25 motorcycle, 12 hp (12 hp) at 5,800 rpm - Isetta 250",
+  "297 cc air-cooled single-cylinder four-stroke, 72 x 73 mm, 13 hp (13 hp) at 5,200 rpm, 14 lb-ft at 4,600 rpm - Isetta 300 (RM Sotheby's and Hagerty call it 298 cc)",
   "582 cc air-cooled flat-twin from the BMW R67 motorcycle, quoted between 19.5 and 26 hp depending on source - BMW 600"
  ],
  "productionTotal": null,
@@ -27,11 +27,11 @@ export const seedBmwIsetta = {
  "notableTrims": [
   {
    "name": "Isetta 250 (bubble window)",
-   "note": "247 cc and 12 PS, with fixed curved side windows and a fabric sunroof that doubled as the way out if the single door jammed. In West Germany it could be driven on a motorcycle licence, which was most of its commercial argument."
+   "note": "247 cc and 12 hp, with fixed curved side windows and a fabric sunroof that doubled as the way out if the single door jammed. In West Germany it could be driven on a motorcycle license, which was most of its commercial argument."
   },
   {
    "name": "Isetta 300 / Moto Coupe DeLuxe",
-   "note": "The 297 cc engine arrived when German licensing rules changed, and from October 1956 sliding side windows replaced the bubbles. Top speed did not move; torque did. From 1957 the Export added a fixed roof, revised chassis and right-hand drive to order, catalogued by RM Sotheby's as a distinct specification. This is the version the market has settled on."
+   "note": "The 297 cc engine arrived when German licensing rules changed, and from October 1956 sliding side windows replaced the bubbles. Top speed did not move; torque did. From 1957 the Export added a fixed roof, revised chassis and right-hand drive to order, cataloged by RM Sotheby's as a distinct specification. This is the version the market has settled on."
   },
   {
    "name": "Three-wheel Isetta",
@@ -51,22 +51,22 @@ export const seedBmwIsetta = {
   "chassis": "Tubular steel frame with steel body; folding fabric sunroof doubling as the emergency exit",
   "engine": "247 cc air-cooled single-cylinder four-stroke from the BMW R25 in the 250; 297 cc from 1956 in the 300; 582 cc air-cooled flat-twin from the R67 in the BMW 600",
   "bore_stroke": "72 x 73 mm for the 297 cc single per Wikipedia, on 7.0:1 compression raised from 6.8:1; RM Sotheby's and Hagerty call the same engine 298 cc",
-  "power": "12 PS (8.8 kW) at 5,800 rpm on the 250 and 13 PS (9.6 kW) at 5,200 rpm on the 300, both manufacturer figures; the BMW 600 is quoted between 19.5 and 26 hp",
-  "torque": "18.4 Nm at 4,600 rpm for the Isetta 300; no consistent BMW 600 figure was found",
-  "transmission": "Four-speed manual, enclosed chain final drive to a rigid rear axle; the BMW 600's was fully synchronised, with an optional Saxomat semi-automatic clutch",
+  "power": "12 hp (12 hp) at 5,800 rpm on the 250 and 13 hp (13 hp) at 5,200 rpm on the 300, both manufacturer figures; the BMW 600 is quoted between 19.5 and 26 hp",
+  "torque": "14 lb-ft at 4,600 rpm for the Isetta 300; no consistent BMW 600 figure was found",
+  "transmission": "Four-speed manual, enclosed chain final drive to a rigid rear axle; the BMW 600's was fully synchronized, with an optional Saxomat semi-automatic clutch",
   "suspension": "Hydraulic drums all round. The BMW 600 introduced semi-trailing arms at the rear, the first BMW use of the arrangement, though museum and auction descriptions of its layout differ; the Isetta's rear wheels sit about 480 mm apart, removing the need for a differential",
-  "weight": "About 350 kg for the Isetta 300 per the Museo Nazionale dell'Automobile",
+  "weight": "About 772 lb for the Isetta 300 per the Museo Nazionale dell'Automobile",
   "dimensions": "Isetta 2.29 m long; BMW 600 on a 1,700 mm wheelbase, eight inches longer between the axles, tracks 1,220 and 1,160 mm",
-  "top_speed": "85 km/h (53 mph) claimed by BMW for both 250 and 300 - a manufacturer claim; Octane quotes 47 mph for the earliest 250. The BMW 600 is given as 100 km/h, 62 mph or 59 mph by three sources",
-  "acceleration": "No period 0-100 km/h figure for the Isetta was located; Below the Radar records 24.8 seconds to 50 mph for the BMW 600",
-  "fuel_consumption": "3 L/100 km (94 mpg imperial) for the 250 by 1955; Hagerty quotes about 50 mpg in use"
+  "top_speed": "53 mph claimed by BMW for both 250 and 300 - a manufacturer claim; Octane quotes 47 mph for the earliest 250. The BMW 600 is given as 62 mph, 62 mph or 59 mph by three sources",
+  "acceleration": "No period 0-62 mph figure for the Isetta was located; Below the Radar records 24.8 seconds to 50 mph for the BMW 600",
+  "fuel_consumption": "3 L/62.1 miles (94 mpg imperial) for the 250 by 1955; Hagerty quotes about 50 mpg in use"
  },
- "summary": "The BMW Isetta was not a BMW design. It began as the Iso Isetta, drawn for Renzo Rivolta's Milanese refrigerator and motorcycle firm by the engineers Ermenegildo Preti and Pierluigi Raggi, and it failed in Italy. BMW, cash-starved and selling too few 501 V8 saloons to matter, took the licence and the body tooling from Iso in 1954, replaced the Italian two-stroke with the four-stroke single from the R25 motorcycle, and built a 12 PS two-seater entered through a single front-hinged door that a West German motorcycle licence covered. The 250 became the 300 when the licensing rules changed, bubble windows gave way to sliding glass in October 1956, Brighton built three-wheelers to suit British tax law, and a stretched four-seat 600 introduced the semi-trailing arm rear suspension BMW would use for thirty years. Something near 161,728 were built in Germany, and the money bought the company the time it needed.",
- "history": "## Milan, Not Munich\nThe Isetta was Italian before it was German. Renzo Rivolta had built refrigerators, then motorcycles and scooters, at Iso in Bresso north of Milan, and he set the engineers Ermenegildo Preti and Pierluigi Raggi on the problem of a vehicle small enough to be cheap and useful enough to be a car. What they produced was an egg on four wheels, about 2.29 metres long, entered through a single front-hinged door that carried the steering column out with it, its rear wheels close enough together that no differential was needed. Accounts of the launch differ - Wikipedia dates the introduction to November 1953, BMW Blog to the Turin show of 1952 - but the outcome does not. Around a thousand were built. Rivolta's better idea was to sell the licence abroad, to Velam in France, Romi in Brazil, De Carlo in Argentina, a British concern and BMW.\n\n## The Licence and the Motorcycle Engine\nBMW in 1954 was in serious trouble: the 501 V8 was not selling, much of the pre-war manufacturing base lay behind the inner German border, and Goodwood's account has a Glas takeover looking plausible. BMW took its licence from Iso that year - its press office places the agreement at the Geneva show, Wikipedia says mid-1954 and adds that BMW bought the complete body tooling as well as the rights. The decisive change was under the tail: out went Iso's two-stroke, in went the air-cooled four-stroke single from the R25 motorcycle, 247 cc and 12 PS. That made it a BMW in the only sense that mattered to a Munich accountant.\n\n## 250, 300 and the Windows\nThe 250 sold immediately: BMW Group Classic records more than ten thousand in the first year, BMW's press office 12,911, and BMW Blog car number 10,000 on 20 November 1955. Then German licensing law moved, and BMW answered with a 297 cc engine giving 13 PS at 5,200 rpm - more torque rather than more speed, since the quoted 85 km/h did not change. From October 1956 the bubble windows gave way to sliding side windows on the Moto Coupe DeLuxe, and from 1957 an Export specification added a fixed roof, a revised chassis and optional right-hand drive. The peak year was 1957, near forty thousand cars.\n\n## Brighton, and the Third Wheel\nBritish production began on 23 April 1957 at the former Brighton Locomotive Works, taken on by Dunsfold Tools Ltd and later renamed Isetta of Great Britain. The site had no road access, only a flight of steps, so cars left by rail, three to a wagon; engines, transmissions and Bavarian-pressed panels arrived the same way each Saturday. The first thousand were left-hand-drive four-wheelers for Canada. Three-wheelers followed from 1959, because a three-wheeled vehicle attracted lower British tax and could be driven on a motorcycle licence, and right-hand-drive cars needed a 60 lb counterweight on the left.\n\n## The 600, and What It Bought BMW\nThe 600 of 1957 stretched the wheelbase to 1,700 mm, widened the rear track, added a second door on the right and fitted the 582 cc flat-twin from the R67. More significantly, it carried BMW's first semi-trailing arm rear suspension, which the company then used on almost every car it built until the 1990s. It did not sell: Below the Radar records BMW borrowing seven million marks against hopes of 400,000 cars a year, and the 600 pushing it further into the red instead. What it did was provide the platform stretched into the 700, which sold 188,121 examples and carried BMW to the Neue Klasse.",
- "marketNotes": "As of August 2026 classic.com's benchmark for the BMW Isetta line stands at $31,450, with eleven cars listed for sale and a recorded spread from $7,000 (a 1957 Isetta 300, February 2024) to $56,500 (a 1957 car in Medina, Ohio, July 2026). The line splits by variant: as of August 2026 classic.com carries $20,966 for the 250, $31,061 for the 300 and $32,073 for the 600. The 300 is the liquid part of the market and is trending upward, on an average sale of $31,239, with three results in the six weeks to mid-August 2026 at $37,000 (a 1956 car, 28 July), $34,250 (a 1957 car, 4 August) and $30,800 (a 1958 car, 14 August). Auction evidence brackets that band. RM Sotheby's sold a 1957 Isetta 300, chassis 570827, for $27,500 hammer at Hershey on 9-10 October 2024, and a Brighton-built car in Team Brecht livery, chassis A 11752, for $58,800 at Dare to Dream in Toronto on 31 May - 1 June 2024. A three-wheeled 1959 Export car made $40,250 at the Bruce Weiner Microcar Museum sale, Madison, Georgia, 15-16 February 2013. The 600 sits higher when right: $73,920 for a freshly restored 1959 car at RM Sotheby's Monterey, 15-17 August 2024. Octane's guide, read in August 2026, places running Isettas at £10,000-15,000, restored cars at £25,000-35,000 and tidy 600s across £15,000-40,000.",
- "whatToLookFor": "Establish which car is in front of you first. A 250 and a 300 are not the same object to the market, the bubble-window and the October 1956 sliding-window cars are visually distinct, and a Brighton-built three-wheeler is a different vehicle again - the Dare to Dream result shows how far a documented British car can separate from the benchmark. Chassis and engine numbers should be legible and agree with the paperwork. Steel is the main worry: wheelarches suffer, particularly on cars that saw British winters, and the battery box corrodes on almost everything. Because the whole front is one hinged door, check that it shuts and seals evenly and that neither the hinge nor the articulating steering column has been shimmed to disguise a sagging shell. Check the fabric sunroof works: it is the emergency exit, not a luxury. Underneath, look at the chain case for leaks and at the o-ring seals between the suspension castings and the swing arms. On a 600, the second door and rear seat area rot unseen, and an invoice file matters: the Monterey car that made $73,920 carried over a hundred invoices and close to $70,000 of work, and the $27,500 Hershey Isetta nearly $6,000 of mechanical work alone.",
- "commonProblems": "The single-cylinder engine is simple and rebuildable, but the crankshaft and aluminium connecting-rod assembly is the known weak point and breaks; steel replacements are the usual remedy, and microcar.org treats this as expected rather than exceptional. Push-rod tube seals leak at both head and block, and the o-ring seals between the suspension casting and the swing arms leak so consistently that dry ones are the surprise. There is no oil filter, so oil changes are frequent and a hundred-mile change after a rebuild is standard. Overheating follows a failed cooling fan and destroys the engine quickly. Brakes are the other recurring theme: wheel cylinders freeze on cars that have stood, leaking fluid contaminates the linings, and previous owners have fitted non-original master cylinders that complicate repair. Transmission linkage bushes wear. Corrosion concentrates in the wheelarches and the battery box, and after fifty years most fasteners are seized. Octane's guide is otherwise encouraging on parts supply.",
- "valueTrajectory": "The Isetta's collector career has been built on charm and on the scarcity of good cars rather than on performance. The Bruce Weiner Microcar Museum dispersal in February 2013 was the moment microcars were priced as a category rather than as curiosities, and the $40,250 paid there for a three-wheeled Export car still reads strongly a decade later. As of August 2026 classic.com's Isetta 300 benchmark of $31,061 is trending upward on an average sale of $31,239, with a recorded floor of $7,000 in February 2024, roughly the price of a project. The gap between a $7,000 shell and a $56,500 finished car is the whole story: restoration costs here are effectively fixed regardless of what the car cost, so a cheap Isetta is rarely cheap. The 600 has been the quieter performer, with a classic.com benchmark of $32,073 as of August 2026 but auction results well above it for restored cars, suggesting a thin market rather than a soft one. Premiums attach to Brighton-built cars, documented Export specification and complete restoration files.",
+ "summary": "The BMW Isetta was not a BMW design. It began as the Iso Isetta, drawn for Renzo Rivolta's Milanese refrigerator and motorcycle firm by the engineers Ermenegildo Preti and Pierluigi Raggi, and it failed in Italy. BMW, cash-starved and selling too few 501 V8 sedans to matter, took the license and the body tooling from Iso in 1954, replaced the Italian two-stroke with the four-stroke single from the R25 motorcycle, and built a 12 hp two-seater entered through a single front-hinged door that a West German motorcycle license covered. The 250 became the 300 when the licensing rules changed, bubble windows gave way to sliding glass in October 1956, Brighton built three-wheelers to suit British tax law, and a stretched four-seat 600 introduced the semi-trailing arm rear suspension BMW would use for thirty years. Something near 161,728 were built in Germany, and the money bought the company the time it needed.",
+ "history": "## Milan, Not Munich\n\nThe Isetta was Italian before it was German. Renzo Rivolta had built refrigerators, then motorcycles and scooters, at Iso in Bresso north of Milan, and he set the engineers Ermenegildo Preti and Pierluigi Raggi on the problem of a vehicle small enough to be cheap and useful enough to be a car. What they produced was an egg on four wheels, about 2.29 meters long, entered through a single front-hinged door that carried the steering column out with it, its rear wheels close enough together that no differential was needed. Accounts of the launch differ - Wikipedia dates the introduction to November 1953, BMW Blog to the Turin show of 1952 - but the outcome does not. Around a thousand were built. Rivolta's better idea was to sell the license abroad, to Velam in France, Romi in Brazil, De Carlo in Argentina, a British concern and BMW.\n\n## The Licence and the Motorcycle Engine\n\nBMW in 1954 was in serious trouble: the 501 V8 was not selling, much of the pre-war manufacturing base lay behind the inner German border, and Goodwood's account has a Glas takeover looking plausible. BMW took its license from Iso that year - its press office places the agreement at the Geneva show, Wikipedia says mid-1954 and adds that BMW bought the complete body tooling as well as the rights. The decisive change was under the tail: out went Iso's two-stroke, in went the air-cooled four-stroke single from the R25 motorcycle, 247 cc and 12 hp. That made it a BMW in the only sense that mattered to a Munich accountant.\n\n## 250, 300 and the Windows\n\nThe 250 sold immediately: BMW Group Classic records more than ten thousand in the first year, BMW's press office 12,911, and BMW Blog car number 10,000 on 20 November 1955. Then German licensing law moved, and BMW answered with a 297 cc engine giving 13 hp at 5,200 rpm - more torque rather than more speed, since the quoted 53 mph did not change. From October 1956 the bubble windows gave way to sliding side windows on the Moto Coupe DeLuxe, and from 1957 an Export specification added a fixed roof, a revised chassis and optional right-hand drive. The peak year was 1957, near forty thousand cars.\n\n## Brighton, and the Third Wheel\n\nBritish production began on 23 April 1957 at the former Brighton Locomotive Works, taken on by Dunsfold Tools Ltd and later renamed Isetta of Great Britain. The site had no road access, only a flight of steps, so cars left by rail, three to a wagon; engines, transmissions and Bavarian-pressed panels arrived the same way each Saturday. The first thousand were left-hand-drive four-wheelers for Canada. Three-wheelers followed from 1959, because a three-wheeled vehicle attracted lower British tax and could be driven on a motorcycle license, and right-hand-drive cars needed a 60 lb counterweight on the left.\n\n## The 600, and What It Bought BMW\n\nThe 600 of 1957 stretched the wheelbase to 1,700 mm, widened the rear track, added a second door on the right and fitted the 582 cc flat-twin from the R67. Lane Motor Museum records a United States price of $1,398 for it. More significantly, it carried BMW's first semi-trailing arm rear suspension, which the company then used on almost every car it built until the 1990s. It did not sell: Below the Radar records BMW borrowing seven million marks against hopes of 400,000 cars a year, and the 600 pushing it further into the red instead. What it did was provide the platform stretched into the 700, which sold 188,121 examples and carried BMW to the Neue Klasse.",
+ "marketNotes": "As of September 2026 classic.com's benchmark for the BMW Isetta line stands at $31,450, with eleven cars listed for sale, a recorded low of $7,000 (a 1957 car, 3 February 2024) and a high of $56,500 asked for a 1957 car in Medina, Ohio. The line splits by variant, and as of September 2026 all three sub-markets read downward: $20,966 for the 250 on an average sale of $24,229, $30,852 for the 300 on an average sale of $31,289, and $32,073 for the 600 on an average sale of $34,967. The 300 is the liquid part of the market, with three results in the six weeks to mid-August 2026 at $37,000 (a 1956 car, 28 July), $34,250 (a 1957 car, 4 August) and $30,800 (a 1958 car sold by Broad Arrow in Monterey County, 14 August). Hagerty's Isetta market piece, read in September 2026, works in condition grades rather than benchmarks: a median of $38,500 for a #2 Excellent car against a January 2017 peak of $44,500, about $29,300 for a #3 Good 300 of 1957-62, and the high $25,000s for a #3 250. Auction evidence brackets that band. RM Sotheby's sold a 1957 Isetta 300, chassis 570827, for $27,500 hammer at Hershey on 9-10 October 2024, and a Brighton-built car in Team Brecht livery, chassis A 11752, for $58,800 at Dare to Dream in Toronto on 31 May - 1 June 2024. A three-wheeled 1959 Export car made $40,250 at the Bruce Weiner Microcar Museum sale in February 2013, and a restored 1959 BMW 600 made $73,920 at RM Sotheby's Monterey in August 2024.",
+ "whatToLookFor": "Establish which car is in front of you first. A 250 and a 300 are not the same object to the market, the bubble-window and the October 1956 sliding-window cars are visually distinct, and a Brighton-built three-wheeler is a different vehicle again - the Dare to Dream result shows how far a documented British car can separate from the benchmark. Chassis and engine numbers should be legible and agree with the paperwork. Steel is the main worry: wheel arches suffer, particularly on cars that saw British winters, and the battery box corrodes on almost everything. Because the whole front is one hinged door, check that it shuts and seals evenly and that neither the hinge nor the articulating steering column has been shimmed to disguise a sagging shell. Check the fabric sunroof works: it is the emergency exit, not a luxury. Underneath, look at the chain case for leaks and at the o-ring seals between the suspension castings and the swing arms. On a 600, the second door and rear seat area rot unseen, and an invoice file matters: the Monterey car that made $73,920 carried over a hundred invoices and close to $70,000 of work, and the $27,500 Hershey Isetta nearly $6,000 of mechanical work alone.",
+ "commonProblems": "The single-cylinder engine is simple and rebuildable, but the crankshaft and aluminum connecting-rod assembly is the known weak point and breaks; steel replacements are the usual remedy, and microcar.org treats this as expected rather than exceptional. Push-rod tube seals leak at both head and block, and the o-ring seals between the suspension casting and the swing arms leak so consistently that dry ones are the surprise. There is no oil filter, so oil changes are frequent and a hundred-mile change after a rebuild is standard. Overheating follows a failed cooling fan and destroys the engine quickly. Brakes are the other recurring theme: wheel cylinders freeze on cars that have stood, leaking fluid contaminates the linings, and previous owners have fitted non-original master cylinders that complicate repair. Transmission linkage bushes wear. Corrosion concentrates in the wheel arches and the battery box, and after fifty years most fasteners are seized. Parts supply in the United States is better than the size of the car suggests: microcar.org's directory lists American suppliers for the consumable end of a rebuild, with stainless brake hoses quoted at $25 each from Bavarian Autosport, a steering damper at around $16, correct 4.80 x 10 tires from Coker and a replacement windshield at just under $300 before crating and shipping, alongside named specialists for engine, transmission, chain-drive and brake-cylinder work.",
+ "valueTrajectory": "The Isetta's collector career has been built on charm and on the scarcity of good cars rather than on performance. The Bruce Weiner Microcar Museum dispersal in February 2013 was the moment microcars were priced as a category rather than as curiosities, and the $40,250 paid there for a three-wheeled Export car still reads strongly a decade later. The recent direction is gently down: as of September 2026 classic.com marks the 300 at $30,852 on a downward trend against an average sale of $31,289, and Hagerty reports #2 Excellent cars at a median of $38,500 having peaked at $44,500 in January 2017. The floor has not moved much, a recorded $7,000 in February 2024, roughly the price of a project, and the gap between that and a $56,500 finished car is the whole story: restoration cost here is effectively fixed regardless of what the car cost, so a cheap Isetta is rarely cheap. The 600 is the thinnest market of the three, carrying a $32,073 benchmark as of September 2026 with nothing listed for sale, yet restored cars have cleared twice that at auction. Premiums attach to Brighton-built cars, documented Export specification and complete restoration files.",
  "overallConfidence": "medium",
  "sources": [
   {
@@ -85,7 +85,7 @@ export const seedBmwIsetta = {
    "publisher": "BMW Group PressClub",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Licence taken from Iso at the 1954 Geneva show; 12,911 units in year one; 250 cc/12 hp and 300 cc/13 hp from 1956; 85 km/h; DM 2,550 plus DM 95 insurance and DM 44 tax; peak year 1957 near 40,000; total 161,728; export version with top-hung windows and optional RHD."
+   "notes": "Licence taken from Iso at the 1954 Geneva show; 12,911 units in year one; 250 cc/12 hp and 300 cc/13 hp from 1956; 53 mph; DM 2,550 plus DM 95 insurance and DM 44 tax; peak year 1957 near 40,000; total 161,728; export version with top-hung windows and optional RHD."
   },
   {
    "ref": "wikipedia-isetta",
@@ -94,7 +94,7 @@ export const seedBmwIsetta = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Iso Isetta introduced November 1953, 236 cc two-stroke split-single of 9.5 hp, by Preti and Raggi; BMW bought licence plus body tooling mid-1954; 247 cc at 12 PS/5,800 rpm; 300 from February 1956, 72 x 73 mm, 13 PS at 5,200 rpm, 18.4 Nm at 4,600 rpm, 7.0:1 from 6.8:1; rear wheels 480 mm apart; sliding windows from October 1956; total 161,728, some sources 161,360."
+   "notes": "Iso Isetta introduced November 1953, 236 cc two-stroke split-single of 9.5 hp, by Preti and Raggi; BMW bought license plus body tooling mid-1954; 247 cc at 12 hp/5,800 rpm; 300 from February 1956, 72 x 73 mm, 13 hp at 5,200 rpm, 14 lb-ft at 4,600 rpm, 7.0:1 from 6.8:1; rear wheels 480 mm apart; sliding windows from October 1956; total 161,728, some sources 161,360."
   },
   {
    "ref": "wikipedia-bmw-600",
@@ -112,7 +112,7 @@ export const seedBmwIsetta = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "Retrieved August 2026: line benchmark $31,450, eleven cars listed for sale, high $56,500 (1957 Isetta 300, Medina, Ohio, July 2026), low $7,000 (February 2024). Variant benchmarks 250 $20,966, 300 $31,061, 600 $32,073."
+   "notes": "Retrieved September 2026: line benchmark $31,450, eleven cars listed for sale, high asking price $56,500 (1957 Isetta 300, Medina, Ohio), low recorded sale $7,000 (3 February 2024). Sub-market benchmarks 250 $20,966, 300 $31,061, 600 $32,073, with recent line results of $30,800 (Broad Arrow, 14 August 2026) and $23,000 (24 July 2026)."
   },
   {
    "ref": "classic-isetta-300",
@@ -121,7 +121,43 @@ export const seedBmwIsetta = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "Retrieved August 2026: Isetta 300 benchmark $31,061 trending up, average sale $31,239, high $49,981 (August 2025), low $7,000 (February 2024). Recent results $37,000 (28 July 2026), $34,250 (4 August 2026), $30,800 (14 August 2026)."
+   "notes": "Retrieved September 2026: Isetta 300 benchmark $30,852 on a downward trend, average sale $31,289, high $49,981 (22 August 2025), low $7,000 (3 February 2024). Recent results $37,000 (Fort Lauderdale, 28 July 2026), $34,250 (Henrico County, Virginia, 4 August 2026), $30,800 (Monterey County, California, 14 August 2026)."
+  },
+  {
+   "ref": "classic-isetta-250",
+   "title": "BMW Isetta 250 Market",
+   "url": "https://www.classic.com/m/bmw/isetta/250/",
+   "publisher": "classic.com",
+   "sourceType": "market-data",
+   "reliability": "high",
+   "notes": "Retrieved September 2026: Isetta 250 benchmark $20,966 on a downward trend, average sale $24,229, one car listed for sale, highest recorded result $29,250 (1956 car, 27 August 2026), lowest $10,000 (1957 car, 15 June 2025). Dates the 250 run 1955-1962 and the switch to the larger engine to 1956."
+  },
+  {
+   "ref": "classic-isetta-600",
+   "title": "BMW Isetta 600 Market",
+   "url": "https://www.classic.com/m/bmw/isetta/600/",
+   "publisher": "classic.com",
+   "sourceType": "market-data",
+   "reliability": "high",
+   "notes": "Retrieved September 2026: BMW 600 benchmark $32,073 on a downward trend, average sale $34,967, nothing listed for sale against eighteen recorded results. High $36,250 (1960 car, March 2026), low $7,000 (1959 car, May 2024); a 1959 car made $27,500 at Mecum in September 2025. Gives the production run as 1957-1960."
+  },
+  {
+   "ref": "hagerty-us-isetta",
+   "title": "The plucky 1955-62 BMW Isetta isn't going anywhere",
+   "url": "https://www.hagerty.com/media/market-trends/valuation/plucky-1955-62-bmw-isetta-isnt-going-anywhere/",
+   "publisher": "Hagerty Media",
+   "sourceType": "journalism",
+   "reliability": "medium",
+   "notes": "US market piece working in Hagerty Price Guide condition grades: #2 Excellent median $38,500 against a January 2017 peak of $44,500, #3 Good around $29,300 for 1957-62 300s and the high $25,000s for 1955-56 250s, values down 2.5 percent in the then-current guide update, average auction price $26,700 in 2019, and outlier results of $89,700 for a convertible, $86,000 for a police car and $63,250 for a pickup in 2013. Repeats 161,728 German cars and roughly 41,000 licensed elsewhere for 202,728 in total."
+  },
+  {
+   "ref": "microcar-parts",
+   "title": "Isetta Tech - Parts",
+   "url": "https://microcar.org/isettatech/ServicesText.html",
+   "publisher": "microcar.org",
+   "sourceType": "club-forum",
+   "reliability": "low",
+   "notes": "US supplier and service directory used only for parts availability and order-of-magnitude prices: stainless brake hoses $25 each from Bavarian Autosport, steering damper around $16, windshield just under $300 before crating and shipping from Lo-Can International, BMW production certificate $90, parts-diagram CD about $40, 4.80 x 10 tires from Coker, plus named shops for engine, transmission, chain-drive, brake-cylinder and speedometer work."
   },
   {
    "ref": "bmwblog-65years",
@@ -130,7 +166,7 @@ export const seedBmwIsetta = {
    "publisher": "BMW BLOG",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Production start April 1955; total 161,360; the 300 released December 1955; price 2,580 DM against a German weekly wage near 90 DM; car number 10,000 on 20 November 1955; licence from Iso SpA in 1954, the Iso original said to have debuted at the 1952 Turin show."
+   "notes": "Production start April 1955; total 161,360; the 300 released December 1955; price 2,580 DM against a German weekly wage near 90 DM; car number 10,000 on 20 November 1955; license from Iso SpA in 1954, the Iso original said to have debuted at the 1952 Turin show."
   },
   {
    "ref": "octane-guide",
@@ -139,7 +175,7 @@ export const seedBmwIsetta = {
    "publisher": "Octane",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "250 top speed 47 mph; 300 at 297 cc and 53 mph after German licence rules changed; 600 a four-seat stretch with a 20 bhp 582 cc flat-twin and a side door; UK production by Dunsfold Tools Ltd from 1957; wheelarch rust, cooling-fan overheating, worn transmission linkages; £10,000-15,000 running, £25,000-35,000 restored, £15,000-40,000 for a 600."
+   "notes": "250 top speed 47 mph; 300 at 297 cc and 53 mph after German license rules changed; 600 a four-seat stretch with a 20 hp 582 cc flat-twin and a side door; UK production by Dunsfold Tools Ltd from 1957; wheel arch rust, cooling-fan overheating, worn transmission linkages, and generally good parts availability. Its published price guidance is UK-market and in sterling, so it is not used for values here."
   },
   {
    "ref": "hagerty-uk-isetta",
@@ -157,7 +193,7 @@ export const seedBmwIsetta = {
    "publisher": "Goodwood Road & Racing",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "BMW's mid-1950s position: cash-starved, the 501 V8 failing to sell, capacity lost to East Germany, a Glas takeover considered plausible. Rivolta sold the licence widely - Velam, De Carlo, Romi - with BMW taking the largest agreement; gives 161,728 overall."
+   "notes": "BMW's mid-1950s position: cash-starved, the 501 V8 failing to sell, capacity lost to East Germany, a Glas takeover considered plausible. Rivolta sold the license widely - Velam, De Carlo, Romi - with BMW taking the largest agreement; gives 161,728 overall."
   },
   {
    "ref": "mauto-isetta300",
@@ -166,7 +202,7 @@ export const seedBmwIsetta = {
    "publisher": "Museo Nazionale dell'Automobile, Turin",
    "sourceType": "specialist",
    "reliability": "high",
-   "notes": "Iso of Bresso built the Isetta 1953-1956, concept by Preti and body by Raggi, BMW agreement secured late 1954; Iso engine given as a 198 cc single-cylinder two-stroke of 8 hp; BMW Isetta 300 at 297 cc, 13 hp at 5,200 rpm, 350 kg; 161,728 built."
+   "notes": "Iso of Bresso built the Isetta 1953-1956, concept by Preti and body by Raggi, BMW agreement secured late 1954; Iso engine given as a 198 cc single-cylinder two-stroke of 8 hp; BMW Isetta 300 at 297 cc, 13 hp at 5,200 rpm, 772 lb; 161,728 built."
   },
   {
    "ref": "bloodandcustard-brighton",
@@ -184,7 +220,7 @@ export const seedBmwIsetta = {
    "publisher": "Lane Motor Museum",
    "sourceType": "specialist",
    "reliability": "high",
-   "notes": "Museum record: built 1957-1959, 34,318 produced, 582 cc, 20 bhp, top speed 62 mph, two doors comprising the Isetta-derived front door and a right-side passenger door, wheelbase extended eight inches over the Isetta, price $1,398."
+   "notes": "Museum record: built 1957-1959, 34,318 produced, 582 cc, 20 hp, top speed 62 mph, two doors comprising the Isetta-derived front door and a right-side passenger door, wheelbase extended eight inches over the Isetta, price $1,398."
   },
   {
    "ref": "belowtheradar-600",
@@ -193,7 +229,7 @@ export const seedBmwIsetta = {
    "publisher": "Below the Radar",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "34,813 built 1957-1959, around 27,000 in 1958, about a dozen sold in Britain; 19.5 bhp at 4,000 rpm, 59 mph, 0-50 mph in 24.8 s; UK price £676 in 1959; BMW borrowed seven million deutschmarks against hopes of 400,000 sales a year and the 600 pushed it further into the red; the 700 sold 188,121 over six years."
+   "notes": "34,813 built 1957-1959, around 27,000 in 1958, about a dozen sold in Britain; 19.5 hp at 4,000 rpm, 59 mph, 0-50 mph in 24.8 s; BMW borrowed seven million deutschmarks against hopes of 400,000 sales a year and the 600 pushed it further into the red; the 700 sold 188,121 over six years."
   },
   {
    "ref": "microcar-restoration",
@@ -202,7 +238,7 @@ export const seedBmwIsetta = {
    "publisher": "microcar.org",
    "sourceType": "club-forum",
    "reliability": "low",
-   "notes": "Owner restoration account, used only for fault patterns and costs: crankshaft and aluminium connecting-rod assemblies break, steel preferred; o-rings between suspension casting and swing arms leak routinely; push-rod tube seals leak; battery box corrosion widespread; wheel cylinders freeze; no oil filter; parts spend near $4,500."
+   "notes": "Owner restoration account, used only for fault patterns and costs: crankshaft and aluminum connecting-rod assemblies break, steel preferred; o-rings between suspension casting and swing arms leak routinely; push-rod tube seals leak; battery box corrosion widespread; wheel cylinders freeze; no oil filter; parts spend near $4,500."
   },
   {
    "ref": "rm-hershey24-isetta300",
@@ -211,7 +247,7 @@ export const seedBmwIsetta = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 181, sold $27,500 hammer at Hershey, Pennsylvania, 9-10 October 2024. Chassis 570827, engine 570753, 298 cc. Catalogue dates BMW production April 1955 to May 1962 under a licence from Iso Autoveicoli SpA in 1954 and attributes the 298 cc engine to 1956 German legislation. Nearly $6,000 of recent work."
+   "notes": "Lot 181, sold $27,500 hammer at Hershey, Pennsylvania, 9-10 October 2024. Chassis 570827, engine 570753, 298 cc. Catalogue dates BMW production April 1955 to May 1962 under a license from Iso Autoveicoli SpA in 1954 and attributes the 298 cc engine to 1956 German legislation. Nearly $6,000 of recent work."
   },
   {
    "ref": "rm-daretodream24-isetta",
@@ -220,7 +256,7 @@ export const seedBmwIsetta = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 340, sold $58,800 at the Dare to Dream Collection sale, Toronto, 31 May - 1 June 2024 (dates confirmed from the sale page). Chassis A 11752, a UK-market car built by Isetta of Great Britain Ltd of Brighton, in Team Brecht livery, catalogued as likely one of very few UK examples in North America."
+   "notes": "Lot 340, sold $58,800 at the Dare to Dream Collection sale, Toronto, 31 May - 1 June 2024 (dates confirmed from the sale page). Chassis A 11752, a UK-market car built by Isetta of Great Britain Ltd of Brighton, in Team Brecht livery, cataloged as likely one of very few UK examples in North America."
   },
   {
    "ref": "rm-weiner13-isetta-export",
@@ -229,7 +265,7 @@ export const seedBmwIsetta = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 614, sold $40,250 at the Bruce Weiner Microcar Museum sale, Madison, Georgia, 15-16 February 2013 - a 200-vehicle no-reserve dispersal realising more than $9.1 million. Chassis 604283, three-wheeled Export model, 297 cc. Catalogue explains British rules required a motorcycle to have three wheels where German rules allowed four, and that BMW built its own three-wheeler for markets Brighton did not serve."
+   "notes": "Lot 614, sold $40,250 at the Bruce Weiner Microcar Museum sale, Madison, Georgia, 15-16 February 2013 - a 200-vehicle no-reserve dispersal realizing more than $9.1 million. Chassis 604283, three-wheeled Export model, 297 cc. Catalogue explains British rules required a motorcycle to have three wheels where German rules allowed four, and that BMW built its own three-wheeler for markets Brighton did not serve."
   },
   {
    "ref": "rm-mo24-bmw600",
@@ -238,7 +274,7 @@ export const seedBmwIsetta = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 282, sold $73,920 at Monterey, California, 15-17 August 2024. Chassis 133963, engine 137360, catalogued as BMW's 'Isetta Limousine' with a 582 cc flat-twin rated at 26 hp - higher than every other source consulted. 57,090 km; restoration completed 2024 with over 100 invoices totalling close to $70,000."
+   "notes": "Lot 282, sold $73,920 at Monterey, California, 15-17 August 2024. Chassis 133963, engine 137360, cataloged as BMW's 'Isetta Limousine' with a 582 cc flat-twin rated at 26 hp - higher than every other source consulted. 35,474 miles; restoration completed 2024 with over 100 invoices totaling close to $70,000."
   }
  ],
  "claims": [
@@ -260,14 +296,14 @@ export const seedBmwIsetta = {
   },
   {
    "section": "history",
-   "claimText": "BMW took its Isetta licence from Iso in 1954 while cash-starved, with the 501 V8 selling poorly and a Glas takeover regarded as plausible, buying the complete body tooling as well as the rights, and replaced Iso's two-stroke with the air-cooled four-stroke single from the R25 at 247 cc and 12 PS (8.8 kW) at 5,800 rpm.",
+   "claimText": "BMW took its Isetta license from Iso in 1954 while cash-starved, with the 501 V8 selling poorly and a Glas takeover regarded as plausible, buying the complete body tooling as well as the rights, and replaced Iso's two-stroke with the air-cooled four-stroke single from the R25 at 247 cc and 12 hp (12 hp) at 5,800 rpm.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["goodwood-anorak", "bmw-press-50years", "wikipedia-isetta", "bmw-classic-isetta", "rm-hershey24-isetta300"]
   },
   {
    "section": "specs",
-   "claimText": "The Isetta 300's engine measures 72 by 73 mm for 297 cc and gives 13 PS (9.6 kW) at 5,200 rpm with 18.4 Nm at 4,600 rpm on 7.0:1 compression raised from 6.8:1; the enlargement followed a change in German licensing law rather than a demand for speed, the claimed 85 km/h did not change, and from October 1956 sliding side windows replaced the bubbles, with the 1957 Export adding a fixed roof, revised chassis and optional right-hand drive.",
+   "claimText": "The Isetta 300's engine measures 72 by 73 mm for 297 cc and gives 13 hp (13 hp) at 5,200 rpm with 14 lb-ft at 4,600 rpm on 7.0:1 compression raised from 6.8:1; the enlargement followed a change in German licensing law rather than a demand for speed, the claimed 53 mph did not change, and from October 1956 sliding side windows replaced the bubbles, with the 1957 Export adding a fixed roof, revised chassis and optional right-hand drive.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["wikipedia-isetta", "mauto-isetta300", "rm-hershey24-isetta300", "octane-guide", "bmw-press-50years"]
@@ -316,7 +352,7 @@ export const seedBmwIsetta = {
    "confidence": "low",
    "status": "disputed",
    "sourceRefs": ["wikipedia-bmw-600", "belowtheradar-600", "lane-bmw600", "rm-mo24-bmw600", "octane-guide"],
-   "conflictNote": "Wikipedia states 19.5 hp (14.3 kW) at 4,500 rpm and Below the Radar 19.5 bhp at 4,000 rpm. Lane Motor Museum and Octane give 20 bhp. RM Sotheby's Monterey 2024 catalogue rates the same engine at 26 hp, and quoted top speeds vary between 59 and 65 mph. Nothing consulted here reconciles the range."
+   "conflictNote": "Wikipedia states 19.5 hp at 4,500 rpm and Below the Radar 19.5 hp at 4,000 rpm. Lane Motor Museum and Octane give 20 hp. RM Sotheby's Monterey 2024 catalog rates the same engine at 26 hp, and quoted top speeds vary between 59 and 65 mph. Nothing consulted here reconciles the range."
   },
   {
    "section": "production",
@@ -335,10 +371,32 @@ export const seedBmwIsetta = {
   },
   {
    "section": "market",
-   "claimText": "As of August 2026 classic.com records a BMW Isetta line benchmark of $31,450 across eleven cars listed for sale, with variant benchmarks of $20,966 for the 250, $31,061 for the 300 and $32,073 for the 600, an Isetta 300 average sale of $31,239 on a rising trend, and a recorded spread from $7,000 in February 2024 to $56,500 in July 2026.",
+   "claimText": "As of September 2026 classic.com records a BMW Isetta line benchmark of $31,450 across eleven cars listed for sale, with a lowest recorded sale of $7,000 on 3 February 2024 and a high asking price of $56,500 for a 1957 car in Medina, Ohio.",
    "confidence": "high",
    "status": "verified",
-   "sourceRefs": ["classic-isetta", "classic-isetta-300"]
+   "sourceRefs": ["classic-isetta"]
+  },
+  {
+   "section": "market",
+   "claimText": "As of September 2026 all three classic.com sub-markets read downward: the Isetta 250 at a $20,966 benchmark on a $24,229 average sale, the Isetta 300 at $30,852 on a $31,289 average sale, and the BMW 600 at $32,073 on a $34,967 average sale with nothing listed for sale.",
+   "confidence": "high",
+   "status": "verified",
+   "sourceRefs": ["classic-isetta-250", "classic-isetta-300", "classic-isetta-600"]
+  },
+  {
+   "section": "market",
+   "claimText": "The line benchmark classic.com shows for the 300 sub-market on its BMW Isetta landing page and the benchmark on the Isetta 300 page itself do not agree as of September 2026, so the 300 figure is stated from the model page.",
+   "confidence": "medium",
+   "status": "disputed",
+   "sourceRefs": ["classic-isetta", "classic-isetta-300"],
+   "conflictNote": "The classic.com BMW Isetta landing page lists the 300 sub-market benchmark at $31,061 as of September 2026, while the dedicated Isetta 300 market page gives $30,852 on a downward trend for the same date. Neither page explains the difference, and nothing consulted here reconciles the two."
+  },
+  {
+   "section": "market",
+   "claimText": "Hagerty's US market piece prices the Isetta by condition grade rather than by benchmark: a median of $38,500 for a #2 Excellent car against a January 2017 peak of $44,500, about $29,300 for a #3 Good 1957-62 300 and the high $25,000s for a #3 Good 1955-56 250, read in September 2026.",
+   "confidence": "medium",
+   "status": "verified",
+   "sourceRefs": ["hagerty-us-isetta"]
   },
   {
    "section": "market",
@@ -349,10 +407,17 @@ export const seedBmwIsetta = {
   },
   {
    "section": "problems",
-   "claimText": "The crankshaft and aluminium connecting-rod assembly is the engine's known weak point and is commonly replaced with a steel item; push-rod tube seals and the o-rings between suspension castings and swing arms leak routinely, there is no oil filter, corrosion concentrates in the wheelarches and battery box, wheel cylinders seize on stored cars, and a failed cooling fan causes overheating.",
+   "claimText": "The crankshaft and aluminum connecting-rod assembly is the engine's known weak point and is commonly replaced with a steel item; push-rod tube seals and the o-rings between suspension castings and swing arms leak routinely, there is no oil filter, corrosion concentrates in the wheel arches and battery box, wheel cylinders seize on stored cars, and a failed cooling fan causes overheating.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": ["microcar-restoration", "octane-guide"]
+  },
+  {
+   "section": "problems",
+   "claimText": "Consumable parts are available in the United States at modest cost, with microcar.org's supplier directory quoting stainless brake hoses at $25 each, a steering damper at around $16 and a replacement windshield at just under $300 before crating and shipping, alongside named American shops for engine, transmission, chain-drive and brake-cylinder work.",
+   "confidence": "low",
+   "status": "unverified",
+   "sourceRefs": ["microcar-parts", "octane-guide"]
   }
  ]
 };

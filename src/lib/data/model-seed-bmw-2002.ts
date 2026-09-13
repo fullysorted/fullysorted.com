@@ -12,19 +12,19 @@ export const seedBmw2002 = {
  "yearStart": 1968,
  "yearEnd": 1976,
  "bodyStyles": [
-  "2-door saloon (the standard 02 shell)",
+  "2-door sedan (the standard 02 shell)",
   "3-door Touring hatchback (1971-1974)",
   "2-door Baur convertible (to 1971) and targa-top cabrio coach (1971-1975)"
  ],
  "engines": [
-  "1,990 cc M10 SOHC inline-four, iron block and alloy head, single Solex carburettor, 100 PS (74 kW) DIN in the 2002; Car and Driver quoted 114 hp at 5,800 rpm for the 1968 US car",
-  "1,990 cc M10 SOHC inline-four, twin Solex carburettors, 120 PS (88 kW) in the 2002 ti, never federalised",
-  "1,990 cc M10 SOHC inline-four, Kugelfischer mechanical injection, 130 bhp at 5,800 rpm in the 2002 tii",
-  "1,990 cc M31 SOHC inline-four, Kugelfischer injection with boost enrichment and a KKK turbocharger, 170 bhp at 5,800 rpm and 240 Nm (177 lb ft) at 4,000 rpm in the 2002 turbo",
-  "1,573 cc M10 SOHC inline-four, 85 PS at 5,700 rpm in the 1600-2/1602"
+  "1,990 cc M10 SOHC inline-four, iron block and alloy head, single Solex carburettor, 99 hp (99 hp) DIN in the 2002; Car and Driver quoted 114 hp at 5,800 rpm for the 1968 US car",
+  "1,990 cc M10 SOHC inline-four, twin Solex carburettors, 118 hp (118 hp) in the 2002 ti, never federalized",
+  "1,990 cc M10 SOHC inline-four, Kugelfischer mechanical injection, 130 hp at 5,800 rpm in the 2002 tii",
+  "1,990 cc M31 SOHC inline-four, Kugelfischer injection with boost enrichment and a KKK turbocharger, 170 hp at 5,800 rpm and 177 lb-ft at 4,000 rpm in the 2002 turbo",
+  "1,573 cc M10 SOHC inline-four, 84 hp at 5,700 rpm in the 1600-2/1602"
  ],
  "productionTotal": null,
- "productionNotes": "No single 2002 total is asserted, because the published figures disagree by roughly sixty thousand cars. Wikipedia's model table gives 339,092 2002 saloons for 1968-1975 inside an 02 Series total of 837,038 built between 1966 and 1977; Silodrome's history states that almost 400,000 2002s were built over the same span. Neither shows its working.\n\nThe tii sub-totals are firmer but not uniform. Wikipedia gives 38,703 tii saloons and 5,783 tii Tourings. The UK 02 register publishes a breakdown summing to 44,478 tii of all types - 27,572 left-hand-drive, 7,447 United States and 3,678 right-hand-drive saloons, 5,058 2000 tii and 723 2002 tii Tourings - putting the saloon count at 38,697, six below Wikipedia; Classic Register repeats 44,478. Curbside Classic states roughly 27,500 in all, with over 22,500 before the August 1973 redesign, matching neither. BMW's own tii page gives no number.\n\nThe turbo is the most quoted and least settled: 1,672 from Wikipedia, Hagerty, classic.com, Silodrome, Classic & Sports Car and Supercar Nostalgia; about 1,671 from the BMW 2002 FAQ; 1,660 from RM Sotheby's Miami catalogue. Recurring without contradiction, though each on a single source: 16,448 2002 ti before the tii replaced it in April 1971, about 200 full factory cabriolets in 1971 at VINs 2790001-2790200 within an 02 cabriolet run of 4,199, and roughly 750 cars assembled in Montevideo.",
+ "productionNotes": "No single 2002 total is asserted, because the published figures disagree by roughly sixty thousand cars. Wikipedia's model table gives 339,092 2002 sedans for 1968-1975 inside an 02 Series total of 837,038 built between 1966 and 1977; Silodrome's history states that almost 400,000 2002s were built over the same span. Neither shows its working.\n\nThe tii sub-totals are firmer but not uniform. Wikipedia gives 38,703 tii sedans and 5,783 tii Tourings. The UK 02 register publishes a breakdown summing to 44,478 tii of all types - 27,572 left-hand-drive, 7,447 United States and 3,678 right-hand-drive sedans, 5,058 2000 tii and 723 2002 tii Tourings - putting the sedan count at 38,697, six below Wikipedia; Classic Register repeats 44,478. Curbside Classic states roughly 27,500 in all, with over 22,500 before the August 1973 redesign, matching neither. BMW's own tii page gives no number.\n\nThe turbo is the most quoted and least settled: 1,672 from Wikipedia, Hagerty, classic.com, Silodrome, Classic & Sports Car and Supercar Nostalgia; about 1,671 from the BMW 2002 FAQ; 1,660 from RM Sotheby's Miami catalogue. Recurring without contradiction, though each on a single source: 16,448 2002 ti before the tii replaced it in April 1971, about 200 full factory cabriolets in 1971 at VINs 2790001-2790200 within an 02 cabriolet run of 4,199, and roughly 750 cars assembled in Montevideo.",
  "notableTrims": [
   {
    "name": "2002 round tail (1968-1973)",
@@ -36,19 +36,19 @@ export const seedBmw2002 = {
   },
   {
    "name": "2002 ti (1968-1971)",
-   "note": "Twin-Solex 120 PS car, never federalised because the related 1600ti could not meet US emissions law. Replaced by the tii in April 1971. Easy to fabricate from a base car, so paperwork carries the value."
+   "note": "Twin-Solex 118 hp car, never federalized because the related 1600ti could not meet US emissions law. Replaced by the tii in April 1971. Easy to fabricate from a base car, so paperwork carries the value."
   },
   {
    "name": "2002 tii (1971-1975)",
-   "note": "Kugelfischer injection, 130 bhp at 5,800 rpm, 46 mm inlet valves, 256 mm front discs, boxed rear trailing arms and wider wheels. BMW called it the wolf in sheep's clothing. The strongest sustained demand short of the turbo."
+   "note": "Kugelfischer injection, 130 hp at 5,800 rpm, 46 mm inlet valves, 256 mm front discs, boxed rear trailing arms and wider wheels. BMW called it the wolf in sheep's clothing. The strongest sustained demand short of the turbo."
   },
   {
    "name": "2002 turbo (1973-1975)",
-   "note": "By BMW's account Europe's first series-produced turbocharged car: KKK turbocharger, 170 bhp, riveted arch extensions, front air dam, ZF limited-slip differential. Left-hand drive only, in Chamonix White or Polaris Silver."
+   "note": "By BMW's account Europe's first series-produced turbocharged car: KKK turbocharger, 170 hp, riveted arch extensions, front air dam, ZF limited-slip differential. Left-hand drive only, in Chamonix White or Polaris Silver."
   },
   {
    "name": "2002 Touring and Baur cabriolet",
-   "note": "The three-door Touring (1971-1974) was never sold in the United States and kept round rear lamps after the saloon went square. Baur built full convertibles to 1971, then a targa-top cabrio coach; rust in a converted shell is worse again."
+   "note": "The three-door Touring (1971-1974) was never sold in the United States and kept round rear lamps after the sedan went square. Baur built full convertibles to 1971, then a targa-top cabrio coach; rust in a converted shell is worse again."
   }
  ],
  "specs": {
@@ -56,22 +56,22 @@ export const seedBmw2002 = {
   "chassis": "Unitary steel monocoque, shortened New Class floorpan, 2,500 mm (98.4 in) wheelbase",
   "engine": "1,990 cc M10 SOHC inline-four, iron block and alloy head; type M31 when turbocharged",
   "fuel_systems": "Single Solex (2002), twin Solex (ti), Kugelfischer injection (tii), the same with a KKK turbocharger (turbo)",
-  "power": "100 PS in the 2002, 120 PS in the ti, 130 bhp at 5,800 rpm in the tii, 170 bhp at 5,800 rpm in the turbo - manufacturer DIN claims",
-  "torque": "240 Nm (177 lb ft) at 4,000 rpm for the turbo; 130 lb ft for the tii per Hagerty",
+  "power": "99 hp in the 2002, 118 hp in the ti, 130 hp at 5,800 rpm in the tii, 170 hp at 5,800 rpm in the turbo - manufacturer DIN claims",
+  "torque": "177 lb-ft at 4,000 rpm for the turbo; 130 lb ft for the tii per Hagerty",
   "compression": "9.5:1 for the tii per Classic & Sports Car and Supercar Nostalgia; the turbo figure is contested",
   "transmission": "Four-speed Getrag manual or automatic from 1969; optional five-speed dogleg Getrag on the turbo",
   "suspension": "MacPherson struts front, semi-trailing arms rear; 20 mm front and 16 mm rear anti-roll bars on the turbo",
   "brakes": "Servo front discs and rear drums; 256 mm front discs on the tii; four-piston front calipers on the turbo",
-  "weight": "940-1,080 kg kerb per Wikipedia; the turbo at 1,080 kg per Supercar Nostalgia and 1,054 kg (2,324 lb) per Silodrome",
-  "acceleration": "8.3 s to 60 mph for the tii per the UK 02 register; the turbo about 7 s to 100 km/h per Supercar Nostalgia and 7.5 s to 60 mph per Classic & Sports Car",
-  "top_speed_claimed": "190 km/h (118 mph) for the tii per BMW against 185 km/h in Wikipedia's table; 211 km/h (131 mph) for the turbo - manufacturer claims",
-  "price_when_new": "DM 12,765 for the tii, DM 18,720 for the turbo; Car and Driver quoted $2,850 for a US 2002 in April 1968"
+  "weight": "2,072-2,381 lb curb per Wikipedia; the turbo at 2,381 lb per Supercar Nostalgia and 2,324 lb per Silodrome",
+  "acceleration": "8.3 s to 60 mph for the tii per the UK 02 register; the turbo about 7 s to 62 mph per Supercar Nostalgia and 7.5 s to 60 mph per Classic & Sports Car",
+  "top_speed_claimed": "118 mph for the tii per BMW against 115 mph in Wikipedia's table; 131 mph for the turbo - manufacturer claims",
+  "price_when_new": "Car and Driver quoted $2,850 for a US 2002 in April 1968; DM 12,765 for the tii and DM 18,720 for the turbo in Germany"
  },
- "summary": "The BMW 2002 began as an improvisation. Alex von Falkenhausen, who ran engine development, and Helmut Werner Bonsch, who ran product planning, had each quietly fitted the two-litre M10 from the 2000 saloon into his own 1602, discovered the coincidence and put the case to the board; the American importer Max Hoffman wanted more power than the 1600ti, which could not meet United States emissions law, and the larger engine could. What emerged in 1968 was a plain two-door saloon on a 2,500 mm wheelbase with a single-carburettor 100 PS engine, and within two model years it had changed BMW's standing in America. Above it sat the twin-carburettor ti, the Kugelfischer-injected tii and, from the 1973 Frankfurt show, the 2002 turbo, which BMW records as the first series-produced European car with an exhaust turbocharger. Round rear lamps gave way to square ones in September 1973, a distinction the market still prices.",
- "history": "## Two Engineers and an Importer\nThe 1600-2 was announced in March 1966 on a shortened New Class floorpan with a 2,500 mm wheelbase, the '-2' denoting two doors: light, upright, struts at the front and semi-trailing arms at the back, and not aimed at America. In mid-1967 Alex von Falkenhausen and Helmut Werner Bonsch each fitted the 1,990 cc M10 from the 2000 saloon into his own 1602, found the other had done the same, and took a joint proposal to the board. The commercial case came from New York: Max Hoffman wanted a faster car, the 1600ti could not pass United States emissions rules, and the two-litre already could.\n\n## Turn Your Hymnals to 2002\nIn April 1968 Car and Driver published David E. Davis Jr's review under that title, and BMW of North America still credits the article, read by roughly a million subscribers, with changing the company's American trajectory. Davis quoted $2,850, 114 hp at 5,800 rpm, sixty in second and eighty in third, and a top speed 'a shade over a hundred'. The 114 hp does not match BMW's 100 PS DIN rating and the piece names no standard, so the two should not be read against each other. BMW's American sales tell the rest: 1,253 cars in 1966, 4,564 in 1967, 9,172 in 1968 and 11,638 in 1969, the last limited by what Munich could build rather than by demand.\n\n## ti, tii and the Kugelfischer Pump\nThe sporting versions arrived in sequence. The twin-Solex 2002 ti made 120 PS from 1968 and was never federalised. In April 1971 the tii replaced it, using the Kugelfischer mechanical pump already fitted to the 2000 tii and taking 130 bhp at 5,800 rpm, with 46 mm inlet valves, 256 mm front discs, boxed rear trailing arms and half-inch wider wheels. BMW priced it at DM 12,765, some DM 2,000 above a standard car, and called it the wolf in sheep's clothing. Motor Sport, driving a Group 1 tii in July 1972, recorded 143 bhp from a prepared engine - at least 13 bhp over the production DIN rating - found power falling away beyond 6,000 rpm, and reported a car that would run rings round the opposition on bumpy circuits while kicking its rear wheels up under provocation.\n\n## Roundies, Squares and the Emissions Years\nThe 02 changed twice. A 1971 revision brought wraparound bumpers, revised rear lamps and a two-piece instrument cluster. The larger break came from September 1973, when a new rear panel carried square lamps with built-in reflectors; American cars took the change for the 1974 model year, and the Touring kept round lamps to the end. Alongside ran a slow strangulation of the United States engine: EGR replaced the air pump mid-1972, 1975 brought a thermal reactor, air pump, EGR and lower compression together, and 1976 deleted the reactor for a cylinder head from the coming E21.\n\n## The Turbo and the Oil Crisis\nBMW showed the 2002 turbo at Frankfurt in September 1973 and records it as the first series-produced European car with an exhaust turbocharger, the KKK unit adding forty horsepower to the tii's engine for 170 bhp and a claimed 211 km/h. It had riveted arch extensions, a front air dam, a ZF limited-slip differential and, at first, 'turbo' in mirror script across the spoiler so that drivers ahead would read it correctly. The fuel crisis broke over the launch, the script was deleted after objection, and BMW concedes the car remained marginal. Left-hand drive only, because the exhaust manifold left no room for a right-hand column, it was gone by the middle of 1975.",
- "marketNotes": "As of August 2026, classic.com's 2002 page shows how completely specification governs price: the base 2002 benchmarks at $24,600, the tii coupe at $35,325 and the turbo at $118,720, against a page-level average sale of $32,659 from 29 listings. The floor is genuinely low - the cheapest recorded 2002 is $1,750 for a 1976 project on 18 June 2023 - and the ceiling a 1974 turbo advertised at $225,000 in July 2026. The tii page, as of August 2026, gives a benchmark of $36,139 from eleven listings, original cars between $35,325 and $38,947 and modified cars from $8,802 to $74,000, with a lowest recorded sale of $2,600 in May 2025. Turbo money sits in a separate and rising market: as of August 2026 classic.com records an average sale of $111,972 against the $118,720 benchmark, with results of EUR 126,500 in October 2025, $127,000 in December 2025, $124,000 in February 2026 and $155,500 in March 2026, against a low of $40,000 in December 2024. RM Sotheby's sold chassis 4291234, a 1974 turbo showing 62,834 km, for $140,000 at Miami on 28 February 2025, and chassis 4291147 for EUR 126,500 at Munich in October 2025; both are the house's published results rather than hammer prices.",
- "whatToLookFor": "Structure first, and from underneath. The rear shock towers are the fault that ends cars: they rot from inside the boot and take the upper spring perch with them. Check the front floors, the frame rails from the front crossmembers back to the floor and again under the fuel tank, the rockers, which are structural rather than cosmetic here, and the upper corners of the front wings behind the indicators. Fresh undercoating on a car being sold is a question, not a reassurance.\n\nThen establish what the car is. Round or square rear lamps sets the year band and a large part of the price. A ti or tii is worth confirming against chassis and engine numbers rather than badges, since the mechanical difference from a base car is modest and the money difference is not. A turbo should be left-hand drive and originally Chamonix White or Polaris Silver; RM Sotheby's disclosed on one Munich car that earlier bodywork had removed the original chassis stamp, the sort of thing that surfaces only in a catalogue addendum.\n\nMechanically, blue smoke on the overrun points at valve guides, second-gear synchromesh is the gearbox's weak point, and the driveshaft flex disc and centre bearing are consumables. On a tii the Kugelfischer pump governs everything: the Tii Register publishes BMW North America's dealer manual for the system precisely because a rebuild still needs a specialist with the right tools and test equipment, and there are few of them.",
- "commonProblems": "Corrosion dominates and is the expensive fault: rear shock towers, front floors, frame rails fore and aft, rockers, front wing corners and the spare wheel well. A shell that has lost its shock towers is a restoration project regardless of how the engine sounds. Worn valve guides show as blue smoke on deceleration, and oil weeps from the main seals, valve cover, distributor and sump are close to universal. Solex carburettors give trouble; on the tii the Kugelfischer pump can need a rebuild only a handful of specialists will attempt. The four-speed gearbox loses second-gear synchromesh and leaks from its shaft seals, behind a flex disc that cracks and a centre support bearing that sags. Emissions-era United States cars carry their own driveability problems, the 1975 combination of thermal reactor, air pump, EGR and reduced compression being the least loved specification of the run. The rest are small but tedious: heater blowers that need the dashboard out, cracked dash tops, expensive sunroof cables, and air-conditioning compressors Hagerty describes as beyond saving.",
+ "summary": "The BMW 2002 began as an improvisation. Alex von Falkenhausen, who ran engine development, and Helmut Werner Bonsch, who ran product planning, had each quietly fitted the two-liter M10 from the 2000 sedan into his own 1602, discovered the coincidence and put the case to the board; the American importer Max Hoffman wanted more power than the 1600ti, which could not meet United States emissions law, and the larger engine could. What emerged in 1968 was a plain two-door sedan on a 2,500 mm wheelbase with a single-carburettor 99 hp engine, and within two model years it had changed BMW's standing in America. Above it sat the twin-carburettor ti, the Kugelfischer-injected tii and, from the 1973 Frankfurt show, the 2002 turbo, which BMW records as the first series-produced European car with an exhaust turbocharger. Round rear lamps gave way to square ones in September 1973, a distinction the market still prices.",
+ "history": "## Two Engineers and an Importer\nThe 1600-2 was announced in March 1966 on a shortened New Class floorpan with a 2,500 mm wheelbase, the '-2' denoting two doors: light, upright, struts at the front and semi-trailing arms at the back, and not aimed at America. In mid-1967 Alex von Falkenhausen and Helmut Werner Bonsch each fitted the 1,990 cc M10 from the 2000 sedan into his own 1602, found the other had done the same, and took a joint proposal to the board. The commercial case came from New York: Max Hoffman wanted a faster car, the 1600ti could not pass United States emissions rules, and the two-liter already could.\n\n## Turn Your Hymnals to 2002\nIn April 1968 Car and Driver published David E. Davis Jr's review under that title, and BMW of North America still credits the article, read by roughly a million subscribers, with changing the company's American trajectory. Davis quoted $2,850, 114 hp at 5,800 rpm, sixty in second and eighty in third, and a top speed 'a shade over a hundred'. The 114 hp does not match BMW's 99 hp DIN rating and the piece names no standard, so the two should not be read against each other. BMW's American sales tell the rest: 1,253 cars in 1966, 4,564 in 1967, 9,172 in 1968 and 11,638 in 1969, the last limited by what Munich could build rather than by demand.\n\n## ti, tii and the Kugelfischer Pump\nThe sporting versions arrived in sequence. The twin-Solex 2002 ti made 118 hp from 1968 and was never federalized. In April 1971 the tii replaced it, using the Kugelfischer mechanical pump already fitted to the 2000 tii and taking 130 hp at 5,800 rpm, with 46 mm inlet valves, 256 mm front discs, boxed rear trailing arms and half-inch wider wheels. BMW priced it at DM 12,765, some DM 2,000 above a standard car, and called it the wolf in sheep's clothing. Motor Sport, driving a Group 1 tii in July 1972, recorded 143 hp from a prepared engine - at least 13 hp over the production DIN rating - found power falling away beyond 6,000 rpm, and reported a car that would run rings round the opposition on bumpy circuits while kicking its rear wheels up under provocation.\n\n## Roundies, Squares and the Emissions Years\nThe 02 changed twice. A 1971 revision brought wraparound bumpers, revised rear lamps and a two-piece instrument cluster. The larger break came from September 1973, when a new rear panel carried square lamps with built-in reflectors; American cars took the change for the 1974 model year, and the Touring kept round lamps to the end. Alongside ran a slow strangulation of the United States engine: EGR replaced the air pump mid-1972, 1975 brought a thermal reactor, air pump, EGR and lower compression together, and 1976 deleted the reactor for a cylinder head from the coming E21.\n\n## The Turbo and the Oil Crisis\nBMW showed the 2002 turbo at Frankfurt in September 1973 and records it as the first series-produced European car with an exhaust turbocharger, the KKK unit adding forty horsepower to the tii's engine for 170 hp and a claimed 131 mph. It had riveted arch extensions, a front air dam, a ZF limited-slip differential and, at first, 'turbo' in mirror script across the spoiler so that drivers ahead would read it correctly. The fuel crisis broke over the launch, the script was deleted after objection, and BMW concedes the car remained marginal. Left-hand drive only, because the exhaust manifold left no room for a right-hand column, it was gone by the middle of 1975.",
+ "marketNotes": "As of August 2026, classic.com's 2002 page shows how completely specification governs price: the base 2002 benchmarks at $24,600, the tii coupe at $35,325 and the turbo at $118,720, against a page-level average sale of $32,659 from 29 listings. The floor is genuinely low - the cheapest recorded 2002 is $1,750 for a 1976 project on 18 June 2023 - and the ceiling a 1974 turbo advertised at $225,000 in July 2026. The tii page, as of August 2026, gives a benchmark of $36,139 from eleven listings, original cars between $35,325 and $38,947 and modified cars from $8,802 to $74,000, with a lowest recorded sale of $2,600 in May 2025. Turbo money sits in a separate and rising market: as of August 2026 classic.com records an average sale of $111,972 against the $118,720 benchmark, with results of EUR 126,500 in October 2025, $127,000 in December 2025, $124,000 in February 2026 and $155,500 in March 2026, against a low of $40,000 in December 2024. RM Sotheby's sold chassis 4291234, a 1974 turbo showing 39,043 miles, for $140,000 at Miami on 28 February 2025, and chassis 4291147 for EUR 126,500 at Munich in October 2025; both are the house's published results rather than hammer prices.",
+ "whatToLookFor": "Structure first, and from underneath. The rear shock towers are the fault that ends cars: they rot from inside the trunk and take the upper spring perch with them. Check the front floors, the frame rails from the front crossmembers back to the floor and again under the fuel tank, the rockers, which are structural rather than cosmetic here, and the upper corners of the front wings behind the indicators. Fresh undercoating on a car being sold is a question, not a reassurance.\n\nThen establish what the car is. Round or square rear lamps sets the year band and a large part of the price. A ti or tii is worth confirming against chassis and engine numbers rather than badges, since the mechanical difference from a base car is modest and the money difference is not. A turbo should be left-hand drive and originally Chamonix White or Polaris Silver; RM Sotheby's disclosed on one Munich car that earlier bodywork had removed the original chassis stamp, the sort of thing that surfaces only in a catalogue addendum.\n\nMechanically, blue smoke on the overrun points at valve guides, second-gear synchromesh is the gearbox's weak point, and the driveshaft flex disc and center bearing are consumables. On a tii the Kugelfischer pump governs everything: the Tii Register publishes BMW North America's dealer manual for the system precisely because a rebuild still needs a specialist with the right tools and test equipment, and there are few of them.",
+ "commonProblems": "Corrosion dominates and is the expensive fault: rear shock towers, front floors, frame rails fore and aft, rockers, front wing corners and the spare wheel well. A shell that has lost its shock towers is a restoration project regardless of how the engine sounds. Worn valve guides show as blue smoke on deceleration, and oil weeps from the main seals, valve cover, distributor and sump are close to universal. Solex carburettors give trouble; on the tii the Kugelfischer pump can need a rebuild only a handful of specialists will attempt. The four-speed gearbox loses second-gear synchromesh and leaks from its shaft seals, behind a flex disc that cracks and a center support bearing that sags. Emissions-era United States cars carry their own driveability problems, the 1975 combination of thermal reactor, air pump, EGR and reduced compression being the least loved specification of the run. The rest are small but tedious: heater blowers that need the dashboard out, cracked dash tops, expensive sunroof cables, and air-conditioning compressors Hagerty describes as beyond saving.",
  "valueTrajectory": "The 2002 was cheap for a long time. Hagerty's buyer's guide describes pricing as flat until 2015, after which base round-tail cars rose about 45 per cent and tii values by between 143 and 160 per cent, the tii adding a further 55 per cent over the two years before the guide was written before cooling towards single-digit annual growth. The same guide records a knock-on at the top: turbo prices climbed far enough that buyers priced out of them moved to the tii, which is much of why tii money separated from base-car money rather than rising with it. As of August 2026 that stratification is visible in classic.com's figures, where a base 2002 benchmarks at $24,600 against $35,325 for a tii coupe and $118,720 for a turbo, the last trending upward. The gap that matters most now is not between variants but between a sound shell and a rusty one, because replacing shock towers and floors has not become cheaper.",
  "overallConfidence": "high",
  "sources": [
@@ -82,7 +82,7 @@ export const seedBmw2002 = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "02 Series 837,038 (1966-77); 2002 339,092; tii 38,703; turbo 1,672; Touring 15,969; tii Touring 5,783; cabriolet 4,199; 2,500 mm wheelbase; 940-1,080 kg; tii 185 km/h; ~750 cars built in Montevideo; E21 from 1975."
+   "notes": "02 Series 837,038 (1966-77); 2002 339,092; tii 38,703; turbo 1,672; Touring 15,969; tii Touring 5,783; cabriolet 4,199; 2,500 mm wheelbase; 2,072-2,381 lb; tii 115 mph; ~750 cars built in Montevideo; E21 from 1975."
   },
   {
    "ref": "bmwgroup-classic-tii",
@@ -91,7 +91,7 @@ export const seedBmw2002 = {
    "publisher": "BMW Group Classic",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "BMW's tii record: April 1971 to October 1975, 130 bhp at 5,800 rpm, 190 km/h (118 mph), DM 12,765, about DM 2,000 over a standard car, 'nearly 40,000 customers'. No production total."
+   "notes": "BMW's tii record: April 1971 to October 1975, 130 hp at 5,800 rpm, 118 mph, DM 12,765, about DM 2,000 over a standard car, 'nearly 40,000 customers'. No production total."
   },
   {
    "ref": "bmwgroup-classic-turbo",
@@ -100,7 +100,7 @@ export const seedBmw2002 = {
    "publisher": "BMW Group Classic",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "BMW's turbo record: October 1973 to June 1975, IAA Frankfurt launch September 1973, 170 bhp at 5,800 rpm, 211 km/h, DM 18,720, first exhaust turbocharger in a European production car, worth 40 hp over the tii, marginal in the oil crisis."
+   "notes": "BMW's turbo record: October 1973 to June 1975, IAA Frankfurt launch September 1973, 170 hp at 5,800 rpm, 131 mph, DM 18,720, first exhaust turbocharger in a European production car, worth 40 hp over the tii, marginal in the oil crisis."
   },
   {
    "ref": "bmwna-hymnals",
@@ -127,7 +127,7 @@ export const seedBmw2002 = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "July 1972 period test: a Group 1 tii at 143 bhp at 5,800 rpm, at least 13 bhp over the DIN rating, indicated 112 mph at Silverstone, power falling away above 6,000 rpm, tail-out handling."
+   "notes": "July 1972 period test: a Group 1 tii at 143 hp at 5,800 rpm, at least 13 hp over the DIN rating, indicated 112 mph at Silverstone, power falling away above 6,000 rpm, tail-out handling."
   },
   {
    "ref": "hagerty-2002-guide",
@@ -145,7 +145,7 @@ export const seedBmw2002 = {
    "publisher": "Classic & Sports Car",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Turbo: 1,672 in a ten-month run, Chamonix white or Polaris silver, compression 8.5:1 against the tii's 9.5:1, KKK boost 1.0-1.2 bar, 170 bhp and 178 lb ft at 4,000 rpm, 7.5 s to 60 mph, 131 mph, DM 18,720."
+   "notes": "Turbo: 1,672 in a ten-month run, Chamonix white or Polaris silver, compression 8.5:1 against the tii's 9.5:1, KKK boost 1.0-1.2 bar, 170 hp and 178 lb ft at 4,000 rpm, 7.5 s to 60 mph, 131 mph, DM 18,720."
   },
   {
    "ref": "curbside-tii-outtake",
@@ -172,7 +172,7 @@ export const seedBmw2002 = {
    "publisher": "Silodrome",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Turbo: 1,672 built, 1973 Frankfurt debut, KKK turbocharger with Kugelfischer injection, compression 6.9:1, 170 hp at 5,800 rpm, 177 lb ft, 2,324 lb (1,054 kg), reversed script later dropped."
+   "notes": "Turbo: 1,672 built, 1973 Frankfurt debut, KKK turbocharger with Kugelfischer injection, compression 6.9:1, 170 hp at 5,800 rpm, 177 lb ft, 2,324 lb, reversed script later dropped."
   },
   {
    "ref": "supercarnostalgia-turbo",
@@ -181,7 +181,7 @@ export const seedBmw2002 = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Turbo: 1,672 including twelve pre-production cars in late 1973, series build January 1974 to July 1975; type M31; compression cut from 9.5:1 to 6.9:1; KKK BLD at 0.55 bar; 170 bhp, 177 lb ft; 1,080 kg; about 7 s to 100 km/h; five-speed dogleg option; ZF limited-slip differential; left-hand drive only."
+   "notes": "Turbo: 1,672 including twelve pre-production cars in late 1973, series build January 1974 to July 1975; type M31; compression cut from 9.5:1 to 6.9:1; KKK BLD at 0.55 bar; 170 hp, 177 lb ft; 2,381 lb; about 7 s to 62 mph; five-speed dogleg option; ZF limited-slip differential; left-hand drive only."
   },
   {
    "ref": "classicregister-tii",
@@ -199,7 +199,7 @@ export const seedBmw2002 = {
    "publisher": "BMW 2002 Register (UK)",
    "sourceType": "club-forum",
    "reliability": "medium",
-   "notes": "Club tii breakdown totalling 44,478: 27,572 LHD, 7,447 US and 3,678 RHD saloons, 5,058 2000 tii and 723 2002 tii Tourings; ended September 1975; 130 bhp, 118 mph, 8.3 s to 60 mph; pump warm-up unit; larger front brakes."
+   "notes": "Club tii breakdown totalling 44,478: 27,572 LHD, 7,447 US and 3,678 RHD sedans, 5,058 2000 tii and 723 2002 tii Tourings; ended September 1975; 130 hp, 118 mph, 8.3 s to 60 mph; pump warm-up unit; larger front brakes."
   },
   {
    "ref": "bmw2002faq-production",
@@ -262,7 +262,7 @@ export const seedBmw2002 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $140,000, Miami 2025, lot 281. Chassis and engine 4291234, 62,834 km, Chamonix White, factory five-speed dogleg. Catalogue states only 1,660 examples were produced."
+   "notes": "Sold for $140,000, Miami 2025, lot 281. Chassis and engine 4291234, 39,043 miles, Chamonix White, factory five-speed dogleg. Catalogue states only 1,660 examples were produced."
   },
   {
    "ref": "rm-mu25-turbo",
@@ -277,7 +277,7 @@ export const seedBmw2002 = {
  "claims": [
   {
    "section": "history",
-   "claimText": "The 2002 arose because Alex von Falkenhausen and Helmut Werner Bonsch independently fitted the 1,990 cc M10 from the 2000 saloon into their own 1602s and jointly proposed it to the board, with Max Hoffman supplying the commercial case: the 1600ti could not be made to meet United States emissions law and the two-litre already could.",
+   "claimText": "The 2002 arose because Alex von Falkenhausen and Helmut Werner Bonsch independently fitted the 1,990 cc M10 from the 2000 sedan into their own 1602s and jointly proposed it to the board, with Max Hoffman supplying the commercial case: the 1600ti could not be made to meet United States emissions law and the two-liter already could.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -298,7 +298,7 @@ export const seedBmw2002 = {
   },
   {
    "section": "specs",
-   "claimText": "The 2002 uses a 1,990 cc M10 single-overhead-camshaft inline-four with an iron block and alloy head, rated by BMW at 100 PS in the carburetted car, 120 PS in the twin-Solex ti, 130 bhp at 5,800 rpm in the Kugelfischer-injected tii and 170 bhp at 5,800 rpm in the turbocharged M31 version. The tii also took 46 mm inlet valves against 44 mm, 256 mm front discs with revised strut housings, boxed rear trailing arms and half-inch wider wheels.",
+   "claimText": "The 2002 uses a 1,990 cc M10 single-overhead-camshaft inline-four with an iron block and alloy head, rated by BMW at 99 hp in the carburetted car, 118 hp in the twin-Solex ti, 130 hp at 5,800 rpm in the Kugelfischer-injected tii and 170 hp at 5,800 rpm in the turbocharged M31 version. The tii also took 46 mm inlet valves against 44 mm, 256 mm front discs with revised strut housings, boxed rear trailing arms and half-inch wider wheels.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -324,7 +324,7 @@ export const seedBmw2002 = {
   },
   {
    "section": "history",
-   "claimText": "Motor Sport tested a Group 1 prepared 2002 tii in July 1972, recording 143 bhp at 5,800 rpm - at least 13 bhp above the production DIN rating - an indicated 112 mph at Silverstone, power falling away sharply above 6,000 rpm, and handling that would run rings round the opposition on bumpy circuits while lifting its rear wheels under provocation.",
+   "claimText": "Motor Sport tested a Group 1 prepared 2002 tii in July 1972, recording 143 hp at 5,800 rpm - at least 13 hp above the production DIN rating - an indicated 112 mph at Silverstone, power falling away sharply above 6,000 rpm, and handling that would run rings round the opposition on bumpy circuits while lifting its rear wheels under provocation.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -340,7 +340,7 @@ export const seedBmw2002 = {
     "wikipedia-02",
     "silodrome-2002"
    ],
-   "conflictNote": "Wikipedia's model table gives 339,092 2002 saloons for 1968-1975 within an 02 Series total of 837,038. Silodrome's history states almost 400,000 2002s over the same period. Neither states a basis and nothing consulted reconciles them. Unresolved, so productionTotal is left null."
+   "conflictNote": "Wikipedia's model table gives 339,092 2002 sedans for 1968-1975 within an 02 Series total of 837,038. Silodrome's history states almost 400,000 2002s over the same period. Neither states a basis and nothing consulted reconciles them. Unresolved, so productionTotal is left null."
   },
   {
    "section": "production",
@@ -354,7 +354,7 @@ export const seedBmw2002 = {
     "classicregister-tii",
     "bmwgroup-classic-tii"
    ],
-   "conflictNote": "Wikipedia gives 38,703 tii saloons plus 5,783 tii Tourings. The UK 02 register publishes a breakdown summing to 44,478 tii of all types, of which 38,697 are saloons - six fewer than Wikipedia - and Classic Register repeats 44,478. Curbside Classic states roughly 27,500 in total, matching neither. BMW gives no number. Unresolved."
+   "conflictNote": "Wikipedia gives 38,703 tii sedans plus 5,783 tii Tourings. The UK 02 register publishes a breakdown summing to 44,478 tii of all types, of which 38,697 are sedans - six fewer than Wikipedia - and Classic Register repeats 44,478. Curbside Classic states roughly 27,500 in total, matching neither. BMW gives no number. Unresolved."
   },
   {
    "section": "production",
@@ -399,7 +399,7 @@ export const seedBmw2002 = {
   },
   {
    "section": "problems",
-   "claimText": "The defining fault is corrosion of the rear shock towers, front floors, frame rails, rockers, front wing corners and spare wheel well; on the engine, worn valve guides show as blue smoke on the overrun and oil weeps from the main seals, valve cover, distributor and sump are close to universal, while the gearbox loses second-gear synchromesh and the driveshaft flex disc and centre support bearing are consumables.",
+   "claimText": "The defining fault is corrosion of the rear shock towers, front floors, frame rails, rockers, front wing corners and spare wheel well; on the engine, worn valve guides show as blue smoke on the overrun and oil weeps from the main seals, valve cover, distributor and sump are close to universal, while the gearbox loses second-gear synchromesh and the driveshaft flex disc and center support bearing are consumables.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

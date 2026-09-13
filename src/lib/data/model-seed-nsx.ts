@@ -1,5 +1,5 @@
 /**
- * Model draft — Acura / Honda NSX (NA1/NA2), 1990–2005.
+ * Model draft — Acura / Honda NSX (NA1/NA2), 1990-2005.
  *
  * Cross-checked across multiple INDEPENDENT sources per the Sourcing &
  * Truth-Seeking methodology in RESEARCH-AND-REGISTRY-ROADMAP.md:
@@ -35,42 +35,42 @@ export const seedNsx = {
   yearEnd: 2005,
   bodyStyles: ['Coupe', 'Targa (NSX-T)'],
   engines: [
-    'C30A 3.0L DOHC VTEC V6 (NA1) — 270 hp / 274 PS manual; 252 hp automatic',
-    'C32B 3.2L DOHC VTEC V6 (NA2) — 290 hp / 294 PS (1997-on, manual only)',
+    'C30A 3.0L DOHC VTEC V6 (NA1) — 270 hp / 270 hp manual; 252 hp automatic',
+    'C32B 3.2L DOHC VTEC V6 (NA2) — 290 hp / 290 hp (1997-on, manual only)',
   ],
   productionTotal: 18734,
   productionNotes:
-    'Honda reported worldwide sales of "more than 18,000 units" as of the end of June 2005, a few months before production ended on 30 November 2005 (Acura/Honda heritage material via Wikipedia). Total lifetime production is commonly summarized as "fewer than 20,000" across the full 1990–2005 run, with detailed enthusiast registries (NSX Prime production charts) putting the figure in the ~18,700 range. We record 18,734 as a widely-cited registry total but flag the spread in the claims — exact lifetime totals are NOT firmly established in a single primary source. The chassis-code split is the key fact: NA1 = original C30A 3.0L (all automatics for the whole run, plus all manuals 1991–1996); NA2 = C32B 3.2L (manual cars only, 1997–2005).',
+    'Honda reported worldwide sales of "more than 18,000 units" as of the end of June 2005, a few months before production ended on 30 November 2005 (Acura/Honda heritage material via Wikipedia). Total lifetime production is commonly summarized as "fewer than 20,000" across the full 1990-2005 run, with detailed enthusiast registries (NSX Prime production charts) putting the figure in the ~18,700 range. We record 18,734 as a widely-cited registry total but flag the spread in the claims — exact lifetime totals are NOT firmly established in a single primary source. The chassis-code split is the key fact: NA1 = original C30A 3.0L (all automatics for the whole run, plus all manuals 1991-1996); NA2 = C32B 3.2L (manual cars only, 1997-2005).',
   notableTrims: [
     { name: 'NSX Coupe (NA1)', note: 'The launch car (1990 JP / late 1990 US as Acura). Pop-up headlamps, C30A 3.0 VTEC V6, all-aluminum monocoque.' },
-    { name: 'NSX-T (Targa)', note: 'Removable targa roof, introduced 1995. Became the default body in North America after 1994; added ~45 kg of bracing to offset lost rigidity.' },
+    { name: 'NSX-T (Targa)', note: 'Removable targa roof, introduced 1995. Became the default body in North America after 1994; added ~99 lb of bracing to offset lost rigidity.' },
     { name: 'NSX (NA2, 3.2)', note: '1997 update: C32B 3.2L, 290 hp, new 6-speed manual. Automatics kept the 3.0 (NA1) to the end.' },
-    { name: 'NSX-R / Type R (NA1)', note: 'JDM-only track special, ~120 kg lighter. Built late 1992–Sept 1995. ~483 units per most records (some say 500 — see conflict).' },
-    { name: 'NSX Type S', note: 'JDM "winding-road" trim, 1997–2001, lightweight options. 209 built per NSX Prime registry.' },
-    { name: 'NSX Type S-Zero', note: 'Stripped, circuit-focused S. Only 30 built (1997–2001) — one of the rarest NA1/NA2 variants.' },
-    { name: 'NSX Alex Zanardi Edition', note: 'US-only 1999 special honoring Zanardi’s 1997–98 CART titles. Exactly 51 built, all Formula Red, fixed roof, manual steering.' },
+    { name: 'NSX-R / Type R (NA1)', note: 'JDM-only track special, ~265 lb lighter. Built late 1992–Sept 1995. ~483 units per most records (some say 500 — see conflict).' },
+    { name: 'NSX Type S', note: 'JDM "winding-road" trim, 1997-2001, lightweight options. 209 built per NSX Prime registry.' },
+    { name: 'NSX Type S-Zero', note: 'Stripped, circuit-focused S. Only 30 built (1997-2001) — one of the rarest NA1/NA2 variants.' },
+    { name: 'NSX Alex Zanardi Edition', note: 'US-only 1999 special honoring Zanardi’s 1997-98 CART titles. Exactly 51 built, all Formula Red, fixed roof, manual steering.' },
     { name: 'NSX-R (NA2, 2002)', note: 'Second R, JDM-only, on the facelift car. Extensive carbon fiber (incl. vented hood). 140 built (per most sources — see conflict).' },
   ],
   specs: {
     'Engine (NA1)': 'C30A — 2,977 cc DOHC 24-valve VTEC V6, titanium connecting rods',
-    'Power (NA1 manual)': '270 hp (274 PS) @ 7,100 rpm; 252 hp on the automatic',
+    'Power (NA1 manual)': '270 hp @ 7,100 rpm; 252 hp on the automatic',
     'Engine (NA2)': 'C32B — 3,179 cc DOHC VTEC V6 (1997-on manual)',
-    'Power (NA2)': '290 hp (294 PS) @ 7,100 rpm',
+    'Power (NA2)': '290 hp @ 7,100 rpm',
     'Redline': '8,000 rpm (C30A)',
     'Transmission': '5-speed manual or 4-speed automatic (NA1); 6-speed manual added 1997 (NA2); auto stayed 4-speed',
     'Layout': 'Transverse rear-mid-engine, rear-wheel drive',
     'Chassis': 'All-aluminum monocoque — a production-car first — with aluminum suspension arms',
-    '0–60 mph': '~5.0–5.5 s (NA1); ~4.5–5.0 s (NA2 3.2/6-speed)',
-    'Top speed': '~168–175 mph depending on year',
+    '0-60 mph': '~5.0-5.5 s (NA1); ~4.5-5.0 s (NA2 3.2/6-speed)',
+    'Top speed': '~168-175 mph depending on year',
     'Drag coefficient': '0.32 (pre-facelift); 0.30 (2002 facelift)',
-    'Curb weight': '~1,370 kg (3,010 lb) early coupe; ~1,230 kg (2,712 lb) NSX-R',
+    'Curb weight': '~3,010 lb early coupe; ~2,712 lb NSX-R',
   },
   heroPhoto: null as string | null,
   overallConfidence: 'high' as const,
 
   summary: `The Honda NSX — sold as the Acura NSX in North America from late 1990 — is the car that proved a mid-engine supercar didn't have to be temperamental. Honda benchmarked the Ferrari 328/348, then set out to match that performance with the reliability, visibility, and ease of use of a Honda. The result, on sale from 1990 to 2005, rewrote what buyers could expect from an exotic.
 
-Two things make the NSX historically important. First, it was the world's first production car with an all-aluminum monocoque body and chassis — a genuine engineering milestone that saved roughly 200 kg over steel. Second, its 3.0-liter C30A V6 was the first road application of Honda's VTEC variable valve timing in a V6, complete with titanium connecting rods and an 8,000-rpm redline.
+Two things make the NSX historically important. First, it was the world's first production car with an all-aluminum monocoque body and chassis — a genuine engineering milestone that saved roughly 441 lb over steel. Second, its 3.0-liter C30A V6 was the first road application of Honda's VTEC variable valve timing in a V6, complete with titanium connecting rods and an 8,000-rpm redline.
 
 The "everyday supercar" thesis is the NSX's enduring legacy: a car you could commute in, that wouldn't strand you, with light controls and a clear view out — yet would still run with the exotics of its day. That reputation, plus genuine rarity, is why clean original cars have appreciated sharply over the last decade.`,
 
@@ -88,7 +88,7 @@ The popular story is that Ayrton Senna "developed" the NSX. The more careful, so
 
 ## Variants and the long run
 
-Over 15 years the NSX spawned a broad family: the original **Coupe**; the targa-roofed **NSX-T** (1995-on); the JDM track-special **NSX-R / Type R** (NA1, ~1992–95); the JDM **Type S** and ultra-rare **Type S-Zero** (1997–2001); the US-only **Alex Zanardi Edition** (1999, 51 cars); and a second **NSX-R** (NA2) on the 2002 facelift car. The big mechanical watershed was 1997, when manual cars got the larger 3.2-liter C32B (the NA2) and a 6-speed gearbox; automatics kept the 3.0 (NA1) to the end. In December 2001 the car was facelifted — most visibly, the pop-up headlamps gave way to fixed xenon units — and it ran in that form until production ended 30 November 2005.`,
+Over 15 years the NSX spawned a broad family: the original **Coupe**; the targa-roofed **NSX-T** (1995-on); the JDM track-special **NSX-R / Type R** (NA1, ~1992-95); the JDM **Type S** and ultra-rare **Type S-Zero** (1997-2001); the US-only **Alex Zanardi Edition** (1999, 51 cars); and a second **NSX-R** (NA2) on the 2002 facelift car. The big mechanical watershed was 1997, when manual cars got the larger 3.2-liter C32B (the NA2) and a 6-speed gearbox; automatics kept the 3.0 (NA1) to the end. In December 2001 the car was facelifted — most visibly, the pop-up headlamps gave way to fixed xenon units — and it ran in that form until production ended 30 November 2005.`,
 
   marketNotes: `For years the NSX was the "sensible exotic" — admired but relatively affordable, in part because its Honda badge (or Acura badge in the US) capped its prestige next to Ferrari. That changed through the 2010s as the everyday-supercar reputation hardened into collector consensus and clean, unmodified, low-owner cars became scarce.
 
@@ -102,7 +102,7 @@ These are date-stamped observations, not a price quote — collector values move
 
 **Timing belt + water pump.** An interference V6 — a snapped belt means major engine damage. Service interval is roughly 90k miles / 7 years on early cars and ~105k / 7 years on later cars; many specialists do the water pump at the same time. Get dated proof it's been done.
 
-**Clutch life.** The early small-diameter clutch wears faster than a typical Honda (often ~40–50k miles). Budget for it.
+**Clutch life.** The early small-diameter clutch wears faster than a typical Honda (often ~40-50k miles). Budget for it.
 
 **Aluminum body = expensive crash repair.** The all-aluminum structure is a strength, but accident repair needs aluminum-qualified shops. Inspect carefully for poor prior repairs, panel-gap inconsistency, and overspray.
 
@@ -116,7 +116,7 @@ These are date-stamped observations, not a price quote — collector values move
 
 **Cold 2nd-gear notchiness.** Common and largely characteristic rather than a fault, but worn synchros are a real possibility on high-mile cars.
 
-**Aluminum repair cost.** Not a "failure," but the defining ownership cost factor: body/structural repair is specialist work and pricey.
+**Aluminum repair cost.** Not a "failure" but the defining ownership cost factor: body/structural repair is specialist work and pricey.
 
 **General:** like any aging supercar, expect supercar-sized bills for major service despite the car's everyday-reliability reputation.`,
 
@@ -139,7 +139,7 @@ These are date-stamped observations, not a price quote — collector values move
       publisher: 'Wikipedia',
       sourceType: 'reference-book',
       reliability: 'medium',
-      notes: 'Heavily cited aggregator. Source for the aluminum-monocoque "first," C30A VTEC/titanium-rod history, the Senna "not the development driver" caution (cites Japanese-language sources), NA1/NA2 power figures, and variant details. Cross-checked against primary/registry sources.',
+      notes: 'Heavily cited aggregator. Source for the aluminum-monocoque "first" C30A VTEC/titanium-rod history, the Senna "not the development driver" caution (cites Japanese-language sources), NA1/NA2 power figures, and variant details. Cross-checked against primary/registry sources.',
     },
     {
       ref: 'hagerty',
@@ -148,7 +148,7 @@ These are date-stamped observations, not a price quote — collector values move
       publisher: 'Hagerty Media',
       sourceType: 'journalism',
       reliability: 'high',
-      notes: 'Market journalism + valuation. "Values tripled over ~12 years," condition-tier guidance, automatic/targa value penalties.',
+      notes: 'Market journalism + valuation. "Values tripled over ~12 years" condition-tier guidance, automatic/targa value penalties.',
     },
     {
       ref: 'nsxfaq',
@@ -179,7 +179,7 @@ These are date-stamped observations, not a price quote — collector values move
     },
     {
       ref: 'magneto',
-      title: '1990–2005 Honda/Acura NSX supercar Buying Guide',
+      title: '1990-2005 Honda/Acura NSX supercar Buying Guide',
       url: 'https://www.magnetomagazine.com/articles/acquire-honda-nsx-market-guide/',
       publisher: 'Magneto',
       sourceType: 'journalism',
@@ -191,14 +191,14 @@ These are date-stamped observations, not a price quote — collector values move
   claims: [
     {
       section: 'specs',
-      claimText: 'The NSX was the first production car with an all-aluminum monocoque body and chassis, saving roughly 200 kg over steel.',
+      claimText: 'The NSX was the first production car with an all-aluminum monocoque body and chassis, saving roughly 441 lb over steel.',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['wikipedia', 'acura', 'magneto'],
     },
     {
       section: 'specs',
-      claimText: 'The C30A 3.0L V6 used VTEC and titanium connecting rods with an 8,000 rpm redline; the manual made 270 hp (274 PS) while the automatic was limited to 252 hp.',
+      claimText: 'The C30A 3.0L V6 used VTEC and titanium connecting rods with an 8,000 rpm redline; the manual made 270 hp while the automatic was limited to 252 hp.',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['wikipedia'],
@@ -214,14 +214,14 @@ These are date-stamped observations, not a price quote — collector values move
     },
     {
       section: 'specs',
-      claimText: 'NA1 cars use the C30A 3.0L V6; from 1997 manual cars got the C32B 3.2L (290 hp / 294 PS) and the NA2 code, while automatics kept the 3.0 (NA1) until 2005.',
+      claimText: 'NA1 cars use the C30A 3.0L V6; from 1997 manual cars got the C32B 3.2L (290 hp / 290 hp) and the NA2 code, while automatics kept the 3.0 (NA1) until 2005.',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['wikipedia', 'acura'],
     },
     {
       section: 'production',
-      claimText: 'Total lifetime production was on the order of 18,000–19,000 cars (commonly summarized as "fewer than 20,000").',
+      claimText: 'Total lifetime production was on the order of 18,000-19,000 cars (commonly summarized as "fewer than 20,000").',
       confidence: 'medium',
       status: 'disputed',
       sourceRefs: ['wikipedia', 'nsxprime'],

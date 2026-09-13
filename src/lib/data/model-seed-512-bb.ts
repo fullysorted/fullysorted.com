@@ -14,14 +14,14 @@ export const seed512Bb = {
  "yearStart": 1976,
  "yearEnd": 1984,
  "bodyStyles": [
-  "2-door Berlinetta (fixed-roof coupe), steel centre section with aluminium doors and clamshell bonnet and engine cover"
+  "2-door Berlinetta (fixed-roof coupe), steel center section with aluminum doors and clamshell hood and engine cover"
  ],
  "engines": [
-  "4,943 cc Tipo F102 B 180-degree flat-12, DOHC per bank, 2 valves per cylinder, four triple-choke Weber 40 IF 3C carburettors, dry sump; quoted at 360 bhp in early brochures and 340 bhp in later Ferrari literature, peak between 6,200 and 6,800 rpm depending on source (512 BB, 1976-1981)",
-  "4,943 cc Tipo F110 A 180-degree flat-12, DOHC per bank, 2 valves per cylinder, Bosch K-Jetronic mechanical fuel injection, Marelli electronic ignition, dry sump; 340 bhp at 6,000 rpm claimed, 333 lb-ft at 4,200 rpm (512 BBi, 1981-1984)"
+  "4,943 cc Tipo F102 B 180-degree flat-12, DOHC per bank, 2 valves per cylinder, four triple-choke Weber 40 IF 3C carburettors, dry sump; quoted at 360 hp in early brochures and 340 hp in later Ferrari literature, peak between 6,200 and 6,800 rpm depending on source (512 BB, 1976-1981)",
+  "4,943 cc Tipo F110 A 180-degree flat-12, DOHC per bank, 2 valves per cylinder, Bosch K-Jetronic mechanical fuel injection, Marelli electronic ignition, dry sump; 340 hp at 6,000 rpm claimed, 333 lb-ft at 4,200 rpm (512 BBi, 1981-1984)"
  ],
  "productionTotal": null,
- "productionNotes": "The two halves of this run are not equally settled. For the fuel-injected 512 BBi every source consulted gives 1,007 cars built between 1981 and 1984: Wikipedia, the Classic Trader and Maserati-Net buying guides, Supercar Nostalgia, classic.com and two separate RM Sotheby's catalogue entries. Supercar Nostalgia adds that 43 of those were right-hand drive. For the carburetted 512 BB, Ferrari's own model page states 929 cars, with a chassis range of 19677 to 38487, and that figure is repeated by Wikipedia, both buying guides, supercars.net and Moto Gallery, while Hagerty rounds it to 'just over 900'. Octane, however, describes a right-hand-drive 1977 car as 'one of only 927 BBs produced'. The two-car difference is small and may be a transcription error, but Octane is a credible title and no source consulted explains the discrepancy, so it is recorded here rather than smoothed over and no combined total is asserted: the sum is either 1,936 or 1,934. A secondary divergence concerns chassis numbering: Moto Gallery, a low-reliability blog, gives a 512 BB range of 19781 (prototype) to 34347, which does not match Ferrari's published 19677 to 38487. Ferrari's figure is preferred but the disagreement is noted. For context, the preceding 365 GT4 BB is stated at 387 cars (Wikipedia, Maserati-Net), of which 88 were right-hand drive, and the whole Boxer family at 2,323 cars (Wikipedia, Drive). Bodies were built by Scaglietti with final assembly at Maranello. The competition 512 BB/LM is counted separately: three Series 1 cars in 1978 and 25 Series 2 cars in two sub-series to 1982, a total of 25 for the second series that RM Sotheby's catalogues repeat. None of the road cars was built to US specification; every North American example passed through a grey-market federalisation shop.",
+ "productionNotes": "The two halves of this run are not equally settled. For the fuel-injected 512 BBi every source consulted gives 1,007 cars built between 1981 and 1984: Wikipedia, the Classic Trader and Maserati-Net buying guides, Supercar Nostalgia, classic.com and two separate RM Sotheby's catalogue entries. Supercar Nostalgia adds that 43 of those were right-hand drive. For the carburetted 512 BB, Ferrari's own model page states 929 cars, with a chassis range of 19677 to 38487, and that figure is repeated by Wikipedia, both buying guides, supercars.net and Moto Gallery, while Hagerty rounds it to 'just over 900'. Octane, however, describes a right-hand-drive 1977 car as 'one of only 927 BBs produced'. The two-car difference is small and may be a transcription error, but Octane is a credible title and no source consulted explains the discrepancy, so it is recorded here rather than smoothed over and no combined total is asserted: the sum is either 1,936 or 1,934. A secondary divergence concerns chassis numbering: Moto Gallery, a low-reliability blog, gives a 512 BB range of 19781 (prototype) to 34347, which does not match Ferrari's published 19677 to 38487. Ferrari's figure is preferred but the disagreement is noted. For context, the preceding 365 GT4 BB is stated at 387 cars (Wikipedia, Maserati-Net), of which 88 were right-hand drive, and the whole Boxer family at 2,323 cars (Wikipedia, Drive). Bodies were built by Scaglietti with final assembly at Maranello. The competition 512 BB/LM is counted separately: three Series 1 cars in 1978 and 25 Series 2 cars in two sub-series to 1982, a total of 25 for the second series that RM Sotheby's catalogues repeat. None of the road cars was built to US specification; every North American example passed through a gray-market federalisation shop.",
  "notableTrims": [
   {
    "name": "512 BB (carburetted, 1976-1981)",
@@ -33,15 +33,15 @@ export const seed512Bb = {
   },
   {
    "name": "512 BBi (1981-1984)",
-   "note": "Bosch K-Jetronic injection, Marelli electronic ignition, 340 bhp at 6,000 rpm, metric Michelin TRX tyres on 16-inch wheels, exposed driving lamps and a new tail badge. The more usable car, and the one federalisation shops found easiest to make comply."
+   "note": "Bosch K-Jetronic injection, Marelli electronic ignition, 340 hp at 6,000 rpm, metric Michelin TRX tires on 16-inch wheels, exposed driving lamps and a new tail badge. The more usable car, and the one federalisation shops found easiest to make comply."
   },
   {
    "name": "512 BBi with Zegna interior",
    "note": "RM Sotheby's catalogued a 1983 car as one of approximately 27 examples with cabins tailored by Ermenegildo Zegna; it sold for $302,000 at Miami in 2025. A small documented sub-series worth checking against the build sheet."
   },
   {
-   "name": "Grey-market federalised cars",
-   "note": "Amerispec and others carried out more than 75 modifications per car, including a rebuilt front bumper structure and, on carburetted cars, catalysts and air injection, at around US$14,000 a time. Quality varied and the work was never standardised; unmodified European cars are the ones the trade prefers."
+   "name": "Gray-market federalized cars",
+   "note": "Amerispec and others carried out more than 75 modifications per car, including a rebuilt front bumper structure and, on carburetted cars, catalysts and air injection, at around US$14,000 a time. Quality varied and the work was never standardized; unmodified European cars are the ones the trade prefers."
   },
   {
    "name": "Koenig and Zender conversions",
@@ -49,35 +49,35 @@ export const seed512Bb = {
   },
   {
    "name": "512 BB/LM",
-   "note": "Competition version prepared to factory instructions: three Series 1 cars for Le Mans 1978, then 25 Series 2 cars with Lucas injection and Pininfarina long-tail bodywork, quoted at 460-480 bhp. Best result fifth overall at Le Mans 1981. A separate market with a classic.com benchmark above $2.2 million."
+   "note": "Competition version prepared to factory instructions: three Series 1 cars for Le Mans 1978, then 25 Series 2 cars with Lucas injection and Pininfarina long-tail bodywork, quoted at 460-480 hp. Best result fifth overall at Le Mans 1981. A separate market with a classic.com benchmark above $2.2 million."
   }
  ],
  "specs": {
   "layout": "Mid-mounted longitudinal flat-12 with the five-speed gearbox beneath the engine, rear-wheel drive",
-  "chassis": "Tubular steel frame with steel centre body, aluminium doors and clamshell front and rear covers, glassfibre bumpers; factory type F 102 BB 100 (BB) and F102 CB 100 (BBi)",
+  "chassis": "Tubular steel frame with steel center body, aluminum doors and clamshell front and rear covers, glassfiber bumpers; factory type F 102 BB 100 (BB) and F102 CB 100 (BBi)",
   "engine": "4,943 cc 180-degree flat-12, 82 mm x 78 mm, 9.2:1 compression, all-alloy, dry sump; Tipo F102 B (carburetted) and Tipo F110 A (injected)",
   "valvetrain": "Twin belt-driven overhead camshafts per bank, two valves per cylinder, sodium-filled exhaust valves",
   "fuel_system": "Four Weber 40 IF 3C triple-choke carburettors (512 BB); Bosch K-Jetronic mechanical injection (512 BBi)",
   "ignition": "Electronic ignition (512 BB); Magneti Marelli electronic ignition with rev limiter (512 BBi)",
-  "power": "512 BB: 360 bhp in early brochures, 340 bhp in later Ferrari literature - manufacturer claims that do not agree with one another; 512 BBi: 340 bhp at 6,000 rpm claimed",
-  "torque": "Approximately 331-333 lb-ft (450 Nm); quoted peak varies from 4,200 rpm (BBi) to 4,300-4,600 rpm (BB) by source",
+  "power": "512 BB: 360 hp in early brochures, 340 hp in later Ferrari literature - manufacturer claims that do not agree with one another; 512 BBi: 340 hp at 6,000 rpm claimed",
+  "torque": "Approximately 331-333 lb-ft; quoted peak varies from 4,200 rpm (BBi) to 4,300-4,600 rpm (BB) by source",
   "transmission": "5-speed manual transaxle mounted under the crankcase, twin-plate clutch (single-plate on the 365 GT4 BB)",
-  "weight": "Quoted variously: 1,400 kg (BB) and 1,499 kg (BBi) per Supercar Nostalgia; 1,515 kg per Wikipedia and Classic Trader; 1,634 kg kerb per supercars.net. No figure here is independently weighed",
-  "top_speed_claimed": "188 mph (302 km/h) - manufacturer claim, never matched in an independent test",
+  "weight": "Quoted variously: 3,086 lb (BB) and 3,305 lb (BBi) per Supercar Nostalgia; 3,340 lb per Wikipedia and Classic Trader; 3,602 lb curb per supercars.net. No figure here is independently weighed",
+  "top_speed_claimed": "188 mph - manufacturer claim, never matched in an independent test",
   "top_speed_tested": "163 mph at 5,975 rpm, Autocar, May 1978; Octane cites a Road & Track figure of 175 mph",
   "acceleration": "0-62 mph 5.4 s claimed; 0-60 mph 6.2 s recorded by Autocar in 1978",
   "wheelbase_track": "2,500 mm wheelbase; front track 1,500 mm, rear track 1,563 mm (widened from the 365's 1,520 mm)",
   "dimensions": "4,400 mm long, 1,830 mm wide, 1,120 mm high",
-  "wheels_tyres": "512 BB: 15-inch Cromodora, 7.5 in front and 9 in rear, 215/70 and 225/70 VR15; 512 BBi: 16-inch centre-lock Cromodora on Michelin TRX",
-  "fuel_capacity": "120 litres in twin tanks",
+  "wheels_tires": "512 BB: 15-inch Cromodora, 7.5 in front and 9 in rear, 215/70 and 225/70 VR15; 512 BBi: 16-inch center-lock Cromodora on Michelin TRX",
+  "fuel_capacity": "120 liters in twin tanks",
   "chassis_numbers": "512 BB: 19677 to 38487 per Ferrari (a low-reliability source gives 19781 to 34347)"
  },
- "summary": "The Ferrari 512 BB (1976-1981) and its fuel-injected successor the 512 BBi (1981-1984) were the second and third forms of the Berlinetta Boxer, the mid-engined flat-twelve that replaced the front-engined Daytona at the top of Ferrari's range. The 365 GT4 BB of 1973 had established the layout, with a Formula 1-derived 180-degree twelve sitting above its gearbox; the 512 enlarged it to 4,943 cc, added dry-sump lubrication and a twin-plate clutch, widened the rear track and grew NACA ducts and a chin spoiler. Ferrari claimed 188 mph and Autocar, in 1978, recorded 163. Bosch K-Jetronic injection arrived in 1981 with a claimed 340 bhp, and the BBi is the more tractable car on modern fuel. Neither version was ever sold officially in North America, so every US example is a grey-market federalisation of variable quality. Sources agree on 1,007 BBi cars; the carburetted car is stated at 929 by Ferrari and 927 by Octane, so no combined total is asserted here.",
- "history": "## From Daytona to Boxer\n\nFerrari's road-car flagship had been front-engined since the beginning; the Daytona of 1968 was the last of that line. Ferrari's own heritage page for the 365 GT4 BB describes 'the new 12-cylinder boxer derived from the Formula 1 car' and 'the mid-engined layout that marked the end of Ferrari's traditional front-engined solution for its top performance models'. Pininfarina showed the shape at Turin in 1971 under Leonardo Fioravanti, and production began in 1973 with a 4,390 cc engine. Whether it was ever a true boxer is a separate argument: Mauro Forghieri insisted it was a 180-degree vee and would rather the B had stood for Bialbero; Fioravanti says BB began as a nickname for Brigitte Bardot. Either way, 387 of the 365 GT4 BB were built before the 512 arrived.\n\n## The 512: Five Litres and a Dry Sump\n\nThe 512 BB was shown at Paris in October 1976. The name switched to Ferrari's newer convention, five litres and twelve cylinders, and the engine grew to 4,943 cc at 82 by 78 mm. Wet-sump oil starvation under hard cornering on the 365 was answered with a dry sump, and the single-plate clutch that owners found heavy gave way to a twin-plate unit. Outside, the rear track went from 1,520 mm to 1,563 mm to carry 9-inch rear wheels, NACA ducts appeared ahead of the rear arches to feed the brakes, the nose dropped and gained a spoiler, and six tail lamps became four. Four triple-choke Weber 40 IF 3C carburettors sat in the vee. Ferrari's brochures quoted 360 bhp, later revised in Ferrari's own literature to 340, a discrepancy the sources consulted here reproduce rather than explain.\n\n## Claimed Speed and Measured Speed\n\nFerrari claimed 188 mph, or 302 km/h, and the number entered popular memory through a photograph taken on the M1 at dawn. Chris Meek, who owned Mallory Park, had his right-hand-drive 512 BB, chassis 21689, photographed at an indicated 188 mph to settle a dispute over the claim; the picture became a bedroom poster. Autocar's test of 13 May 1978 was less obliging. Their car, priced at 26,104 pounds, reached 163 mph at 5,975 rpm with the speedometer reading 174, and the magazine calculated from the gearing that the claimed figure was out of reach. Ferrari suggested the car was out of tune and Autocar offered a retest. The 0-60 mph time of 6.2 seconds was respectable, and the writers were more struck by the engine's flexibility from 2,000 rpm in any gear. John Bolster in Autosport called it the fastest practical road car in the world. The 163 mph figure was nonetheless entered in the Guinness Book of Records as the fastest independently road-tested production car of its day.\n\n## Injection: The 512 BBi\n\nBy 1980 emissions law made carburetted compliance for the grey market close to impossible, and in 1981 the 512 BBi replaced the Webers with Bosch K-Jetronic mechanical injection and fitted Marelli electronic ignition with a rev limiter. Ferrari quoted 340 bhp at 6,000 rpm and promoted quieter, smoother running as an ecological advance. The car moved to 16-inch centre-lock wheels on Michelin TRX tyres, the driving lamps came out from behind the grille, and the interior gained a leather-rimmed wheel and central locking. UK list price rose from 23,868 pounds for a 1977 BB to 39,991 pounds for the BBi in 1981. Supercar Nostalgia records 1,007 BBi cars, 43 of them right-hand drive.\n\n## The Grey Market and the BB/LM\n\nEnzo Ferrari took the view that eight-cylinder cars would do for the United States, so neither BB nor BBi was ever homologated there. Demand was met by importers such as Dick Fritz's Amerispec, whose federalisation ran to more than 75 modifications per car, including a rebuilt front bumper structure and, on carburetted cars, air injection and catalysts, for around US$14,000. The work was never standardised. In competition, dealers prepared cars to factory instructions as the 512 BB/LM: three Series 1 cars for Le Mans in 1978, none of which finished, then 25 Series 2 cars with Lucas injection, Pininfarina long-tail bodywork and 460-480 bhp. Fifth overall and a GTX class win at Le Mans in 1981 was the high point. BBi production ended in 1984 when the Testarossa took over the flat-twelve.",
- "marketNotes": "As of September 2026, classic.com's market benchmark for the carburetted BB 512 stands at $274,871 with an average sale of $262,548 and an upward trend; recorded results run from $121,000 for a Zender-bodied 1980 car in October 2021 to $440,000 for a 1978 car at Mecum in January 2026, with 2026 results of $401,401 at Scottsdale in June and $368,000 at Monterey in August. The BB 512i benchmark is $276,157 on a downward trend, with an average of $270,973 and a floor of $92,000 for a Koenig-modified 1983 car in September 2025. Auction lots fetched for this page bracket the injected car: RM Sotheby's sold a 1984 BBi with 66,588 miles, federalised and wearing 17-inch wheels, for $212,800 at Arizona in January 2026; Gooding sold a Classiche-certified late 1984 car for $307,500 at Pebble Beach in August 2025, below its $325,000-400,000 estimate; and RM Sotheby's made $302,000 at Miami in 2025 for a white 1983 car with a Zegna interior and over $53,000 of recent service. Hagerty's market piece recorded a 1981 car at $473,000 at RM Monterey in 2014 and A.J. Foyt's BBi at $440,000 at Scottsdale in 2015, which suggests the top of the market has not moved much in a decade. Hagerty's specialist source rates unmodified European cars as the most desirable, with federalised cars discounted. The BB/LM is a different market: classic.com's benchmark is $2,226,441 as of September 2026, and RM Sotheby's failed to sell chassis 35529 at Paris in February 2025 against a 2.0-2.5 million euro estimate. All classic.com figures are all-in results as recorded by that site.",
- "whatToLookFor": "Service history is the first question, because the belts run inside an engine that has to come out to reach them. Hagerty quotes restoration specialist Dave Helms to the effect that history is everything on these cars, and RM Sotheby's catalogue for a $302,000 BBi itemised a $12,000 engine-out belt service in 2018 and a further $53,000 of work since. A car with no engine-out invoice in the last decade should be priced as needing one, and FerrariChat owners advise buying before rather than after that service so the depth of the work is under the buyer's control; stripped cam-cover studs, damaged head threads and old bodges only show once the engine is on the bench. Ask for a compression test and evidence of head-gasket and sodium-valve work, both named weak points. Establish which car it is: carburetted BB or injected BBi, and confirm the engine number prefix (F110A on a BBi, as on both RM lots cited here) matches the chassis. Establish whether it was federalised, by whom, and what was done, since Hagerty's specialists warn that reversing a federalisation carries legal exposure in the United States and the work was never standardised. Original European cars sit at the top of the market. Check the differential has been reinforced or rebuilt, and that the gearbox oil has been changed on a two-to-three-year cycle, since it sits below the engine and runs hot. Look at wheels and tyres: the BBi's metric TRX rims limit tyre choice and many cars now wear later wheels, which is fine if the originals come with the car. A Ferrari Classiche Red Book, as on the Gooding Pebble Beach car, settles the matching-numbers question in the buyer's favour.",
- "commonProblems": "The big one is the timing belt service, which is engine-out on every Boxer. Classic Trader puts a clutch change at 2,500-3,000 euros, a gearbox overhaul at 20,000-25,000 euros and a complete engine overhaul at 70,000 euros and rising; Moto Gallery quotes $200,000 for a full flat-twelve rebuild. Valve clearance checks are due every 10,000 miles and take about a day and a half at 900-1,000 euros, and even an oil change is around 700 euros. Cylinder head gaskets are prone to failure and the sodium-filled exhaust valves can fail, both of which Maserati-Net and Hagerty list independently. The differential is a recognised weak link; the RM Arizona 2026 car had its differential rebuilt during a 2016 engine-out service, and FerrariChat owners describe transmission repairs as common and increasingly dependent on custom-made parts. The gearbox sits under the engine and its oil runs hot, so a two-to-three-year change is advised. Carburetted cars suffer vapour lock on modern alcohol-blended fuel, a problem the K-Jetronic BBi largely avoids, and their Webers need periodic balancing. The metric Michelin TRX tyres on the BBi are expensive and limited in supply. Federalised cars can carry crude bumper structures, emissions plumbing and wiring that complicate both maintenance and any later return to European specification. Annual oil and brake fluid changes and a three-year belt interval are the guides' recommendations; owners on FerrariChat are more relaxed, suggesting ten years or 30,000 km, and the difference between those two views is a matter for the buyer to weigh.",
- "valueTrajectory": "The Boxer was expensive when new: 23,868 pounds for a BB in 1977, 26,104 pounds by the time Autocar tested one in 1978, and 39,991 pounds for a BBi in 1981, or about US$38,000 at the outset. Hagerty's market piece, written after the 2014-2015 peak, recorded a 263 per cent rise in average auction prices since 2011, with a 1981 car at $473,000 in 2014 and the A.J. Foyt BBi at $440,000 in 2015. The decade since has been flat to gently rising rather than a second surge. As of September 2026 classic.com's benchmarks sit at $274,871 for the BB 512, trending up, and $276,157 for the BB 512i, trending down, with the best 2026 results at $440,000 and $401,401 for carburetted cars and ordinary federalised or high-mileage examples in the $210,000-310,000 band. The gap between the two engines has narrowed to almost nothing at the benchmark level, though good carburetted cars now set the high results. Modified Koenig and Zender cars trade at a heavy discount, and the BB/LM has decoupled entirely at a benchmark above $2.2 million. What separates cars within the range is documentation, an unmodified European specification and a recent engine-out service, not year or colour.",
+ "summary": "The Ferrari 512 BB (1976-1981) and its fuel-injected successor the 512 BBi (1981-1984) were the second and third forms of the Berlinetta Boxer, the mid-engined flat-twelve that replaced the front-engined Daytona at the top of Ferrari's range. The 365 GT4 BB of 1973 had established the layout, with a Formula 1-derived 180-degree twelve sitting above its gearbox; the 512 enlarged it to 4,943 cc, added dry-sump lubrication and a twin-plate clutch, widened the rear track and grew NACA ducts and a chin spoiler. Ferrari claimed 188 mph and Autocar, in 1978, recorded 163. Bosch K-Jetronic injection arrived in 1981 with a claimed 340 hp, and the BBi is the more tractable car on modern fuel. Neither version was ever sold officially in North America, so every US example is a gray-market federalisation of variable quality. Sources agree on 1,007 BBi cars; the carburetted car is stated at 929 by Ferrari and 927 by Octane, so no combined total is asserted here.",
+ "history": "## From Daytona to Boxer\n\nFerrari's road-car flagship had been front-engined since the beginning; the Daytona of 1968 was the last of that line. Ferrari's own heritage page for the 365 GT4 BB describes 'the new 12-cylinder boxer derived from the Formula 1 car' and 'the mid-engined layout that marked the end of Ferrari's traditional front-engined solution for its top performance models'. Pininfarina showed the shape at Turin in 1971 under Leonardo Fioravanti, and production began in 1973 with a 4,390 cc engine. Whether it was ever a true boxer is a separate argument: Mauro Forghieri insisted it was a 180-degree vee and would rather the B had stood for Bialbero; Fioravanti says BB began as a nickname for Brigitte Bardot. Either way, 387 of the 365 GT4 BB were built before the 512 arrived.\n\n## The 512: Five Liters and a Dry Sump\n\nThe 512 BB was shown at Paris in October 1976. The name switched to Ferrari's newer convention, five liters and twelve cylinders, and the engine grew to 4,943 cc at 82 by 78 mm. Wet-sump oil starvation under hard cornering on the 365 was answered with a dry sump, and the single-plate clutch that owners found heavy gave way to a twin-plate unit. Outside, the rear track went from 1,520 mm to 1,563 mm to carry 9-inch rear wheels, NACA ducts appeared ahead of the rear arches to feed the brakes, the nose dropped and gained a spoiler, and six tail lamps became four. Four triple-choke Weber 40 IF 3C carburettors sat in the vee. Ferrari's brochures quoted 360 hp, later revised in Ferrari's own literature to 340, a discrepancy the sources consulted here reproduce rather than explain.\n\n## Claimed Speed and Measured Speed\n\nFerrari claimed 188 mph, or 188 mph, and the number entered popular memory through a photograph taken on the M1 at dawn. Chris Meek, who owned Mallory Park, had his right-hand-drive 512 BB, chassis 21689, photographed at an indicated 188 mph to settle a dispute over the claim; the picture became a bedroom poster. Autocar's test of 13 May 1978 was less obliging. Their car reached 163 mph at 5,975 rpm with the speedometer reading 174, and the magazine calculated from the gearing that the claimed figure was out of reach. Ferrari suggested the car was out of tune and Autocar offered a retest. The 0-60 mph time of 6.2 seconds was respectable, and the writers were more struck by the engine's flexibility from 2,000 rpm in any gear. John Bolster in Autosport called it the fastest practical road car in the world. The 163 mph figure was nonetheless entered in the Guinness Book of Records as the fastest independently road-tested production car of its day.\n\n## Injection: The 512 BBi\n\nBy 1980 emissions law made carburetted compliance for the gray market close to impossible, and in 1981 the 512 BBi replaced the Webers with Bosch K-Jetronic mechanical injection and fitted Marelli electronic ignition with a rev limiter. Ferrari quoted 340 hp at 6,000 rpm and promoted quieter, smoother running as an ecological advance. The car moved to 16-inch center-lock wheels on Michelin TRX tires, the driving lamps came out from behind the grille, and the interior gained a leather-rimmed wheel and central locking. Supercar Nostalgia records 1,007 BBi cars, 43 of them right-hand drive.\n\n## The Gray Market and the BB/LM\n\nEnzo Ferrari took the view that eight-cylinder cars would do for the United States, so neither BB nor BBi was ever homologated there. Demand was met by importers such as Dick Fritz's Amerispec, whose federalisation ran to more than 75 modifications per car, including a rebuilt front bumper structure and, on carburetted cars, air injection and catalysts, for around US$14,000. The work was never standardized. In competition, dealers prepared cars to factory instructions as the 512 BB/LM: three Series 1 cars for Le Mans in 1978, none of which finished, then 25 Series 2 cars with Lucas injection, Pininfarina long-tail bodywork and 460-480 hp. Fifth overall and a GTX class win at Le Mans in 1981 was the high point. BBi production ended in 1984 when the Testarossa took over the flat-twelve.",
+ "marketNotes": "As of September 2026, classic.com's market benchmark for the carburetted BB 512 stands at $274,871 with an average sale of $262,548 and an upward trend; recorded results run from $121,000 for a Zender-bodied 1980 car in October 2021 to $440,000 for a 1978 car at Mecum in January 2026, with 2026 results of $401,401 at Scottsdale in June and $368,000 at Monterey in August. The BB 512i benchmark is $276,157 on a downward trend, with an average of $270,973 and a floor of $92,000 for a Koenig-modified 1983 car in September 2025. Auction lots fetched for this page bracket the injected car: RM Sotheby's sold a 1984 BBi with 66,588 miles, federalized and wearing 17-inch wheels, for $212,800 at Arizona in January 2026; Gooding sold a Classiche-certified late 1984 car for $307,500 at Pebble Beach in August 2025, below its $325,000-400,000 estimate; and RM Sotheby's made $302,000 at Miami in 2025 for a white 1983 car with a Zegna interior and over $53,000 of recent service. Hagerty's market piece recorded a 1981 car at $473,000 at RM Monterey in 2014 and A.J. Foyt's BBi at $440,000 at Scottsdale in 2015, which suggests the top of the market has not moved much in a decade. Hagerty's specialist source rates unmodified European cars as the most desirable, with federalized cars discounted. The BB/LM is a different market: classic.com's benchmark is $2,226,441 as of September 2026, and RM Sotheby's failed to sell chassis 35529 at Paris in February 2025 against a 2.0-2.5 million euro estimate. All classic.com figures are all-in results as recorded by that site.",
+ "whatToLookFor": "Service history is the first question, because the belts run inside an engine that has to come out to reach them. Hagerty quotes restoration specialist Dave Helms to the effect that history is everything on these cars, and RM Sotheby's catalogue for a $302,000 BBi itemised a $12,000 engine-out belt service in 2018 and a further $53,000 of work since. A car with no engine-out invoice in the last decade should be priced as needing one, and FerrariChat owners advise buying before rather than after that service so the depth of the work is under the buyer's control; stripped cam-cover studs, damaged head threads and old bodges only show once the engine is on the bench. Ask for a compression test and evidence of head-gasket and sodium-valve work, both named weak points. Establish which car it is: carburetted BB or injected BBi, and confirm the engine number prefix (F110A on a BBi, as on both RM lots cited here) matches the chassis. Establish whether it was federalized, by whom, and what was done, since Hagerty's specialists warn that reversing a federalisation carries legal exposure in the United States and the work was never standardized. Original European cars sit at the top of the market. Check the differential has been reinforced or rebuilt, and that the gearbox oil has been changed on a two-to-three-year cycle, since it sits below the engine and runs hot. Look at wheels and tires: the BBi's metric TRX rims limit tire choice and many cars now wear later wheels, which is fine if the originals come with the car. A Ferrari Classiche Red Book, as on the Gooding Pebble Beach car, settles the matching-numbers question in the buyer's favor.",
+ "commonProblems": "The big one is the timing belt service, which is engine-out on every Boxer. Classic Trader puts a clutch change at 2,500-3,000 euros, a gearbox overhaul at 20,000-25,000 euros and a complete engine overhaul at 70,000 euros and rising; Moto Gallery quotes $200,000 for a full flat-twelve rebuild. Valve clearance checks are due every 10,000 miles and take about a day and a half at 900-1,000 euros, and even an oil change is around 700 euros. Cylinder head gaskets are prone to failure and the sodium-filled exhaust valves can fail, both of which Maserati-Net and Hagerty list independently. The differential is a recognized weak link; the RM Arizona 2026 car had its differential rebuilt during a 2016 engine-out service, and FerrariChat owners describe transmission repairs as common and increasingly dependent on custom-made parts. The gearbox sits under the engine and its oil runs hot, so a two-to-three-year change is advised. Carburetted cars suffer vapour lock on modern alcohol-blended fuel, a problem the K-Jetronic BBi largely avoids, and their Webers need periodic balancing. The metric Michelin TRX tires on the BBi are expensive and limited in supply. Federalised cars can carry crude bumper structures, emissions plumbing and wiring that complicate both maintenance and any later return to European specification. Annual oil and brake fluid changes and a three-year belt interval are the guides' recommendations; owners on FerrariChat are more relaxed, suggesting ten years or 19,000 miles, and the difference between those two views is a matter for the buyer to weigh.",
+ "valueTrajectory": "The Boxer was expensive when new, about US$38,000 at the outset. Hagerty's market piece, written after the 2014-2015 peak, recorded a 263 per cent rise in average auction prices since 2011, with a 1981 car at $473,000 in 2014 and the A.J. Foyt BBi at $440,000 in 2015. The decade since has been flat to gently rising rather than a second surge. As of September 2026 classic.com's benchmarks sit at $274,871 for the BB 512, trending up, and $276,157 for the BB 512i, trending down, with the best 2026 results at $440,000 and $401,401 for carburetted cars and ordinary federalized or high-mileage examples in the $210,000-310,000 band. The gap between the two engines has narrowed to almost nothing at the benchmark level, though good carburetted cars now set the high results. Modified Koenig and Zender cars trade at a heavy discount, and the BB/LM has decoupled entirely at a benchmark above $2.2 million. What separates cars within the range is documentation, an unmodified European specification and a recent engine-out service, not year or color.",
  "overallConfidence": "medium",
  "sources": [
   {
@@ -87,7 +87,7 @@ export const seed512Bb = {
    "publisher": "Ferrari S.p.A.",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Ferrari's own model record: Paris 1976 debut, 929 built 1976-1981, chassis 19677-38487, 4943 cc, 82 x 78 mm, claimed 340 bhp, four Weber 40 IF 3C carburettors, electronic ignition, 2500 mm wheelbase, rear track widened from 1520 to 1563 mm, factory type F 102 BB 100, ventilated discs."
+   "notes": "Ferrari's own model record: Paris 1976 debut, 929 built 1976-1981, chassis 19677-38487, 4943 cc, 82 x 78 mm, claimed 340 hp, four Weber 40 IF 3C carburettors, electronic ignition, 2500 mm wheelbase, rear track widened from 1520 to 1563 mm, factory type F 102 BB 100, ventilated discs."
   },
   {
    "ref": "ferrari-365-gt4-bb",
@@ -114,7 +114,7 @@ export const seed512Bb = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Aggregated reference: 387 / 929 / 1,007 by variant (2,323 total), 88 RHD 365s, Tipo F102 B and F110 A engine codes, 360 bhp brochure figure later revised to 340, dry sump replacing wet sump, 1,515 kg, 188 mph claim, Autocar May 1978 163 mph and Guinness entry, UK prices 23,868 / 39,991 pounds, Fioravanti / P6 design origin, Forghieri and Bardot naming accounts, Amerispec federalisation (75+ modifications, ~US$14,000), BB/LM series counts and Le Mans results."
+   "notes": "Aggregated reference: 387 / 929 / 1,007 by variant (2,323 total), 88 RHD 365s, Tipo F102 B and F110 A engine codes, 360 hp brochure figure later revised to 340, dry sump replacing wet sump, 3,340 lb, 188 mph claim, Autocar May 1978 163 mph and Guinness entry, UK prices 23,868 / 39,991 pounds, Fioravanti / P6 design origin, Forghieri and Bardot naming accounts, Amerispec federalisation (75+ modifications, ~US$14,000), BB/LM series counts and Le Mans results."
   },
   {
    "ref": "classic-trader-guide",
@@ -123,7 +123,7 @@ export const seed512Bb = {
    "publisher": "Classic Trader",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Buying guide: 929 BB and 1,007 BBi, 1,515 kg, valve adjustment every 10,000 miles at 900-1,000 euros, oil change ~700 euros, engine overhaul ~70,000 euros, clutch 2,500-3,000 euros, gearbox overhaul 20,000-25,000 euros, gearbox oil runs hot below the engine, Paris 1976 presentation, replaced by Testarossa in 1984."
+   "notes": "Buying guide: 929 BB and 1,007 BBi, 3,340 lb, valve adjustment every 10,000 miles at 900-1,000 euros, oil change ~700 euros, engine overhaul ~70,000 euros, clutch 2,500-3,000 euros, gearbox overhaul 20,000-25,000 euros, gearbox oil runs hot below the engine, Paris 1976 presentation, replaced by Testarossa in 1984."
   },
   {
    "ref": "maseratinet-guide",
@@ -141,7 +141,7 @@ export const seed512Bb = {
    "publisher": "Supercars.net",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Spec sheet: 929 built, US$38,000 new, 4942 cc, 82 x 78 mm, 9.2:1, 360 bhp at 6,200 rpm, 331.9 lb-ft at 4,600 rpm, dry sump, dual-plate clutch, gear ratios and 3.21 final drive, 4400 x 1830 x 1120 mm, 1,634 kg kerb, 215/70 and 225/70 VR15 on 7.5 and 9 in wheels, 6,600 rpm redline, changes from the 365 (NACA ducts, four tail lights, air conditioning)."
+   "notes": "Spec sheet: 929 built, US$38,000 new, 4942 cc, 82 x 78 mm, 9.2:1, 360 hp at 6,200 rpm, 331.9 lb-ft at 4,600 rpm, dry sump, dual-plate clutch, gear ratios and 3.21 final drive, 4400 x 1830 x 1120 mm, 3,602 lb curb, 215/70 and 225/70 VR15 on 7.5 and 9 in wheels, 6,600 rpm redline, changes from the 365 (NACA ducts, four tail lights, air conditioning)."
   },
   {
    "ref": "classic-bb512",
@@ -177,7 +177,7 @@ export const seed512Bb = {
    "publisher": "Collectors Car World",
    "sourceType": "journalism",
    "reliability": "low",
-   "notes": "Narrative on the 512 naming convention and changes from the 365 (lower nose, twin double lamps, twin double exhausts, NACA ducts, 1563 mm rear track), John Bolster's Autosport quote, Ferrari's 1981 BBi promotion of quieter injected running, 120-litre fuel capacity, 1,400 kg. Its bore/stroke and rpm figures are internally inconsistent; used only for narrative."
+   "notes": "Narrative on the 512 naming convention and changes from the 365 (lower nose, twin double lamps, twin double exhausts, NACA ducts, 1563 mm rear track), John Bolster's Autosport quote, Ferrari's 1981 BBi promotion of quieter injected running, 120-liter fuel capacity, 3,086 lb. Its bore/stroke and rpm figures are internally inconsistent; used only for narrative."
   },
   {
    "ref": "rm-az26-bbi",
@@ -186,7 +186,7 @@ export const seed512Bb = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $212,800 at Arizona, January 2026. Chassis ZFFJA09B000051179, engine F110A 00925, 66,588 miles, Nero over Beige, one of 1,007 built 1981-1984, grey-market federalised, 17-inch wheels and aftermarket exhaust fitted with originals included, 2016 engine-out belt service with differential rebuild."
+   "notes": "Sold $212,800 at Arizona, January 2026. Chassis ZFFJA09B000051179, engine F110A 00925, 66,588 miles, Nero over Beige, one of 1,007 built 1981-1984, gray-market federalized, 17-inch wheels and aftermarket exhaust fitted with originals included, 2016 engine-out belt service with differential rebuild."
   },
   {
    "ref": "rm-mi25-bbi",
@@ -231,7 +231,7 @@ export const seed512Bb = {
    "publisher": "Gooding Christie's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $307,500 at Pebble Beach, August 2025, estimate $325,000-400,000. Chassis ZFFJA09B000050351, Blu Scuro over Crema, 4,943 cc, Bosch K-Jetronic, 340 bhp at 6,000 rpm, 5-speed transaxle, Ferrari Classiche Red Book, invoices back to the 1980s, California sale restriction."
+   "notes": "Sold $307,500 at Pebble Beach, August 2025, estimate $325,000-400,000. Chassis ZFFJA09B000050351, Blu Scuro over Crema, 4,943 cc, Bosch K-Jetronic, 340 hp at 6,000 rpm, 5-speed transaxle, Ferrari Classiche Red Book, invoices back to the 1980s, California sale restriction."
   },
   {
    "ref": "octane-poster",
@@ -240,7 +240,7 @@ export const seed512Bb = {
    "publisher": "Octane",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Chassis 21689, RHD, bought new 1977 by Chris Meek and photographed at an indicated 188 mph on the M1; states 'one of only 927 BBs produced' against Ferrari's 929; 4942 cc dry sump, 360 bhp at 6,200 rpm, 333 lb-ft at 4,600 rpm, Autocar 163 mph, Road & Track 175 mph, steel semi-monocoque with aluminium doors, 7.5 in front and 9 in rear Cromodoras."
+   "notes": "Chassis 21689, RHD, bought new 1977 by Chris Meek and photographed at an indicated 188 mph on the M1; states 'one of only 927 BBs produced' against Ferrari's 929; 4942 cc dry sump, 360 hp at 6,200 rpm, 333 lb-ft at 4,600 rpm, Autocar 163 mph, Road & Track 175 mph, steel semi-monocoque with aluminum doors, 7.5 in front and 9 in rear Cromodoras."
   },
   {
    "ref": "supercarnostalgia-512i",
@@ -249,7 +249,7 @@ export const seed512Bb = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "BBi guide: 1,007 built with 43 RHD, over 2,300 Boxers in all, 340 bhp at 6,000 rpm, 333 lb-ft at 4,200 rpm, 9.2:1, K-Jetronic, Marelli electronic ignition, 1,499 kg vs 1,400 kg for the BB, chassis type F102 CB 100, 16-inch centre-lock Cromodoras on TRX, exposed fog lamps, black NACA ducts, leather wheel and central locking, 120-litre twin tanks, not approved for US sale."
+   "notes": "BBi guide: 1,007 built with 43 RHD, over 2,300 Boxers in all, 340 hp at 6,000 rpm, 333 lb-ft at 4,200 rpm, 9.2:1, K-Jetronic, Marelli electronic ignition, 3,305 lb vs 3,086 lb for the BB, chassis type F102 CB 100, 16-inch center-lock Cromodoras on TRX, exposed fog lamps, black NACA ducts, leather wheel and central locking, 120-liter twin tanks, not approved for US sale."
   },
   {
    "ref": "motogallery-512bb",
@@ -267,7 +267,7 @@ export const seed512Bb = {
    "publisher": "Drive",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Modern driving feature: 2,323 Boxers built 1973-1984, 1,515 kg, 4,943 cc, 360 bhp at 6,800 rpm, 333 lb-ft at 4,600 rpm, 33,012 pounds new, three turns lock to lock, reclined seating, stiff throttle cable; characterises the driving experience."
+   "notes": "Modern driving feature: 2,323 Boxers built 1973-1984, 3,340 lb, 4,943 cc, 360 hp at 6,800 rpm, 333 lb-ft at 4,600 rpm, 33,012 pounds new, three turns lock to lock, reclined seating, stiff throttle cable; characterises the driving experience."
   },
   {
    "ref": "hagerty-media-512",
@@ -276,7 +276,7 @@ export const seed512Bb = {
    "publisher": "Hagerty Media",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Editorial market piece (not the blocked valuation tool): fewer than 400 / just over 900 / just over 1,000 by variant, 4942 cc, four triple-choke Webers vs K-Jetronic, 188 mph claim, BBi identification cues, vapour lock on carburetted cars, head gaskets and sodium valves, 1980 emissions law and the BBi, no official US sales, non-standardised federalisation and legal exposure on reversal, 2014 RM Monterey $473,000, 2015 Scottsdale $440,000 (A.J. Foyt car) and $253,000, 263 per cent average rise since 2011, Dave Helms quote."
+   "notes": "Editorial market piece (not the blocked valuation tool): fewer than 400 / just over 900 / just over 1,000 by variant, 4942 cc, four triple-choke Webers vs K-Jetronic, 188 mph claim, BBi identification cues, vapour lock on carburetted cars, head gaskets and sodium valves, 1980 emissions law and the BBi, no official US sales, non-standardized federalisation and legal exposure on reversal, 2014 RM Monterey $473,000, 2015 Scottsdale $440,000 (A.J. Foyt car) and $253,000, 263 per cent average rise since 2011, Dave Helms quote."
   },
   {
    "ref": "ferrarichat-maintenance",
@@ -285,7 +285,7 @@ export const seed512Bb = {
    "publisher": "FerrariChat",
    "sourceType": "club-forum",
    "reliability": "low",
-   "notes": "Owner and specialist thread: belts are engine-out, roughly 3 hours for belts plus 5-10+ hours to remove the engine, owners suggesting 10 years or 30,000 km rather than the shorter factory interval, UK engine-out quoted under 5,000 pounds, transmission repairs common with parts needing fabrication, hidden faults found during removal, advice to buy before rather than after a major service. Used only for ownership patterns."
+   "notes": "Owner and specialist thread: belts are engine-out, roughly 3 hours for belts plus 5-10+ hours to remove the engine, owners suggesting 10 years or 19,000 miles rather than the shorter factory interval, UK engine-out quoted under 5,000 pounds, transmission repairs common with parts needing fabrication, hidden faults found during removal, advice to buy before rather than after a major service. Used only for ownership patterns."
   }
  ],
  "claims": [
@@ -336,7 +336,7 @@ export const seed512Bb = {
   },
   {
    "section": "specs",
-   "claimText": "The 512 BB's power rating is not consistent even within Ferrari's own literature: early brochures quoted 360 bhp, Ferrari's current model page quotes 340 bhp, and the quoted peak rpm ranges from 6,200 to 6,800 across the sources consulted. No single figure is asserted here.",
+   "claimText": "The 512 BB's power rating is not consistent even within Ferrari's own literature: early brochures quoted 360 hp, Ferrari's current model page quotes 340 hp, and the quoted peak rpm ranges from 6,200 to 6,800 across the sources consulted. No single figure is asserted here.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -346,11 +346,11 @@ export const seed512Bb = {
     "octane-poster",
     "drive-my-test"
    ],
-   "conflictNote": "Ferrari's model page states 'claimed 340 bhp'. Wikipedia records 360 bhp in sales brochures, revised to 340 in later publications, with the peak at 6,200 rpm. Supercars.net and Octane give 360 bhp at 6,200 rpm; Drive gives 360 bhp at 6,800 rpm. The discrepancy is not explained by any source consulted and is left unresolved."
+   "conflictNote": "Ferrari's model page states 'claimed 340 hp'. Wikipedia records 360 hp in sales brochures, revised to 340 in later publications, with the peak at 6,200 rpm. Supercars.net and Octane give 360 hp at 6,200 rpm; Drive gives 360 hp at 6,800 rpm. The discrepancy is not explained by any source consulted and is left unresolved."
   },
   {
    "section": "specs",
-   "claimText": "Ferrari's 188 mph (302 km/h) claim for the 512 BB was a manufacturer figure: Autocar's May 1978 test recorded 163 mph at 5,975 rpm and 0-60 mph in 6.2 seconds, Ferrari suggested the car was out of tune and offered a retest, and the 163 mph result was nonetheless recorded as the fastest independently road-tested production car of its time.",
+   "claimText": "Ferrari's 188 mph claim for the 512 BB was a manufacturer figure: Autocar's May 1978 test recorded 163 mph at 5,975 rpm and 0-60 mph in 6.2 seconds, Ferrari suggested the car was out of tune and offered a retest, and the 163 mph result was nonetheless recorded as the fastest independently road-tested production car of its time.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -371,7 +371,7 @@ export const seed512Bb = {
   },
   {
    "section": "specs",
-   "claimText": "Kerb weight is quoted inconsistently across sources, from 1,400 kg for the BB and 1,499 kg for the BBi to 1,515 kg and 1,634 kg, and no independently weighed figure was found; the BBi is generally reported as roughly 100 kg heavier than the BB.",
+   "claimText": "Curb weight is quoted inconsistently across sources, from 3,086 lb for the BB and 3,305 lb for the BBi to 3,340 lb and 3,602 lb, and no independently weighed figure was found; the BBi is generally reported as roughly 220 lb heavier than the BB.",
    "confidence": "low",
    "status": "unverified",
    "sourceRefs": [
@@ -384,7 +384,7 @@ export const seed512Bb = {
   },
   {
    "section": "history",
-   "claimText": "The 512 BBi of 1981 replaced the carburettors with Bosch K-Jetronic mechanical injection and fitted Marelli electronic ignition with a rev limiter, quoted at 340 bhp at 6,000 rpm and 333 lb-ft at 4,200 rpm, and moved to 16-inch centre-lock wheels on Michelin TRX tyres with exposed driving lamps, black NACA ducts, a leather-rimmed wheel and central locking.",
+   "claimText": "The 512 BBi of 1981 replaced the carburettors with Bosch K-Jetronic mechanical injection and fitted Marelli electronic ignition with a rev limiter, quoted at 340 hp at 6,000 rpm and 333 lb-ft at 4,200 rpm, and moved to 16-inch center-lock wheels on Michelin TRX tires with exposed driving lamps, black NACA ducts, a leather-rimmed wheel and central locking.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -430,7 +430,7 @@ export const seed512Bb = {
   },
   {
    "section": "history",
-   "claimText": "Neither the 512 BB nor the 512 BBi was homologated for sale in the United States or Canada; US cars were grey-market imports federalised by shops such as Dick Fritz's Amerispec with more than 75 modifications each at around US$14,000, the work was never standardised, and 1980 emissions changes made carburetted compliance close to impossible, which favoured the injected BBi.",
+   "claimText": "Neither the 512 BB nor the 512 BBi was homologated for sale in the United States or Canada; US cars were gray-market imports federalized by shops such as Dick Fritz's Amerispec with more than 75 modifications each at around US$14,000, the work was never standardized, and 1980 emissions changes made carburetted compliance close to impossible, which favored the injected BBi.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -442,7 +442,7 @@ export const seed512Bb = {
   },
   {
    "section": "production",
-   "claimText": "The competition 512 BB/LM was prepared to factory instructions in three Series 1 cars for Le Mans 1978, none of which finished, and 25 Series 2 cars with Lucas injection and Pininfarina long-tail bodywork quoted at 460-480 bhp; the best result was fifth overall and a GTX class win at Le Mans in 1981.",
+   "claimText": "The competition 512 BB/LM was prepared to factory instructions in three Series 1 cars for Le Mans 1978, none of which finished, and 25 Series 2 cars with Lucas injection and Pininfarina long-tail bodywork quoted at 460-480 hp; the best result was fifth overall and a GTX class win at Le Mans in 1981.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -476,7 +476,7 @@ export const seed512Bb = {
   },
   {
    "section": "market",
-   "claimText": "Auction lots fetched for this page bracket the injected car between $212,800 for a 66,588-mile federalised 1984 BBi at RM Sotheby's Arizona in January 2026 and $302,000-307,500 for well-documented cars at RM Sotheby's Miami 2025 and Gooding Pebble Beach 2025, while a 1981 BB/LM failed to sell at RM Sotheby's Paris in February 2025 against a 2.0-2.5 million euro estimate.",
+   "claimText": "Auction lots fetched for this page bracket the injected car between $212,800 for a 66,588-mile federalized 1984 BBi at RM Sotheby's Arizona in January 2026 and $302,000-307,500 for well-documented cars at RM Sotheby's Miami 2025 and Gooding Pebble Beach 2025, while a 1981 BB/LM failed to sell at RM Sotheby's Paris in February 2025 against a 2.0-2.5 million euro estimate.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -497,7 +497,7 @@ export const seed512Bb = {
   },
   {
    "section": "problems",
-   "claimText": "Cylinder head gaskets, sodium-filled exhaust valves and the differential are recognised weak points, carburetted cars suffer vapour lock on modern alcohol-blended fuel, and the gearbox oil runs hot because the transaxle sits below the engine, so a two-to-three-year change is advised.",
+   "claimText": "Cylinder head gaskets, sodium-filled exhaust valves and the differential are recognized weak points, carburetted cars suffer vapour lock on modern alcohol-blended fuel, and the gearbox oil runs hot because the transaxle sits below the engine, so a two-to-three-year change is advised.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -509,7 +509,7 @@ export const seed512Bb = {
   },
   {
    "section": "problems",
-   "claimText": "The timing belt service requires engine removal; guides quote a valve check every 10,000 miles at 900-1,000 euros, a clutch at 2,500-3,000 euros, a gearbox overhaul at 20,000-25,000 euros and a full engine overhaul from about 70,000 euros, with one US blog quoting $200,000 for a flat-12 rebuild, while owners on FerrariChat report engine-out belt work under 5,000 pounds in the UK and recommend a ten-year or 30,000 km interval against the guides' three years.",
+   "claimText": "The timing belt service requires engine removal; guides quote a valve check every 10,000 miles at 900-1,000 euros, a clutch at 2,500-3,000 euros, a gearbox overhaul at 20,000-25,000 euros and a full engine overhaul from about 70,000 euros, with one US blog quoting $200,000 for a flat-12 rebuild, while owners on FerrariChat report engine-out belt work under 5,000 pounds in the UK and recommend a ten-year or 19,000 miles interval against the guides' three years.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [

@@ -12,10 +12,10 @@ export const seedM5E28 = {
  "yearStart": 1985,
  "yearEnd": 1988,
  "bodyStyles": [
-  "4-door saloon (sedan) on the E28 bodyshell, with a deeper front airdam, small boot spoiler and Shadowline blackout trim"
+  "4-door sedan (sedan) on the E28 bodyshell, with a deeper front airdam, small boot spoiler and Shadowline blackout trim"
  ],
  "engines": [
-  "3,453 cc M88/3 DOHC 24-valve straight-six, six individual throttle butterflies, Bosch Motronic, wet sump, 10.5:1 compression, 286 PS (210 kW) at 6,500 rpm and 340 Nm at 4,500 rpm - European and South African cars",
+  "3,453 cc M88/3 DOHC 24-valve straight-six, six individual throttle butterflies, Bosch Motronic, wet sump, 10.5:1 compression, 282 hp (282 hp) at 6,500 rpm and 251 lb-ft at 4,500 rpm - European and South African cars",
   "3,453 cc S38B35 DOHC 24-valve straight-six with catalytic converter, 9.8:1 compression, simplified exhaust manifold, shorter camshaft duration and a dual-row timing chain, quoted between 252 and 256 hp at 6,500 rpm and 243 lb-ft at 4,500 rpm - North American and Japanese cars"
  ],
  "productionTotal": null,
@@ -23,11 +23,11 @@ export const seedM5E28 = {
  "notableTrims": [
   {
    "name": "M5 (European LHD, M88/3)",
-   "note": "The original specification and the one without a catalytic converter: 588 cars on the published market table, built between October 1984 and September 1987. Highest quoted output of the run and the widest choice of colours and trim, these being cars ordered individually rather than shipped as a homogeneous allocation."
+   "note": "The original specification and the one without a catalytic converter: 588 cars on the published market table, built between October 1984 and September 1987. Highest quoted output of the run and the widest choice of colors and trim, these being cars ordered individually rather than shipped as a homogeneous allocation."
   },
   {
    "name": "M5 (European RHD, M88/3)",
-   "note": "187 right-hand-drive cars from March 1986 to November 1987, the UK's share among them at a list price of 31,295 pounds. The scarcest of the volume specifications, and the one UK buyers now pay a premium to keep original."
+   "note": "187 right-hand-drive cars from March 1986 to November 1987, the UK's share among them. The scarcest of the volume specifications, and the one UK buyers now pay a premium to keep original."
   },
   {
    "name": "M5 (North America, S38B35)",
@@ -39,7 +39,7 @@ export const seedM5E28 = {
   },
   {
    "name": "M5 (South Africa, Rosslyn CKD)",
-   "note": "96 cars assembled from kits at Rosslyn, the only place outside Germany where an E28 M5 was put together. Uncatalysed M88/3, Highline Nappa leather extending to door cards, console, dash and headlining, M-Technic bodywork, Shadowline and cross-spoke 16-inch wheels; a sunroof was effectively the only option left to tick."
+   "note": "96 cars assembled from kits at Rosslyn, the only place outside Germany where an E28 M5 was put together. Uncatalyzed M88/3, Highline Nappa leather extending to door cards, console, dash and headlining, M-Technic bodywork, Shadowline and cross-spoke 16-inch wheels; a sunroof was effectively the only option left to tick."
   },
   {
    "name": "M535i (E28)",
@@ -47,30 +47,30 @@ export const seedM5E28 = {
   }
  ],
  "specs": {
-  "layout": "Front-mounted longitudinal engine, rear-wheel drive, four-door saloon",
+  "layout": "Front-mounted longitudinal engine, rear-wheel drive, four-door sedan",
   "chassis": "Unitary steel E28 bodyshell; MacPherson strut front, semi-trailing arm rear, uprated springs and firmer damping than the M535i",
-  "engine": "3,453 cc 24-valve DOHC straight-six with six individual throttle butterflies - M88/3 for Europe and South Africa, catalysed S38B35 for North America and Japan",
+  "engine": "3,453 cc 24-valve DOHC straight-six with six individual throttle butterflies - M88/3 for Europe and South Africa, catalyzed S38B35 for North America and Japan",
   "valvetrain": "Twin overhead camshafts, four valves per cylinder, shim-and-bucket mechanical clearances requiring periodic adjustment",
   "bore_stroke": "93.4 mm x 84.0 mm as published for the S38B35; the M88/3 shares the 3,453 cc capacity",
   "compression": "10.5:1 (M88/3); 9.8:1 (S38B35 with catalytic converter)",
   "fuel_ignition": "Bosch Motronic; ML3.1 quoted for the S38B35",
   "lubrication": "Wet sump, in place of the dry-sump arrangement of the M1 engine it derives from",
-  "power": "286 PS (210 kW) at 6,500 rpm claimed by BMW M for the M88/3, rendered as 282 bhp by most English-language sources and 278 bhp by evo; catalysed S38B35 quoted between 252 and 256 hp at 6,500 rpm",
-  "torque": "340 Nm (251 lb-ft) at 4,500 rpm (M88/3); 243 lb-ft at 4,500 rpm (S38B35)",
+  "power": "282 hp (282 hp) at 6,500 rpm claimed by BMW M for the M88/3, rendered as 282 hp by most English-language sources and 278 hp by evo; catalyzed S38B35 quoted between 252 and 256 hp at 6,500 rpm",
+  "torque": "251 lb-ft at 4,500 rpm (M88/3); 243 lb-ft at 4,500 rpm (S38B35)",
   "transmission": "Getrag five-speed manual; no automatic was offered",
   "final_drive": "3.91:1 on North American cars, a shorter ratio than the European specification",
   "differential": "Limited-slip differential, quoted at 25 per cent locking effect",
   "brakes": "Ventilated discs front and rear with ABS as standard equipment",
-  "weight": "1,430 kg kerb per BMW M; 1,431 kg quoted by evo",
-  "acceleration": "6.5 s to 100 km/h claimed by BMW M; 6.3 s to 60 mph recorded by Motor Sport in October 1986 and by Car and Driver's 1987 fifth-wheel test of a US car",
-  "top_speed": "245 km/h (152 mph) claimed; 151 mph recorded by Motor Sport, October 1986"
+  "weight": "3,153 lb curb per BMW M; 3,155 lb quoted by evo",
+  "acceleration": "6.5 s to 62 mph claimed by BMW M; 6.3 s to 60 mph recorded by Motor Sport in October 1986 and by Car and Driver's 1987 fifth-wheel test of a US car",
+  "top_speed": "152 mph claimed; 151 mph recorded by Motor Sport, October 1986"
  },
- "summary": "The BMW M5 (E28, 1985-1988) was the first car to wear the badge and the car that created the super-saloon class. It was a plain four-door body, assembled by hand at BMW Motorsport GmbH, carrying the 3,453 cc twenty-four-valve straight-six developed for the mid-engined M1. In European M88/3 form it produced a claimed 286 PS at 6,500 rpm and made the M5 the fastest production saloon in the world at launch, capable of 151 mph in independent testing while looking very largely like a 528i. North America and Japan received the S38B35 instead, lower in compression, fitted with a catalytic converter and quoted at somewhere between 252 and 256 hp. BMW M puts total production at 2,241 cars built from late 1984, divided between European left- and right-hand-drive cars, a large single-year North American allocation, thirty for Japan and a small run assembled from kits at Rosslyn in South Africa - the only place outside Germany where an E28 M5 was put together. It was expensive, understated and slow to build, and it set a template BMW has followed ever since.",
- "history": "## An M1 Engine in Search of a Body\nThe M88 was designed for the mid-engined M1 of 1978, a homologation car built in tiny numbers for a racing category that evaporated around it. BMW Motorsport was left with an expensive twenty-four-valve straight-six and no volume car to put it in. The M88/3 that reached the M5 was the road-adapted answer: still 3,453 cc, still twin camshafts, four valves per cylinder and six individual throttle butterflies, but converted from the M1's dry sump to a wet sump, given Bosch Motronic management and run at 10.5:1 compression. The M635CSi had the engine first; the M5 put it into a four-door bodyshell that advertised nothing beyond a deeper front airdam, a small boot spoiler and blacked-out brightwork.\n\n## Hand Assembly at Preussenstrasse\nThe M5 was not built on a production line. BMW Motorsport GmbH assembled the cars by hand at its Preussenstrasse premises in Munich, moving to Daimlerstrasse in Garching around the summer of 1986 as volumes grew. That method set the shape of everything that followed. Output was low - Motor Sport reported in October 1986 that only about 250 cars a year were planned - the options list was short, and by the time the North American allocation was being built the practical answer to colour choice was black.\n\n## Amsterdam, 1985, and the Fastest Saloon in the World\nProduction began at the end of 1984 and the car was shown publicly at the Amsterdam Motor Show in February 1985. It was, at that point, the fastest production saloon in the world, and cost accordingly: 86,000 Deutschmarks in Germany, 31,295 pounds in Britain. Motor Sport's road test of October 1986 recorded 0-60 mph in 6.3 seconds, 0-100 mph in 17.1 seconds, 151 mph and 19.7 mpg, and noted approvingly that the car looked like just another 5-series. That combination - a supercar's pace in a shape that drew no attention at all - is the whole of the super-saloon idea, and the E28 M5 is where it starts.\n\n## The Catalyst Cars: America, Japan and the S38\nMarkets requiring emissions equipment could not take the M88/3, so BMW Motorsport produced the S38B35: same capacity, compression dropped to 9.8:1, a simplified exhaust manifold, shorter camshaft duration, a catalytic converter and, usefully for surviving cars, a dual-row chain in place of the M88/3's single row. Quoted output falls between 252 and 256 hp depending on which source is doing the quoting. North American production ran from November 1986 to November 1987 and sold as a single 1988 model year at $46,500, every car black, almost every interior Natur tan. BMW had indicated around 500 would come; roughly 1,340 did, and some early buyers who had paid for exclusivity went to law about it. Japan took thirty cars in early 1987.\n\n## Rosslyn, and the End of the Run\nRight-hand-drive European production began in March 1986 and accounted for 187 cars. South Africa was the exception to everything else: 96 M5s were assembled from CKD kits at BMW's Rosslyn plant, the only assembly point for the model outside Germany, and specified more richly than any of them, with Highline Nappa leather normally reserved for the 6- and 7-Series, M-Technic bodywork and cross-spoke 16-inch wheels. German assembly finished in November 1987 by the market tables, though Wikipedia and Motor1 both run production to June 1988; Rosslyn was still building into late 1988. The E34 M5 that replaced it was built in larger numbers, on a line, with a bigger engine - and every generation since has been measured against the first.",
- "marketNotes": "As of August 2026, classic.com records a BMW M5 (E28) market benchmark of $58,257 against an average sale of $52,618, on a rising trend, with tracked results running from $8,000 for a 1988 project car in January 2023 to $183,000 for a 9,000-mile 1988 car in March 2026. The highest public result recorded anywhere is more recent still: $195,810 on Hagerty Marketplace on 2 April 2026 for a single-owner, all-original 9,800-mile US car from the Enthusiast Auto Group collection carrying roughly $91,000 of 2020-2025 refurbishment. The Classic Valuer's aggregate for the model since 2020 gives a median of 42,987 pounds - the figure a 112,667-mile US-delivered car converted to European specification made at Collecting Cars on 27 April 2025 - against a low of 6,984 pounds and a high of 116,334 pounds. Collecting Cars' own 2026 guidance places undocumented projects at 25,000 to 40,000 pounds, sound higher-mileage drivers at 45,000 to 60,000, and exceptional original cars at 65,000 to 80,000. RM Sotheby's sold a US-specification 1988 car from the Youngtimer Collection at Essen in 2019 for a published 57,500 euros; the catalogue does not separate hammer from buyer's premium. South African cars trade in their own market, quoted locally in 2026 at 450,000 to 750,000 rand and above 900,000 rand for the best.",
- "whatToLookFor": "Establish which engine the car has and whether it is the one it left the factory with. An M88/3 car and an S38B35 car are different propositions, and conversion of a US car to European specification is common enough that European-looking bumpers prove nothing. Written proof of timing chain replacement is the most valuable document on an M88/3 car: the single-row chain can let go before the nominal 100,000-mile interval and the consequences are terminal. Ask when the valve clearances were last set: they are shim-and-bucket, need doing on a schedule, and neglect shows up first as poor running and later as damage. A clean idle and a strong mid-range both depend on six throttle butterflies being in balance, so an uneven idle is a synchronisation question before it is anything more expensive. On the body, look at footwells, boot floor, sills and the corners of the front and rear window frames, and treat quick MOT-season patching as evidence of what is behind it. Inside, cracked dashboards, tired leather and a failing service-interval cluster are usual rather than remarkable, but trim is slow and costly to source, and the ABS costly to put right. Records of real, continuous use are worth more than a low odometer reading with nothing behind it.",
- "commonProblems": "The M88/3's single-row timing chain is the defining risk of a European car; Classic Trader records chains breaking well before the 100,000-mile replacement interval, and the North American and Japanese S38B35 with its dual-row chain is the more durable arrangement in this one respect. On both engines the plastic chain guides and the tensioner deteriorate with age and should be inspected whenever the front of the engine is open. Mechanical valve clearances need checking at roughly 30,000-mile intervals, and neglect runs from rough running to valvetrain damage. Six individual throttle bodies must be synchronised or the car idles unevenly and feels flat in the mid-range; perished vacuum hoses produce the same symptoms and are cheaper to cure. Oil leaks appear first at the cam cover gasket, then the sump and main seals. Cooling is the quiet danger on a high-mileage car: a failed water pump or thermostat can overheat an engine that is expensive to rebuild and whose parts are hard to find. Elsewhere the faults are those of a 1980s E28 - corrosion in the footwells, boot floor, sills and window surrounds, tired bushes and dampers producing wandering and an unsettled rear, cracked dashboards, worn leather, failing instrument-cluster electronics and an ABS system that costs real money to service. Gearbox synchros rarely fail outright, but clutch replacement is a substantial bill.",
- "valueTrajectory": "For most of its life the E28 M5 was simply a fast old BMW, and it was bought and used as one; most surviving cars are past 100,000 miles, and many North American examples were driven hard through the 1990s when they were worth less than their maintenance. The re-rating came with the wider 1980s analogue cohort in the 2010s and has not stopped. Classic Trader described values as firm and rising several years ago, and as of August 2026 the classic.com benchmark of $58,257 is still trending upward. What has changed more than the middle of the market is the top of it: the $183,000 recorded in March 2026 and the $195,810 Hagerty Marketplace result in April 2026 both belong to sub-10,000-mile, single-ownership, unmodified cars, and both sit at roughly three times the benchmark. Against a Classic Valuer low of 6,984 pounds since 2020, the spread between a documented original car and a tired one is now very wide indeed. Specification is beginning to matter in the same way: uncatalysed M88/3 cars, the 187 European right-hand-drive cars and the 96 South African CKD cars are all scarcer than the North American allocation that supplies most of the public sales record.",
+ "summary": "The BMW M5 (E28, 1985-1988) was the first car to wear the badge and the car that created the super-sedan class. It was a plain four-door body, assembled by hand at BMW Motorsport GmbH, carrying the 3,453 cc twenty-four-valve straight-six developed for the mid-engined M1. In European M88/3 form it produced a claimed 282 hp at 6,500 rpm and made the M5 the fastest production sedan in the world at launch, capable of 151 mph in independent testing while looking very largely like a 528i. North America and Japan received the S38B35 instead, lower in compression, fitted with a catalytic converter and quoted at somewhere between 252 and 256 hp. BMW M puts total production at 2,241 cars built from late 1984, divided between European left- and right-hand-drive cars, a large single-year North American allocation, thirty for Japan and a small run assembled from kits at Rosslyn in South Africa - the only place outside Germany where an E28 M5 was put together. It was expensive, understated and slow to build, and it set a template BMW has followed ever since.",
+ "history": "## An M1 Engine in Search of a Body\nThe M88 was designed for the mid-engined M1 of 1978, a homologation car built in tiny numbers for a racing category that evaporated around it. BMW Motorsport was left with an expensive twenty-four-valve straight-six and no volume car to put it in. The M88/3 that reached the M5 was the road-adapted answer: still 3,453 cc, still twin camshafts, four valves per cylinder and six individual throttle butterflies, but converted from the M1's dry sump to a wet sump, given Bosch Motronic management and run at 10.5:1 compression. The M635CSi had the engine first; the M5 put it into a four-door bodyshell that advertised nothing beyond a deeper front airdam, a small boot spoiler and blacked-out brightwork.\n\n## Hand Assembly at Preussenstrasse\nThe M5 was not built on a production line. BMW Motorsport GmbH assembled the cars by hand at its Preussenstrasse premises in Munich, moving to Daimlerstrasse in Garching around the summer of 1986 as volumes grew. That method set the shape of everything that followed. Output was low - Motor Sport reported in October 1986 that only about 250 cars a year were planned - the options list was short, and by the time the North American allocation was being built the practical answer to color choice was black.\n\n## Amsterdam, 1985, and the Fastest Saloon in the World\nProduction began at the end of 1984 and the car was shown publicly at the Amsterdam Motor Show in February 1985. It was, at that point, the fastest production sedan in the world, and cost accordingly: $46,500 in the United States and 86,000 Deutschmarks in Germany. Motor Sport's road test of October 1986 recorded 0-60 mph in 6.3 seconds, 0-100 mph in 17.1 seconds, 151 mph and 19.7 mpg, and noted approvingly that the car looked like just another 5-series. That combination - a supercar's pace in a shape that drew no attention at all - is the whole of the super-sedan idea, and the E28 M5 is where it starts.\n\n## The Catalyst Cars: America, Japan and the S38\nMarkets requiring emissions equipment could not take the M88/3, so BMW Motorsport produced the S38B35: same capacity, compression dropped to 9.8:1, a simplified exhaust manifold, shorter camshaft duration, a catalytic converter and, usefully for surviving cars, a dual-row chain in place of the M88/3's single row. Quoted output falls between 252 and 256 hp depending on which source is doing the quoting. North American production ran from November 1986 to November 1987 and sold as a single 1988 model year at $46,500, every car black, almost every interior Natur tan. BMW had indicated around 500 would come; roughly 1,340 did, and some early buyers who had paid for exclusivity went to law about it. Japan took thirty cars in early 1987.\n\n## Rosslyn, and the End of the Run\nRight-hand-drive European production began in March 1986 and accounted for 187 cars. South Africa was the exception to everything else: 96 M5s were assembled from CKD kits at BMW's Rosslyn plant, the only assembly point for the model outside Germany, and specified more richly than any of them, with Highline Nappa leather normally reserved for the 6- and 7-Series, M-Technic bodywork and cross-spoke 16-inch wheels. German assembly finished in November 1987 by the market tables, though Wikipedia and Motor1 both run production to June 1988; Rosslyn was still building into late 1988. The E34 M5 that replaced it was built in larger numbers, on a line, with a bigger engine - and every generation since has been measured against the first.",
+ "marketNotes": "As of August 2026, classic.com records a BMW M5 (E28) market benchmark of $58,257 against an average sale of $52,618, on a rising trend, with tracked results running from $8,000 for a 1988 project car in January 2023 to $183,000 for a 9,000-mile 1988 car in March 2026. The highest public result recorded anywhere is more recent still: $195,810 on Hagerty Marketplace on 2 April 2026 for a single-owner, all-original 9,800-mile US car from the Enthusiast Auto Group collection carrying roughly $91,000 of 2020-2025 refurbishment. RM Sotheby's sold a US-specification 1988 car from the Youngtimer Collection at Essen in 2019 for a published 57,500 euros; the catalogue does not separate hammer from buyer's premium. South African cars trade in their own market, quoted locally in 2026 at 450,000 to 750,000 rand and above 900,000 rand for the best.",
+ "whatToLookFor": "Establish which engine the car has and whether it is the one it left the factory with. An M88/3 car and an S38B35 car are different propositions, and conversion of a US car to European specification is common enough that European-looking bumpers prove nothing. Written proof of timing chain replacement is the most valuable document on an M88/3 car: the single-row chain can let go before the nominal 100,000-mile interval and the consequences are terminal. Ask when the valve clearances were last set: they are shim-and-bucket, need doing on a schedule, and neglect shows up first as poor running and later as damage. A clean idle and a strong mid-range both depend on six throttle butterflies being in balance, so an uneven idle is a synchronisation question before it is anything more expensive. On the body, look at footwells, trunk floor, sills and the corners of the front and rear window frames, and treat quick MOT-season patching as evidence of what is behind it. Inside, cracked dashboards, tired leather and a failing service-interval cluster are usual rather than remarkable, but trim is slow and costly to source, and the ABS costly to put right. Records of real, continuous use are worth more than a low odometer reading with nothing behind it.",
+ "commonProblems": "The M88/3's single-row timing chain is the defining risk of a European car; Classic Trader records chains breaking well before the 100,000-mile replacement interval, and the North American and Japanese S38B35 with its dual-row chain is the more durable arrangement in this one respect. On both engines the plastic chain guides and the tensioner deteriorate with age and should be inspected whenever the front of the engine is open. Mechanical valve clearances need checking at roughly 30,000-mile intervals, and neglect runs from rough running to valvetrain damage. Six individual throttle bodies must be synchronised or the car idles unevenly and feels flat in the mid-range; perished vacuum hoses produce the same symptoms and are cheaper to cure. Oil leaks appear first at the cam cover gasket, then the sump and main seals. Cooling is the quiet danger on a high-mileage car: a failed water pump or thermostat can overheat an engine that is expensive to rebuild and whose parts are hard to find. Elsewhere the faults are those of a 1980s E28 - corrosion in the footwells, trunk floor, sills and window surrounds, tired bushes and dampers producing wandering and an unsettled rear, cracked dashboards, worn leather, failing instrument-cluster electronics and an ABS system that costs real money to service. Gearbox synchros rarely fail outright, but clutch replacement is a substantial bill.",
+ "valueTrajectory": "For most of its life the E28 M5 was simply a fast old BMW, and it was bought and used as one; most surviving cars are past 100,000 miles, and many North American examples were driven hard through the 1990s when they were worth less than their maintenance. The re-rating came with the wider 1980s analogue cohort in the 2010s and has not stopped. Classic Trader described values as firm and rising several years ago, and as of August 2026 the classic.com benchmark of $58,257 is still trending upward. What has changed more than the middle of the market is the top of it: the $183,000 recorded in March 2026 and the $195,810 Hagerty Marketplace result in April 2026 both belong to sub-10,000-mile, single-ownership, unmodified cars, and both sit at roughly three times the benchmark. The spread between a documented original car and a tired one is now very wide indeed. Specification is beginning to matter in the same way: uncatalyzed M88/3 cars, the 187 European right-hand-drive cars and the 96 South African CKD cars are all scarcer than the North American allocation that supplies most of the public sales record.",
  "overallConfidence": "high",
  "sources": [
   {
@@ -80,7 +80,7 @@ export const seedM5E28 = {
    "publisher": "BMW M GmbH",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "BMW M's own model account: production from the end of 1984, press presentation early 1985, 2,241 vehicles built, M88/3 of 3,453 cc developed for motor sport and the M1, 210 kW (286 hp) at 6,500 rpm, 340 Nm, 6.5 s to 100 km/h, 245 km/h, 1,430 kg kerb, E12 M535i named as precursor."
+   "notes": "BMW M's own model account: production from the end of 1984, press presentation early 1985, 2,241 vehicles built, M88/3 of 3,453 cc developed for motor sport and the M1, 286 hp at 6,500 rpm, 251 lb-ft, 6.5 s to 62 mph, 152 mph, 3,153 lb curb, E12 M535i named as precursor."
   },
   {
    "ref": "wikipedia-m5",
@@ -89,7 +89,7 @@ export const seedM5E28 = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Aggregated reference: manufactured October 1984 to June 1988, 2,241 units, M88/3 at 210 kW for Europe and South Africa against S38B35 at 191 kW (256 hp) for North America, NA production November 1986 to November 1987, Preussenstrasse then Garching from summer 1986, roughly 96 CKD cars at Rosslyn, and the fastest-production-saloon claim."
+   "notes": "Aggregated reference: manufactured October 1984 to June 1988, 2,241 units, M88/3 at 282 hp for Europe and South Africa against S38B35 at 256 hp for North America, NA production November 1986 to November 1987, Preussenstrasse then Garching from summer 1986, roughly 96 CKD cars at Rosslyn, and the fastest-production-sedan claim."
   },
   {
    "ref": "wikipedia-s38",
@@ -98,7 +98,7 @@ export const seedM5E28 = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Engine reference: S38B35 of 3,453 cc, 93.4 x 84.0 mm, 9.8:1, 190 kW (255 hp) at 6,500 rpm and 330 Nm at 4,500 rpm, built 1986-1989, and the differences from the M88/3 - lower compression, simplified exhaust manifold, catalytic converter, dual-row timing chain, shorter cam duration."
+   "notes": "Engine reference: S38B35 of 3,453 cc, 93.4 x 84.0 mm, 9.8:1, 255 hp at 6,500 rpm and 243 lb-ft at 4,500 rpm, built 1986-1989, and the differences from the M88/3 - lower compression, simplified exhaust manifold, catalytic converter, dual-row timing chain, shorter cam duration."
   },
   {
    "ref": "supercarnostalgia-m5",
@@ -107,7 +107,7 @@ export const seedM5E28 = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "The fullest published market table: 588 LHD Euro (10/84-09/87), 187 RHD Euro (03/86-11/87), 1,340 North America (11/86-11/87), 30 Japan (01/87-03/87), 96 South Africa CKD (06/87-11/88), summing to 2,241; Preussenstrasse to 09/1986 then Garching; 282 bhp Euro against 256 bhp catalysed; US equipment list and 3.91:1 final drive."
+   "notes": "The fullest published market table: 588 LHD Euro (10/84-09/87), 187 RHD Euro (03/86-11/87), 1,340 North America (11/86-11/87), 30 Japan (01/87-03/87), 96 South Africa CKD (06/87-11/88), summing to 2,241; Preussenstrasse to 09/1986 then Garching; 282 hp Euro against 256 hp catalyzed; US equipment list and 3.91:1 final drive."
   },
   {
    "ref": "motorsport-oct86",
@@ -116,7 +116,7 @@ export const seedM5E28 = {
    "publisher": "Motor Sport Magazine",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Period road test from the magazine's archive: UK list 31,295 pounds including tax and VAT, 286 bhp at 6,500 rpm, recorded 0-60 in 6.3 s, 0-100 in 17.1 s, 151 mph and 19.7 mpg; ABS and ventilated discs standard, Getrag five-speed, about 250 cars a year planned, and the note that it looked like just another 5-series."
+   "notes": "Period road test from the magazine's archive: UK list 31,295 pounds including tax and VAT, 286 hp at 6,500 rpm, recorded 0-60 in 6.3 s, 0-100 in 17.1 s, 151 mph and 19.7 mpg; ABS and ventilated discs standard, Getrag five-speed, about 250 cars a year planned, and the note that it looked like just another 5-series."
   },
   {
    "ref": "evo-m5-e28",
@@ -125,7 +125,7 @@ export const seedM5E28 = {
    "publisher": "evo",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "States 187 right-hand-drive European cars, hand-building by BMW Motorsport at Garching, wet-sump M88/3 with Bosch Motronic and six butterflies, and quotes 278 bhp at 6,500 rpm - the lowest European output figure found here - plus 1,431 kg and a 151 mph limited maximum."
+   "notes": "States 187 right-hand-drive European cars, hand-building by BMW Motorsport at Garching, wet-sump M88/3 with Bosch Motronic and six butterflies, and quotes 278 hp at 6,500 rpm - the lowest European output figure found here - plus 3,155 lb and a 151 mph limited maximum."
   },
   {
    "ref": "classic-trader-guide",
@@ -134,11 +134,11 @@ export const seedM5E28 = {
    "publisher": "Classic Trader",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Buying guide: 2,241 cars 1984-1988, 187 RHD UK and 96 South African; 282 bhp M88 with a single-row timing chain that can break before the 100,000-mile interval against the 256 bhp S38B35 with dual-row chain; rust in footwells, boot floor, sills and window frames; cracked dashboards, failing clusters, expensive ABS."
+   "notes": "Buying guide: 2,241 cars 1984-1988, 187 RHD UK and 96 South African; 282 hp M88 with a single-row timing chain that can break before the 100,000-mile interval against the 256 hp S38B35 with dual-row chain; rust in footwells, trunk floor, sills and window frames; cracked dashboards, failing clusters, expensive ABS."
   },
   {
    "ref": "collectingcars-guide",
-   "title": "BMW E28 M5 price and buyers guide: the original super-saloon",
+   "title": "BMW E28 M5 price and buyers guide: the original super-sedan",
    "url": "https://collectingcars.com/articles/bmw-e28-m5-price-and-buyers-guide",
    "publisher": "Collecting Cars",
    "sourceType": "specialist",
@@ -188,7 +188,7 @@ export const seedM5E28 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot page, The Youngtimer Collection at Essen 2019, sold for a published 57,500 euros. Chassis WBSDC9307J2791182, US-delivered to Illinois. Catalogue states 1,340 North American cars against BMW's promise to limit US supply to 500, a 256 bhp S38, and that every North American car was black with Natur leather."
+   "notes": "Lot page, The Youngtimer Collection at Essen 2019, sold for a published 57,500 euros. Chassis WBSDC9307J2791182, US-delivered to Illinois. Catalogue states 1,340 North American cars against BMW's promise to limit US supply to 500, a 256 hp S38, and that every North American car was black with Natur leather."
   },
   {
    "ref": "conceptcarz-1988-m5",
@@ -206,7 +206,7 @@ export const seedM5E28 = {
    "publisher": "Motor1",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Gives the Amsterdam Motor Show of February 1985 as the public debut, production October 1984 to June 1988 and approximately 2,200 cars from BMW Motorsport GmbH in Munich, a German list price of 86,000 Deutschmarks, 286 PS and 340 Nm, and a reinforced five-speed with a 25 per cent limited-slip differential."
+   "notes": "Gives the Amsterdam Motor Show of February 1985 as the public debut, production October 1984 to June 1988 and approximately 2,200 cars from BMW Motorsport GmbH in Munich, a German list price of 86,000 Deutschmarks, 282 hp and 251 lb-ft, and a reinforced five-speed with a 25 per cent limited-slip differential."
   },
   {
    "ref": "autoadvisor-sa-m5",
@@ -215,7 +215,7 @@ export const seedM5E28 = {
    "publisher": "AutoAdvisor South Africa",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "The dissenting South African figure: states South Africa received 100 E28 M5s, of which 96 were kit-assembled at Rosslyn and the remainder built in Germany. Also gives 210 kW and 340 Nm, M-Technic bodykit, Shadowline, cross-spoke wheels, Highline Nappa leather, and 2026 local values of R450,000-R750,000 rising above R900,000."
+   "notes": "The dissenting South African figure: states South Africa received 100 E28 M5s, of which 96 were kit-assembled at Rosslyn and the remainder built in Germany. Also gives 282 hp and 251 lb-ft, M-Technic bodykit, Shadowline, cross-spoke wheels, Highline Nappa leather, and 2026 local values of R450,000-R750,000 rising above R900,000."
   },
   {
    "ref": "news24-sa-fives",
@@ -242,7 +242,7 @@ export const seedM5E28 = {
    "publisher": "BMWBlog",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "States 2,241 built globally with 1,340 for North America, of which only 101 had black rather than tan interiors, attributes the restricted colour palette to hand assembly, and links the engine to the M1 and M635CSi."
+   "notes": "States 2,241 built globally with 1,340 for North America, of which only 101 had black rather than tan interiors, attributes the restricted color palette to hand assembly, and links the engine to the M1 and M635CSi."
   },
   {
    "ref": "autoevolution-e28-m5",
@@ -257,7 +257,7 @@ export const seedM5E28 = {
  "claims": [
   {
    "section": "history",
-   "claimText": "The E28 M5 was the first car to carry the M5 name, was assembled by hand by BMW Motorsport GmbH rather than on a production line, and followed the E12 M535i of 1980 as BMW's high-performance saloon.",
+   "claimText": "The E28 M5 was the first car to carry the M5 name, was assembled by hand by BMW Motorsport GmbH rather than on a production line, and followed the E12 M535i of 1980 as BMW's high-performance sedan.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -279,7 +279,7 @@ export const seedM5E28 = {
   },
   {
    "section": "history",
-   "claimText": "At launch the M5 was described as the fastest production saloon in the world, and it was priced accordingly at 86,000 Deutschmarks in Germany, 31,295 pounds in the United Kingdom and $46,500 in the United States.",
+   "claimText": "At launch the M5 was described as the fastest production sedan in the world, and it was priced accordingly at 86,000 Deutschmarks in Germany, 31,295 pounds in the United Kingdom and $46,500 in the United States.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -314,11 +314,11 @@ export const seedM5E28 = {
     "classic-trader-guide",
     "motorsport-oct86"
    ],
-   "conflictNote": "BMW M states 210 kW (286 hp) at 6,500 rpm, which Motor Sport's 1986 road test renders directly as 286 bhp. Supercar Nostalgia, Classic Trader and BMWBlog convert the same engine to 282 bhp. evo publishes 278 bhp at 6,500 rpm. The gap is at least partly PS-to-bhp conversion, but no source consulted here states which figure is measured and which is converted, and the discrepancy is not resolved by any source consulted."
+   "conflictNote": "BMW M states 286 hp at 6,500 rpm, which Motor Sport's 1986 road test renders directly as 286 hp. Supercar Nostalgia, Classic Trader and BMWBlog convert the same engine to 282 hp. evo publishes 278 hp at 6,500 rpm. The gap is at least partly PS-to-hp conversion, but no source consulted here states which figure is measured and which is converted, and the discrepancy is not resolved by any source consulted."
   },
   {
    "section": "specs",
-   "claimText": "The catalysed S38B35 fitted to North American and Japanese cars is quoted at between 252 and 256 hp at 6,500 rpm depending on the source consulted.",
+   "claimText": "The catalyzed S38B35 fitted to North American and Japanese cars is quoted at between 252 and 256 hp at 6,500 rpm depending on the source consulted.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -328,7 +328,7 @@ export const seedM5E28 = {
     "rm-essen19-m5",
     "bmwblog-s38-guide"
    ],
-   "conflictNote": "Supercar Nostalgia, RM Sotheby's, BMWBlog and BMW's own US press material all state 256 hp. Wikipedia's S38 entry states 190 kW (255 hp). Conceptcarz states 252 horsepower. Torque is more consistent at 243 lb-ft (330 Nm) at 4,500 rpm. No source consulted here reconciles the three power figures, and the point is unresolved."
+   "conflictNote": "Supercar Nostalgia, RM Sotheby's, BMWBlog and BMW's own US press material all state 256 hp. Wikipedia's S38 entry states 255 hp. Conceptcarz states 252 horsepower. Torque is more consistent at 243 lb-ft at 4,500 rpm. No source consulted here reconciles the three power figures, and the point is unresolved."
   },
   {
    "section": "specs",
@@ -343,7 +343,7 @@ export const seedM5E28 = {
   },
   {
    "section": "specs",
-   "claimText": "Independent period testing recorded 0-60 mph in 6.3 seconds, 0-100 mph in 17.1 seconds, a 151 mph maximum and 19.7 mpg against BMW's claims of 6.5 seconds to 100 km/h and 245 km/h, from a car with a Getrag five-speed, a limited-slip differential quoted at 25 per cent locking and standard ABS.",
+   "claimText": "Independent period testing recorded 0-60 mph in 6.3 seconds, 0-100 mph in 17.1 seconds, a 151 mph maximum and 19.7 mpg against BMW's claims of 6.5 seconds to 62 mph and 152 mph, from a car with a Getrag five-speed, a limited-slip differential quoted at 25 per cent locking and standard ABS.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -471,7 +471,7 @@ export const seedM5E28 = {
   },
   {
    "section": "problems",
-   "claimText": "Corrosion appears in the footwells, boot floor, sills and around the front and rear window frames, and cracked dashboards, worn leather, failing service-interval cluster electronics and expensive ABS repairs are usual on surviving cars.",
+   "claimText": "Corrosion appears in the footwells, trunk floor, sills and around the front and rear window frames, and cracked dashboards, worn leather, failing service-interval cluster electronics and expensive ABS repairs are usual on surviving cars.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

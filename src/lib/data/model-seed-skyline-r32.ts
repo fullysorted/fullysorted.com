@@ -15,7 +15,7 @@ export const seedSkylineR32 = {
   "2-door Coupe"
  ],
  "engines": [
-  "2.6L RB26DETT DOHC 24-valve inline-6, twin ceramic-turbine Garrett turbochargers, air-to-air intercooler, six individual throttle bodies (280 PS as rated)",
+  "2.6L RB26DETT DOHC 24-valve inline-6, twin ceramic-turbine Garrett turbochargers, air-to-air intercooler, six individual throttle bodies (276 hp as rated)",
   "2.6L RB26DETT with steel-turbine turbochargers (Nismo and N1 homologation cars)"
  ],
  "productionTotal": null,
@@ -27,7 +27,7 @@ export const seedSkylineR32 = {
   },
   {
    "name": "GT-R Nismo",
-   "note": "Group A evolution model, 560 built (500 customer cars December 1989-March 1990, 60 kept for racing), homologated 1 March 1990. Steel-turbine Garrett turbos, additional intercooler ducting, bonnet-lip and secondary boot spoilers, ABS and rear wiper deleted, roughly 30 kg lighter. Gun Grey Metallic only."
+   "note": "Group A evolution model, 560 built (500 customer cars December 1989-March 1990, 60 kept for racing), homologated 1 March 1990. Steel-turbine Garrett turbos, additional intercooler ducting, hood-lip and secondary boot spoilers, ABS and rear wiper deleted, roughly 66 lb lighter. Gun Gray Metallic only."
   },
   {
    "name": "GT-R N1",
@@ -35,30 +35,30 @@ export const seedSkylineR32 = {
   },
   {
    "name": "GT-R V-Spec",
-   "note": "February 1993. Brembo brakes, 17-inch BBS wheels on 225/50R17 tyres, revised ATTESA E-TS Pro torque split."
+   "note": "February 1993. Brembo brakes, 17-inch BBS wheels on 225/50R17 tires, revised ATTESA E-TS Pro torque split."
   },
   {
    "name": "GT-R V-Spec II",
-   "note": "February 1994. As V-Spec with wider 245/45R17 tyres; the final and generally most valuable factory specification."
+   "note": "February 1994. As V-Spec with wider 245/45R17 tires; the final and generally most valuable factory specification."
   }
  ],
  "specs": {
   "layout": "Front engine, ATTESA E-TS electronically controlled torque-split all-wheel drive",
   "engine": "2,568 cc RB26DETT DOHC 24-valve inline-6, twin turbochargers",
-  "rated_power": "206 kW (280 PS) at 6,800 rpm (Nissan factory rating)",
-  "rated_torque": "353 Nm (36 kgm) at 4,400 rpm",
+  "rated_power": "276 hp (276 hp) at 6,800 rpm (Nissan factory rating)",
+  "rated_torque": "260 lb-ft (260 lb-ft) at 4,400 rpm",
   "actual_power": "Independently tested well above the rating; published figures range from roughly 310 hp to about 327 hp at the flywheel",
   "redline": "8,000 rpm",
   "transmission": "5-speed manual, floor shift (no automatic offered)",
   "steering": "Super-HICAS hydraulic four-wheel steering; rear wheels steer up to about one degree",
   "suspension": "Four-wheel multi-link",
   "brakes": "Ventilated discs all round; Brembo four-piston front calipers on V-Spec and V-Spec II",
-  "wheels_tyres": "16-inch on standard cars; 17-inch BBS with 225/50R17 (V-Spec) or 245/45R17 (V-Spec II)",
-  "kerb_weight": "Approximately 1,430 kg standard; approximately 1,400 kg for the Nismo evolution car",
+  "wheels_tires": "16-inch on standard cars; 17-inch BBS with 225/50R17 (V-Spec) or 245/45R17 (V-Spec II)",
+  "curb_weight": "Approximately 3,153 lb standard; approximately 3,086 lb for the Nismo evolution car",
   "production_dates": "August 1989 to November 1994"
  },
- "summary": "The R32 Skyline GT-R (BNR32) revived a badge dormant since 1973 and was built for one purpose: to win FIA Group A touring car racing. Nissan sized the RB26DETT at 2,568 cc so the turbo equivalency factor placed the car in the 4.5-litre class and its widest permitted tyres, then wrapped that iron-block, twin-turbo straight six in ATTESA E-TS electronically controlled torque-split all-wheel drive and Super-HICAS four-wheel steering. Factory output was quoted at 280 PS in line with the Japanese manufacturers' gentlemen's agreement, though independent testing consistently found well over 300 hp. It worked: 29 wins from 29 starts and four consecutive Japanese titles from 1990 to 1993, plus back-to-back Australian championships and Bathurst 1000 victories in 1991 and 1992, where the Australian press named it Godzilla. Sold new almost exclusively in Japan, the R32 reached the United States only from 2014 under the 25-year import exemption, and has since become the entry point to serious GT-R collecting.",
- "history": "## Reviving the Badge for Group A\nNissan had not used the GT-R name since the KPGC110 of 1973. It returned in August 1989, three months after the R32 Skyline range launched, and the reason was regulatory rather than nostalgic. Group A touring car rules derived a car's class from swept volume multiplied by a turbocharged equivalency factor, and Nissan chose 2,568 cc so the RB26DETT landed in the 4.5-litre class, which carried the widest tyres available under the regulations. Group A also required a base homologation run of 5,000 cars within twelve months, with a 500-car evolution allowance on top. Nissan expected to build the minimum; demand ran far past it and production was left open, ultimately running to roughly 44,000 cars over five years.\n\n## RB26DETT and the 280 PS Convention\nThe engine is a cast-iron block with an alloy four-valve head, twin ceramic-turbine Garrett turbochargers, an air-to-air intercooler and six individual throttle bodies, redlined at 8,000 rpm. Nissan rated it at 206 kW (280 PS) at 6,800 rpm with 353 Nm at 4,400 rpm, a figure set by the informal agreement among Japanese manufacturers not to advertise more than 280 PS rather than by what the engine made. Independent measurement has repeatedly put flywheel output above 300 hp, with published estimates spanning roughly 310 to 327 hp. The competition engines were a separate matter again, running around 600 bhp before regulators intervened.\n\n## ATTESA E-TS and Super-HICAS\nThe drivetrain is what separated the R32 from its rivals. ATTESA E-TS drives the rear axle by default and feeds torque forward through a hydraulically actuated multi-plate clutch, governed by a controller reading lateral acceleration, throttle position and wheel speeds. Super-HICAS adds hydraulic rear-wheel steering with roughly one degree of movement, engaging at speed to stabilise turn-in and lane changes. Both systems were unusual in a 1989 production car and both are now the source of the model's most common deferred-maintenance faults, with HICAS frequently locked out or removed entirely by owners.\n\n## Homologation Specials: Nismo and N1\nThe evolution car was the GT-R Nismo, homologated on 1 March 1990. Five hundred customer cars were built between December 1989 and March 1990, with a further sixty retained by Nissan for competition. The specification reflected the rulebook: steel-turbine Garrett turbochargers in place of the ceramic units, extra intercooler ducting, additional aerodynamic addenda, and the deletion of ABS (banned in Group A), the rear wiper and the stereo, for roughly 30 kg saved. All wore Gun Grey Metallic. From 1991 the N1 followed for Japan's N1 endurance category, stripped further still with no ABS, air conditioning or audio, uprated oil and brake cooling, and Crystal White paint only. N1 build counts differ between sources depending on whether the later V-Spec N1 and V-Spec II N1 cars are counted.\n\n## Godzilla\nThe racing record is the reason the car matters. In Japan the GT-R won all 29 races it contested between 1990 and 1993, taking the title in each of those four seasons. In Australia it took the touring car championship in 1991 with Jim Richards and 1992 with Mark Skaife, and won the Bathurst 1000 in both years; the 1991 race record stood until 2010. Officials responded with weight penalties that took the cars from 1,360 kg in 1991 to 1,500 kg in 1992 and with mandated pop-off valves that cut power from roughly 640 bhp to about 450 bhp. The nickname Godzilla came from the Australian motoring press, and the car's dominance is widely credited with ending Group A in Australia and pushing the sport toward the V8 formula that became Supercars.",
+ "summary": "The R32 Skyline GT-R (BNR32) revived a badge dormant since 1973 and was built for one purpose: to win FIA Group A touring car racing. Nissan sized the RB26DETT at 2,568 cc so the turbo equivalency factor placed the car in the 4.5-liter class and its widest permitted tires, then wrapped that iron-block, twin-turbo straight six in ATTESA E-TS electronically controlled torque-split all-wheel drive and Super-HICAS four-wheel steering. Factory output was quoted at 276 hp in line with the Japanese manufacturers' gentlemen's agreement, though independent testing consistently found well over 300 hp. It worked: 29 wins from 29 starts and four consecutive Japanese titles from 1990 to 1993, plus back-to-back Australian championships and Bathurst 1000 victories in 1991 and 1992, where the Australian press named it Godzilla. Sold new almost exclusively in Japan, the R32 reached the United States only from 2014 under the 25-year import exemption, and has since become the entry point to serious GT-R collecting.",
+ "history": "## Reviving the Badge for Group A\nNissan had not used the GT-R name since the KPGC110 of 1973. It returned in August 1989, three months after the R32 Skyline range launched, and the reason was regulatory rather than nostalgic. Group A touring car rules derived a car's class from swept volume multiplied by a turbocharged equivalency factor, and Nissan chose 2,568 cc so the RB26DETT landed in the 4.5-liter class, which carried the widest tires available under the regulations. Group A also required a base homologation run of 5,000 cars within twelve months, with a 500-car evolution allowance on top. Nissan expected to build the minimum; demand ran far past it and production was left open, ultimately running to roughly 44,000 cars over five years.\n\n## RB26DETT and the 276 hp Convention\nThe engine is a cast-iron block with an alloy four-valve head, twin ceramic-turbine Garrett turbochargers, an air-to-air intercooler and six individual throttle bodies, redlined at 8,000 rpm. Nissan rated it at 276 hp (276 hp) at 6,800 rpm with 260 lb-ft at 4,400 rpm, a figure set by the informal agreement among Japanese manufacturers not to advertise more than 276 hp rather than by what the engine made. Independent measurement has repeatedly put flywheel output above 300 hp, with published estimates spanning roughly 310 to 327 hp. The competition engines were a separate matter again, running around 600 hp before regulators intervened.\n\n## ATTESA E-TS and Super-HICAS\nThe drivetrain is what separated the R32 from its rivals. ATTESA E-TS drives the rear axle by default and feeds torque forward through a hydraulically actuated multi-plate clutch, governed by a controller reading lateral acceleration, throttle position and wheel speeds. Super-HICAS adds hydraulic rear-wheel steering with roughly one degree of movement, engaging at speed to stabilise turn-in and lane changes. Both systems were unusual in a 1989 production car and both are now the source of the model's most common deferred-maintenance faults, with HICAS frequently locked out or removed entirely by owners.\n\n## Homologation Specials: Nismo and N1\nThe evolution car was the GT-R Nismo, homologated on 1 March 1990. Five hundred customer cars were built between December 1989 and March 1990, with a further sixty retained by Nissan for competition. The specification reflected the rulebook: steel-turbine Garrett turbochargers in place of the ceramic units, extra intercooler ducting, additional aerodynamic addenda, and the deletion of ABS (banned in Group A), the rear wiper and the stereo, for roughly 66 lb saved. All wore Gun Gray Metallic. From 1991 the N1 followed for Japan's N1 endurance category, stripped further still with no ABS, air conditioning or audio, uprated oil and brake cooling, and Crystal White paint only. N1 build counts differ between sources depending on whether the later V-Spec N1 and V-Spec II N1 cars are counted.\n\n## Godzilla\nThe racing record is the reason the car matters. In Japan the GT-R won all 29 races it contested between 1990 and 1993, taking the title in each of those four seasons. In Australia it took the touring car championship in 1991 with Jim Richards and 1992 with Mark Skaife, and won the Bathurst 1000 in both years; the 1991 race record stood until 2010. Officials responded with weight penalties that took the cars from 2,998 lb in 1991 to 3,307 lb in 1992 and with mandated pop-off valves that cut power from roughly 640 hp to about 450 hp. The nickname Godzilla came from the Australian motoring press, and the car's dominance is widely credited with ending Group A in Australia and pushing the sport toward the V8 formula that became Supercars.",
  "marketNotes": "As of August 2026, classic.com's R32 GT-R market benchmark stands at approximately $56,600, against a recorded low of $7,777 for a compromised 1994 project car sold in March 2023 and asking prices reaching around $150,000 for heavily modified examples; roughly a dozen cars were listed for sale at the time of reading. JDMBUYSELL's 2026 guide puts clean, well-documented GT-Rs in a $50,000-$90,000 band, with RB-engined non-GT-R GTS-t cars at $8,000-$25,000. Classic Motorsports cites recent results from $53,000 for a standard 1993 car to $126,500 for a 1994 V-Spec II, and $280,000 for a Hasemi Motorsport competition car, and notes Hagerty data showing values peaking in late 2022 and easing since. In Australia, where 100 cars were officially delivered in 1991, WhichCar puts the range at roughly AUD 40,000-150,000, with locally complied cars at a clear premium. Specification drives the spread: V-Spec II, Nismo and N1 cars, low mileage, unmodified drivetrains and clean Japanese auction sheets all command premiums, while modified, rusty or accident-repaired imports sell at steep discounts.",
  "whatToLookFor": "Rust is the first check on any Japanese-market car: rear quarter panels, the base of the C-pillars where weatherstripping shrinks and traps water, strut-tower tops in the engine bay, and floor and sill seams damaged by careless jacking. Specialists warn that some export sellers cosmetically disguise corrosion, so inspect underneath and behind trim rather than accepting photographs. Verify the oil pump specification and any documented rebuild history, since the early crankshaft drive collar is the engine's known weak point. Confirm boost has not been raised beyond standard on original ceramic-turbine turbochargers. Check that ATTESA E-TS actually engages and that its hydraulic pump and accumulator are healthy, and establish whether Super-HICAS is functional, locked out or deleted. Drive the car: clutch condition, driveshaft and differential clunk, and brake pulsing are all common and none are cheap. Authenticate variant claims for Nismo, N1, V-Spec and V-Spec II cars against chassis records, as the value gap over a standard car is substantial. For US cars, confirm the build-date compliance plate supports legal import.",
  "commonProblems": "The RB26DETT's most notorious failure is the oil pump drive: the standard crank collar is undersized for sustained high rpm and can crack at the gear interface, an issue serious enough that replacement is routine on any rebuilt or tuned engine. Leaking oil pump backing plates affect both early and late crankshaft designs. The original ceramic turbine wheels can shatter if boost is raised much beyond standard or the rev limiter is used habitually, and turbo oil seals degrade with age, producing white smoke. Bodyshell corrosion is widespread on Japanese-market cars given local winter road salting. ATTESA E-TS suffers hydraulic pump failures and leaking accumulator seals; Super-HICAS fails or is deliberately locked out. Age-related items are constant: tired bushings and dampers, worn clutches (rapid standing starts are the R32's natural habitat), driveshaft and differential clunk, warped brake rotors and perished brake hydraulics. Aging fuel pumps are marginal for anything beyond standard output. The engine is complex and expensive to rebuild, and parts supply, while supported by Nismo Heritage, is not cheap.",
@@ -72,7 +72,7 @@ export const seedSkylineR32 = {
    "publisher": "Nissan Motor Co.",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Factory data: RB26DETT 2,568cc, 206kW (280PS)/6,800rpm, 353Nm/4,400rpm, ATTESA E-TS, 5-speed, four-wheel multi-link; 29 wins with no defeat in the Japanese touring car championship 1990-1993."
+   "notes": "Factory data: RB26DETT 2,568cc, 276 hp (276 hp)/6,800rpm, 260 lb-ft/4,400rpm, ATTESA E-TS, 5-speed, four-wheel multi-link; 29 wins with no defeat in the Japanese touring car championship 1990-1993."
   },
   {
    "ref": "hagerty-r32",
@@ -88,7 +88,7 @@ export const seedSkylineR32 = {
    "title": "Nissan Skyline GT-R",
    "url": "https://en.wikipedia.org/wiki/Nissan_Skyline_GT-R",
    "publisher": "Wikipedia",
-   "sourceType": "reference",
+   "sourceType": "reference-book",
    "reliability": "medium",
    "notes": "BNR32 August 1989-November 1994, 43,937 total; Nismo RA 560; N1 245 (118 + 64 V-Spec N1 + 63 V-Spec II N1); V-Spec 1,396; V-Spec II 1,306; gentlemen's agreement and ~327 hp tested; 29/29 Group A wins; Wheels magazine July 1989 'Godzilla'."
   },
@@ -117,7 +117,7 @@ export const seedSkylineR32 = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Group A evolution rules (5,000 base / 500 evolution within twelve months); 500 customer Nismos December 1989-March 1990 plus 60 competition cars; homologated 1 March 1990; steel-wheel turbos, ABS/rear wiper/stereo deleted, ~1,400 kg, Gun Grey Metallic only."
+   "notes": "Group A evolution rules (5,000 base / 500 evolution within twelve months); 500 customer Nismos December 1989-March 1990 plus 60 competition cars; homologated 1 March 1990; steel-wheel turbos, ABS/rear wiper/stereo deleted, ~3,086 lb, Gun Gray Metallic only."
   },
   {
    "ref": "supercarnostalgia-r32",
@@ -126,7 +126,7 @@ export const seedSkylineR32 = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "2.6 litres chosen to place the car in the 4.5-litre Group A class for the widest tyres; 5,000-unit homologation plan overtaken by demand; 276 bhp claimed vs 313 bhp actual; ATTESA E-TS and Super-HICAS operation; 100 Australian-market cars."
+   "notes": "2.6 liters chosen to place the car in the 4.5-liter Group A class for the widest tires; 5,000-unit homologation plan overtaken by demand; 276 hp claimed vs 313 hp actual; ATTESA E-TS and Super-HICAS operation; 100 Australian-market cars."
   },
   {
    "ref": "autosport-godzilla",
@@ -135,7 +135,7 @@ export const seedSkylineR32 = {
    "publisher": "Autosport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Bathurst 1000 wins 1991 and 1992 (1991 race record stood until 2010), ATCC titles 1991 Richards / 1992 Skaife, weight penalties 1,360 kg to 1,500 kg, pop-off valves cutting ~640 bhp to ~450 bhp, and Group A's collapse in Australia."
+   "notes": "Bathurst 1000 wins 1991 and 1992 (1991 race record stood until 2010), ATCC titles 1991 Richards / 1992 Skaife, weight penalties 2,998 lb to 3,307 lb, pop-off valves cutting ~640 hp to ~450 hp, and Group A's collapse in Australia."
   },
   {
    "ref": "classic-com-r32",
@@ -197,7 +197,7 @@ export const seedSkylineR32 = {
   },
   {
    "section": "specs",
-   "claimText": "The RB26DETT is a 2,568 cc DOHC 24-valve twin-turbocharged inline-six rated by Nissan at 206 kW (280 PS) at 6,800 rpm and 353 Nm (36 kgm) at 4,400 rpm.",
+   "claimText": "The RB26DETT is a 2,568 cc DOHC 24-valve twin-turbocharged inline-six rated by Nissan at 276 hp (276 hp) at 6,800 rpm and 260 lb-ft (260 lb-ft) at 4,400 rpm.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -207,7 +207,7 @@ export const seedSkylineR32 = {
   },
   {
    "section": "specs",
-   "claimText": "The 280 PS rating reflected the Japanese manufacturers' gentlemen's agreement rather than measured output; independent testing places real flywheel output above 300 hp.",
+   "claimText": "The 276 hp rating reflected the Japanese manufacturers' gentlemen's agreement rather than measured output; independent testing places real flywheel output above 300 hp.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -215,7 +215,7 @@ export const seedSkylineR32 = {
     "supercarnostalgia-r32",
     "classicmotorsports-r32"
    ],
-   "conflictNote": "Published estimates of actual output differ: approximately 327 hp (Wikipedia), 313 bhp (Supercar Nostalgia) and approximately 311 hp (Classic Motorsports). All agree the car exceeded its 280 PS rating; the precise figure is not settled, so a range is stated rather than a single number."
+   "conflictNote": "Published estimates of actual output differ: approximately 327 hp (Wikipedia), 313 hp (Supercar Nostalgia) and approximately 311 hp (Classic Motorsports). All agree the car exceeded its 276 hp rating; the precise figure is not settled, so a range is stated rather than a single number."
   },
   {
    "section": "specs",
@@ -266,7 +266,7 @@ export const seedSkylineR32 = {
   },
   {
    "section": "production",
-   "claimText": "V-Spec (February 1993) added Brembo brakes, 17-inch BBS wheels and a revised ATTESA E-TS calibration, and V-Spec II (February 1994) followed with wider 245/45R17 tyres.",
+   "claimText": "V-Spec (February 1993) added Brembo brakes, 17-inch BBS wheels and a revised ATTESA E-TS calibration, and V-Spec II (February 1994) followed with wider 245/45R17 tires.",
    "confidence": "high",
    "status": "disputed",
    "sourceRefs": [
@@ -288,7 +288,7 @@ export const seedSkylineR32 = {
   },
   {
    "section": "history",
-   "claimText": "In Australia the GT-R won the touring car championship in 1991 (Jim Richards) and 1992 (Mark Skaife) and the Bathurst 1000 in both years, was penalised from 1,360 kg to 1,500 kg and fitted with mandated pop-off valves cutting roughly 640 bhp to about 450 bhp, and was nicknamed Godzilla by the Australian motoring press.",
+   "claimText": "In Australia the GT-R won the touring car championship in 1991 (Jim Richards) and 1992 (Mark Skaife) and the Bathurst 1000 in both years, was penalised from 2,998 lb to 3,307 lb and fitted with mandated pop-off valves cutting roughly 640 hp to about 450 hp, and was nicknamed Godzilla by the Australian motoring press.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

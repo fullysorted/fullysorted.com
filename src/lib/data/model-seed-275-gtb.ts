@@ -1,5 +1,5 @@
 /**
- * Researched model draft — Ferrari 275 GTB (1964-1968).
+ * Researched model draft for the Ferrari 275 GTB (1964-1968).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seed275Gtb = {
@@ -15,36 +15,36 @@ export const seed275Gtb = {
  "yearEnd": 1968,
  "bodyStyles": [
   "2-door Berlinetta (fixed-roof coupe), steel body by Scaglietti to a Pininfarina design",
-  "2-door Berlinetta, aluminium alloy body (extra-cost option)",
+  "2-door Berlinetta, aluminum alloy body (extra-cost option)",
   "2-door Spider (275 GTB/4S NART Spider, ten cars built for Luigi Chinetti)"
  ],
  "engines": [
-  "3,286 cc Tipo 213 60-degree Colombo V12, single overhead camshaft per bank, three Weber 40 DCZ/6 or 40 DFI/1 twin-choke carburettors, 280 bhp at 7,600 rpm claimed (1964-1966 275 GTB)",
-  "3,286 cc Tipo 213 V12 with the optional six Weber 40 DCN carburettors, quoted at 300-320 bhp by different sources (275 GTB '6C')",
-  "3,286 cc Tipo 226 V12, twin overhead camshafts per bank, six Weber 40 DCN carburettors as standard, dry-sump lubrication, 300 bhp at 8,000 rpm claimed (1966-1968 275 GTB/4)"
+  "3,286 cc Tipo 213 60-degree Colombo V12, single overhead camshaft per bank, three Weber 40 DCZ/6 or 40 DFI/1 twin-choke carburetors, 280 hp at 7,600 rpm claimed (1964-1966 275 GTB)",
+  "3,286 cc Tipo 213 V12 with the optional six Weber 40 DCN carburetors, quoted at 300-320 hp by different sources (275 GTB '6C')",
+  "3,286 cc Tipo 226 V12, twin overhead camshafts per bank, six Weber 40 DCN carburetors as standard, dry-sump lubrication, 300 hp at 8,000 rpm claimed (1966-1968 275 GTB/4)"
  ],
  "productionTotal": null,
- "productionNotes": "No two credible sources consulted here agree on how many two-cam 275 GTBs were built, and the four-cam figure is contested as well, so no total is asserted. For the two-cam car, Wikipedia gives 442 (236 Series I short-nose and 206 Series II long-nose); Sports Car Market gives 440; Classic & Sports Car gives 450; RM Sotheby's Munich 2025 catalogue gives 453 with 'approximately only 250' short-nose cars; and Motor Sport's 2019 buying guide gives 456. The spread of sixteen cars is small in absolute terms but it is real, it is not explained by any of these sources, and the short-nose count of 236 versus 'approximately 250' compounds it. For the 275 GTB/4, Wikipedia, RM Sotheby's, Supercar Nostalgia and Classic & Sports Car all state 330, with Supercar Nostalgia adding that 27 were right-hand drive; Forza magazine ('74th of 350') and Motor Sport (350) state 350. The 330 figure is the better supported but the 350 figure comes from two independent specialist titles, so it is recorded as a dispute rather than dismissed. Sub-series counts are also soft. Alloy-bodied two-cam cars are given as 'at least 72' by Wikipedia and 'approximately 80' by RM Sotheby's; alloy GTB/4s as 'only 16' by Gooding & Company and 'less than 20' by Supercar Nostalgia. Sports Car Market states that fewer than 40 two-cam cars left the factory with both six carburettors and the torque-tube driveline. Competition cars are counted separately: four 275 GTB/C Speciale (three in 1964-65, one in 1966), and either 12 (Wikipedia, Classic & Sports Car) or 11 (Motor Sport) 1966 275 GTB/C. Ten NART Spiders were built of 25 ordered by Chinetti. The 275 GTS open car, 200 built by Pininfarina, is a separate model and is not counted here.",
+ "productionNotes": "No two credible sources consulted here agree on how many two-cam 275 GTBs were built, and the four-cam figure is contested as well, so no total is asserted. For the two-cam car, Wikipedia gives 442 (236 Series I short-nose and 206 Series II long-nose); Sports Car Market gives 440; Classic & Sports Car gives 450; RM Sotheby's Munich 2025 catalog gives 453 with 'approximately only 250' short-nose cars; and Motor Sport's 2019 buying guide gives 456. The spread of sixteen cars is small in absolute terms but it is real, it is not explained by any of these sources, and the short-nose count of 236 versus 'approximately 250' compounds it. For the 275 GTB/4, Wikipedia, RM Sotheby's, Supercar Nostalgia and Classic & Sports Car all state 330, with Supercar Nostalgia adding that 27 were right-hand drive; Forza magazine ('74th of 350') and Motor Sport (350) state 350. The 330 figure is the better supported but the 350 figure comes from two independent specialist titles, so it is recorded as a dispute rather than dismissed. Sub-series counts are also soft. Alloy-bodied two-cam cars are given as 'at least 72' by Wikipedia and 'approximately 80' by RM Sotheby's; alloy GTB/4s as 'only 16' by Gooding & Company and 'less than 20' by Supercar Nostalgia. Sports Car Market states that fewer than 40 two-cam cars left the factory with both six carburetors and the torque-tube driveline. Competition cars are counted separately: four 275 GTB/C Speciale (three in 1964-65, one in 1966), and either 12 (Wikipedia, Classic & Sports Car) or 11 (Motor Sport) 1966 275 GTB/C. Ten NART Spiders were built of 25 ordered by Chinetti. The 275 GTS open car, 200 built by Pininfarina, is a separate model and is not counted here.",
  "notableTrims": [
   {
    "name": "275 GTB Series I 'short-nose' (1964-1965)",
-   "note": "The original configuration with the abbreviated nose, small rear window and open driveshaft on a centre bearing. Fewer were built than long-nose cars and the driveline is the version most prone to alignment trouble, which is why originality of nose and driveline both matter."
+   "note": "The original configuration with the abbreviated nose, small rear window and open driveshaft on a center bearing. Fewer were built than long-nose cars and the driveline is the version most prone to alignment trouble, which is why originality of nose and driveline both matter."
   },
   {
    "name": "275 GTB Series II 'long-nose' (1965-1966)",
    "note": "Nose lengthened by nearly four inches to cure high-speed lift, larger rear screen, external boot hinges, and the torque-tube driveline that fixed the earlier car's vibration and alignment problems. Regarded by Sports Car Market as the most valuable two-cam form."
   },
   {
-   "name": "275 GTB '6C' six-carburettor",
-   "note": "Factory option of six Weber 40 DCN carburettors in place of three, quoted at 300-320 bhp. More powerful, harder to keep in tune, and now a distinct sub-market; fewer than 40 two-cam cars are said to have combined six carburettors with the torque tube from new."
+   "name": "275 GTB '6C' six-carburetor",
+   "note": "Factory option of six Weber 40 DCN carburetors in place of three, quoted at 300-320 hp. More powerful, harder to keep in tune, and now a distinct sub-market; fewer than 40 two-cam cars are said to have combined six carburetors with the torque tube from new."
   },
   {
    "name": "275 GTB alloy body",
-   "note": "Extra-cost aluminium bodywork by Scaglietti saving roughly 117 kg. Counts range from 'at least 72' to 'approximately 80'. A long-nose, six-carburettor alloy car is the specification auction houses now describe as the ultimate two-cam."
+   "note": "Extra-cost aluminum bodywork by Scaglietti saving roughly 258 lb. Counts range from 'at least 72' to 'approximately 80'. A long-nose, six-carburetor alloy car is the specification auction houses now describe as the ultimate two-cam."
   },
   {
    "name": "275 GTB/4 (1966-1968)",
-   "note": "Four-cam Tipo 226 engine with dry sump and six carburettors as standard, torque tube throughout, 300 bhp claimed. Visually separated from the two-cam only by the raised centre section of the bonnet. Around 330 built, 27 of them right-hand drive, and about 16 in alloy."
+   "note": "Four-cam Tipo 226 engine with dry sump and six carburetors as standard, torque tube throughout, 300 hp claimed. Visually separated from the two-cam only by the raised center section of the hood. Around 330 built, 27 of them right-hand drive, and about 16 in alloy."
   },
   {
    "name": "275 GTB/C Speciale and 275 GTB/C",
@@ -58,29 +58,29 @@ export const seed275Gtb = {
  "specs": {
   "layout": "Front-mounted longitudinal V12, rear-mounted five-speed transaxle, rear-wheel drive",
   "chassis": "Tipo 563 ladder frame of oval-section steel tube; Tipo 590 A lightweight frame for the 275 GTB/C",
-  "engine": "3,286 cc 60-degree Colombo V12, all-aluminium; Tipo 213 single-cam (275 GTB) or Tipo 226 twin-cam per bank (275 GTB/4)",
+  "engine": "3,286 cc 60-degree Colombo V12, all-aluminum; Tipo 213 single-cam (275 GTB) or Tipo 226 twin-cam per bank (275 GTB/4)",
   "bore_stroke": "77.0 mm x 58.8 mm",
   "compression": "9.2:1 (quoted for both Tipo 213 and Tipo 226)",
   "fuel_system": "Three Weber 40 DCZ/6 or 40 DFI/1 (275 GTB); six Weber 40 DCN optional on the two-cam and standard on the GTB/4 (DCN 9, later DCN 17 and DCN 18)",
-  "lubrication": "Wet sump (275 GTB); dry sump with roughly 16-litre capacity and oil cooler (275 GTB/4)",
-  "power": "280 bhp at 7,600 rpm claimed for the three-carburettor two-cam; 300-320 bhp quoted for six-carburettor two-cams; 300 bhp at 8,000 rpm claimed for the GTB/4. Period and current writers put real two-cam output nearer 240-250 bhp",
+  "lubrication": "Wet sump (275 GTB); dry sump with roughly 16-liter capacity and oil cooler (275 GTB/4)",
+  "power": "280 hp at 7,600 rpm claimed for the three-carburetor two-cam; 300-320 hp quoted for six-carburetor two-cams; 300 hp at 8,000 rpm claimed for the GTB/4. Period and current writers put real two-cam output nearer 240-250 hp",
   "torque": "188 lb-ft at 5,500 rpm (two-cam); GTB/4 quoted variously at 202 lb-ft at 5,500 rpm, 217 lb-ft at 6,000 rpm and 232 lb-ft at 6,000 rpm depending on source",
-  "transmission": "Five-speed all-synchromesh manual transaxle with limited-slip differential; open driveshaft on a centre bearing on Series I, CV-jointed shaft from late 1965, enclosed torque tube on later two-cams and all GTB/4",
+  "transmission": "Five-speed all-synchromesh manual transaxle with limited-slip differential; open driveshaft on a center bearing on Series I, CV-jointed shaft from late 1965, enclosed torque tube on later two-cams and all GTB/4",
   "suspension": "Double wishbones, coil springs and Koni dampers at all four corners; the first road Ferrari with independent rear suspension",
   "brakes": "Four-wheel vacuum-assisted disc brakes",
-  "weight": "About 1,100 kg quoted for a steel two-cam; alloy two-cam roughly 117 kg lighter; 1,300 kg quoted for a steel GTB/4 (sources vary and none states a test condition)",
+  "weight": "About 2,425 lb quoted for a steel two-cam; alloy two-cam roughly 258 lb lighter; 2,866 lb quoted for a steel GTB/4 (sources vary and none states a test condition)",
   "wheelbase": "2,400 mm",
   "dimensions": "Length 4,369 mm, width 1,702 mm, height 1,232 mm (two-cam)",
-  "top_speed": "160 mph quoted for the two-cam and 166-167 mph (268 km/h) claimed for the GTB/4; manufacturer and magazine figures, not independently verified here",
+  "top_speed": "160 mph quoted for the two-cam and 166-167 mph claimed for the GTB/4; manufacturer and magazine figures, not independently verified here",
   "acceleration": "0-60 mph in about 6.6-6.7 seconds (two-cam) and 6.1 seconds (GTB/4) per Classic & Sports Car and Supercars.net; a September 1967 test of the NART Spider recorded 6.7 seconds",
-  "price_new": "£5,699 or £5,973 in the UK in 1965 depending on source; $14,500 in the United States; £6,515 for the GTB/4 in 1967"
+  "price_new": "$14,500 in the United States"
  },
- "summary": "The Ferrari 275 GTB (1964-1968) was the car with which Ferrari's berlinetta stopped being a civilised racing car and became a road car engineered as one. Shown at the Paris Salon in October 1964 as the successor to the 250 GT line, styled at Pininfarina and built by Scaglietti, it brought independent rear suspension and a rear-mounted five-speed transaxle to a road-going Ferrari for the first time. The Colombo V12 grew to 3,286 cc, or 275 cc per cylinder, hence the name. The two-cam car divides into the short-nose Series I and the long-nose Series II, with alloy bodywork and six carburettors as factory options, and was replaced at the 1966 Paris show by the 275 GTB/4, the first production Ferrari with four overhead camshafts, dry-sump lubrication and six Webers as standard. Sources do not agree on how many of either were built: figures for the two-cam run from 440 to 456, and for the four-cam from 330 to 350. Competition derivatives took class wins at Le Mans in 1965 and 1966, and ten open NART Spiders were built for Luigi Chinetti.",
- "history": "## Replacing the 250\n\nBy the early 1960s the 250 GT line was a decade old and cheaper cars, the Jaguar E-type among them, were matching its performance. Ferrari's answer, shown at the Paris Salon in October 1964, was the 275 GTB, named for the 275 cc swept by each of its twelve cylinders. Sources differ on which 250 it replaced: Classic & Sports Car names the 250 GT Lusso, Motor Sport the 250 GT SWB Berlinetta, and in practice it did the job of both. The body was drawn at Pininfarina, credited to Francesco Salamone, and built in steel or optionally aluminium by Scaglietti in Modena. Doug Nye thought the shape looked outdated when new; the verdict has softened since.\n\n## The Engineering Step\n\nWhat mattered was underneath. The 275 GTB was the first road-going Ferrari with independent rear suspension, double wishbones and coil springs at all four corners, and the first with a rear-mounted transaxle, the five-speed gearbox combined with the final drive in the manner of the 250 Testa Rossa racer, which put more weight over the driven wheels. The chassis was the Tipo 563, a ladder of oval-section steel tube. The engine was Gioacchino Colombo's all-aluminium 60-degree V12 at 3,286 cc with a single camshaft per bank, three twin-choke Webers, and a claimed 280 bhp at 7,600 rpm; six carburettors were a factory option quoted at 300 to 320 bhp. Real output of the three-carburettor car was nearer 240 to 250 bhp. Disc brakes were fitted all round and, for the first time on a Ferrari, cast alloy wheels.\n\n## Short Nose, Long Nose and the Driveshaft\n\nThe first cars, now called Series I or short-nose, had an abbreviated front, a small rear window and an open driveshaft running on a centre bearing between engine and transaxle. The shaft was the weak point: with the engine and gearbox mounted separately, alignment drifted and vibration followed, and Goodwood's buyer's guide notes that Ferrari's own history concedes the difficulty. CV joints were added at the end of 1965, and then the driveline was enclosed in a torque tube that tied engine and transaxle rigidly together, with the mounting points reduced from seven to four. At the same time the nose was lengthened by nearly four inches to cure lift at speed, the rear screen enlarged and the boot lid hinged externally to free luggage space, producing the Series II long-nose. Sources disagree on exactly when the torque tube arrived: Wikipedia and Sports Car Market place it within the two-cam run, while Classic & Sports Car describes it as a GTB/4 addition.\n\n## Four Camshafts\n\nAt Paris in October 1966 the 275 GTB/4 replaced the two-cam car. Ferrari's own page describes it as the first production Ferrari with the four overhead camshaft V12, derived directly from the P2 prototype. The Tipo 226 engine kept the 77 by 58.8 mm bore and stroke, narrowed the included valve angle to 54 degrees, added dry-sump lubrication with two scavenge pumps and a roughly 16-litre tank, and ran six Weber 40 DCN carburettors as standard for a claimed 300 bhp at 8,000 rpm. The torque tube was universal. Outside, the only giveaway was a raised centre section on the bonnet. Around 330 were built to 1968, though two specialist titles say 350, and about 16 were alloy-bodied. Ten open GTS/4 cars, the NART Spiders, were built for Luigi Chinetti's North American Racing Team, bought at about $8,000 each and listed at $14,400; Road & Track called one the most satisfying sports car in the world.\n\n## Competition and Aftermath\n\nFerrari built four thin-alloy 275 GTB/C Speciale cars for 1965, and chassis 6885 finished third overall at Le Mans that June. For 1966 a lightweight Tipo 590 A run of 11 or 12 275 GTB/C followed, with riveted 0.71 mm alloy panels and an open driveshaft retained for quick clutch changes; at Le Mans 1966 chassis 09035 was eighth overall and first in class, with 09027 tenth and second in class. Tullio Marchesi won the Italian GT championship in 1966 and 1967 in 09007. Even the 1964 prototype, 06003, was pressed into the 1966 Monte Carlo Rally. The 275's reputation has risen steadily since, with the Speciale 06701 selling for $26.4 million in 2014 and NART Spider 10709 for $27.5 million with premium in 2013.",
- "marketNotes": "As of September 2026, classic.com's market benchmark for the two-cam 275 GTB stands at $2,639,867 on a rising trend, with an average recorded sale of $2,398,765 and the lowest tracked result at $1,125,000 for a 1965 car in May 2024. The most recent results it lists are two RM Sotheby's Monterey sales in August 2026: $2,700,000 for a 1966 long-nose alloy car with six carburettors, chassis 08057, and $2,177,500 for a 1965 car; RM Sotheby's Munich sold the Classiche-certified short-nose 06897 for 2,367,500 euros in October 2025 after about 460,000 euros of recent restoration. The four-cam market sits higher. As of September 2026 classic.com's 275 GTB/4 benchmark is $3,420,641, also rising, with an average sale of $3,372,283, a low of 2,283,125 euros in April 2026 and a high of $6,050,000 for the alloy-bodied, highly original chassis 10269 at Mecum Kissimmee in January 2026. Between those, Broad Arrow made 3,015,625 euros in October 2025 and $3,415,000 in March 2026, Gooding Christie's $3,030,000 in March 2026 and Mecum $2,860,000 in May 2026, while RM Sotheby's Monterey 2025 failed to sell the Classiche-certified 09931 against a $3.5 to $4 million estimate. Gooding's 2021 results of $3,586,000 for the alloy GTB/4 10025 and $3,662,500 for the one-owner 10443 show the band has moved little for steel cars in five years. All of these are prices with buyer's premium. Sterling data from The Classic Valuer gives a median of £1,780,385 across 76 tracked 275 GTB auction appearances, against a 2019 trade view of £1.5 to £2.5 million.",
- "whatToLookFor": "Identity comes first, because the value spread between configurations is wide and conversions are old and well executed. Ferrari Classiche certification, available to road cars over twenty years old and dependent on the original chassis, is the usual proof that engine, transaxle and body are the ones the factory fitted; both RM Sotheby's Munich 06897 and the Monterey 2025 09931 carried the Red Book, and Motor Sport's guide observes that non-matching, older-restoration cars are the ones that struggle at auction. Nose configuration is the next question. Short-nose cars were converted to long-nose in period and are now being converted back: Tom Hartley Jnr's account of a right-hand-drive 1965 six-carburettor car altered to long-nose in 1966 and returned to short-nose in restoration shows how fluid this is, and a car's nose should match its chassis number and its factory build sheet rather than its badge. Carburettor count and the driveline arrangement should likewise be checked against the build record, since six-carburettor manifolds and torque tubes have both been added later. On the structure, Goodwood flags the tubular frame around body and suspension mounts, floors and sills on steel cars, and door hinges as the corrosion points; DK Engineering's restoration of 09475 mentions that the fibreglass floors are usually left in place, so a fully stripped car is unusual and worth documenting. Colour changes are routine, with 09475 spending forty years in red over its original Celeste, and so is a history of respray. A GTB/4 should show a dry-sump system in good order and an engine that does not weep from the cam covers. For competition-badged cars, Goodwood's warning stands: confirm it is a factory GTB/C and not a later conversion of a road car.",
- "commonProblems": "The two-cam driveline is the model's characteristic fault. On cars without the torque tube, which includes every Series I short-nose, the engine and rear-mounted transaxle are located separately and the open driveshaft's centre bearing depends on their alignment; when it drifts the result is vibration and, in Goodwood's words, transmission issues. Ferrari's own history acknowledged the difficulty and the torque tube was the cure, which is one reason later cars are preferred by drivers as well as by the market. The Tipo 226 four-cam engine has what DK Engineering describes as an inherent oil leak design flaw, addressed with in-house modifications during their rebuild of 09475, and a full engine and transaxle rebuild on that car involved new pistons, valves and bearings. Six-carburettor cars, whether two-cam or four-cam, are harder to keep in tune than the three-carburettor version and reward specialist setting-up. Corrosion attacks the oval-tube frame around the body and suspension mounts, the floors and sills of steel-bodied cars and the door hinges, and because the fibreglass floors are commonly left in situ during restoration, hidden frame condition beneath them is not always known. Alloy-bodied cars trade corrosion for the softness of thin aluminium and the cost of correct panel repair. None of these is unusual for a 1960s Ferrari; what distinguishes the 275 is that the outlay to put a poor car right is measured against a seven-figure value, so a documented mechanical history from a known specialist carries real weight.",
- "valueTrajectory": "The 275 GTB has moved from an under-appreciated successor to the 250 into one of the most expensive front-engined Ferraris short of the competition cars. The Classic Valuer's database records an all-time low of £116,134 at RM Sotheby's in August 2002 and a post-2020 low of £906,624 in March 2022, against a high of £2,739,885 at Gooding in August 2023. Motor Sport's 2019 guide put the two-cam at £1.5 to £2.5 million; Classic & Sports Car more recently placed a long-nose alloy car at £2 to £2.5 million and a GTB/4 at £2 to £3 million. As of September 2026 classic.com shows both the two-cam benchmark of $2,639,867 and the four-cam benchmark of $3,420,641 trending upward, though the underlying results suggest a market that is stratifying rather than lifting uniformly: steel GTB/4s have sold in roughly the same $3.0 to $3.7 million band since 2021, ordinary two-cams sit at $2.2 to $2.7 million, and the outliers, $6,050,000 for a highly original alloy GTB/4 in January 2026, belong to originality and specification rather than to the model. The likely direction is a widening gap between certified, correctly configured cars with continuous history and the rest.",
+ "summary": "The Ferrari 275 GTB (1964-1968) was the car with which Ferrari's berlinetta stopped being a civilized racing car and became a road car engineered as one. Shown at the Paris Salon in October 1964 as the successor to the 250 GT line, styled at Pininfarina and built by Scaglietti, it brought independent rear suspension and a rear-mounted five-speed transaxle to a road-going Ferrari for the first time. The Colombo V12 grew to 3,286 cc, or 275 cc per cylinder, hence the name. The two-cam car divides into the short-nose Series I and the long-nose Series II, with alloy bodywork and six carburetors as factory options, and was replaced at the 1966 Paris show by the 275 GTB/4, the first production Ferrari with four overhead camshafts, dry-sump lubrication and six Webers as standard. Sources do not agree on how many of either were built: figures for the two-cam run from 440 to 456, and for the four-cam from 330 to 350. Competition derivatives took class wins at Le Mans in 1965 and 1966, and ten open NART Spiders were built for Luigi Chinetti.",
+ "history": "## Replacing the 250\n\nBy the early 1960s the 250 GT line was a decade old and cheaper cars, the Jaguar E-type among them, were matching its performance. Ferrari's answer, shown at the Paris Salon in October 1964, was the 275 GTB, named for the 275 cc swept by each of its twelve cylinders. Sources differ on which 250 it replaced: Classic & Sports Car names the 250 GT Lusso, Motor Sport the 250 GT SWB Berlinetta, and in practice it did the job of both. The body was drawn at Pininfarina, credited to Francesco Salamone, and built in steel or optionally aluminum by Scaglietti in Modena. Doug Nye thought the shape looked outdated when new; the verdict has softened since.\n\n## The Engineering Step\n\nWhat mattered was underneath. The 275 GTB was the first road-going Ferrari with independent rear suspension, double wishbones and coil springs at all four corners, and the first with a rear-mounted transaxle, the five-speed gearbox combined with the final drive in the manner of the 250 Testa Rossa racer, which put more weight over the driven wheels. The chassis was the Tipo 563, a ladder of oval-section steel tube. The engine was Gioacchino Colombo's all-aluminum 60-degree V12 at 3,286 cc with a single camshaft per bank, three twin-choke Webers, and a claimed 280 hp at 7,600 rpm; six carburetors were a factory option quoted at 300 to 320 hp. Real output of the three-carburetor car was nearer 240 to 250 hp. Disc brakes were fitted all round and, for the first time on a Ferrari, cast alloy wheels.\n\n## Short Nose, Long Nose and the Driveshaft\n\nThe first cars, now called Series I or short-nose, had an abbreviated front, a small rear window and an open driveshaft running on a center bearing between engine and transaxle. The shaft was the weak point: with the engine and gearbox mounted separately, alignment drifted and vibration followed, and Goodwood's buyer's guide notes that Ferrari's own history concedes the difficulty. CV joints were added at the end of 1965, and then the driveline was enclosed in a torque tube that tied engine and transaxle rigidly together, with the mounting points reduced from seven to four. At the same time the nose was lengthened by nearly four inches to cure lift at speed, the rear screen enlarged and the trunk lid hinged externally to free luggage space, producing the Series II long-nose. Sources disagree on exactly when the torque tube arrived: Wikipedia and Sports Car Market place it within the two-cam run, while Classic & Sports Car describes it as a GTB/4 addition.\n\n## Four Camshafts\n\nAt Paris in October 1966 the 275 GTB/4 replaced the two-cam car. Ferrari's own page describes it as the first production Ferrari with the four overhead camshaft V12, derived directly from the P2 prototype. The Tipo 226 engine kept the 77 by 58.8 mm bore and stroke, narrowed the included valve angle to 54 degrees, added dry-sump lubrication with two scavenge pumps and a roughly 16-liter tank, and ran six Weber 40 DCN carburetors as standard for a claimed 300 hp at 8,000 rpm. The torque tube was universal. Outside, the only giveaway was a raised center section on the hood. Around 330 were built to 1968, though two specialist titles say 350, and about 16 were alloy-bodied. Ten open GTS/4 cars, the NART Spiders, were built for Luigi Chinetti's North American Racing Team, bought at about $8,000 each and listed at $14,400; Road & Track called one the most satisfying sports car in the world.\n\n## Competition and Aftermath\n\nFerrari built four thin-alloy 275 GTB/C Speciale cars for 1965, and chassis 6885 finished third overall at Le Mans that June. For 1966 a lightweight Tipo 590 A run of 11 or 12 275 GTB/C followed, with riveted 0.71 mm alloy panels and an open driveshaft retained for quick clutch changes; at Le Mans 1966 chassis 09035 was eighth overall and first in class, with 09027 tenth and second in class. Tullio Marchesi won the Italian GT championship in 1966 and 1967 in 09007. Even the 1964 prototype, 06003, was pressed into the 1966 Monte Carlo Rally. The 275's reputation has risen steadily since, with the Speciale 06701 selling for $26.4 million in 2014 and NART Spider 10709 for $27.5 million with premium in 2013.",
+ "marketNotes": "As of September 2026, classic.com's market benchmark for the two-cam 275 GTB stands at $2,639,867 on a rising trend, with an average recorded sale of $2,398,765 and the lowest tracked result at $1,125,000 for a 1965 car in May 2024. The most recent results it lists are two RM Sotheby's Monterey sales in August 2026: $2,700,000 for a 1966 long-nose alloy car with six carburetors, chassis 08057, and $2,177,500 for a 1965 car; RM Sotheby's Munich sold the Classiche-certified short-nose 06897 for 2,367,500 euros in October 2025 after about 460,000 euros of recent restoration. The four-cam market sits higher. As of September 2026 classic.com's 275 GTB/4 benchmark is $3,420,641, also rising, with an average sale of $3,372,283, a low of $2,283,125 at RM Sotheby's in April 2026 and a high of $6,050,000 for the alloy-bodied, highly original chassis 10269 at Mecum Kissimmee in January 2026. Between those, Broad Arrow made 3,015,625 euros in October 2025 and $3,415,000 in March 2026, Gooding Christie's $3,030,000 in March 2026 and Mecum $2,860,000 in May 2026, while RM Sotheby's Monterey 2025 failed to sell the Classiche-certified 09931 against a $3.5 to $4 million estimate. Gooding's 2021 results of $3,586,000 for the alloy GTB/4 10025 and $3,662,500 for the one-owner 10443 show the band has moved little for steel cars in five years. All of these are prices with buyer's premium. Sports Car Market's analysis of the alloy six-carburetor long-nose 08311, sold by RM Sotheby's in Paris in February 2019 for $3,258,684 with premium, worked from a base of about $2.56 million for a standard two-cam plus roughly $736,400 for the long nose, the alloy body and the six carburetors.",
+ "whatToLookFor": "Identity comes first, because the value spread between configurations is wide and conversions are old and well executed. Ferrari Classiche certification, available to road cars over twenty years old and dependent on the original chassis, is the usual proof that engine, transaxle and body are the ones the factory fitted; both RM Sotheby's Munich 06897 and the Monterey 2025 09931 carried the Red Book, and Motor Sport's guide observes that non-matching, older-restoration cars are the ones that struggle at auction. Nose configuration is the next question. Short-nose cars were converted to long-nose in period and are now being converted back: Tom Hartley Jnr's account of a right-hand-drive 1965 six-carburetor car altered to long-nose in 1966 and returned to short-nose in restoration shows how fluid this is, and a car's nose should match its chassis number and its factory build sheet rather than its badge. Carburetor count and the driveline arrangement should likewise be checked against the build record, since six-carburetor manifolds and torque tubes have both been added later. On the structure, Goodwood flags the tubular frame around body and suspension mounts, floors and sills on steel cars, and door hinges as the corrosion points; DK Engineering's restoration of 09475 mentions that the fiberglass floors are usually left in place, so a fully stripped car is unusual and worth documenting. Color changes are routine, with 09475 spending forty years in red over its original Celeste, and so is a history of respray. A GTB/4 should show a dry-sump system in good order and an engine that does not weep from the cam covers. For competition-badged cars, Goodwood's warning stands: confirm it is a factory GTB/C and not a later conversion of a road car.",
+ "commonProblems": "The two-cam driveline is the model's characteristic fault. On cars without the torque tube, which includes every Series I short-nose, the engine and rear-mounted transaxle are located separately and the open driveshaft's center bearing depends on their alignment; when it drifts the result is vibration and, in Goodwood's words, transmission issues. Ferrari's own history acknowledged the difficulty and the torque tube was the cure, which is one reason later cars are preferred by drivers as well as by the market. The Tipo 226 four-cam engine has what DK Engineering describes as an inherent oil leak design flaw, addressed with in-house modifications during their rebuild of 09475, and a full engine and transaxle rebuild on that car involved new pistons, valves and bearings. Six-carburetor cars, whether two-cam or four-cam, are harder to keep in tune than the three-carburetor version and reward specialist setting-up. Corrosion attacks the oval-tube frame around the body and suspension mounts, the floors and sills of steel-bodied cars and the door hinges, and because the fiberglass floors are commonly left in situ during restoration, hidden frame condition beneath them is not always known. Alloy-bodied cars trade corrosion for the softness of thin aluminum and the cost of correct panel repair. None of these is unusual for a 1960s Ferrari; what distinguishes the 275 is that the outlay to put a poor car right is measured against a seven-figure value, so a documented mechanical history from a known specialist carries real weight.",
+ "valueTrajectory": "The 275 GTB has moved from an under-appreciated successor to the 250 into one of the most expensive front-engined Ferraris short of the competition cars. The scale of the move shows in US auction rooms: at RM's Amelia Island sale in March 2010 a pair of GTB/4s made $1,265,000 for the alloy 09501 and $1,650,000 for the steel 09337, both with premium, and the lowest two-cam result classic.com tracks is $1,125,000 in May 2024. Sports Car Market read the market in early 2019 as softer than 2017, when comparable alloy six-carburetor two-cams had changed hands nearer $3.5 million. As of September 2026 classic.com shows both the two-cam benchmark of $2,639,867 and the four-cam benchmark of $3,420,641 trending upward, though the underlying results suggest a market that is stratifying rather than lifting uniformly: steel GTB/4s have sold in roughly the same $3.0 to $3.7 million band since 2021, ordinary two-cams sit at $2.2 to $2.7 million, and the outliers, $6,050,000 for a highly original alloy GTB/4 in January 2026, belong to originality and specification rather than to the model. The likely direction is a widening gap between certified, correctly configured cars with continuous history and the rest.",
  "overallConfidence": "high",
  "sources": [
   {
@@ -117,7 +117,7 @@ export const seed275Gtb = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Aggregated reference: 442 two-cam GTBs (236 short-nose, 206 long-nose), 330 GTB/4, 200 GTS, 4 GTB/C Speciale, 12 GTB/C, 10 NART Spiders with chassis list; Tipo 213 and Tipo 226 engines, 77 x 58.8 mm, three Weber 40 DCZ 6/DFI 1 or six-carb option, 54-degree valve angle and 16-litre dry sump on the GTB/4; Tipo 563 and 590 A chassis; driveshaft, CV joint and torque tube sequence; at least 72 alloy cars; 1,300 kg steel GTB/4; Le Mans 1965 and 1966 results; $26.4m and $27.5m sales."
+   "notes": "Aggregated reference: 442 two-cam GTBs (236 short-nose, 206 long-nose), 330 GTB/4, 200 GTS, 4 GTB/C Speciale, 12 GTB/C, 10 NART Spiders with chassis list; Tipo 213 and Tipo 226 engines, 77 x 58.8 mm, three Weber 40 DCZ 6/DFI 1 or six-carb option, 54-degree valve angle and 16-liter dry sump on the GTB/4; Tipo 563 and 590 A chassis; driveshaft, CV joint and torque tube sequence; at least 72 alloy cars; 2,866 lb steel GTB/4; Le Mans 1965 and 1966 results; $26.4m and $27.5m sales."
   },
   {
    "ref": "candsc-275-at-60",
@@ -126,7 +126,7 @@ export const seed275Gtb = {
    "publisher": "Classic & Sports Car",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Three-car feature: 450 GTB, 200 GTS, 330 GTB/4, 10 of 25 NART Spiders, 12 GTB/C; styling by Francesco Salamone at Pininfarina; Doug Nye quote; first five-speed road two-seater in a decade; 280 bhp at 7,600 rpm and 188 lb ft at 5,500 rpm two-cam, 300 bhp at 8,000 rpm and 217 lb ft at 6,000 rpm GTB/4; 0-60 in 6.6 s and 160 mph two-cam, 6.1 s and 166 mph GTB/4; 54 versus 57 degree valve angle, two scavenge pumps; alloy body ~117 kg lighter; 75 mm torque tube attributed to the GTB/4; 1965 UK price £5,973, GTB/4 £6,515; market view £2-2.5m alloy long-nose, £2-3m GTB/4."
+   "notes": "Three-car feature: 450 GTB, 200 GTS, 330 GTB/4, 10 of 25 NART Spiders, 12 GTB/C; styling by Francesco Salamone at Pininfarina; Doug Nye quote; first five-speed road two-seater in a decade; 280 hp at 7,600 rpm and 188 lb ft at 5,500 rpm two-cam, 300 hp at 8,000 rpm and 217 lb ft at 6,000 rpm GTB/4; 0-60 in 6.6 s and 160 mph two-cam, 6.1 s and 166 mph GTB/4; 54 versus 57 degree valve angle, two scavenge pumps; alloy body ~258 lb lighter; 75 mm torque tube attributed to the GTB/4; period UK list price 5,973 pounds in 1965 and 6,515 pounds for the GTB/4."
   },
   {
    "ref": "motorsport-buying-guide",
@@ -135,7 +135,7 @@ export const seed275Gtb = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "States 456 two-cam and 350 four-cam cars, 11 GTB/C, 10 NART Spiders; replaced the 250 GT SWB; first production Ferrari with full independent suspension and transaxle; nose lengthened nearly four inches at end of 1965; GT class win at Le Mans 1965; price new £5,699; 2019 values £1.5-2.5m; advises matching numbers and notes most cars are known to historians."
+   "notes": "States 456 two-cam and 350 four-cam cars, 11 GTB/C, 10 NART Spiders; replaced the 250 GT SWB; first production Ferrari with full independent suspension and transaxle; nose lengthened nearly four inches at end of 1965; GT class win at Le Mans 1965; period UK price new 5,699 pounds; advises matching numbers and notes most cars are known to historians."
   },
   {
    "ref": "goodwood-guide",
@@ -153,7 +153,7 @@ export const seed275Gtb = {
    "publisher": "Sports Car Market",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Auction profile of chassis 08921, sold $3,080,000 with premium at Gooding Geared Online, 7 August 2020; states 440 built 1964-66; long-nose cars the most valuable; fewer than 40 cars supplied new with both six carburettors and the torque tube; six-carb more expensive and harder to maintain."
+   "notes": "Auction profile of chassis 08921, sold $3,080,000 with premium at Gooding Geared Online, 7 August 2020; states 440 built 1964-66; long-nose cars the most valuable; fewer than 40 cars supplied new with both six carburetors and the torque tube; six-carb more expensive and harder to maintain."
   },
   {
    "ref": "supercars-net-275gtb",
@@ -162,7 +162,7 @@ export const seed275Gtb = {
    "publisher": "Supercars.net",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Two-cam specification: Type 213 alloy V12, 3,285 cc, 77 x 58.8 mm, 9.2:1, three Weber 40 DCZ/6 or 40 DFI/1 or optional six 40 DCN3, 280 bhp at 7,600 rpm, 188 lb ft at 5,500 rpm; 1,100 kg kerb; wheelbase 2,400 mm; 4,369 x 1,702 x 1,232 mm; ~145 mph and 6.7 s to 60 quoted; $14,500 new; Scaglietti body to Pininfarina design."
+   "notes": "Two-cam specification: Type 213 alloy V12, 3,285 cc, 77 x 58.8 mm, 9.2:1, three Weber 40 DCZ/6 or 40 DFI/1 or optional six 40 DCN3, 280 hp at 7,600 rpm, 188 lb ft at 5,500 rpm; 2,425 lb curb; wheelbase 2,400 mm; 4,369 x 1,702 x 1,232 mm; ~145 mph and 6.7 s to 60 quoted; $14,500 new; Scaglietti body to Pininfarina design."
   },
   {
    "ref": "supercarnostalgia-gtb4",
@@ -171,7 +171,7 @@ export const seed275Gtb = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "GTB/4: 330 built of which 27 RHD, fewer than 20 alloy; Tipo 226, 3,285 cc, 77 x 58.8 mm, 9.2:1, six Weber 40 DCN 9 then DCN 17/18, dry sump with oil cooler, 300 bhp at 8,000 rpm, 232 lb ft at 6,000 rpm; five-speed transaxle with torque tube and ZF limited-slip; Paris October 1966 to late 1968; GTS/4 New York April 1967, ten built; McQueen's 10453."
+   "notes": "GTB/4: 330 built of which 27 RHD, fewer than 20 alloy; Tipo 226, 3,285 cc, 77 x 58.8 mm, 9.2:1, six Weber 40 DCN 9 then DCN 17/18, dry sump with oil cooler, 300 hp at 8,000 rpm, 232 lb ft at 6,000 rpm; five-speed transaxle with torque tube and ZF limited-slip; Paris October 1966 to late 1968; GTS/4 New York April 1967, ten built; McQueen's 10453."
   },
   {
    "ref": "forza-81-10017",
@@ -180,7 +180,7 @@ export const seed275Gtb = {
    "publisher": "Forza",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Owner feature on GTB/4 10017, build number 074 described as '74th of 350 GTB/4s produced'; 300 bhp at 8,000 rpm, 202 lb ft at 5,500 rpm, 2,930 lb kerb; repainted red in the 1980s and returned to original dark blue; over $30,000 of DK Engineering mechanical work pre-purchase; owner describes it as handling like a much more modern sports car."
+   "notes": "Owner feature on GTB/4 10017, build number 074 described as '74th of 350 GTB/4s produced'; 300 hp at 8,000 rpm, 202 lb ft at 5,500 rpm, 2,930 lb curb; repainted red in the 1980s and returned to original dark blue; over $30,000 of DK Engineering mechanical work pre-purchase; owner describes it as handling like a much more modern sports car."
   },
   {
    "ref": "dkeng-09475",
@@ -189,7 +189,7 @@ export const seed275Gtb = {
    "publisher": "DK Engineering",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Restorer's account of GTB/4 09475 (January 1967, ex-Peter Sellers): bare-metal restoration, rust-prone areas treated, fibreglass floors removed though typically left in place, forty years in Rosso Corsa over original Celeste, engine and transaxle rebuilt with new pistons, valves and bearings, in-house fix for the four-cam engine's inherent oil leak design flaw."
+   "notes": "Restorer's account of GTB/4 09475 (January 1967, ex-Peter Sellers): bare-metal restoration, rust-prone areas treated, fiberglass floors removed though typically left in place, forty years in Rosso Corsa over original Celeste, engine and transaxle rebuilt with new pistons, valves and bearings, in-house fix for the four-cam engine's inherent oil leak design flaw."
   },
   {
    "ref": "tomhartleyjnr-6c",
@@ -198,7 +198,7 @@ export const seed275Gtb = {
    "publisher": "Tom Hartley Jnr",
    "sourceType": "specialist",
    "reliability": "low",
-   "notes": "Dealer restoration note on a right-hand-drive 1965 short-nose six-carburettor car that had been converted to long-nose in 1966 and was returned to short-nose in restoration; used only to establish that nose conversions occur in both directions."
+   "notes": "Dealer restoration note on a right-hand-drive 1965 short-nose six-carburetor car that had been converted to long-nose in 1966 and was returned to short-nose in restoration; used only to establish that nose conversions occur in both directions."
   },
   {
    "ref": "hagerty-prototype-06003",
@@ -234,7 +234,7 @@ export const seed275Gtb = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "As of September 2026: GTB/4 benchmark $3,420,641 trending up, average sale $3,372,283, low 2,283,125 euros (25 Apr 2026), high $6,050,000 (Mecum, 17 Jan 2026, alloy); Broad Arrow 3,015,625 euros (10 Oct 2025) and $3,415,000 (7 Mar 2026), Gooding Christie's $3,030,000 (6 Mar 2026), Mecum $2,860,000 (16 May 2026); description gives Tipo 226 3285.72 cc, 300 hp, 268 km/h claimed."
+   "notes": "As of September 2026: GTB/4 benchmark $3,420,641 trending up, average sale $3,372,283, low $2,283,125 (RM Sotheby's, 25 Apr 2026), high $6,050,000 (Mecum, 17 Jan 2026, alloy); Broad Arrow 3,015,625 euros (10 Oct 2025) and $3,415,000 (7 Mar 2026), Gooding Christie's $3,030,000 (6 Mar 2026), Mecum $2,860,000 (16 May 2026); description gives Tipo 226 3285.72 cc, 300 hp, 167 mph claimed."
   },
   {
    "ref": "classic-mecum-10269",
@@ -246,13 +246,22 @@ export const seed275Gtb = {
    "notes": "Lot record: chassis 10269, alloy-bodied GTB/4, lot S137, LHD, 42,000 miles, listed as original and highly original, sold $6,050,000 at Mecum Kissimmee on 17 January 2026."
   },
   {
-   "ref": "theclassicvaluer-275gtb",
-   "title": "Ferrari 275 GTB: Buyer's Guide",
-   "url": "https://www.theclassicvaluer.com/buyers-guide/ferrari/275-gtb",
-   "publisher": "The Classic Valuer",
-   "sourceType": "market-data",
+   "ref": "scm-6c-alloy-08311",
+   "title": "1966 Ferrari 275 GTB/6C Alloy Berlinetta by Scaglietti",
+   "url": "https://www.sportscarmarket.com/profile/1966-ferrari-275-gtb-6c-alloy-berlinetta-by-scaglietti",
+   "publisher": "Sports Car Market",
+   "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Sterling auction database: 76 appearances, 55 sold (72 per cent); median £1,780,385; high £2,739,885 (Gooding, 18 Aug 2023); all-time low £116,134 (RM, 17 Aug 2002); post-2020 low £906,624 (Gooding, 4 Mar 2022). No production figure or fault data."
+   "notes": "US-market auction analysis of chassis 08311, sold $3,258,684 with premium at RM Sotheby's Paris, 6 February 2019. States eight cars combined two-cam engine, six carburetors, alloy body and torque tube. Values the car from a base of about $2,560,000 for a standard 275 GTB plus roughly $736,400 of premiums for long nose, alloy body and six carburetors, giving about $3,290,000, and describes the early-2019 market as softer than 2017 when comparable cars made nearer $3,500,000."
+  },
+  {
+   "ref": "scm-gtb4-pair-2010",
+   "title": "A Pair of 1967 Ferrari 275 GTB/4s",
+   "url": "https://www.sportscarmarket.com/profile/a-pair-of-1967-ferrari-275-gtb-4s",
+   "publisher": "Sports Car Market",
+   "sourceType": "journalism",
+   "reliability": "medium",
+   "notes": "Side-by-side US auction analysis from RM's Amelia Island sale, 13 March 2010: alloy chassis 09501 sold $1,265,000 with premium against a $1,350,000-1,750,000 estimate, steel chassis 09337 sold $1,650,000 against a $950,000-1,200,000 estimate. States 16 of about 330 GTB/4s were aluminum-bodied, and attributes the inversion to the alloy car's 1976 accident history against the steel car's documentation and restoration quality."
   },
   {
    "ref": "rm-mu25-06897",
@@ -261,7 +270,7 @@ export const seed275Gtb = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold 2,367,500 euros, Munich, October 2025, lot 163. Short-nose Series I chassis 06897, matching engine, Classiche Red Book May 2013, about 460,000 euros of restoration 2020-23. Catalogue states 453 GTBs built with approximately only 250 short-nose, Paris 1964 debut, 280 PS."
+   "notes": "Sold 2,367,500 euros, Munich, October 2025, lot 163. Short-nose Series I chassis 06897, matching engine, Classiche Red Book May 2013, about 460,000 euros of restoration 2020-23. Catalog states 453 GTBs built with approximately only 250 short-nose, Paris 1964 debut, 276 hp."
   },
   {
    "ref": "rm-mo26-08057",
@@ -270,7 +279,7 @@ export const seed275Gtb = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $2,700,000, Monterey, August 2026, lot 331. Long-nose alloy chassis 08057, upgraded to six carburettors in 1966, type 563 transaxle, Classiche Red Book 2006, Amaranto Roma over Nero. Catalogue states approximately 80 long-nose two-cam alloy cars and describes the 6C alloy as the ultimate specification."
+   "notes": "Sold $2,700,000, Monterey, August 2026, lot 331. Long-nose alloy chassis 08057, upgraded to six carburetors in 1966, type 563 transaxle, Classiche Red Book 2006, Amaranto Roma over Nero. Catalog states approximately 80 long-nose two-cam alloy cars and describes the 6C alloy as the ultimate specification."
   },
   {
    "ref": "rm-mo25-09931",
@@ -279,7 +288,7 @@ export const seed275Gtb = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Not sold against a $3,500,000-4,000,000 estimate, Monterey, August 2025, lot 242. Chassis 09931, Classiche certified matching numbers, 20,950 km. Catalogue states only 330 GTB/4 built before discontinuation in 1968, dry sump, six Weber 40 DCN/9 or DCN/17, 20 hp more than the two-cam, torque tube eliminating vibration issues."
+   "notes": "Not sold against a $3,500,000-4,000,000 estimate, Monterey, August 2025, lot 242. Chassis 09931, Classiche certified matching numbers, 13,018 miles. Catalog states only 330 GTB/4 built before discontinuation in 1968, dry sump, six Weber 40 DCN/9 or DCN/17, 20 hp more than the two-cam, torque tube eliminating vibration issues."
   },
   {
    "ref": "gooding-gtb4-alloy-10025",
@@ -288,7 +297,7 @@ export const seed275Gtb = {
    "publisher": "Gooding & Company",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $3,586,000, Geared Online, May 2021, against a $3,750,000-4,500,000 estimate. Chassis 10025, described as the 9th of only 16 aluminium-bodied GTB/4s built, Celeste over blue, matching engine per factory records, documented by Marcel Massini."
+   "notes": "Sold $3,586,000, Geared Online, May 2021, against a $3,750,000-4,500,000 estimate. Chassis 10025, described as the 9th of only 16 aluminum-bodied GTB/4s built, Celeste over blue, matching engine per factory records, documented by Marcel Massini."
   },
   {
    "ref": "gooding-gtb4-10443",
@@ -297,7 +306,7 @@ export const seed275Gtb = {
    "publisher": "Gooding & Company",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $3,662,500, Pebble Beach, August 2021. Chassis 10443, one owner from new bought at the factory, Classiche certified original body and drivetrain; specification given as 3,285 cc Tipo 226 DOHC V12, six Weber 40 DCN, 300 bhp at 8,000 rpm, five-speed transaxle, vacuum-assisted discs, wishbone and coil-over suspension."
+   "notes": "Sold $3,662,500, Pebble Beach, August 2021. Chassis 10443, one owner from new bought at the factory, Classiche certified original body and drivetrain; specification given as 3,285 cc Tipo 226 DOHC V12, six Weber 40 DCN, 300 hp at 8,000 rpm, five-speed transaxle, vacuum-assisted discs, wishbone and coil-over suspension."
   }
  ],
  "claims": [
@@ -327,7 +336,7 @@ export const seed275Gtb = {
   },
   {
    "section": "specs",
-   "claimText": "The two-cam 275 GTB used the Tipo 213 all-aluminium 60-degree Colombo V12 of 3,286 cc with a 77 mm bore and 58.8 mm stroke, three Weber 40 DCZ/6 or 40 DFI/1 carburettors and a claimed 280 bhp at 7,600 rpm with 188 lb-ft at 5,500 rpm; six Weber 40 DCN carburettors were a factory option quoted at 300 to 320 bhp.",
+   "claimText": "The two-cam 275 GTB used the Tipo 213 all-aluminum 60-degree Colombo V12 of 3,286 cc with a 77 mm bore and 58.8 mm stroke, three Weber 40 DCZ/6 or 40 DFI/1 carburetors and a claimed 280 hp at 7,600 rpm with 188 lb-ft at 5,500 rpm; six Weber 40 DCN carburetors were a factory option quoted at 300 to 320 hp.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -339,7 +348,7 @@ export const seed275Gtb = {
   },
   {
    "section": "specs",
-   "claimText": "Real-world output of the three-carburettor two-cam engine is generally put at 240 to 250 bhp rather than the claimed 280.",
+   "claimText": "Real-world output of the three-carburetor two-cam engine is generally put at 240 to 250 hp rather than the claimed 280.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -349,7 +358,7 @@ export const seed275Gtb = {
   },
   {
    "section": "specs",
-   "claimText": "The 275 GTB/4 used the Tipo 226 engine with twin overhead camshafts per bank, a 54-degree included valve angle, dry-sump lubrication with a roughly 16-litre capacity and six Weber 40 DCN carburettors as standard, for a claimed 300 bhp at 8,000 rpm and a claimed top speed of 268 km/h.",
+   "claimText": "The 275 GTB/4 used the Tipo 226 engine with twin overhead camshafts per bank, a 54-degree included valve angle, dry-sump lubrication with a roughly 16-liter capacity and six Weber 40 DCN carburetors as standard, for a claimed 300 hp at 8,000 rpm and a claimed top speed of 167 mph.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -375,7 +384,7 @@ export const seed275Gtb = {
   },
   {
    "section": "history",
-   "claimText": "Series I short-nose cars used an open driveshaft on a centre bearing between engine and transaxle; CV joints were added at the end of 1965 and the driveline was then enclosed in a torque tube, with the nose lengthened by nearly four inches, the rear screen enlarged and the boot lid hinged externally to create the Series II long-nose.",
+   "claimText": "Series I short-nose cars used an open driveshaft on a center bearing between engine and transaxle; CV joints were added at the end of 1965 and the driveline was then enclosed in a torque tube, with the nose lengthened by nearly four inches, the rear screen enlarged and the trunk lid hinged externally to create the Series II long-nose.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -396,7 +405,7 @@ export const seed275Gtb = {
     "candsc-275-at-60",
     "rm-mo25-09931"
    ],
-   "conflictNote": "Wikipedia states the torque tube was installed on Series II two-cam cars; Sports Car Market says fewer than 40 two-cam cars had both six carburettors and the torque tube, implying two-cam fitment; RM Sotheby's describes the GTB/4 as having a revised torque-tube arrangement without saying it was new. Classic & Sports Car states the GTB/4 added the torque tube. Not resolved by any source consulted here."
+   "conflictNote": "Wikipedia states the torque tube was installed on Series II two-cam cars; Sports Car Market says fewer than 40 two-cam cars had both six carburetors and the torque tube, implying two-cam fitment; RM Sotheby's describes the GTB/4 as having a revised torque-tube arrangement without saying it was new. Classic & Sports Car states the GTB/4 added the torque tube. Not resolved by any source consulted here."
   },
   {
    "section": "production",
@@ -410,7 +419,7 @@ export const seed275Gtb = {
     "rm-mu25-06897",
     "motorsport-buying-guide"
    ],
-   "conflictNote": "Wikipedia states 442 (236 short-nose, 206 long-nose). Sports Car Market states 440. Classic & Sports Car states 450. RM Sotheby's Munich 2025 catalogue states 453 with approximately 250 short-nose. Motor Sport states 456. No source explains the discrepancy, so productionTotal is left null."
+   "conflictNote": "Wikipedia states 442 (236 short-nose, 206 long-nose). Sports Car Market states 440. Classic & Sports Car states 450. RM Sotheby's Munich 2025 catalog states 453 with approximately 250 short-nose. Motor Sport states 456. No source explains the discrepancy, so productionTotal is left null."
   },
   {
    "section": "production",
@@ -429,7 +438,7 @@ export const seed275Gtb = {
   },
   {
    "section": "production",
-   "claimText": "Alloy-bodied two-cam cars are counted as 'at least 72' or 'approximately 80', alloy GTB/4s as 16 or 'less than 20', and fewer than 40 two-cam cars are said to have combined six carburettors with the torque tube from new.",
+   "claimText": "Alloy-bodied two-cam cars are counted as 'at least 72' or 'approximately 80', alloy GTB/4s as 16 or 'less than 20', and fewer than 40 two-cam cars are said to have combined six carburetors with the torque tube from new.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -501,18 +510,28 @@ export const seed275Gtb = {
   },
   {
    "section": "market",
-   "claimText": "Sterling auction data gives a 275 GTB median of £1,780,385 across 76 tracked appearances, with a post-2020 low of £906,624 and a high of £2,739,885, against trade guidance of £1.5 to £2.5 million in 2019 and £2 to £3 million for a GTB/4 more recently.",
-   "confidence": "medium",
+   "claimText": "US auction results show the scale of the model's rise: RM sold a pair of 275 GTB/4s at Amelia Island in March 2010 for $1,265,000 (alloy chassis 09501) and $1,650,000 (steel chassis 09337) with premium, and the lowest two-cam result classic.com tracks is $1,125,000 in May 2024, against benchmarks of $2,639,867 and $3,420,641 as of September 2026.",
+   "confidence": "high",
    "status": "verified",
    "sourceRefs": [
-    "theclassicvaluer-275gtb",
-    "motorsport-buying-guide",
-    "candsc-275-at-60"
+    "scm-gtb4-pair-2010",
+    "classic-275-gtb",
+    "classic-275-gtb4"
    ]
   },
   {
    "section": "market",
-   "claimText": "Ferrari Classiche certification, available to road cars over twenty years old and requiring the original chassis, is routinely cited in 275 GTB and GTB/4 catalogue descriptions as evidence of matching engine, transaxle and body.",
+   "claimText": "Sports Car Market's valuation of the alloy six-carburetor long-nose chassis 08311, sold for $3,258,684 with premium at RM Sotheby's Paris in February 2019, worked from a base of about $2,560,000 for a standard two-cam plus roughly $736,400 of premiums for the long nose, the alloy body and the six carburetors.",
+   "confidence": "medium",
+   "status": "verified",
+   "sourceRefs": [
+    "scm-6c-alloy-08311",
+    "rm-mo26-08057"
+   ]
+  },
+  {
+   "section": "market",
+   "claimText": "Ferrari Classiche certification, available to road cars over twenty years old and requiring the original chassis, is routinely cited in 275 GTB and GTB/4 catalog descriptions as evidence of matching engine, transaxle and body.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -535,7 +554,7 @@ export const seed275Gtb = {
   },
   {
    "section": "problems",
-   "claimText": "The four-cam Tipo 226 engine has an inherent oil leak design flaw that specialists address during rebuilds, six-carburettor cars are harder to keep in tune than three-carburettor cars, and corrosion concentrates in the tubular frame around body and suspension mounts, the floors and sills of steel cars and the door hinges.",
+   "claimText": "The four-cam Tipo 226 engine has an inherent oil leak design flaw that specialists address during rebuilds, six-carburetor cars are harder to keep in tune than three-carburetor cars, and corrosion concentrates in the tubular frame around body and suspension mounts, the floors and sills of steel cars and the door hinges.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -545,7 +564,7 @@ export const seed275Gtb = {
   },
   {
    "section": "problems",
-   "claimText": "Nose configuration, colour and specification have frequently been altered over the cars' lives: short-nose cars were converted to long-nose in period and are now being converted back, and colour changes such as 09475's forty years in red over its original Celeste are common.",
+   "claimText": "Nose configuration, color and specification have frequently been altered over the cars' lives: short-nose cars were converted to long-nose in period and are now being converted back, and color changes such as 09475's forty years in red over its original Celeste are common.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -567,7 +586,7 @@ export const seed275Gtb = {
   },
   {
    "section": "specs",
-   "claimText": "Quoted UK list prices for the 275 GTB in 1965 differ between £5,699 and £5,973; the US price was $14,500 and the GTB/4 listed at £6,515 in 1967.",
+   "claimText": "The 275 GTB listed at $14,500 in the United States; period UK list prices for 1965 differ by source between 5,699 and 5,973 pounds, with the GTB/4 listed at 6,515 pounds in 1967.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -575,7 +594,7 @@ export const seed275Gtb = {
     "candsc-275-at-60",
     "supercars-net-275gtb"
    ],
-   "conflictNote": "Motor Sport gives £5,699 and Classic & Sports Car £5,973 for the 1965 UK price. The difference may reflect different dates or tax treatment but neither source says so. Not resolved here."
+   "conflictNote": "Motor Sport gives 5,699 pounds and Classic & Sports Car 5,973 pounds for the 1965 UK price. The difference may reflect different dates or tax treatment but neither source says so. Not resolved here."
   }
  ]
 };

@@ -1,5 +1,5 @@
 /**
- * Pilot model draft — Porsche 911 (964), 1989–1994.
+ * Pilot model draft — Porsche 911 (964), 1989-1994.
  *
  * This content was cross-checked across multiple INDEPENDENT sources
  * (Porsche AG, Wikipedia citing Kittler's "Deutsche Autos seit 1990",
@@ -51,36 +51,36 @@ export const seed964 = {
   yearEnd: 1994,
   bodyStyles: ['Coupe', 'Targa', 'Cabriolet'],
   engines: [
-    'M64/01–03 3.6L air/oil-cooled flat-six (247 hp / 250 PS)',
-    'M30/69 3.3L turbocharged flat-six (Turbo 3.3, 316 hp / 320 PS)',
-    'M64/50 3.6L turbocharged flat-six (Turbo 3.6, ~355 hp / 360 PS)',
+    'M64/01-03 3.6L air/oil-cooled flat-six (247 hp / 247 hp)',
+    'M30/69 3.3L turbocharged flat-six (Turbo 3.3, 316 hp / 316 hp)',
+    'M64/50 3.6L turbocharged flat-six (Turbo 3.6, ~355 hp / 355 hp)',
   ],
   productionTotal: 63762,
   productionNotes:
-    'Total of 63,762 cars built across the run (Porsche AG figures, corroborated by Kittler). Porsche describes the 964 as the rarest 911 generation — the preceding G-series sold over 196,000 cars from 1974–1989. Build of the standard cars ran 1989–December 1993, with some special/Turbo variants completed into 1994. Per-variant figures below come from Kittler, "Deutsche Autos seit 1990" (vol. 6), as compiled on Wikipedia; where a figure is contested it is flagged in the claims.',
+    'Total of 63,762 cars built across the run (Porsche AG figures, corroborated by Kittler). Porsche describes the 964 as the rarest 911 generation — the preceding G-series sold over 196,000 cars from 1974-1989. Build of the standard cars ran 1989–December 1993, with some special/Turbo variants completed into 1994. Per-variant figures below come from Kittler, "Deutsche Autos seit 1990" (vol. 6), as compiled on Wikipedia; where a figure is contested it is flagged in the claims.',
   notableTrims: [
     { name: 'Carrera 4 (C4)', note: 'The launch model (1989). First all-wheel-drive 911. ~20,395 built across body styles.' },
     { name: 'Carrera 2 (C2)', note: 'Rear-drive, added 1990. The enthusiasts’ pick — lighter and more communicative than the C4, and the only way to get the Tiptronic auto.' },
-    { name: 'Carrera RS (Europe)', note: 'Lightweight, ~260 PS, stripped and stiffened. ~2,282 built. Not US-road-legal.' },
-    { name: 'RS America', note: 'US-market spiritual RS: 701 built (1993–94), based on the US C2, lighter, M030 suspension, whale-tail.' },
+    { name: 'Carrera RS (Europe)', note: 'Lightweight, ~256 hp, stripped and stiffened. ~2,282 built. Not US-road-legal.' },
+    { name: 'RS America', note: 'US-market spiritual RS: 701 built (1993-94), based on the US C2, lighter, M030 suspension, whale-tail.' },
     { name: 'Turbo 3.3', note: 'Launched March 1990 using a revised 930 3.3 engine; 3,660 built. Whale tail, wide arches.' },
     { name: 'Turbo 3.6', note: 'Jan 1993, 3.6 M64-based turbo, ~355 hp. One of the rarest/most sought 964s — see production conflict.' },
     { name: 'Turbo S Leichtbau / Flachbau', note: 'Ultra-rare lightweight and slant-nose Turbos built by Porsche Exclusiv.' },
-    { name: '911 Speedster', note: 'Cut-down screen, C2-based, 1993–94. 936 built per most sources (see conflict).' },
+    { name: '911 Speedster', note: 'Cut-down screen, C2-based, 1993-94. 936 built per most sources (see conflict).' },
     { name: '30 Jahre / 30th Anniversary', note: 'Wide Turbo body, AWD, NA engine. 911 units built — a deliberate nod to the 911 name.' },
   ],
   specs: {
     'Engine (Carrera)': 'M64, 3,600 cc air/oil-cooled SOHC flat-six',
-    'Power (Carrera)': '250 PS (247 hp) @ 6,100 rpm',
+    'Power (Carrera)': '247 hp @ 6,100 rpm',
     'Torque (Carrera)': '310 N·m (229 lb·ft) @ 4,800 rpm',
     'Transmission': '5-speed Getrag G50 manual; 4-speed Tiptronic auto (C2 only); G64 5-speed manual (C4)',
     'Drivetrain': 'Rear-engine; RWD (C2) or AWD (C4)',
-    '0–60 mph': '~5.5 s (manual)',
-    'Top speed': '~162 mph (260 km/h)',
+    '0-60 mph': '~5.5 s (manual)',
+    'Top speed': '~162 mph',
     'Drag coefficient': '0.32',
     'Suspension': 'Front MacPherson struts; coil springs replace torsion bars (first major 911 chassis change)',
     'Brakes': 'Power-assisted, ABS standard (a 911 first)',
-    'Curb weight (C2)': '~1,375 kg (3,031 lb)',
+    'Curb weight (C2)': '~3,031 lb',
   },
   heroPhoto: null as string | null,
   overallConfidence: 'high' as const,
@@ -99,7 +99,7 @@ The first 964 to reach customers was the **Carrera 4** — significantly, an all
 
 ## What actually changed
 
-Beyond AWD, the 964 added ABS and power steering to the 911 for the first time, both standard. An electrically raised rear spoiler deployed above roughly 50 mph (80 km/h) and tucked away flush at lower speeds, cleaning up the aerodynamics without a permanent "whale tail." Flush bumpers and an underbody pan helped drop drag to a claimed Cd of 0.32. The suspension's switch from torsion bars to coil springs was the first fundamental chassis rethink in the model's history.
+Beyond AWD, the 964 added ABS and power steering to the 911 for the first time, both standard. An electrically raised rear spoiler deployed above roughly 50 mph and tucked away flush at lower speeds, cleaning up the aerodynamics without a permanent "whale tail." Flush bumpers and an underbody pan helped drop drag to a claimed Cd of 0.32. The suspension's switch from torsion bars to coil springs was the first fundamental chassis rethink in the model's history.
 
 ## A wide and growing family
 
@@ -107,9 +107,9 @@ For a short production run, the 964 spawned an unusually broad lineup: Coupe, Ta
 
 The 964 was replaced by the 993 — the last and most beloved air-cooled 911 — in 1994, after Porsche had used it to keep the 911 alive through a difficult financial stretch.`,
 
-  marketNotes: `The 964 spent years as the unloved, "cheap" air-cooled 911, which is exactly why it later became a darling of the restomod world (Singer and others built their reputations on 964 donor cars) — and why so many were modified or neglected. As air-cooled values climbed through the late 2010s and into the 2021–2022 peak, clean original 964s appreciated hard.
+  marketNotes: `The 964 spent years as the unloved, "cheap" air-cooled 911, which is exactly why it later became a darling of the restomod world (Singer and others built their reputations on 964 donor cars) — and why so many were modified or neglected. As air-cooled values climbed through the late 2010s and into the 2021-2022 peak, clean original 964s appreciated hard.
 
-More recently the market has cooled and stabilized rather than crashed. Aggregated listing data (classic.com) through 2024–2025 shows transaction volume holding up while prices flatten, with standard Carrera 2 coupes broadly trading in the high-five-figures to around US$90k depending on condition, miles, and originality — and exceptional, low-mileage or rare-color cars trading well above that on collector logic. Coupes command a clear premium over Cabriolets and Tiptronic cars; manual C2 coupes are the most sought of the standard cars.
+More recently the market has cooled and stabilized rather than crashed. Aggregated listing data (classic.com) through 2024-2025 shows transaction volume holding up while prices flatten, with standard Carrera 2 coupes broadly trading in the high-five-figures to around US$90k depending on condition, miles, and originality — and exceptional, low-mileage or rare-color cars trading well above that on collector logic. Coupes command a clear premium over Cabriolets and Tiptronic cars; manual C2 coupes are the most sought of the standard cars.
 
 These are directional observations, not a price guarantee — collector values move, and the figures here should be treated as a snapshot (mid-2020s) rather than a current quote. Use the Fully Sorted Value Guide for live comps before buying or selling.`,
 
@@ -139,7 +139,7 @@ These are directional observations, not a price guarantee — collector values m
 
 **General:** air conditioning was weak even when new and often needs attention; Cabriolet/Targa weather seals harden with age.`,
 
-  valueTrajectory: `Cheap and overlooked through the 2000s and early 2010s → swept up in the air-cooled boom of the late 2010s → peak around 2021–2022 → cooling and stabilizing through 2024–2025 (volume steady, prices flat to softer). The long-run story is a car that went from punchline to blue-chip air-cooled 911, helped enormously by the restomod scene that made "964" a household word among enthusiasts. Manual C2 coupes, the RS family, and the 3.6 Turbo sit at the top; Cabriolets, Targas and Tiptronics trail.`,
+  valueTrajectory: `Cheap and overlooked through the 2000s and early 2010s → swept up in the air-cooled boom of the late 2010s → peak around 2021-2022 → cooling and stabilizing through 2024-2025 (volume steady, prices flat to softer). The long-run story is a car that went from punchline to blue-chip air-cooled 911, helped enormously by the restomod scene that made "964" a household word among enthusiasts. Manual C2 coupes, the RS family, and the 3.6 Turbo sit at the top; Cabriolets, Targas and Tiptronics trail.`,
 
   sources: [
     {
@@ -162,7 +162,7 @@ These are directional observations, not a price guarantee — collector values m
     },
     {
       ref: 'hagerty',
-      title: 'Buying Guide: Porsche 964 (1989–1993)',
+      title: 'Buying Guide: Porsche 964 (1989-1993)',
       url: 'https://www.hagerty.co.uk/articles/buying-guides/buying-guide-porsche-964-1989-1993/',
       publisher: 'Hagerty UK',
       sourceType: 'journalism',
@@ -189,7 +189,7 @@ These are directional observations, not a price guarantee — collector values m
     },
     {
       ref: 'classic',
-      title: 'Porsche 911 — 964 Carrera 2 Market',
+      title: 'Porsche 911-964 Carrera 2 Market',
       url: 'https://www.classic.com/m/porsche/911/964/carrera-2/',
       publisher: 'classic.com',
       sourceType: 'journalism',
@@ -224,14 +224,14 @@ These are directional observations, not a price guarantee — collector values m
     },
     {
       section: 'specs',
-      claimText: 'The naturally aspirated M64 is a 3.6L flat-six producing 250 PS (247 hp); the 964 added standard ABS and power steering and replaced torsion bars with coil springs.',
+      claimText: 'The naturally aspirated M64 is a 3.6L flat-six producing 247 hp; the 964 added standard ABS and power steering and replaced torsion bars with coil springs.',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['wikipedia', 'porsche', 'hagerty'],
     },
     {
       section: 'production',
-      claimText: 'The Turbo 3.6 was produced only for MY1993–1994 in small numbers.',
+      claimText: 'The Turbo 3.6 was produced only for MY1993-1994 in small numbers.',
       confidence: 'medium',
       status: 'disputed',
       sourceRefs: ['wikipedia', 'porsche'],
@@ -240,12 +240,12 @@ These are directional observations, not a price guarantee — collector values m
     },
     {
       section: 'production',
-      claimText: 'Roughly 936 Speedsters were built (1993–94).',
+      claimText: 'Roughly 936 Speedsters were built (1993-94).',
       confidence: 'medium',
       status: 'disputed',
       sourceRefs: ['wikipedia', 'hagerty', 'porsche'],
       conflictNote:
-        'Wikipedia (detailed table) and Hagerty cite 936 Speedsters; Porsche’s own article phrases it as "just 930 ... plus a further 15" wide-body cars. The ~936 figure is the most commonly documented; minor discrepancy noted.',
+        'Wikipedia (detailed table) and Hagerty cite 936 Speedsters; Porsche’s own article phrases it as "just 930. plus a further 15" wide-body cars. The ~936 figure is the most commonly documented; minor discrepancy noted.',
     },
     {
       section: 'problems',
@@ -263,7 +263,7 @@ These are directional observations, not a price guarantee — collector values m
     },
     {
       section: 'market',
-      claimText: 'Air-cooled 964 values peaked around 2021–2022 and have since cooled/stabilized, with volume steady and prices flat to softer through 2024–2025.',
+      claimText: 'Air-cooled 964 values peaked around 2021-2022 and have since cooled/stabilized, with volume steady and prices flat to softer through 2024-2025.',
       confidence: 'medium',
       status: 'unverified',
       sourceRefs: ['classic', 'hagerty'],

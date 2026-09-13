@@ -16,9 +16,9 @@ export const seedW113Pagoda = {
   "Coupe (removable hardtop)"
  ],
  "engines": [
-  "M127 2.3L (2,306cc) inline-6, Bosch mechanical fuel injection, ~150 bhp (DIN) - 230 SL",
-  "M129 2.5L (2,496cc) inline-6, seven-main-bearing crank, ~150 bhp (DIN) - 250 SL",
-  "M130 2.8L (2,778cc) inline-6, ~170 bhp (DIN) - 280 SL"
+  "M127 2.3L (2,306cc) inline-6, Bosch mechanical fuel injection, ~150 hp (DIN) - 230 SL",
+  "M129 2.5L (2,496cc) inline-6, seven-main-bearing crank, ~150 hp (DIN) - 250 SL",
+  "M130 2.8L (2,778cc) inline-6, ~170 hp (DIN) - 280 SL"
  ],
  "productionTotal": 48912,
  "productionNotes": "Total of 48,912 cars over 1963-1971, roughly half exported to the USA. Widely cited per-model split: 230 SL 19,831 (1963-Jan 1967); 250 SL 5,196 (single model year, 1967); 280 SL 23,885 (Dec 1967/1968-March 1971). The 250 SL was a short-lived transitional model, explaining its small run. The rare ZF five-speed manual (offered from May 1966) was fitted to only about 882 cars.",
@@ -46,15 +46,15 @@ export const seedW113Pagoda = {
   "230SL_engine": "2,306cc SOHC inline-6, Bosch mechanical fuel injection",
   "250SL_engine": "2,496cc SOHC inline-6, seven main bearings",
   "280SL_engine": "2,778cc SOHC inline-6",
-  "power_230": "~150 bhp DIN (US SAE figures lower)",
-  "power_280": "~170 bhp DIN (US emissions-spec ~160 hp SAE)",
+  "power_230": "~150 hp DIN (US SAE figures lower)",
+  "power_280": "~170 hp DIN (US emissions-spec ~160 hp SAE)",
   "transmissions": "4-speed manual (standard), 4-speed automatic (common, esp. US), rare ZF 5-speed manual",
   "brakes_230": "Front discs, rear drums",
   "brakes_250_280": "Four-wheel disc brakes",
   "top_speed": "Approx. 120 mph (280 SL)"
  },
- "summary": "The Mercedes-Benz W113 SL (1963-1971) replaced both the 300 SL and 190 SL with a single, elegant grand-touring roadster. Styled under Paul Bracq's hand at Mercedes' design studio, it earned the enduring nickname 'Pagoda' from the gently concave centre of its removable hardtop, whose raised edges recall the upswept eaves of an Asian temple. The line progressed through three closely related straight-six models: the 230 SL, the one-year 250 SL, and the larger-engined 280 SL, gaining rear disc brakes and more torque along the way. It was the first mass-produced SL to use a six-cylinder engine and pioneered Bela Barenyi's rigid safety-cell body. Roughly 48,912 were built, about half sold in the USA. Refined, well-engineered and beautiful, the Pagoda has matured into a blue-chip classic, with the 280 SL commanding a clear premium.",
- "history": "## Origins\nLaunched at the March 1963 Geneva Motor Show, the W113 replaced two very different cars at once: the exotic 300 SL and the modest four-cylinder 190 SL. It rode on a shortened version of the W111 'Fintail' saloon platform and borrowed technology from the W112, hence the W113 code. It was the first mass-produced SL with a six-cylinder engine, and no SL would use a four-cylinder again until the SLK of the mid-1990s.\n\n## Design and the 'Pagoda' name\nStyling is most often credited to Paul Bracq, working within a Mercedes team that also involved Friedrich Geiger and safety engineer Bela Barenyi. The car's signature is its optional removable hardtop, whose roofline dips in the centre and rises at the edges. Journalists and enthusiasts, not the factory, coined the 'Pagoda' nickname from this concave shape; the form was functional as well as pretty, stiffening the top, aiding rollover strength, and allowing taller side glass and easier entry.\n\n## 230 to 250 to 280\nThe 230 SL used a 2.3-litre injected six with front discs and rear drums. The 1967-only 250 SL grew to 2.5 litres with a seven-main-bearing crank and, importantly, added rear disc brakes for all-round discs. The 280 SL (from late 1967) enlarged the engine to 2.8 litres and more torque, becoming the definitive and most-produced version. A four-speed manual was standard, a four-speed automatic was popular (dominant in the US), and a rare ZF five-speed manual was offered to a small number of buyers.\n\n## Motorsport and legacy\nDespite its GT character, a 230 SL driven by Eugen Bohringer took a strong result on the demanding 1963 Spa-Sofia-Liege rally, showing the car's toughness. Production ended in 1971 after 48,912 cars, giving way to the larger R107.",
+ "summary": "The Mercedes-Benz W113 SL (1963-1971) replaced both the 300 SL and 190 SL with a single, elegant grand-touring roadster. Styled under Paul Bracq's hand at Mercedes' design studio, it earned the enduring nickname 'Pagoda' from the gently concave center of its removable hardtop, whose raised edges recall the upswept eaves of an Asian temple. The line progressed through three closely related straight-six models: the 230 SL, the one-year 250 SL, and the larger-engined 280 SL, gaining rear disc brakes and more torque along the way. It was the first mass-produced SL to use a six-cylinder engine and pioneered Bela Barenyi's rigid safety-cell body. Roughly 48,912 were built, about half sold in the USA. Refined, well-engineered and beautiful, the Pagoda has matured into a blue-chip classic, with the 280 SL commanding a clear premium.",
+ "history": "## Origins\nLaunched at the March 1963 Geneva Motor Show, the W113 replaced two very different cars at once: the exotic 300 SL and the modest four-cylinder 190 SL. It rode on a shortened version of the W111 'Fintail' sedan platform and borrowed technology from the W112, hence the W113 code. It was the first mass-produced SL with a six-cylinder engine, and no SL would use a four-cylinder again until the SLK of the mid-1990s.\n\n## Design and the 'Pagoda' name\nStyling is most often credited to Paul Bracq, working within a Mercedes team that also involved Friedrich Geiger and safety engineer Bela Barenyi. The car's signature is its optional removable hardtop, whose roofline dips in the center and rises at the edges. Journalists and enthusiasts, not the factory, coined the 'Pagoda' nickname from this concave shape; the form was functional as well as pretty, stiffening the top, aiding rollover strength, and allowing taller side glass and easier entry.\n\n## 230 to 250 to 280\nThe 230 SL used a 2.3-liter injected six with front discs and rear drums. The 1967-only 250 SL grew to 2.5 liters with a seven-main-bearing crank and, importantly, added rear disc brakes for all-round discs. The 280 SL (from late 1967) enlarged the engine to 2.8 liters and more torque, becoming the definitive and most-produced version. A four-speed manual was standard, a four-speed automatic was popular (dominant in the US), and a rare ZF five-speed manual was offered to a small number of buyers.\n\n## Motorsport and legacy\nDespite its GT character, a 230 SL driven by Eugen Bohringer took a strong result on the demanding 1963 Spa-Sofia-Liege rally, showing the car's toughness. Production ended in 1971 after 48,912 cars, giving way to the larger R107.",
  "marketNotes": "As of mid-2026, the Pagoda is a firmly established blue-chip classic. Classic.com's market benchmark for the 280 SL sat around $96,800 with a much higher trailing average sale price (skewed upward by exceptional cars), and roughly 40+ examples listed at any time, spanning about $35,000 for projects to $250,000 for the very best. Hagerty condition #2 (excellent) guide values in this period ran near $88,900 (230 SL), $95,200 (250 SL) and $150,000 (280 SL), showing a persistent 280 SL premium. In the UK, show-standard cars were quoted around GBP 100,000-130,000+, average cars GBP 40,000-70,000, and projects from GBP 15,000. Matching-numbers, well-documented, manual and ZF five-speed cars command the strongest money.",
  "whatToLookFor": "Prioritise a rust-free, honest body: check unibody box sections, floors, sills, trunk/spare-well and wheel arches, as proper metalwork is very expensive. Confirm matching numbers and a documented history. Ensure the Bosch mechanical injection pump runs correctly (cold and hot starting, smooth idle) as rebuilds are costly and specialist. Both hardtop and soft top present and fitting well add value. Manual gearbox cars, and especially the rare ZF five-speed, are more desirable than automatics. Inspect for prior accident repair and confirm brake type matches the model (all-round discs on 250/280).",
  "commonProblems": "Rust is the primary enemy, hiding in unibody cavities, floors, sills and arches. The Bosch mechanical fuel-injection pump wears and needs specialist rebuilding. Head gasket failure is noted, particularly on cars left standing. Driveshaft U-joints and wheel bearings can fail with age. US emissions-spec 280 SL engines make less power than European versions. Poor past restorations and non-original replacement panels can hide problems.",
@@ -139,7 +139,7 @@ export const seedW113Pagoda = {
   },
   {
    "section": "history",
-   "claimText": "The 'Pagoda' nickname was an unofficial term coined by journalists and enthusiasts, derived from the concave centre of the removable hardtop that resembles upswept pagoda-temple eaves.",
+   "claimText": "The 'Pagoda' nickname was an unofficial term coined by journalists and enthusiasts, derived from the concave center of the removable hardtop that resembles upswept pagoda-temple eaves.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -202,7 +202,7 @@ export const seedW113Pagoda = {
   },
   {
    "section": "specs",
-   "claimText": "Quoted power is around 150 bhp DIN for the 230 and 250 SL and around 170 bhp DIN for the 280 SL, with US emissions-spec figures notably lower.",
+   "claimText": "Quoted power is around 150 hp DIN for the 230 and 250 SL and around 170 hp DIN for the 280 SL, with US emissions-spec figures notably lower.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -210,7 +210,7 @@ export const seedW113Pagoda = {
     "hagerty-guide",
     "csc-guide"
    ],
-   "conflictNote": "Figures vary by measurement standard and market: DIN vs SAE gross and European vs US emissions tune yield differing numbers (e.g. 280 SL cited from ~160 hp SAE US to ~180 bhp)."
+   "conflictNote": "Figures vary by measurement standard and market: DIN vs SAE gross and European vs US emissions tune yield differing numbers (e.g. 280 SL cited from ~160 hp SAE US to ~180 hp)."
   },
   {
    "section": "market",

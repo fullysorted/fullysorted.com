@@ -12,15 +12,15 @@ export const seed356 = {
  "yearStart": 1948,
  "yearEnd": 1965,
  "bodyStyles": [
-  "2-door Coupe, hand-formed aluminium body, built at Gmund in Austria (356/2, 1948-1950)",
+  "2-door Coupe, hand-formed aluminum body, built at Gmund in Austria (356/2, 1948-1950)",
   "2-door Coupe, steel body by Reutter and later Karmann (1950-1965)",
-  "2-door Cabriolet with folding hood and full-height windscreen",
-  "2-door Speedster with cut-down removable windscreen and side curtains (1954-1958)",
+  "2-door Cabriolet with folding hood and full-height windshield",
+  "2-door Speedster with cut-down removable windshield and side curtains (1954-1958)",
   "2-door Convertible D (1959) and 2-door Roadster (1960-1962)",
   "2-door Hardtop Coupe, fixed notchback roof on cabriolet bodywork (356 B)"
  ],
  "engines": [
-  "1,086 cc Type 369 pushrod flat-four, 46 hp, in the aluminium Gmund-built 356 SL competition cars",
+  "1,086 cc Type 369 pushrod flat-four, 46 hp, in the aluminum Gmund-built 356 SL competition cars",
   "1,100 cc pushrod flat-four, 40 hp, in the Gmund 356/2 and the earliest Stuttgart cars",
   "1,300 cc Type 506 and 1,500 cc Type 527/528 pushrod flat-fours through the Pre-A run; a 1,488 cc 1500 was quoted at 65 hp in period Road & Track testing",
   "1,582 cc Type 616/1 and 616/2 pushrod flat-fours from the 356 A: 1600 at 60 hp at 4,500 rpm, 1600 Super at 75 hp",
@@ -34,15 +34,15 @@ export const seed356 = {
  "notableTrims": [
   {
    "name": "356/2 'Gmund' coupe and cabriolet (1948-1950)",
-   "note": "Aluminium bodywork hammer-formed by outside specialists including Kastenhofer, Keibl and Beutler. Porsche's own account gives 44 coupes and eight cabriolets; other counts run to sixty."
+   "note": "Aluminum bodywork hammer-formed by outside specialists including Kastenhofer, Keibl and Beutler. Porsche's own account gives 44 coupes and eight cabriolets; other counts run to sixty."
   },
   {
    "name": "Speedster (1954-1958)",
-   "note": "Built at Max Hoffman's urging for the United States: chopped removable windscreen, side curtains, thin seats, heater optional. Listed at $2,995 for the 356 A 1600, and the most valuable of the pushrod bodies."
+   "note": "Built at Max Hoffman's urging for the United States: chopped removable windshield, side curtains, thin seats, heater optional. Listed at $2,995 for the 356 A 1600, and the most valuable of the pushrod bodies."
   },
   {
    "name": "Convertible D (1959) and Roadster (1960-1962)",
-   "note": "The Speedster's replacements, with a full-height windscreen and wind-up windows. Better cars to use and consistently worth less."
+   "note": "The Speedster's replacements, with a full-height windshield and wind-up windows. Better cars to use and consistently worth less."
   },
   {
    "name": "356 B 1600 Super 90",
@@ -63,27 +63,27 @@ export const seed356 = {
  ],
  "specs": {
   "layout": "Rear-mounted air-cooled flat-four, rear-wheel drive",
-  "chassis": "Steel unitary platform with the body welded on; hand-formed aluminium bodies on the Gmund 356/2",
+  "chassis": "Steel unitary platform with the body welded on; hand-formed aluminum bodies on the Gmund 356/2",
   "engine": "Air-cooled pushrod flat-four of 1,086 to 1,582 cc; four-cam Carrera units of 1,498 cc (547/1) and 1,966 cc (587)",
   "power": "40 hp for the Gmund 1100 to 95 hp for the 356 C SC; 100 hp Carrera 1500 GS, 130 hp Carrera 2",
   "torque": "91 lb-ft at 4,200 rpm quoted for the 356 C SC; no torque figure appears in any specification consulted here for the 1,582 cc 616/1",
   "transmission": "Four-speed manual; synchromesh from 1953",
   "brakes": "Drum brakes to 1963; four-wheel Ate disc brakes standard on the 356 C",
   "suspension": "Fully independent front and rear, substantially revised for the 356 A in late 1955",
-  "weight": "794 kg (1,750 lb) kerb quoted for the 356 A 1600 Speedster",
+  "weight": "1,750 lb curb quoted for the 356 A 1600 Speedster",
   "acceleration": "13.9 s to 60 mph quoted for the 356 A 1600 Speedster; 11.0 s for the 356 C SC",
   "top_speed": "107 mph observed by Road & Track on a 1,488 cc 1500 in period; about 99 mph for the 356 A 1600 Speedster; 125 mph claimed for the SC",
   "bore_stroke": "82.5 mm x 74.0 mm for the 1,582 cc pushrod four",
   "compression": "9.5:1 for the Type 616/16 SC",
   "wheelbase": "2,101 mm (82.7 in)",
-  "bodywork": "Steel by Reutter, bought by Porsche in 1963, and by Karmann; aluminium on the Gmund cars",
+  "bodywork": "Steel by Reutter, bought by Porsche in 1963, and by Karmann; aluminum on the Gmund cars",
   "assembly": "Gmund, Austria 1948-1950; Zuffenhausen from 6 April 1950 until April 1965"
  },
- "summary": "The Porsche 356 was the first car to carry the Porsche name, and it carried the company for seventeen years. It began in 1948 at Gmund in Carinthia, where a few dozen aluminium-bodied coupes and cabriolets were beaten out by hand over a platform and an air-cooled flat-four descended from the Volkswagen that Ferdinand Porsche had designed a decade earlier. Series production moved to Zuffenhausen in April 1950, with steel bodies from the Stuttgart coachbuilder Reutter, and thereafter the car was revised rather than replaced: Pre-A, 356 A from late 1955, 356 B from 1959, and the disc-braked 356 C from 1963. Alongside the pushrod cars ran the Carrera, powered by Ernst Fuhrmann's four-camshaft flat-four, an engine conceived for racing and sold in road cars in tiny numbers. Ferry Porsche had thought he might sell five hundred. Something over 76,000 were built before the last cabriolet left the line on 28 April 1965.",
- "history": "## A Sawmill in Carinthia\nFerdinand Porsche moved his design office from Stuttgart to Gmund in Carinthia in 1944, and it was there - with Ferdinand interned in France and his son Ferry running the firm - that the first car sold as a Porsche was built. Ferry's account is unadorned: he could not find the car he wanted, so he built it himself. The mid-engined 356 'No. 1' roadster received its operating permit on 8 June 1948 and the first coupe was completed that August. What followed was the 356/2, its engine moved behind the rear axle and its bodies hammer-formed from aluminium sheet by outside specialists including Kastenhofer, Keibl and Beutler. Porsche's own history states that 44 coupes and eight cabriolets were built from the winter of 1948/49 until Austrian production ended in 1950. Other counts run higher, and the Gmund figure has never entirely settled.\n\n## Zuffenhausen, Reutter and the Steel Car\nThe first German-built 356 was finished on 6 April 1950. Porsche had no factory of its own and rented space in Reutter's Werk II for engine assembly and final build, while Reutter's Werk I supplied finished, painted and trimmed steel bodies. By the end of 1950, 317 cars had been made. The arrangement lasted until 1963, when Porsche bought the Reutter body business outright and took on roughly a thousand employees with it, which is why so many 356s carry a 'by Reutter' badge. Karmann built bodies too, distinguishable in club literature by round drain holes in the longitudinals. The pushrod engine grew from 1,086 cc through 1,300 and 1,500 to the 1,582 cc Type 616 that served until the end.\n\n## Hoffman, the Speedster and California\nThe Speedster exists because Max Hoffman, Porsche's New York importer, wanted something cheaper and more obviously sporting for the American market. It arrived in October 1954 with a chopped, removable windscreen, side curtains in place of wind-up windows, thin bucket seats and cabin heating on the options list. Factory records quoted by RM Sotheby's show cars leaving for Hoffman's dealership with 1600 Normal engines, sealed-beam headlamps and USA bumpers. At $2,995 the 356 A 1600 Speedster was cheap enough to race and light enough to be quick, and it became a fixture of southern Californian club racing. It was also cold and draughty, which is why Porsche replaced it in 1959 with the Convertible D and then the Roadster - better cars to use, and neither worth what a Speedster is now.\n\n## Four Camshafts\nErnst Fuhrmann drew the Type 547 flat-four for Porsche in 1952. Two overhead camshafts per bank were driven by vertical shafts and angular gears rather than by chains, a layout that made the engine effectively impossible to build on a production line. It appeared first in the 550 Spyder and reached the road in late 1955 as the 1,498 cc Type 547/1 in the 356 A Carrera 1500 GS, at 100 hp where the best pushrod engine of the day gave 75. The 1,966 cc Type 587 of the Carrera 2 followed at 130 hp. Fewer than two thousand vertical-shaft engines were built in all, and a recent specialist rebuild ran to over two hundred hours.\n\n## Pre-A, A, B, C\nThe 356 was never replaced, only revised. The 356 A of late 1955 brought a curved one-piece windscreen, revised suspension and the 1,582 cc Type 616 engines. The 356 B of 1959 raised the headlamps and bumpers in T5 form, then squared the bonnet and enlarged the glass in T6 form from 1961, and added the 90 hp Super 90. The 356 C of July 1963 fitted Ate disc brakes at all four corners and offered 75 hp C and 95 hp SC engines. Each step made the car easier to live with and, to a certain kind of buyer, slightly less interesting.\n\n## The Last One\nThe 911 had been on sale since 1964, and the 912 took the 356's place in Europe in April 1965. A white cabriolet, decked in flowers, went down the Zuffenhausen line on 28 April 1965. SC models continued to sell in the United States to the end of that year, and ten further 356 C cars were built in May 1966 for the Royal Dutch Police. Output had peaked at 14,151 cars in 1964, a number Ferry Porsche's estimate of five hundred sales does not begin to anticipate.",
+ "summary": "The Porsche 356 was the first car to carry the Porsche name, and it carried the company for seventeen years. It began in 1948 at Gmund in Carinthia, where a few dozen aluminum-bodied coupes and cabriolets were beaten out by hand over a platform and an air-cooled flat-four descended from the Volkswagen that Ferdinand Porsche had designed a decade earlier. Series production moved to Zuffenhausen in April 1950, with steel bodies from the Stuttgart coachbuilder Reutter, and thereafter the car was revised rather than replaced: Pre-A, 356 A from late 1955, 356 B from 1959, and the disc-braked 356 C from 1963. Alongside the pushrod cars ran the Carrera, powered by Ernst Fuhrmann's four-camshaft flat-four, an engine conceived for racing and sold in road cars in tiny numbers. Ferry Porsche had thought he might sell five hundred. Something over 76,000 were built before the last cabriolet left the line on 28 April 1965.",
+ "history": "## A Sawmill in Carinthia\nFerdinand Porsche moved his design office from Stuttgart to Gmund in Carinthia in 1944, and it was there - with Ferdinand interned in France and his son Ferry running the firm - that the first car sold as a Porsche was built. Ferry's account is unadorned: he could not find the car he wanted, so he built it himself. The mid-engined 356 'No. 1' roadster received its operating permit on 8 June 1948 and the first coupe was completed that August. What followed was the 356/2, its engine moved behind the rear axle and its bodies hammer-formed from aluminum sheet by outside specialists including Kastenhofer, Keibl and Beutler. Porsche's own history states that 44 coupes and eight cabriolets were built from the winter of 1948/49 until Austrian production ended in 1950. Other counts run higher, and the Gmund figure has never entirely settled.\n\n## Zuffenhausen, Reutter and the Steel Car\nThe first German-built 356 was finished on 6 April 1950. Porsche had no factory of its own and rented space in Reutter's Werk II for engine assembly and final build, while Reutter's Werk I supplied finished, painted and trimmed steel bodies. By the end of 1950, 317 cars had been made. The arrangement lasted until 1963, when Porsche bought the Reutter body business outright and took on roughly a thousand employees with it, which is why so many 356s carry a 'by Reutter' badge. Karmann built bodies too, distinguishable in club literature by round drain holes in the longitudinals. The pushrod engine grew from 1,086 cc through 1,300 and 1,500 to the 1,582 cc Type 616 that served until the end.\n\n## Hoffman, the Speedster and California\nThe Speedster exists because Max Hoffman, Porsche's New York importer, wanted something cheaper and more obviously sporting for the American market. It arrived in October 1954 with a chopped, removable windshield, side curtains in place of wind-up windows, thin bucket seats and cabin heating on the options list. Factory records quoted by RM Sotheby's show cars leaving for Hoffman's dealership with 1600 Normal engines, sealed-beam headlamps and USA bumpers. At $2,995 the 356 A 1600 Speedster was cheap enough to race and light enough to be quick, and it became a fixture of southern Californian club racing. It was also cold and draughty, which is why Porsche replaced it in 1959 with the Convertible D and then the Roadster - better cars to use, and neither worth what a Speedster is now.\n\n## Four Camshafts\nErnst Fuhrmann drew the Type 547 flat-four for Porsche in 1952. Two overhead camshafts per bank were driven by vertical shafts and angular gears rather than by chains, a layout that made the engine effectively impossible to build on a production line. It appeared first in the 550 Spyder and reached the road in late 1955 as the 1,498 cc Type 547/1 in the 356 A Carrera 1500 GS, at 100 hp where the best pushrod engine of the day gave 75. The 1,966 cc Type 587 of the Carrera 2 followed at 130 hp. Fewer than two thousand vertical-shaft engines were built in all, and a recent specialist rebuild ran to over two hundred hours.\n\n## Pre-A, A, B, C\nThe 356 was never replaced, only revised. The 356 A of late 1955 brought a curved one-piece windshield, revised suspension and the 1,582 cc Type 616 engines. The 356 B of 1959 raised the headlamps and bumpers in T5 form, then squared the hood and enlarged the glass in T6 form from 1961, and added the 90 hp Super 90. The 356 C of July 1963 fitted Ate disc brakes at all four corners and offered 75 hp C and 95 hp SC engines. Each step made the car easier to live with and, to a certain kind of buyer, slightly less interesting.\n\n## The Last One\nThe 911 had been on sale since 1964, and the 912 took the 356's place in Europe in April 1965. A white cabriolet, decked in flowers, went down the Zuffenhausen line on 28 April 1965. SC models continued to sell in the United States to the end of that year, and ten further 356 C cars were built in May 1966 for the Royal Dutch Police. Output had peaked at 14,151 cars in 1964, a number Ferry Porsche's estimate of five hundred sales does not begin to anticipate.",
  "marketNotes": "As of August 2026, classic.com records an average sale price of $168,495 across all 356 variants from 62 cars listed for sale, a deep and liquid market by classic-car standards. The spread is the point: the highest result on the site is $1,650,000 for a 1951 Sauter Roadster in August 2026, the lowest $1,700 for a coupe project in July 2025. Between those poles the benchmarks are orderly: the 356 A stands at $243,110, the 356 B averages $129,651 from 27 listings and the 356 C $117,084 from eleven. Body style separates the money more than year does: as of August 2026 the 356 A Speedster benchmark is $320,078 and the A cabriolet $196,422, against $114,901 for an A coupe. Four-cam cars trade in a tier of their own, with a 356 C Carrera 2 benchmark of $534,116 trending up and a top four-cam result of $857,500 for a 1958 356 A Speedster Carrera GT on 15 August 2026. Auction evidence tracks those figures: RM Sotheby's sold a 356 A 1600 Speedster for $423,000 including premium at Monterey in August 2025 and a 1963 Carrera 2 Cabriolet for EUR 702,500 at Paris in January 2026.",
- "whatToLookFor": "Structure before everything else. The 356 is a unitary steel car with the body welded to the platform, so corrosion in the longitudinals, floorpans, battery box and torsion tube housings is structural rather than cosmetic, and thick undercoating or fresh paint is the easiest place in which to bury a bad repair. Club guidance points to lap-welded joints six inches behind the headlights as the mark of a badly grafted front clip, and holds that door and lid gaps should measure three millimetres. Paperwork does the rest. Porsche issues a Certificate of Authenticity and a production specification document confirming chassis, engine and gearbox numbers, original colour and delivery details; a car without one is a car taking the seller's word for its specification. That matters most on Speedsters and on anything wearing Carrera badges, where the gap between the original and a well-made tribute is large. Dry-climate cars start from a better place than coastal or northern ones, and on four-cam cars it is worth establishing who last rebuilt the engine and when: the population of people who can do it is small.",
- "commonProblems": "Rust is the defining fault and always has been. Floorpans, rockers, longitudinals, battery box, door bottoms, lower wings, wheelarches, torsion tube areas, the nose structure and the boot floor all rot, and poorly repaired sills or floors show up as door fit and body alignment that will not come right. The pushrod flat-four is simple but unforgiving of neglect: worn valve guides, timing gear wear, low compression, main bearing wear from poor oil pressure and heat damage are the recurring themes, and a rebuild is quoted at $10,000 to $20,000 before anything unusual is found. The four-speed gearbox wears its synchromesh, second gear first, which shows as a baulk before the oil is warm, and rebuilds are expensive because parts are scarce. Drum-braked cars need regular adjustment and fade under sustained use, which is much of why the disc-braked 356 C is the easiest of the family to drive regularly. On Carrera cars the four-cam engine adds complexity and cost beyond most general workshops.",
+ "whatToLookFor": "Structure before everything else. The 356 is a unitary steel car with the body welded to the platform, so corrosion in the longitudinals, floorpans, battery box and torsion tube housings is structural rather than cosmetic, and thick undercoating or fresh paint is the easiest place in which to bury a bad repair. Club guidance points to lap-welded joints six inches behind the headlights as the mark of a badly grafted front clip, and holds that door and lid gaps should measure three millimeters. Paperwork does the rest. Porsche issues a Certificate of Authenticity and a production specification document confirming chassis, engine and gearbox numbers, original color and delivery details; a car without one is a car taking the seller's word for its specification. That matters most on Speedsters and on anything wearing Carrera badges, where the gap between the original and a well-made tribute is large. Dry-climate cars start from a better place than coastal or northern ones, and on four-cam cars it is worth establishing who last rebuilt the engine and when: the population of people who can do it is small.",
+ "commonProblems": "Rust is the defining fault and always has been. Floorpans, rockers, longitudinals, battery box, door bottoms, lower wings, wheel arches, torsion tube areas, the nose structure and the trunk floor all rot, and poorly repaired sills or floors show up as door fit and body alignment that will not come right. The pushrod flat-four is simple but unforgiving of neglect: worn valve guides, timing gear wear, low compression, main bearing wear from poor oil pressure and heat damage are the recurring themes, and a rebuild is quoted at $10,000 to $20,000 before anything unusual is found. The four-speed gearbox wears its synchromesh, second gear first, which shows as a baulk before the oil is warm, and rebuilds are expensive because parts are scarce. Drum-braked cars need regular adjustment and fade under sustained use, which is much of why the disc-braked 356 C is the easiest of the family to drive regularly. On Carrera cars the four-cam engine adds complexity and cost beyond most general workshops.",
  "valueTrajectory": "The 356 has behaved less like a speculative asset than a blue-chip one, and its price structure now separates by body and by engine rather than by year. As of August 2026, classic.com puts the all-variant average at $168,495 with 62 cars for sale, while the coupes that make up the bulk of the surviving population sit far lower - a 356 A coupe benchmark of $114,901 and a 356 C average of $117,084 - and remain the accessible end of the market. Open cars decoupled long ago, with the 356 A Speedster benchmark at $320,078. Movement now runs in both directions within one model line: as of August 2026 the 356 C Carrera 2 benchmark of $534,116 was trending up while Speedster benchmarks were trending down, which is the signature of a mature market rather than a rising one. The clearest structural pressure is the cost of putting a car right: corrosion repair here is structural by nature, and an engine rebuild starts in five figures.",
  "overallConfidence": "medium",
  "sources": [
@@ -157,7 +157,7 @@ export const seed356 = {
    "publisher": "StuttCars",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "356 C SC: Type 616/16, 9.5:1, 91 lb-ft at 4,200 rpm, 0-60 in 11.0 s, 125 mph. Quotes 107 bhp at 5,200 rpm against 95 hp elsewhere."
+   "notes": "356 C SC: Type 616/16, 9.5:1, 91 lb-ft at 4,200 rpm, 0-60 in 11.0 s, 125 mph. Quotes 107 hp at 5,200 rpm against 95 hp elsewhere."
   },
   {
    "ref": "stuttcars-buyers-guide",
@@ -184,7 +184,7 @@ export const seed356 = {
    "publisher": "Goodwood Classic Solutions",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Approximately 78,000 built, 52 aluminium cars before 1950; rust from floorpans and longitudinals to nose and boot floor; synchromesh after 1953; 356 C discs."
+   "notes": "Approximately 78,000 built, 52 aluminum cars before 1950; rust from floorpans and longitudinals to nose and trunk floor; synchromesh after 1953; 356 C discs."
   },
   {
    "ref": "curbside-rt-1952",
@@ -202,7 +202,7 @@ export const seed356 = {
    "publisher": "Supercars.net",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "356 A 1600 Speedster: 1,582 cc, 82.5 x 74 mm, 60 bhp at 4,500 rpm, 794 kg, 2,101 mm wheelbase, about 99 mph, 13.9 s to 60 mph, $2,995 new."
+   "notes": "356 A 1600 Speedster: 1,582 cc, 82.5 x 74 mm, 60 hp at 4,500 rpm, 1,750 lb, 2,101 mm wheelbase, about 99 mph, 13.9 s to 60 mph, $2,995 new."
   },
   {
    "ref": "classic-356",
@@ -358,7 +358,7 @@ export const seed356 = {
   },
   {
    "section": "specs",
-   "claimText": "Quoted output for the 356 C SC differs by source: 95 hp DIN in club and encyclopedia references, against 107 bhp at 5,200 rpm for the same Type 616/16 engine on StuttCars' dedicated SC page.",
+   "claimText": "Quoted output for the 356 C SC differs by source: 95 hp DIN in club and encyclopedia references, against 107 hp at 5,200 rpm for the same Type 616/16 engine on StuttCars' dedicated SC page.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -367,11 +367,11 @@ export const seed356 = {
     "stuttcars-356",
     "stuttcars-356c-sc"
    ],
-   "conflictNote": "The Porsche Club of America gives 95 hp DIN, Wikipedia 95 hp, and StuttCars' own model guide 95 hp. StuttCars' 356 C SC page instead quotes 107 bhp at 5,200 rpm. No source consulted states which rating standard the higher figure uses, so both are reported and neither is preferred."
+   "conflictNote": "The Porsche Club of America gives 95 hp DIN, Wikipedia 95 hp, and StuttCars' own model guide 95 hp. StuttCars' 356 C SC page instead quotes 107 hp at 5,200 rpm. No source consulted states which rating standard the higher figure uses, so both are reported and neither is preferred."
   },
   {
    "section": "history",
-   "claimText": "The Speedster was created for the American market at the urging of Porsche's New York importer Max Hoffman, arriving in October 1954 with a cut-down removable windscreen, side curtains, lightweight seats and cabin heating listed as an option.",
+   "claimText": "The Speedster was created for the American market at the urging of Porsche's New York importer Max Hoffman, arriving in October 1954 with a cut-down removable windshield, side curtains, lightweight seats and cabin heating listed as an option.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -393,7 +393,7 @@ export const seed356 = {
   },
   {
    "section": "specs",
-   "claimText": "The 356 A introduced the 1,582 cc Type 616/1 and 616/2 pushrod flat-fours, quoted at 60 hp at 4,500 rpm for the 1600 and 75 hp for the 1600 Super, with a bore and stroke of 82.5 mm by 74 mm; the 356 A 1600 Speedster weighed 794 kg on a 2,101 mm wheelbase and was quoted at about 99 mph, 13.9 seconds to 60 mph and $2,995 new.",
+   "claimText": "The 356 A introduced the 1,582 cc Type 616/1 and 616/2 pushrod flat-fours, quoted at 60 hp at 4,500 rpm for the 1600 and 75 hp for the 1600 Super, with a bore and stroke of 82.5 mm by 74 mm; the 356 A 1600 Speedster weighed 1,750 lb on a 2,101 mm wheelbase and was quoted at about 99 mph, 13.9 seconds to 60 mph and $2,995 new.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -461,7 +461,7 @@ export const seed356 = {
   },
   {
    "section": "problems",
-   "claimText": "Corrosion is the defining 356 fault and is structural rather than cosmetic, with floorpans, longitudinals, rockers, battery box, door bottoms, wings, wheelarches, torsion tube areas, nose and boot floor all vulnerable and thick undercoating routinely concealing poor repair; mechanically, worn valve guides, timing gear wear, low compression, main bearing wear and overheating damage recur, rebuilds are quoted at $10,000-$20,000, the gearbox wears its synchromesh second gear first, and drum-braked cars to 1963 need frequent adjustment and fade in use.",
+   "claimText": "Corrosion is the defining 356 fault and is structural rather than cosmetic, with floorpans, longitudinals, rockers, battery box, door bottoms, wings, wheel arches, torsion tube areas, nose and trunk floor all vulnerable and thick undercoating routinely concealing poor repair; mechanically, worn valve guides, timing gear wear, low compression, main bearing wear and overheating damage recur, rebuilds are quoted at $10,000-$20,000, the gearbox wears its synchromesh second gear first, and drum-braked cars to 1963 need frequent adjustment and fade in use.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -472,7 +472,7 @@ export const seed356 = {
   },
   {
    "section": "summary",
-   "claimText": "Porsche issues a Certificate of Authenticity and a production specification document confirming chassis, engine and gearbox numbers, original colour and delivery details; matching numbers materially affect value, most sharply on Speedsters and Carreras.",
+   "claimText": "Porsche issues a Certificate of Authenticity and a production specification document confirming chassis, engine and gearbox numbers, original color and delivery details; matching numbers materially affect value, most sharply on Speedsters and Carreras.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [

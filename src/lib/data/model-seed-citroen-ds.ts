@@ -12,17 +12,17 @@ export const seedCitroenDs = {
  "yearStart": 1955,
  "yearEnd": 1975,
  "bodyStyles": [
-  "4-door Berline (saloon), fibreglass roof panel over unstressed bolt-on outer panels",
+  "4-door Berline (sedan), fiberglass roof panel over unstressed bolt-on outer panels",
   "5-door Break / Safari / Familiale / Commerciale estate with steel roof, from 1958",
   "2-door Decapotable Usine, the factory-authorised Chapron convertible, from 1960",
   "2-door Chapron catalogue coachwork built to the coachbuilder's own account, including Le Dandy and Concorde coupes"
  ],
  "engines": [
-  "1,911 cc four-cylinder OHV, three main bearings, 78 x 100 mm, 8.5:1, twin-choke carburettor; 75 bhp at 4,500 rpm as DS 19",
+  "1,911 cc four-cylinder OHV, three main bearings, 78 x 100 mm, 8.5:1, twin-choke carburettor; 75 hp at 4,500 rpm as DS 19",
   "1,911 cc in ID 19 tune, detuned; 69 hp per Wikipedia, 66 hp per Ate Up With Motor",
   "1,985 cc five-bearing four, DS 20 and ID 20 from the mid-1960s",
   "2,175 cc five-bearing short-stroke four (DS 21, 1965); 106 hp DIN per Wikipedia, 109 hp per three other sources",
-  "2,175 cc DS 21 with Bosch electronic fuel injection from 1970, quoted at 125 bhp on a 1970 RM Sotheby's lot",
+  "2,175 cc DS 21 with Bosch electronic fuel injection from 1970, quoted at 125 hp on a 1970 RM Sotheby's lot",
   "2,347 cc four (DS 23, 1972-73 on); 115 hp carburetted, 141 hp SAE injected, also quoted at 130 hp DIN"
  ],
  "productionTotal": null,
@@ -30,7 +30,7 @@ export const seedCitroenDs = {
  "notableTrims": [
   {
    "name": "DS 19 (1955-1965)",
-   "note": "The launch specification: 1,911 cc, 75 bhp at 4,500 rpm, powered steering and brakes, hydraulic semi-automatic, corrosive LHS fluid and, until 1960, 6-volt electrics."
+   "note": "The launch specification: 1,911 cc, 75 hp at 4,500 rpm, powered steering and brakes, hydraulic semi-automatic, corrosive LHS fluid and, until 1960, 6-volt electrics."
   },
   {
    "name": "ID 19 (1956 or 1957, depending on source)",
@@ -38,7 +38,7 @@ export const seedCitroenDs = {
   },
   {
    "name": "Break / Safari / Familiale (from 1958)",
-   "note": "Steel roof in place of the saloon's fibreglass so a loaded rack could be carried, seven seats in Familiale form, and DS brakes even where the rest of the car was ID."
+   "note": "Steel roof in place of the sedan's fiberglass so a loaded rack could be carried, seven seats in Familiale form, and DS brakes even where the rest of the car was ID."
   },
   {
    "name": "DS 21 (1965-1972)",
@@ -50,11 +50,11 @@ export const seedCitroenDs = {
   },
   {
    "name": "Pallas (from 1965)",
-   "note": "The luxury level: extra mouldings, better seats and, where fitted, air conditioning. Check the mouldings are present, because Pallas badging outlives Pallas trim."
+   "note": "The luxury level: extra moldings, better seats and, where fitted, air conditioning. Check the moldings are present, because Pallas badging outlives Pallas trim."
   },
   {
    "name": "Decapotable Usine by Henri Chapron (1960-1971)",
-   "note": "The factory-authorised convertible, reinforced and with doors four inches longer than the saloon's. RM Sotheby's records 40 DS 21 cabriolets for 1970; the last was completed in 1978."
+   "note": "The factory-authorised convertible, reinforced and with doors four inches longer than the sedan's. RM Sotheby's records 40 DS 21 cabriolets for 1970; the last was completed in 1978."
   },
   {
    "name": "Chapron catalogue coachwork (Le Dandy, Concorde)",
@@ -63,25 +63,25 @@ export const seedCitroenDs = {
  ],
  "specs": {
   "layout": "Front-mounted longitudinal four-cylinder, front-wheel drive, front track wider than rear",
-  "chassis": "Steel platform base unit carrying unstressed bolt-on outer panels; aluminium bonnet, fibreglass saloon roof. Two exposed headlamps to 1967, four behind a glazed cowl after, inner pair cable-steered",
-  "engine": "Four-cylinder OHV petrol only, in 1,911, 1,985, 2,175 and 2,347 cc; never a six-cylinder",
-  "power": "75 bhp at 4,500 rpm (DS 19) to 141 hp SAE / 130 hp DIN (DS 23 injection); DS 21 quoted at either 106 hp DIN or 109 hp",
+  "chassis": "Steel platform base unit carrying unstressed bolt-on outer panels; aluminum hood, fiberglass sedan roof. Two exposed headlamps to 1967, four behind a glazed cowl after, inner pair cable-steered",
+  "engine": "Four-cylinder OHV gasoline only, in 1,911, 1,985, 2,175 and 2,347 cc; never a six-cylinder",
+  "power": "75 hp at 4,500 rpm (DS 19) to 141 hp SAE / 130 hp DIN (DS 23 injection); DS 21 quoted at either 106 hp DIN or 109 hp",
   "torque": "No torque figure appears in any source fetched for this entry; none is asserted",
   "transmission": "Four-speed hydraulic semi-automatic from launch; manual from 1963; five-speed from September 1970; Borg-Warner 35 automatic on DS 21 and DS 23 from September 1971",
   "suspension": "Self-levelling hydropneumatic front and rear, nitrogen-charged spheres with rubber diaphragms separating gas from fluid, driver-selectable ride height",
   "hydraulics": "One engine-driven high-pressure circuit for suspension, brakes, steering and gearchange; 17.2 MPa (2,490 psi) per Wikipedia, 2,400 psi per Petrolicious",
   "brakes": "Inboard front discs, rear drums; powered high-pressure system on DS and on the Break, conventional master cylinder on early ID",
   "steering": "Rack and pinion, powered on DS and unassisted on ID; 2 7/8 turns lock to lock, 37-foot turning circle on the 1964 DW",
-  "weight": "1,384 kg (3,051 lb) quoted by Wikipedia for the estate; no saloon kerb figure recovered",
+  "weight": "3,051 lb quoted by Wikipedia for the estate; no sedan curb figure recovered",
   "acceleration": "Under 16 seconds 0-62 mph for the DS 21 and under 11 seconds for the injected DS 23 per Ate Up With Motor; no measured figure recovered",
-  "top_speed": "About 100 mph recorded by Motor Sport on a 1.9-litre DW in 1964; 108 mph published for the DS 21"
+  "top_speed": "About 100 mph recorded by Motor Sport on a 1.9-liter DW in 1964; 108 mph published for the DS 21"
  },
- "summary": "The Citroen DS (1955-1975) replaced the Traction Avant after a programme running intermittently since before the war. Andre Lefebvre laid the car out with front-wheel drive and a much wider front than rear track, Flaminio Bertoni shaped a body not settled until weeks before launch, and Paul Mages supplied the hydropneumatic system that fed suspension, brakes, steering and gearchange from one high-pressure circuit. Shown at the Paris Salon in October 1955, it took tens of thousands of deposits inside a week. A cheaper ID 19 followed, a Break estate arrived in 1958, and Henri Chapron built the factory-authorised Decapotable alongside coupes sold on his own account. Engines grew from 1,911 cc to 2,347 cc, and Robert Opron's late-1967 restyle put four lamps behind glass with the inner pair steered by cable - a feature American lighting law would not accept.",
- "history": "## A Programme That Predated the Peace\nThe DS came out of Citroen's Voiture a Grande Diffusion project, begun under Pierre-Jules Boulanger in the late 1930s and carried on quietly through the occupation alongside the work that became the 2CV. Andre Lefebvre, chief engineer on the Traction Avant, set the architecture: front-wheel drive, integral body-frame construction, and front and rear tracks of deliberately different width to shrink the turning circle. Flaminio Bertoni did the body, and did it late - the exterior was not signed off until weeks before the show, because Pierre Bercot wanted the shape to look as unusual as the engineering underneath. The third name is Paul Mages, whose 1942 proposal for a self-adjusting suspension run from a central high-pressure circuit was taken up by Boulanger over the objections of more senior men, and was running on a Traction by 1949.\n\n## October 1955\nThe DS 19 was shown at the Paris Salon in October 1955, and the sources do not agree on the day: Wikipedia says the 6th, while Ate Up With Motor, Motoring Research and Conceptcarz say the 5th. Nor do they agree on the arithmetic of the reception. Wikipedia and Conceptcarz record 743 orders in the first fifteen minutes and 12,000 by the end of the first day, with Wikipedia putting 80,000 deposits across the show's ten days; Motoring Research gives over 700 in the opening minutes and 79,000 by the close. What arrived was a car with powered brakes and steering, a hydraulic semi-automatic gearbox, inboard front discs and suspension that levelled itself, on a platform carrying unstressed bolt-on panels, an aluminium bonnet and a fibreglass roof.\n\n## The Cheap One, the Estate, the Cabriolet\nThe complexity was expensive, so Citroen made a simpler version. The ID 19 - dated 1956 by Motoring Research and 1957 by Ate Up With Motor and Petrolicious - kept the hydropneumatic suspension but replaced the power steering and hydraulic clutch with conventional items and used a detuned engine that sources put at 66 or 69 hp. From 1958 there was an estate, Break in France and Safari or Estate in Britain, with a steel roof in place of the saloon's fibreglass so a loaded rack could be carried, seven seats in Familiale form, and DS brakes even where the rest of the car was ID. Henri Chapron built a cabriolet on his own initiative in 1958; Citroen relented and had him build factory cars from 1960, sold through its dealers on a reinforced platform with doors four inches longer than the saloon's. Chapron also sold coupes on his own account - the Concorde, the Le Dandy - at roughly twice the price of a standard DS.\n\n## Bigger Engines and Opron's Nose\nA five-bearing 2,175 cc engine arrived for 1965 as the DS 21, with a 1,985 cc DS 20 beneath it. A conventional manual gearbox had become available in 1963; a five-speed followed in September 1970 and a Borg-Warner automatic in September 1971. The hydraulic fluid changed from hygroscopic, corrosive LHS to green mineral LHM, with sources placing the switch variously at 1966, 1967 and 1968. In late 1967, for the 1968 model year, Robert Opron reworked the front: four lamps behind a glazed cowl, the inner pair swivelling with the steering. Bosch electronic fuel injection reached the DS 21 for 1970, and in 1972-73 the 2,347 cc DS 23 topped the range. The ID gave way to the D Special and D Super in 1970.\n\n## America, and the End\nNorth America would not take the swivelling lamps. Citroenvie records a rule that no private vehicle may carry an external light whose direction is controlled from inside the car, and a 1 January 1971 deadline after which any new Citroen entering the United States or Canada needed a fixed, unshielded system; American cars ran four exposed sealed beams instead. Citroen announced in 1970 that meeting North American safety standards had become uneconomic. Production ended at Paris on 24 April 1975, by which time Citroen had passed to Peugeot.",
- "marketNotes": "As of August 2026, classic.com gives an average Citroen DS sale price of $62,630 and a lowest recorded sale of $1,350 for a 1970 DS 20 on 28 January 2023; the benchmark tile and trend arrow did not render on either fetch, so no benchmark is quoted. Recent results there, all as of August 2026, run from a 1965 DS 21 Concorde at $95,200 on 14 August 2026 through a 1972 DS 21 Pallas at $35,000 on 6 August 2026 to a 1973 DS 23 Cabriolet at EUR 33,800 on 3 August 2026. Classic Trader, read in August 2026, showed 31 cars advertised from GBP 13,602 for a 1973 DS 20 to GBP 178,800 for a 1967 DS 21 Chapron, and a mainstream band of roughly EUR 20,000 to EUR 60,000 for saloons. Magneto's guide, read in August 2026, prices a 1971 DS 21 Pallas at GBP 11,300 fair, GBP 17,600 good, GBP 27,500 excellent and GBP 39,600 concours. Coachbuilt cars trade separately: RM Sotheby's sold Chapron Decapotables for $291,000 at Monterey 2021, $268,800 at Arizona 2022, $246,400 from the Elkhart Collection and EUR 195,500 at Paris 2023, and Artcurial sold a 1962 Concorde for EUR 153,120 at Retromobile in February 2017 and a 1965 Le Dandy for EUR 262,240 at Retromobile 2018. The lot pages print the sale name and result but not the date.",
- "whatToLookFor": "Structure first, because the D-series hides its corrosion behind bolt-on panels that come off easily and tell you little until they do. Classics World singles out sills, boot floor, roof gutters where water traps and rots from the inside, and the area carrying the trailing arm mounts, and notes cracking around the front wishbone carrier bolts with repair quoted between GBP 200 and GBP 2,000. Petrolicious adds the lower rear corners of the front wings, door bottoms and the bodywork below faired-in headlamps, and warns that the aluminium bonnet can crack down the centre. On the hydraulics, listen to the pump: Classics World describes a tick roughly every thirty seconds as normal and anything more frequent as a leak, and says a car pushed down at each corner should sink willingly and rise softly, a firm response pointing at spent spheres. A permanently sagging car is a leak until proved otherwise. Establish which fluid the car is on and that it has never been mixed, because LHS and LHM use different seals and converting means replacing every unit and seal rather than topping up. Compression should read 120 to 140 psi per cylinder. On Pallas cars, confirm the mouldings and trim are present: small trim pieces are the hardest parts to find.",
+ "summary": "The Citroen DS (1955-1975) replaced the Traction Avant after a program running intermittently since before the war. Andre Lefebvre laid the car out with front-wheel drive and a much wider front than rear track, Flaminio Bertoni shaped a body not settled until weeks before launch, and Paul Mages supplied the hydropneumatic system that fed suspension, brakes, steering and gearchange from one high-pressure circuit. Shown at the Paris Salon in October 1955, it took tens of thousands of deposits inside a week. A cheaper ID 19 followed, a Break estate arrived in 1958, and Henri Chapron built the factory-authorised Decapotable alongside coupes sold on his own account. Engines grew from 1,911 cc to 2,347 cc, and Robert Opron's late-1967 restyle put four lamps behind glass with the inner pair steered by cable - a feature American lighting law would not accept.",
+ "history": "## A Program That Predated the Peace\nThe DS came out of Citroen's Voiture a Grande Diffusion project, begun under Pierre-Jules Boulanger in the late 1930s and carried on quietly through the occupation alongside the work that became the 2CV. Andre Lefebvre, chief engineer on the Traction Avant, set the architecture: front-wheel drive, integral body-frame construction, and front and rear tracks of deliberately different width to shrink the turning circle. Flaminio Bertoni did the body, and did it late - the exterior was not signed off until weeks before the show, because Pierre Bercot wanted the shape to look as unusual as the engineering underneath. The third name is Paul Mages, whose 1942 proposal for a self-adjusting suspension run from a central high-pressure circuit was taken up by Boulanger over the objections of more senior men, and was running on a Traction by 1949.\n\n## October 1955\nThe DS 19 was shown at the Paris Salon in October 1955, and the sources do not agree on the day: Wikipedia says the 6th, while Ate Up With Motor, Motoring Research and Conceptcarz say the 5th. Nor do they agree on the arithmetic of the reception. Wikipedia and Conceptcarz record 743 orders in the first fifteen minutes and 12,000 by the end of the first day, with Wikipedia putting 80,000 deposits across the show's ten days; Motoring Research gives over 700 in the opening minutes and 79,000 by the close. What arrived was a car with powered brakes and steering, a hydraulic semi-automatic gearbox, inboard front discs and suspension that levelled itself, on a platform carrying unstressed bolt-on panels, an aluminum hood and a fiberglass roof.\n\n## The Cheap One, the Estate, the Cabriolet\nThe complexity was expensive, so Citroen made a simpler version. The ID 19 - dated 1956 by Motoring Research and 1957 by Ate Up With Motor and Petrolicious - kept the hydropneumatic suspension but replaced the power steering and hydraulic clutch with conventional items and used a detuned engine that sources put at 66 or 69 hp. From 1958 there was an estate, Break in France and Safari or Estate in Britain, with a steel roof in place of the sedan's fiberglass so a loaded rack could be carried, seven seats in Familiale form, and DS brakes even where the rest of the car was ID. Henri Chapron built a cabriolet on his own initiative in 1958; Citroen relented and had him build factory cars from 1960, sold through its dealers on a reinforced platform with doors four inches longer than the sedan's. Chapron also sold coupes on his own account - the Concorde, the Le Dandy - at roughly twice the price of a standard DS.\n\n## Bigger Engines and Opron's Nose\nA five-bearing 2,175 cc engine arrived for 1965 as the DS 21, with a 1,985 cc DS 20 beneath it. A conventional manual gearbox had become available in 1963; a five-speed followed in September 1970 and a Borg-Warner automatic in September 1971. The hydraulic fluid changed from hygroscopic, corrosive LHS to green mineral LHM, with sources placing the switch variously at 1966, 1967 and 1968. In late 1967, for the 1968 model year, Robert Opron reworked the front: four lamps behind a glazed cowl, the inner pair swivelling with the steering. Bosch electronic fuel injection reached the DS 21 for 1970, and in 1972-73 the 2,347 cc DS 23 topped the range. The ID gave way to the D Special and D Super in 1970.\n\n## America, and the End\nNorth America would not take the swivelling lamps. Citroenvie records a rule that no private vehicle may carry an external light whose direction is controlled from inside the car, and a 1 January 1971 deadline after which any new Citroen entering the United States or Canada needed a fixed, unshielded system; American cars ran four exposed sealed beams instead. Citroen announced in 1970 that meeting North American safety standards had become uneconomic. Production ended at Paris on 24 April 1975, by which time Citroen had passed to Peugeot.",
+ "marketNotes": "As of August 2026, classic.com gives an average Citroen DS sale price of $62,630 and a lowest recorded sale of $1,350 for a 1970 DS 20 on 28 January 2023; the benchmark tile and trend arrow did not render on either fetch, so no benchmark is quoted. Recent results there, all as of August 2026, run from a 1965 DS 21 Concorde at $95,200 on 14 August 2026 through a 1972 DS 21 Pallas at $35,000 on 6 August 2026 to a 1973 DS 23 Cabriolet at EUR 33,800 on 3 August 2026. Classic Trader, read in August 2026, showed 31 cars advertised from GBP 13,602 for a 1973 DS 20 to GBP 178,800 for a 1967 DS 21 Chapron, and a mainstream band of roughly EUR 20,000 to EUR 60,000 for sedans. Magneto's guide, read in August 2026, prices a 1971 DS 21 Pallas at GBP 11,300 fair, GBP 17,600 good, GBP 27,500 excellent and GBP 39,600 concours. Coachbuilt cars trade separately: RM Sotheby's sold Chapron Decapotables for $291,000 at Monterey 2021, $268,800 at Arizona 2022, $246,400 from the Elkhart Collection and EUR 195,500 at Paris 2023, and Artcurial sold a 1962 Concorde for EUR 153,120 at Retromobile in February 2017 and a 1965 Le Dandy for EUR 262,240 at Retromobile 2018. The lot pages print the sale name and result but not the date.",
+ "whatToLookFor": "Structure first, because the D-series hides its corrosion behind bolt-on panels that come off easily and tell you little until they do. Classics World singles out sills, trunk floor, roof gutters where water traps and rots from the inside, and the area carrying the trailing arm mounts, and notes cracking around the front wishbone carrier bolts with repair quoted between GBP 200 and GBP 2,000. Petrolicious adds the lower rear corners of the front wings, door bottoms and the bodywork below faired-in headlamps, and warns that the aluminum hood can crack down the center. On the hydraulics, listen to the pump: Classics World describes a tick roughly every thirty seconds as normal and anything more frequent as a leak, and says a car pushed down at each corner should sink willingly and rise softly, a firm response pointing at spent spheres. A permanently sagging car is a leak until proved otherwise. Establish which fluid the car is on and that it has never been mixed, because LHS and LHM use different seals and converting means replacing every unit and seal rather than topping up. Compression should read 120 to 140 psi per cylinder. On Pallas cars, confirm the moldings and trim are present: small trim pieces are the hardest parts to find.",
  "commonProblems": "The hydraulic system is not fragile, but it is unforgiving of neglect and of the wrong fluid. Spheres lose their nitrogen charge and are generally treated as a five-yearly item; a failed diaphragm means replacement rather than recharging. Corroded high-pressure pipework is routine, and the Citroen Car Club notes that when pressure is lost the system sheds functions in a defined order - steering assistance first, with warning, then suspension, then brakes. Early LHS fluid is hygroscopic, corrosive and prone to leaking, which is why so many surviving early cars have been converted. Engines are long-lived, with Petrolicious quoting 150,000 miles between rebuilds, but timing chains stretch and replacement is an engine-out job, camshaft seals leak at the distributor base, and Classics World reports big-end failure as most common on the 2,347 cc unit. Manual boxes crunch their synchromesh and five-speeds whine as the bearings dry. The BVH semi-automatic suffers internal leaks that make it jump out of second or third and a leaking selector plate that puts LHM into the gear oil.",
- "valueTrajectory": "The DS spent decades as a cheap and slightly forbidding used car, and the spread in today's figures still shows it: as of August 2026 classic.com's lowest recorded sale is $1,350 for a 1970 DS 20 in January 2023, against a $62,630 average across all body styles - a gap that says more about what has been thrown away than about what survives. The saloon market has settled rather than surged. Classic Trader's August 2026 listings put usable DS 20, DS 21 and DS 23 cars in a EUR 20,000 to EUR 60,000 band, and Magneto's August 2026 guidance for a 1971 DS 21 Pallas tops out at GBP 39,600 for concours, well below where the coachbuilt cars sit. Chapron bodies have moved on a different curve, with RM Sotheby's Decapotable results between $246,400 and $291,000 across four sales. The result is a market in two halves: a saloon and estate sector where condition and hydraulic history set the price, and a coachbuilt sector where authenticating factory rather than aftermarket conversion is the whole argument.",
+ "valueTrajectory": "The DS spent decades as a cheap and slightly forbidding used car, and the spread in today's figures still shows it: as of August 2026 classic.com's lowest recorded sale is $1,350 for a 1970 DS 20 in January 2023, against a $62,630 average across all body styles - a gap that says more about what has been thrown away than about what survives. The sedan market has settled rather than surged. Classic Trader's August 2026 listings put usable DS 20, DS 21 and DS 23 cars in a EUR 20,000 to EUR 60,000 band, and Magneto's August 2026 guidance for a 1971 DS 21 Pallas tops out at GBP 39,600 for concours, well below where the coachbuilt cars sit. Chapron bodies have moved on a different curve, with RM Sotheby's Decapotable results between $246,400 and $291,000 across four sales. The result is a market in two halves: a sedan and estate sector where condition and hydraulic history set the price, and a coachbuilt sector where authenticating factory rather than aftermarket conversion is the whole argument.",
  "overallConfidence": "medium",
  "sources": [
   {
@@ -136,7 +136,7 @@ export const seedCitroenDs = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "The period road test: UK-market DW, 1.9 litres at 83 bhp, about 100 mph, 26.7 and 26.1 mpg, GBP 1,568 19s 7d, 2 7/8 turns lock to lock, 37-foot turning circle."
+   "notes": "The period road test: UK-market DW, 1.9 liters at 83 hp, about 100 mph, 26.7 and 26.1 mpg, GBP 1,568 19s 7d, 2 7/8 turns lock to lock, 37-foot turning circle."
   },
   {
    "ref": "motoringresearch-ds",
@@ -217,7 +217,7 @@ export const seedCitroenDs = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $291,000, Monterey 2021, chassis 00FA0662. Supports 125 bhp injected, the 1,365 breakdown of 770 DS 19s, 483 DS 21s and 112 ID 19s, and 40 DS 21 cabriolets for 1970."
+   "notes": "Sold $291,000, Monterey 2021, chassis 00FA0662. Supports 125 hp injected, the 1,365 breakdown of 770 DS 19s, 483 DS 21s and 112 ID 19s, and 40 DS 21 cabriolets for 1970."
   },
   {
    "ref": "rm-el20-decapotable",
@@ -349,7 +349,7 @@ export const seedCitroenDs = {
   },
   {
    "section": "history",
-   "claimText": "The DS came out of Citroen's Voiture a Grande Diffusion programme: Andre Lefebvre set the front-wheel-drive architecture and unequal tracks, Flaminio Bertoni styled a body not finalised until weeks before launch, and Paul Mages developed the hydropneumatic suspension from a 1942 proposal running on a Traction Avant prototype by 1949.",
+   "claimText": "The DS came out of Citroen's Voiture a Grande Diffusion program: Andre Lefebvre set the front-wheel-drive architecture and unequal tracks, Flaminio Bertoni styled a body not finalised until weeks before launch, and Paul Mages developed the hydropneumatic suspension from a 1942 proposal running on a Traction Avant prototype by 1949.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -371,7 +371,7 @@ export const seedCitroenDs = {
   },
   {
    "section": "history",
-   "claimText": "An estate was added in 1958, sold as the Break in France and the Safari or Estate in Britain, with a full steel roof in place of the saloon's fibreglass panel so a loaded roof rack could be carried, seven seats in Familiale form, and DS brakes even where the rest of the specification was ID.",
+   "claimText": "An estate was added in 1958, sold as the Break in France and the Safari or Estate in Britain, with a full steel roof in place of the sedan's fiberglass panel so a loaded roof rack could be carried, seven seats in Familiale form, and DS brakes even where the rest of the specification was ID.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -382,7 +382,7 @@ export const seedCitroenDs = {
   },
   {
    "section": "history",
-   "claimText": "Henri Chapron built a DS cabriolet on his own initiative before Citroen authorised factory production, after which cars were converted at Levallois-Perret on a reinforced platform with doors four inches longer than the saloon's, the first shipping in October 1960 and the last completed in 1978. He separately sold coupes on his own account at roughly twice the price of a standard DS.",
+   "claimText": "Henri Chapron built a DS cabriolet on his own initiative before Citroen authorised factory production, after which cars were converted at Levallois-Perret on a reinforced platform with doors four inches longer than the sedan's, the first shipping in October 1960 and the last completed in 1978. He separately sold coupes on his own account at roughly twice the price of a standard DS.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -419,7 +419,7 @@ export const seedCitroenDs = {
   },
   {
    "section": "specs",
-   "claimText": "Motor Sport's March 1964 test of the UK-market DW - the 1.9-litre engine at 83 bhp with DS power steering and brakes but the ID's manual clutch - recorded about 100 mph, 26.7 mpg fast and 26.1 mpg mixed, at GBP 1,568 19s 7d including purchase tax, with 2 7/8 turns lock to lock and a 37-foot turning circle.",
+   "claimText": "Motor Sport's March 1964 test of the UK-market DW - the 1.9-liter engine at 83 hp with DS power steering and brakes but the ID's manual clutch - recorded about 100 mph, 26.7 mpg fast and 26.1 mpg mixed, at GBP 1,568 19s 7d including purchase tax, with 2 7/8 turns lock to lock and a 37-foot turning circle.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -428,7 +428,7 @@ export const seedCitroenDs = {
   },
   {
    "section": "problems",
-   "claimText": "Corrosion concentrates in the sills, boot floor around the trailing arm mounts, roof gutters, door bottoms and the lower rear corners of the front wings; spheres lose their nitrogen charge and are treated as a five-yearly item, with the Citroen Car Club describing the hydraulics shedding functions in a set order on loss of pressure - steering, then suspension, then brakes. Timing chains stretch, camshaft seals leak at the distributor base, and big-end failure is most common on the 2,347 cc unit.",
+   "claimText": "Corrosion concentrates in the sills, trunk floor around the trailing arm mounts, roof gutters, door bottoms and the lower rear corners of the front wings; spheres lose their nitrogen charge and are treated as a five-yearly item, with the Citroen Car Club describing the hydraulics shedding functions in a set order on loss of pressure - steering, then suspension, then brakes. Timing chains stretch, camshaft seals leak at the distributor base, and big-end failure is most common on the 2,347 cc unit.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -451,7 +451,7 @@ export const seedCitroenDs = {
   },
   {
    "section": "market",
-   "claimText": "Coachbuilt cars trade in a separate and far higher market than saloons: RM Sotheby's sold Chapron Decapotables at $291,000 (Monterey 2021), $268,800 (Arizona 2022), $246,400 (Elkhart Collection) and EUR 195,500 (Paris 2023), while Artcurial sold a 1962 Concorde coupe for EUR 153,120 at Retromobile in February 2017 and a 1965 Le Dandy for EUR 262,240 at Retromobile 2018.",
+   "claimText": "Coachbuilt cars trade in a separate and far higher market than sedans: RM Sotheby's sold Chapron Decapotables at $291,000 (Monterey 2021), $268,800 (Arizona 2022), $246,400 (Elkhart Collection) and EUR 195,500 (Paris 2023), while Artcurial sold a 1962 Concorde coupe for EUR 153,120 at Retromobile in February 2017 and a 1965 Le Dandy for EUR 262,240 at Retromobile 2018.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

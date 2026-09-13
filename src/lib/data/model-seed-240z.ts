@@ -1,5 +1,5 @@
 /**
- * Model draft — Datsun 240Z (Nissan S30), 1969–1973 (US-market 240Z).
+ * Model draft — Datsun 240Z (Nissan S30), 1969-1973 (US-market 240Z).
  *
  * This content was cross-checked across multiple INDEPENDENT sources
  * (Nissan Heritage Collection, Wikipedia citing the Japan Automobile
@@ -32,19 +32,19 @@ export const seed240z = {
   yearEnd: 1973,
   bodyStyles: ['Coupe (2-seat fastback)'],
   engines: [
-    'L24 2.4L SOHC inline-six (151 hp SAE gross / 140 PS DIN) — export 240Z',
-    'L20A 2.0L SOHC inline-six (130 PS JIS) — Japanese-market Fairlady Z',
-    'S20 2.0L DOHC 24-valve inline-six (160 PS JIS) — Japan-only Fairlady Z432',
+    'L24 2.4L SOHC inline-six (151 hp SAE gross / 138 hp DIN) — export 240Z',
+    'L20A 2.0L SOHC inline-six (128 hp JIS) — Japanese-market Fairlady Z',
+    'S20 2.0L DOHC 24-valve inline-six (158 hp JIS) — Japan-only Fairlady Z432',
   ],
   productionTotal: 164616,
   productionNotes:
-    'Nissan-released figures (compiled by Carl Beck / IZCC at zhome.com) show 168,584 S30s exported from Japan across 1969–1973, of which 164,616 are documented specifically as 240Z; the ~3,968-car difference may be late-1973 cars that were in fact early-1974 260Zs. Export build by year: 1970 ≈ 17,005; 1971 ≈ 40,219; 1972 ≈ 60,025; 1973 ≈ 51,332. The United States took roughly 90% of 240Z output. These totals cover the export 240Z only — they do NOT include the separate Japanese-market Fairlady Z (L20-engined) or the Fairlady Z432/Z432R. Across the whole S30 family (240Z/260Z/280Z + Fairlady, 1969–1978) Nissan and the motoring press cite well over half a million cars, a sports-car production record for a single model line. Per-year/market figures here are flagged in the claims where sources phrase them differently.',
+    'Nissan-released figures (compiled by Carl Beck / IZCC at zhome.com) show 168,584 S30s exported from Japan across 1969-1973, of which 164,616 are documented specifically as 240Z; the ~3,968-car difference may be late-1973 cars that were in fact early-1974 260Zs. Export build by year: 1970 ≈ 17,005; 1971 ≈ 40,219; 1972 ≈ 60,025; 1973 ≈ 51,332. The United States took roughly 90% of 240Z output. These totals cover the export 240Z only — they do NOT include the separate Japanese-market Fairlady Z (L20-engined) or the Fairlady Z432/Z432R. Across the whole S30 family (240Z/260Z/280Z + Fairlady, 1969-1978) Nissan and the motoring press cite well over half a million cars, a sports-car production record for a single model line. Per-year/market figures here are flagged in the claims where sources phrase them differently.',
   notableTrims: [
     { name: '240Z (HLS30, LHD)', note: 'The left-hand-drive export car — the one Americans know. ~90% of all 240Z production went to the US.' },
     { name: '240Z (HS30, RHD)', note: 'Right-hand-drive export car for the UK, Australia and other RHD markets. Just ~4,287 RHD export cars were built — comparatively rare.' },
-    { name: 'Fairlady Z (S30, JDM)', note: 'Japanese home-market car with the smaller 2.0L L20 six (130 PS JIS), to sit under Japan’s engine-displacement road-tax threshold. Sold as "Fairlady" to echo the earlier Datsun Sports roadster.' },
+    { name: 'Fairlady Z (S30, JDM)', note: 'Japanese home-market car with the smaller 2.0L L20 six (128 hp JIS), to sit under Japan’s engine-displacement road-tax threshold. Sold as "Fairlady" to echo the earlier Datsun Sports roadster.' },
     { name: 'Fairlady 240Z (HS30-H / 240ZG)', note: 'Japan-only 2.4L home-market car. The 240ZG (Oct 1971) added a long fiberglass "aero-dyna" G-nose, over-fenders and spoiler to homologate for Group 4 racing.' },
-    { name: 'Fairlady Z432 (PS30)', note: 'Japan-only halo car using the Skyline GT-R’s S20 2.0L DOHC 24-valve six (160 PS JIS). "432" = 4 valves/cyl, 3 carbs, 2 cams. ~420 built.' },
+    { name: 'Fairlady Z432 (PS30)', note: 'Japan-only halo car using the Skyline GT-R’s S20 2.0L DOHC 24-valve six (158 hp JIS). "432" = 4 valves/cyl, 3 carbs, 2 cams. ~420 built.' },
     { name: 'Fairlady Z432-R (PS30-SB)', note: 'Lightweight homologation special of the Z432 — thinner steel, fiberglass hood, acrylic windows, stripped interior, 100 L tank. Fewer than ~50 thought built; the most valuable Z.' },
   ],
   specs: {
@@ -52,15 +52,15 @@ export const seed240z = {
     'Bore × stroke': '83 mm × 73.7 mm',
     'Compression ratio': '9.0:1',
     'Fuel system': 'Twin Hitachi 1.75 in (44 mm) SU-type (constant-velocity) carburetors',
-    'Power (240Z export)': '151 hp (153 PS) SAE gross @ 5,600 rpm; 140 PS (138 hp) DIN',
+    'Power (240Z export)': '151 hp SAE gross @ 5,600 rpm; 138 hp DIN',
     'Torque (240Z export)': '146 lb·ft (198 N·m) SAE gross @ 4,400 rpm',
     'Transmission': '4-speed manual (US standard); 5-speed manual (non-US); 3-speed automatic optional from late 1970',
     'Drivetrain': 'Front-engine, rear-wheel-drive',
     'Suspension': 'Four-wheel independent: front MacPherson struts; rear Chapman struts, coil springs',
     'Steering': 'Rack and pinion',
     'Brakes': 'Front discs, rear drums',
-    '0–60 mph': '~8.0 s (period road tests)',
-    'Top speed': '~125 mph (201 km/h)',
+    '0-60 mph': '~8.0 s (period road tests)',
+    'Top speed': '~125 mph',
   },
   heroPhoto: null as string | null,
   overallConfidence: 'high' as const,
@@ -77,7 +77,7 @@ The Z was driven into existence by **Yutaka "Mister K" Katayama**, president of 
 
 ## The design-credit debate
 
-Who actually styled the S30 is one of the most persistent arguments in collector-car history, so we present it neutrally. The factory and the Nissan enthusiast community credit a team led by **Yoshihiko Matsuo**, head of Nissan's Sports Car Styling Studio, and there is a well-documented trail of his sketches showing the shape evolving. A competing popular story gives credit to German designer **Albrecht Graf von Goertz** (of BMW 507 fame), who consulted for Nissan from 1963–1965 on an unrelated two-liter sports-car project (a stillborn Nissan–Yamaha collaboration) that was never produced. In a 1980 letter — written to head off a threatened lawsuit — Nissan stated that the 240Z was the work of its own design staff, while acknowledging that those designers had been "influenced by" and "had the benefit of" Goertz's earlier work for Nissan. Most marque historians today credit Matsuo's team for the production S30 and treat the "Goertz designed the Z" claim as a myth; we record both positions rather than pick a side.
+Who actually styled the S30 is one of the most persistent arguments in collector-car history, so we present it neutrally. The factory and the Nissan enthusiast community credit a team led by **Yoshihiko Matsuo**, head of Nissan's Sports Car Styling Studio, and there is a well-documented trail of his sketches showing the shape evolving. A competing popular story gives credit to German designer **Albrecht Graf von Goertz** (of BMW 507 fame), who consulted for Nissan from 1963-1965 on an unrelated two-liter sports-car project (a stillborn Nissan–Yamaha collaboration) that was never produced. In a 1980 letter — written to head off a threatened lawsuit — Nissan stated that the 240Z was the work of its own design staff, while acknowledging that those designers had been "influenced by" and "had the benefit of" Goertz's earlier work for Nissan. Most marque historians today credit Matsuo's team for the production S30 and treat the "Goertz designed the Z" claim as a myth; we record both positions rather than pick a side.
 
 ## Why it mattered
 
@@ -89,7 +89,7 @@ In export markets the car was the **Datsun 240Z** (chassis **HLS30** for left-ha
 
 The 240Z ran in the US through the 1973 model year, after which a larger-displacement **260Z** (2.6L) took over for 1974, followed by the fuel-injected **280Z** (2.8L) — but the 2.4-liter original is the car enthusiasts mean when they say "the Z."`,
 
-  marketNotes: `The 240Z spent decades as a cheap, attainable classic, which is exactly why so many were modified, neglected, or lost to rust. That has changed sharply. Hagerty's buyer's guide noted that a #2 ("Excellent") condition 240Z worth roughly US$20,000 around 2011 had climbed to about US$54,500 by early 2021, with especially strong appreciation in the 2015–2018 window and several recent six-figure outliers for exceptional cars. Interest skews younger than most classics, toward Gen X and millennial buyers.
+  marketNotes: `The 240Z spent decades as a cheap, attainable classic, which is exactly why so many were modified, neglected, or lost to rust. That has changed sharply. Hagerty's buyer's guide noted that a #2 ("Excellent") condition 240Z worth roughly US$20,000 around 2011 had climbed to about US$54,500 by early 2021, with especially strong appreciation in the 2015-2018 window and several recent six-figure outliers for exceptional cars. Interest skews younger than most classics, toward Gen X and millennial buyers.
 
 At the very top of the market, rarity rules: a 1970 Fairlady Z432-R sold at a Japanese auction in January 2020 for about A$1.17 million (roughly US$837,000) — but that is a Japan-only, sub-50-unit homologation special, not a US 240Z, and should not be read across to ordinary cars.
 
@@ -113,7 +113,7 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
 
 **General age items.** Perished suspension bushings and body weatherstripping, tired cooling systems, and decades-old wiring are routine on unrestored cars. The L-series six itself is robust and parts support (including upgrades from the later 280ZX) is strong.`,
 
-  valueTrajectory: `Cheap, modified and rust-prone "affordable classic" through the 1990s–2000s → steady climb through the 2010s (Hagerty cites ~74% growth for #2 cars across 2015–2018) → strong demand into the early 2020s with occasional six-figure results for the best cars, while rough/rusty cars stay far cheaper. Series I US cars, documented original examples, and rare RHD/Japan-only variants (240ZG, Z432, Z432-R) sit at the top; rusty or heavily modified cars trail. The long arc is a car that moved from punchline to genuinely respected blue-chip Japanese classic, helped by a younger collector base.`,
+  valueTrajectory: `Cheap, modified and rust-prone "affordable classic" through the 1990s–2000s → steady climb through the 2010s (Hagerty cites ~74% growth for #2 cars across 2015-2018) → strong demand into the early 2020s with occasional six-figure results for the best cars, while rough/rusty cars stay far cheaper. Series I US cars, documented original examples, and rare RHD/Japan-only variants (240ZG, Z432, Z432-R) sit at the top; rusty or heavily modified cars trail. The long arc is a car that moved from punchline to genuinely respected blue-chip Japanese classic, helped by a younger collector base.`,
 
   sources: [
     {
@@ -132,11 +132,11 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
       publisher: 'Wikipedia',
       sourceType: 'reference-book',
       reliability: 'medium',
-      notes: 'Aggregator, but well-cited: L24 specs sourced to Northey "World of Automobiles" and Alla Bilar -74; JDM details to the JAMA Automobile Guide Book vols. 19–23; Z432/Z432-R to Road & Track and Sports Car Market. Cross-checked against primary sources here.',
+      notes: 'Aggregator, but well-cited: L24 specs sourced to Northey "World of Automobiles" and Alla Bilar -74; JDM details to the JAMA Automobile Guide Book vols. 19-23; Z432/Z432-R to Road & Track and Sports Car Market. Cross-checked against primary sources here.',
     },
     {
       ref: 'hagerty',
-      title: 'Your handy 1970–73 Datsun 240Z buyer’s guide',
+      title: 'Your handy 1970-73 Datsun 240Z buyer’s guide',
       url: 'https://www.hagerty.com/media/buying-and-selling/your-handy-1970-73-datsun-240z-buyers-guide/',
       publisher: 'Hagerty',
       sourceType: 'journalism',
@@ -185,12 +185,12 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
     {
       section: 'production',
       claimText:
-        'Roughly 164,616 export 240Zs were built/exported across 1969–1973 (out of ~168,584 total S30 export cars in that window), with the US taking about 90%.',
+        'Roughly 164,616 export 240Zs were built/exported across 1969-1973 (out of ~168,584 total S30 export cars in that window), with the US taking about 90%.',
       confidence: 'medium',
       status: 'disputed',
       sourceRefs: ['zhome-production', 'wikipedia'],
       conflictNote:
-        'Nissan-released figures compiled by IZCC/zhome.com give 168,584 S30s exported 1969–1973, of which 164,616 are documented as 240Z (the ~3,968 difference may be late-1973 cars that were really early 260Zs). Many secondary sources round this to "about 168,000 240Zs," which conflates the two numbers. We cite 164,616 as the best-documented 240Z-specific figure and note the ~168,000 rounding. Exact totals are enthusiast-compiled, not independently audited.',
+        'Nissan-released figures compiled by IZCC/zhome.com give 168,584 S30s exported 1969-1973, of which 164,616 are documented as 240Z (the ~3,968 difference may be late-1973 cars that were really early 260Zs). Many secondary sources round this to "about 168,000 240Zs" which conflates the two numbers. We cite 164,616 as the best-documented 240Z-specific figure and note the ~168,000 rounding. Exact totals are enthusiast-compiled, not independently audited.',
     },
     {
       section: 'history',
@@ -200,17 +200,17 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
       status: 'disputed',
       sourceRefs: ['wikipedia', 'jnc-goertz', 'nissan-heritage'],
       conflictNote:
-        'Nissan and most marque historians credit Matsuo’s in-house team, backed by a documented sketch trail. A widespread popular account instead credits German designer Albrecht von Goertz, who consulted for Nissan 1963–65 on a separate, never-produced Nissan–Yamaha sports car. Nissan’s 1980 letter (drafted to avert a threatened Goertz lawsuit) called the 240Z the work of its own staff while acknowledging they had "the benefit of" Goertz’s earlier work. We present both sides and lean to Matsuo for the production car.',
+        'Nissan and most marque historians credit Matsuo’s in-house team, backed by a documented sketch trail. A widespread popular account instead credits German designer Albrecht von Goertz, who consulted for Nissan 1963-65 on a separate, never-produced Nissan–Yamaha sports car. Nissan’s 1980 letter (drafted to avert a threatened Goertz lawsuit) called the 240Z the work of its own staff while acknowledging they had "the benefit of" Goertz’s earlier work. We present both sides and lean to Matsuo for the production car.',
     },
     {
       section: 'specs',
       claimText:
-        'The export 240Z used the 2.4L (2,393 cc) Nissan L24 SOHC inline-six with twin Hitachi SU-type carburetors, producing 151 hp SAE gross (140 PS DIN).',
+        'The export 240Z used the 2.4L (2,393 cc) Nissan L24 SOHC inline-six with twin Hitachi SU-type carburetors, producing 151 hp SAE gross (138 hp DIN).',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['wikipedia', 'hagerty'],
       conflictNote:
-        'Figure is quoted differently by convention: 151 hp SAE gross vs 140 PS / 138 hp DIN are the same engine measured two ways, not a real disagreement. (Hagerty’s intro mistypes it as an "L20 2.4L"; the displacement is correct, the engine is the L24.)',
+        'Figure is quoted differently by convention: 151 hp SAE gross vs 138 hp / 138 hp DIN are the same engine measured two ways, not a real disagreement. (Hagerty’s intro mistypes it as an "L20 2.4L"; the displacement is correct, the engine is the L24.)',
     },
     {
       section: 'specs',
@@ -231,7 +231,7 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
     {
       section: 'history',
       claimText:
-        'A Japan-only Fairlady Z432 (PS30) used the Skyline GT-R’s S20 2.0L DOHC 24-valve six (160 PS JIS); "432" denotes 4 valves per cylinder, 3 carburetors, 2 camshafts. Roughly 420 were built.',
+        'A Japan-only Fairlady Z432 (PS30) used the Skyline GT-R’s S20 2.0L DOHC 24-valve six (158 hp JIS); "432" denotes 4 valves per cylinder, 3 carburetors, 2 camshafts. Roughly 420 were built.',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['nissan-heritage', 'wikipedia'],

@@ -18,25 +18,25 @@ export const seedTestarossa = {
   "2-door Spider (one factory car, chassis 62897, plus eleven Pininfarina commissions counted within the production total)"
  ],
  "engines": [
-  "4,943 cc Tipo F113 A flat-12 (180-degree V12), DOHC per bank, four valves per cylinder, dry sump, Bosch K-Jetronic, no catalysts, 390 bhp at 6,300 rpm - European and UK specification 1984-1986",
+  "4,943 cc Tipo F113 A flat-12 (180-degree V12), DOHC per bank, four valves per cylinder, dry sump, Bosch K-Jetronic, no catalysts, 390 hp at 6,300 rpm - European and UK specification 1984-1986",
   "4,943 cc Tipo F113 B, as above but Bosch KE-Jetronic and Marelli MED 120B ignition from March 1986; catalysts standard from chassis 82967 in 1989",
-  "4,943 cc Tipo F113 A 040 with catalysts, KE-Jetronic and secondary air pump, 380 bhp at 5,750 rpm - US, Canadian and Japanese specification",
+  "4,943 cc Tipo F113 A 040 with catalysts, KE-Jetronic and secondary air pump, 380 hp at 5,750 rpm - US, Canadian and Japanese specification",
   "4,943 cc Tipo F113 A 046, later F113 B 046 - Swiss and Swedish specification, KE-Jetronic throughout"
  ],
  "productionTotal": 7177,
- "productionNotes": "Four independently consulted sources give the same total of 7,177 cars: Red Headed, Supercar Nostalgia, Classic & Sports Car and Petrolicious. Red Headed adds the serial range, 53081 to 91923, and a year-by-year breakdown nothing else consulted contradicts: 110 cars in 1984, 568, 819, 1,008, 1,072, 1,126, 1,308 in 1990 and 1,166 in 1991, with approximate US and Canadian volumes by US model year of 121, 300, 315, 390, 261, 452 and 266. The 1988 figure of 390 is echoed by RM Sotheby's catalogue for a 1988 US car sold at Monterey in August 2026. A further 150 to 200 European cars reached the United States as privately converted grey-market imports, outside that total. Of the 7,177, 438 were right-hand drive - Supercar Nostalgia gives that as the total, Classic & Sports Car as a United Kingdom figure. Eleven Pininfarina Spiders for the Sultan of Brunei sit inside the total; open cars by Straman, Pavesi and Lorenz & Rankl are aftermarket conversions and outside it. When production stopped is not agreed: Red Headed says late 1991, Wikipedia 1984 to 1991, Supercar Nostalgia early 1992, classic.com model years 1984 to 1992. Ferrari and Red Headed both state 2,261 512 TRs; Classic & Sports Car states 2,280. All agree the F512 M ran to 501 cars.",
+ "productionNotes": "Four independently consulted sources give the same total of 7,177 cars: Red Headed, Supercar Nostalgia, Classic & Sports Car and Petrolicious. Red Headed adds the serial range, 53081 to 91923, and a year-by-year breakdown nothing else consulted contradicts: 110 cars in 1984, 568, 819, 1,008, 1,072, 1,126, 1,308 in 1990 and 1,166 in 1991, with approximate US and Canadian volumes by US model year of 121, 300, 315, 390, 261, 452 and 266. The 1988 figure of 390 is echoed by RM Sotheby's catalogue for a 1988 US car sold at Monterey in August 2026. A further 150 to 200 European cars reached the United States as privately converted gray-market imports, outside that total. Of the 7,177, 438 were right-hand drive - Supercar Nostalgia gives that as the total, Classic & Sports Car as a United Kingdom figure. Eleven Pininfarina Spiders for the Sultan of Brunei sit inside the total; open cars by Straman, Pavesi and Lorenz & Rankl are aftermarket conversions and outside it. When production stopped is not agreed: Red Headed says late 1991, Wikipedia 1984 to 1991, Supercar Nostalgia early 1992, classic.com model years 1984 to 1992. Ferrari and Red Headed both state 2,261 512 TRs; Classic & Sports Car states 2,280. All agree the F512 M ran to 501 cars.",
  "notableTrims": [
   {
    "name": "Monospecchio, single-nut (1984 to March 1986)",
-   "note": "The launch specification: one high-mounted driver's-side mirror at the top of the A-pillar, the result of a misread European rearward-visibility rule, and magnesium five-spoke wheels on a single centre nut with 415 mm Michelin TRX tyres. The cars collectors chase, and the tyres are why they are awkward to run."
+   "note": "The launch specification: one high-mounted driver's-side mirror at the top of the A-pillar, the result of a misread European rearward-visibility rule, and magnesium five-spoke wheels on a single center nut with 415 mm Michelin TRX tires. The cars collectors chase, and the tires are why they are awkward to run."
   },
   {
    "name": "Five-bolt cars, the so-called 88.5 (from June 1988)",
-   "note": "From chassis 75997 the centre-lock wheel gave way to a five-stud pattern by OZ and Speedline, with revised column, suspension, dampers and brakes and a wider track. Easier to live with, less sought after."
+   "note": "From chassis 75997 the center-lock wheel gave way to a five-stud pattern by OZ and Speedline, with revised column, suspension, dampers and brakes and a wider track. Easier to live with, less sought after."
   },
   {
    "name": "United States and Canadian specification (Tipo F113 A 040)",
-   "note": "Catalysed, KE-Jetronic, 380 bhp at 5,750 rpm rather than 390 at 6,300, with square side repeaters, larger bumpers, a third brake light from 1986 and, from 1987, a motorised belt up the A-pillar. US dry weight 1,660 kg against 1,506 kg."
+   "note": "Catalysed, KE-Jetronic, 380 hp at 5,750 rpm rather than 390 at 6,300, with square side repeaters, larger bumpers, a third brake light from 1986 and, from 1987, a motorised belt up the A-pillar. US dry weight 3,660 lb against 3,320 lb."
   },
   {
    "name": "Swiss and Swedish specification (F113 A 046 / F113 B 046)",
@@ -48,7 +48,7 @@ export const seedTestarossa = {
   },
   {
    "name": "512 TR (1991-1994)",
-   "note": "Not a facelift. Engine and gearbox dropped 30 mm, compression raised to 10:1, Motronic M2.7 and new plenums for 428 bhp at 6,750 rpm, with reworked shift, brakes and interior."
+   "note": "Not a facelift. Engine and gearbox dropped 30 mm, compression raised to 10:1, Motronic M2.7 and new plenums for 428 hp at 6,750 rpm, with reworked shift, brakes and interior."
   },
   {
    "name": "F512 M (1994-1996)",
@@ -57,29 +57,29 @@ export const seedTestarossa = {
  ],
  "specs": {
   "layout": "Longitudinal mid-mounted engine, rear-wheel drive, gearbox beneath and behind the engine",
-  "chassis": "Tipo F110 AB tubular steel frame with removable rear subframe; steel cabin and doors, aluminium panels, 2,550 mm wheelbase",
+  "chassis": "Tipo F110 AB tubular steel frame with removable rear subframe; steel cabin and doors, aluminum panels, 2,550 mm wheelbase",
   "engine": "4,943 cc Tipo F113 flat-12 (180-degree V12), all-alloy, dry sump, twin side-mounted radiators",
   "valvetrain": "Twin belt-driven overhead camshafts per bank, 48 valves, driven from the crankshaft rather than idler gears",
   "bore_stroke": "82 mm x 78 mm",
   "compression": "9.2:1 to 9.3:1 European; 8.8:1 to 9.3:1 across the emissions variants per Red Headed",
   "fuel_ignition": "Bosch K-Jetronic (F113 A) or KE-Jetronic (later types), Marelli Microplex MED 120A then 120B",
   "lubrication": "Dry sump",
-  "power": "390 bhp at 6,300 rpm claimed, European specification; 380 bhp at 5,750 rpm for US, Canadian and Japanese cars",
-  "torque": "490 Nm (361 lb ft) at 4,500 rpm European; 470 Nm quoted for US specification",
+  "power": "390 hp at 6,300 rpm claimed, European specification; 380 hp at 5,750 rpm for US, Canadian and Japanese cars",
+  "torque": "361 lb-ft at 4,500 rpm European; 347 lb-ft quoted for US specification",
   "transmission": "5-speed manual with open gate, twin-plate hydraulic clutch, limited-slip differential; ABS never fitted",
   "brakes": "Ventilated discs, 315 mm front and 310 mm rear",
-  "wheels_tyres": "Single centre-nut magnesium five-spoke on 415 mm Michelin TRX to March 1986, then 8J and 10J x 16 in; five-stud OZ or Speedline from June 1988",
-  "weight": "1,506 kg dry; 1,660 kg dry for the US version (Red Headed)",
-  "top_speed_claimed": "290 km/h (180 mph) - manufacturer figure, not independently established",
+  "wheels_tires": "Single center-nut magnesium five-spoke on 415 mm Michelin TRX to March 1986, then 8J and 10J x 16 in; five-stud OZ or Speedline from June 1988",
+  "weight": "3,320 lb dry; 3,660 lb dry for the US version (Red Headed)",
+  "top_speed_claimed": "180 mph - manufacturer figure, not independently established",
   "top_speed_tested": "176 mph (Car and Driver), 181 mph (Road & Track), 178 mph (Motor), 180.1 mph (Autocar); Motor Sport's February 1992 panel listed 171 mph",
-  "acceleration": "5.8 s to 100 km/h quoted; 5.0 s to 60 mph at Car and Driver and Road & Track, 5.3 s at Motor, 5.8 s at Autocar"
+  "acceleration": "5.8 s to 62 mph quoted; 5.0 s to 60 mph at Car and Driver and Road & Track, 5.3 s at Motor, 5.8 s at Autocar"
  },
- "summary": "The Ferrari Testarossa (1984-1991) replaced the 512 BBi and was designed around two specific complaints about that car: a cabin cooked by coolant pipes running the length of the chassis, and almost no luggage. Moving the radiators to the flanks fixed both, and produced the feature the car is known for, since several markets required large body openings to be covered and Pininfarina answered with slatted strakes. The team under Leonardo Fioravanti drew a car 146 mm wider than the Boxer, with a 4,943 cc four-valve flat-12 of 390 bhp behind the cabin. It was also the first twelve-cylinder Ferrari legally saleable in the United States since 1973, which is much of why 7,177 were built where the Boxer sold in hundreds. The launch cars carry a single high-mounted mirror and single-nut wheels, both of which went during the run.",
- "history": "## Fixing the Boxer\nFerrari began work on a 512 BBi successor in 1978. The Boxer sold respectably but carried two faults that mattered: a front-mounted radiator whose plumbing ran the length of the car and turned the cabin into an oven, and almost nowhere to put luggage. It was also not certifiable for the United States, shutting Ferrari out of its most valuable twelve-cylinder market. A plan to restyle the car was abandoned in favour of a new one. The Testarossa was made deliberately larger: 1,976 mm wide, a wheelbase stretched to 2,550 mm, a taller roofline and carpeted luggage space under the front lid. The name recalled the 500 TR and 250 Testa Rossa racers of the 1950s and the red cam covers they shared with the new four-valve heads.\n\n## The Strakes Were Not a Style Decision\nThe radiators moved to the flanks, eliminating the transfer pipework and the heat with it, and requiring two very large side intakes. Several markets outlawed openings of that size, so they had to be covered. Pininfarina's team - Emanuele Nicosia, who originated the design, with Ian Cameron, Guido Campoli and Diego Ottina under Leonardo Fioravanti - turned that requirement into the slatted ducts that define the car. Fioravanti, trained in aerodynamics, set the layout; the result needed no rear spoiler and recorded a drag coefficient of 0.36 against the Countach's 0.42. Air passed through the engine bay and out at the tail and engine lid. Cooling drove the shape, and the shape made the car wider at the rear than the front.\n\n## The American Return\nThe Testarossa was the first twelve-cylinder Ferrari certified for United States sale since 1973, and America took it in volume. US and Japanese cars used the Tipo F113 A 040 with catalysts, KE-Jetronic and a secondary air pump, rated 380 bhp at 5,750 rpm against 390 at 6,300 for Europe, with square side repeaters, heavier bumpers and, from 1987, a motorised belt up the A-pillar. Even so, waiting lists ran to two or three years, and 150 to 200 European cars were federalised privately and imported grey. Ferrari's supply of two US cars to Universal Television, chassis 63259 and 63631, repainted white for night filming, did the rest.\n\n## Seven Years of Quiet Revision\nThe Testarossa changed less than its seven-year run suggests, but the changes it made now divide the market. At Geneva in March 1986 the single high mirror gave way to twin low ones and the metric TRX wheels to 16-inch rims; European engines became the F113 B with KE-Jetronic. In June 1988, from chassis 75997, the single-nut wheels gave way to a five-stud pattern, bringing revised suspension, dampers, brakes and steering column with them. From 1989, at chassis 82967, catalytic converters became standard everywhere, and the specification was essentially static thereafter.\n\n## 512 TR, F512 M and the End of the Flat-12\nThe 512 TR, shown to press in Maranello in November 1991 and to the public at Los Angeles in January 1992, was a genuine re-engineering rather than a facelift. Engine and gearbox dropped 30 mm, compression rose to 10:1, Bosch Motronic M2.7 replaced the mechanical injection, and output reached 428 bhp. The F512 M of October 1994 exchanged the pop-up headlamps for fixed units under glass and the full-width tail grille for round lamps, and ran to 501 cars before the 550 Maranello ended twenty-five years of flat-12 road cars in 1996.",
- "marketNotes": "As of August 2026, classic.com puts the Testarossa market benchmark at $176,295 on a rising trend, with an average recorded sale of $167,345, tracked results running from $68,000 for a 1989 car on 27 January 2022 to $522,500 for another 1989 car on 15 August 2026, and 17 cars advertised between $169,000 and $425,980. The spread between those two 1989 examples is the whole story of this market. Monterey week 2026 bears it out: RM Sotheby's published a sold price of $472,500 for a 1988 US-specification car showing 1,059 miles with a January 2026 belt service, brakes and clutch, while Gooding Christie's realised $257,600 at Pebble Beach on 14 August 2026 for a 1989 US car with 15,740 miles that had sat in one Californian family for over thirty-five years. The successors sit above the Testarossa: as of August 2026 classic.com's benchmark is $302,708 for the 512 TR and $551,984 for the F512 M, both rising. For historical bearing, Classic & Sports Car's October 2018 guidance was 70,000 to 125,000 pounds with left-hand-drive cars around 30 per cent lower.",
- "whatToLookFor": "Establish the specification first, because the market prices it precisely. The engine type stamped on the block distinguishes the European F113 A and F113 B from the US-Japanese F113 A 040 and the Swiss-Swedish 046 variants, and it does not always match what a listing claims. A genuine single-mirror car should have a chassis number below 67079 for a European example or 67487 for a US one; twin mirrors on an early chassis are retrofits, not factory. Single-nut wheels ran to 75997, and the five-stud change brought different suspension, dampers, brakes and column, so a mismatch between wheel type and chassis number means someone has been busy. Cars on original 415 mm TRX tyres need those tyres, which Classic & Sports Car put at 400 to 500 pounds each. Then the paperwork. Cam-belt dates matter more than mileage here, and the interval is contested, so a documented history without gaps beats a single recent invoice. Because the belt job requires the engine and rear subframe to come out, that visit is when a competent shop deals with the water pump seals, clutch and coolant hoses; belts alone on a high-hours car is a partial job. Check every instrument, look hard at seat bolsters and the dash top, and treat long storage as a cost, not a virtue.",
- "commonProblems": "The flat-12 is described by specialists as strong; the recurring costs are the systems around it. Water pumps are the classic nuisance: FerrariChat contributors report the original pump weeping oil past a rear seal meant to hold back splash rather than pressurised oil, with a drain hole between the two seals as the tell, and the settled advice is to deal with it while the engine is out. Petrolicious notes that pre-1989 pumps can fail prematurely and that factory updates exist. Air-conditioning rubber deteriorates with disuse, and the system was never strong. Infrequent use also leaves dried fuel residue in the K-Jetronic or KE-Jetronic metering, which needs a Bosch specialist rather than a Ferrari one. The gearbox baulks when cold, second gear in particular, which is normal rather than a fault, but Petrolicious puts clutch life at around 15,000 miles and the clutch is another engine-out job. Electrics are the weak area, with period immobilisers unreliable and dash switchgear ageing badly; Classic & Sports Car quotes new dash tops at up to 2,000 pounds.",
- "valueTrajectory": "The Testarossa spent the 2000s as the cheap way into a twelve-cylinder Ferrari and has spent the 2010s and 2020s leaving that position. Classic & Sports Car's October 2018 range of 70,000 to 125,000 pounds and Petrolicious's 60,000 to 100,000 pounds for a good car both now read as historic. As of August 2026 classic.com's benchmark stands at $176,295 and is trending upward, but the benchmark understates what is happening at the top: the same model recorded $68,000 in January 2022 and $522,500 in August 2026, and Monterey week 2026 produced $472,500 for a 1,059-mile 1988 car and $257,600 for a 15,740-mile 1989 car within a day of each other. That is a market sorting itself by mileage, specification and documentation rather than lifting evenly. Single-mirror, single-nut launch cars and low-mileage examples carry the top of the range; ordinary five-stud cars with average miles have moved far less.",
+ "summary": "The Ferrari Testarossa (1984-1991) replaced the 512 BBi and was designed around two specific complaints about that car: a cabin cooked by coolant pipes running the length of the chassis, and almost no luggage. Moving the radiators to the flanks fixed both, and produced the feature the car is known for, since several markets required large body openings to be covered and Pininfarina answered with slatted strakes. The team under Leonardo Fioravanti drew a car 146 mm wider than the Boxer, with a 4,943 cc four-valve flat-12 of 390 hp behind the cabin. It was also the first twelve-cylinder Ferrari legally saleable in the United States since 1973, which is much of why 7,177 were built where the Boxer sold in hundreds. The launch cars carry a single high-mounted mirror and single-nut wheels, both of which went during the run.",
+ "history": "## Fixing the Boxer\nFerrari began work on a 512 BBi successor in 1978. The Boxer sold respectably but carried two faults that mattered: a front-mounted radiator whose plumbing ran the length of the car and turned the cabin into an oven, and almost nowhere to put luggage. It was also not certifiable for the United States, shutting Ferrari out of its most valuable twelve-cylinder market. A plan to restyle the car was abandoned in favor of a new one. The Testarossa was made deliberately larger: 1,976 mm wide, a wheelbase stretched to 2,550 mm, a taller roofline and carpeted luggage space under the front lid. The name recalled the 500 TR and 250 Testa Rossa racers of the 1950s and the red cam covers they shared with the new four-valve heads.\n\n## The Strakes Were Not a Style Decision\nThe radiators moved to the flanks, eliminating the transfer pipework and the heat with it, and requiring two very large side intakes. Several markets outlawed openings of that size, so they had to be covered. Pininfarina's team - Emanuele Nicosia, who originated the design, with Ian Cameron, Guido Campoli and Diego Ottina under Leonardo Fioravanti - turned that requirement into the slatted ducts that define the car. Fioravanti, trained in aerodynamics, set the layout; the result needed no rear spoiler and recorded a drag coefficient of 0.36 against the Countach's 0.42. Air passed through the engine bay and out at the tail and engine lid. Cooling drove the shape, and the shape made the car wider at the rear than the front.\n\n## The American Return\nThe Testarossa was the first twelve-cylinder Ferrari certified for United States sale since 1973, and America took it in volume. US and Japanese cars used the Tipo F113 A 040 with catalysts, KE-Jetronic and a secondary air pump, rated 380 hp at 5,750 rpm against 390 at 6,300 for Europe, with square side repeaters, heavier bumpers and, from 1987, a motorised belt up the A-pillar. Even so, waiting lists ran to two or three years, and 150 to 200 European cars were federalized privately and imported gray. Ferrari's supply of two US cars to Universal Television, chassis 63259 and 63631, repainted white for night filming, did the rest.\n\n## Seven Years of Quiet Revision\nThe Testarossa changed less than its seven-year run suggests, but the changes it made now divide the market. At Geneva in March 1986 the single high mirror gave way to twin low ones and the metric TRX wheels to 16-inch rims; European engines became the F113 B with KE-Jetronic. In June 1988, from chassis 75997, the single-nut wheels gave way to a five-stud pattern, bringing revised suspension, dampers, brakes and steering column with them. From 1989, at chassis 82967, catalytic converters became standard everywhere, and the specification was essentially static thereafter.\n\n## 512 TR, F512 M and the End of the Flat-12\nThe 512 TR, shown to press in Maranello in November 1991 and to the public at Los Angeles in January 1992, was a genuine re-engineering rather than a facelift. Engine and gearbox dropped 30 mm, compression rose to 10:1, Bosch Motronic M2.7 replaced the mechanical injection, and output reached 428 hp. The F512 M of October 1994 exchanged the pop-up headlamps for fixed units under glass and the full-width tail grille for round lamps, and ran to 501 cars before the 550 Maranello ended twenty-five years of flat-12 road cars in 1996.",
+ "marketNotes": "As of August 2026, classic.com puts the Testarossa market benchmark at $176,295 on a rising trend, with an average recorded sale of $167,345, tracked results running from $68,000 for a 1989 car on 27 January 2022 to $522,500 for another 1989 car on 15 August 2026, and 17 cars advertised between $169,000 and $425,980. The spread between those two 1989 examples is the whole story of this market. Monterey week 2026 bears it out: RM Sotheby's published a sold price of $472,500 for a 1988 US-specification car showing 1,059 miles with a January 2026 belt service, brakes and clutch, while Gooding Christie's realized $257,600 at Pebble Beach on 14 August 2026 for a 1989 US car with 15,740 miles that had sat in one Californian family for over thirty-five years. The successors sit above the Testarossa: as of August 2026 classic.com's benchmark is $302,708 for the 512 TR and $551,984 for the F512 M, both rising.",
+ "whatToLookFor": "Establish the specification first, because the market prices it precisely. The engine type stamped on the block distinguishes the European F113 A and F113 B from the US-Japanese F113 A 040 and the Swiss-Swedish 046 variants, and it does not always match what a listing claims. A genuine single-mirror car should have a chassis number below 67079 for a European example or 67487 for a US one; twin mirrors on an early chassis are retrofits, not factory. Single-nut wheels ran to 75997, and the five-stud change brought different suspension, dampers, brakes and column, so a mismatch between wheel type and chassis number means someone has been busy. Cars on original 415 mm TRX tires need those tires, and they are expensive and hard to find. Then the paperwork. Cam-belt dates matter more than mileage here, and the interval is contested, so a documented history without gaps beats a single recent invoice. Because the belt job requires the engine and rear subframe to come out, that visit is when a competent shop deals with the water pump seals, clutch and coolant hoses; belts alone on a high-hours car is a partial job. Check every instrument, look hard at seat bolsters and the dash top, and treat long storage as a cost, not a virtue.",
+ "commonProblems": "The flat-12 is described by specialists as strong; the recurring costs are the systems around it. Water pumps are the classic nuisance: FerrariChat contributors report the original pump weeping oil past a rear seal meant to hold back splash rather than pressurised oil, with a drain hole between the two seals as the tell, and the settled advice is to deal with it while the engine is out. Petrolicious notes that pre-1989 pumps can fail prematurely and that factory updates exist. Air-conditioning rubber deteriorates with disuse, and the system was never strong. Infrequent use also leaves dried fuel residue in the K-Jetronic or KE-Jetronic metering, which needs a Bosch specialist rather than a Ferrari one. The gearbox baulks when cold, second gear in particular, which is normal rather than a fault, but Petrolicious puts clutch life at around 15,000 miles and the clutch is another engine-out job. Electrics are the weak area, with period immobilisers unreliable and dash switchgear aging badly, and a new dash top is a four-figure item.",
+ "valueTrajectory": "The Testarossa spent the 2000s as the cheap way into a twelve-cylinder Ferrari and has spent the 2010s and 2020s leaving that position. As of August 2026 classic.com's benchmark stands at $176,295 and is trending upward, but the benchmark understates what is happening at the top: the same model recorded $68,000 in January 2022 and $522,500 in August 2026, and Monterey week 2026 produced $472,500 for a 1,059-mile 1988 car and $257,600 for a 15,740-mile 1989 car within a day of each other. That is a market sorting itself by mileage, specification and documentation rather than lifting evenly. Single-mirror, single-nut launch cars and low-mileage examples carry the top of the range; ordinary five-stud cars with average miles have moved far less.",
  "overallConfidence": "high",
  "sources": [
   {
@@ -98,7 +98,7 @@ export const seedTestarossa = {
    "publisher": "Ferrari S.p.A.",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "2,261 examples, chassis 89100 to 99743, 1991-1994; engine and gearbox lowered 30 mm, compression 9.3:1 to 10:1, Motronic M2.7, 428 bhp at 6,750 rpm (421 US)."
+   "notes": "2,261 examples, chassis 89100 to 99743, 1991-1994; engine and gearbox lowered 30 mm, compression 9.3:1 to 10:1, Motronic M2.7, 428 hp at 6,750 rpm (421 US)."
   },
   {
    "ref": "ferrari-f512m",
@@ -134,7 +134,7 @@ export const seedTestarossa = {
    "publisher": "Red Headed",
    "sourceType": "registry",
    "reliability": "medium",
-   "notes": "July 1984 to late 1991, 7,177 cars, serials 53081 to 91923; yearly output 110/568/819/1008/1072/1126/1308/1166, US-Canadian volumes 121/300/315/390/261/452/266, and 150 to 200 grey-market US imports."
+   "notes": "July 1984 to late 1991, 7,177 cars, serials 53081 to 91923; yearly output 110/568/819/1008/1072/1126/1308/1166, US-Canadian volumes 121/300/315/390/261/452/266, and 150 to 200 gray-market US imports."
   },
   {
    "ref": "redheaded-versions",
@@ -152,7 +152,7 @@ export const seedTestarossa = {
    "publisher": "Red Headed",
    "sourceType": "registry",
    "reliability": "medium",
-   "notes": "4,943 cc, 82 x 78 mm, compression 8.8:1 to 9.3:1, 390 HP at 6,300 rpm Euro and 380 at 5,750 US, 490 and 470 Nm, 315/310 mm discs, 1,506 kg and 1,660 kg US; period maxima 176, 181, 178, 180.1 mph."
+   "notes": "4,943 cc, 82 x 78 mm, compression 8.8:1 to 9.3:1, 390 HP at 6,300 rpm Euro and 380 at 5,750 US, 490 and 347 lb-ft, 315/310 mm discs, 3,320 lb and 3,660 lb US; period maxima 176, 181, 178, 180.1 mph."
   },
   {
    "ref": "redheaded-512tr",
@@ -206,7 +206,7 @@ export const seedTestarossa = {
    "publisher": "Classic & Sports Car",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "October 2018. Testarossa 7,177 with 438 RHD; 512 TR 2,280; F512 M 501 with 41 RHD; family total 9,958. Cambelt every three years, 3,500 pounds a year, a 15,500-pound 2017 invoice, dash tops to 2,000 pounds, TRX tyres 400-500 pounds each, UK values 70,000-125,000."
+   "notes": "October 2018. Testarossa 7,177 with 438 RHD; 512 TR 2,280; F512 M 501 with 41 RHD; family total 9,958. Cambelt every three years, 3,500 pounds a year, a 15,500-pound 2017 invoice, dash tops to 2,000 pounds, TRX tires 400-500 pounds each, UK values 70,000-125,000."
   },
   {
    "ref": "petrolicious-guide",
@@ -224,7 +224,7 @@ export const seedTestarossa = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Period test: 390 bhp at 6,300 rpm, 362 lb ft at 4,500 rpm, 180 mph quoted as achievable; silky clutch, crisp steering above 20 mph, good over-shoulder visibility, wandery under light braking, the single mirror obstructing junctions."
+   "notes": "Period test: 390 hp at 6,300 rpm, 362 lb ft at 4,500 rpm, 180 mph quoted as achievable; silky clutch, crisp steering above 20 mph, good over-shoulder visibility, wandery under light braking, the single mirror obstructing junctions."
   },
   {
    "ref": "motorsport-1992-panel",
@@ -278,13 +278,13 @@ export const seedTestarossa = {
    "publisher": "FerrariChat",
    "sourceType": "club-forum",
    "reliability": "low",
-   "notes": "Owner thread showing the interval is contested: three years regardless of mileage from one specialist, three to five or longer from others, up to ten years under 10,000 km from one mechanic."
+   "notes": "Owner thread showing the interval is contested: three years regardless of mileage from one specialist, three to five or longer from others, up to ten years under 6,000 miles from one mechanic."
   }
  ],
  "claims": [
   {
    "section": "production",
-   "claimText": "Testarossa production totalled 7,177 cars, serials 53081 to 91923, of which 438 were right-hand drive; annual output climbed from 110 cars in 1984 to 1,308 in 1990, and roughly 390 of the 1988 US model year were United States specification.",
+   "claimText": "Testarossa production totaled 7,177 cars, serials 53081 to 91923, of which 438 were right-hand drive; annual output climbed from 110 cars in 1984 to 1,308 in 1990, and roughly 390 of the 1988 US model year were United States specification.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["redheaded-production", "supercarnostalgia-tr", "csc-buyers-guide", "petrolicious-guide", "rm-mo26"]
@@ -322,14 +322,14 @@ export const seedTestarossa = {
   },
   {
    "section": "specs",
-   "claimText": "Five engine types were fitted by market: F113 A and F113 B for Europe and the UK at 390 bhp and 490 Nm, the catalysed F113 A 040 for the United States, Canada and Japan at 380 bhp at 5,750 rpm and 470 Nm, and F113 A 046 then B 046 for Switzerland and Sweden.",
+   "claimText": "Five engine types were fitted by market: F113 A and F113 B for Europe and the UK at 390 hp and 361 lb-ft, the catalyzed F113 A 040 for the United States, Canada and Japan at 380 hp at 5,750 rpm and 347 lb-ft, and F113 A 046 then B 046 for Switzerland and Sweden.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["redheaded-specs", "redheaded-versions", "supercarnostalgia-tr"]
   },
   {
    "section": "specs",
-   "claimText": "Ferrari's quoted 290 km/h (180 mph) is broadly supported by period testing - 176 mph at Car and Driver, 181 at Road & Track, 178 at Motor, 180.1 at Autocar, 0-60 mph in 5.0 s at the first two - although Motor Sport's February 1992 panel listed 171 mph.",
+   "claimText": "Ferrari's quoted 180 mph is broadly supported by period testing - 176 mph at Car and Driver, 181 at Road & Track, 178 at Motor, 180.1 at Autocar, 0-60 mph in 5.0 s at the first two - although Motor Sport's February 1992 panel listed 171 mph.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": ["redheaded-specs", "motorsport-roadtest-1986", "motorsport-1992-panel"]
@@ -350,21 +350,21 @@ export const seedTestarossa = {
   },
   {
    "section": "history",
-   "claimText": "The Testarossa was the first twelve-cylinder Ferrari legally saleable in the United States since 1973; waiting lists ran to two or three years, and 150 to 200 further European cars were federalised privately and imported as grey-market machines outside the factory total.",
+   "claimText": "The Testarossa was the first twelve-cylinder Ferrari legally saleable in the United States since 1973; waiting lists ran to two or three years, and 150 to 200 further European cars were federalized privately and imported as gray-market machines outside the factory total.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": ["redheaded-production", "supercarnostalgia-tr"]
   },
   {
    "section": "history",
-   "claimText": "Three changes divide the run by chassis number: twin low mirrors from 67079 (Europe) and 67487 (US) in March 1986; five-stud wheels replacing the centre-nut design from 75997 in June 1988, with revised suspension, dampers, brakes and column; and catalytic converters standard from 82967 in 1989.",
+   "claimText": "Three changes divide the run by chassis number: twin low mirrors from 67079 (Europe) and 67487 (US) in March 1986; five-stud wheels replacing the center-nut design from 75997 in June 1988, with revised suspension, dampers, brakes and column; and catalytic converters standard from 82967 in 1989.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["redheaded-versions", "supercarnostalgia-tr", "gooding-pb26"]
   },
   {
    "section": "history",
-   "claimText": "The 512 TR was a re-engineering rather than a facelift: engine and gearbox dropped 30 mm, compression raised to 10:1, Bosch Motronic M2.7 and 428 bhp at 6,750 rpm. The F512 M of October 1994 exchanged the pop-up headlamps for fixed units under glass and the tail grille for round lamps, and was Ferrari's last flat-12 road car.",
+   "claimText": "The 512 TR was a re-engineering rather than a facelift: engine and gearbox dropped 30 mm, compression raised to 10:1, Bosch Motronic M2.7 and 428 hp at 6,750 rpm. The F512 M of October 1994 exchanged the pop-up headlamps for fixed units under glass and the tail grille for round lamps, and was Ferrari's last flat-12 road car.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["ferrari-512tr", "ferrari-f512m", "redheaded-512tr"]
@@ -407,7 +407,7 @@ export const seedTestarossa = {
   },
   {
    "section": "market",
-   "claimText": "Monterey week 2026 showed mileage and documentation separating cars within a day: RM Sotheby's published a sold price of $472,500 for a 1,059-mile 1988 US car belt-serviced in January 2026, while Gooding Christie's realised $257,600 at Pebble Beach on 14 August 2026 for a 15,740-mile 1989 US car kept in one family for thirty-five years.",
+   "claimText": "Monterey week 2026 showed mileage and documentation separating cars within a day: RM Sotheby's published a sold price of $472,500 for a 1,059-mile 1988 US car belt-serviced in January 2026, while Gooding Christie's realized $257,600 at Pebble Beach on 14 August 2026 for a 15,740-mile 1989 US car kept in one family for thirty-five years.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["rm-mo26", "gooding-pb26", "classic-testarossa"]

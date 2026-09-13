@@ -15,12 +15,12 @@ export const seedGolfGtiMk1 = {
   "3-door hatchback (Type 17), the standard and by far the most numerous body",
   "5-door hatchback (Type 17), European markets only, December 1981 to June 1982",
   "2-door Cabriolet (Type 155 / A1C) with fixed roll-over bar, built by Karmann at Osnabrueck",
-  "3-door hatchback, US-market Rabbit GTI, assembled at Westmoreland, Pennsylvania"
+  "3-door hatchback, US-market Rabbit GTI, assembled at Westmoreland, Pennsylvania and listed at $8,290 for 1983"
  ],
  "engines": [
-  "1,588 cc EA827 four-cylinder, single overhead camshaft, iron block and alloy head, Bosch K-Jetronic continuous mechanical injection, 9.5:1 compression, 110 PS at 6,100 rpm and 140 Nm (103 lb ft) at 5,000 rpm; engine code EG, June 1976 to July 1982",
-  "1,781 cc EA827 four-cylinder, SOHC, Bosch K-Jetronic, 10.0:1 compression, 81.0 x 86.4 mm bore and stroke, 112 PS at 5,800 rpm and 153 Nm (109 lb ft) at 3,500 rpm; engine code DX, August 1982 to December 1983",
-  "1,781 cc four-cylinder, Bosch injection, US federalised specification for the Rabbit GTI: 90 hp SAE net at 5,500 rpm and approximately 105 lb ft, with the standard Rabbit camshaft retained for midrange response",
+  "1,588 cc EA827 four-cylinder, single overhead camshaft, iron block and alloy head, Bosch K-Jetronic continuous mechanical injection, 9.5:1 compression, 108 hp at 6,100 rpm and 103 lb-ft at 5,000 rpm; engine code EG, June 1976 to July 1982",
+  "1,781 cc EA827 four-cylinder, SOHC, Bosch K-Jetronic, 10.0:1 compression, 81.0 x 86.4 mm bore and stroke, 110 hp at 5,800 rpm and 109 lb-ft at 3,500 rpm; engine code DX, August 1982 to December 1983",
+  "1,781 cc four-cylinder, Bosch injection, US federalized specification for the Rabbit GTI: 90 hp SAE net at 5,500 rpm and approximately 105 lb ft, with the standard Rabbit camshaft retained for midrange response",
   "1,588 cc twin-cam 16-valve conversion by Oettinger, sold in France from 1981 as the Golf GTI 16S; a converter's engine rather than a Wolfsburg production unit"
  ],
  "productionTotal": null,
@@ -28,11 +28,11 @@ export const seedGolfGtiMk1 = {
  "notableTrims": [
   {
    "name": "GTI 1.6 (engine code EG, 1976-1982)",
-   "note": "The founding specification: 1,588 cc, 110 PS, four speeds until 1979 and five after. Early cars carry the black-red or black-silver tartan that later stripe-trimmed cars lost, and pre-August 1978 cars have slim metal bumpers."
+   "note": "The founding specification: 1,588 cc, 108 hp, four speeds until 1979 and five after. Early cars carry the black-red or black-silver tartan that later stripe-trimmed cars lost, and pre-August 1978 cars have slim metal bumpers."
   },
   {
    "name": "GTI 1.8 (engine code DX, August 1982-December 1983)",
-   "note": "1,781 cc, 112 PS at 5,800 rpm but 153 Nm at 3,500 rpm, with a longer 3.65:1 final drive. Slower-revving and much easier to drive; period testing found it seconds quicker over fifth-gear increments than the 1.6."
+   "note": "1,781 cc, 110 hp at 5,800 rpm but 113 lb-ft at 3,500 rpm, with a longer 3.65:1 final drive. Slower-revving and much easier to drive; period testing found it seconds quicker over fifth-gear increments than the 1.6."
   },
   {
    "name": "Campaign (United Kingdom, 1983)",
@@ -44,11 +44,11 @@ export const seedGolfGtiMk1 = {
   },
   {
    "name": "Rabbit GTI (United States, 1983-1984 model years)",
-   "note": "Built at Westmoreland, Pennsylvania rather than imported. 1.8 litres detuned to 90 hp SAE net, about 2,100 lb, P185/60HR-14 Pirelli P6 on 14x6 alloys, vented front discs and a German close-ratio five-speed. Softer in output, broader in torque, and the car that made the badge matter in North America."
+   "note": "Built at Westmoreland, Pennsylvania rather than imported. 1.8 liters detuned to 90 hp SAE net, about 2,100 lb, P185/60HR-14 Pirelli P6 on 14x6 alloys, vented front discs and a German close-ratio five-speed. Softer in output, broader in torque, and the car that made the badge matter in North America."
   },
   {
    "name": "Golf Cabriolet GLi (Type 155, from 1979)",
-   "note": "Karmann-built at Osnabrueck with a reinforced shell and a fixed hoop above the B-pillar, launched with the 110 PS 1.6 and given the 112 PS 1.8 in 1982. Heavier than the hatchback and never as sharp, but it outlived it by a decade."
+   "note": "Karmann-built at Osnabrueck with a reinforced shell and a fixed hoop above the B-pillar, launched with the 108 hp 1.6 and given the 110 hp 1.8 in 1982. Heavier than the hatchback and never as sharp, but it outlived it by a decade."
   },
   {
    "name": "GTI 16S Oettinger (France, from 1981)",
@@ -65,25 +65,34 @@ export const seedGolfGtiMk1 = {
   "engine": "1,588 cc EA827 SOHC four (1976-1982); 1,781 cc EA827 SOHC four (1982-1983); Bosch K-Jetronic on both",
   "bore_stroke": "79.5 x 80.0 mm (1.6); 81.0 x 86.4 mm (1.8)",
   "compression": "9.5:1 (1.6); 10.0:1 (1.8)",
-  "power": "110 PS at 6,100 rpm (1.6) and 112 PS at 5,800 rpm (1.8), both manufacturer figures; 90 hp SAE net at 5,500 rpm for the US Rabbit GTI",
-  "torque": "140 Nm (103 lb ft) at 5,000 rpm (1.6); 153 Nm (109 lb ft) at 3,500 rpm (1.8)",
+  "power": "108 hp at 6,100 rpm (1.6) and 110 hp at 5,800 rpm (1.8), both manufacturer figures; 90 hp SAE net at 5,500 rpm for the US Rabbit GTI",
+  "torque": "103 lb-ft at 5,000 rpm (1.6); 109 lb-ft at 3,500 rpm (1.8)",
   "transmission": "Four-speed close-ratio manual on early cars, five-speed manual thereafter; 3.89:1 final drive on the 1.6, 3.65:1 on the 1.8",
   "suspension": "MacPherson struts front, torsion-beam rear axle; ride height lowered 10 mm front and 20 mm rear against the standard Golf, with stiffer anti-roll bars",
   "brakes": "Ventilated front discs and rear drums; unassisted pedal effort was a common complaint, particularly on right-hand-drive cars",
   "steering": "Rack and pinion, unassisted, 3.3 turns lock to lock",
-  "wheels_tyres": "13-inch steel or alloy with 175/70 HR 13 at launch; 14-inch Pirelli P-slot alloys with 185/60 HR 14 on the Campaign and Pirelli editions",
-  "weight": "810 kg quoted by Volkswagen; independently recorded figures run higher and are not reconciled - see the disputed claim",
-  "acceleration": "0-100 km/h in 9.2 s claimed for the 1.6; 9.6 s to 60 mph recorded by Motor Sport in March 1977; approximately 8 s to 60 mph for the 1.8",
-  "top_speed": "182 km/h (113 mph) claimed for the 1.6; 108 mph recorded by Motor Sport in 1977 and around 115 mph estimated for the 1.8"
+  "wheels_tires": "13-inch steel or alloy with 175/70 HR 13 at launch; 14-inch Pirelli P-slot alloys with 185/60 HR 14 on the Campaign and Pirelli editions",
+  "weight": "1,786 lb quoted by Volkswagen; independently recorded figures run higher and are not reconciled - see the disputed claim",
+  "acceleration": "0-62 mph in 9.2 s claimed for the 1.6; 9.6 s to 60 mph recorded by Motor Sport in March 1977; approximately 8 s to 60 mph for the 1.8",
+  "top_speed": "113 mph claimed for the 1.6; 108 mph recorded by Motor Sport in 1977 and around 115 mph estimated for the 1.8"
  },
- "summary": "The Mk1 Golf GTI was not a product-plan car. It began around 1974 as an unofficial after-hours project by a small group at Wolfsburg - a test engineer, a press officer, a suspension man and a trim designer among them - working on a Scirocco mule under the name Sport Golf. Management sanctioned a homologation run of 5,000 cars, the number needed for Group 1 touring car eligibility, and Volkswagen built 461,690 hatchbacks instead. The recipe was the 1,588 cc Audi-derived EA827 four with Bosch K-Jetronic injection, 110 PS, a 10 mm and 20 mm suspension drop, tartan cloth seats and a gearknob moulded like a golf ball. A 1,781 cc engine replaced it in August 1982. Britain had left-hand-drive cars only until 1979, the United States waited until the Westmoreland-built Rabbit GTI of 1983, and Karmann built a Cabriolet that outlived the hatchback by a decade.",
- "history": "## An After-Hours Project at Wolfsburg\nVolkswagen in the mid-1970s had no sporting reputation to defend and no budget line for building one. The Golf that replaced the Beetle was a rational, Giugiaro-drawn hatchback, and the idea of a fast version came not from the product plan but from employees working in their own time. Accounts name test engineer Alfons Loewenberg as the instigator, press chief Anton Konrad as the man who gave the project cover inside the company, and Herbert Schuster as the engineer who made the suspension work; Gunhild Liljequist, in trim, supplied the tartan cloth and the golf-ball gearknob. The working name was Sport Golf. The first mule was a Scirocco with a carburetted 1,588 cc engine and suspension stiff enough that senior management is said to have found it undriveable; the team softened it, substituted the Bosch K-Jetronic injected unit from the Audi 80 GTE, and demonstrated the result at Ehra-Lessien.\n\n## Five Thousand Cars\nApproval, when it came, was for a homologation run: 5,000 cars, the number then required for Group 1 production touring car eligibility. The world premiere came at Frankfurt in September 1975 and German sales began in June 1976 at DM 13,850, against DM 11,420 for the 1.5-litre Golf GLS. Volkswagen's own history records the 5,000-car intention plainly, then records what happened: 10,366 cars in the first model year, 143,057 in the year the 1.6 and 1.8 overlapped, and 461,690 by the end of 1983.\n\n## Britain Waits Until 1979\nBritish buyers could have a GTI from 1976 only in left-hand drive and only by special order. Motor Sport tested one in March 1977 at 3,372 pounds and recorded 9.6 seconds to 60 mph and 108 mph against claims of 9.0 and 113. Twenty-two cars were sold in the United Kingdom in 1978. Right-hand-drive production followed in 1979 and the figure passed 1,500 in that year alone - a market created almost entirely by moving the steering wheel. The 1,781 cc DX engine arrived in August 1982, quoted at 112 PS but, more usefully, at 153 Nm at 3,500 rpm; Motor Sport's March 1983 test of the 1800 at just under 6,500 pounds found it 1.8 seconds quicker from 50-70 mph in fifth. The run ended with the four-headlamp Campaign in Britain and the equivalent Pirelli, Trophy and 1800 Plus cars elsewhere.\n\n## Westmoreland and the Rabbit GTI\nNorth America waited seven years. The injected 1,588 cc engine reached the US Rabbit in 1977 but at 78 hp after emissions work, and Volkswagen of America doubted that buyers who saw the Rabbit as economy transport would pay a sports-car premium for one. The Rabbit GTI that appeared for 1983 was not an import: it was assembled at Westmoreland, Pennsylvania, on 1.8 litres detuned to 90 hp SAE net, with recalibrated struts, stiffer springs, anti-roll bars at both ends, vented front discs and Pirelli P6 tyres on 14-inch alloys, at around 8,000 dollars. It was slower than a European GTI and about 140 lb heavier, and it did more than any other car to establish the type in the United States.\n\n## Karmann's Cabriolet and the Question of Who Was First\nKarmann took the Cabriolet from stamping to final assembly at Osnabrueck, giving it a reinforced shell and a fixed hoop above the B-pillar - the first car in its class with a permanently installed roll bar - and built it until April 1993, long after the hatchback had gone. Whether the GTI invented the hot hatch is less settled than the badge suggests: the Renault 5 Alpine reached buyers ahead of it, and the Simca 1100 Ti and Autobianchi A112 Abarth were earlier still. What the GTI did was survive, and continuity has made it the reference point against which the others are now described.",
+ "summary": "The Mk1 Golf GTI was not a product-plan car. It began around 1974 as an unofficial after-hours project by a small group at Wolfsburg - a test engineer, a press officer, a suspension man and a trim designer among them - working on a Scirocco mule under the name Sport Golf. Management sanctioned a homologation run of 5,000 cars, the number needed for Group 1 touring car eligibility, and Volkswagen built 461,690 hatchbacks instead. The recipe was the 1,588 cc Audi-derived EA827 four with Bosch K-Jetronic injection, 108 hp, a 10 mm and 20 mm suspension drop, tartan cloth seats and a gearknob molded like a golf ball. A 1,781 cc engine replaced it in August 1982. Britain had left-hand-drive cars only until 1979, the United States waited until the Westmoreland-built Rabbit GTI of 1983, and Karmann built a Cabriolet that outlived the hatchback by a decade.",
+ "history": "## An After-Hours Project at Wolfsburg\nVolkswagen in the mid-1970s had no sporting reputation to defend and no budget line for building one. The Golf that replaced the Beetle was a rational, Giugiaro-drawn hatchback, and the idea of a fast version came not from the product plan but from employees working in their own time. Accounts name test engineer Alfons Loewenberg as the instigator, press chief Anton Konrad as the man who gave the project cover inside the company, and Herbert Schuster as the engineer who made the suspension work; Gunhild Liljequist, in trim, supplied the tartan cloth and the golf-ball gearknob. The working name was Sport Golf. The first mule was a Scirocco with a carburetted 1,588 cc engine and suspension stiff enough that senior management is said to have found it undriveable; the team softened it, substituted the Bosch K-Jetronic injected unit from the Audi 80 GTE, and demonstrated the result at Ehra-Lessien.\n\n## Five Thousand Cars\nApproval, when it came, was for a homologation run: 5,000 cars, the number then required for Group 1 production touring car eligibility. The world premiere came at Frankfurt in September 1975 and German sales began in June 1976 at DM 13,850, against DM 11,420 for the 1.5-liter Golf GLS. Volkswagen's own history records the 5,000-car intention plainly, then records what happened: 10,366 cars in the first model year, 143,057 in the year the 1.6 and 1.8 overlapped, and 461,690 by the end of 1983.\n\n## Britain Waits Until 1979\nBritish buyers could have a GTI from 1976 only in left-hand drive and only by special order. Motor Sport tested one in March 1977 and recorded 9.6 seconds to 60 mph and 108 mph against claims of 9.0 and 113. Twenty-two cars were sold in the United Kingdom in 1978. Right-hand-drive production followed in 1979 and the figure passed 1,500 in that year alone - a market created almost entirely by moving the steering wheel. The 1,781 cc DX engine arrived in August 1982, quoted at 110 hp but, more usefully, at 113 lb-ft at 3,500 rpm; Motor Sport's March 1983 test of the 1800 found it 1.8 seconds quicker from 50-70 mph in fifth. The run ended with the four-headlamp Campaign in Britain and the equivalent Pirelli, Trophy and 1800 Plus cars elsewhere.\n\n## Westmoreland and the Rabbit GTI\nNorth America waited seven years. The injected 1,588 cc engine reached the US Rabbit in 1977 but at 78 hp after emissions work, and Volkswagen of America doubted that buyers who saw the Rabbit as economy transport would pay a sports-car premium for one. The Rabbit GTI that appeared for 1983 was not an import: it was assembled at Westmoreland, Pennsylvania, on 1.8 liters detuned to 90 hp SAE net, with recalibrated struts, stiffer springs, anti-roll bars at both ends, vented front discs and Pirelli P6 tires on 14-inch alloys, at around 8,000 dollars. It was slower than a European GTI and about 140 lb heavier, and it did more than any other car to establish the type in the United States.\n\n## Karmann's Cabriolet and the Question of Who Was First\nKarmann took the Cabriolet from stamping to final assembly at Osnabrueck, giving it a reinforced shell and a fixed hoop above the B-pillar - the first car in its class with a permanently installed roll bar - and built it until April 1993, long after the hatchback had gone. Whether the GTI invented the hot hatch is less settled than the badge suggests: the Renault 5 Alpine reached buyers ahead of it, and the Simca 1100 Ti and Autobianchi A112 Abarth were earlier still. What the GTI did was survive, and continuity has made it the reference point against which the others are now described.",
  "marketNotes": "As of August 2026, classic.com's Volkswagen Golf GTI Mk1 market page shows a benchmark of approximately $19,695 on a downward trend, with an average recorded sale near $18,335 and tracked results running from $1,800 for a 1984 Rabbit GTI project in January 2024 to 29,900 euros for a 1983 Golf GTI Pirelli in July 2024. That spread is the story: condition and originality account for more of the price here than specification does. UK auction evidence sits at the upper end. A restored 1983 Campaign, black, right-hand drive, 150,618 miles and a documented 20,000-pound rebuild by a marque specialist, took an 18,000-pound hammer at the NEC Classic Motor Show Sale in November 2023, with buyer's premium charged on top of that. Sports Car Market recorded a 42,156-mile right-hand-drive 1981 1.6 at $23,281 including premium at Silverstone Auctions' Race Retro sale in February 2020, against an SCM valuation of $22,000. For the American car, Hagerty's US guidance places good-condition 1983 Rabbit GTIs below $12,000, excellent examples above $20,000 and concours cars near $35,000. Campaign and Pirelli run-out cars, unmodified tartan-trim early 1.6s and documented low-mileage examples carry the premiums; modified, re-shelled and undocumented cars trade well below the benchmark.",
- "whatToLookFor": "Structure before everything. The inner front wings decide whether a car is worth pursuing: corrosion there is expensive, often hidden behind the arch liner on later cars, and buying guides on both sides of the Atlantic treat it as a walk-away. Work outwards to the A-pillar bases, the windscreen and sunroof surrounds, the sills, the front valance seams, the wheelarches, the door bottoms, the fuel filler area, the spare wheel well and the floorpans. Cars built before the August 1980 changes had noticeably poorer factory protection; later ones gained wheelarch liners and better paint but no galvanising.\n\nEstablish identity in documents rather than badges. The chassis prefix, the engine code - EG for the 1,588 cc car, DX for the 1,781 cc - and the interior trim code together confirm what a car left the factory as, and matter more than usual because GTI parts fit any Mk1 Golf. A Campaign should have the four-headlamp grille, the sunroof, the tinted glass and the 14-inch P-slot wheels together; a car with only some of them has been assembled rather than built.\n\nThen judge how much of the car is still the car. Almost every survivor has been lowered, re-wheeled, re-trimmed or re-engined, and interior fabric is hard to source at any price. Check the cambelt record against the 40,000-mile or four-year interval, run the engine from cold and watch the exhaust on start-up, on acceleration and on the overrun, and treat a car that has stood as one needing fuel-system and brake work.",
- "commonProblems": "The EA827 is durable, and its wear is legible from the exhaust: hardened valve stem seals give a puff of blue smoke on start-up, worn guides show under acceleration, tired rings on the overrun. Radiators silt up with age, and cracked blocks are reported on 1,588 cc cars run low on coolant, so a temperature gauge that has never been trusted is itself a warning.\n\nThe Bosch K-Jetronic system is mechanical, long-lived and unforgiving of neglect, and it wants a specialist rather than a generalist. Fuel distributors, warm-up regulators, accumulators and injectors all deteriorate through long standing, and the symptoms - poor hot starting, hunting idle, uneven running under load - are frequently misdiagnosed as ignition faults. Fuel tanks and steel brake lines corrode on cars that have sat.\n\nGearboxes are otherwise reliable; check second-gear synchromesh specifically. Bushes and dampers are usually long past their life, and lowering springs fitted decades ago account for much of the uneven tyre wear seen on these cars. The fusebox sits under the left of the dashboard, attracts damp and is the first place to look when the electrics misbehave, though on most survivors the real problem is forty years of aftermarket alarm and stereo wiring. Slow wipers and a brake pedal that wants a firm shove, particularly on right-hand-drive cars, are original characteristics. Interior trim is the hardest thing to replace.",
+ "whatToLookFor": "Structure before everything. The inner front wings decide whether a car is worth pursuing: corrosion there is expensive, often hidden behind the arch liner on later cars, and buying guides on both sides of the Atlantic treat it as a walk-away. Work outwards to the A-pillar bases, the windshield and sunroof surrounds, the sills, the front valance seams, the wheel arches, the door bottoms, the fuel filler area, the spare wheel well and the floorpans. Cars built before the August 1980 changes had noticeably poorer factory protection; later ones gained wheel arch liners and better paint but no galvanising.\n\nEstablish identity in documents rather than badges. The chassis prefix, the engine code - EG for the 1,588 cc car, DX for the 1,781 cc - and the interior trim code together confirm what a car left the factory as, and matter more than usual because GTI parts fit any Mk1 Golf. A Campaign should have the four-headlamp grille, the sunroof, the tinted glass and the 14-inch P-slot wheels together; a car with only some of them has been assembled rather than built.\n\nThen judge how much of the car is still the car. Almost every survivor has been lowered, re-wheeled, re-trimmed or re-engined, and interior fabric is hard to source at any price. Check the cambelt record against the 40,000-mile or four-year interval, run the engine from cold and watch the exhaust on start-up, on acceleration and on the overrun, and treat a car that has stood as one needing fuel-system and brake work.",
+ "commonProblems": "The EA827 is durable, and its wear is legible from the exhaust: hardened valve stem seals give a puff of blue smoke on start-up, worn guides show under acceleration, tired rings on the overrun. Radiators silt up with age, and cracked blocks are reported on 1,588 cc cars run low on coolant, so a temperature gauge that has never been trusted is itself a warning.\n\nThe Bosch K-Jetronic system is mechanical, long-lived and unforgiving of neglect, and it wants a specialist rather than a generalist. Fuel distributors, warm-up regulators, accumulators and injectors all deteriorate through long standing, and the symptoms - poor hot starting, hunting idle, uneven running under load - are frequently misdiagnosed as ignition faults. Fuel tanks and steel brake lines corrode on cars that have sat.\n\nGearboxes are otherwise reliable; check second-gear synchromesh specifically. Bushes and dampers are usually long past their life, and lowering springs fitted decades ago account for much of the uneven tire wear seen on these cars. The fusebox sits under the left of the dashboard, attracts damp and is the first place to look when the electrics misbehave, though on most survivors the real problem is forty years of aftermarket alarm and stereo wiring. Slow wipers and a brake pedal that wants a firm shove, particularly on right-hand-drive cars, are original characteristics. Interior trim is the hardest thing to replace.",
  "valueTrajectory": "For most of its life the Mk1 GTI was a cheap car, used and modified accordingly, which is why sound original examples are now scarce out of proportion to the 461,690 built. Values began separating in the 2010s as the cars aged into UK historic vehicle tax exemption. By February 2020 a preserved 42,156-mile right-hand-drive 1.6 made $23,281 with premium at Silverstone Auctions, a figure Sports Car Market treated as sensibly bought rather than exceptional, and UK results have since settled in the high teens of thousands of pounds at hammer for restored cars.\n\nAs of August 2026 the classic.com benchmark of roughly $19,695 is trending downward, which is worth reading carefully: the index blends European hatchbacks with the cheaper American Rabbit GTI, and the softness sits at the project and modified end rather than in documented original cars. The gap between a rust-free, unmodified, well-papered car and a tidy-looking rebuilt one is set by the shell rather than the engine.",
  "overallConfidence": "high",
  "sources": [
+  {
+   "ref": "iseecars-83-rabbit",
+   "title": "1983 Volkswagen Rabbit Price and MSRP",
+   "url": "https://www.iseecars.com/car/1983-volkswagen-rabbit-price",
+   "publisher": "iSeeCars",
+   "sourceType": "market-data",
+   "reliability": "medium",
+   "notes": "Original MSRP table gives the 1983 Rabbit GTI 2-door hatchback at $8,290. Fetched 2026-09-13 for the US launch price of the federalized car."
+  },
   {
    "ref": "vw-newsroom-golf1-gti",
    "title": "Golf I GTI (1976-1983)",
@@ -91,7 +100,7 @@ export const seedGolfGtiMk1 = {
    "publisher": "Volkswagen AG",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Volkswagen's model record: 110 PS 1.6 from Audi and 112 PS 1.8 from 1982, 810 kg base weight, suspension lowered 10 mm front and 20 mm rear, tartan seats and golf-ball gearknob, 462,000 built, 10,500 special models May-October 1983."
+   "notes": "Volkswagen's model record: 108 hp 1.6 from Audi and 110 hp 1.8 from 1982, 1,786 lb base weight, suspension lowered 10 mm front and 20 mm rear, tartan seats and golf-ball gearknob, 462,000 built, 10,500 special models May-October 1983."
   },
   {
    "ref": "vw-newsroom-gti-history",
@@ -109,7 +118,7 @@ export const seedGolfGtiMk1 = {
    "publisher": "Volkswagen AG",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Type 155 (A1C), Volkswagen and Karmann, built at Osnabrueck from 14 February 1979, fixed bar above the B-pillar, 110 PS 1.6 GLI, 112 PS 1.8 from 1982, approximately 392,000 built to 1993."
+   "notes": "Type 155 (A1C), Volkswagen and Karmann, built at Osnabrueck from 14 February 1979, fixed bar above the B-pillar, 108 hp 1.6 GLI, 110 hp 1.8 from 1982, approximately 392,000 built to 1993."
   },
   {
    "ref": "vw-newsroom-cabrio-history",
@@ -127,7 +136,7 @@ export const seedGolfGtiMk1 = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Names the skunkworks participants (Loewenberg, Konrad, Schuster, Hablitzel, Hauk, Liljequist); approval 28 May 1975; the 5,000-car Group 1 threshold; 462,000 total; 1,588 cc 110 PS/140 Nm and 1,781 cc 112 PS/153 Nm; 810 kg; RHD July 1979 at 4,705 pounds; about 30,000 Rabbit GTIs."
+   "notes": "Names the skunkworks participants (Loewenberg, Konrad, Schuster, Hablitzel, Hauk, Liljequist); approval 28 May 1975; the 5,000-car Group 1 threshold; 462,000 total; 1,588 cc 108 hp/103 lb-ft and 1,781 cc 110 hp/113 lb-ft; 1,786 lb; RHD July 1979 at 4,705 pounds; about 30,000 Rabbit GTIs."
   },
   {
    "ref": "classic-register-mk1-gti",
@@ -172,7 +181,7 @@ export const seedGolfGtiMk1 = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Period test of a left-hand-drive UK car: 1,588 cc at 79.5 x 80 mm, K-Jetronic, 110 bhp at 6,100 rpm and 101 lb ft, four-speed, 9.6 s to 60 mph and 108 mph against claims of 9.0 and 113, 15.9 cwt, 3,372 pounds against the Ford RS2000 at 3,729."
+   "notes": "Period test of a left-hand-drive UK car: 1,588 cc at 79.5 x 80 mm, K-Jetronic, 110 hp at 6,100 rpm and 101 lb ft, four-speed, 9.6 s to 60 mph and 108 mph against claims of 9.0 and 113, 15.9 cwt, 3,372 pounds against the Ford RS2000 at 3,729."
   },
   {
    "ref": "motorsport-1983",
@@ -181,7 +190,7 @@ export const seedGolfGtiMk1 = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Period test of the 1,781 cc car: 81 x 86.4 mm, 10:1 compression, 112 DIN bhp and 109 lb ft at 3,500 rpm, five-speed with 3.65:1 final drive against 3.89:1 on the 1.6, roughly 8 s to 60 mph, 1.8 s quicker 50-70 mph in fifth, just under 6,500 pounds."
+   "notes": "Period test of the 1,781 cc car: 81 x 86.4 mm, 10:1 compression, 112 DIN hp and 109 lb ft at 3,500 rpm, five-speed with 3.65:1 final drive against 3.89:1 on the 1.6, roughly 8 s to 60 mph, 1.8 s quicker 50-70 mph in fifth, just under 6,500 pounds."
   },
   {
    "ref": "ateupwithmotor",
@@ -199,7 +208,7 @@ export const seedGolfGtiMk1 = {
    "publisher": "Curbside Classic",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Reproduces auto motor und sport's 1976 test figures: 9.4 s to 100 km/h, 185 km/h, weight just under 900 kg as tested, DM 13,850; and explains the US absence - the injected Rabbit engine detuned to 78 hp for 1977 emissions, and Volkswagen of America fearing buyers would not pay the premium."
+   "notes": "Reproduces auto motor und sport's 1976 test figures: 9.4 s to 62 mph, 115 mph, weight just under 1,984 lb as tested, DM 13,850; and explains the US absence - the injected Rabbit engine detuned to 78 hp for 1977 emissions, and Volkswagen of America fearing buyers would not pay the premium."
   },
   {
    "ref": "curbside-rabbit-gti",
@@ -208,7 +217,7 @@ export const seedGolfGtiMk1 = {
    "publisher": "Curbside Classic",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "US detail: 1.8-litre 90 hp with redesigned head and higher compression, a 22 per cent gain over the standard Rabbit; recalibrated struts, stiffer springs and anti-roll bars front and rear; unassisted steering; air dam, fender flares, snowflake alloys; $8,000-$9,000; an estimated 15,000 to 20,000 US cars in 1983."
+   "notes": "US detail: 1.8-liter 90 hp with redesigned head and higher compression, a 22 per cent gain over the standard Rabbit; recalibrated struts, stiffer springs and anti-roll bars front and rear; unassisted steering; air dam, fender flares, snowflake alloys; $8,000-$9,000; an estimated 15,000 to 20,000 US cars in 1983."
   },
   {
    "ref": "caranddriver-rabbit-gti",
@@ -253,7 +262,7 @@ export const seedGolfGtiMk1 = {
    "publisher": "Hagerty UK",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Independent list of predecessors: Renault 5 Alpine/Gordini 1976, 92 bhp from 1.4 litres, in showrooms two months before the GTI; Alfasud ti 1973, 67 bhp; Simca 1100 Ti 1973, 85 bhp; Autobianchi A112 Abarth 1971, 58 bhp and 670 kg."
+   "notes": "Independent list of predecessors: Renault 5 Alpine/Gordini 1976, 92 hp from 1.4 liters, in showrooms two months before the GTI; Alfasud ti 1973, 67 hp; Simca 1100 Ti 1973, 85 hp; Autobianchi A112 Abarth 1971, 58 hp and 1,477 lb."
   }
  ],
  "claims": [
@@ -303,7 +312,7 @@ export const seedGolfGtiMk1 = {
   },
   {
    "section": "specs",
-   "claimText": "The launch engine was a 1,588 cc EA827 single-overhead-camshaft four with Bosch K-Jetronic continuous mechanical injection, 9.5:1 compression, larger valves and a standard oil cooler, quoted at 110 PS at 6,100 rpm and 140 Nm at 5,000 rpm.",
+   "claimText": "The launch engine was a 1,588 cc EA827 single-overhead-camshaft four with Bosch K-Jetronic continuous mechanical injection, 9.5:1 compression, larger valves and a standard oil cooler, quoted at 108 hp at 6,100 rpm and 103 lb-ft at 5,000 rpm.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -316,7 +325,7 @@ export const seedGolfGtiMk1 = {
   },
   {
    "section": "specs",
-   "claimText": "From August 1982 the 1,781 cc DX engine replaced the 1.6, quoted at 112 PS at 5,800 rpm and 153 Nm at 3,500 rpm with a 10.0:1 compression ratio and a longer 3.65:1 final drive, which improved in-gear performance far more than the two-horsepower gain suggests.",
+   "claimText": "From August 1982 the 1,781 cc DX engine replaced the 1.6, quoted at 110 hp at 5,800 rpm and 113 lb-ft at 3,500 rpm with a 10.0:1 compression ratio and a longer 3.65:1 final drive, which improved in-gear performance far more than the two-horsepower gain suggests.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -327,7 +336,7 @@ export const seedGolfGtiMk1 = {
   },
   {
    "section": "specs",
-   "claimText": "Published kerb weights for the 1.6 GTI vary by roughly ninety kilograms and cannot be reconciled from the sources consulted here.",
+   "claimText": "Published curb weights for the 1.6 GTI vary by roughly ninety kilograms and cannot be reconciled from the sources consulted here.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -336,7 +345,7 @@ export const seedGolfGtiMk1 = {
     "motorsport-1977",
     "curbside-ams-1976"
    ],
-   "conflictNote": "Volkswagen quotes a base weight of 810 kg and Wikipedia repeats it. Motor Sport's 1977 road test gives 15.9 cwt, about 808 kg. Auto motor und sport, weighing a car in 1976, recorded just under 900 kg as tested. None of the three states whether it is quoting dry, DIN unladen or as-tested weight, so the difference is not resolved here."
+   "conflictNote": "Volkswagen quotes a base weight of 1,786 lb and Wikipedia repeats it. Motor Sport's 1977 road test gives 15.9 cwt, about 1,781 lb. Auto motor und sport, weighing a car in 1976, recorded just under 1,984 lb as tested. None of the three states whether it is quoting dry, DIN unladen or as-tested weight, so the difference is not resolved here."
   },
   {
    "section": "history",
@@ -352,7 +361,7 @@ export const seedGolfGtiMk1 = {
   },
   {
    "section": "production",
-   "claimText": "The GTI's interior signatures - tartan cloth sports seats and a gearknob moulded to resemble a golf ball, both credited to trim designer Gunhild Liljequist - gave way to striped cloth at the August 1980 revision, and the model ended with a run-out special sold as the Campaign in Britain at around 1,000 three-door cars and as the Pirelli, Trophy or 1800 Plus elsewhere, Volkswagen putting that special-model run at 10,500 cars built between May and October 1983.",
+   "claimText": "The GTI's interior signatures - tartan cloth sports seats and a gearknob molded to resemble a golf ball, both credited to trim designer Gunhild Liljequist - gave way to striped cloth at the August 1980 revision, and the model ended with a run-out special sold as the Campaign in Britain at around 1,000 three-door cars and as the Pirelli, Trophy or 1800 Plus elsewhere, Volkswagen putting that special-model run at 10,500 cars built between May and October 1983.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -376,7 +385,7 @@ export const seedGolfGtiMk1 = {
   },
   {
    "section": "specs",
-   "claimText": "The 1983 Rabbit GTI was assembled at Westmoreland, Pennsylvania rather than imported, and ran a 1.8-litre engine detuned to 90 hp SAE net at 5,500 rpm, recalibrated struts and stiffer springs with anti-roll bars front and rear, vented front discs and P185/60HR-14 Pirelli P6 tyres on 14 x 6-inch alloys, at about 2,100 lb and roughly 8,000 dollars.",
+   "claimText": "The 1983 Rabbit GTI was assembled at Westmoreland, Pennsylvania rather than imported, and ran a 1.8-liter engine detuned to 90 hp SAE net at 5,500 rpm, recalibrated struts and stiffer springs with anti-roll bars front and rear, vented front discs and P185/60HR-14 Pirelli P6 tires on 14 x 6-inch alloys, at about 2,100 lb and roughly 8,000 dollars.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

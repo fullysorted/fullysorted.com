@@ -12,33 +12,33 @@ export const seed190ECosworth = {
  "yearStart": 1984,
  "yearEnd": 1993,
  "bodyStyles": [
-  "4-door saloon with the 16-valve aerodynamic kit: deeper front apron, sill extensions, rear apron and boot spoiler",
-  "4-door saloon, Evolution bodywork: glass-fibre wheelarch extensions and revised bumpers, with an adjustable rear wing and rear-window aerofoil on the Evolution II"
+  "4-door sedan with the 16-valve aerodynamic kit: deeper front apron, sill extensions, rear apron and boot spoiler",
+  "4-door sedan, Evolution bodywork: glass-fiber wheel arch extensions and revised bumpers, with an adjustable rear wing and rear-window aerofoil on the Evolution II"
  ],
  "engines": [
-  "2,299 cc M102 inline-four with the Cosworth-designed alloy DOHC 16-valve head, 185 PS at 6,200 rpm on 98 RON at 10.5:1 (2.3-16, European)",
-  "2,299 cc M102 in emissions-controlled form: 170 PS catalysed or 177 PS on the unleaded RUF mapping, both on 95 RON; US cars 167 hp at 5,800 rpm at 9.7:1",
-  "2,463 cc M102 long-stroke inline-four with duplex timing chain, 204 PS without catalyst or 195 PS with (2.5-16 and Evolution I); AMG Power Pack raising this to 225 PS at 7,200 rpm",
-  "2,463 cc M102.992 short-stroke inline-four, 97.3 x 82.8 mm at 10.5:1, AMG Power Pack standard, 235 PS at 7,200 rpm and 245 Nm at 5,000 rpm to a 7,700-7,800 rpm limit (Evolution II)"
+  "2,299 cc M102 inline-four with the Cosworth-designed alloy DOHC 16-valve head, 182 hp at 6,200 rpm on 98 RON at 10.5:1 (2.3-16, European)",
+  "2,299 cc M102 in emissions-controlled form: 168 hp catalyzed or 175 hp on the unleaded RUF mapping, both on 95 RON; US cars 167 hp at 5,800 rpm at 9.7:1",
+  "2,463 cc M102 long-stroke inline-four with duplex timing chain, 201 hp without catalyst or 192 hp with (2.5-16 and Evolution I); AMG Power Pack raising this to 222 hp at 7,200 rpm",
+  "2,463 cc M102.992 short-stroke inline-four, 97.3 x 82.8 mm at 10.5:1, AMG Power Pack standard, 232 hp at 7,200 rpm and 181 lb-ft at 5,000 rpm to a 7,700-7,800 rpm limit (Evolution II)"
  ],
  "productionTotal": null,
  "productionNotes": "No single figure covers the sixteen-valve W201, and the two most-quoted sets of numbers do not agree. Wikipedia's W201 article, Supercar Nostalgia and the enthusiast reference at mb190e16v.com all give 19,487 cars for the 2.3-16 and 5,743 for the 2.5-16, and mb190e16v.com breaks both down by calendar year in tables that sum to those totals. Classic & Sports Car's W201 buyer's guide states 17,037 2.3-16s built between 1983 and 1988 and 4,784 2.5-16s through 1993 - a gap of roughly 2,450 cars on the 2.3 and 960 on the 2.5, too large to be a rounding artefact and not explained by any source consulted here, so no total is asserted. The Evolution cars are firmer ground. Group A homologation required a minimum of 500 road cars and both Evolutions were built to 502: the Evolution I over roughly three months from March 1989, the Evolution II between May and July 1990. The two-car overrun is where the sources part company again. Wikipedia states 500 Evolution IIs in blauschwarz metallic with cars 501 and 502 in astral silver; mb190e16v.com calls the two silver cars test cars; Octane says one went to AMG and one was kept by Mercedes-Benz. The serialised Evolution II gearknobs run 001/500 to 500/500, consistent with a 500-car customer run plus two outside it, but RM Sotheby's catalogues describe individual cars as serial 168 and 283 'of 502'. Every Evolution was left-hand drive; Supercar Nostalgia records around 600 right-hand-drive 2.3-16s, and US sales were confined to the 1986 and 1987 model years.",
  "notableTrims": [
   {
    "name": "190 E 2.3-16 (European, 1984-1988)",
-   "note": "The car the programme existed to legalise. 185 PS on 98 RON, dog-leg Getrag five-speed, ride height down 15 mm front and 12 mm rear, 7x15 in Fuchs 'Gullideckel' alloys, and at first only two colours."
+   "note": "The car the program existed to legalise. 182 hp on 98 RON, dog-leg Getrag five-speed, ride height down 15 mm front and 12 mm rear, 7x15 in Fuchs 'Gullideckel' alloys, and at first only two colors."
   },
   {
-   "name": "190 E 2.3-16 (US federalised, 1986-1987 model years)",
+   "name": "190 E 2.3-16 (US federalized, 1986-1987 model years)",
    "note": "Compression dropped to 9.7:1 for 167 hp at 5,800 rpm, with US headlamps, side impact bars and a wood-trimmed dashboard not offered in Europe. Two model years only, which is why the American population is small."
   },
   {
    "name": "190 E 2.3-16 'Nurburgring' (Sport-Technik, 1984)",
-   "note": "Competition cars for the 12 May 1984 opening race on the new Grand Prix circuit: revised exhaust, four-piston front brakes, roll cage, Recaro seats and harnesses, Pirelli racing tyres. Senna's is in the Mercedes-Benz Museum."
+   "note": "Competition cars for the 12 May 1984 opening race on the new Grand Prix circuit: revised exhaust, four-piston front brakes, roll cage, Recaro seats and harnesses, Pirelli racing tires. Senna's is in the Mercedes-Benz Museum."
   },
   {
    "name": "190 E 2.5-16 (1988-1993)",
-   "note": "Longer-stroke 2,463 cc engine with a duplex timing chain answering the single-chain weakness of early 2.3s. 204 PS without catalyst, 195 PS with, plus the ASD variable limited-slip differential and two further colours."
+   "note": "Longer-stroke 2,463 cc engine with a duplex timing chain answering the single-chain weakness of early 2.3s. 201 hp without catalyst, 192 hp with, plus the ASD variable limited-slip differential and two further colors."
   },
   {
    "name": "190 E 2.5-16 Evolution (Evolution I, 1989)",
@@ -46,35 +46,35 @@ export const seed190ECosworth = {
   },
   {
    "name": "190 E 2.5-16 Evolution II (1990)",
-   "note": "The winged car. Aerodynamics by Professor Richard Eppler of the University of Stuttgart, AMG Power Pack standard at 235 PS, 8.25x17 in wheels, ride height adjustable through 45 mm, 502 built May to July 1990 and sold out before Geneva."
+   "note": "The winged car. Aerodynamics by Professor Richard Eppler of the University of Stuttgart, AMG Power Pack standard at 232 hp, 8.25x17 in wheels, ride height adjustable through 45 mm, 502 built May to July 1990 and sold out before Geneva."
   },
   {
    "name": "AMG Power Pack",
-   "note": "Optional on the Evolution I at a quoted DM 18,000-19,000, giving 225 PS at 7,200 rpm; standard on the Evolution II. Its presence or absence is the biggest single specification question on an Evolution I."
+   "note": "Optional on the Evolution I, giving 222 hp at 7,200 rpm; standard on the Evolution II. Its presence or absence is the biggest single specification question on an Evolution I."
   }
  ],
  "specs": {
   "layout": "Front-mounted longitudinal inline-four, rear-wheel drive",
   "chassis": "Unitary steel monocoque W201 shell, 2,665 mm wheelbase; MacPherson strut front with the coil springs mounted separately from the dampers, anti-dive geometry, front and rear anti-roll bars",
-  "suspension_rear": "Five-link independent axle with anti-squat geometry and hydro-pneumatic self-levelling (SLS): levelling valve on the rear anti-roll bar, nitrogen accumulator spheres, pump and reservoir under the bonnet",
+  "suspension_rear": "Five-link independent axle with anti-squat geometry and hydro-pneumatic self-levelling (SLS): levelling valve on the rear anti-roll bar, nitrogen accumulator spheres, pump and reservoir under the hood",
   "engine": "Mercedes M102 iron-block inline-four with a Cosworth-designed light-alloy twin-cam 16-valve head; 2,299 cc for the 2.3-16 and 2,463 cc for the 2.5-16 and Evolutions, the Evolution II using the short-stroke M102.992",
   "compression": "10.5:1 European 2.3-16; 9.7:1 US 2.3-16 and Evolution I; 10.5:1 Evolution II",
-  "power": "185 PS at 6,200 rpm (2.3-16 European); 170-177 PS catalysed or unleaded; 167 hp at 5,800 rpm (US); 195-204 PS (2.5-16 and Evolution I); 225 PS with the AMG Power Pack; 235 PS at 7,200 rpm (Evolution II)",
-  "torque": "2.3-16 quoted at 235-236 Nm (174 lb ft) at 4,500 rpm, though Motor Sport's 1985 road test printed 168 lb ft; Evolution II 245 Nm (181 lb ft) at 5,000 rpm",
+  "power": "182 hp at 6,200 rpm (2.3-16 European); 168-175 hp catalyzed or unleaded; 167 hp at 5,800 rpm (US); 192-201 hp (2.5-16 and Evolution I); 222 hp with the AMG Power Pack; 232 hp at 7,200 rpm (Evolution II)",
+  "torque": "2.3-16 quoted at 173-174 lb-ft at 4,500 rpm, though Motor Sport's 1985 road test printed 168 lb ft; Evolution II 181 lb-ft at 5,000 rpm",
   "transmission": "Getrag five-speed manual with a dog-leg first gear; ASD electronically controlled limited-slip differential from the 2.5-16, varying lock from 15 to 100 per cent",
-  "weight": "1,350 kg quoted for the 2.3-16; Evolution I 1,320 kg; Evolution II 1,340 kg",
-  "acceleration": "0-100 km/h quoted between 7.1 and 8.0 seconds for the 2.3-16 depending on source and market; Motor Sport recorded 0-60 mph in 7.5 seconds in 1985; Evolution II quoted at 6.1 seconds",
-  "top_speed": "230 km/h (143 mph) claimed for the 2.3-16, 142 mph in Motor Sport's 1985 test, 146 mph per Supercar Nostalgia; 153 mph for the Evolution II",
+  "weight": "2,976 lb quoted for the 2.3-16; Evolution I 2,910 lb; Evolution II 2,954 lb",
+  "acceleration": "0-62 mph quoted between 7.1 and 8.0 seconds for the 2.3-16 depending on source and market; Motor Sport recorded 0-60 mph in 7.5 seconds in 1985; Evolution II quoted at 6.1 seconds",
+  "top_speed": "143 mph claimed for the 2.3-16, 142 mph in Motor Sport's 1985 test, 146 mph per Supercar Nostalgia; 153 mph for the Evolution II",
   "brakes": "284 mm ventilated front and 258 mm solid rear discs on the 2.3-16; 300 mm front and 278 mm rear on both Evolutions, the Evolution II adding lighter alloy four-piston calipers",
-  "wheels_tyres": "7x15 in Fuchs 'Gullideckel' alloys on the 2.3-16; 8x16 in on the Evolution I; 8.25x17 in six-spoke alloys on Dunlop SP Sport D40 for the Evolution II",
+  "wheels_tires": "7x15 in Fuchs 'Gullideckel' alloys on the 2.3-16; 8x16 in on the Evolution I; 8.25x17 in six-spoke alloys on Dunlop SP Sport D40 for the Evolution II",
   "aerodynamics": "Drag coefficient given as 0.32 for the 2.3-16 kit and 0.29 for the Evolution II after Eppler's wind-tunnel work; Octane quotes the standard car at 0.33 and mb190e16v.com the Evolution II at 0.32"
  },
- "summary": "The Mercedes-Benz 190 E 2.3-16 and the 2.5-litre cars that followed it were the sixteen-valve homologation specials built on the compact W201 saloon from 1984 to 1993. The four-valve head was designed by Cosworth for a rally programme that never ran: by the time the engine was right, Audi's quattro had made a rear-drive naturally aspirated rally car pointless, and Mercedes-Benz redirected the work to the revived German Touring Car Championship, whose Group A rules required a production car underneath the racer. Three pre-production cars announced the model at Nardo in August 1983 by covering 50,000 km at an average of about 247.9 km/h, and the road car was launched at the Nurburgring on 12 May 1984 in a one-make race contested by nine of the twelve living Formula One world champions and won by a rookie named Ayrton Senna. The line ran from a 185 PS 2.3 through the 2.5-16 to the Evolution I and the winged Evolution II, each Evolution capped at 502 cars by the homologation rules that created them.",
- "history": "## A Rally Engine Without a Rally\nMercedes-Benz spent the late 1970s looking for a way back into competition and, having tried the 5.0-litre V8 450 SLC in rallying, commissioned Cosworth Engineering to build a four-cylinder capable of comfortably more than 300 hp for a works rally car. Cosworth's answer was a light-alloy twin-cam head with four valves per cylinder on the existing Mercedes M102 iron block, cast at Worcester and shipped to Germany for assembly. By the time the engine was ready the ground had moved. Audi's quattro had made a two-wheel-drive naturally aspirated rally car a waste of an entry fee, and the rally plan was abandoned. The engine was not. The revived Deutsche Tourenwagen Meisterschaft ran to Group A rules, which required a production basis, so a detuned version of the Cosworth motor went into a series-production sixteen-valve W201 to make the racing car legal.\n\n## Nardo, August 1983\nBefore the car was shown, it was proved. Between 13 and 21 August 1983 three lightly modified pre-production 2.3-16s ran continuously around the 12.6 km banked bowl at Nardo, eighteen drivers rotating six to a car, 243 pit stops, ambient temperatures between 35 and 42 degrees. They covered 50,000 km in a little over 201 hours at an average near 247.9 km/h, reverse gear removed to save four-tenths of a km/h and the final drive at 2.65:1 against the road car's 3.27:1. One car lost about three hours to a broken distributor rotor arm. The 2.3-16 was shown at Frankfurt the following month.\n\n## The Nurburgring, 12 May 1984\nTo open the Nurburgring's new Grand Prix circuit, Mercedes-Benz put a field of Formula One drivers into identical race-prepared 2.3-16s for a twelve-lap race: nine of the twelve living world champions, with Juan Manuel Fangio as master of ceremonies and a rookie who had failed to qualify at Imola days earlier. Ayrton Senna won in the wet, having traded the lead with Niki Lauda, by 1.58 seconds. Senna's car is in the Mercedes-Benz Museum, and he liked the model enough to collect a smoke silver road-going 2.3-16 from the factory in October 1985.\n\n## From 2.3 to 2.5, and the Evolutions\nThe 2.5-16 arrived in 1988 with a longer stroke, a duplex timing chain answering the single-chain weakness of the early 2.3, and the ASD variable limited-slip differential. It was not enough: BMW's M3 kept moving, and Group A allowed 500-car evolution batches. The Evolution I of March 1989 reversed the bore-stroke relationship to permit higher revs, stiffened the suspension by around a quarter and enlarged the brakes. The Evolution II of March 1990 went further: bodywork developed in the wind tunnel by Professor Richard Eppler of the University of Stuttgart, a rear wing so large that a trim strip had to be added to the rear window to satisfy a rule about obscuring the driver's view, the AMG Power Pack as standard, and a drag figure below the plain saloon's despite the downforce. All 502 were sold before the show car was uncovered.\n\n## Group A, AMG and the End of the Formula\nOn track the Evolution II debuted at the Nurburgring in June 1990 and took time to come good. Its best season was also Group A's last: in 1992 Mercedes-Benz drivers took 16 wins, 17 second places and 13 thirds from 24 races, Klaus Ludwig took the drivers' title, Roland Asch and Bernd Schneider filled the next two places, and AMG-Mercedes took the manufacturers' honours. That season formalised the AMG relationship Mercedes-Benz would later buy outright. The road cars were left behind quickly, and for two decades these were simply used-up saloons. The reappraisal came late, and it separated the Evolutions from everything else.",
- "marketNotes": "As of August 2026, classic.com puts the 190 E 2.3-16 market benchmark at approximately $25,957 with an average sale near $31,482 on a falling trend. Recorded 2.3-16 results run from $5,900 for a 1986 project car in September 2025 to the ex-Ayrton Senna 1985 example, which made 230,000 pounds at RM Sotheby's London sale in November 2025 - a provenance result rather than a market one, on a car showing 154,302 miles. The Evolutions sit in a different market. As of August 2026 classic.com records an Evolution I benchmark of approximately $138,889 against an average of $125,732, with sales from $80,500 in May 2024, and an Evolution II benchmark of approximately $286,198 against an average of $281,201, trending upward, with a low of $155,250 in August 2022. Auction evidence tracks that: RM Sotheby's sold Evolution II serial 168 of 502 for $329,500 at Monterey in August 2024, while Niki Lauda's 1984 Race of Champions car made CHF 308,750 at St. Moritz in 2023. All auction figures are the houses' published results, which include buyer's premium.",
- "whatToLookFor": "Establish which car is in front of you before anything else, because the four specifications are separated by large sums. An Evolution I without its AMG Power Pack is a materially different car from one with it, and on a wide-arch car the serialised gearknob and the small EVOLUTION plate on the front wings are the quickest confirmation that it is genuine rather than a re-bodied 2.5-16. Every Evolution left the factory in left-hand drive; a right-hand-drive Evolution does not exist. On the 2.3-16, check the colour against the year - only blue-black and smoke silver metallic were offered at first, with almandine red and astral silver arriving later. Corrosion is the first mechanical question: the inner wings under the washer bottle and battery, the rear subframe mounts, jacking points and door bottoms. Ask for the self-levelling suspension to be demonstrated cold and again after a drive, and look for fluid on the rear struts and along the pipe runs forward; interiors are model-specific and the contoured rear seat and chequered cloth are hard to replace. Original, unmodified cars with continuous history are what the market pays for; the 2.5-16 has been a popular basis for engine swaps and track builds, and reversing that work is rarely economic.",
+ "summary": "The Mercedes-Benz 190 E 2.3-16 and the 2.5-liter cars that followed it were the sixteen-valve homologation specials built on the compact W201 sedan from 1984 to 1993. The four-valve head was designed by Cosworth for a rally program that never ran: by the time the engine was right, Audi's quattro had made a rear-drive naturally aspirated rally car pointless, and Mercedes-Benz redirected the work to the revived German Touring Car Championship, whose Group A rules required a production car underneath the racer. Three pre-production cars announced the model at Nardo in August 1983 by covering 31,000 miles at an average of about 154 mph, and the road car was launched at the Nurburgring on 12 May 1984 in a one-make race contested by nine of the twelve living Formula One world champions and won by a rookie named Ayrton Senna. The line ran from a 182 hp 2.3 through the 2.5-16 to the Evolution I and the winged Evolution II, each Evolution capped at 502 cars by the homologation rules that created them.",
+ "history": "## A Rally Engine Without a Rally\nMercedes-Benz spent the late 1970s looking for a way back into competition and, having tried the 5.0-liter V8 450 SLC in rallying, commissioned Cosworth Engineering to build a four-cylinder capable of comfortably more than 300 hp for a works rally car. Cosworth's answer was a light-alloy twin-cam head with four valves per cylinder on the existing Mercedes M102 iron block, cast at Worcester and shipped to Germany for assembly. By the time the engine was ready the ground had moved. Audi's quattro had made a two-wheel-drive naturally aspirated rally car a waste of an entry fee, and the rally plan was abandoned. The engine was not. The revived Deutsche Tourenwagen Meisterschaft ran to Group A rules, which required a production basis, so a detuned version of the Cosworth motor went into a series-production sixteen-valve W201 to make the racing car legal.\n\n## Nardo, August 1983\nBefore the car was shown, it was proved. Between 13 and 21 August 1983 three lightly modified pre-production 2.3-16s ran continuously around the 7.8 miles banked bowl at Nardo, eighteen drivers rotating six to a car, 243 pit stops, ambient temperatures between 35 and 42 degrees. They covered 31,000 miles in a little over 201 hours at an average near 154 mph, reverse gear removed to save four-tenths of a km/h and the final drive at 2.65:1 against the road car's 3.27:1. One car lost about three hours to a broken distributor rotor arm. The 2.3-16 was shown at Frankfurt the following month.\n\n## The Nurburgring, 12 May 1984\nTo open the Nurburgring's new Grand Prix circuit, Mercedes-Benz put a field of Formula One drivers into identical race-prepared 2.3-16s for a twelve-lap race: nine of the twelve living world champions, with Juan Manuel Fangio as master of ceremonies and a rookie who had failed to qualify at Imola days earlier. Ayrton Senna won in the wet, having traded the lead with Niki Lauda, by 1.58 seconds. Senna's car is in the Mercedes-Benz Museum, and he liked the model enough to collect a smoke silver road-going 2.3-16 from the factory in October 1985.\n\n## From 2.3 to 2.5, and the Evolutions\nThe 2.5-16 arrived in 1988 with a longer stroke, a duplex timing chain answering the single-chain weakness of the early 2.3, and the ASD variable limited-slip differential. It was not enough: BMW's M3 kept moving, and Group A allowed 500-car evolution batches. The Evolution I of March 1989 reversed the bore-stroke relationship to permit higher revs, stiffened the suspension by around a quarter and enlarged the brakes. The Evolution II of March 1990 went further: bodywork developed in the wind tunnel by Professor Richard Eppler of the University of Stuttgart, a rear wing so large that a trim strip had to be added to the rear window to satisfy a rule about obscuring the driver's view, the AMG Power Pack as standard, and a drag figure below the plain sedan's despite the downforce. All 502 were sold before the show car was uncovered.\n\n## Group A, AMG and the End of the Formula\nOn track the Evolution II debuted at the Nurburgring in June 1990 and took time to come good. Its best season was also Group A's last: in 1992 Mercedes-Benz drivers took 16 wins, 17 second places and 13 thirds from 24 races, Klaus Ludwig took the drivers' title, Roland Asch and Bernd Schneider filled the next two places, and AMG-Mercedes took the manufacturers' honours. That season formalised the AMG relationship Mercedes-Benz would later buy outright. The road cars were left behind quickly, and for two decades these were simply used-up sedans. The reappraisal came late, and it separated the Evolutions from everything else.",
+ "marketNotes": "As of August 2026, classic.com puts the 190 E 2.3-16 market benchmark at approximately $25,957 with an average sale near $31,482 on a falling trend. Recorded 2.3-16 results run from $5,900 for a 1986 project car in September 2025 to the ex-Ayrton Senna 1985 example, a provenance result rather than a market one, on a car showing 154,302 miles. The Evolutions sit in a different market. As of August 2026 classic.com records an Evolution I benchmark of approximately $138,889 against an average of $125,732, with sales from $80,500 in May 2024, and an Evolution II benchmark of approximately $286,198 against an average of $281,201, trending upward, with a low of $155,250 in August 2022. Auction evidence tracks that: RM Sotheby's sold Evolution II serial 168 of 502 for $329,500 at Monterey in August 2024, while Niki Lauda's 1984 Race of Champions car made CHF 308,750 at St. Moritz in 2023. All auction figures are the houses' published results, which include buyer's premium.",
+ "whatToLookFor": "Establish which car is in front of you before anything else, because the four specifications are separated by large sums. An Evolution I without its AMG Power Pack is a materially different car from one with it, and on a wide-arch car the serialised gearknob and the small EVOLUTION plate on the front wings are the quickest confirmation that it is genuine rather than a re-bodied 2.5-16. Every Evolution left the factory in left-hand drive; a right-hand-drive Evolution does not exist. On the 2.3-16, check the color against the year - only blue-black and smoke silver metallic were offered at first, with almandine red and astral silver arriving later. Corrosion is the first mechanical question: the inner wings under the washer bottle and battery, the rear subframe mounts, jacking points and door bottoms. Ask for the self-levelling suspension to be demonstrated cold and again after a drive, and look for fluid on the rear struts and along the pipe runs forward; interiors are model-specific and the contoured rear seat and checkered cloth are hard to replace. Original, unmodified cars with continuous history are what the market pays for; the 2.5-16 has been a popular basis for engine swaps and track builds, and reversing that work is rarely economic.",
  "commonProblems": "Rust is the defining structural fault and is described by British buyer's guides as capable of being rampant, the inner wings around the washer bottle and battery being the usual starting point, along with broken rear coils. The M102 has a strong reputation for durability, but early 2.3 units used a single timing chain that can stretch and break; replacement is quoted at roughly 70,000 miles, and the 2.5-16's duplex chain exists precisely because of the problem. Head-gasket failure is common and is usually traced to neglected corrosion-inhibitor levels in the coolant rather than to any inherent weakness. The hydro-pneumatic self-levelling rear suspension is the model-specific liability: accumulator spheres lose their charge, springs break and struts wear, and owners report that most failures are leaks from corroded pipework running the length of the car rather than from the pump. The dog-leg Getrag was heavily sprung when new and gets vaguer with wear - a period road test complained that even a straight-line change was a two-stage operation. Air conditioning failures and broken door-card mountings round out the list; parts specific to the sixteen-valve cars are not cheap.",
- "valueTrajectory": "For roughly twenty years after production ended these were simply old Mercedes saloons with an awkward gearbox, and they were used accordingly. The standard 2.3-16 remains the most accessible route into a factory homologation programme: as of August 2026 the classic.com benchmark of roughly $25,957 sits within reach of an ordinary enthusiast, and its trend is falling rather than rising. The Evolutions moved on a different curve: as of August 2026 the classic.com Evolution II benchmark of approximately $286,198 is trending upward against an Evolution I benchmark near $138,889, an order of magnitude above the cars they were homologated from. The practical consequence is a gap widening on two axes at once: between the Evolutions and the standard cars, and within the standard cars between documented, rust-free examples and the many that were modified or left to corrode. Provenance can override the market entirely, as the Senna 2.3-16 demonstrated in November 2025.",
+ "valueTrajectory": "For roughly twenty years after production ended these were simply old Mercedes sedans with an awkward gearbox, and they were used accordingly. The standard 2.3-16 remains the most accessible route into a factory homologation program: as of August 2026 the classic.com benchmark of roughly $25,957 sits within reach of an ordinary enthusiast, and its trend is falling rather than rising. The Evolutions moved on a different curve: as of August 2026 the classic.com Evolution II benchmark of approximately $286,198 is trending upward against an Evolution I benchmark near $138,889, an order of magnitude above the cars they were homologated from. The practical consequence is a gap widening on two axes at once: between the Evolutions and the standard cars, and within the standard cars between documented, rust-free examples and the many that were modified or left to corrode. Provenance can override the market entirely, as the Senna 2.3-16 demonstrated in November 2025.",
  "overallConfidence": "high",
  "sources": [
   {
@@ -84,7 +84,7 @@ export const seed190ECosworth = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Cosworth commissioned for a ~320 hp rally engine, quattro forcing the DTM switch; 183 hp/174 lb ft, US 167 hp at 9.7:1, 230 km/h, dog-leg Getrag, SLS rear, Cd 0.32, 2.5-16 duplex chain, 502 of each Evolution, Evolution II 235 PS and Eppler aero at Cd 0.29, 500 blauschwarz plus 501-502 in astral silver."
+   "notes": "Cosworth commissioned for a ~320 hp rally engine, quattro forcing the DTM switch; 183 hp/174 lb ft, US 167 hp at 9.7:1, 143 mph, dog-leg Getrag, SLS rear, Cd 0.32, 2.5-16 duplex chain, 502 of each Evolution, Evolution II 232 hp and Eppler aero at Cd 0.29, 500 blauschwarz plus 501-502 in astral silver."
   },
   {
    "ref": "wikipedia-w201",
@@ -111,7 +111,7 @@ export const seed190ECosworth = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "19,487 built to June 1988, ~600 right-hand drive, US sales 1986-87 only; 185 bhp at 6,200 rpm and 174 lb ft at 10.5:1, KAT 170 and RUF 177 bhp; heads cast at Cosworth's Worcester foundry; 284/258 mm discs, 1,350 kg, 146 mph, 0-62 mph 7.2 s; nine Nardo class records."
+   "notes": "19,487 built to June 1988, ~600 right-hand drive, US sales 1986-87 only; 185 hp at 6,200 rpm and 174 lb ft at 10.5:1, KAT 170 and RUF 177 hp; heads cast at Cosworth's Worcester foundry; 284/258 mm discs, 2,976 lb, 146 mph, 0-62 mph 7.2 s; nine Nardo class records."
   },
   {
    "ref": "supercarnostalgia-evo2",
@@ -120,7 +120,7 @@ export const seed190ECosworth = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "M102.992 of 2,463 cc from 97.3 x 82.8 mm, 235 bhp at 7,200 rpm, 7,700 rpm limit against the Evolution I's 7,250, compression 9.7:1 to 10.5:1, 0-62 mph 6.1 s, 153 mph, 300/278 mm discs, 8.25x17 in wheels, 1,340 kg; 502 cars May-July 1990, all left-hand drive, homologation minimum 500; two VIP cars in another scheme."
+   "notes": "M102.992 of 2,463 cc from 97.3 x 82.8 mm, 235 hp at 7,200 rpm, 7,700 rpm limit against the Evolution I's 7,250, compression 9.7:1 to 10.5:1, 0-62 mph 6.1 s, 153 mph, 300/278 mm discs, 8.25x17 in wheels, 2,954 lb; 502 cars May-July 1990, all left-hand drive, homologation minimum 500; two VIP cars in another scheme."
   },
   {
    "ref": "mb190e16v-history",
@@ -138,16 +138,16 @@ export const seed190ECosworth = {
    "publisher": "Project 190",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "13-21 August 1983, three pre-production cars, 18 drivers six per car, 243 pit stops, 102 FIA commissioners, 35-42 degrees; 50,000 km in 201 h 39 min 43 s at 247 km/h; 2.65:1 final drive against 3.27:1, reverse deleted; three world and twelve class records; a broken rotor arm cost about three hours."
+   "notes": "13-21 August 1983, three pre-production cars, 18 drivers six per car, 243 pit stops, 102 FIA commissioners, 35-42 degrees; 31,000 miles in 201 h 39 min 43 s at 153 mph; 2.65:1 final drive against 3.27:1, reverse deleted; three world and twelve class records; a broken rotor arm cost about three hours."
   },
   {
    "ref": "classicdriver-nardo",
-   "title": "A long-playing record: 50,000km in 201 hours in a Mercedes 190 E 2.3-16",
+   "title": "A long-playing record: 31,000 miles in 201 hours in a Mercedes 190 E 2.3-16",
    "url": "https://www.classicdriver.com/en/article/autos/records-1983-mercedes-benz-190-e-23-16-nard",
    "publisher": "Classic Driver",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Independent record-run account: three lightly modified cars, 50,000 km in 201 h 39 min 43 s, outright records at 25,000 km, 25,000 miles and 50,000 km, and nine international class records in the 2000-3000 cc category A group I petrol class."
+   "notes": "Independent record-run account: three lightly modified cars, 31,000 miles in 201 h 39 min 43 s, outright records at 16,000 miles, 25,000 miles and 31,000 miles, and nine international class records in the 2000-3000 cc category A group I gasoline class."
   },
   {
    "ref": "rm-sm23-lauda",
@@ -219,7 +219,7 @@ export const seed190ECosworth = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Period road test: UK list 21,045 pounds in 1985, 185 bhp at 6,200 rpm and 168 lb ft, 142 mph, 0-60 mph in 7.5 s, self-levelling rear suspension, and a gearbox so heavily sprung that even a straight-line change was a two-stage operation."
+   "notes": "Period road test: UK list 21,045 pounds in 1985, 185 hp at 6,200 rpm and 168 lb ft, 142 mph, 0-60 mph in 7.5 s, self-levelling rear suspension, and a gearbox so heavily sprung that even a straight-line change was a two-stage operation."
   },
   {
    "ref": "octane-evo2",
@@ -228,7 +228,7 @@ export const seed190ECosworth = {
    "publisher": "Octane",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Eppler engaged for the aerodynamics; rear-window trim added so the wing did not obscure the driver's view; Cd cut from 0.33 to 0.29; 232 bhp and 173 lb ft, race versions to 360 bhp. States 500 road cars in blauschwarz plus two astral silver, one to AMG and one kept by Mercedes-Benz; says 1991 went to BMW and 1992 gave Mercedes 16 of 24 wins."
+   "notes": "Eppler engaged for the aerodynamics; rear-window trim added so the wing did not obscure the driver's view; Cd cut from 0.33 to 0.29; 232 hp and 173 lb ft, race versions to 360 hp. States 500 road cars in blauschwarz plus two astral silver, one to AMG and one kept by Mercedes-Benz; says 1991 went to BMW and 1992 gave Mercedes 16 of 24 wins."
   },
   {
    "ref": "autoevolution-evo2",
@@ -246,7 +246,7 @@ export const seed190ECosworth = {
    "publisher": "conceptcarz",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "1992 DTM: 16 wins, 17 seconds and 13 thirds from 24 races; Ludwig champion, Asch second, Schneider third; AMG-Mercedes took the constructors' title; factory-supported return in 1988 with AMG; race engine at 274 kW (373 hp); 502 road cars built at Bremen."
+   "notes": "1992 DTM: 16 wins, 17 seconds and 13 thirds from 24 races; Ludwig champion, Asch second, Schneider third; AMG-Mercedes took the constructors' title; factory-supported return in 1988 with AMG; race engine at 373 hp; 502 road cars built at Bremen."
   },
   {
    "ref": "mbclub-sls",
@@ -261,7 +261,7 @@ export const seed190ECosworth = {
  "claims": [
   {
    "section": "history",
-   "claimText": "The sixteen-valve head was commissioned from Cosworth for a works rally programme and redirected to circuit racing only after Audi's quattro made a rear-drive, naturally aspirated rally car uncompetitive; it is a light-alloy twin-cam design on the existing Mercedes M102 iron block, cast at Cosworth's Worcester foundry.",
+   "claimText": "The sixteen-valve head was commissioned from Cosworth for a works rally program and redirected to circuit racing only after Audi's quattro made a rear-drive, naturally aspirated rally car uncompetitive; it is a light-alloy twin-cam design on the existing Mercedes M102 iron block, cast at Cosworth's Worcester foundry.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -272,7 +272,7 @@ export const seed190ECosworth = {
   },
   {
    "section": "history",
-   "claimText": "Between 13 and 21 August 1983 three pre-production 190 E 2.3-16s covered 50,000 km at Nardo at an average near 247.9 km/h, taking outright records at 25,000 km, 25,000 miles and 50,000 km, weeks before the Frankfurt launch.",
+   "claimText": "Between 13 and 21 August 1983 three pre-production 190 E 2.3-16s covered 31,000 miles at Nardo at an average near 154 mph, taking outright records at 16,000 miles, 25,000 miles and 31,000 miles, weeks before the Frankfurt launch.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -291,7 +291,7 @@ export const seed190ECosworth = {
     "classicdriver-nardo",
     "supercarnostalgia-2316"
    ],
-   "conflictNote": "Classic Driver states nine international class records, placing them in the 2000-3000 cc category A group I petrol class, and Supercar Nostalgia also gives nine. Project 190 states twelve. No source consulted here resolves the difference."
+   "conflictNote": "Classic Driver states nine international class records, placing them in the 2000-3000 cc category A group I gasoline class, and Supercar Nostalgia also gives nine. Project 190 states twelve. No source consulted here resolves the difference."
   },
   {
    "section": "history",
@@ -382,11 +382,11 @@ export const seed190ECosworth = {
     "supercarnostalgia-2316",
     "mb190e16v-history"
    ],
-   "conflictNote": "Motor Sport's August 1985 test gives 168 lb ft, 142 mph and 0-60 mph in 7.5 s. Wikipedia gives 174 lb ft, 230 km/h and under eight seconds to 100 km/h. Supercar Nostalgia gives 174 lb ft, 146 mph and 0-62 mph in 7.2 s. mb190e16v.com gives 235 Nm, 230 km/h and 7.5 s. The spread is not resolved by any source consulted here."
+   "conflictNote": "Motor Sport's August 1985 test gives 168 lb ft, 142 mph and 0-60 mph in 7.5 s. Wikipedia gives 174 lb ft, 143 mph and under eight seconds to 62 mph. Supercar Nostalgia gives 174 lb ft, 146 mph and 0-62 mph in 7.2 s. mb190e16v.com gives 173 lb-ft, 143 mph and 7.5 s. The spread is not resolved by any source consulted here."
   },
   {
    "section": "specs",
-   "claimText": "The Evolution II used the short-stroke M102.992 of 2,463 cc at 10.5:1 with the AMG Power Pack standard, giving 235 PS at 7,200 rpm and 245 Nm to a limit variously quoted at 7,700 and 7,800 rpm, in bodywork developed in the wind tunnel by Professor Richard Eppler of the University of Stuttgart that cut drag to 0.29 while adding downforce.",
+   "claimText": "The Evolution II used the short-stroke M102.992 of 2,463 cc at 10.5:1 with the AMG Power Pack standard, giving 232 hp at 7,200 rpm and 181 lb-ft to a limit variously quoted at 7,700 and 7,800 rpm, in bodywork developed in the wind tunnel by Professor Richard Eppler of the University of Stuttgart that cut drag to 0.29 while adding downforce.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -399,7 +399,7 @@ export const seed190ECosworth = {
   },
   {
    "section": "history",
-   "claimText": "The 190 E 2.3-16 was sold in the United States only for the 1986 and 1987 model years, with compression reduced to 9.7:1 for 167 hp at 5,800 rpm and a kerb weight of 2,976 lb.",
+   "claimText": "The 190 E 2.3-16 was sold in the United States only for the 1986 and 1987 model years, with compression reduced to 9.7:1 for 167 hp at 5,800 rpm and a curb weight of 2,976 lb.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

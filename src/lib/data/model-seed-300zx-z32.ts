@@ -1,5 +1,5 @@
 /**
- * Researched model draft — Nissan 300ZX (1989-2000).
+ * Researched model draft -- Nissan 300ZX (1989-2000).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seed300zxZ32 = {
@@ -18,19 +18,19 @@ export const seed300zxZ32 = {
   "2-door convertible, naturally aspirated only, announced August 1992 and sold in the United States from 1993"
  ],
  "engines": [
-  "2,960 cc VG30DE naturally aspirated 60-degree DOHC V6, four valves per cylinder, variable intake cam timing, coil-on-plug ignition, 10.0:1; 222 bhp at 6,400 rpm and 198 lb-ft at 4,800 rpm in US tune, 230 PS quoted by Nissan for Japan",
-  "2,960 cc VG30DETT twin-turbocharged DOHC V6, two parallel Garrett turbochargers with two intercoolers, oil-cooled pistons, 8.5:1; 300 bhp at 6,400 rpm and 283 lb-ft at 3,600 rpm for the US, 280 PS and 388 Nm as advertised in Japan, 228 PS for mainland Europe"
+  "2,960 cc VG30DE naturally aspirated 60-degree DOHC V6, four valves per cylinder, variable intake cam timing, coil-on-plug ignition, 10.0:1; 222 hp at 6,400 rpm and 198 lb-ft at 4,800 rpm in US tune, 227 hp quoted by Nissan for Japan",
+  "2,960 cc VG30DETT twin-turbocharged DOHC V6, two parallel Garrett turbochargers with two intercoolers, oil-cooled pistons, 8.5:1; 300 hp at 6,400 rpm and 283 lb-ft at 3,600 rpm for the US, 276 hp and 286 lb-ft as advertised in Japan, 225 hp for mainland Europe"
  ],
  "productionTotal": null,
- "productionNotes": "No single production total for the Z32 can be asserted from the sources consulted here. Wikipedia's aggregated figure is 164,170 cars, split 99,286 export and 64,884 domestic. The JDM Registry, which describes its data as traced to factory records, gives a worldwide total of 164,534 and a Japanese domestic figure of 65,083. The two are close enough to suggest a shared ancestry and far enough apart to show that at least one has been adjusted; neither accounts for the other, so productionTotal is left null.\n\nThe United States figures are better documented and still not tidy. Zhome.com publishes a model-year table taken from VINs in Nissan's FAST parts system, totalling 89,156 American cars: 39,104 in 1990, 18,534 in 1991, 7,172 in 1992, 12,374 in 1993, 5,415 in 1994, 3,628 in 1995 and 2,629 in 1996, with the last 300 counted separately as the Commemorative Edition. The Z32 Wiki reproduces that total and the variant split: 36,826 two-seat naturally aspirated, 30,210 2+2 naturally aspirated, 18,274 turbo and 3,846 convertible. Wikipedia runs a few hundred higher in most years - 39,290 for 1990, 17,652 for 1991, 2,929 for 1996 - because those are calendar-year sales rather than model-year builds, and the two series should not be averaged or added.\n\nThe JDM Registry's own variant split - 29,262 GCZ32, 23,507 GZ32, 542 HZ32 - uses chassis-code families in a way that does not match Nissan's, which files its 2+2 twin turbo under GCZ32. European and British volumes are not published in anything consulted here; Wikipedia states only that continental European and UK cars were sold between 1990 and 1996, UK sales ending in 1994, with the two-seater available in Britain but not on the mainland.",
+ "productionNotes": "No single production total for the Z32 can be asserted from the sources consulted here. Wikipedia's aggregated figure is 164,170 cars, split 99,286 export and 64,884 domestic. The JDM Registry, which describes its data as traced to factory records, gives a worldwide total of 164,534 and a Japanese domestic figure of 65,083. The two are close enough to suggest a shared ancestry and far enough apart to show that at least one has been adjusted; neither accounts for the other, so productionTotal is left null.\n\nThe United States figures are better documented and still not tidy. Zhome.com publishes a model-year table taken from VINs in Nissan's FAST parts system, totaling 89,156 American cars: 39,104 in 1990, 18,534 in 1991, 7,172 in 1992, 12,374 in 1993, 5,415 in 1994, 3,628 in 1995 and 2,629 in 1996, with the last 300 counted separately as the Commemorative Edition. The Z32 Wiki reproduces that total and the variant split: 36,826 two-seat naturally aspirated, 30,210 2+2 naturally aspirated, 18,274 turbo and 3,846 convertible. Wikipedia runs a few hundred higher in most years - 39,290 for 1990, 17,652 for 1991, 2,929 for 1996 - because those are calendar-year sales rather than model-year builds, and the two series should not be averaged or added.\n\nThe JDM Registry's own variant split - 29,262 GCZ32, 23,507 GZ32, 542 HZ32 - uses chassis-code families in a way that does not match Nissan's, which files its 2+2 twin turbo under GCZ32. European and British volumes are not published in anything consulted here; Wikipedia states only that continental European and UK cars were sold between 1990 and 1996, UK sales ending in 1994, with the two-seater available in Britain but not on the mainland.",
  "notableTrims": [
   {
    "name": "300ZX (naturally aspirated, United States)",
-   "note": "VG30DE at 222 bhp, sold as a 2+0 T-top, a fixed-roof slicktop from 1991 and a 2+2. Two thirds of American Z32 production was naturally aspirated, so good turbo cars are the scarce half of the market."
+   "note": "VG30DE at 222 hp, sold as a 2+0 T-top, a fixed-roof slicktop from 1991 and a 2+2. Two thirds of American Z32 production was naturally aspirated, so good turbo cars are the scarce half of the market."
   },
   {
    "name": "300ZX Twin Turbo (United States and export)",
-   "note": "VG30DETT at 300 bhp with Super HICAS and two-mode adjustable damping, sold in the United States only as a 2+0 T-top. Zhome counts 18,274 American turbo cars against 67,036 naturally aspirated."
+   "note": "VG30DETT at 300 hp with Super HICAS and two-mode adjustable damping, sold in the United States only as a 2+0 T-top. Zhome counts 18,274 American turbo cars against 67,036 naturally aspirated."
   },
   {
    "name": "300ZX Convertible",
@@ -50,7 +50,7 @@ export const seed300zxZ32 = {
   },
   {
    "name": "UK and European 2+2 Twin Turbo",
-   "note": "Continental cars were 2+2 twin turbos rated at 228 PS; Britain also received the two-seater. UK sales stopped in 1994, two years before the United States, which is why grey imports dominate the British market."
+   "note": "Continental cars were 2+2 twin turbos rated at 225 hp; Britain also received the two-seater. UK sales stopped in 1994, two years before the United States, which is why gray imports dominate the British market."
   }
  ],
  "specs": {
@@ -58,25 +58,25 @@ export const seed300zxZ32 = {
   "chassis": "Unitary steel body with front and rear subframes; 2+0 and long-wheelbase 2+2 shells",
   "engine": "2,960 cc VG30DE or VG30DETT 60-degree DOHC 24-valve V6 with variable intake cam timing; two parallel Garrett turbochargers and two intercoolers on the DETT",
   "valvetrain": "Twin overhead camshafts per bank, four valves per cylinder, coil-on-plug ignition",
-  "power": "222 bhp (VG30DE, US); 300 bhp (VG30DETT, US and export); 280 PS as advertised in Japan; 228 PS for mainland Europe - all at 6,400 rpm, all manufacturer claims",
-  "torque": "198 lb-ft at 4,800 rpm (VG30DE, US); 283 lb-ft at 3,600 rpm (VG30DETT, US); 388 Nm quoted by Nissan for the Japanese twin turbo",
+  "power": "222 hp (VG30DE, US); 300 hp (VG30DETT, US and export); 276 hp as advertised in Japan; 225 hp for mainland Europe - all at 6,400 rpm, all manufacturer claims",
+  "torque": "198 lb-ft at 4,800 rpm (VG30DE, US); 283 lb-ft at 3,600 rpm (VG30DETT, US); 286 lb-ft quoted by Nissan for the Japanese twin turbo",
   "transmission": "5-speed manual standard, 4-speed automatic optional",
   "suspension": "Multi-link front and rear; two-mode adjustable damping on turbo cars",
   "steering": "Rack and pinion; Super HICAS rear-wheel steering on turbo models, hydraulic to 1993 and electric from 1994",
-  "brakes": "Ventilated discs all round, with opposed four-piston aluminium calipers front and rear on turbo cars",
-  "weight": "1,492 kg for a 1995 US naturally aspirated 2+0 hardtop to 1,625 kg for a 2+2 turbo; Nissan quotes 1,570 kg for the Japanese 2+2 twin turbo",
+  "brakes": "Ventilated discs all round, with opposed four-piston aluminum calipers front and rear on turbo cars",
+  "weight": "3,289 lb for a 1995 US naturally aspirated 2+0 hardtop to 3,583 lb for a 2+2 turbo; Nissan quotes 3,461 lb for the Japanese 2+2 twin turbo",
   "wheelbase": "2,451 mm (96.5 in) for the 2+0; 2,570 mm quoted by Nissan for the 2+2",
   "dimensions": "4,305 x 1,791 x 1,250 mm for the 2+0; 4,525 x 1,800 x 1,255 mm quoted by Nissan for the 2+2",
   "acceleration": "0-60 mph published between 5.2 and 6.0 seconds for the twin turbo and 6.5-6.7 seconds for the naturally aspirated car; sources disagree",
   "top_speed": "155-156 mph, electronically limited",
   "drag_coefficient": "0.31, marginally worse than the Z31's 0.30"
  },
- "summary": "The Z32 Nissan 300ZX replaced the Z31 in 1989 and stayed in production for eleven years, sold at home as the Fairlady Z and everywhere else as the 300ZX. Nissan approved the shape in October 1986 and developed the body with CAD on a Cray supercomputer, then built it around a 2,960 cc DOHC V6 offered either naturally aspirated or, as the VG30DETT, with two parallel Garrett turbochargers and a pair of intercoolers. Export twin-turbo cars were rated at 300 bhp; Japanese cars carried 280 PS, because the domestic industry had just agreed among itself not to advertise more. Multi-link suspension at both ends, four-piston aluminium calipers and Super HICAS rear-wheel steering made it the most technically ambitious Z yet and also the hardest to service, since almost nothing under the bonnet can be reached without removing something else first. It sold in huge numbers in America in 1990, then faded as the yen rose and the price climbed, and Nissan withdrew it from the United States after 1996. Japanese production continued until 2000.",
- "history": "## Drawn in Three Dimensions\nNissan management approved the Z32's final form on 1 October 1986, from work by Isao Sono and Toshio Yamashita, and developed the body with CAD software running on a Cray supercomputer, among the first production cars designed that way rather than modelled and tunnelled. It abandoned the Z31's pop-up lamps for fixed faired units and a wide, low, cab-forward stance, though not for slipperiness alone: the drag coefficient came out at 0.31, marginally worse than the car it replaced. Japan saw it in July 1989, twenty years after the original S30, and America received it as a 1990 model.\n\n## One Engine, Three Published Outputs\nThe 2,960 cc V6 came two ways. The VG30DE was a naturally aspirated DOHC 24-valve unit with variable intake cam timing and coil-on-plug ignition, quoted at 222 bhp for the United States. The VG30DETT added two parallel Garrett turbochargers, two intercoolers, oil-cooled pistons and a lower 8.5:1 compression ratio, and was rated at 300 bhp and 283 lb-ft for export. In Japan the same engine was advertised at 280 PS. That figure was not a mechanical fact but a commercial one: at the end of 1988 the major Japanese manufacturers settled on a voluntary ceiling of 280 PS for domestic advertising, a restraint that held until 2004, and the Z32 was the first car marketed under it. Continental European cars, tuned for different emissions rules, were quoted at 228 PS. One engine, three numbers, and only one of them describes anything mechanical.\n\n## Chassis Ambition and Its Price\nUnderneath was multi-link suspension front and rear, ventilated discs with opposed four-piston aluminium calipers at both ends, two-mode adjustable damping on turbo cars, and Super HICAS rear-wheel steering, which steers the rear wheels briefly out of phase with the fronts to rotate the car into a corner, then brings them into phase to settle it; actuation was hydraulic until 1993 and electric from 1994. All of it had to be packaged under a low bonnet line, and the consequence is the defining ownership fact about the car: there is effectively no free space in the engine bay. The camshaft belt is an interference design due every 60,000 miles or 48 months and takes around five hours simply to reach. Replacing injectors or resealing a cam cover means removing the upper intake plenum. Jobs that are an hour on other cars are a day here, and that arithmetic has governed how these cars have been maintained, or not, for thirty years.\n\n## Roofs, a Convertible, and the 1994 Revisions\nEvery Z32 initially carried T-bar roof panels; a fixed-roof slicktop two-seater followed, and a longer-wheelbase 2+2 sat on 2,570 mm against the two-seater's 2,451 mm. A convertible was announced in August 1992 and sold in America from 1993, naturally aspirated only. The 1994 model year brought the most visible revision of the run: a taller pedestal-type rear spoiler, a passenger airbag as standard, seatbelt anchorages moved from the doors to the pillars, keyless entry, and the switch of Super HICAS to electric actuation.\n\n## Daytona, Le Mans, and the Retreat from America\nIn 1994 Clayton Cunningham Racing's 300ZX Turbo won the Daytona 24 Hours outright from the GTS class and took the IMSA GTS class at Le Mans with fifth overall for Steve Millen, Johnny O'Connell and John Morton. The showroom story ran the other way. American volume fell from around 39,000 cars in 1990 to under 3,000 in 1996 as the yen strengthened, buyers moved to sport utilities and the price climbed: a 1990 Turbo listed near $33,000, a 1996 Turbo at $45,422. Nissan withdrew the Z from the United States after 1996, marking the last 300 cars as a Commemorative Edition, and did not return until the 350Z of 2003. In Japan the Fairlady Z carried on quietly until 2000.",
- "marketNotes": "As of August 2026, classic.com's benchmark for the twin-turbo Z32 stands at $28,055 against an average recorded sale of $29,778, with tracked results running from $4,500 for a 1992 car in November 2022 to $52,990 for a 1993 car in August 2026, and the trend arrow pointing down. The naturally aspirated car sits well below it on the same date, at a $13,103 benchmark and a $15,551 average, its lowest tracked result $3,600 in October 2025, also trending down. Japanese-market Fairlady Z imports are tracked separately and lower again: an $11,383 benchmark and a $12,621 average as of August 2026, from $5,350 for a 1990 2+2 in March 2026 to $27,000 for a 1991 car in July 2026. Ordinary transactions are unremarkable - a modified 31,000-mile 1993 Turbo sold for $25,300 at Mecum Kissimmee on 9 January 2025 - and the headline results belong to preservation cars rather than to the model. A 1996 Commemorative Edition, number 300 of 300, showing around 530 miles and previously displayed at the Petersen Automotive Museum, made $90,100 in 2017 against a 1996 Turbo list price of $45,422; a 920-mile car had made $69,900 the year before. British guidance from Hagerty UK's buying guide, read in August 2026, put sound cars needing work near £12,500, documented original UK manual cars near £20,000 and the best turbos above £40,000, with naturally aspirated cars roughly 30 per cent behind.",
- "whatToLookFor": "Documented cam-belt history comes first. The interval is 60,000 miles or 48 months, the engine is an interference design, and the job is deep enough that owners defer it; a car without paperwork should be costed as though it is due, along with the water pump, tensioner, cam and crank seals and coolant hoses done at the same time. Ask whether the upper plenum has ever been off and whether a coolant bypass was fitted while it was, since that one modification makes every later job cheaper. Heat is the second theme: baked wiring insulation, brittle vacuum lines and crumbling connectors, worst on early cars. On turbo models watch for smoke on overrun pointing to turbo seals, which typically weep between 60,000 and 80,000 miles. Check that Super HICAS still functions rather than having been locked out with an eliminator bar. Bodily, T-top cars leak and rot their seat rails, and British cars add sill corrosion in a triple-layer structure that needs a specialist, plus rear arches; pre-1991 master cylinders leak and front tension-rod bushings perish. Establish the body exactly - 2+0 or 2+2, T-top or slicktop, turbo or naturally aspirated - because the value spread between them is wider than the condition spread within any one of them. Modified turbo cars are the norm rather than the exception, and standard, unopened examples carry the premium. On a Commemorative Edition, the number and its certificate are the car.",
- "commonProblems": "Heat is the root of most of it. The engine bay runs hot and packs tightly, and over three decades that has degraded wiring looms, vacuum lines and connectors, with early cars worst affected. The camshaft belt is an interference design: a failure destroys valves and pistons, and reaching it takes about five hours before any parts are fitted. Owner accounts put the full belt package at roughly $450 in Nissan parts and eight to nine hours of dealer labour, with factory turbocharger seals typically weeping from 60,000 to 80,000 miles and a complete turbo replacement quoted at 15.7 hours plus around $2,400 in parts; one long-term owner budgets $3,000 a year beyond fuel, oil and insurance. Fuel injectors and their hoses leak with age, and replacing them means removing the upper plenum. Ignition coils and the ignition power transistor unit fail, often announced by a light rapid ticking. Alternators fail; pre-1991 master cylinders leak; early variable cam timing springs weaken; automatic transmissions overheat; front tension-rod bushings perish; T-top seals let water in and corrode the seat rails. NHTSA's database returns no recall campaigns at all for the 1990-1996 300ZX; the one campaign it holds for the nameplate, 95I006000 of January 1995, covering leaking fuel injectors and hoses, is filed against the earlier Z31 model years.",
- "valueTrajectory": "The Z32's value curve is unusual in that it has already flattened. American cars depreciated conventionally through the 1990s and 2000s, when a car with an eight-hour timing belt and a full engine bay was worth less than the cost of putting it right, and a great many were modified, tracked or abandoned. The first real re-rating came with the wave of nostalgia for 1990s Japanese performance cars: by 2016 and 2017, preservation examples were making $69,900 and then $90,100, and Hagerty's commentary at the time treated those results as evidence the model had reached the collector market while cautioning that ordinary cars had not moved with them. That caution reads correctly now. As of August 2026 classic.com shows both the twin turbo and the naturally aspirated car trending downward from benchmarks of $28,055 and $13,103. The market has sorted itself into two populations that are barely connected: numbered, documented, unmodified cars with service history, and everything else. That gap is now wider than the gap between a turbo and a non-turbo, and the supply of the first population does not grow.",
+ "summary": "The Z32 Nissan 300ZX replaced the Z31 in 1989 and stayed in production for eleven years, sold at home as the Fairlady Z and everywhere else as the 300ZX. Nissan approved the shape in October 1986 and developed the body with CAD on a Cray supercomputer, then built it around a 2,960 cc DOHC V6 offered either naturally aspirated or, as the VG30DETT, with two parallel Garrett turbochargers and a pair of intercoolers. Export twin-turbo cars were rated at 300 hp; Japanese cars carried 276 hp, because the domestic industry had just agreed among itself not to advertise more. Multi-link suspension at both ends, four-piston aluminum calipers and Super HICAS rear-wheel steering made it the most technically ambitious Z yet and also the hardest to service, since almost nothing under the hood can be reached without removing something else first. It sold in huge numbers in America in 1990, then faded as the yen rose and the price climbed, and Nissan withdrew it from the United States after 1996. Japanese production continued until 2000.",
+ "history": "## Drawn in Three Dimensions\n\nNissan management approved the Z32's final form on 1 October 1986, from work by Isao Sono and Toshio Yamashita, and developed the body with CAD software running on a Cray supercomputer, among the first production cars designed that way rather than modeled in clay and shaped in a wind tunnel. It abandoned the Z31's pop-up lamps for fixed faired units and a wide, low, cab-forward stance, though not for slipperiness alone: the drag coefficient came out at 0.31, marginally worse than the car it replaced. Japan saw it in July 1989, twenty years after the original S30, and America received it as a 1990 model.\n\n## One Engine, Three Published Outputs\n\nThe 2,960 cc V6 came two ways. The VG30DE was a naturally aspirated DOHC 24-valve unit with variable intake cam timing and coil-on-plug ignition, quoted at 222 hp for the United States. The VG30DETT added two parallel Garrett turbochargers, two intercoolers, oil-cooled pistons and a lower 8.5:1 compression ratio, and was rated at 300 hp and 283 lb-ft for export. In Japan the same engine was advertised at 276 hp. That figure was not a mechanical fact but a commercial one: at the end of 1988 the major Japanese manufacturers settled on a voluntary ceiling of 276 hp for domestic advertising, a restraint that held until 2004, and the Z32 was the first car marketed under it. Continental European cars, tuned for different emissions rules, were quoted at 225 hp. One engine, three numbers, and only one of them describes anything mechanical.\n\n## Chassis Ambition and Its Price\n\nUnderneath was multi-link suspension front and rear, ventilated discs with opposed four-piston aluminum calipers at both ends, two-mode adjustable damping on turbo cars, and Super HICAS rear-wheel steering, which steers the rear wheels briefly out of phase with the fronts to rotate the car into a corner, then brings them into phase to settle it; actuation was hydraulic until 1993 and electric from 1994. All of it had to be packaged under a low hood line, and the consequence is the defining ownership fact about the car: there is effectively no free space in the engine bay. The camshaft belt is an interference design due every 60,000 miles or 48 months and takes around five hours simply to reach. Replacing injectors or resealing a cam cover means removing the upper intake plenum. Jobs that are an hour on other cars are a day here, and that arithmetic has governed how these cars have been maintained, or not, for thirty years.\n\n## Roofs, a Convertible, and the 1994 Revisions\n\nEvery Z32 initially carried T-bar roof panels; a fixed-roof slicktop two-seater followed, and a longer-wheelbase 2+2 sat on 2,570 mm against the two-seater's 2,451 mm. A convertible was announced in August 1992 and sold in America from 1993, naturally aspirated only. The 1994 model year brought the most visible revision of the run: a taller pedestal-type rear spoiler, a passenger airbag as standard, seatbelt anchorages moved from the doors to the pillars, keyless entry, and the switch of Super HICAS to electric actuation.\n\n## Daytona, Le Mans, and the Retreat from America\n\nIn 1994 Clayton Cunningham Racing's 300ZX Turbo won the Daytona 24 Hours outright from the GTS class and took the IMSA GTS class at Le Mans with fifth overall for Steve Millen, Johnny O'Connell and John Morton. The showroom story ran the other way. American volume fell from around 39,000 cars in 1990 to under 3,000 in 1996 as the yen strengthened, buyers moved to sport utilities and the price climbed: a 1990 Turbo listed near $33,000, a 1996 Turbo at $45,422. Nissan withdrew the Z from the United States after 1996, marking the last 300 cars as a Commemorative Edition, and did not return until the 350Z of 2003. In Japan the Fairlady Z carried on quietly until 2000.",
+ "marketNotes": "As of September 2026, classic.com's benchmark for the twin-turbo Z32 stands at $28,182 against an average recorded sale of $29,815, with the trend arrow pointing down and tracked results running from $4,500 for a 1992 car in November 2022 to $55,000 for a 1991 twin turbo in September 2026. Recent ordinary transactions sit a long way below that ceiling: $37,000 for a 1991 car on 31 August 2026, $25,500 for a 1990 car on 14 August 2026 and $21,000 for a 1993 car on 20 August 2026. The naturally aspirated car sits well below the turbo on the same date, at a $13,103 benchmark and a $15,551 average as of September 2026, its lowest tracked result $3,600 for a 1990 project car in October 2025, also trending down. Japanese-market Fairlady Z imports are tracked separately and lower again: an $11,383 benchmark and a $12,621 average as of September 2026, the lowest tracked sale $5,350 for a 1990 2+2 in March 2026. Across the generation as a whole classic.com shows a benchmark and average of $23,827 as of September 2026. Auction results follow the same pattern, a modified 31,000-mile 1993 Turbo selling for $25,300 at Mecum Kissimmee on 9 January 2025, and the headline numbers belong to preservation cars rather than to the model. A 1996 Commemorative Edition, number 300 of 300, showing around 530 miles and previously displayed at the Petersen Automotive Museum, made $90,100 in 2017 against a 1996 Turbo list price of $45,422; a 920-mile car had made $69,900 the year before.",
+ "whatToLookFor": "Documented cam-belt history comes first. The interval is 60,000 miles or 48 months, the engine is an interference design, and the job is deep enough that owners defer it; a car without paperwork should be costed as though it is due, along with the water pump, tensioner, cam and crank seals and coolant hoses done at the same time. Ask whether the upper plenum has ever been off and whether a coolant bypass was fitted while it was, since that one modification makes every later job cheaper. Heat is the second theme: baked wiring insulation, brittle vacuum lines and crumbling connectors, worst on early cars. On turbo models watch for smoke on overrun pointing to turbo seals, which typically weep between 60,000 and 80,000 miles. Check that Super HICAS still functions rather than having been locked out with an eliminator bar. Bodily, T-top cars leak and rot their seat rails, and cars that have lived through salted winters add sill corrosion in a triple-layer structure that needs a specialist, plus rear arches; pre-1991 master cylinders leak and front tension-rod bushings perish. Establish the body exactly - 2+0 or 2+2, T-top or slicktop, turbo or naturally aspirated - because the value spread between them is wider than the condition spread within any one of them. Modified turbo cars are the norm rather than the exception, and standard, unopened examples carry the premium. On a Commemorative Edition, the number and its certificate are the car.",
+ "commonProblems": "Heat is the root of most of it. The engine bay runs hot and packs tightly, and over three decades that has degraded wiring looms, vacuum lines and connectors, with early cars worst affected. The camshaft belt is an interference design: a failure destroys valves and pistons, and reaching it takes about five hours before any parts are fitted. Owner accounts put the full belt package at roughly $450 in Nissan parts and eight to nine hours of dealer labor, with factory turbocharger seals typically weeping from 60,000 to 80,000 miles and a complete turbo replacement quoted at 15.7 hours plus around $2,400 in parts; one long-term owner budgets $3,000 a year beyond fuel, oil and insurance. Fuel injectors and their hoses leak with age, and replacing them means removing the upper plenum. Ignition coils and the ignition power transistor unit fail, often announced by a light rapid ticking. Alternators fail; pre-1991 master cylinders leak; early variable cam timing springs weaken; automatic transmissions overheat; front tension-rod bushings perish; T-top seals let water in and corrode the seat rails. NHTSA's database returns no recall campaigns at all for the 1990-1996 300ZX; the one campaign it holds for the nameplate, 95I006000 of January 1995, covering leaking fuel injectors and hoses, is filed against the earlier Z31 model years.",
+ "valueTrajectory": "The Z32's value curve is unusual in that it has already flattened. American cars depreciated conventionally through the 1990s and 2000s, when a car with an eight-hour timing belt and a full engine bay was worth less than the cost of putting it right, and a great many were modified, tracked or abandoned. The first real re-rating came with the wave of nostalgia for 1990s Japanese performance cars: by 2016 and 2017, preservation examples were making $69,900 and then $90,100, and Hagerty's commentary at the time treated those results as evidence the model had reached the collector market while cautioning that ordinary cars had not moved with them. That caution reads correctly now. As of September 2026 classic.com shows both the twin turbo and the naturally aspirated car trending downward from benchmarks of $28,182 and $13,103. The market has sorted itself into two populations that are barely connected: numbered, documented, unmodified cars with service history, and everything else. That gap is now wider than the gap between a turbo and a non-turbo, and the supply of the first population does not grow.",
  "overallConfidence": "high",
  "sources": [
   {
@@ -86,7 +86,7 @@ export const seed300zxZ32 = {
    "publisher": "Nissan Motor Co.",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Nissan's record for the 1989 JDM 2+2 twin turbo: GCZ32, VG30DETT 2,960 cc, 280 PS, 388 Nm, 4,525 x 1,800 x 1,255 mm on 2,570 mm, 1,570 kg, multilink, Super HICAS, four-piston aluminium calipers."
+   "notes": "Nissan's record for the 1989 JDM 2+2 twin turbo: GCZ32, VG30DETT 2,960 cc, 276 hp, 286 lb-ft, 4,525 x 1,800 x 1,255 mm on 2,570 mm, 3,461 lb, multilink, Super HICAS, four-piston aluminum calipers."
   },
   {
    "ref": "nissan-z-heritage-release",
@@ -95,7 +95,7 @@ export const seed300zxZ32 = {
    "publisher": "Nissan North America",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Dates the debut to July 1989, twenty years after the S30; quotes 280 PS twin turbo and 230 PS naturally aspirated in Japanese tune; convertible August 1992."
+   "notes": "Dates the debut to July 1989, twenty years after the S30; quotes 276 hp twin turbo and 227 hp naturally aspirated in Japanese tune; convertible August 1992."
   },
   {
    "ref": "lemans-1994-gts",
@@ -104,7 +104,7 @@ export const seed300zxZ32 = {
    "publisher": "Automobile Club de l'Ouest",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Organiser's account: the No. 75 Cunningham 300ZX won the IMSA GTS class and finished fifth overall at Le Mans in 1994 with Millen, O'Connell and Morton driving."
+   "notes": "Organizer's account: the No. 75 Cunningham 300ZX won the IMSA GTS class and finished fifth overall at Le Mans in 1994 with Millen, O'Connell and Morton driving."
   },
   {
    "ref": "wikipedia-daytona-1994",
@@ -122,7 +122,7 @@ export const seed300zxZ32 = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Gives 164,170 total production (99,286 export, 64,884 domestic), calendar-year US sales, the 1 October 1986 design approval, Cray CAD development, US kerb weights by body, the 1994 revisions, the 280 PS ceiling, the 228 PS European figure, the Version S and R grades and UK/European scope."
+   "notes": "Gives 164,170 total production (99,286 export, 64,884 domestic), calendar-year US sales, the 1 October 1986 design approval, Cray CAD development, US curb weights by body, the 1994 revisions, the 276 hp ceiling, the 225 hp European figure, the Version S and R grades and UK/European scope."
   },
   {
    "ref": "z32wiki-production",
@@ -158,7 +158,7 @@ export const seed300zxZ32 = {
    "publisher": "Concept Z Performance (Z32 Wiki)",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Z32 Super HICAS: hydraulic solenoid actuation 1990-1993, electric motors from 1994, counter-phase rear steer behaviour, and the common eliminator-bar delete."
+   "notes": "Z32 Super HICAS: hydraulic solenoid actuation 1990-1993, electric motors from 1994, counter-phase rear steer behavior, and the common eliminator-bar delete."
   },
   {
    "ref": "zhome-production",
@@ -167,7 +167,7 @@ export const seed300zxZ32 = {
    "publisher": "ZHome",
    "sourceType": "registry",
    "reliability": "medium",
-   "notes": "US model-year table from Nissan FAST VINs: 39,104 (1990) falling to 2,629 (1996) plus the last 300, totalling 89,156; states these are model-year builds, not calendar-year sales."
+   "notes": "US model-year table from Nissan FAST VINs: 39,104 (1990) falling to 2,629 (1996) plus the last 300, totaling 89,156; states these are model-year builds, not calendar-year sales."
   },
   {
    "ref": "zhome-maintenance-costs",
@@ -176,16 +176,16 @@ export const seed300zxZ32 = {
    "publisher": "ZHome",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Owner accounting: five hours simply to reach the cam belt, about $450 parts plus eight to nine hours labour for the 60,000-mile package, turbo seals weeping from 60,000-80,000 miles, 15.7 hours plus $2,400 for a turbo replacement, $3,000 a year."
+   "notes": "Owner accounting: five hours simply to reach the cam belt, about $450 parts plus eight to nine hours labor for the 60,000-mile package, turbo seals weeping from 60,000-80,000 miles, 15.7 hours plus $2,400 for a turbo replacement, $3,000 a year."
   },
   {
    "ref": "jdm-registry-z32",
-   "title": "Z32 Production Matrix - Colours & Variants",
+   "title": "Z32 Production Matrix - Colors & Variants",
    "url": "https://thejdmregistry.com/fairlady-z32/production",
    "publisher": "The JDM Registry",
    "sourceType": "registry",
    "reliability": "medium",
-   "notes": "Worldwide Z32 total of 164,534 and a Japanese domestic total of 65,083 across twenty colours, with a split of 29,262 GCZ32, 23,507 GZ32 and 542 HZ32; says its sources sometimes disagree."
+   "notes": "Worldwide Z32 total of 164,534 and a Japanese domestic total of 65,083 across twenty colors, with a split of 29,262 GCZ32, 23,507 GZ32 and 542 HZ32; says its sources sometimes disagree."
   },
   {
    "ref": "grassroots-z32-guide",
@@ -194,7 +194,7 @@ export const seed300zxZ32 = {
    "publisher": "Grassroots Motorsports",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "VG30DE 222 hp / 198 lb-ft at 10.0:1 and VG30DETT 300 hp / 283 lb-ft at 8.5:1 with Garrett turbos and oil-cooled pistons; 0-60 in 6.0 s and 14.4 s at over 102 mph; zero free space under the bonnet; the 1991 hardtop, 1993 convertible and the 1994 spoiler, airbag and electric Super HICAS; alternator, coil and T-top seat-rail faults."
+   "notes": "VG30DE 222 hp / 198 lb-ft at 10.0:1 and VG30DETT 300 hp / 283 lb-ft at 8.5:1 with Garrett turbos and oil-cooled pistons; 0-60 in 6.0 s and 14.4 s at over 102 mph; zero free space under the hood; the 1991 hardtop, 1993 convertible and the 1994 spoiler, airbag and electric Super HICAS; alternator, coil and T-top seat-rail faults."
   },
   {
    "ref": "hagerty-us-90k",
@@ -212,7 +212,7 @@ export const seed300zxZ32 = {
    "publisher": "Hagerty UK",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "British guide: UK sales ending around 1994; 0-60 of 6.5 s NA and 5.2 s turbo; faults covering turbo seals, hot-running cooling, heat-damaged looms, cam end seal leaks, T-top leaks, triple-layer sill rot and rear arch corrosion; values of £12,500, £20,000 and £40,000-plus."
+   "notes": "British guide: UK sales ending around 1994; 0-60 of 6.5 s NA and 5.2 s turbo; faults covering turbo seals, hot-running cooling, heat-damaged looms, cam end seal leaks, T-top leaks, triple-layer sill rot and rear arch corrosion. Cited here only for fault patterns and the 0-60 figures; its values are quoted in sterling for the British market and are not used."
   },
   {
    "ref": "classic-z32-tt",
@@ -221,7 +221,7 @@ export const seed300zxZ32 = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "Read August 2026: benchmark $28,055 trending down, average sale $29,778, tracked from $4,500 (1992 car, November 2022) to $52,990 (1993 car, August 2026)."
+   "notes": "Read September 2026: benchmark $28,182 trending down, average sale $29,815, tracked from $4,500 (1992 car, November 2022) to $55,000 (1991 twin turbo, September 2026), with recent sales of $37,000 on 31 August 2026, $25,500 on 14 August 2026 and $21,000 on 20 August 2026."
   },
   {
    "ref": "classic-z32-na",
@@ -230,7 +230,16 @@ export const seed300zxZ32 = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "Read August 2026: benchmark $13,103 trending down against an average sale of $15,551, lowest tracked result $3,600, October 2025."
+   "notes": "Read September 2026: benchmark $13,103 trending down against an average sale of $15,551, lowest tracked result $3,600 for a 1990 project car, October 2025."
+  },
+  {
+   "ref": "classic-z32-generation",
+   "title": "Nissan Z-car - Z32 Market",
+   "url": "https://www.classic.com/m/nissan/z-car/z32/",
+   "publisher": "classic.com",
+   "sourceType": "market-data",
+   "reliability": "high",
+   "notes": "Generation-wide page read September 2026: benchmark and average sale both $23,827 across 187 tracked listings, highest recorded sale $55,000 (1991 twin turbo, September 2026), lowest $3,600 (1990 project car, 22 October 2025), with the twin turbo at $28,182, the naturally aspirated car at $13,103 and Fairlady Z imports at $11,383."
   },
   {
    "ref": "classic-z32-fairlady",
@@ -239,7 +248,7 @@ export const seed300zxZ32 = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "Japanese-market imports tracked separately, read August 2026: benchmark $11,383 trending down, average $12,621, from $5,350 (1990 2+2, March 2026) to $27,000 (July 2026)."
+   "notes": "Japanese-market imports tracked separately, read September 2026: benchmark $11,383 trending down, average $12,621, lowest tracked sale $5,350 (1990 2+2, March 2026)."
   },
   {
    "ref": "classic-mecum-1993-turbo",
@@ -248,7 +257,7 @@ export const seed300zxZ32 = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "Lot record: 1993 300ZX Turbo, VIN JN1CZ24H5PX536414, manual, 31,000 miles, catalogued as modified, sold $25,300 as lot E112, Mecum Kissimmee, 9 January 2025."
+   "notes": "Lot record: 1993 300ZX Turbo, VIN JN1CZ24H5PX536414, manual, 31,000 miles, cataloged as modified, sold $25,300 as lot E112, Mecum Kissimmee, 9 January 2025."
   },
   {
    "ref": "curbside-1990-turbo",
@@ -257,7 +266,7 @@ export const seed300zxZ32 = {
    "publisher": "Curbside Classic",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Reproduces Road & Track coverage of March and December 1989 and an Automobile comparison of November 1989: $33,000 base for the 1990 Turbo, $35,700 as tested, and a Porsche 944 Turbo 47 per cent dearer at $48,392."
+   "notes": "Reproduces Road & Track coverage of March and December 1989 and an Automobile comparison of November 1989: $33,000 base for the 1990 Turbo, $35,700 as tested, and a Porsche 944 Turbo 47 percent dearer at $48,392."
   },
   {
    "ref": "autoevolution-280ps",
@@ -266,7 +275,7 @@ export const seed300zxZ32 = {
    "publisher": "autoevolution",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "The voluntary 276 hp / 280 PS domestic advertising ceiling was adopted informally by Toyota, Honda, Nissan, Mazda and Mitsubishi at the end of 1988, held until 2004, and was routinely exceeded in practice."
+   "notes": "The voluntary 276 hp / 276 hp domestic advertising ceiling was adopted informally by Toyota, Honda, Nissan, Mazda and Mitsubishi at the end of 1988, held until 2004, and was routinely exceeded in practice."
   },
   {
    "ref": "nhtsa-recalls-300zx",
@@ -284,7 +293,7 @@ export const seed300zxZ32 = {
    "publisher": "Supercars.net",
    "sourceType": "specialist",
    "reliability": "low",
-   "notes": "1990 US twin turbo data: 2,451 mm wheelbase, 4,305 x 1,791 x 1,250 mm, 1,552 kg, 8.5:1, twin Garrett turbochargers, $33,000 base, and 5.6 s to 60 mph and 13.7 s at 102 mph, conflicting with other published tests."
+   "notes": "1990 US twin turbo data: 2,451 mm wheelbase, 4,305 x 1,791 x 1,250 mm, 3,422 lb, 8.5:1, twin Garrett turbochargers, $33,000 base, and 5.6 s to 60 mph and 13.7 s at 102 mph, conflicting with other published tests."
   }
  ],
  "claims": [
@@ -301,7 +310,7 @@ export const seed300zxZ32 = {
   },
   {
    "section": "specs",
-   "claimText": "The 2,960 cc V6 came in two forms: the naturally aspirated VG30DE with variable intake cam timing and coil-on-plug ignition at 222 bhp and 198 lb-ft for the United States and 230 PS in Japanese tune, and the VG30DETT with two parallel Garrett turbochargers, two intercoolers, oil-cooled pistons and 8.5:1 compression at 300 bhp and 283 lb-ft for the United States.",
+   "claimText": "The 2,960 cc V6 came in two forms: the naturally aspirated VG30DE with variable intake cam timing and coil-on-plug ignition at 222 hp and 198 lb-ft for the United States and 227 hp in Japanese tune, and the VG30DETT with two parallel Garrett turbochargers, two intercoolers, oil-cooled pistons and 8.5:1 compression at 300 hp and 283 lb-ft for the United States.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -313,7 +322,7 @@ export const seed300zxZ32 = {
   },
   {
    "section": "history",
-   "claimText": "The same VG30DETT was advertised at 280 PS in Japan because Japanese manufacturers adopted a voluntary domestic output ceiling of 280 PS (276 hp) at the end of 1988, which held until 2004; the Z32 was the first car marketed under it, and mainland European cars were quoted at 228 PS on a different emissions tune.",
+   "claimText": "The same VG30DETT was advertised at 276 hp in Japan because Japanese manufacturers adopted a voluntary domestic output ceiling of 276 hp at the end of 1988, which held until 2004; the Z32 was the first car marketed under it, and mainland European cars were quoted at 225 hp on a different emissions tune.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -324,7 +333,7 @@ export const seed300zxZ32 = {
   },
   {
    "section": "specs",
-   "claimText": "The chassis uses multi-link suspension front and rear with ventilated discs and opposed four-piston aluminium calipers at both ends, and turbo models carry Super HICAS rear-wheel steering, which steers the rear wheels briefly out of phase with the fronts and then into phase and changed from hydraulic to electric actuation for 1994; Nissan gives 4,525 x 1,800 x 1,255 mm on a 2,570 mm wheelbase at 1,570 kg for the Japanese 2+2 twin turbo, against 4,305 mm and 2,451 mm for the American two-seater.",
+   "claimText": "The chassis uses multi-link suspension front and rear with ventilated discs and opposed four-piston aluminum calipers at both ends, and turbo models carry Super HICAS rear-wheel steering, which steers the rear wheels briefly out of phase with the fronts and then into phase and changed from hydraulic to electric actuation for 1994; Nissan gives 4,525 x 1,800 x 1,255 mm on a 2,570 mm wheelbase at 3,461 lb for the Japanese 2+2 twin turbo, against 4,305 mm and 2,451 mm for the American two-seater.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -418,7 +427,7 @@ export const seed300zxZ32 = {
   },
   {
    "section": "problems",
-   "claimText": "The VG30DE and VG30DETT are interference engines whose camshaft belt is due every 60,000 miles or 48 months and takes roughly five hours simply to reach, and routine work including fuel injector replacement and valve cover resealing requires removal of the upper intake plenum; owner accounting puts the full belt package at about $450 in Nissan parts plus eight to nine hours of dealer labour, a turbocharger replacement at 15.7 hours plus around $2,400 in parts, and a running budget of $3,000 a year.",
+   "claimText": "The VG30DE and VG30DETT are interference engines whose camshaft belt is due every 60,000 miles or 48 months and takes roughly five hours simply to reach, and routine work including fuel injector replacement and valve cover resealing requires removal of the upper intake plenum; owner accounting puts the full belt package at about $450 in Nissan parts plus eight to nine hours of dealer labor, a turbocharger replacement at 15.7 hours plus around $2,400 in parts, and a running budget of $3,000 a year.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -431,7 +440,7 @@ export const seed300zxZ32 = {
   },
   {
    "section": "problems",
-   "claimText": "Underbonnet heat degrades wiring looms, vacuum lines and connectors, and the recurring faults are turbo seal leaks, ignition coil and power transistor failures, alternator failure, leaking pre-1991 master cylinders, perished front tension-rod bushings, weak early variable cam timing springs, T-top water leaks with seat-rail corrosion, and sill and rear-arch rot on British cars.",
+   "claimText": "Underhood heat degrades wiring looms, vacuum lines and connectors, and the recurring faults are turbo seal leaks, ignition coil and power transistor failures, alternator failure, leaking pre-1991 master cylinders, perished front tension-rod bushings, weak early variable cam timing springs, T-top water leaks with seat-rail corrosion, and sill and rear-arch rot on British cars.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -452,20 +461,32 @@ export const seed300zxZ32 = {
   },
   {
    "section": "market",
-   "claimText": "As of August 2026 classic.com records a benchmark of $28,055 and an average sale of $29,778 for the twin turbo, $13,103 and $15,551 for the naturally aspirated car and $11,383 and $12,621 for Japanese-market Fairlady Z imports, all trending downward; against that, a modified 31,000-mile 1993 Turbo made $25,300 at Mecum Kissimmee in January 2025 while the Commemorative Edition number 300 of 300 made $90,100 in 2017 and a 920-mile car $69,900 the year before.",
+   "claimText": "As of September 2026 classic.com records a benchmark of $28,182 and an average sale of $29,815 for the twin turbo, $13,103 and $15,551 for the naturally aspirated car, $11,383 and $12,621 for Japanese-market Fairlady Z imports and $23,827 across the generation as a whole, all trending downward; against that, a modified 31,000-mile 1993 Turbo made $25,300 at Mecum Kissimmee in January 2025 while the Commemorative Edition number 300 of 300 made $90,100 in 2017 and a 920-mile car $69,900 the year before.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
     "classic-z32-tt",
     "classic-z32-na",
     "classic-z32-fairlady",
+    "classic-z32-generation",
     "classic-mecum-1993-turbo",
     "hagerty-us-90k"
    ]
   },
   {
+   "section": "market",
+   "claimText": "As of September 2026 the highest result classic.com records for a Z32 is $55,000 for a 1991 twin turbo sold in September 2026 and the lowest is $3,600 for a 1990 naturally aspirated project car in October 2025, while ordinary twin-turbo transactions in August 2026 ran between $21,000 and $37,000.",
+   "confidence": "high",
+   "status": "verified",
+   "sourceRefs": [
+    "classic-z32-generation",
+    "classic-z32-tt",
+    "classic-z32-na"
+   ]
+  },
+  {
    "section": "summary",
-   "claimText": "The Z32 was sold as the Fairlady Z in Japan with domestic-only Version S and Version R grades and as the 300ZX in export markets, with continental European cars restricted to the 2+2 twin turbo and the two-seater additionally available in Britain; period American press placed the 1990 Turbo at a $33,000 base price, about $35,700 as tested, against a Porsche 944 Turbo costing 47 per cent more.",
+   "claimText": "The Z32 was sold as the Fairlady Z in Japan with domestic-only Version S and Version R grades and as the 300ZX in export markets, with continental European cars restricted to the 2+2 twin turbo and the two-seater additionally available in Britain; period American press placed the 1990 Turbo at a $33,000 base price, about $35,700 as tested, against a Porsche 944 Turbo costing 47 percent more.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [

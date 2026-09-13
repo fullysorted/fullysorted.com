@@ -17,8 +17,8 @@ export const seedPantera = {
  "engines": [
   "5,763 cc Ford 351 Cleveland OHV V8, single four-barrel carburettor, 330 hp claimed for the 1971 high-compression car",
   "5,763 cc Ford 351 Cleveland in emissions-era US tune, 8.6:1 then 8.0:1 compression, approximately 248-264 hp for the Pantera L",
-  "5,763 cc Ford 351 Cleveland, European high-compression GTS and GT5 tune, approximately 350 PS at 6,000 rpm and 333 lb-ft at 3,800 rpm",
-  "5,763 cc Ford 351 Windsor OHV V8, fitted from the late 1980s in 300 or 350 bhp tune",
+  "5,763 cc Ford 351 Cleveland, European high-compression GTS and GT5 tune, approximately 345 hp at 6,000 rpm and 333 lb-ft at 3,800 rpm",
+  "5,763 cc Ford 351 Windsor OHV V8, fitted from the late 1980s in 300 or 350 hp tune",
   "4,942 cc Ford 302 OHV V8 with electronic fuel injection, fitted to the 90 Si"
  ],
  "productionTotal": null,
@@ -26,27 +26,27 @@ export const seedPantera = {
  "notableTrims": [
   {
    "name": "Pantera (pushbutton and pre-L, 1971-72)",
-   "note": "The earliest cars, with round push-button door releases, hand grips moulded into the body and the high-compression 330 hp Cleveland. Pantera Place puts the pushbutton cars imported by Ford at 75; forum registry work counts 382 built and about 96 reaching the United States. The most collectable early specification and the worst assembled."
+   "note": "The earliest cars, with round push-button door releases, hand grips molded into the body and the high-compression 330 hp Cleveland. Pantera Place puts the pushbutton cars imported by Ford at 75; forum registry work counts 382 built and about 96 reaching the United States. The most collectable early specification and the worst assembled."
   },
   {
    "name": "Pantera L (Lusso, 1972-74)",
-   "note": "The federalised rework: large black impact bumpers adding roughly 200 lb, better trim, compression down to 8.0:1 and around 248-264 hp. RM Sotheby's catalogues it as significantly better built than earlier cars, and it is the version most American buyers meet."
+   "note": "The federalized rework: large black impact bumpers adding roughly 200 lb, better trim, compression down to 8.0:1 and around 248-264 hp. RM Sotheby's catalogues it as significantly better built than earlier cars, and it is the version most American buyers meet."
   },
   {
    "name": "Pantera GTS (US, 1974)",
-   "note": "A cosmetic package on the L: riveted fibreglass flares, blacked-out brightwork, matt black bonnet and deck, and no mechanical change of substance. Classic Motorsports puts US GTS output at fewer than 100 cars, forum registry work at about 75."
+   "note": "A cosmetic package on the L: riveted fiberglass flares, blacked-out brightwork, matt black hood and deck, and no mechanical change of substance. Classic Motorsports puts US GTS output at fewer than 100 cars, forum registry work at about 75."
   },
   {
    "name": "Pantera GTS (European, 1973 onward)",
-   "note": "The genuine article rather than the trim package: high compression retained at about 350 PS, wider wheels and no federal bumper penalty. Sold outside the Ford arrangement and benchmarked by classic.com above base cars."
+   "note": "The genuine article rather than the trim package: high compression retained at about 345 hp, wider wheels and no federal bumper penalty. Sold outside the Ford arrangement and benchmarked by classic.com above base cars."
   },
   {
    "name": "Pantera GT5 (1980-85)",
-   "note": "The wide body arrives: bonded fibreglass arch extensions, front air dam, side skirts and rear wing, 10- and 13-inch Campagnolo wheels on Pirelli P7s. Counts range from a maximum of 179 to 253 depending on whose registry work is used."
+   "note": "The wide body arrives: bonded fiberglass arch extensions, front air dam, side skirts and rear wing, 10- and 13-inch Campagnolo wheels on Pirelli P7s. Counts range from a maximum of 179 to 253 depending on whose registry work is used."
   },
   {
    "name": "Pantera GT5-S (1984-90)",
-   "note": "Shown at Turin in November 1984. The S is for steel: blended steel pressings rather than bonded fibreglass, for about 3 kg, with a properly finished cabin of Maserati-style leather, air conditioning and a wooden dash. The most valuable series-production Pantera, and the one most often imitated."
+   "note": "Shown at Turin in November 1984. The S is for steel: blended steel pressings rather than bonded fiberglass, for about 7 lb, with a properly finished cabin of Maserati-style leather, air conditioning and a wooden dash. The most valuable series-production Pantera, and the one most often imitated."
   },
   {
    "name": "Pantera 90 Si (1990-92)",
@@ -54,7 +54,7 @@ export const seedPantera = {
   },
   {
    "name": "Group 3 and Group 4 competition cars",
-   "note": "A little under 40 cars to Group 3 homologation specification between 1972 and 1981, and 14 factory Group 4 cars with aluminium panels and Plexiglas at 1,100 kg and about 470 hp. Group 4 cars trade in their own market: EUR 224,250 at RM Sotheby's Paris, February 2026."
+   "note": "A little under 40 cars to Group 3 homologation specification between 1972 and 1981, and 14 factory Group 4 cars with aluminum panels and Plexiglas at 2,425 lb and about 470 hp. Group 4 cars trade in their own market: EUR 224,250 at RM Sotheby's Paris, February 2026."
   }
  ],
  "specs": {
@@ -64,7 +64,7 @@ export const seedPantera = {
   "valvetrain": "Pushrod overhead valve, two valves per cylinder, single central camshaft",
   "compression": "11.0:1 European; 8.6:1 US 1971; 8.0:1 Pantera L",
   "fuel_system": "Single four-barrel carburettor, Holley on later European cars; electronic injection on the 90 Si",
-  "power": "330 hp claimed for the 1971 car and about 350 PS at 6,000 rpm for the European GTS and GT5; 248-264 hp for the emissions-era Pantera L - manufacturer claims on differing standards",
+  "power": "330 hp claimed for the 1971 car and about 345 hp at 6,000 rpm for the European GTS and GT5; 248-264 hp for the emissions-era Pantera L - manufacturer claims on differing standards",
   "torque": "333 lb-ft at 3,800 rpm quoted for the GT5 and GT5-S; 355 lb-ft at 4,000 rpm quoted for the 1971 car",
   "transmission": "ZF 5DS-25 five-speed manual transaxle with limited-slip differential; 4.22:1 final drive on early cars",
   "suspension": "Independent front and rear, unequal-length wishbones, coil springs, anti-roll bars",
@@ -72,16 +72,16 @@ export const seedPantera = {
   "steering": "Rack and pinion, unassisted",
   "wheelbase": "2,500 mm (98.4 in) early; 2,515 mm (99 in) later",
   "dimensions": "4,013 x 1,702 x 1,100 mm (1971); 4,270 x 1,811 mm on late wide-body cars",
-  "weight": "1,417-1,420 kg (3,123-3,131 lb) early and GT5-S; 1,474 kg quoted for the widest late cars; 1,100 kg Group 4",
+  "weight": "3,124-3,131 lb early and GT5-S; 3,250 lb quoted for the widest late cars; 2,425 lb Group 4",
   "acceleration": "0-60 mph in 5.5 s and a standing quarter of 14.0 s at 99.4 mph for the 1971 car; 0-62 mph in 5.3 s quoted for GT5 and GT5-S",
   "top_speed": "159 mph recorded for the 1971 car; 158 mph quoted for GT5 and GT5-S - claims and period tests, not one verified figure",
   "price_when_new": "$9,800 in 1971 and $11,730.93 in 1973 in the United States"
  },
  "summary": "The De Tomaso Pantera (1971-1992) came out of an arrangement that had no obvious precedent: an Italian mid-engined coupe drawn by an American working at Ghia, built around a Ford 351 Cleveland V8 and a German ZF transaxle, and sold in the United States through Lincoln-Mercury showrooms alongside the Capri. Ford took an 80 per cent interest in Ghia and Vignale in 1970 and put the car on sale in 1971 at around ten thousand dollars, roughly half what a comparable Ferrari or Maserati cost. The early cars were hand-finished over a steel monocoque, rust-prone, and given to overheating in traffic; the warranty and rectification bill that followed is part of why the arrangement ended, and Ford stopped importing after the 1974 model year. Alessandro de Tomaso went on building the car in Modena for another eighteen years in progressively wider form - GTS, GT5, GT5-S and finally the Gandini-reworked 90 Si - at a rate of a few dozen cars a year. How many were built altogether, and how many actually reached America, are both still argued over.",
- "history": "## An Italian Body on a Detroit Engine\nThe Pantera was shown at Modena in March 1970 and presented at the New York Motor Show that year, with deliveries beginning in 1971. The body was by Tom Tjaarda, an American designer then at Ghia; the chassis engineering is credited to Gianpaolo Dallara, recruited from Lamborghini. Where the earlier Mangusta had used a backbone chassis, the Pantera was a steel monocoque - the first time De Tomaso had attempted that construction - carrying a Ford 351 Cleveland V8 longitudinally behind the seats and a ZF 5DS-25 five-speed transaxle, a relative of the Ford GT40 unit. The pushrod American V8 was the unusual part, and it is the single fact that has shaped the car's reception ever since.\n\n## Lincoln-Mercury and the Warranty Bill\nLee Iacocca, newly president of Ford, wanted an exotic that could be semi-mass-produced and sold through Ford's own network. Ford acquired 80 per cent of Ghia and Vignale in 1970, took American distribution rights, and placed the car with Lincoln-Mercury, the division that already handled the Capri. The Pantera listed at roughly nine to ten thousand dollars, and what arrived was less finished than the price implied. Bodies were hand-built at Vignale with substantial lead loading over panel imperfections, rustproofing was minimal, and the cooling system - a mid-mounted engine plumbed to a front radiator through a long hose run - overheated in traffic. Air conditioning frequently failed, and because cabin ventilation was tied to it the interior became intolerable when it did. The gearchange ran through a multi-stage remote linkage to the transaxle and was unreliable, and two safety recalls followed in 1971 alone. Ford engineering worked through much of it: precision pressings replaced hand-formed panels, ducting and air conditioning were revised, and vented discs and Goodyear Arriva bias-belted tyres were fitted. By mid-1972 Road & Track allowed that the car showed signs of being perfectible.\n\n## L, GTS and the End of the American Arrangement\nFor 1972 compression came down and, for 1973, the car was reworked as the Pantera L - Lusso - with large black impact bumpers to meet the new federal standard, better trim and around 248 to 264 horsepower. The 1974 GTS added riveted fibreglass flares, blacked-out brightwork and matt black panels; in American specification it was a cosmetic package, while the European GTS built from 1973 kept high compression and about 350 PS. The arrangement did not survive 1974: the oil crisis, the 1975 emissions standards and Ford's own product programme removed the case for a low-volume Italian coupe, and importation stopped at the end of the 1974 model year.\n\n## Modena Alone: Australian Engines and the Wide Body\nDe Tomaso kept building the car for Europe at a small fraction of the Ford-era rate, on the order of seventy-five cars a year. The immediate problem was engines: Ford stopped Cleveland production in North America, so once the leftover American units ran out De Tomaso bought 351 Clevelands from Ford Australia, and moved to the 351 Windsor in the late 1980s. Bodywork followed the coachbuilders - Vignale until its collapse, then Maggiora, then Embo. The GT5 of 1980 is the car most people picture: bonded fibreglass wheelarch extensions, deep front air dam and side skirts, a rear wing, and 10- and 13-inch Campagnolo wheels on Pirelli P7s, the chassis sequence having restarted at 9000.\n\n## GT5-S, the 90 Si and a Twenty-Year Ending\nAt Turin in November 1984 the GT5-S replaced the fibreglass add-ons with smoothly blended steel arches - the S is for steel - and a better-finished cabin of Maserati-style leather, air conditioning and a wooden dashboard, for a weight penalty of single-figure kilograms. The last act was the 90 Si of 1990, reworked by Marcello Gandini around a fuel-injected 302 and built in tiny numbers before the Guara took over. Racing ran in parallel and mostly in private hands: a Group 3 homologation car built from 1972, and a lightened Group 4 car with alloy panels and Plexiglas that shed some 320 kg. Neither made the Pantera a factory programme, but the Group 3 cars won hillclimbs and national races throughout the 1970s.",
- "marketNotes": "As of August 2026, classic.com records a Market Benchmark of $116,349 for the De Tomaso Pantera as a whole, with a lowest tracked result of $756 in October 2024 - a salvage lot rather than a car - and asking prices on the seventeen examples then listed reaching $225,000. The benchmark splits sharply by variant, again as of August 2026: base cars at $109,636, GTS at $120,691, GT5 at $170,959, GT5-S at $213,305 and the 90 Si at $313,000. Auction evidence is consistent with that ordering. RM Sotheby's sold a 213-mile 1974 Pantera L, delivered new by Leith Lincoln-Mercury of Greensboro in February 1975, for $246,400 at Monterey in August 2025 - far above benchmark, and explained by the mileage rather than the specification. A 1985 GT5 made $140,000 at RM Sotheby's Amelia Island in 2019. A factory Group 4 car, one of fourteen, realised EUR 224,250 at RM Sotheby's Paris in February 2026, while a road GTS presented in Group 4 style failed to sell against a EUR 180,000-220,000 estimate at Paris in 2022. For the wide-body cars, a right-hand-drive 1989 GT5-S made GBP 157,500 at Silverstone Classic in July 2015; classic.com's GT5-S high is EUR 198,660 at Artcurial in March 2026 and its low $136,000 in June 2024, and a modified 1987 car was bid to $200,000 without selling at Mecum Kissimmee in January 2026. A 90 Si took $313,000 at RM Sotheby's Miami in February 2025.",
- "whatToLookFor": "Structure before everything. The Pantera is a steel monocoque with generous cavities, factory rustproofing that barely existed and, on early cars, thick lead loading over panel imperfections; corrosion in the front shock towers, sills, floors and rear suspension mountings is the difference between a car worth restoring and one worth breaking. Metallic paint on an early car is worth a second look, since it hides filler well. Establish which era the car belongs to, because the propositions are not the same: 1971 pushbutton and pre-L cars are the collectable early specification and the worst-built; the 1973-74 L was, in the judgement of the period press and of auction cataloguers since, materially better assembled; the European GTS, GT5 and GT5-S are separate markets with their own chassis sequences. On wide-body cars, confirm the flares are what the badge implies - bonded fibreglass on a GT5, blended steel on a GT5-S - because conversions of ordinary cars exist and the price gap invites them. Check the ZF transaxle for second-gear synchro wear and the half-shaft universal joints for rust seizure by turning the wheels by hand with the car raised. Look for a cooling system properly sorted with modern fans and a good radiator rather than patched. Fuse boxes crumble and window regulators fail. A car driven regularly is generally a better proposition than one static for decades, where seized calipers, rusted gear teeth and perished seals are the norm. Registry entries are the practical substitute for a factory certification programme that does not exist.",
- "commonProblems": "Overheating is the defining fault. The mid-mounted engine feeds a front radiator through a long hose run, and in original specification the system struggles in traffic; uprated fans and radiators are among the most common modifications, and their presence usually signals a car that has been used. Corrosion is the second: the unibody traps water, undercoating cracks and holds it, and damage to the front shock towers has historically been enough to write cars off. Electrical systems are period-typical and worse for age - fuse boxes have been reported literally crumbling, and window regulators were poor when new. Air conditioning failed on most early cars, and because cabin ventilation was tied to it a failure makes the interior unbearable rather than merely warm. The gearchange runs through a multi-stage remote linkage to the ZF transaxle and was unreliable from new, although the transaxle itself is durable; second-gear synchros wear and a rebuild is expensive. Half-shaft universal joints seize when rusted. The 1971 recalls - a crossmember cracking at the steering-gear mounting, and brake hose routing with a missing pedal stop and cracking fuel-tank seams - show where the early cars were under-developed. Ergonomics are a practical fault rather than a mechanical one: headroom runs out at about six feet and the pedals are offset toward the centre by the front wheel arches. The engine and its service parts are the least of the worries.",
+ "history": "## An Italian Body on a Detroit Engine\nThe Pantera was shown at Modena in March 1970 and presented at the New York Motor Show that year, with deliveries beginning in 1971. The body was by Tom Tjaarda, an American designer then at Ghia; the chassis engineering is credited to Gianpaolo Dallara, recruited from Lamborghini. Where the earlier Mangusta had used a backbone chassis, the Pantera was a steel monocoque - the first time De Tomaso had attempted that construction - carrying a Ford 351 Cleveland V8 longitudinally behind the seats and a ZF 5DS-25 five-speed transaxle, a relative of the Ford GT40 unit. The pushrod American V8 was the unusual part, and it is the single fact that has shaped the car's reception ever since.\n\n## Lincoln-Mercury and the Warranty Bill\nLee Iacocca, newly president of Ford, wanted an exotic that could be semi-mass-produced and sold through Ford's own network. Ford acquired 80 per cent of Ghia and Vignale in 1970, took American distribution rights, and placed the car with Lincoln-Mercury, the division that already handled the Capri. The Pantera listed at roughly nine to ten thousand dollars, and what arrived was less finished than the price implied. Bodies were hand-built at Vignale with substantial lead loading over panel imperfections, rustproofing was minimal, and the cooling system - a mid-mounted engine plumbed to a front radiator through a long hose run - overheated in traffic. Air conditioning frequently failed, and because cabin ventilation was tied to it the interior became intolerable when it did. The gearchange ran through a multi-stage remote linkage to the transaxle and was unreliable, and two safety recalls followed in 1971 alone. Ford engineering worked through much of it: precision pressings replaced hand-formed panels, ducting and air conditioning were revised, and vented discs and Goodyear Arriva bias-belted tires were fitted. By mid-1972 Road & Track allowed that the car showed signs of being perfectible.\n\n## L, GTS and the End of the American Arrangement\nFor 1972 compression came down and, for 1973, the car was reworked as the Pantera L - Lusso - with large black impact bumpers to meet the new federal standard, better trim and around 248 to 264 horsepower. The 1974 GTS added riveted fiberglass flares, blacked-out brightwork and matt black panels; in American specification it was a cosmetic package, while the European GTS built from 1973 kept high compression and about 345 hp. The arrangement did not survive 1974: the oil crisis, the 1975 emissions standards and Ford's own product program removed the case for a low-volume Italian coupe, and importation stopped at the end of the 1974 model year.\n\n## Modena Alone: Australian Engines and the Wide Body\nDe Tomaso kept building the car for Europe at a small fraction of the Ford-era rate, on the order of seventy-five cars a year. The immediate problem was engines: Ford stopped Cleveland production in North America, so once the leftover American units ran out De Tomaso bought 351 Clevelands from Ford Australia, and moved to the 351 Windsor in the late 1980s. Bodywork followed the coachbuilders - Vignale until its collapse, then Maggiora, then Embo. The GT5 of 1980 is the car most people picture: bonded fiberglass wheel arch extensions, deep front air dam and side skirts, a rear wing, and 10- and 13-inch Campagnolo wheels on Pirelli P7s, the chassis sequence having restarted at 9000.\n\n## GT5-S, the 90 Si and a Twenty-Year Ending\nAt Turin in November 1984 the GT5-S replaced the fiberglass add-ons with smoothly blended steel arches - the S is for steel - and a better-finished cabin of Maserati-style leather, air conditioning and a wooden dashboard, for a weight penalty of single-figure kilograms. The last act was the 90 Si of 1990, reworked by Marcello Gandini around a fuel-injected 302 and built in tiny numbers before the Guara took over. Racing ran in parallel and mostly in private hands: a Group 3 homologation car built from 1972, and a lightened Group 4 car with alloy panels and Plexiglas that shed some 705 lb. Neither made the Pantera a factory program, but the Group 3 cars won hillclimbs and national races throughout the 1970s.",
+ "marketNotes": "As of August 2026, classic.com records a Market Benchmark of $116,349 for the De Tomaso Pantera as a whole, with a lowest tracked result of $756 in October 2024 - a salvage lot rather than a car - and asking prices on the seventeen examples then listed reaching $225,000. The benchmark splits sharply by variant, again as of August 2026: base cars at $109,636, GTS at $120,691, GT5 at $170,959, GT5-S at $213,305 and the 90 Si at $313,000. Auction evidence is consistent with that ordering. RM Sotheby's sold a 213-mile 1974 Pantera L, delivered new by Leith Lincoln-Mercury of Greensboro in February 1975, for $246,400 at Monterey in August 2025 - far above benchmark, and explained by the mileage rather than the specification. A 1985 GT5 made $140,000 at RM Sotheby's Amelia Island in 2019. A factory Group 4 car, one of fourteen, realized EUR 224,250 at RM Sotheby's Paris in February 2026, while a road GTS presented in Group 4 style failed to sell against a EUR 180,000-220,000 estimate at Paris in 2022. For the wide-body cars, a right-hand-drive 1989 GT5-S made GBP 157,500 at Silverstone Classic in July 2015; classic.com's GT5-S high is EUR 198,660 at Artcurial in March 2026 and its low $136,000 in June 2024, and a modified 1987 car was bid to $200,000 without selling at Mecum Kissimmee in January 2026. A 90 Si took $313,000 at RM Sotheby's Miami in February 2025.",
+ "whatToLookFor": "Structure before everything. The Pantera is a steel monocoque with generous cavities, factory rustproofing that barely existed and, on early cars, thick lead loading over panel imperfections; corrosion in the front shock towers, sills, floors and rear suspension mountings is the difference between a car worth restoring and one worth breaking. Metallic paint on an early car is worth a second look, since it hides filler well. Establish which era the car belongs to, because the propositions are not the same: 1971 pushbutton and pre-L cars are the collectable early specification and the worst-built; the 1973-74 L was, in the judgement of the period press and of auction cataloguers since, materially better assembled; the European GTS, GT5 and GT5-S are separate markets with their own chassis sequences. On wide-body cars, confirm the flares are what the badge implies - bonded fiberglass on a GT5, blended steel on a GT5-S - because conversions of ordinary cars exist and the price gap invites them. Check the ZF transaxle for second-gear synchro wear and the half-shaft universal joints for rust seizure by turning the wheels by hand with the car raised. Look for a cooling system properly sorted with modern fans and a good radiator rather than patched. Fuse boxes crumble and window regulators fail. A car driven regularly is generally a better proposition than one static for decades, where seized calipers, rusted gear teeth and perished seals are the norm. Registry entries are the practical substitute for a factory certification program that does not exist.",
+ "commonProblems": "Overheating is the defining fault. The mid-mounted engine feeds a front radiator through a long hose run, and in original specification the system struggles in traffic; uprated fans and radiators are among the most common modifications, and their presence usually signals a car that has been used. Corrosion is the second: the unibody traps water, undercoating cracks and holds it, and damage to the front shock towers has historically been enough to write cars off. Electrical systems are period-typical and worse for age - fuse boxes have been reported literally crumbling, and window regulators were poor when new. Air conditioning failed on most early cars, and because cabin ventilation was tied to it a failure makes the interior unbearable rather than merely warm. The gearchange runs through a multi-stage remote linkage to the ZF transaxle and was unreliable from new, although the transaxle itself is durable; second-gear synchros wear and a rebuild is expensive. Half-shaft universal joints seize when rusted. The 1971 recalls - a crossmember cracking at the steering-gear mounting, and brake hose routing with a missing pedal stop and cracking fuel-tank seams - show where the early cars were under-developed. Ergonomics are a practical fault rather than a mechanical one: headroom runs out at about six feet and the pedals are offset toward the center by the front wheel arches. The engine and its service parts are the least of the worries.",
  "valueTrajectory": "The Pantera has never re-rated the way its Italian contemporaries have, and the reasons given are consistent across the trade: build quality that earned it a reputation as an expensive kit car, an American pushrod V8 that a section of the market holds against it, rust and cooling problems that suppress confidence, and a long history of modified cars that makes original examples harder to find and to price. The result is a stratified market rather than a rising one. As of August 2026 classic.com's benchmark for the model as a whole stands at $116,349, while the GT5-S sits at $213,305 and the 90 Si at $313,000 - the low-volume European cars have decoupled from the Ford-era American ones and are where the movement has been. Within the American cars the separation is by condition and originality rather than by year: the $246,400 paid at Monterey in August 2025 for a 213-mile 1974 L is a mileage result, not a model result, and driver-grade cars sit well below the benchmark. Restoration economics remain unforgiving, with neglected cars quoted at $80,000 to $90,000 to put right against a benchmark not much above that, which continues to thin the population at the bottom.",
  "overallConfidence": "medium",
  "sources": [
@@ -173,7 +173,7 @@ export const seedPantera = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "GT5 reference. Source for 1980-1988, a maximum of 179 believed completed with circa 35 right-hand drive; bonded rather than riveted arch extensions; roughly 200 leftover US Clevelands before Australian supply, then 351 Windsor by 1987; 350 bhp at 6,000 rpm and 333 lb-ft at 3,800 rpm; 158 mph and 0-62 in 5.3 s; and the GT5-S launch at Turin in November 1984."
+   "notes": "GT5 reference. Source for 1980-1988, a maximum of 179 believed completed with circa 35 right-hand drive; bonded rather than riveted arch extensions; roughly 200 leftover US Clevelands before Australian supply, then 351 Windsor by 1987; 350 hp at 6,000 rpm and 333 lb-ft at 3,800 rpm; 158 mph and 0-62 in 5.3 s; and the GT5-S launch at Turin in November 1984."
   },
   {
    "ref": "supercarnostalgia-gt5s",
@@ -182,7 +182,7 @@ export const seedPantera = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "GT5-S reference. Source for about 190 completed 1984-1990 with the last car chassis 9562, roughly 25 right-hand drive and 35 to Amerisport; the smoothed all-steel body against the GT5 fibreglass, only 3 kg heavier at 1,420 kg; 5,763 cc Cleveland at 350 bhp with a single Holley; and the leather and air-conditioning specification."
+   "notes": "GT5-S reference. Source for about 190 completed 1984-1990 with the last car chassis 9562, roughly 25 right-hand drive and 35 to Amerisport; the smoothed all-steel body against the GT5 fiberglass, only 7 lb heavier at 3,131 lb; 5,763 cc Cleveland at 350 hp with a single Holley; and the leather and air-conditioning specification."
   },
   {
    "ref": "supercarnostalgia-gr3",
@@ -191,7 +191,7 @@ export const seedPantera = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Group 3 reference. Source for a little under 40 cars built to Group 3 specification between 1972 and 1981, ending when homologation lapsed; 330 hp and 380 lb-ft, roll cage, reinforced wishbones, 1,360 kg and 162 mph; and race and hillclimb wins through the 1970s in privateer hands."
+   "notes": "Group 3 reference. Source for a little under 40 cars built to Group 3 specification between 1972 and 1981, ending when homologation lapsed; 330 hp and 380 lb-ft, roll cage, reinforced wishbones, 2,998 lb and 162 mph; and race and hillclimb wins through the 1970s in privateer hands."
   },
   {
    "ref": "conceptcarz-1971",
@@ -218,7 +218,7 @@ export const seedPantera = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $140,000 at Amelia Island, 2019, lot 120. Chassis THPNCT09334, fibreglass flares, spoilers and rear wing on gold Campagnolo wheels. Catalogue records George Stauffer taking on GT5 importation in the early 1980s after Ford ceased US imports in 1975."
+   "notes": "Sold $140,000 at Amelia Island, 2019, lot 120. Chassis THPNCT09334, fiberglass flares, spoilers and rear wing on gold Campagnolo wheels. Catalogue records George Stauffer taking on GT5 importation in the early 1980s after Ford ceased US imports in 1975."
   },
   {
    "ref": "rm-pa26-group4",
@@ -227,7 +227,7 @@ export const seedPantera = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold EUR 224,250 at Paris, February 2026, lot 134. Chassis THPNMR02858, described as the second of only 14 factory-built Group 4 Panteras, with aluminium panels and Plexiglas cutting 320 kg to reach 1,100 kg and a 351 Cleveland of about 470 hp."
+   "notes": "Sold EUR 224,250 at Paris, February 2026, lot 134. Chassis THPNMR02858, described as the second of only 14 factory-built Group 4 Panteras, with aluminum panels and Plexiglas cutting 705 lb to reach 2,425 lb and a 351 Cleveland of about 470 hp."
   },
   {
    "ref": "iconic-gt5s-2015",
@@ -263,7 +263,7 @@ export const seedPantera = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "Lot record: 1991 Pantera 90 Si, chassis ZDT874000MA009617, 18,000 km indicated and marked true mileage unknown, sold for $313,000 by RM Sotheby's at Miami on 28 February 2025."
+   "notes": "Lot record: 1991 Pantera 90 Si, chassis ZDT874000MA009617, 11,185 miles indicated and marked true mileage unknown, sold for $313,000 by RM Sotheby's at Miami on 28 February 2025."
   },
   {
    "ref": "classic-mecum-gt5s-2026",
@@ -272,7 +272,7 @@ export const seedPantera = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "Lot record: 1987 Pantera GT5-S, VIN 1A9PN8744HD111019, about 3,000 km, described as modified with period-correct engine and body; not sold against a high bid of $200,000 at Mecum Kissimmee on 15 January 2026."
+   "notes": "Lot record: 1987 Pantera GT5-S, VIN 1A9PN8744HD111019, about 1,864 miles, described as modified with period-correct engine and body; not sold against a high bid of $200,000 at Mecum Kissimmee on 15 January 2026."
   },
   {
    "ref": "forum-production-history",
@@ -427,7 +427,7 @@ export const seedPantera = {
   },
   {
    "section": "history",
-   "claimText": "Ford's response included replacing hand-built Vignale panel work with precision pressings, revised ducting and air conditioning, vented discs and Goodyear Arriva bias-belted tyres; by mid-1972 Road & Track allowed that the car showed signs of being perfectible.",
+   "claimText": "Ford's response included replacing hand-built Vignale panel work with precision pressings, revised ducting and air conditioning, vented discs and Goodyear Arriva bias-belted tires; by mid-1972 Road & Track allowed that the car showed signs of being perfectible.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -465,7 +465,7 @@ export const seedPantera = {
   },
   {
    "section": "production",
-   "claimText": "The 90 Si of 1990-92, reworked by Marcello Gandini around a fuel-injected 302, was built in 41 examples of which 38 were sold to customers, and 14 factory Group 4 cars were built with aluminium panels and Plexiglas at 1,100 kg.",
+   "claimText": "The 90 Si of 1990-92, reworked by Marcello Gandini around a fuel-injected 302, was built in 41 examples of which 38 were sold to customers, and 14 factory Group 4 cars were built with aluminum panels and Plexiglas at 2,425 lb.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -519,7 +519,7 @@ export const seedPantera = {
   },
   {
    "section": "specs",
-   "claimText": "The GT5 carried bonded fibreglass arch extensions, a front air dam, side skirts and a rear wing on 10- and 13-inch Campagnolo wheels; the GT5-S, shown at Turin in November 1984, replaced them with blended steel pressings for about 3 kg.",
+   "claimText": "The GT5 carried bonded fiberglass arch extensions, a front air dam, side skirts and a rear wing on 10- and 13-inch Campagnolo wheels; the GT5-S, shown at Turin in November 1984, replaced them with blended steel pressings for about 7 lb.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

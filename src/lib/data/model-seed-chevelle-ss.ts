@@ -17,12 +17,12 @@ export const seedChevelleSs = {
   "2-door sedan pickup (El Camino - its own SS 396 series in 1968, an RPO Z15 car from 1970)"
  ],
  "engines": [
-  "396 cu in (6,489 cc) L35 Mark IV V8, 325 bhp gross, standard in the 1968 and 1969 SS 396",
-  "396 cu in L34 Mark IV V8, 350 bhp gross; bored to 402 cu in (6,588 cc) for 1970 at 350 bhp at 5,200 rpm and 415 lb-ft at 3,400 rpm while keeping the 396 badge",
-  "396 cu in L78 Mark IV V8, 375 bhp gross with solid lifters; 402 cu in from 1970 at 375 bhp at 5,600 rpm on 11.0:1 with a Holley four-barrel, withdrawn from the Chevelle order sheet on 30 October 1969",
-  "402 cu in LS3 V8, 330 bhp gross at 4,800 rpm in 1970 outside the SS packages; 300 gross / 260 SAE net in 1971 and 240 SAE net in 1972 as a Z15 engine",
-  "454 cu in (7,440 cc) LS5 V8, 360 bhp gross at 4,400 rpm and 500 lb-ft at 3,200 rpm for 1970; 365 gross and 285 SAE net for 1971; 270 SAE net for 1972",
-  "454 cu in LS6 V8, 450 bhp gross at 5,600 rpm and 500 lb-ft at 3,600 rpm on 11.25:1 with solid lifters, forged crankshaft, rods and pistons, an aluminium intake and a Holley four-barrel - 1970 only"
+  "396 cu in (6,489 cc) L35 Mark IV V8, 325 hp gross, standard in the 1968 and 1969 SS 396",
+  "396 cu in L34 Mark IV V8, 350 hp gross; bored to 402 cu in (6,588 cc) for 1970 at 350 hp at 5,200 rpm and 415 lb-ft at 3,400 rpm while keeping the 396 badge",
+  "396 cu in L78 Mark IV V8, 375 hp gross with solid lifters; 402 cu in from 1970 at 375 hp at 5,600 rpm on 11.0:1 with a Holley four-barrel, withdrawn from the Chevelle order sheet on 30 October 1969",
+  "402 cu in LS3 V8, 330 hp gross at 4,800 rpm in 1970 outside the SS packages; 300 gross / 260 SAE net in 1971 and 240 SAE net in 1972 as a Z15 engine",
+  "454 cu in (7,440 cc) LS5 V8, 360 hp gross at 4,400 rpm and 500 lb-ft at 3,200 rpm for 1970; 365 gross and 285 SAE net for 1971; 270 SAE net for 1972",
+  "454 cu in LS6 V8, 450 hp gross at 5,600 rpm and 500 lb-ft at 3,600 rpm on 11.25:1 with solid lifters, forged crankshaft, rods and pistons, an aluminum intake and a Holley four-barrel - 1970 only"
  ],
  "productionTotal": null,
  "productionNotes": "No reconciled figure for second-generation SS production survives cross-checking, so none is asserted. The year-by-year counts published by specialist registries run: 62,785 SS 396 Chevelles for 1968 plus a further 5,190 El Camino SS 396s built within the same series; 86,307 RPO Z25 cars for 1969; 53,599 Z25 and 8,773 Z15 cars for 1970; 19,293 Z15 cars for 1971, of which 9,502 carried SS 454 equipment; and 24,946 Z15 cars for 1972, of which 5,333 were SS 454s. Those add to roughly 255,700 Chevelles. Hagerty's buyer's guide states that just under 192,000 SS Chevelles were built across the same five years, while listing year figures that themselves sum higher than its own total. Part of the gap is definitional, since the 1970-1972 counts fold in El Camino and the 1968 figure does not, but that does not close it and no source consulted here reconciles the two. Within 1970 the arithmetic is at least internally consistent: 4,298 LS5 and 4,475 LS6 cars make up the 8,773 Z15 total, and the 53,599 Z25 cars bring the year's Super Sport count to 62,372. The 4,475 LS6 figure is the one number every source agrees on. What no source can supply is the split by body style, because Chevrolet's option-level production records were destroyed. The LS6 Registry publishes a proportional calculation of roughly 3,387 sport coupes, 103 convertibles and 585 sedan pickups and states plainly that these are computed possibilities rather than records; other accounts put roughly 3,975 coupes and convertibles together, implying about 500 El Caminos. Convertible estimates run from twelve to more than a hundred.",
@@ -41,11 +41,11 @@ export const seedChevelleSs = {
   },
   {
    "name": "RPO Z15 SS 454 with LS5 (1970-1972)",
-   "note": "The standard 454 package car, hydraulic-lifter and Quadrajet-fed at 360 bhp gross in 1970, and the great majority of Z15 big-block cars."
+   "note": "The standard 454 package car, hydraulic-lifter and Quadrajet-fed at 360 hp gross in 1970, and the great majority of Z15 big-block cars."
   },
   {
    "name": "RPO Z15 SS 454 with LS6 (1970)",
-   "note": "One model year, 4,475 engines, 450 bhp gross. The most contested car in the American collector market and the one where documentation rather than specification sets the price."
+   "note": "One model year, 4,475 engines, 450 hp gross. The most contested car in the American collector market and the one where documentation rather than specification sets the price."
   },
   {
    "name": "Z15 SS Equipment (1971-1972)",
@@ -60,22 +60,22 @@ export const seedChevelleSs = {
   "layout": "Front longitudinal engine, rear-wheel drive",
   "chassis": "Separate perimeter frame, body-on-frame; 112-inch wheelbase for coupes, convertibles and the sedan pickup",
   "engine": "Mark IV big-block V8: 396 cu in (402 from 1970) or 454 cu in, cast-iron block and heads, single four-barrel; Rochester Quadrajet on L34, LS3 and LS5, Holley on L78 and LS6",
-  "power": "325-375 bhp gross from the 396/402 (1968-1970); 360 bhp gross LS5 and 450 bhp gross LS6 for 1970; 365 gross / 285 SAE net LS5 for 1971; 270 SAE net for 1972. The 1968-1970 figures are gross ratings and are not comparable with the later net ones",
+  "power": "325-375 hp gross from the 396/402 (1968-1970); 360 hp gross LS5 and 450 hp gross LS6 for 1970; 365 gross / 285 SAE net LS5 for 1971; 270 SAE net for 1972. The 1968-1970 figures are gross ratings and are not comparable with the later net ones",
   "torque": "415 lb-ft at 3,400 rpm (L34 402, 1970); 500 lb-ft at 3,200 rpm (LS5 454, 1970); 500 lb-ft at 3,600 rpm (LS6 454, 1970); 465 lb-ft at 3,200 rpm (LS5, 1971)",
   "compression": "10.25:1 (L34, LS5) and 11.25:1 (LS6) for 1970, falling to 8.5:1 across the range for 1971 to suit low-lead and unleaded fuel",
   "transmission": "Three-speed and four-speed manuals (Muncie M20, M21, M22) or Turbo Hydra-Matic 400 automatic; big-block cars restricted to the four-speed or the TH400",
   "final_drive": "3.31:1 with the automatic and 3.55:1 with the four-speed on the 1970 LS6, 4.10:1 optional; Positraction available",
   "suspension": "Coil-sprung independent front with unequal-length wishbones; four-link coil-sprung live rear axle; RPO F41 heavy-duty package included with the SS",
   "brakes": "Power front discs and rear drums, standard with the SS packages",
-  "weight": "Approximately 3,990 lb kerb as tested by Car Life for a 1970 SS 396, with 58 per cent over the front axle",
-  "acceleration": "0-60 mph in 8.1 seconds and the standing quarter mile in 15.5 seconds at 90.42 mph for a 350 bhp 1970 SS 396 with 3.31 gearing (Car Life, January 1970)",
+  "weight": "Approximately 3,990 lb curb as tested by Car Life for a 1970 SS 396, with 58 per cent over the front axle",
+  "acceleration": "0-60 mph in 8.1 seconds and the standing quarter mile in 15.5 seconds at 90.42 mph for a 350 hp 1970 SS 396 with 3.31 gearing (Car Life, January 1970)",
   "identification": "1968 SS 396 has its own VIN series; 1969-1971 SS cars carry no VIN evidence outside Oshawa-built cars; from 1972 the VIN carries an engine letter, W denoting the 454"
  },
- "summary": "The second-generation Chevelle SS covers the 1968-1972 A-body, and across those five model years the car changes character completely. It arrives in 1968 as a distinct SS 396 series on a new 112-inch coupe wheelbase, becomes an option package in 1969, and peaks in 1970, when General Motors lifted its self-imposed 400 cubic inch ceiling on intermediate cars and Chevrolet answered with the Z15 SS 454. At the top of that order sheet sat the LS6: 454 cubic inches, 11.25:1 compression, solid lifters, a Holley four-barrel and a gross rating of 450 bhp. It lasted one model year. From 1971 the SS became an equipment package orderable with any optional V8, output was quoted in SAE net alongside gross, and by 1972 the largest engine on the sheet read 270 bhp. Very little of the car's production breakdown is documented to the standard the market now demands of it.",
- "history": "## A Fresh Shell and a Series of Its Own\nChevrolet redrew the A-body for 1968 around two wheelbases: 112 inches for two-door coupes, convertibles and the El Camino, 116 inches for four-door sedans and wagons. The result was a long-bonnet, short-deck shape with a semi-fastback hardtop roof, and the SS 396 was a separate series that year rather than an option: 60,499 sport coupes, 2,286 convertibles and 5,190 El Caminos. Standard equipment was plainer than the badge suggests: a bench seat, an open differential and a three-speed manual, with buckets, gauges and a four-speed all extra. Three 396 cu in Mark IV engines were offered, the L35 at 325 bhp, the L34 at 350 and the solid-lifter L78 at 375.\n\n## The Option Code Years\nFor 1969 the SS 396 series was abolished and the same equipment returned as RPO Z25, taken by around 86,307 cars. That is the change which makes everything afterwards difficult: from this point the car is a package rather than a model, and the VIN stops recording it. For 1970 General Motors lifted its self-imposed 400 cu in ceiling on intermediate cars and Chevrolet used the room at once. The 396 was bored to 402 cu in but kept its badge; Z25 remained the SS 396 at $445.55, with the L34 350 bhp engine standard and the L78 375 bhp version available until 30 October 1969. Alongside it came RPO Z15, the SS 454, at $503.45.\n\n## Four Hundred and Fifty Gross\nZ15's standard engine was the LS5, a hydraulic-lifter 454 rated at 360 bhp at 4,400 rpm and 500 lb-ft at 3,200. For roughly $263 more the LS6 replaced it: 11.25:1 compression, forged crankshaft, rods and pistons, solid lifters, an aluminium intake and a Holley four-barrel, rated at 450 bhp at 5,600 rpm with the same 500 lb-ft at 3,600. That was a gross figure, taken on a stand without air cleaner, exhaust system, alternator or fan. Gearing was 3.31:1 with the automatic or 3.55:1 with the four-speed, with 4.10:1 available. The car around the engine was less accomplished: Car Life's January 1970 test of a 350 bhp SS 396 recorded 15.5 seconds at 90.42 mph from a 3,990 lb kerb weight carrying 58 per cent over the front axle, with heavy understeer and brakes that faded.\n\n## Two Numbers for the Same Engine\n1971 changed the arithmetic more than it changed the cars. General Motors required its engines to run on low-lead or unleaded fuel, compression fell to 8.5:1 or below, and Chevrolet began publishing SAE net figures, measured with the engine's own accessories and exhaust fitted, alongside the traditional gross ratings. The LS5 was quoted at 365 bhp gross and 285 bhp net; the 402 read 300 gross and 260 net. Neither pairing describes a like-for-like decline, and reading the 1971 figures straight against the 1970 ones without noting the method is the most common error made about these cars. Z15 itself became an equipment package orderable with any of the four optional V8s, which is why a genuine 1971 SS can carry a 350.\n\n## The Badge Outlives the Engine\nFor 1972 gross ratings were dropped entirely. The 454 LS5 read 270 bhp SAE net, the 402 read 240 and the two 350s 165 and 175. Z15 remained available on the Malibu sport coupe, convertible and El Camino, and 24,946 cars took it, more than in 1971. The lasting benefit to later owners was an engine letter in the VIN, W denoting the 454, which could only be ordered with the package. It was the final year for cowl induction on the 454, and the final year of the second-generation shell.",
+ "summary": "The second-generation Chevelle SS covers the 1968-1972 A-body, and across those five model years the car changes character completely. It arrives in 1968 as a distinct SS 396 series on a new 112-inch coupe wheelbase, becomes an option package in 1969, and peaks in 1970, when General Motors lifted its self-imposed 400 cubic inch ceiling on intermediate cars and Chevrolet answered with the Z15 SS 454. At the top of that order sheet sat the LS6: 454 cubic inches, 11.25:1 compression, solid lifters, a Holley four-barrel and a gross rating of 450 hp. It lasted one model year. From 1971 the SS became an equipment package orderable with any optional V8, output was quoted in SAE net alongside gross, and by 1972 the largest engine on the sheet read 270 hp. Very little of the car's production breakdown is documented to the standard the market now demands of it.",
+ "history": "## A Fresh Shell and a Series of Its Own\nChevrolet redrew the A-body for 1968 around two wheelbases: 112 inches for two-door coupes, convertibles and the El Camino, 116 inches for four-door sedans and wagons. The result was a long-hood, short-deck shape with a semi-fastback hardtop roof, and the SS 396 was a separate series that year rather than an option: 60,499 sport coupes, 2,286 convertibles and 5,190 El Caminos. Standard equipment was plainer than the badge suggests: a bench seat, an open differential and a three-speed manual, with buckets, gauges and a four-speed all extra. Three 396 cu in Mark IV engines were offered, the L35 at 325 hp, the L34 at 350 and the solid-lifter L78 at 375.\n\n## The Option Code Years\nFor 1969 the SS 396 series was abolished and the same equipment returned as RPO Z25, taken by around 86,307 cars. That is the change which makes everything afterwards difficult: from this point the car is a package rather than a model, and the VIN stops recording it. For 1970 General Motors lifted its self-imposed 400 cu in ceiling on intermediate cars and Chevrolet used the room at once. The 396 was bored to 402 cu in but kept its badge; Z25 remained the SS 396 at $445.55, with the L34 350 hp engine standard and the L78 375 hp version available until 30 October 1969. Alongside it came RPO Z15, the SS 454, at $503.45.\n\n## Four Hundred and Fifty Gross\nZ15's standard engine was the LS5, a hydraulic-lifter 454 rated at 360 hp at 4,400 rpm and 500 lb-ft at 3,200. For roughly $263 more the LS6 replaced it: 11.25:1 compression, forged crankshaft, rods and pistons, solid lifters, an aluminum intake and a Holley four-barrel, rated at 450 hp at 5,600 rpm with the same 500 lb-ft at 3,600. That was a gross figure, taken on a stand without air cleaner, exhaust system, alternator or fan. Gearing was 3.31:1 with the automatic or 3.55:1 with the four-speed, with 4.10:1 available. The car around the engine was less accomplished: Car Life's January 1970 test of a 350 hp SS 396 recorded 15.5 seconds at 90.42 mph from a 3,990 lb curb weight carrying 58 per cent over the front axle, with heavy understeer and brakes that faded.\n\n## Two Numbers for the Same Engine\n1971 changed the arithmetic more than it changed the cars. General Motors required its engines to run on low-lead or unleaded fuel, compression fell to 8.5:1 or below, and Chevrolet began publishing SAE net figures, measured with the engine's own accessories and exhaust fitted, alongside the traditional gross ratings. The LS5 was quoted at 365 hp gross and 285 hp net; the 402 read 300 gross and 260 net. Neither pairing describes a like-for-like decline, and reading the 1971 figures straight against the 1970 ones without noting the method is the most common error made about these cars. Z15 itself became an equipment package orderable with any of the four optional V8s, which is why a genuine 1971 SS can carry a 350.\n\n## The Badge Outlives the Engine\nFor 1972 gross ratings were dropped entirely. The 454 LS5 read 270 hp SAE net, the 402 read 240 and the two 350s 165 and 175. Z15 remained available on the Malibu sport coupe, convertible and El Camino, and 24,946 cars took it, more than in 1971. The lasting benefit to later owners was an engine letter in the VIN, W denoting the 454, which could only be ordered with the package. It was the final year for cowl induction on the 454, and the final year of the second-generation shell.",
  "marketNotes": "As of August 2026, classic.com's benchmark for the second-generation Chevelle SS stands at $87,120 on a rising trend, with an average recorded sale of $100,381 and 72 cars listed for sale. The tracked range runs from an anomalous $1 entry recorded against a 1970 SS 454 LS5 M22 on 24 March 2026 to $209,900 for a 1970 SS 454 LS6 on 30 June 2026. Auction evidence sits well above the benchmark at the documented end. Mecum sold a numbers-matching LS6 M22 convertible, chassis 136670B188926, for $770,000 including buyer's premium as lot S187 at Kissimmee on 17 January 2026 - the highest price paid for any Chevelle at public sale, ahead of the $600,000 record set in May 2024. A documented LS6 four-speed made $192,500 at Barrett-Jackson Palm Beach in April 2025, against reported sales near $87,000 for an example whose broadcast sheet could not be produced on the day. Hagerty's market writing places a four-speed roughly 15 per cent ahead of an otherwise equivalent automatic, and notes that big-block Chevelles, LS6 cars first, recovered their pre-2008 values faster than the rest of the field.",
- "whatToLookFor": "Identification comes before condition on this car. In 1968 the SS 396 was its own series and the VIN says so. From 1969 to 1971 it was an option code and no part of the VIN records it, so a car of those years cannot be authenticated from the metal alone. That is why the paper trail - build sheet, Protect-O-Plate, dealer invoice, warranty card, window sticker - carries so much of the value. The exception is 1972, when Chevrolet placed an engine letter in the VIN and the 454 code W could only be ordered alongside Z15. Cars assembled at Oshawa, Ontario carry their RPO codes on the Fisher body tag; a US-built 1970 trim tag carries no such record. Expect claims to outrun evidence, since Chevelle club officials report that cloned paperwork now circulates alongside cloned cars. On an LS6, treat the stamped partial VIN on the engine pad and the casting and assembly dates as a starting point rather than a conclusion, and ask what independent record supports any body-style rarity claimed, since the LS6 Registry publishes calculations and says so. Beyond the paperwork, check the frame and its body mounts before the panels, lift the boot mat, and look along the base of the rear screen.",
- "commonProblems": "Mechanically these are simple, over-built cars and the drivetrains have no signature failure. A long-standing Chevelle specialist quoted by Hagerty could think of nothing genuinely wrong with any of them beyond the fact that period gasket technology means they all leak oil. The structure is where the money goes. The perimeter frame and its body mounts corrode from the inside, and the panels rust in a consistent order: the base of the rear window first, which then drains into the boot and rots the parcel shelf and boot floor; the quarter panels behind the rear wheels; the lower corners of the doors; the bottoms of the front wings; and the floor pans, particularly under the windscreen. Cars fitted with a vinyl roof trap moisture beneath it and bubble along the rear pillars, and convertibles rot in the inner rockers, which is structural on an open car. Replacing the rear glass on a hardtop requires the quarter panel to come off, so a leaking rear screen is rarely a cheap repair. Big-block cars add mass to a nose that already carried 58 per cent of the weight, and worn front bushings, sagging springs and tired steering boxes are normal. Reproduction sheet metal is abundant, but fit quality varies and imported panels frequently need reworking.",
+ "whatToLookFor": "Identification comes before condition on this car. In 1968 the SS 396 was its own series and the VIN says so. From 1969 to 1971 it was an option code and no part of the VIN records it, so a car of those years cannot be authenticated from the metal alone. That is why the paper trail - build sheet, Protect-O-Plate, dealer invoice, warranty card, window sticker - carries so much of the value. The exception is 1972, when Chevrolet placed an engine letter in the VIN and the 454 code W could only be ordered alongside Z15. Cars assembled at Oshawa, Ontario carry their RPO codes on the Fisher body tag; a US-built 1970 trim tag carries no such record. Expect claims to outrun evidence, since Chevelle club officials report that cloned paperwork now circulates alongside cloned cars. On an LS6, treat the stamped partial VIN on the engine pad and the casting and assembly dates as a starting point rather than a conclusion, and ask what independent record supports any body-style rarity claimed, since the LS6 Registry publishes calculations and says so. Beyond the paperwork, check the frame and its body mounts before the panels, lift the trunk mat, and look along the base of the rear screen.",
+ "commonProblems": "Mechanically these are simple, over-built cars and the drivetrains have no signature failure. A long-standing Chevelle specialist quoted by Hagerty could think of nothing genuinely wrong with any of them beyond the fact that period gasket technology means they all leak oil. The structure is where the money goes. The perimeter frame and its body mounts corrode from the inside, and the panels rust in a consistent order: the base of the rear window first, which then drains into the trunk and rots the parcel shelf and trunk floor; the quarter panels behind the rear wheels; the lower corners of the doors; the bottoms of the front wings; and the floor pans, particularly under the windshield. Cars fitted with a vinyl roof trap moisture beneath it and bubble along the rear pillars, and convertibles rot in the inner rockers, which is structural on an open car. Replacing the rear glass on a hardtop requires the quarter panel to come off, so a leaking rear screen is rarely a cheap repair. Big-block cars add mass to a nose that already carried 58 per cent of the weight, and worn front bushings, sagging springs and tired steering boxes are normal. Reproduction sheet metal is abundant, but fit quality varies and imported panels frequently need reworking.",
  "valueTrajectory": "Big-block Chevelles were among the quickest American muscle cars to recover after 2008, and LS6 cars led that recovery. The market has since separated along a single axis, and that axis is evidence rather than specification: a documented, numbers-matching LS6 trades in a different market from an SS 454 whose Z15 status rests on the seller's word. As of August 2026 the classic.com benchmark for the generation's SS cars is $87,120 and trending upward, while Mecum's January 2026 Kissimmee sale of a restored LS6 M22 convertible at $770,000 including premium set a new public high for any Chevelle, ahead of the $600,000 paid in May 2024. Reported results in the $120,000 to $200,000 band for documented LS6 coupes, against roughly $87,000 for an example whose broadcast sheet could not be produced, describe the same gap from the other end. The 1971 and 1972 cars have been the quiet movers, cheap for decades because their published output read as detuned when the change was largely one of measurement. Paperwork now prices these cars, and the supply of examples able to prove what they are does not increase.",
  "overallConfidence": "medium",
  "sources": [
@@ -86,7 +86,7 @@ export const seedChevelleSs = {
    "publisher": "ChevelleStuff",
    "sourceType": "registry",
    "reliability": "high",
-   "notes": "1970 option structure: Z25 SS 396 at $445.55 with L34 350 bhp standard and L78 375 bhp available only until 30 October 1969; Z15 SS 454 at $503.45 with LS5 standard and LS6 optional; and the 396 bored to 402 while keeping its badge."
+   "notes": "1970 option structure: Z25 SS 396 at $445.55 with L34 350 hp standard and L78 375 hp available only until 30 October 1969; Z15 SS 454 at $503.45 with LS5 standard and LS6 optional; and the 396 bored to 402 while keeping its badge."
   },
   {
    "ref": "chevellestuff-1970-production",
@@ -122,7 +122,7 @@ export const seedChevelleSs = {
    "publisher": "ChevelleStuff",
    "sourceType": "registry",
    "reliability": "high",
-   "notes": "1972 Z15 availability on Malibu sport coupe, convertible and sedan pickup; SAE net ratings of 165, 175, 240 and 270 bhp; the new VIN engine letters W, U, J, H and F; and ZL2 cowl induction at 3,659."
+   "notes": "1972 Z15 availability on Malibu sport coupe, convertible and sedan pickup; SAE net ratings of 165, 175, 240 and 270 hp; the new VIN engine letters W, U, J, H and F; and ZL2 cowl induction at 3,659."
   },
   {
    "ref": "chevellestuff-1972-production",
@@ -140,7 +140,7 @@ export const seedChevelleSs = {
    "publisher": "LS6 Registry",
    "sourceType": "registry",
    "reliability": "medium",
-   "notes": "The registry's statement that Chevrolet's option-level records were destroyed, a proportional calculation of about 3,387 coupes, 103 convertibles and 585 sedan pickups expressly labelled as computed rather than factual, a claim of at least 50 LS6 convertibles made for Briggs Chevrolet against a suggestion of 17, and a warning that 'one of xx' claims commonly lack basis."
+   "notes": "The registry's statement that Chevrolet's option-level records were destroyed, a proportional calculation of about 3,387 coupes, 103 convertibles and 585 sedan pickups expressly labeled as computed rather than factual, a claim of at least 50 LS6 convertibles made for Briggs Chevrolet against a suggestion of 17, and a warning that 'one of xx' claims commonly lack basis."
   },
   {
    "ref": "chevyworld-ls5-ls6-production",
@@ -158,7 +158,7 @@ export const seedChevelleSs = {
    "publisher": "Hagerty Media",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Year-by-year package changes; 1968 SS production of 62,785 and 1969 Z25 of 86,307; a summary of just under 192,000 SS cars for 1968-1972 alongside year figures that sum higher; VIN and Fisher tag identification limits and the Oshawa exception; the rust pattern from the rear window into the boot; cloned cars and cloned paperwork; and a specialist's view that the drivetrains have no inherent fault beyond period gaskets."
+   "notes": "Year-by-year package changes; 1968 SS production of 62,785 and 1969 Z25 of 86,307; a summary of just under 192,000 SS cars for 1968-1972 alongside year figures that sum higher; VIN and Fisher tag identification limits and the Oshawa exception; the rust pattern from the rear window into the trunk; cloned cars and cloned paperwork; and a specialist's view that the drivetrains have no inherent fault beyond period gaskets."
   },
   {
    "ref": "hagerty-big-block-market",
@@ -176,7 +176,7 @@ export const seedChevelleSs = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "The 1968 two-wheelbase redesign and the SS 396 as its own series with 60,499 coupes, 2,286 convertibles and 5,190 El Caminos; the 1970 Z25/Z15 split; the LS6 at 450 bhp gross with an 800 cfm Holley and 4,475 built; the 1971 move to paired gross and net ratings; and that no official records show any 1971 Chevelle assembled with the LS6."
+   "notes": "The 1968 two-wheelbase redesign and the SS 396 as its own series with 60,499 coupes, 2,286 convertibles and 5,190 El Caminos; the 1970 Z25/Z15 split; the LS6 at 450 hp gross with an 800 cfm Holley and 4,475 built; the 1971 move to paired gross and net ratings; and that no official records show any 1971 Chevelle assembled with the LS6."
   },
   {
    "ref": "overdrive-1970-factsheet",
@@ -185,7 +185,7 @@ export const seedChevelleSs = {
    "publisher": "Over-Drive Magazine",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Reprints the factory 1970 engine table: L34 402 at 350 bhp and 415 lb-ft, L78 402 at 375 bhp on 11.0:1, LS3 402 at 330 bhp, LS5 454 at 360 bhp and 500 lb-ft, LS6 454 at 450 bhp at 5,600 rpm and 500 lb-ft at 3,600 on 11.25:1, plus package prices and LS6 axle ratios."
+   "notes": "Reprints the factory 1970 engine table: L34 402 at 350 hp and 415 lb-ft, L78 402 at 375 hp on 11.0:1, LS3 402 at 330 hp, LS5 454 at 360 hp and 500 lb-ft, LS6 454 at 450 hp at 5,600 rpm and 500 lb-ft at 3,600 on 11.25:1, plus package prices and LS6 axle ratios."
   },
   {
    "ref": "overdrive-1971-factsheet",
@@ -194,7 +194,7 @@ export const seedChevelleSs = {
    "publisher": "Over-Drive Magazine",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Reprints the 1971 factory table with compression at 8.5:1 across the range and the LS5 454 at 365 bhp and 465 lb-ft. Also lists an LS6 454 at 425 bhp and 475 lb-ft in the SS package at about $720 - the catalogued 1971 LS6 that other sources say was never built."
+   "notes": "Reprints the 1971 factory table with compression at 8.5:1 across the range and the LS5 454 at 365 hp and 465 lb-ft. Also lists an LS6 454 at 425 hp and 475 lb-ft in the SS package at about $720 - the catalogued 1971 LS6 that other sources say was never built."
   },
   {
    "ref": "oldcars-1971-chevelle-ss",
@@ -212,7 +212,7 @@ export const seedChevelleSs = {
    "publisher": "Curbside Classic",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Reprints Car Life's January 1970 test of an L34 350 bhp SS 396 with 3.31 gearing: 3,990 lb kerb weight, 58 per cent front bias, 0-60 mph in 8.1 seconds, a quarter mile of 15.5 seconds at 90.42 mph, 80-0 mph in 259 feet with fade, and heavy understeer despite the F41 package."
+   "notes": "Reprints Car Life's January 1970 test of an L34 350 hp SS 396 with 3.31 gearing: 3,990 lb curb weight, 58 per cent front bias, 0-60 mph in 8.1 seconds, a quarter mile of 15.5 seconds at 90.42 mph, 80-0 mph in 259 feet with fade, and heavy understeer despite the F41 package."
   },
   {
    "ref": "classic-chevelle-ss-2nd-gen",
@@ -257,7 +257,7 @@ export const seedChevelleSs = {
    "publisher": "Pro-Touring.com",
    "sourceType": "club-forum",
    "reliability": "low",
-   "notes": "Owner reports of recurring corrosion sites on a 1971 car, used only for fault patterns: trunk floor, floor pans beneath the windscreen, inner and outer wheel arches, door bottoms, rockers, quarters, rear valance and window channels."
+   "notes": "Owner reports of recurring corrosion sites on a 1971 car, used only for fault patterns: trunk floor, floor pans beneath the windshield, inner and outer wheel arches, door bottoms, rockers, quarters, rear valance and window channels."
   }
  ],
  "claims": [
@@ -273,7 +273,7 @@ export const seedChevelleSs = {
   },
   {
    "section": "history",
-   "claimText": "General Motors lifted its self-imposed 400 cubic inch ceiling on intermediate cars for 1970, which is what let the 454 into the Chevelle, and in the same year the 396 was bored to 402 cubic inches while keeping its badge. RPO Z25 (SS 396) then cost $445.55 with the L34 350 bhp engine standard and the L78 375 bhp version available only until 30 October 1969, while RPO Z15 (SS 454) cost $503.45.",
+   "claimText": "General Motors lifted its self-imposed 400 cubic inch ceiling on intermediate cars for 1970, which is what let the 454 into the Chevelle, and in the same year the 396 was bored to 402 cubic inches while keeping its badge. RPO Z25 (SS 396) then cost $445.55 with the L34 350 hp engine standard and the L78 375 hp version available only until 30 October 1969, while RPO Z15 (SS 454) cost $503.45.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -285,7 +285,7 @@ export const seedChevelleSs = {
   },
   {
    "section": "specs",
-   "claimText": "The standard Z15 engine for 1970, the LS5 454, was rated at 360 bhp gross at 4,400 rpm and 500 lb-ft at 3,200 rpm on 10.25:1 compression; for roughly $263 more the LS6 replaced it at 450 bhp gross at 5,600 rpm and 500 lb-ft at 3,600 rpm on 11.25:1 compression, with solid lifters, forged crankshaft, rods and pistons, an aluminium intake and a Holley four-barrel.",
+   "claimText": "The standard Z15 engine for 1970, the LS5 454, was rated at 360 hp gross at 4,400 rpm and 500 lb-ft at 3,200 rpm on 10.25:1 compression; for roughly $263 more the LS6 replaced it at 450 hp gross at 5,600 rpm and 500 lb-ft at 3,600 rpm on 11.25:1 compression, with solid lifters, forged crankshaft, rods and pistons, an aluminum intake and a Holley four-barrel.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -298,7 +298,7 @@ export const seedChevelleSs = {
   },
   {
    "section": "specs",
-   "claimText": "Car Life's January 1970 test of a 350 bhp SS 396 with 3.31 gearing recorded 0-60 mph in 8.1 seconds and a standing quarter mile of 15.5 seconds at 90.42 mph from a 3,990 lb kerb weight carrying 58 per cent of its mass over the front axle, with heavy understeer and brake fade; period LS6 results are generally quoted at 13.7 to 14.0 seconds at 103 to 107 mph.",
+   "claimText": "Car Life's January 1970 test of a 350 hp SS 396 with 3.31 gearing recorded 0-60 mph in 8.1 seconds and a standing quarter mile of 15.5 seconds at 90.42 mph from a 3,990 lb curb weight carrying 58 per cent of its mass over the front axle, with heavy understeer and brake fade; period LS6 results are generally quoted at 13.7 to 14.0 seconds at 103 to 107 mph.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -343,7 +343,7 @@ export const seedChevelleSs = {
   },
   {
    "section": "production",
-   "claimText": "The LS6 was catalogued for the 1971 Chevelle at 425 bhp gross and 325 bhp net but sources disagree over whether any Chevelle was actually built with it.",
+   "claimText": "The LS6 was catalogued for the 1971 Chevelle at 425 hp gross and 325 hp net but sources disagree over whether any Chevelle was actually built with it.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -353,7 +353,7 @@ export const seedChevelleSs = {
     "oldcars-1971-chevelle-ss",
     "overdrive-1971-factsheet"
    ],
-   "conflictNote": "The 1971 factory fact sheet reprinted by Over-Drive Magazine lists an LS6 454 at 425 bhp and 475 lb-ft in the SS package, and Old Cars Weekly presents it as an available 1971 engine at 325 net and 425 gross. ChevelleStuff states it was dropped with no price ever published and never reached Chevelle production; Wikipedia states no official records indicate any 1971 Chevelle was assembled with it; ChevyWorld states some pre-production 1971 Chevelles were built with the engine but none were reported sold to the public. The question is not resolved by any source consulted here."
+   "conflictNote": "The 1971 factory fact sheet reprinted by Over-Drive Magazine lists an LS6 454 at 425 hp and 475 lb-ft in the SS package, and Old Cars Weekly presents it as an available 1971 engine at 325 net and 425 gross. ChevelleStuff states it was dropped with no price ever published and never reached Chevelle production; Wikipedia states no official records indicate any 1971 Chevelle was assembled with it; ChevyWorld states some pre-production 1971 Chevelles were built with the engine but none were reported sold to the public. The question is not resolved by any source consulted here."
   },
   {
    "section": "production",
@@ -368,7 +368,7 @@ export const seedChevelleSs = {
   },
   {
    "section": "specs",
-   "claimText": "From 1971 General Motors required its engines to run on low-lead or unleaded fuel, compression fell to 8.5:1 or below across the Chevelle range, and Chevrolet began publishing SAE net figures alongside gross ratings, with the LS5 quoted at 365 bhp gross and 285 bhp net and the 402 at 300 gross and 260 net. Z15 itself became an equipment package of about $357 orderable with any of the four optional V8s, so a genuine 1971 SS may carry a 350.",
+   "claimText": "From 1971 General Motors required its engines to run on low-lead or unleaded fuel, compression fell to 8.5:1 or below across the Chevelle range, and Chevrolet began publishing SAE net figures alongside gross ratings, with the LS5 quoted at 365 hp gross and 285 hp net and the 402 at 300 gross and 260 net. Z15 itself became an equipment package of about $357 orderable with any of the four optional V8s, so a genuine 1971 SS may carry a 350.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -380,7 +380,7 @@ export const seedChevelleSs = {
   },
   {
    "section": "specs",
-   "claimText": "For 1972 Chevrolet dropped gross ratings entirely, quoting 165 and 175 bhp SAE net for the two 350s, 240 bhp for the 402 and 270 bhp for the LS5 454; 24,946 cars took RPO Z15 that year, of which 5,333 had SS 454 equipment, and it was the last year cowl induction was available on the 454.",
+   "claimText": "For 1972 Chevrolet dropped gross ratings entirely, quoting 165 and 175 hp SAE net for the two 350s, 240 hp for the 402 and 270 hp for the LS5 454; 24,946 cars took RPO Z15 that year, of which 5,333 had SS 454 equipment, and it was the last year cowl induction was available on the 454.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -404,7 +404,7 @@ export const seedChevelleSs = {
   },
   {
    "section": "problems",
-   "claimText": "Corrosion follows a consistent pattern on these cars: the base of the rear window, which drains into the boot and rots the parcel shelf and boot floor, then the quarter panels behind the rear wheels, door bottoms, front wing bottoms, floor pans under the windscreen, inner and outer wheel arches and the rear valance, with vinyl-roofed cars trapping moisture beneath the covering and convertibles rotting in the inner rockers.",
+   "claimText": "Corrosion follows a consistent pattern on these cars: the base of the rear window, which drains into the trunk and rots the parcel shelf and trunk floor, then the quarter panels behind the rear wheels, door bottoms, front wing bottoms, floor pans under the windshield, inner and outer wheel arches and the rear valance, with vinyl-roofed cars trapping moisture beneath the covering and convertibles rotting in the inner rockers.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

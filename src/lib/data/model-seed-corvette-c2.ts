@@ -16,17 +16,17 @@ export const seedCorvetteC2 = {
   "2-door Convertible (RPO C07 auxiliary hardtop optional)"
  ],
  "engines": [
-  "327 cu in (5.4L) small-block V8, base: 250 bhp at 4,400 rpm, 350 lb-ft at 2,800 rpm, 10.5:1",
-  "327 cu in L75, 300 bhp at 5,000 rpm, 360 lb-ft at 3,200 rpm, 10.5:1 (base engine from 1966)",
-  "327 cu in L76 solid-lifter, 340 bhp at 6,000 rpm on 11.25:1 (1963), 365 bhp for 1964-1965",
-  "327 cu in L84, Rochester Ramjet mechanical injection, 360 bhp and 352 lb-ft at 4,000 rpm (1963), 375 bhp for 1964-1965",
-  "327 cu in L79 hydraulic-lifter, 350 bhp on 11:1 (1965-1967)",
-  "396 cu in (6.5L) L78 Mark IV big-block, 425 bhp, solid lifters, 11:1 (mid-1965 only)",
-  "427 cu in (7.0L) L36 Mark IV, 390 bhp (1966-1967)",
-  "427 cu in L72 Mark IV, 425 bhp (1966)",
-  "427 cu in L68, 400 bhp with three two-barrel carburettors (1967)",
-  "427 cu in L71, 435 bhp (1967); RPO L89 added aluminium heads, 16 cars",
-  "427 cu in L88, aluminium heads, 12.5:1, single 850 cfm Holley, rated 430 bhp at 5,200 rpm (1967)"
+  "327 cu in (5.4L) small-block V8, base: 250 hp at 4,400 rpm, 350 lb-ft at 2,800 rpm, 10.5:1",
+  "327 cu in L75, 300 hp at 5,000 rpm, 360 lb-ft at 3,200 rpm, 10.5:1 (base engine from 1966)",
+  "327 cu in L76 solid-lifter, 340 hp at 6,000 rpm on 11.25:1 (1963), 365 hp for 1964-1965",
+  "327 cu in L84, Rochester Ramjet mechanical injection, 360 hp and 352 lb-ft at 4,000 rpm (1963), 375 hp for 1964-1965",
+  "327 cu in L79 hydraulic-lifter, 350 hp on 11:1 (1965-1967)",
+  "396 cu in (6.5L) L78 Mark IV big-block, 425 hp, solid lifters, 11:1 (mid-1965 only)",
+  "427 cu in (7.0L) L36 Mark IV, 390 hp (1966-1967)",
+  "427 cu in L72 Mark IV, 425 hp (1966)",
+  "427 cu in L68, 400 hp with three two-barrel carburettors (1967)",
+  "427 cu in L71, 435 hp (1967); RPO L89 added aluminum heads, 16 cars",
+  "427 cu in L88, aluminum heads, 12.5:1, single 850 cfm Holley, rated 430 hp at 5,200 rpm (1967)"
  ],
  "productionTotal": 117964,
  "productionNotes": "Every source consulted that states a generation total gives 117,964 cars, and the body-style split of 45,546 coupes to 72,418 convertibles published by CorvSport reconciles exactly with the model-year tables at Corvette Action Center: coupes 10,594 / 8,304 / 8,186 / 9,958 / 8,504 and convertibles 10,919 / 13,925 / 15,376 / 17,762 / 14,436 for 1963 to 1967. Two model-year rows are nonetheless contested. For 1965, Corvette Action Center, Wikipedia and the LSX Magazine buyer's guide give 23,562 (8,186 coupes, 15,376 convertibles), while CorvSport gives 23,564 with 15,378 convertibles and a VIN range ending 123564, adding that two cars were built after production officially closed. For 1963, CorvSport lists 10,396 coupes and 10,918 convertibles, which sum to 21,314 rather than the 21,513 the same page states as the year total, while Corvette Action Center, Vette Vues and Wikipedia all give 10,594 and 10,919. Option counts are far better documented than the totals: L84 fuel injection ran 2,610 cars in 1963, 1,325 in 1964 and 771 in 1965; RPO Z06 took 199 buyers, 63 of them with the N03 36.5-gallon tank; the L78 396 accounted for 2,157 cars in its part-year 1965 run; and 1967 closed the generation with 3,832 L36, 2,101 L68, 3,754 L71, 16 L89 and 20 L88 cars.",
@@ -41,44 +41,44 @@ export const seedCorvetteC2 = {
   },
   {
    "name": "L84 Rochester Ramjet fuel injection (1963-1965)",
-   "note": "360 bhp in 1963, 375 bhp for 1964-1965. Take-up collapsed once the big-block arrived: 2,610 cars, then 1,325, then 771. Chevrolet dropped injection after 1965 and did not fit it again for twenty years."
+   "note": "360 hp in 1963, 375 hp for 1964-1965. Take-up collapsed once the big-block arrived: 2,610 cars, then 1,325, then 771. Chevrolet dropped injection after 1965 and did not fit it again for twenty years."
   },
   {
-   "name": "L71 427/435 with L89 aluminium heads (1967)",
-   "note": "The 1967 range-topper short of the L88, at 435 bhp and 3,754 cars for $437.10. Only 16 buyers added the L89 aluminium heads at $368.65, which makes a genuine L71/L89 car one of the rarest street combinations of the generation."
+   "name": "L71 427/435 with L89 aluminum heads (1967)",
+   "note": "The 1967 range-topper short of the L88, at 435 hp and 3,754 cars for $437.10. Only 16 buyers added the L89 aluminum heads at $368.65, which makes a genuine L71/L89 car one of the rarest street combinations of the generation."
   },
   {
    "name": "L88 427 (1967)",
-   "note": "Twenty cars, in production from February 1967. Aluminium heads, 12.5:1 compression, a single 850 cfm Holley; mandatory M22 gearbox, J56 brakes, F41 suspension, K66 ignition and C48 heater delete. Rated 430 bhp, which nobody believed."
+   "note": "Twenty cars, in production from February 1967. Aluminum heads, 12.5:1 compression, a single 850 cfm Holley; mandatory M22 gearbox, J56 brakes, F41 suspension, K66 ignition and C48 heater delete. Rated 430 hp, which nobody believed."
   },
   {
    "name": "Grand Sport (1963)",
-   "note": "The competition Corvette Duntov could not get built. 125 were planned; GM's racing prohibition stopped the programme at five cars, three coupes and two roadsters, roughly a thousand pounds under a production Sting Ray."
+   "note": "The competition Corvette Duntov could not get built. 125 were planned; GM's racing prohibition stopped the program at five cars, three coupes and two roadsters, roughly a thousand pounds under a production Sting Ray."
   }
  ],
  "specs": {
   "layout": "Front engine, rear-wheel drive",
-  "chassis": "Ladder frame with a welded steel 'birdcage' cockpit structure under bonded fibreglass panels",
+  "chassis": "Ladder frame with a welded steel 'birdcage' cockpit structure under bonded fiberglass panels",
   "suspension": "Independent front suspension with coil springs; independent rear located by trailing arms - the first IRS on a Corvette, and the change period testers credited for the traction gain",
   "engine": "327 cu in small-block V8 throughout; 396 cu in Mark IV from mid-1965; 427 cu in Mark IV from 1966",
   "bore_stroke": "4.00 in x 3.25 in (327 cu in)",
   "compression": "10.5:1 base and L75; 11.25:1 for L76 and L84 in 1963; 12.5:1 for the 1967 L88",
-  "power": "250 bhp at 4,400 rpm base in 1963, rising to a rated 435 bhp for the 1967 L71 and a nominal 430 bhp at 5,200 rpm for the L88, a rating widely held to be deliberately understated",
+  "power": "250 hp at 4,400 rpm base in 1963, rising to a rated 435 hp for the 1967 L71 and a nominal 430 hp at 5,200 rpm for the L88, a rating widely held to be deliberately understated",
   "torque": "350 lb-ft at 2,800 rpm base in 1963; 352 lb-ft at 4,000 rpm for the L84 fuel-injected 327",
   "fuel_system": "Four-barrel carburettor; Rochester Ramjet mechanical injection on L84 cars 1963-1965; a 427 with three two-barrel carburettors new for 1967",
   "transmission": "3-speed manual standard; M20 four-speed optional and taken by most buyers; M22 heavy-duty close-ratio four-speed from 1967; Powerglide automatic optional",
   "brakes": "11 in drums all round 1963-1964 with sintered-metallic and Al-Fin options; four-wheel discs standard from 1965, with a $64.50 drum credit taken by 316 cars",
   "weight": "3,048 lb curb for the 1963 coupe and 3,030 lb for the convertible per Corvette Action Center; GM's heritage record lists 2,859 lb, which reads as a shipping figure",
   "dimensions": "98.0 in wheelbase, 175.3 in long, 69.6 in wide, 49.8 in high; track 56.3/57.0 in",
-  "fuel_capacity": "20.0 US gallons standard; 36.5-gallon RPO N03 fibreglass tank optional on coupes",
-  "acceleration": "0-60 mph in 6.0 sec and 0-100 mph in 14.3 sec for a 360 bhp car tested by Motor Sport, April 1964; Road & Track recorded 6.3 sec for a 1965 L84 and 5.7 sec for a 1965 L78 396",
+  "fuel_capacity": "20.0 US gallons standard; 36.5-gallon RPO N03 fiberglass tank optional on coupes",
+  "acceleration": "0-60 mph in 6.0 sec and 0-100 mph in 14.3 sec for a 360 hp car tested by Motor Sport, April 1964; Road & Track recorded 6.3 sec for a 1965 L84 and 5.7 sec for a 1965 L78 396",
   "assembly": "St. Louis, Missouri"
  },
- "summary": "The second-generation Corvette (1963-1967) replaced the C1's leaf-sprung live axle with an independent rear end on a shorter 98-inch wheelbase, and added a closed coupe to the range for the first time. Bill Mitchell's Sting Ray body carried a divided rear screen for 1963 only; period reviewers disliked the blind spot it created and it was gone by 1964, which is why that one detail now separates the most valuable ordinary C2 from the rest. Chevrolet built 117,964 cars across five model years, 72,418 of them convertibles. The engine bay moved from Rochester-injected 327 small-blocks to Mark IV big-blocks: 396 cubic inches from mid-1965, 427 from 1966, and from February 1967 the L88, twenty cars with aluminium heads and no heater. Four-wheel disc brakes became standard for 1965 and mechanical fuel injection was dropped at the end of the same year. It is the shortest Corvette generation, and the one where the option sheet rather than the model year decides what a car is worth.",
- "history": "## A New Chassis Under a Show Car Body\nThe C2 was the first complete redesign of the Corvette since 1953, and General Motors' own heritage record frames it that way: a new chassis, an independent rear suspension, and the first coupe body the model line had ever been given. The wheelbase came down to 98.0 inches and the frame gained a welded steel 'birdcage' around the cockpit beneath bonded fibreglass panels. The independent rear end, with trailing arms locating the wheels, was the substantive change, and contemporary judgement was that traction and handling had moved on decisively from the live-axle cars. Bill Mitchell had driven the styling from his own Stingray racer; Zora Arkus-Duntov drove the engineering, and the two men did not agree about the roof.\n\n## The Window That Lasted One Year\nMitchell wanted the coupe's rear screen divided by a body-colour spine running the length of the deck. Duntov objected that it blocked the view, and much of the press agreed once cars reached the road. Mitchell relented for 1964, and a single piece of glass has been fitted to every Corvette coupe since. Chevrolet went further and sold conversion glass through its dealers, so a proportion of the 10,594 split-window coupes built were quietly modernised by their first or second owners. The market has since reversed that judgement hard enough that unpicking a 1960s conversion is now routine restoration work.\n\n## Fuel Injection, Then Cubic Inches\nThe 1963 range was four versions of the 327 small-block: 250 and 300 bhp on hydraulic lifters, a 340 bhp solid-lifter L76, and the L84 with Rochester Ramjet mechanical fuel injection at 360 bhp for $430.40. Injection was the halo option and 2,610 buyers took it. Then the Mark IV big-block arrived part-way through 1965 - 396 cubic inches, 425 bhp, and cheaper than the fuelie at $292.70 against $538.00. L84 sales fell to 1,325 in 1964 and 771 in 1965, and Chevrolet dropped injection at the end of that year; it did not return to a Corvette for twenty. The 427 replaced the 396 for 1966 in mild 390 bhp L36 and hard-edged 425 bhp L72 form, and for 1967 a 427 with three two-barrel carburettors joined the range.\n\n## Racing by Option Code\nGeneral Motors had signed up to the AMA's 1957 withdrawal from motorsport, so Duntov sold competition equipment as option codes instead. RPO Z06 for 1963 bundled sintered-metallic Al-Fin brakes, a dual master cylinder, stiffer springs and a larger front bar, available only on a fuel-injected four-speed coupe with Positraction; 199 people bought it and 63 of those added the 36.5-gallon tank. The Grand Sport was the unsanctioned version of the same idea: a lightweight competition Corvette, roughly a thousand pounds under a production Sting Ray, with an intended run of 125 cars for homologation. GM stopped it at five, and those three coupes and two roadsters beat the Cobras at Nassau in December 1963.\n\n## The Last Year, and the L88\nThe C2 ran a fifth season before the C3 arrived, and 1967 gave the generation both its widest engine list and its smallest: 22,940 cars, four 427 codes on the order sheet, and cast aluminium wheels that had been knock-offs in 1966 now sold as bolt-ons. In February 1967 Chevrolet released the L88 - aluminium heads, 12.5:1 compression, a single 850 cfm Holley, a mandatory heavy-duty gearbox, brakes, suspension and ignition, a compulsory heater delete and no radio or air conditioning available at all. It was rated at 430 bhp, a number the factory chose rather than measured. Twenty were built, at $947.90 on a $4,240.75 convertible.",
+ "summary": "The second-generation Corvette (1963-1967) replaced the C1's leaf-sprung live axle with an independent rear end on a shorter 98-inch wheelbase, and added a closed coupe to the range for the first time. Bill Mitchell's Sting Ray body carried a divided rear screen for 1963 only; period reviewers disliked the blind spot it created and it was gone by 1964, which is why that one detail now separates the most valuable ordinary C2 from the rest. Chevrolet built 117,964 cars across five model years, 72,418 of them convertibles. The engine bay moved from Rochester-injected 327 small-blocks to Mark IV big-blocks: 396 cubic inches from mid-1965, 427 from 1966, and from February 1967 the L88, twenty cars with aluminum heads and no heater. Four-wheel disc brakes became standard for 1965 and mechanical fuel injection was dropped at the end of the same year. It is the shortest Corvette generation, and the one where the option sheet rather than the model year decides what a car is worth.",
+ "history": "## A New Chassis Under a Show Car Body\nThe C2 was the first complete redesign of the Corvette since 1953, and General Motors' own heritage record frames it that way: a new chassis, an independent rear suspension, and the first coupe body the model line had ever been given. The wheelbase came down to 98.0 inches and the frame gained a welded steel 'birdcage' around the cockpit beneath bonded fiberglass panels. The independent rear end, with trailing arms locating the wheels, was the substantive change, and contemporary judgement was that traction and handling had moved on decisively from the live-axle cars. Bill Mitchell had driven the styling from his own Stingray racer; Zora Arkus-Duntov drove the engineering, and the two men did not agree about the roof.\n\n## The Window That Lasted One Year\nMitchell wanted the coupe's rear screen divided by a body-color spine running the length of the deck. Duntov objected that it blocked the view, and much of the press agreed once cars reached the road. Mitchell relented for 1964, and a single piece of glass has been fitted to every Corvette coupe since. Chevrolet went further and sold conversion glass through its dealers, so a proportion of the 10,594 split-window coupes built were quietly modernised by their first or second owners. The market has since reversed that judgement hard enough that unpicking a 1960s conversion is now routine restoration work.\n\n## Fuel Injection, Then Cubic Inches\nThe 1963 range was four versions of the 327 small-block: 250 and 300 hp on hydraulic lifters, a 340 hp solid-lifter L76, and the L84 with Rochester Ramjet mechanical fuel injection at 360 hp for $430.40. Injection was the halo option and 2,610 buyers took it. Then the Mark IV big-block arrived part-way through 1965 - 396 cubic inches, 425 hp, and cheaper than the fuelie at $292.70 against $538.00. L84 sales fell to 1,325 in 1964 and 771 in 1965, and Chevrolet dropped injection at the end of that year; it did not return to a Corvette for twenty. The 427 replaced the 396 for 1966 in mild 390 hp L36 and hard-edged 425 hp L72 form, and for 1967 a 427 with three two-barrel carburettors joined the range.\n\n## Racing by Option Code\nGeneral Motors had signed up to the AMA's 1957 withdrawal from motorsport, so Duntov sold competition equipment as option codes instead. RPO Z06 for 1963 bundled sintered-metallic Al-Fin brakes, a dual master cylinder, stiffer springs and a larger front bar, available only on a fuel-injected four-speed coupe with Positraction; 199 people bought it and 63 of those added the 36.5-gallon tank. The Grand Sport was the unsanctioned version of the same idea: a lightweight competition Corvette, roughly a thousand pounds under a production Sting Ray, with an intended run of 125 cars for homologation. GM stopped it at five, and those three coupes and two roadsters beat the Cobras at Nassau in December 1963.\n\n## The Last Year, and the L88\nThe C2 ran a fifth season before the C3 arrived, and 1967 gave the generation both its widest engine list and its smallest: 22,940 cars, four 427 codes on the order sheet, and cast aluminum wheels that had been knock-offs in 1966 now sold as bolt-ons. In February 1967 Chevrolet released the L88 - aluminum heads, 12.5:1 compression, a single 850 cfm Holley, a mandatory heavy-duty gearbox, brakes, suspension and ignition, a compulsory heater delete and no radio or air conditioning available at all. It was rated at 430 hp, a number the factory chose rather than measured. Twenty were built, at $947.90 on a $4,240.75 convertible.",
  "marketNotes": "As of August 2026, classic.com records an average sale price of $131,977 across the whole C2 market with 284 cars listed for sale - a deep, liquid market by classic-car standards. The spread within it is what matters. The base 327/250 carries a market benchmark of $86,035 and the L75 327/300 $89,592, the realistic entry point; the L79 327/350 sits at $85,009 and the 427/425 L72 at $112,351. Above that the injected cars and the rare option codes separate out, with the L84 327/360 at $191,483 and the 1967 L71 427/435 at $169,579. The 1963 Z06 is its own market: a $622,770 benchmark on a rising trend against a $559,478 average, with a recorded high of $1,100,000 at Barrett-Jackson in January 2026 and a low of $235,000 in April 2023. The L88 benchmark is $1,394,859 against an average of $1,855,840, with nothing listed for sale; the most recent L88 datum classic.com records is a $2,700,000 high bid at Mecum Kissimmee on 17 January 2026 that did not meet reserve. Figures quoted here are advertised sale totals inclusive of buyer's premium.",
- "whatToLookFor": "The structure is steel and it is hidden. The birdcage - the welded cage around the screen and door hinges - rots from the inside at the base of the windscreen pillars, where nothing above it can rust because the panels are fibreglass. Owners on CorvetteForum name the rear frame kick-ups behind the seats, the gussets by the number three body mount and the transmission crossmember as the areas that fail structurally, and note that corrosion works outward from inside the section, so surface appearance understates it. Insist on a lift, a torch and a wire brush on anything that looks scaled. On the body, a smooth, over-finished inner surface where a fibreglass bonding strip should be is evidence of accident repair. On paperwork: verify the VIN, trim tag and stamped engine pad before believing any claim about an L84, L78, L72, L71 or L88 car, because the price difference between a genuine one and a tribute is a large multiple of the cost of fitting the correct engine. The NCRS Historic Document Service supplies a shipping data report for 1962-1975 cars at $50, giving dealer code, dealer name and address and the production date - but explicitly not the option list.",
- "commonProblems": "Frame and birdcage corrosion is the defining structural fault and the only one that writes a car off economically; the rear kick-ups, the number three body mount area and the base of the windscreen pillars are where it is found, and none of it is visible without a lift. Fibreglass stress cracking around the screen surround, arch lips and panel cut-outs is near-universal, and is routinely buried under fresh paint along with poor bonding-strip repairs. The four-wheel disc brakes fitted from 1965 corrode internally in lines and calipers to the point that a stainless replacement industry grew up around them. The Rochester Ramjet unit on L84 cars is the other specialist liability: a mechanical injection system that fell out of general workshop knowledge for decades, so correct rebuilding is small-specialist work. Period testers already complained that the sintered-metallic linings needed warming and would grab if used cold. The most expensive fault is documentary: an undocumented car sold on a claimed rare engine code.",
+ "whatToLookFor": "The structure is steel and it is hidden. The birdcage - the welded cage around the screen and door hinges - rots from the inside at the base of the windshield pillars, where nothing above it can rust because the panels are fiberglass. Owners on CorvetteForum name the rear frame kick-ups behind the seats, the gussets by the number three body mount and the transmission crossmember as the areas that fail structurally, and note that corrosion works outward from inside the section, so surface appearance understates it. Insist on a lift, a torch and a wire brush on anything that looks scaled. On the body, a smooth, over-finished inner surface where a fiberglass bonding strip should be is evidence of accident repair. On paperwork: verify the VIN, trim tag and stamped engine pad before believing any claim about an L84, L78, L72, L71 or L88 car, because the price difference between a genuine one and a tribute is a large multiple of the cost of fitting the correct engine. The NCRS Historic Document Service supplies a shipping data report for 1962-1975 cars at $50, giving dealer code, dealer name and address and the production date - but explicitly not the option list.",
+ "commonProblems": "Frame and birdcage corrosion is the defining structural fault and the only one that writes a car off economically; the rear kick-ups, the number three body mount area and the base of the windshield pillars are where it is found, and none of it is visible without a lift. Fiberglass stress cracking around the screen surround, arch lips and panel cut-outs is near-universal, and is routinely buried under fresh paint along with poor bonding-strip repairs. The four-wheel disc brakes fitted from 1965 corrode internally in lines and calipers to the point that a stainless replacement industry grew up around them. The Rochester Ramjet unit on L84 cars is the other specialist liability: a mechanical injection system that fell out of general workshop knowledge for decades, so correct rebuilding is small-specialist work. Period testers already complained that the sintered-metallic linings needed warming and would grab if used cold. The most expensive fault is documentary: an undocumented car sold on a claimed rare engine code.",
  "valueTrajectory": "The C2 became blue-chip long before most of its contemporaries, and the movement since has been about widening gaps rather than a rising tide. As of August 2026 the classic.com benchmarks describe a market stretched across more than an order of magnitude: base-engine cars in the mid-to-high $80,000s, the L72 427/425 at $112,351, the fuel-injected L84 at $191,483, the 1963 Z06 at $622,770 on a rising trend and the L88 at $1,394,859 with nothing at all listed for sale. The generation average of $131,977 sits well above the volume cars because the top of the range drags it there. Two forces set the shape. The floor is held down by a very large surviving population of carburetted convertibles - 72,418 were built, and 284 C2s were listed for sale on a single day in August 2026 - which caps what an ordinary good car can do. The ceiling is set by counts that cannot change: 199 Z06s, 20 L88s, five Grand Sports. Documentation is doing almost all of the work at the top and very little at the bottom.",
  "overallConfidence": "high",
  "sources": [
@@ -143,7 +143,7 @@ export const seedCorvetteC2 = {
    "publisher": "Corvette Action Center",
    "sourceType": "specialist",
    "reliability": "high",
-   "notes": "98.0 in wheelbase, 175.3 x 69.6 x 49.8 in, track 56.3/57.0 in, curb 3,048 lb coupe and 3,030 lb convertible, 20.0 gal, bore 4.00 x stroke 3.25 in. L84 360 bhp at 6,000 rpm, 352 lb-ft."
+   "notes": "98.0 in wheelbase, 175.3 x 69.6 x 49.8 in, track 56.3/57.0 in, curb 3,048 lb coupe and 3,030 lb convertible, 20.0 gal, bore 4.00 x stroke 3.25 in. L84 360 hp at 6,000 rpm, 352 lb-ft."
   },
   {
    "ref": "cac-1964-production",
@@ -206,7 +206,7 @@ export const seedCorvetteC2 = {
    "publisher": "Vette Vues Magazine",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "12.5:1 compression, aluminium heads, solid-lifter camshaft, 850 cfm Holley, rated 430 hp at 5,200 rpm, estimated 500-560 hp on the dyno."
+   "notes": "12.5:1 compression, aluminum heads, solid-lifter camshaft, 850 cfm Holley, rated 430 hp at 5,200 rpm, estimated 500-560 hp on the dyno."
   },
   {
    "ref": "motorsport-1964-test",
@@ -215,7 +215,7 @@ export const seedCorvetteC2 = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Period British test of a 360 bhp car: 0-60 in 6.0 sec, 0-100 in 14.3 sec, quarter 14.0 sec at 98 mph. Criticises the ride and cold-brake grab."
+   "notes": "Period British test of a 360 hp car: 0-60 in 6.0 sec, 0-100 in 14.3 sec, quarter 14.0 sec at 98 mph. Criticises the ride and cold-brake grab."
   },
   {
    "ref": "classic-c2",
@@ -278,7 +278,7 @@ export const seedCorvetteC2 = {
    "publisher": "Revs Institute",
    "sourceType": "specialist",
    "reliability": "high",
-   "notes": "The programme intended 125 cars; five existed when the racing ban ended it at year-end 1962. Quotes 2,150 lb and a 377 cu in V8 at 485 hp."
+   "notes": "The program intended 125 cars; five existed when the racing ban ended it at year-end 1962. Quotes 2,150 lb and a 377 cu in V8 at 485 hp."
   },
   {
    "ref": "ncrs-hds",
@@ -296,7 +296,7 @@ export const seedCorvetteC2 = {
    "publisher": "LSX Magazine",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Birdcage substructure and windscreen post bases, trailing-arm attachment at the frame kick-up, bonding strips as accident evidence, 1965-on disc brake corrosion. Gives 1965 as 23,562."
+   "notes": "Birdcage substructure and windshield post bases, trailing-arm attachment at the frame kick-up, bonding strips as accident evidence, 1965-on disc brake corrosion. Gives 1965 as 23,562."
   },
   {
    "ref": "corvetteforum-c2-frame",
@@ -341,15 +341,15 @@ export const seedCorvetteC2 = {
   },
   {
    "section": "specs",
-   "claimText": "Published figures for the engine speed at which the 1963 L84 made its rated 360 bhp do not agree, and the manufacturer's own figure is the outlier.",
+   "claimText": "Published figures for the engine speed at which the 1963 L84 made its rated 360 hp do not agree, and the manufacturer's own figure is the outlier.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": ["gm-heritage-1963", "cac-1963-specs", "corvsport-1963"],
-   "conflictNote": "GM's heritage record states '327 cid, ohv V8, 360 hp @ 5,000 rpm'. Corvette Action Center states 360 bhp at 6,000 rpm. CorvSport states 360 hp at 6,400 rpm. Not resolved by any source consulted here."
+   "conflictNote": "GM's heritage record states '327 cid, ohv V8, 360 hp @ 5,000 rpm'. Corvette Action Center states 360 hp at 6,000 rpm. CorvSport states 360 hp at 6,400 rpm. Not resolved by any source consulted here."
   },
   {
    "section": "production",
-   "claimText": "Fuel injection was displaced by the big-block rather than abandoned for unreliability: L84 take-up ran 2,610 cars in 1963, 1,325 in 1964 and 771 in 1965, by which point it cost $538.00 against $292.70 for the 425 bhp L78 396, which 2,157 buyers chose. Injection was dropped after 1965.",
+   "claimText": "Fuel injection was displaced by the big-block rather than abandoned for unreliability: L84 take-up ran 2,610 cars in 1963, 1,325 in 1964 and 771 in 1965, by which point it cost $538.00 against $292.70 for the 425 hp L78 396, which 2,157 buyers chose. Injection was dropped after 1965.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["cac-1963-production", "cac-1964-production", "cac-1965-production", "corvsport-1965"]
@@ -371,7 +371,7 @@ export const seedCorvetteC2 = {
   },
   {
    "section": "production",
-   "claimText": "Twenty 1967 Corvettes were built with the L88 427 at $947.90, the engine entering production in February 1967, and all twenty carried the mandatory M22 gearbox, J56 brakes, F41 suspension, K66 ignition and C48 heater delete. The rating of 430 bhp at 5,200 rpm was a deliberate understatement; Vette Vues puts the dyno figure at 500 to 560 hp, but no measured factory figure exists.",
+   "claimText": "Twenty 1967 Corvettes were built with the L88 427 at $947.90, the engine entering production in February 1967, and all twenty carried the mandatory M22 gearbox, J56 brakes, F41 suspension, K66 ignition and C48 heater delete. The rating of 430 hp at 5,200 rpm was a deliberate understatement; Vette Vues puts the dyno figure at 500 to 560 hp, but no measured factory figure exists.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["cac-l88-production", "cac-1967-production", "vettevues-l88", "wikipedia-c2"]
@@ -393,7 +393,7 @@ export const seedCorvetteC2 = {
   },
   {
    "section": "specs",
-   "claimText": "Period independent testing of a 360 bhp car recorded 0-60 mph in 6.0 seconds, 0-100 mph in 14.3 seconds and a standing quarter of 14.0 seconds at about 98 mph, with testers criticising the ride on rough surfaces and brakes that grabbed unless warmed; Road & Track recorded 6.3 seconds to 60 mph for a 1965 L84.",
+   "claimText": "Period independent testing of a 360 hp car recorded 0-60 mph in 6.0 seconds, 0-100 mph in 14.3 seconds and a standing quarter of 14.0 seconds at about 98 mph, with testers criticising the ride on rough surfaces and brakes that grabbed unless warmed; Road & Track recorded 6.3 seconds to 60 mph for a 1965 L84.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": ["motorsport-1964-test", "cac-1965-production"]
@@ -414,7 +414,7 @@ export const seedCorvetteC2 = {
   },
   {
    "section": "problems",
-   "claimText": "The defining structural fault is corrosion of the steel under the fibreglass - the birdcage at the base of the windscreen pillars, the rear frame kick-ups, the gussets by the number three body mount and the transmission crossmember - which corrodes from the inside outwards and is invisible without a lift. Stress cracking at the screen posts and arch lips is near-universal, and the 1965-on discs corrode in their lines and calipers.",
+   "claimText": "The defining structural fault is corrosion of the steel under the fiberglass - the birdcage at the base of the windshield pillars, the rear frame kick-ups, the gussets by the number three body mount and the transmission crossmember - which corrodes from the inside outwards and is invisible without a lift. Stress cracking at the screen posts and arch lips is near-universal, and the 1965-on discs corrode in their lines and calipers.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": ["lsxmag-c2-guide", "corvetteforum-c2-frame", "cac-1965-production"]

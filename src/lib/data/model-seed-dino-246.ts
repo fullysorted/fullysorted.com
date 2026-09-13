@@ -18,24 +18,24 @@ export const seedDino246 = {
   "2-door GTS targa with lift-out black roof panel and blanked sail panels in place of rear quarter windows, from March 1972"
  ],
  "engines": [
-  "2,418 cc (quoted by some sources as 2,419.2 cc) Dino 65-degree V6, transversely mid-mounted, cast-iron block with alloy heads, twin overhead camshafts per bank, two valves per cylinder, three Weber carburettors, 9.0:1 compression, 195 PS (192 bhp) at 7,600 rpm",
+  "2,418 cc (quoted by some sources as 2,419.2 cc) Dino 65-degree V6, transversely mid-mounted, cast-iron block with alloy heads, twin overhead camshafts per bank, two valves per cylinder, three Weber carburettors, 9.0:1 compression, 192 hp at 7,600 rpm",
   "Same engine in United States emissions specification, with an air pump and revised valve timing, rated at 175 hp",
-  "Predecessor, Dino 206 GT 1967-69: 1,987 cc Tipo 135 B 65-degree V6, alloy block and head with cast-iron wet liners, 86 x 57 mm, quoted at 180 hp by Ferrari and at 160 bhp at 7,200 rpm elsewhere"
+  "Predecessor, Dino 206 GT 1967-69: 1,987 cc Tipo 135 B 65-degree V6, alloy block and head with cast-iron wet liners, 86 x 57 mm, quoted at 180 hp by Ferrari and at 160 hp at 7,200 rpm elsewhere"
  ],
  "productionTotal": null,
- "productionNotes": "No two reference sources consulted here agree on how many 246s were built, so no single total is asserted. The L-series figure is the one point of consensus: 357 cars, built to the summer of 1970, all left-hand drive, chassis 00400 to 01116. After that the numbers separate. Wikipedia, Supercar Nostalgia and Hagerty each give 507 M-series cars to July 1971; classic.com gives 506; RM Sotheby's catalogue for chassis 01406 states that only 497 M-series cars were produced. The E-series coupe is the larger disagreement: Wikipedia and Supercar Nostalgia both state 1,431, while Hagerty states 1,623 and classic.com 1,624. That single difference cascades. The lower set gives 2,295 GT coupes and, with 1,274 GTS, a run of 3,569 cars; the higher set gives 2,487 coupes and 3,761 in total, which is the figure RM Sotheby's uses in its Monterey 2025 catalogue. Supercar Nostalgia separately prints 3,760. Motor Sport, writing in April 1989, gives 2,732 246 GTs and only 1,180 GTS, agreeing with nobody. The 1,274 figure for the GTS is the most consistently repeated number in the literature, used by Wikipedia, Supercar Nostalgia, Hagerty, classic.com and RM Sotheby's alike, but it too sits against Motor Sport's 1,180. The 206 GT predecessor is cited at 152 cars between 1967 and 1969 by Wikipedia, Supercar Nostalgia and Magneto; Ferrari's own model page says approximately 150, and RM Sotheby's says 150. Right-hand-drive volumes are quoted by Supercar Nostalgia as 62 M-series, 466 E-series coupes and 254 GTS; Classic Trader instead counts United Kingdom deliveries at 488 GT and 235 GTS, which is a different measure and cannot be read as a correction of the first. Chairs-and-flares cars are not separately totalled anywhere consulted, beyond RM Sotheby's statement that fewer than 150 GTS examples left the factory with both options.",
+ "productionNotes": "No two reference sources consulted here agree on how many 246s were built, so no single total is asserted. The L-series figure is the one point of consensus: 357 cars, built to the summer of 1970, all left-hand drive, chassis 00400 to 01116. After that the numbers separate. Wikipedia, Supercar Nostalgia and Hagerty each give 507 M-series cars to July 1971; classic.com gives 506; RM Sotheby's catalogue for chassis 01406 states that only 497 M-series cars were produced. The E-series coupe is the larger disagreement: Wikipedia and Supercar Nostalgia both state 1,431, while Hagerty states 1,623 and classic.com 1,624. That single difference cascades. The lower set gives 2,295 GT coupes and, with 1,274 GTS, a run of 3,569 cars; the higher set gives 2,487 coupes and 3,761 in total, which is the figure RM Sotheby's uses in its Monterey 2025 catalogue. Supercar Nostalgia separately prints 3,760. Motor Sport, writing in April 1989, gives 2,732 246 GTs and only 1,180 GTS, agreeing with nobody. The 1,274 figure for the GTS is the most consistently repeated number in the literature, used by Wikipedia, Supercar Nostalgia, Hagerty, classic.com and RM Sotheby's alike, but it too sits against Motor Sport's 1,180. The 206 GT predecessor is cited at 152 cars between 1967 and 1969 by Wikipedia, Supercar Nostalgia and Magneto; Ferrari's own model page says approximately 150, and RM Sotheby's says 150. Right-hand-drive volumes are quoted by Supercar Nostalgia as 62 M-series, 466 E-series coupes and 254 GTS; Classic Trader instead counts United Kingdom deliveries at 488 GT and 235 GTS, which is a different measure and cannot be read as a correction of the first. Chairs-and-flares cars are not separately totaled anywhere consulted, beyond RM Sotheby's statement that fewer than 150 GTS examples left the factory with both options.",
  "notableTrims": [
   {
    "name": "Dino 206 GT (1967-1969)",
-   "note": "The predecessor, and a different car where it matters: an all-aluminium body over a 2,280 mm wheelbase, an alloy-block 1,987 cc V6, left-hand drive only, roughly 152 built. Scarcity puts it above any 246, and originality of engine and chassis numbers is scrutinised harder here than anywhere else in the line."
+   "note": "The predecessor, and a different car where it matters: an all-aluminum body over a 2,280 mm wheelbase, an alloy-block 1,987 cc V6, left-hand drive only, roughly 152 built. Scarcity puts it above any 246, and originality of engine and chassis numbers is scrutinised harder here than anywhere else in the line."
   },
   {
    "name": "246 GT L-series (Tipo 607 L)",
-   "note": "357 cars to the summer of 1970, chassis 00400-01116, left-hand drive only, identified by centre-lock knock-off wheels. The series most sought on rarity and on the earliest specification of trim and detail."
+   "note": "357 cars to the summer of 1970, chassis 00400-01116, left-hand drive only, identified by center-lock knock-off wheels. The series most sought on rarity and on the earliest specification of trim and detail."
   },
   {
    "name": "246 GT M-series (Tipo 607 M)",
-   "note": "A short transitional run to July 1971, chassis 01118-02130, with five-stud wheels and Dino centre caps, a revised gearbox, ATE brakes, a smaller steering wheel and relocated door locks. Right-hand drive arrived within this series, from around October 1970. Counts range from 497 to 507."
+   "note": "A short transitional run to July 1971, chassis 01118-02130, with five-stud wheels and Dino center caps, a revised gearbox, ATE brakes, a smaller steering wheel and relocated door locks. Right-hand drive arrived within this series, from around October 1970. Counts range from 497 to 507."
   },
   {
    "name": "246 GT E-series (Tipo 607 E)",
@@ -51,35 +51,44 @@ export const seedDino246 = {
   },
   {
    "name": "United States specification",
-   "note": "An air pump and revised valve timing reduced output to 175 hp. Identified by vertical amber indicators recessed into the bodywork, rectangular corner marker lights, reflectors near the plate, and the chassis number stamped on the steering column to be read through the windscreen. NHTSA records confirm a US-certified 246 GTS for 1973."
+   "note": "An air pump and revised valve timing reduced output to 175 hp. Identified by vertical amber indicators recessed into the bodywork, rectangular corner marker lights, reflectors near the plate, and the chassis number stamped on the steering column to be read through the windshield. NHTSA records confirm a US-certified 246 GTS for 1973."
   }
  ],
  "specs": {
   "layout": "Transversely mid-mounted engine behind the cabin, rear-wheel drive",
-  "chassis": "Steel semi-monocoque on a tubular structure with steel bodywork; doors and bonnet in aluminium (the 206 GT was aluminium throughout)",
+  "chassis": "Steel semi-monocoque on a tubular structure with steel bodywork; doors and hood in aluminum (the 206 GT was aluminum throughout)",
   "engine": "2,418 cc Dino 65-degree V6, cast-iron block with alloy heads, chain-driven twin overhead camshafts per bank, two valves per cylinder, three Weber carburettors, Magneti Marelli Dinoplex ignition",
   "bore_stroke": "92.5 mm x 60 mm (206 GT: 86 mm x 57 mm)",
   "compression": "9.0:1",
-  "power": "195 PS (192 bhp) at 7,600 rpm claimed for European specification; 175 hp for United States cars with air pump and revised timing",
-  "torque": "Approximately 225 Nm (166 lb-ft) at 5,500 rpm",
+  "power": "192 hp at 7,600 rpm claimed for European specification; 175 hp for United States cars with air pump and revised timing",
+  "torque": "Approximately 166 lb-ft at 5,500 rpm",
   "transmission": "5-speed manual in unit with the engine and final drive, dog-leg pattern",
   "suspension": "Independent front and rear by unequal-length wishbones, coil springs, Koni dampers and anti-roll bars",
   "brakes": "Servo-assisted discs all round; ATE from the M-series",
   "wheels": "6.5-inch Cromodora alloys as standard; 7.5-inch Campagnolo with flared arches optional",
   "wheelbase": "2,340 mm, lengthened by 60 mm over the 206 GT; Wikipedia gives 2,290 mm for the 206",
-  "weight": "1,080 kg dry as usually quoted; 2,380 lb for the GT and 2,426 lb for the GTS; Autocar recorded 1,219 kg in 1971",
+  "weight": "2,381 lb dry as usually quoted; 2,380 lb for the GT and 2,426 lb for the GTS; Autocar recorded 2,687 lb in 1971",
   "acceleration": "0-60 mph in approximately 7.1 seconds per Magneto; Road & Track recorded about 7.0 seconds",
-  "top_speed": "146 mph (235 km/h) claimed; Autocar reached 140 mph against a quoted 145 mph in May 1971",
-  "price_new": "5,486 pounds in the United Kingdom, per Autocar's road test of May 1971"
+  "top_speed": "146 mph claimed; Autocar reached 140 mph against a quoted 145 mph in May 1971",
+  "price_new": "By 1974, the final year, the US price of a 246 GTS exceeded $15,000 (Premier Financial Services). No verified US list price for the 1969-71 cars was found; Autocar road-tested a UK car in May 1971."
  },
- "summary": "The Dino 246 GT and GTS were built at Maranello between 1969 and 1974 and sold under the Dino marque rather than as Ferraris. No prancing horse appeared on the nose, the wheels or the badging; Enzo Ferrari's stated position was that a car with half the cylinders of a V12 should not carry the name. The V6 existed at all because Formula Two rules of the mid-1960s required a racing engine derived from a production unit built in quantity, and Ferrari could not build 500 of anything in a year, so an agreement with Fiat produced the engine instead. The road car that followed was the 206 GT of 1967-69, an all-aluminium 2.0-litre of which roughly 152 were made. For 1969 the engine grew to 2,418 cc and swapped its aluminium block for cast iron, the wheelbase went up 60 mm, and the body changed to steel: cheaper, heavier, rust-prone, and buildable in numbers Ferrari had never previously reached. An open GTS with a lift-out targa panel followed in March 1972. Three series, L, M and E, divide the run.",
- "history": "## A Rule About Five Hundred Engines\nThe Dino V6 is a homologation artefact. Formula Two rules adopted in the mid-1960s required a racing engine derived from a production unit built in quantity, 500 of them within a defined period, and Ferrari, then building a few hundred cars a year, had no prospect of meeting that alone. An agreement signed on 1 March 1965 committed Fiat to producing the six-cylinder Dino engine in numbers sufficient for its adoption in a Ferrari single-seater; Fiat used it in its own front-engined coupe and spider from 1966-67, Ferrari transversely behind the driver. The name came from Enzo Ferrari's son Alfredo, called Dino, who died in 1956 and had argued for the six-cylinder layout. The badging followed the same logic: these cars carried Dino script and no Ferrari nomenclature anywhere.\n\n## Aluminium, and Not Many of Them\nThe 206 GT reached production in 1968, its body a Pininfarina design credited to Brovarone and Fioravanti, built by Scaglietti in Modena, in aluminium throughout. The Tipo 135 B engine displaced 1,987 cc from 86 x 57 mm, a 65-degree V6 with twin overhead camshafts per bank and an alloy block and head running cast-iron wet liners. Ferrari quotes 180 hp; specialist accounts give 160 bhp at 7,200 rpm, close to the rating Fiat used, and the two are not reconciled. Around 152 were built between 1967 and 1969, all left-hand drive, at roughly three a week; period assessments put it short of power against the Porsches it faced.\n\n## Steel and Cast Iron\nFor 1969 the car became the 246 GT. Bore and stroke went to 92.5 x 60 mm for 2,418 cc, and the aluminium block was replaced by cast iron. That was a manufacturing decision, not an engineering one: Fiat was building the enlarged engine in volume, and iron suited the numbers and the cost. In Ferrari tune it made 195 PS at 7,600 rpm. The wheelbase grew 60 mm to 2,340 mm, absorbed by a longer engine cover and a repositioned fuel filler. The body went from aluminium to steel, doors and bonnet excepted; Motor Sport put the weight penalty at nearly 400 lb. The other consequence took longer to appear: the 246 corrodes in a way the 206 does not, and rust now dominates its condition hierarchy.\n\n## L, M and E\nThe run divides into three series, Tipo 607 L, M and E. L-series cars, 357 built to the summer of 1970 in chassis 00400 to 01116, are left-hand drive only and carry centre-lock knock-off wheels. The M-series took five-stud wheels with Dino centre caps, a revised gearbox, ATE brakes and relocated door locks, and introduced right-hand drive from around October 1970, running to July 1971 in chassis 01118 to 02130. The E-series, from late 1971 to the end in 1974, is much the largest and the most developed, with further gearbox changes and upgraded Weber carburettors, and is said to have been built at three cars a day. Published counts for the M and E series differ by enough to change the model's total by nearly two hundred cars.\n\n## The Targa, the Options and the Americans\nThe 246 GTS was shown at Geneva in March 1972: the same shape with the rear quarter windows replaced by blanked sail panels carrying ventilation grilles, a reinforced structure, and a lift-out black roof panel. It exists only in E-series form, from chassis 03408; 1,274 is the figure almost every source repeats. From around chassis 4000 came the two options that define the model's upper specification: 365 GTB/4 Daytona-pattern seats and Group 4-style flared arches with 7.5-inch Campagnolo wheels, priced separately but ordered together often enough to become the shorthand 'chairs and flares'. RM Sotheby's puts the number of GTS cars built with both at fewer than 150. American cars were their own specification: an air pump and revised valve timing cutting output to 175 hp, recessed vertical amber indicators, corner markers and reflectors, and the chassis number stamped on the steering column, read through the windscreen. NHTSA's import rulings confirm a United States-certified 246 GTS for 1973.",
- "marketNotes": "As of August 2026 classic.com records a market benchmark of $400,980 for the 246 GT with an average recorded sale of $393,611 and a rising trend, against a benchmark of $620,203 and an average of $576,859 for the GTS. The open car has carried that premium consistently; Hagerty put the gap at roughly $50,000, which recent results suggest understates it. Tracked coupe results as of August 2026 run from $192,500 for a 1971 car in April 2025 to $643,000 for an 857-mile 1972 example on 14 August 2026. GTS results as of August 2026 run from $260,000 in August 2023 to a $1,106,000 figure recorded in June 2026 for a modified 'Evo 3.6' car, which is not a standard-specification comparison. Auction evidence fills in the middle. RM Sotheby's sold restored, numbers-matching L-series chassis 00908 for $434,000 at Monterey in August 2025 and an M-series car in rare Verde Germoglio for 331,250 euros at Paris in 2019. For the GTS, RM took $637,500 at Monterey in August 2026 for a late E-series car and $802,500 at Monterey in 2022 for chassis 06462, which carried both options and the invoice showing them; Gooding took $561,000 for a chairs-and-flares GTS at Amelia Island in 2015. Magneto's United Kingdom guidance places a 1971 coupe at 278,000 pounds fair to 448,000 pounds concours.",
- "whatToLookFor": "Structure before anything else. The 246 is a steel body on a steel semi-monocoque and it rusts comprehensively: sills, floorpan, front luggage compartment, wheelarches, lower doors, the rear chassis and the suspension mounting points. Hagerty singles out the centre chassis tubes and the sandwiched panels behind the rear wheels, which trap water and hide what they are doing. A visual inspection is not enough; a structural examination on a lift, by somebody who has seen a rotten one, is the difference between a car and a project. Establish which series is in front of you and confirm it agrees with the chassis number: L-series cars run 00400-01116 on knock-off centre-lock wheels, M-series 01118-02130 on five-stud wheels, and the E-series from 02132, with the GTS starting at 03408. Confirm engine and gearbox numbers against the chassis, which matters most on a 206 and on any car described as chairs-and-flares, since both options were retrofittable and both now carry money; original factory invoices, as with the 2022 RM car, are the strongest evidence a car left Maranello with them. On American cars, look for the recessed vertical amber indicators, the corner markers and the column-stamped chassis number, and treat their absence as a question rather than an answer. Ferrari Classiche certification appears on several of the strongest recent auction cars. Interiors have almost always been retrimmed, so what matters is whether the retrim is correct.",
+ "summary": "The Dino 246 GT and GTS were built at Maranello between 1969 and 1974 and sold under the Dino marque rather than as Ferraris. No prancing horse appeared on the nose, the wheels or the badging; Enzo Ferrari's stated position was that a car with half the cylinders of a V12 should not carry the name. The V6 existed at all because Formula Two rules of the mid-1960s required a racing engine derived from a production unit built in quantity, and Ferrari could not build 500 of anything in a year, so an agreement with Fiat produced the engine instead. The road car that followed was the 206 GT of 1967-69, an all-aluminum 2.0-liter of which roughly 152 were made. For 1969 the engine grew to 2,418 cc and swapped its aluminum block for cast iron, the wheelbase went up 60 mm, and the body changed to steel: cheaper, heavier, rust-prone, and buildable in numbers Ferrari had never previously reached. An open GTS with a lift-out targa panel followed in March 1972. Three series, L, M and E, divide the run.",
+ "history": "## A Rule About Five Hundred Engines\nThe Dino V6 is a homologation artefact. Formula Two rules adopted in the mid-1960s required a racing engine derived from a production unit built in quantity, 500 of them within a defined period, and Ferrari, then building a few hundred cars a year, had no prospect of meeting that alone. An agreement signed on 1 March 1965 committed Fiat to producing the six-cylinder Dino engine in numbers sufficient for its adoption in a Ferrari single-seater; Fiat used it in its own front-engined coupe and spider from 1966-67, Ferrari transversely behind the driver. The name came from Enzo Ferrari's son Alfredo, called Dino, who died in 1956 and had argued for the six-cylinder layout. The badging followed the same logic: these cars carried Dino script and no Ferrari nomenclature anywhere.\n\n## Aluminum, and Not Many of Them\nThe 206 GT reached production in 1968, its body a Pininfarina design credited to Brovarone and Fioravanti, built by Scaglietti in Modena, in aluminum throughout. The Tipo 135 B engine displaced 1,987 cc from 86 x 57 mm, a 65-degree V6 with twin overhead camshafts per bank and an alloy block and head running cast-iron wet liners. Ferrari quotes 180 hp; specialist accounts give 160 hp at 7,200 rpm, close to the rating Fiat used, and the two are not reconciled. Around 152 were built between 1967 and 1969, all left-hand drive, at roughly three a week; period assessments put it short of power against the Porsches it faced.\n\n## Steel and Cast Iron\nFor 1969 the car became the 246 GT. Bore and stroke went to 92.5 x 60 mm for 2,418 cc, and the aluminum block was replaced by cast iron. That was a manufacturing decision, not an engineering one: Fiat was building the enlarged engine in volume, and iron suited the numbers and the cost. In Ferrari tune it made 192 hp at 7,600 rpm. The wheelbase grew 60 mm to 2,340 mm, absorbed by a longer engine cover and a repositioned fuel filler. The body went from aluminum to steel, doors and hood excepted; Motor Sport put the weight penalty at nearly 400 lb. The other consequence took longer to appear: the 246 corrodes in a way the 206 does not, and rust now dominates its condition hierarchy.\n\n## L, M and E\nThe run divides into three series, Tipo 607 L, M and E. L-series cars, 357 built to the summer of 1970 in chassis 00400 to 01116, are left-hand drive only and carry center-lock knock-off wheels. The M-series took five-stud wheels with Dino center caps, a revised gearbox, ATE brakes and relocated door locks, and introduced right-hand drive from around October 1970, running to July 1971 in chassis 01118 to 02130. The E-series, from late 1971 to the end in 1974, is much the largest and the most developed, with further gearbox changes and upgraded Weber carburettors, and is said to have been built at three cars a day. Published counts for the M and E series differ by enough to change the model's total by nearly two hundred cars.\n\n## The Targa, the Options and the Americans\nThe 246 GTS was shown at Geneva in March 1972: the same shape with the rear quarter windows replaced by blanked sail panels carrying ventilation grilles, a reinforced structure, and a lift-out black roof panel. It exists only in E-series form, from chassis 03408; 1,274 is the figure almost every source repeats. From around chassis 4000 came the two options that define the model's upper specification: 365 GTB/4 Daytona-pattern seats and Group 4-style flared arches with 7.5-inch Campagnolo wheels, priced separately but ordered together often enough to become the shorthand 'chairs and flares'. RM Sotheby's puts the number of GTS cars built with both at fewer than 150. American cars were their own specification: an air pump and revised valve timing cutting output to 175 hp, recessed vertical amber indicators, corner markers and reflectors, and the chassis number stamped on the steering column, read through the windshield. NHTSA's import rulings confirm a United States-certified 246 GTS for 1973.",
+ "marketNotes": "As of August 2026 classic.com records a market benchmark of $400,980 for the 246 GT with an average recorded sale of $393,611 and a rising trend, against a benchmark of $620,203 and an average of $576,859 for the GTS. The open car has carried that premium consistently; Hagerty put the gap at roughly $50,000, which recent results suggest understates it. Tracked coupe results as of August 2026 run from $192,500 for a 1971 car in April 2025 to $643,000 for an 857-mile 1972 example on 14 August 2026. GTS results as of August 2026 run from $260,000 in August 2023 to a $1,106,000 figure recorded in June 2026 for a modified 'Evo 3.6' car, which is not a standard-specification comparison. Auction evidence fills in the middle. RM Sotheby's sold restored, numbers-matching L-series chassis 00908 for $434,000 at Monterey in August 2025 and an M-series car in rare Verde Germoglio for 331,250 euros at Paris in 2019. For the GTS, RM took $637,500 at Monterey in August 2026 for a late E-series car and $802,500 at Monterey in 2022 for chassis 06462, which carried both options and the invoice showing them; Gooding took $561,000 for a chairs-and-flares GTS at Amelia Island in 2015.",
+ "whatToLookFor": "Structure before anything else. The 246 is a steel body on a steel semi-monocoque and it rusts comprehensively: sills, floorpan, front luggage compartment, wheel arches, lower doors, the rear chassis and the suspension mounting points. Hagerty singles out the center chassis tubes and the sandwiched panels behind the rear wheels, which trap water and hide what they are doing. A visual inspection is not enough; a structural examination on a lift, by somebody who has seen a rotten one, is the difference between a car and a project. Establish which series is in front of you and confirm it agrees with the chassis number: L-series cars run 00400-01116 on knock-off center-lock wheels, M-series 01118-02130 on five-stud wheels, and the E-series from 02132, with the GTS starting at 03408. Confirm engine and gearbox numbers against the chassis, which matters most on a 206 and on any car described as chairs-and-flares, since both options were retrofittable and both now carry money; original factory invoices, as with the 2022 RM car, are the strongest evidence a car left Maranello with them. On American cars, look for the recessed vertical amber indicators, the corner markers and the column-stamped chassis number, and treat their absence as a question rather than an answer. Ferrari Classiche certification appears on several of the strongest recent auction cars. Interiors have almost always been retrimmed, so what matters is whether the retrim is correct.",
  "commonProblems": "Corrosion is the defining fault and the most expensive to put right, because it is structural rather than cosmetic. The Magneti Marelli Dinoplex capacitive-discharge ignition is the second recurring theme: the working test is a characteristic hum from the transformer core when the key reaches the on position, and silence indicates a problem. Specialist attention is generally recommended rather than roadside diagnosis. Timing chains stretch and become noisy; catastrophic failure is rare but a slack chain is not something to run on. Worn valve guides and tired pistons show as a smoky exhaust. Oil changes at 3,000 miles and tappet adjustment at 6,000 were the factory rhythm, and cars that have not had it show it. Second gear is stiff when cold on a healthy car and frees as it warms; grinding between first and second when warm means the synchronisers have gone and the gearbox needs rebuilding. Cooling is a persistent weakness, with electric fan failures and air trapped in the system; Hagerty's guidance is that around 195 degrees is normal and 225 indicates trouble. Wiring insulation deteriorates with age, and scorching behind the ignition switch is a serious finding. Motor Sport's 1989 catalogue of period irritations, weak second-gear synchromesh, unreliable electronic ignition, fragile door handles and slow window motors, has aged well.",
- "valueTrajectory": "The Dino spent its first two decades as the cheap way into Maranello, which is precisely why so many were used hard and repaired badly. Motor Sport observed in April 1989 that a good car costing around 5,000 pounds six years earlier had multiplied at least fifteenfold, the model's first speculative move. The modern re-rating came later: Hagerty records excellent-condition 246 GTs appreciating roughly 206 per cent between 2009 and 2015, then giving back around 17 per cent from a 2017 peak before steadying. As of August 2026 classic.com shows both body styles trending upward, with the coupe benchmark at $400,980 and the GTS at $620,203. The spread within the model has widened rather than narrowed. An L-series car with matching numbers, a documented GTS, and above all a chairs-and-flares car with paperwork proving the options were fitted new now occupy a different bracket from an ordinary E-series coupe with an unclear restoration. Hagerty also notes that interest remains concentrated in older buyers, with baby boomers at 62 per cent of quotes against 37 per cent of the wider collector market, which is worth weighing against the trend line.",
+ "valueTrajectory": "The Dino spent its first two decades as the cheap way into Maranello, which is precisely why so many were used hard and repaired badly. Motor Sport observed in April 1989 that a good car had multiplied at least fifteenfold in six years, the model's first speculative move. The modern re-rating came later: Hagerty records excellent-condition 246 GTs appreciating roughly 206 per cent between 2009 and 2015, then giving back around 17 per cent from a 2017 peak before steadying. As of August 2026 classic.com shows both body styles trending upward, with the coupe benchmark at $400,980 and the GTS at $620,203. The spread within the model has widened rather than narrowed. An L-series car with matching numbers, a documented GTS, and above all a chairs-and-flares car with paperwork proving the options were fitted new now occupy a different bracket from an ordinary E-series coupe with an unclear restoration. Hagerty also notes that interest remains concentrated in older buyers, with baby boomers at 62 per cent of quotes against 37 per cent of the wider collector market, which is worth weighing against the trend line.",
  "overallConfidence": "high",
  "sources": [
+  {
+   "ref": "pfs-dino-246",
+   "title": "Vintage Corner: Ferrari Dino 246 GTS",
+   "url": "https://www.premierfinancialservices.com/car-review/vintage-corner-ferrari-dino-246-gts/",
+   "publisher": "Premier Financial Services",
+   "sourceType": "specialist",
+   "reliability": "medium",
+   "notes": "States that by 1974, the final year for the Dino 246, the US price of a GTS exceeded $15,000. Fetched 2026-09-13 for the US price figure; does not give a 1969-71 US list price."
+  },
   {
    "ref": "ferrari-206-gt",
    "title": "Ferrari Dino 206 GT (1967)",
@@ -87,7 +96,7 @@ export const seedDino246 = {
    "publisher": "Ferrari S.p.A.",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Ferrari's own record: approximately 150 built 1968-69, 1,987 cc from 86 x 57 mm, 180 hp claimed, full aluminium body, factory chassis reference 607, the Dino name for Enzo's son, and the 1967 F2 rule requiring production-based engines at no fewer than 500 units a year with Fiat building them."
+   "notes": "Ferrari's own record: approximately 150 built 1968-69, 1,987 cc from 86 x 57 mm, 180 hp claimed, full aluminum body, factory chassis reference 607, the Dino name for Enzo's son, and the 1967 F2 rule requiring production-based engines at no fewer than 500 units a year with Fiat building them."
   },
   {
    "ref": "ferrari-246-gt",
@@ -123,7 +132,7 @@ export const seedDino246 = {
    "publisher": "Dino UK",
    "sourceType": "club-forum",
    "reliability": "low",
-   "notes": "Club history: the 500-unit rule, the Ferrari-Fiat agreement of 1 March 1965 and its wording, the Tipo 135 B at 160 bhp DIN, Fiat production from 8 October 1966 at Rivalta, and the move of 2.4-litre production to Maranello."
+   "notes": "Club history: the 500-unit rule, the Ferrari-Fiat agreement of 1 March 1965 and its wording, the Tipo 135 B at 160 hp DIN, Fiat production from 8 October 1966 at Rivalta, and the move of 2.4-liter production to Maranello."
   },
   {
    "ref": "wikipedia-dino",
@@ -132,7 +141,7 @@ export const seedDino246 = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "The lower production set: 152 206 GTs, 357 L, 507 M to July 1971, 1,431 E coupes and 1,274 GTS for 2,295 GT and 3,569 total. Also 2,419.2 cc, 195 PS, 175 hp for America, 2,290 and 2,340 mm wheelbases, Brovarone and Fioravanti at Pininfarina, and the Daytona seat and Campagnolo wheel options."
+   "notes": "The lower production set: 152 206 GTs, 357 L, 507 M to July 1971, 1,431 E coupes and 1,274 GTS for 2,295 GT and 3,569 total. Also 2,419.2 cc, 192 hp, 175 hp for America, 2,290 and 2,340 mm wheelbases, Brovarone and Fioravanti at Pininfarina, and the Daytona seat and Campagnolo wheel options."
   },
   {
    "ref": "supercarnostalgia-246",
@@ -141,7 +150,7 @@ export const seedDino246 = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Series detail: L 357, VINs 00400-01116; M 507 including 62 RHD, five-stud wheels, VINs 01118-02130; E 1,431 GT including 466 RHD and 1,274 GTS including 254 RHD, VINs from 02132; total 3,760. Also 92.5 x 60 mm, the aluminium-to-cast-iron block change for cost, GTS from March 1972, and no Ferrari emblems anywhere."
+   "notes": "Series detail: L 357, VINs 00400-01116; M 507 including 62 RHD, five-stud wheels, VINs 01118-02130; E 1,431 GT including 466 RHD and 1,274 GTS including 254 RHD, VINs from 02132; total 3,760. Also 92.5 x 60 mm, the aluminum-to-cast-iron block change for cost, GTS from March 1972, and no Ferrari emblems anywhere."
   },
   {
    "ref": "supercarnostalgia-206",
@@ -150,7 +159,7 @@ export const seedDino246 = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "152 built spring 1968 to August 1969 at roughly three a week, all LHD, aluminium throughout, Tipo 135 B at 1,987 cc from 86 x 57 mm with alloy block and head and cast-iron wet liners, quoted here at 160 bhp at 7,200 rpm, plus the 1967 F2 500-unit rule and the 246's cast-iron block."
+   "notes": "152 built spring 1968 to August 1969 at roughly three a week, all LHD, aluminum throughout, Tipo 135 B at 1,987 cc from 86 x 57 mm with alloy block and head and cast-iron wet liners, quoted here at 160 hp at 7,200 rpm, plus the 1967 F2 500-unit rule and the 246's cast-iron block."
   },
   {
    "ref": "hagerty-dino-guide",
@@ -168,7 +177,7 @@ export const seedDino246 = {
    "publisher": "Magneto",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "States the marque name was never officially used; 152 LHD 206 GTs; 206 aluminium versus 246 steel with aluminium doors and bonnets; Dinoplex, under-tensioned timing chains, valve guide and piston wear, stiff cold second gear, 3,000-mile oil changes; 192 bhp/146 mph/7.1 sec; and 1971 coupe values of 278,000 to 448,000 pounds, or $355,000-$589,000."
+   "notes": "States the marque name was never officially used; 152 LHD 206 GTs; 206 aluminum versus 246 steel with aluminum doors and hoods; Dinoplex, under-tensioned timing chains, valve guide and piston wear, stiff cold second gear, 3,000-mile oil changes; 192 hp/146 mph/7.1 sec; and 1971 coupe values of 278,000 to 448,000 pounds, or $355,000-$589,000."
   },
   {
    "ref": "motorsport-1989",
@@ -177,7 +186,7 @@ export const seedDino246 = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Period retrospective: the deliberate omission of the Ferrari badge; the F2 500-unit rule and Agnelli's intervention; 206 GT at 180 bhp at 8,000 rpm; the 1969 enlargement to 2,418 cc at 92.5 x 60 mm and 195 bhp at 7,600 rpm; steel bodywork adding 396 lb to 2,380 lb; 2,732 246 GTs and 1,180 GTS; and values up at least fifteenfold from about 5,000 pounds in 1983."
+   "notes": "Period retrospective: the deliberate omission of the Ferrari badge; the F2 500-unit rule and Agnelli's intervention; 206 GT at 180 hp at 8,000 rpm; the 1969 enlargement to 2,418 cc at 92.5 x 60 mm and 195 hp at 7,600 rpm; steel bodywork adding 396 lb to 2,380 lb; 2,732 246 GTs and 1,180 GTS; and values up at least fifteenfold from about 5,000 pounds in 1983."
   },
   {
    "ref": "autocar-1971",
@@ -186,7 +195,7 @@ export const seedDino246 = {
    "publisher": "Autocar",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Period road test: 145 mph quoted with 140 mph achieved, 195 bhp, 1,219 kg, 19 mpg, and a UK list price of 5,486 pounds, with praise for suspension travel under the large arches."
+   "notes": "Period road test: 145 mph quoted with 140 mph achieved, 195 hp, 2,687 lb, 19 mpg, and a UK list price of 5,486 pounds, with praise for suspension travel under the large arches."
   },
   {
    "ref": "classic-trader-dino",
@@ -195,7 +204,7 @@ export const seedDino246 = {
    "publisher": "Classic Trader",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "152 LHD 206 GTs; total across all variants given as over 4,000, with 488 GT and 235 GTS delivered to the United Kingdom; the Ferrari name never officially used and the period line 'almost a Ferrari'; 178 bhp/140 mph and 192 bhp/146 mph; rust as the biggest problem and Dinoplex trouble."
+   "notes": "152 LHD 206 GTs; total across all variants given as over 4,000, with 488 GT and 235 GTS delivered to the United Kingdom; the Ferrari name never officially used and the period line 'almost a Ferrari'; 178 hp/140 mph and 192 hp/146 mph; rust as the biggest problem and Dinoplex trouble."
   },
   {
    "ref": "classic-246-gt",
@@ -222,7 +231,7 @@ export const seedDino246 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $434,000 at Monterey, August 2025. Chassis 00908, numbers matching, one of just 357 L-series cars identified by centre-lock knock-off wheels. Gives 3,761 total 246s across L, M and E, following 150 206 GTs."
+   "notes": "Sold $434,000 at Monterey, August 2025. Chassis 00908, numbers matching, one of just 357 L-series cars identified by center-lock knock-off wheels. Gives 3,761 total 246s across L, M and E, following 150 206 GTs."
   },
   {
    "ref": "rm-pa19-mseries",
@@ -298,7 +307,7 @@ export const seedDino246 = {
   },
   {
    "section": "production",
-   "claimText": "Approximately 152 Dino 206 GTs were built between 1967 and 1969, all left-hand drive, on a body that was aluminium throughout - a Pininfarina design credited to Aldo Brovarone and Leonardo Fioravanti, built by Scaglietti in Modena - over a wheelbase 60 mm shorter than the 246's; Ferrari's own model page gives approximately 150.",
+   "claimText": "Approximately 152 Dino 206 GTs were built between 1967 and 1969, all left-hand drive, on a body that was aluminum throughout - a Pininfarina design credited to Aldo Brovarone and Leonardo Fioravanti, built by Scaglietti in Modena - over a wheelbase 60 mm shorter than the 246's; Ferrari's own model page gives approximately 150.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -321,11 +330,11 @@ export const seedDino246 = {
     "dinouk-history",
     "motorsport-1989"
    ],
-   "conflictNote": "Ferrari's own page states 180 hp and Motor Sport gives 180 bhp at 8,000 rpm. Supercar Nostalgia states 160 bhp at 7,200 rpm, Dino UK states 160 bhp DIN, and Stellantis Heritage gives 160 hp at 7,500 rpm for the Fiat installation. Whether the gap reflects Ferrari and Fiat states of tune or differing measurement standards is not resolved by any source consulted here."
+   "conflictNote": "Ferrari's own page states 180 hp and Motor Sport gives 180 hp at 8,000 rpm. Supercar Nostalgia states 160 hp at 7,200 rpm, Dino UK states 160 hp DIN, and Stellantis Heritage gives 160 hp at 7,500 rpm for the Fiat installation. Whether the gap reflects Ferrari and Fiat states of tune or differing measurement standards is not resolved by any source consulted here."
   },
   {
    "section": "specs",
-   "claimText": "For the 246 the engine was enlarged to 2,418 cc on a bore and stroke of 92.5 x 60 mm and the aluminium block was replaced by cast iron, a change driven by production cost and volume rather than performance, with output quoted at 195 PS at 7,600 rpm; at the same time the body changed from aluminium to steel, doors and bonnet excepted, and the wheelbase was lengthened by 60 mm to 2,340 mm.",
+   "claimText": "For the 246 the engine was enlarged to 2,418 cc on a bore and stroke of 92.5 x 60 mm and the aluminum block was replaced by cast iron, a change driven by production cost and volume rather than performance, with output quoted at 192 hp at 7,600 rpm; at the same time the body changed from aluminum to steel, doors and hood excepted, and the wheelbase was lengthened by 60 mm to 2,340 mm.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -339,7 +348,7 @@ export const seedDino246 = {
   },
   {
    "section": "production",
-   "claimText": "The 246 GT run divides into three series designated Tipo 607 L, M and E, with 357 L-series cars built to the summer of 1970 in chassis 00400 to 01116, all left-hand drive and on centre-lock knock-off wheels.",
+   "claimText": "The 246 GT run divides into three series designated Tipo 607 L, M and E, with 357 L-series cars built to the summer of 1970 in chassis 00400 to 01116, all left-hand drive and on center-lock knock-off wheels.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -409,7 +418,7 @@ export const seedDino246 = {
   },
   {
    "section": "production",
-   "claimText": "United States cars were built to their own specification, rated at 175 hp with an air pump and revised valve timing, and identified by vertical amber indicators recessed into the bodywork, rectangular corner marker lights, reflectors near the plate and the chassis number stamped on the steering column to be read through the windscreen; NHTSA records confirm a United States-certified 246 GTS for 1973.",
+   "claimText": "United States cars were built to their own specification, rated at 175 hp with an air pump and revised valve timing, and identified by vertical amber indicators recessed into the bodywork, rectangular corner marker lights, reflectors near the plate and the chassis number stamped on the steering column to be read through the windshield; NHTSA records confirm a United States-certified 246 GTS for 1973.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -421,7 +430,7 @@ export const seedDino246 = {
   },
   {
    "section": "problems",
-   "claimText": "Corrosion is the dominant fault on the steel-bodied 246, affecting sills, floorpan, front luggage compartment, wheelarches, lower doors, rear chassis and suspension mounting points, with the centre chassis tubes and the sandwiched panels behind the rear wheels singled out as water traps.",
+   "claimText": "Corrosion is the dominant fault on the steel-bodied 246, affecting sills, floorpan, front luggage compartment, wheel arches, lower doors, rear chassis and suspension mounting points, with the center chassis tubes and the sandwiched panels behind the rear wheels singled out as water traps.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -464,7 +473,7 @@ export const seedDino246 = {
   },
   {
    "section": "market",
-   "claimText": "Auction results as of August 2026 place good coupes between roughly $400,000 and $650,000 and well-optioned GTS cars materially higher, with RM Sotheby's realising $434,000 for L-series chassis 00908 at Monterey in August 2025, $637,500 for late E-series GTS chassis 08056 at Monterey in August 2026 and $802,500 for chairs-and-flares GTS chassis 06462 at Monterey in 2022.",
+   "claimText": "Auction results as of August 2026 place good coupes between roughly $400,000 and $650,000 and well-optioned GTS cars materially higher, with RM Sotheby's realizing $434,000 for L-series chassis 00908 at Monterey in August 2025, $637,500 for late E-series GTS chassis 08056 at Monterey in August 2026 and $802,500 for chairs-and-flares GTS chassis 06462 at Monterey in 2022.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

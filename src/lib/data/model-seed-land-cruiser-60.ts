@@ -19,7 +19,7 @@ export const seedLandCruiser60 = {
   "4.2L 2F OHV inline-6, carburetted (FJ60; approx. 135 hp in US trim)",
   "4.0L 3F OHV inline-6, carburetted (FJ62, from November 1984, non-US markets)",
   "4.0L 3F-E OHV inline-6, electronic fuel injection (FJ62, from 1988; approx. 155 hp)",
-  "3.0L B / 3.4L 3B inline-4 diesel (BJ60; 3B rated 98 PS)",
+  "3.0L B / 3.4L 3B inline-4 diesel (BJ60; 3B rated 97 hp)",
   "4.0L 2H inline-6 naturally aspirated diesel (HJ60, from November 1982)",
   "4.0L 12H-T turbocharged inline-6 diesel (HJ61, from October 1985)"
  ],
@@ -48,17 +48,17 @@ export const seedLandCruiser60 = {
   },
   {
    "name": "VX",
-   "note": "Top Japanese-market trim launched October 1985, with optional front and rear differential locks; revised August 1987 with over-fenders and 31x10.50R15 tyres."
+   "note": "Top Japanese-market trim launched October 1985, with optional front and rear differential locks; revised August 1987 with over-fenders and 31x10.50R15 tires."
   }
  ],
  "specs": {
   "layout": "Front engine, part-time four-wheel drive, live axles front and rear on leaf springs",
   "construction": "Body-on-frame ladder chassis, four-door station wagon body",
-  "engine_2F": "4.2L 2F OHV inline-6, carburetted; approx. 135 hp in US trim, with Toyota quoting 140 PS at 3,600 rpm under the Japanese rating",
+  "engine_2F": "4.2L 2F OHV inline-6, carburetted; approx. 135 hp in US trim, with Toyota quoting 138 hp at 3,600 rpm under the Japanese rating",
   "engine_3F_E": "4.0L 3F-E OHV inline-6, electronic fuel injection; approx. 155 hp at 4,000 rpm and 220 lb-ft at 3,000 rpm",
   "engine_2H_diesel": "3,980 cc 2H naturally aspirated inline-6 diesel, approx. 100 hp",
   "engine_12HT_diesel": "3,980 cc 12H-T turbocharged inline-6 diesel, approx. 134 hp and 232 lb-ft",
-  "engine_3B_diesel": "3.4L 3B inline-4 diesel, 98 PS at 3,500 rpm",
+  "engine_3B_diesel": "3.4L 3B inline-4 diesel, 97 hp at 3,500 rpm",
   "transmissions": "Four-speed manual (early cars), H55F five-speed manual, A440F four-speed automatic",
   "automatic_availability": "First offered November 1984; four-speed automatic extended to 2H and 12H-T diesels October 1985; US market from the 1988 FJ62",
   "seating": "Five, on separate front seats replacing the 55 Series front bench",
@@ -67,9 +67,9 @@ export const seedLandCruiser60 = {
   "us_price_new_1988": "approximately $20,000, against roughly $25,000 for a Jeep Grand Wagoneer and $34,000 for a Range Rover",
   "assembly": "Honsha plant, Japan; later Venezuelan assembly for that market"
  },
- "summary": "The 60 Series Land Cruiser, launched in August 1980 as successor to the 55 Series, is the point at which the Land Cruiser stopped being purely a working vehicle and became a family station wagon. Toyota replaced the front bench with separate seats, cutting capacity from six to five, and made air conditioning, power steering and fabric trim available; while the Japanese-market car was still registered as a commercial vehicle, the export version was sold as a wagon aimed at private buyers. The range spanned the carburetted 4.2-litre 2F petrol FJ60, the later 3F and fuel-injected 3F-E FJ62, and a diesel line - BJ60, HJ60 and turbocharged HJ61 - that never reached the United States. American cars ran from the 1981 model year to 1990, the FJ40 having been withdrawn after 1983. A facelift in August 1987 replaced the twin round headlights with four square units. Values have risen sharply, though corrosion determines almost everything.",
- "history": "## From Working Vehicle to Family Wagon\nThe 60 Series arrived in August 1980, replacing the 55 Series with substantially renewed exterior styling and, more significantly, a different brief. Toyota dropped the 55's front bench in favour of separate seats that better supported the driver, reducing capacity from six to five, and made air conditioning, power steering and fabric seating available. In Japan the vehicle remained classified as a commercial vehicle, but the export model was sold as a station wagon and pitched at individual buyers rather than fleets. The contrast with the FJ40 running alongside it was stark: as late as 1979 the 40 was still a back-to-basics machine without air conditioning or power steering. Toyota ended FJ40 sales in the United States during 1983 and stopped building it the following year, leaving the 60 Series as the only Land Cruiser Americans could buy.\n\n## Petrol: 2F to 3F-E\nThe FJ60 inherited the 4.2-litre 2F carburetted inline-six from its predecessor, rated at roughly 135 horsepower in US specification - unhurried, long-geared and thirsty, with a 0-60 mph time around 14 seconds and observed economy in the low teens. In November 1984 Toyota introduced the FJ62V with the 3F, a 4.0-litre development of the 2F with a redesigned cylinder head, initially carburetted and sold in limited markets. The change that mattered to American buyers came in August 1988, when the carburettor was replaced by electronic fuel injection to create the 3F-E: approximately 155 horsepower at 4,000 rpm and 220 lb-ft at 3,000 rpm, paired for the first time in the US with the A440F four-speed automatic. Combined with a new dash, upgraded interior, power windows and locks and softer leaf springs, the 1988 FJ62 completed the transition from utility vehicle to upmarket family transport.\n\n## The Diesels America Never Got\nOutside North America the 60 Series was substantially a diesel vehicle. The BJ60 used the four-cylinder B and 3B units, the latter rated at 98 PS and dropped in August 1986. The HJ60V, with the 3,980 cc 2H naturally aspirated six, followed in November 1982, and in October 1985 the HJ61V arrived with the 12H-T, a turbocharged direct-injection version of the same six producing roughly 134 horsepower and 232 lb-ft. None of these were sold in the United States, where every Land Cruiser from the 60 Series onward was petrol-only. Because the series ended in 1990, the entire diesel range now falls outside the 25-year federal import threshold, and JDM, Australian and Middle Eastern HJ60 and HJ61 wagons are legally importable - the principal reason a right-hand-drive diesel 60 Series turns up in American classifieds at all.\n\n## Round Lights, Square Lights\nThe distinction buyers search on is headlights. Cars built to August 1987 wear two round sealed-beam units; the facelift of that month moved the whole range to four square lamps, along with higher bumpers and a rounder dashboard. In the United States the split maps cleanly onto model designation, since every FJ60 sold there is a round-light truck and every FJ62 is a square-light one. Elsewhere it does not: FJ62s built between November 1984 and the 1987 facelift carry round headlights and carburettors, so model code alone is an unreliable guide to what a non-US car actually is.\n\n## The End of the Run\nJapanese production of the 60 Series ran to January 1990, by which time the 80 Series was ready to take over; classic.com records series output continuing to 1992 for the Venezuelan market. American sales, on figures supplied by Toyota Motor Sales USA, peaked in the final year at 6,128 units. Total US volume across the whole 1981-1990 window was around 45,000 vehicles, a small number that goes some way to explaining why clean examples are now hard to find.",
- "marketNotes": "As of August 2026, classic.com carried a CLASSIC.COM Market Benchmark of $33,207 for the 60 Series as a whole, with recorded sales spanning $2,600 for the worst examples to $119,000 at the top. Split by model, the FJ60 benchmark stood at $32,344 with an average sale of $31,887 and a range of $2,600 to $99,000, and the FJ62 benchmark at $34,233 with an average of $34,638, a low of $3,350 (a 1988 car sold November 2022) and a high of $119,000 (a 1990 car sold August 2026); both were trending upward. HJ60 and HJ61 diesel imports tracked by classic.com sat at a $32,138 benchmark, broadly in line with the petrol cars. Hagerty's FJ60 valuation piece recorded a 1981 FJ60 at $50,000 in #1 condition, $29,800 in #2 and $20,400 in #3, with #2 values up 66 percent over three years and 104 percent over five, and noted that the FJ60 was then the least expensive Land Cruiser in the Hagerty Price Guide by a significant margin - more than $10,000 below FJ40 money in #1 and #2 condition. Millennials and Gen X together accounted for roughly 90 percent of insurance quotes on the model.",
+ "summary": "The 60 Series Land Cruiser, launched in August 1980 as successor to the 55 Series, is the point at which the Land Cruiser stopped being purely a working vehicle and became a family station wagon. Toyota replaced the front bench with separate seats, cutting capacity from six to five, and made air conditioning, power steering and fabric trim available; while the Japanese-market car was still registered as a commercial vehicle, the export version was sold as a wagon aimed at private buyers. The range spanned the carburetted 4.2-liter 2F gasoline FJ60, the later 3F and fuel-injected 3F-E FJ62, and a diesel line - BJ60, HJ60 and turbocharged HJ61 - that never reached the United States. American cars ran from the 1981 model year to 1990, the FJ40 having been withdrawn after 1983. A facelift in August 1987 replaced the twin round headlights with four square units. Values have risen sharply, though corrosion determines almost everything.",
+ "history": "## From Working Vehicle to Family Wagon\nThe 60 Series arrived in August 1980, replacing the 55 Series with substantially renewed exterior styling and, more significantly, a different brief. Toyota dropped the 55's front bench in favor of separate seats that better supported the driver, reducing capacity from six to five, and made air conditioning, power steering and fabric seating available. In Japan the vehicle remained classified as a commercial vehicle, but the export model was sold as a station wagon and pitched at individual buyers rather than fleets. The contrast with the FJ40 running alongside it was stark: as late as 1979 the 40 was still a back-to-basics machine without air conditioning or power steering. Toyota ended FJ40 sales in the United States during 1983 and stopped building it the following year, leaving the 60 Series as the only Land Cruiser Americans could buy.\n\n## Gasoline: 2F to 3F-E\nThe FJ60 inherited the 4.2-liter 2F carburetted inline-six from its predecessor, rated at roughly 135 horsepower in US specification - unhurried, long-geared and thirsty, with a 0-60 mph time around 14 seconds and observed economy in the low teens. In November 1984 Toyota introduced the FJ62V with the 3F, a 4.0-liter development of the 2F with a redesigned cylinder head, initially carburetted and sold in limited markets. The change that mattered to American buyers came in August 1988, when the carburettor was replaced by electronic fuel injection to create the 3F-E: approximately 155 horsepower at 4,000 rpm and 220 lb-ft at 3,000 rpm, paired for the first time in the US with the A440F four-speed automatic. Combined with a new dash, upgraded interior, power windows and locks and softer leaf springs, the 1988 FJ62 completed the transition from utility vehicle to upmarket family transport.\n\n## The Diesels America Never Got\nOutside North America the 60 Series was substantially a diesel vehicle. The BJ60 used the four-cylinder B and 3B units, the latter rated at 97 hp and dropped in August 1986. The HJ60V, with the 3,980 cc 2H naturally aspirated six, followed in November 1982, and in October 1985 the HJ61V arrived with the 12H-T, a turbocharged direct-injection version of the same six producing roughly 134 horsepower and 232 lb-ft. None of these were sold in the United States, where every Land Cruiser from the 60 Series onward was gasoline-only. Because the series ended in 1990, the entire diesel range now falls outside the 25-year federal import threshold, and JDM, Australian and Middle Eastern HJ60 and HJ61 wagons are legally importable - the principal reason a right-hand-drive diesel 60 Series turns up in American classifieds at all.\n\n## Round Lights, Square Lights\nThe distinction buyers search on is headlights. Cars built to August 1987 wear two round sealed-beam units; the facelift of that month moved the whole range to four square lamps, along with higher bumpers and a rounder dashboard. In the United States the split maps cleanly onto model designation, since every FJ60 sold there is a round-light truck and every FJ62 is a square-light one. Elsewhere it does not: FJ62s built between November 1984 and the 1987 facelift carry round headlights and carburettors, so model code alone is an unreliable guide to what a non-US car actually is.\n\n## The End of the Run\nJapanese production of the 60 Series ran to January 1990, by which time the 80 Series was ready to take over; classic.com records series output continuing to 1992 for the Venezuelan market. American sales, on figures supplied by Toyota Motor Sales USA, peaked in the final year at 6,128 units. Total US volume across the whole 1981-1990 window was around 45,000 vehicles, a small number that goes some way to explaining why clean examples are now hard to find.",
+ "marketNotes": "As of August 2026, classic.com carried a CLASSIC.COM Market Benchmark of $33,207 for the 60 Series as a whole, with recorded sales spanning $2,600 for the worst examples to $119,000 at the top. Split by model, the FJ60 benchmark stood at $32,344 with an average sale of $31,887 and a range of $2,600 to $99,000, and the FJ62 benchmark at $34,233 with an average of $34,638, a low of $3,350 (a 1988 car sold November 2022) and a high of $119,000 (a 1990 car sold August 2026); both were trending upward. HJ60 and HJ61 diesel imports tracked by classic.com sat at a $32,138 benchmark, broadly in line with the gasoline cars. Hagerty's FJ60 valuation piece recorded a 1981 FJ60 at $50,000 in #1 condition, $29,800 in #2 and $20,400 in #3, with #2 values up 66 percent over three years and 104 percent over five, and noted that the FJ60 was then the least expensive Land Cruiser in the Hagerty Price Guide by a significant margin - more than $10,000 below FJ40 money in #1 and #2 condition. Millennials and Gen X together accounted for roughly 90 percent of insurance quotes on the model.",
  "whatToLookFor": "Corrosion decides the purchase. Check the rear quarter panels and inner wheel arches, the tailgate, the door sills, the cargo floor beneath the carpet, the rain gutters and window frames, and - decisively - the frame, particularly the rear crossmember where the shocks mount and the rear frame rails. Forum consensus is blunt: body rust is repairable with patch panels, frame rot is a walk-away fault, and there is almost always more corrosion than is visible, so probe rather than trust a tidy respray. Confirm which car you are actually looking at: US FJ60s are round-light and carburetted, US FJ62s are square-light with 3F-E injection and usually the A440F automatic, and a non-US FJ62 may be neither. Verify that a claimed diesel import has clean import paperwork. Establish whether the truck is stock, since original unmolested examples and heavily built ones trade on different logic, and price accordingly. Expect a carburetted 2F to be slow and thirsty - 14 seconds to 60 mph and 11-12 mpg is normal, not a fault.",
  "commonProblems": "Rust dominates: rear quarters and wheel wells, tailgate, sills, cargo-area floor, and frame rails and rear crossmember. Fuel lines and electrical looms suffer on trucks from humid or salted regions. Mechanically the 2F and 3F sixes are durable but low on output and heavy on fuel; carburettor and emissions plumbing on later FJ60s is complex and frequently found tampered with or bypassed. The A440F automatic in FJ62s is generally robust but many surviving trucks have high mileage and deferred service. Because engine swaps - small-block V8s in particular - have long been common across the Land Cruiser range, expect to find non-original drivetrains and to have to assess the quality of the work. Parts supply is good for mechanical items and body panels but weaker for trim and interior pieces.",
  "valueTrajectory": "The 60 Series has appreciated sharply from a low base. Hagerty documented #2-condition FJ60 values rising 66 percent over three years and 104 percent over five, driven by younger buyers priced out of the FJ40 and by the FJ60's status as the cheapest entry into a collectible Land Cruiser. By August 2026 classic.com benchmarks for both the FJ60 and FJ62 sat in the low-to-mid $30,000s and were trending upward, with the top of the market reaching $119,000. The spread between a $2,600 project and a six-figure result is unusually wide even for a 1980s SUV, and reflects the fact that rust-free, documented trucks are genuinely scarce while rough ones are not. Sources disagree on how the market treats modified vehicles: restoration specialists report that upgraded and restomodded builds resell strongly, while price-guide values are calibrated to stock condition grades and take no account of aftermarket work.",
@@ -91,7 +91,7 @@ export const seedLandCruiser60 = {
    "publisher": "Toyota Motor Corporation",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Corporate lineage record: August 1980, Honsha plant, 2F 4.2L rated 140 PS at 3,600 rpm, 3B 3.4L diesel 98 PS at 3,500 rpm, 2H added two years later. No production totals given."
+   "notes": "Corporate lineage record: August 1980, Honsha plant, 2F 4.2L rated 138 hp at 3,600 rpm, 3B 3.4L diesel 97 hp at 3,500 rpm, 2H added two years later. No production totals given."
   },
   {
    "ref": "toyota-pressroom",
@@ -100,7 +100,7 @@ export const seedLandCruiser60 = {
    "publisher": "Toyota USA Newsroom",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "14 November 2019. Confirms the 60 Series replaced the 55 Series wagon, that FJ40 US sales ended in 1983 with production ending in 1984, and that the 1988 refresh brought a new dash, upgraded interior and a 155 hp 3F 4.0-litre engine."
+   "notes": "14 November 2019. Confirms the 60 Series replaced the 55 Series wagon, that FJ40 US sales ended in 1983 with production ending in 1984, and that the 1988 refresh brought a new dash, upgraded interior and a 155 hp 3F 4.0-liter engine."
   },
   {
    "ref": "hagerty-fj60",
@@ -152,7 +152,7 @@ export const seedLandCruiser60 = {
    "title": "Toyota Land Cruiser 60: Differences by model year",
    "url": "https://flexmotor.com/landcruiser-60/landcruiser-60-articles/toyota-land-cruiser-60-differences-by-model-year",
    "publisher": "FLEX Automotive",
-   "sourceType": "specialist-dealer",
+   "sourceType": "specialist",
    "reliability": "medium-high",
    "notes": "Japanese Land Cruiser specialist; month-level JDM timeline. August 1987 facelift from two round to four square headlamps; 3F introduced November 1984; 3F-E August 1988; 2H HJ60V November 1982; 12H-T HJ61V October 1985; 3B discontinued August 1986; five-speed manual and first automatic dates; VX trim October 1985 with optional front and rear diff locks."
   },
@@ -179,7 +179,7 @@ export const seedLandCruiser60 = {
    "title": "Land Cruisers Sold Per Year & VIN Numbers by Production Dates",
    "url": "https://www.coolcruisers.com/lacrsoperyev.html",
    "publisher": "Cool Cruisers of Texas",
-   "sourceType": "specialist-dealer",
+   "sourceType": "specialist",
    "reliability": "medium-high",
    "notes": "US calendar-year sales attributed to Edward Harris of Toyota Motor Sales, U.S.A. Customer Relations: 1981 2,027 (FJ40/FJ60), 1982 3,088, 1983 4,805, 1984 4,037, 1985 4,740, 1986 4,475, 1987 5,008, 1988 5,993 (FJ62), 1989 5,064, 1990 6,128."
   },
@@ -206,16 +206,16 @@ export const seedLandCruiser60 = {
    "title": "2026 Toyota Land Cruiser J60 Buyer's Guide",
    "url": "https://www.jdmbuysell.com/learn/toyota/land-cruiser/j60/",
    "publisher": "JDMBUYSELL",
-   "sourceType": "specialist-dealer",
+   "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Import-focused guide: HJ60 (2H), HJ61 (12H-T) and BJ60 (B) diesels sold in JDM, Australian and Middle Eastern markets; every US Cruiser from the J60 onward was petrol-only; J60 diesels are foreign-market imports subject to the 25-year rule."
+   "notes": "Import-focused guide: HJ60 (2H), HJ61 (12H-T) and BJ60 (B) diesels sold in JDM, Australian and Middle Eastern markets; every US Cruiser from the J60 onward was gasoline-only; J60 diesels are foreign-market imports subject to the 25-year rule."
   },
   {
    "ref": "corsetti-market",
    "title": "Classic Land Cruiser Price Guide | 2026 Market Value Trends",
    "url": "https://www.corsetticruisers.com/post/land-cruiser-market-value-trends",
    "publisher": "Corsetti Cruisers",
-   "sourceType": "specialist-dealer",
+   "sourceType": "specialist",
    "reliability": "low-medium",
    "notes": "Restoration shop commentary. Reports rapid appreciation of FJ60/FJ62, demand for restored examples outpacing supply, scarcity of rust-free clean-title trucks, and asserts that restomod builds with updated drivetrains and modern amenities resell higher. Vendor-interested source; used only for the modified-versus-stock question and flagged as such."
   }
@@ -252,7 +252,7 @@ export const seedLandCruiser60 = {
   },
   {
    "section": "specs",
-   "claimText": "The FJ60 used the carburetted 4.2-litre 2F inline-six, rated at approximately 135 hp in US trim, with roughly 14.2 seconds to 60 mph and 11-12 mpg.",
+   "claimText": "The FJ60 used the carburetted 4.2-liter 2F inline-six, rated at approximately 135 hp in US trim, with roughly 14.2 seconds to 60 mph and 11-12 mpg.",
    "confidence": "high",
    "status": "disputed",
    "sourceRefs": [
@@ -260,11 +260,11 @@ export const seedLandCruiser60 = {
     "silodrome-j60",
     "toyota-75years"
    ],
-   "conflictNote": "Torque figures differ: Hagerty quotes 210 lb-ft, Silodrome 200 lb-ft. Toyota's own lineage record quotes 140 PS at 3,600 rpm under the Japanese rating rather than the 135 hp US figure. Output is stated here as approximate for that reason."
+   "conflictNote": "Torque figures differ: Hagerty quotes 210 lb-ft, Silodrome 200 lb-ft. Toyota's own lineage record quotes 138 hp at 3,600 rpm under the Japanese rating rather than the 135 hp US figure. Output is stated here as approximate for that reason."
   },
   {
    "section": "specs",
-   "claimText": "The US FJ62, from the 1988 model year, used the fuel-injected 4.0-litre 3F-E producing approximately 155 hp at 4,000 rpm and 220 lb-ft at 3,000 rpm, with an A440F four-speed automatic newly available.",
+   "claimText": "The US FJ62, from the 1988 model year, used the fuel-injected 4.0-liter 3F-E producing approximately 155 hp at 4,000 rpm and 220 lb-ft at 3,000 rpm, with an A440F four-speed automatic newly available.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -297,7 +297,7 @@ export const seedLandCruiser60 = {
   },
   {
    "section": "specs",
-   "claimText": "The diesel 60 Series - BJ60 with the B and 3B fours, HJ60 with the 2H six from November 1982, and HJ61 with the turbocharged 12H-T from October 1985 - was never sold in the United States, where all Land Cruisers from the 60 Series onward were petrol-only. Because production ended by 1990, that diesel range now falls outside the 25-year federal import threshold and JDM, Australian and Middle Eastern HJ60 and HJ61 wagons can be imported into the US.",
+   "claimText": "The diesel 60 Series - BJ60 with the B and 3B fours, HJ60 with the 2H six from November 1982, and HJ61 with the turbocharged 12H-T from October 1985 - was never sold in the United States, where all Land Cruisers from the 60 Series onward were gasoline-only. Because production ended by 1990, that diesel range now falls outside the 25-year federal import threshold and JDM, Australian and Middle Eastern HJ60 and HJ61 wagons can be imported into the US.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

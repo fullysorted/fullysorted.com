@@ -12,28 +12,28 @@ export const seedStratos = {
  "yearStart": 1973,
  "yearEnd": 1978,
  "bodyStyles": [
-  "2-door mid-engined coupe: central steel monocoque with hinged glass-fibre front and rear clamshells, all cars left-hand drive"
+  "2-door mid-engined coupe: central steel monocoque with hinged glass-fiber front and rear clamshells, all cars left-hand drive"
  ],
  "engines": [
-  "2,418 cc Ferrari Dino 65-degree V6 (Tipo 236E), DOHC, two valves per cylinder, three Weber 40 IDF carburettors, mounted transversely ahead of the rear axle; 190 bhp quoted in Stradale tune with 166 lb-ft at 4,000 rpm",
-  "2,418 cc Group 4 competition tune, 12-valve: quoted between roughly 230 and 280 bhp depending on year and specification",
-  "2,418 cc Group 4 competition tune, 24-valve four-valve heads: 320 bhp at 8,500 rpm per Lancia's heritage archive, with higher figures quoted elsewhere",
-  "2,418 cc turbocharged development engine for Group 5, built in single figures; quoted variously at 380 bhp and at over 520 bhp"
+  "2,418 cc Ferrari Dino 65-degree V6 (Tipo 236E), DOHC, two valves per cylinder, three Weber 40 IDF carburettors, mounted transversely ahead of the rear axle; 190 hp quoted in Stradale tune with 166 lb-ft at 4,000 rpm",
+  "2,418 cc Group 4 competition tune, 12-valve: quoted between roughly 230 and 280 hp depending on year and specification",
+  "2,418 cc Group 4 competition tune, 24-valve four-valve heads: 320 hp at 8,500 rpm per Lancia's heritage archive, with higher figures quoted elsewhere",
+  "2,418 cc turbocharged development engine for Group 5, built in single figures; quoted variously at 380 hp and at over 520 hp"
  ],
  "productionTotal": null,
  "productionNotes": "492 is the figure almost every source repeats, and almost no source can substantiate. It is the number in Wikipedia, in Car & Classic's buyer's guide, in Girardo & Co's sales copy and in DK Engineering's listing. Look behind it and the agreement dissolves. RM Sotheby's own Monaco 2024 catalogue declines to pick a number at all, writing that between 491 and 498 cars were built by 1975. Motor Sport, in February 2010, states that official production ended in May 1975 after 457 cars, while some 502 chassis were completed. Motor Sport's own road test of July 1976 records the run as 400 cars. Secret Classics puts it plainly: about 492 road cars are said to exist, but nobody knows for sure.\n\nThe disagreement traces back to how homologation was obtained. Group 4 required 500 examples and the count was made at Lancia's premises. Bertone's records show only around 141 shells finished by October 1974 on WhichCar's account; RM Sotheby's says 147; Motor Sport says roughly 150; Secret Classics counts 183 by the end of 1974. Lancia's own heritage archive describes FIA delegates counting cars parked in different locations, and the story of one batch inspected before lunch and a second appearing afterwards is repeated by WhichCar. Whatever was counted, homologation was granted on 1 October 1974 by Lancia's account and 2 October 1974 by the FIA's own historic database, as Group 4 number 640.\n\nAssembly compounds the problem. Bertone built the shells at Grugliasco and Lancia assembled at Chivasso, but supercars.net records that once the initial batch was through the remaining cars were completed individually at Chivasso or at the Turin competition workshop, with the records for the last of them unclear. Cars continued to be finished from stock well after the nominal end of production: Girardo & Co has sold a Stradale built in March 1977, body number 252. No figure is asserted here.",
  "notableTrims": [
   {
    "name": "Stratos HF Stradale",
-   "note": "The road car, and the only reason the rally car existed. 190 bhp, three Weber carburettors, no servo on the brakes, glass-fibre clamshells over a steel centre section. All left-hand drive. Body (scocca) numbers run in parallel with chassis numbers and are the usual identity check."
+   "note": "The road car, and the only reason the rally car existed. 190 hp, three Weber carburettors, no servo on the brakes, glass-fiber clamshells over a steel center section. All left-hand drive. Body (scocca) numbers run in parallel with chassis numbers and are the usual identity check."
   },
   {
    "name": "Stratos HF Gruppo 4, 12-valve",
-   "note": "The car that took the 1974 and 1975 titles. Competition tune quoted between roughly 230 and 280 bhp on the same 2,418 cc block, with a claimed Group 4 kerb weight around 880 kg against the Stradale's 980 kg."
+   "note": "The car that took the 1974 and 1975 titles. Competition tune quoted between roughly 230 and 280 hp on the same 2,418 cc block, with a claimed Group 4 curb weight around 1,940 lb against the Stradale's 2,161 lb."
   },
   {
    "name": "Stratos HF Gruppo 4, 24-valve",
-   "note": "Four-valve heads introduced for 1976, quoted by Lancia at 320 bhp at 8,500 rpm. Wikipedia notes the FIA restricted the 24-valve specification from 1978. Works 24-valve provenance carries a substantial premium over a converted road car."
+   "note": "Four-valve heads introduced for 1976, quoted by Lancia at 320 hp at 8,500 rpm. Wikipedia notes the FIA restricted the 24-valve specification from 1978. Works 24-valve provenance carries a substantial premium over a converted road car."
   },
   {
    "name": "Works Alitalia cars, 1975-77",
@@ -41,38 +41,38 @@ export const seedStratos = {
   },
   {
    "name": "Chardonnet and other privateer cars",
-   "note": "After the works effort was wound down in favour of the Fiat 131 Abarth, privateers kept the car winning. Bernard Darniche took the 1979 Monte Carlo for Chardonnet and, per RallySport Magazine, contested 49 rallies with two retirements."
+   "note": "After the works effort was wound down in favor of the Fiat 131 Abarth, privateers kept the car winning. Bernard Darniche took the 1979 Monte Carlo for Chardonnet and, per RallySport Magazine, contested 49 rallies with two retirements."
   },
   {
    "name": "Stratos Zero (Bertone, 1970)",
-   "note": "The one-off show car, not a variant of the production run. 84 cm tall, Fulvia V4, entered through a hinged windscreen. Sold for 761,600 euros at RM Sotheby's Villa d'Este in 2011."
+   "note": "The one-off show car, not a variant of the production run. 84 cm tall, Fulvia V4, entered through a hinged windshield. Sold for 761,600 euros at RM Sotheby's Villa d'Este in 2011."
   }
  ],
  "specs": {
   "layout": "Transverse mid-mounted engine ahead of the rear axle, rear-wheel drive",
-  "chassis": "Central steel monocoque with front and rear tubular subframes; hinged glass-fibre clamshells front and rear, non-structural",
-  "engine": "2,418 cc Ferrari Dino 65-degree V6, cast-iron block, aluminium heads, twin overhead camshafts per bank, twelve valves",
+  "chassis": "Central steel monocoque with front and rear tubular subframes; hinged glass-fiber clamshells front and rear, non-structural",
+  "engine": "2,418 cc Ferrari Dino 65-degree V6, cast-iron block, aluminum heads, twin overhead camshafts per bank, twelve valves",
   "bore_stroke": "92.5 mm x 60.0 mm",
   "compression": "9.0:1",
-  "fuel_system": "Three Weber 40 IDF twin-choke carburettors; two fuel tanks, 80 litres combined",
-  "power": "190 bhp claimed for the Stradale; quoted at 7,000 rpm by the Lancia Motor Club and at 7,400 rpm by Motor Sport's 1976 road test and by DK Engineering",
+  "fuel_system": "Three Weber 40 IDF twin-choke carburettors; two fuel tanks, 80 liters combined",
+  "power": "190 hp claimed for the Stradale; quoted at 7,000 rpm by the Lancia Motor Club and at 7,400 rpm by Motor Sport's 1976 road test and by DK Engineering",
   "torque": "166 lb-ft at 4,000 rpm per Motor Sport and the Lancia Motor Club; DK Engineering quotes 169 lb-ft at the same crank speed",
   "transmission": "Five-speed Ferrari manual transaxle with limited-slip differential, 3.824:1 final drive",
   "suspension": "Front: coil spring/damper units on lower arms with forward struts and anti-roll bar. Rear: long strut units with triangulated radius arms and adjustable anti-roll bar",
   "brakes": "Ventilated discs all round, 271 mm Girling with twin-piston ATE calipers, no servo assistance",
-  "weight": "980 kg quoted by Lancia for the Stradale; approximately 880 kg quoted for Group 4 specification",
+  "weight": "2,161 lb quoted by Lancia for the Stradale; approximately 1,940 lb quoted for Group 4 specification",
   "wheelbase": "2,180 mm (85.8 in) - about 220 mm shorter than a contemporary Volkswagen Golf",
   "dimensions": "3,710 mm long, 1,750 mm wide, 1,110 mm high per supercars.net; Motor Sport's 1976 test recorded 12 ft 2 in, 68.9 in and 43.9 in",
   "acceleration": "0-62 mph in 6.8-7.5 seconds for the Stradale per Car & Classic; no independently timed period figure was located in this research",
-  "top_speed": "Approximately 143 mph claimed for the road car; Lancia's heritage archive quotes 185-220 km/h across competition specifications",
+  "top_speed": "Approximately 143 mph claimed for the road car; Lancia's heritage archive quotes 115-137 mph across competition specifications",
   "homologation": "FIA Group 4, homologation number 640, dated 2 October 1974 in the FIA historic database, with ten extensions before homologation ended on 1 January 1982"
  },
- "summary": "The Lancia Stratos HF (1973-1978) is usually described as the first car designed from nothing to win rallies, with the road version existing only because Group 4 homologation demanded a production run. It began as a Bertone exercise: the Stratos Zero, a wedge 84 cm tall shown at Turin in October 1970 on the running gear of a crashed Fulvia, which shares little beyond its name with what followed. Cesare Fiorio's competition department turned that attention into a rally programme, and Enzo Ferrari eventually agreed to supply the 2,418 cc Dino V6, an arrangement that took most of 1972 to settle and that Fiat sanctioned only in December of that year. The production car put that engine transversely behind the seats in a steel monocoque with glass-fibre clamshells, on a 2,180 mm wheelbase. Lancia took the World Rally Championship for manufacturers in 1974, 1975 and 1976. How many road cars were actually finished has never been settled.",
- "history": "## A Show Car With The Wrong Name\nBertone unveiled the Stratos Zero at the Turin show on 28 October 1970. It was a running car, built on the reversed floorpan of a crashed Fulvia HF 1600 with the 1,584 cc narrow-angle V4 behind the seats, and it stood 84 cm high - lower even than Pininfarina's Modulo. There were no doors in the ordinary sense; the driver climbed in over the hinged windscreen, and Nuccio Bertone wanted to call it the Stratolimite. It shares a name, a designer in Marcello Gandini and a wedge silhouette with the production Stratos, and almost nothing else: not the engine, not the structure, not the wheelbase. RM Sotheby's put the relationship correctly when it sold the Zero in 2011 - without it the rally car would likely never have been, but it is not an early draft of it.\n\n## Built Backwards, From The Stage Inwards\nWhat Lancia took from Turin was a relationship with Bertone and an audience. Cesare Fiorio needed a replacement for the Fulvia HF and reversed the usual order: specify the rally car, then build whatever road cars the rulebook required. The definitive Stratos HF was shown in November 1971. Its structure was a central steel monocoque with tubular subframes at each end and glass-fibre clamshells that hinged clear for access. Mike Parkes, the former Ferrari driver and engineer, led development until his death in a road accident in August 1977; Nicola Materazzi did the calculations. Nothing in the layout was a compromise with road use, and the car's shortcomings as transport were consequences rather than oversights.\n\n## Ferrari's Engine, Given Slowly\nThe Fulvia V4 was never going to be enough, and the engine Fiorio wanted belonged to a company that had just been absorbed into the same group. On lanciastratos.com's dated account, Enzo Ferrari telephoned Lancia's Pier Ugo Gobbato on 2 February 1972 indicating willingness to supply 500 Dino V6 units; difficulties surfaced within a month; ten prototype engines followed between May and August 1972; and Fiat removed its objections only on 14 December 1972. Motor Sport's 2007 profile adds that the first engine Lancia obtained came out of a crashed Dino rather than through any supply channel, and that Fiat-Abarth was chasing a Ferrari V8 for a rival programme at the same time. The 2,418 cc 65-degree V6 arrived transversely mounted, on three Weber carburettors, at 190 bhp in road tune.\n\n## 2,180 mm, And What It Did\nThe wheelbase is the car's defining number. At 2,180 mm it is roughly 220 mm shorter than a Volkswagen Golf and 135 mm shorter than the Alpine A110 it was built to beat, with about sixty per cent of the mass over the driven axle. On sealed stages the effect was decisive; Walter Rohrl's judgement, quoted by Motor Sport, was that on twisty asphalt there was nothing to compare. On gravel and ice the same geometry demanded a driver willing to work, and Motor Sport's 2010 assessment is that the car's reputation for being evil is overstated but that getting the best from one requires genuine ability. Motor Sport's own 1976 road test found the road car surprisingly civilised and quicker than the Dino it drew its engine from.\n\n## Three Titles, Then A Corporate Decision\nHomologation came on 1 October 1974 and the car took the manufacturers' title that season, then again in 1975 and in 1976. Munari won the Monte Carlo three years running from 1975; Waldegard and Darniche added wins; the tally is usually given as seventeen world championship victories. What ended the works programme was not the opposition but Fiat's marketing, which wanted the 131 Abarth winning instead. Privateers carried on, Darniche taking the 1979 Monte Carlo, and the homologation ran until 1 January 1982.",
- "marketNotes": "As of August 2026, classic.com records a Lancia Stratos market benchmark of approximately $720,600 on a rising trend, with an average recorded sale near $595,589. The tracked spread runs from $298,125 for a 1975 car in November 2024 to 815,000 euros for a 1975 HF Stradale on 29 January 2026, the highest the site holds.. Auction evidence in between is consistent. RM Sotheby's sold chassis 829AR0 001832 - the 323rd car built, under 12,000 km, Lancia Classiche certified in 2020 - for 590,000 euros at Monaco in May 2024, and had earlier sold chassis 829AR0 001571, an unrestored ex-factory car in its original pistachio green, for 431,200 euros at Villa Erba in 2015. Both are the house's published sold-for results rather than hammer prices. The show car sits in a category of its own: the Stratos Zero made 761,600 euros at RM Sotheby's Villa d'Este sale in 2011. Certification, matching body and chassis numbers, unbroken delivery records and originality of paint are what separate the top of the range from the bottom, and an undocumented ex-competition car is a different proposition from a documented one.",
- "whatToLookFor": "Identity first. Every road car is left-hand drive and carries a chassis number prefixed 829AR0, an engine number in the 829A series and a separate body or scocca number - Girardo's March 1977 car is chassis 829AR0 001744, engine 829A 000 001097, body 252 - and a car whose three numbers cannot be reconciled to each other and to a delivery record needs explaining before anything else is discussed. Lancia Classiche certification exists and was cited by RM Sotheby's on its 2024 Monaco car; its absence is not disqualifying but its presence removes an argument. The replica question is unavoidable, since Stratos-bodied cars have been built by specialists for decades, so provenance documentation matters more here than on almost any comparable car. Competition history cuts both ways: a documented works or Chardonnet car is worth a large multiple, while an undocumented rallied car has been crashed and repaired an unknown number of times, and Car & Classic's guidance is to treat racing history as a greater risk than high mileage. Inspect the steel centre section and the clamshell mountings for corrosion, since the glass-fibre panels carry no load and hide what is underneath.",
- "commonProblems": "The structural weakness is corrosion in the central steel monocoque and at the clamshell mountings. Car & Classic's buyer's guide singles out both, and the point is that the glass-fibre front and rear sections are non-structural: they neither stiffen the car nor protect the steel they cover, and a car that looks sound from ten feet can be poor where it matters. Cooling is the usual mid-engined problem set - a transverse V6 behind the cabin, long coolant runs, limited airflow - and Car & Classic flags it as an area demanding diligent maintenance. Brakes are ventilated discs at all four corners with no servo, so a system in poor condition is immediately obvious from the pedal; the same guide lists brakes and electrics among the areas to test carefully. Parts supply is uneven: the Ferrari-sourced V6 and its transaxle are supported by the Dino community, but Stratos-specific body, trim and glass items are scarce. Recorded specialist bills give the scale - about 15,000 pounds to recommission one car in 2018 per DK Engineering, over 14,000 pounds of work on another per Girardo & Co.",
- "valueTrajectory": "The Stratos was hard to sell when it was new. Motor Sport reported in July 1976 that around fifty cars remained unsold, that the fuel crisis and tightening type approval had cut off most export markets, that the car lacked the crash approval needed for straightforward registration outside Italy, and that press-quoted prices ran from under 10,000 pounds to about 13,500 pounds. Only four road cars and one damaged rally car were then in Britain, all held by one dealer. That commercial failure is the reason the production figure is contested at all, and it kept values modest for decades. The re-rating came with the wider homologation-special market: as of August 2026, classic.com's benchmark of roughly $720,600 is trending upward, against a tracked low of $298,125 as recently as November 2024 and a high of 815,000 euros in January 2026. The shape of that spread matters more than its midpoint: a certified, low-mileage car and an undocumented ex-rally car now sit at opposite ends of a range that has widened considerably, and the works competition cars have decoupled from the road cars entirely.",
+ "summary": "The Lancia Stratos HF (1973-1978) is usually described as the first car designed from nothing to win rallies, with the road version existing only because Group 4 homologation demanded a production run. It began as a Bertone exercise: the Stratos Zero, a wedge 84 cm tall shown at Turin in October 1970 on the running gear of a crashed Fulvia, which shares little beyond its name with what followed. Cesare Fiorio's competition department turned that attention into a rally program, and Enzo Ferrari eventually agreed to supply the 2,418 cc Dino V6, an arrangement that took most of 1972 to settle and that Fiat sanctioned only in December of that year. The production car put that engine transversely behind the seats in a steel monocoque with glass-fiber clamshells, on a 2,180 mm wheelbase. Lancia took the World Rally Championship for manufacturers in 1974, 1975 and 1976. How many road cars were actually finished has never been settled.",
+ "history": "## A Show Car With The Wrong Name\nBertone unveiled the Stratos Zero at the Turin show on 28 October 1970. It was a running car, built on the reversed floorpan of a crashed Fulvia HF 1600 with the 1,584 cc narrow-angle V4 behind the seats, and it stood 84 cm high - lower even than Pininfarina's Modulo. There were no doors in the ordinary sense; the driver climbed in over the hinged windshield, and Nuccio Bertone wanted to call it the Stratolimite. It shares a name, a designer in Marcello Gandini and a wedge silhouette with the production Stratos, and almost nothing else: not the engine, not the structure, not the wheelbase. RM Sotheby's put the relationship correctly when it sold the Zero in 2011 - without it the rally car would likely never have been, but it is not an early draft of it.\n\n## Built Backwards, From The Stage Inwards\nWhat Lancia took from Turin was a relationship with Bertone and an audience. Cesare Fiorio needed a replacement for the Fulvia HF and reversed the usual order: specify the rally car, then build whatever road cars the rulebook required. The definitive Stratos HF was shown in November 1971. Its structure was a central steel monocoque with tubular subframes at each end and glass-fiber clamshells that hinged clear for access. Mike Parkes, the former Ferrari driver and engineer, led development until his death in a road accident in August 1977; Nicola Materazzi did the calculations. Nothing in the layout was a compromise with road use, and the car's shortcomings as transport were consequences rather than oversights.\n\n## Ferrari's Engine, Given Slowly\nThe Fulvia V4 was never going to be enough, and the engine Fiorio wanted belonged to a company that had just been absorbed into the same group. On lanciastratos.com's dated account, Enzo Ferrari telephoned Lancia's Pier Ugo Gobbato on 2 February 1972 indicating willingness to supply 500 Dino V6 units; difficulties surfaced within a month; ten prototype engines followed between May and August 1972; and Fiat removed its objections only on 14 December 1972. Motor Sport's 2007 profile adds that the first engine Lancia obtained came out of a crashed Dino rather than through any supply channel, and that Fiat-Abarth was chasing a Ferrari V8 for a rival program at the same time. The 2,418 cc 65-degree V6 arrived transversely mounted, on three Weber carburettors, at 190 hp in road tune.\n\n## 2,180 mm, And What It Did\nThe wheelbase is the car's defining number. At 2,180 mm it is roughly 220 mm shorter than a Volkswagen Golf and 135 mm shorter than the Alpine A110 it was built to beat, with about sixty per cent of the mass over the driven axle. On sealed stages the effect was decisive; Walter Rohrl's judgement, quoted by Motor Sport, was that on twisty asphalt there was nothing to compare. On gravel and ice the same geometry demanded a driver willing to work, and Motor Sport's 2010 assessment is that the car's reputation for being evil is overstated but that getting the best from one requires genuine ability. Motor Sport's own 1976 road test found the road car surprisingly civilised and quicker than the Dino it drew its engine from.\n\n## Three Titles, Then A Corporate Decision\nHomologation came on 1 October 1974 and the car took the manufacturers' title that season, then again in 1975 and in 1976. Munari won the Monte Carlo three years running from 1975; Waldegard and Darniche added wins; the tally is usually given as seventeen world championship victories. What ended the works program was not the opposition but Fiat's marketing, which wanted the 131 Abarth winning instead. Privateers carried on, Darniche taking the 1979 Monte Carlo, and the homologation ran until 1 January 1982.",
+ "marketNotes": "As of August 2026, classic.com records a Lancia Stratos market benchmark of approximately $720,600 on a rising trend, with an average recorded sale near $595,589. The tracked spread runs from $298,125 for a 1975 car in November 2024 to 815,000 euros for a 1975 HF Stradale on 29 January 2026, the highest the site holds. Auction evidence in between is consistent. RM Sotheby's sold chassis 829AR0 001832 - the 323rd car built, under 7,456 miles, Lancia Classiche certified in 2020 - for 590,000 euros at Monaco in May 2024, and had earlier sold chassis 829AR0 001571, an unrestored ex-factory car in its original pistachio green, for 431,200 euros at Villa Erba in 2015. Both are the house's published sold-for results rather than hammer prices. The show car sits in a category of its own: the Stratos Zero made 761,600 euros at RM Sotheby's Villa d'Este sale in 2011. Certification, matching body and chassis numbers, unbroken delivery records and originality of paint are what separate the top of the range from the bottom, and an undocumented ex-competition car is a different proposition from a documented one.",
+ "whatToLookFor": "Identity first. Every road car is left-hand drive and carries a chassis number prefixed 829AR0, an engine number in the 829A series and a separate body or scocca number - Girardo's March 1977 car is chassis 829AR0 001744, engine 829A 000 001097, body 252 - and a car whose three numbers cannot be reconciled to each other and to a delivery record needs explaining before anything else is discussed. Lancia Classiche certification exists and was cited by RM Sotheby's on its 2024 Monaco car; its absence is not disqualifying but its presence removes an argument. The replica question is unavoidable, since Stratos-bodied cars have been built by specialists for decades, so provenance documentation matters more here than on almost any comparable car. Competition history cuts both ways: a documented works or Chardonnet car is worth a large multiple, while an undocumented rallied car has been crashed and repaired an unknown number of times, and Car & Classic's guidance is to treat racing history as a greater risk than high mileage. Inspect the steel center section and the clamshell mountings for corrosion, since the glass-fiber panels carry no load and hide what is underneath.",
+ "commonProblems": "The structural weakness is corrosion in the central steel monocoque and at the clamshell mountings. Car & Classic's buyer's guide singles out both, and the point is that the glass-fiber front and rear sections are non-structural: they neither stiffen the car nor protect the steel they cover, and a car that looks sound from ten feet can be poor where it matters. Cooling is the usual mid-engined problem set - a transverse V6 behind the cabin, long coolant runs, limited airflow - and Car & Classic flags it as an area demanding diligent maintenance. Brakes are ventilated discs at all four corners with no servo, so a system in poor condition is immediately obvious from the pedal; the same guide lists brakes and electrics among the areas to test carefully. Parts supply is uneven: the Ferrari-sourced V6 and its transaxle are supported by the Dino community, but Stratos-specific body, trim and glass items are scarce. Recorded specialist bills from DK Engineering and Girardo & Co show recommissioning a stored car running well into five figures.",
+ "valueTrajectory": "The Stratos was hard to sell when it was new. Motor Sport reported in July 1976 that around fifty cars remained unsold, that the fuel crisis and tightening type approval had cut off most export markets, that the car lacked the crash approval needed for straightforward registration outside Italy. Only four road cars and one damaged rally car were then in Britain, all held by one dealer. That commercial failure is the reason the production figure is contested at all, and it kept values modest for decades. The re-rating came with the wider homologation-special market: as of August 2026, classic.com's benchmark of roughly $720,600 is trending upward, against a tracked low of $298,125 as recently as November 2024 and a high of 815,000 euros in January 2026. The shape of that spread matters more than its midpoint: a certified, low-mileage car and an undocumented ex-rally car now sit at opposite ends of a range that has widened considerably, and the works competition cars have decoupled from the road cars entirely.",
  "overallConfidence": "high",
  "sources": [
   {
@@ -82,7 +82,7 @@ export const seedStratos = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Pointer reference: ~492 road cars, the Group 4 500-car rule and its later reduction, Bertone bodies with Lancia assembly at Chivasso, 190 PS road output, ~275 hp 12-valve and ~320 hp 24-valve rally engines with FIA restriction of the 24-valve from 1978, titles 1974/75/76, Fiorio, Parkes and Materazzi."
+   "notes": "Pointer reference: ~492 road cars, the Group 4 500-car rule and its later reduction, Bertone bodies with Lancia assembly at Chivasso, 187 hp road output, ~275 hp 12-valve and ~320 hp 24-valve rally engines with FIA restriction of the 24-valve from 1978, titles 1974/75/76, Fiorio, Parkes and Materazzi."
   },
   {
    "ref": "stellantis-stratos",
@@ -91,7 +91,7 @@ export const seedStratos = {
    "publisher": "Stellantis Heritage",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Manufacturer account: Fiorio's brief to replace the Fulvia HF, Fiorio and Gobbato persuading Enzo Ferrari to supply the Dino 246 V6, 2,418 cc 65-degree V6 at 280 HP (12v) and 320 HP at 8,500 rpm (24v), 980 kg, the 500-car requirement, homologation 1 October 1974 with FIA delegates counting cars parked in different locations."
+   "notes": "Manufacturer account: Fiorio's brief to replace the Fulvia HF, Fiorio and Gobbato persuading Enzo Ferrari to supply the Dino 246 V6, 2,418 cc 65-degree V6 at 280 HP (12v) and 320 HP at 8,500 rpm (24v), 2,161 lb, the 500-car requirement, homologation 1 October 1974 with FIA delegates counting cars parked in different locations."
   },
   {
    "ref": "lanciastratos-history",
@@ -118,7 +118,7 @@ export const seedStratos = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Period road test: 190 bhp at 7,400 rpm, 166 lb-ft at 4,000 rpm, 92.5 x 60 mm, 9:1, triple 40 mm Webers, five-speed Ferrari gearbox, 3.824:1 final drive, unservoed ventilated discs. States a 400-car homologation run, ~50 cars unsold by June 1976, four road cars in Britain, no E-marking, press prices of 10,000 to 13,500 pounds."
+   "notes": "Period road test: 190 hp at 7,400 rpm, 166 lb-ft at 4,000 rpm, 92.5 x 60 mm, 9:1, triple 40 mm Webers, five-speed Ferrari gearbox, 3.824:1 final drive, unservoed ventilated discs. States a 400-car homologation run, ~50 cars unsold by June 1976, four road cars in Britain, no E-marking, press prices of 10,000 to 13,500 pounds."
   },
   {
    "ref": "motorsport-2007-profile",
@@ -127,7 +127,7 @@ export const seedStratos = {
    "publisher": "Motor Sport",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Origins and politics: the 1970 Turin concept on a reversed Fulvia chassis, Fiorio obtaining the Dino V6 reportedly from a crashed car rather than a supply channel, Fiat-Abarth chasing the 308 GT4 V8 for a rival programme, 17 WRC wins and four Monte Carlo victories, Rohrl on asphalt, Parkes's death in August 1977."
+   "notes": "Origins and politics: the 1970 Turin concept on a reversed Fulvia chassis, Fiorio obtaining the Dino V6 reportedly from a crashed car rather than a supply channel, Fiat-Abarth chasing the 308 GT4 V8 for a rival program, 17 WRC wins and four Monte Carlo victories, Rohrl on asphalt, Parkes's death in August 1977."
   },
   {
    "ref": "motorsport-2010-stratos",
@@ -154,7 +154,7 @@ export const seedStratos = {
    "publisher": "Supercars.net",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Dimensions and assembly: 2,180 mm wheelbase, 3,710 x 1,750 x 1,110 mm, 980 kg Stradale and 880 kg Group 4, Enzo Ferrari resisting before agreeing in December 1972 to supply 500 units, 190 bhp road / 230-280 bhp Group 4 / 380 bhp Group 5 turbo. States 492 built of which 147 at Grugliasco, the rest completed individually, records for the last cars unclear."
+   "notes": "Dimensions and assembly: 2,180 mm wheelbase, 3,710 x 1,750 x 1,110 mm, 2,161 lb Stradale and 1,940 lb Group 4, Enzo Ferrari resisting before agreeing in December 1972 to supply 500 units, 190 hp road / 230-280 hp Group 4 / 380 hp Group 5 turbo. States 492 built of which 147 at Grugliasco, the rest completed individually, records for the last cars unclear."
   },
   {
    "ref": "supercarnostalgia-stratos",
@@ -163,7 +163,7 @@ export const seedStratos = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Source for most of the road-car hardware quoted here: ~492 units plus ten spare bodyshells, all left-hand drive, the 500 cars nominally built July 1973 to July 1974 with homologation only on 1 October 1974; 2,180 mm wheelbase, 980 kg, 80-litre twin tanks, 271 mm Girling discs with ATE calipers and no servo, Ferrari Tipo 236E V6 at 190 bhp/7,000 rpm."
+   "notes": "Source for most of the road-car hardware quoted here: ~492 units plus ten spare bodyshells, all left-hand drive, the 500 cars nominally built July 1973 to July 1974 with homologation only on 1 October 1974; 2,180 mm wheelbase, 2,161 lb, 80-liter twin tanks, 271 mm Girling discs with ATE calipers and no servo, Ferrari Tipo 236E V6 at 190 hp/7,000 rpm."
   },
   {
    "ref": "whichcar-stratos",
@@ -172,7 +172,7 @@ export const seedStratos = {
    "publisher": "WhichCar",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "States plainly that the 492 figure is still debated and that Bertone's records showed only 141 shells completed at homologation in October 1974; repeats the account of the FIA inspecting cars outside Chivasso before lunch with a second batch appearing afterwards. Also 190 CV at 7,400 rpm, wheelbase 220 mm shorter than a Golf."
+   "notes": "States plainly that the 492 figure is still debated and that Bertone's records showed only 141 shells completed at homologation in October 1974; repeats the account of the FIA inspecting cars outside Chivasso before lunch with a second batch appearing afterwards. Also 187 hp at 7,400 rpm, wheelbase 220 mm shorter than a Golf."
   },
   {
    "ref": "secret-classics-stratos",
@@ -190,7 +190,7 @@ export const seedStratos = {
    "publisher": "Car & Classic",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Buyer's guide: ~492 cars 1973-78, homologation 2 October 1974, Stradale 187-190 hp and 0-62 mph in 6.8-7.5 s, ~143 mph road top speed. Inspection advice on frame corrosion, clamshell mountings, non-structural fibreglass, brakes, cooling and electrics, plus the warning that competition history outranks mileage as a risk."
+   "notes": "Buyer's guide: ~492 cars 1973-78, homologation 2 October 1974, Stradale 187-190 hp and 0-62 mph in 6.8-7.5 s, ~143 mph road top speed. Inspection advice on frame corrosion, clamshell mountings, non-structural fiberglass, brakes, cooling and electrics, plus the warning that competition history outranks mileage as a risk."
   },
   {
    "ref": "rm-mc24-stratos",
@@ -199,7 +199,7 @@ export const seedStratos = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for 590,000 euros, Monaco, May 2024. Chassis 829AR0 001832, the 323rd car built, delivered to Guido Bignardi of Palermo on 21 February 1975, under 12,000 km, Lancia Classiche certified 2020. States only 147 completed cars existed before homologation on 1 October 1974 and that between 491 and 498 were built by 1975."
+   "notes": "Sold for 590,000 euros, Monaco, May 2024. Chassis 829AR0 001832, the 323rd car built, delivered to Guido Bignardi of Palermo on 21 February 1975, under 7,456 miles, Lancia Classiche certified 2020. States only 147 completed cars existed before homologation on 1 October 1974 and that between 491 and 498 were built by 1975."
   },
   {
    "ref": "rm-ve15-stratos",
@@ -295,7 +295,7 @@ export const seedStratos = {
   },
   {
    "section": "history",
-   "claimText": "The Bertone Stratos Zero shown at Turin on 28 October 1970 was a separate object from the production car: 84 cm tall, built on the running gear of a crashed Lancia Fulvia HF 1600 with its 1,584 cc V4 behind the seats, entered over a hinged windscreen, and sharing with the Stratos HF only its designer, its name and a wedge profile.",
+   "claimText": "The Bertone Stratos Zero shown at Turin on 28 October 1970 was a separate object from the production car: 84 cm tall, built on the running gear of a crashed Lancia Fulvia HF 1600 with its 1,584 cc V4 behind the seats, entered over a hinged windshield, and sharing with the Stratos HF only its designer, its name and a wedge profile.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -331,7 +331,7 @@ export const seedStratos = {
   },
   {
    "section": "history",
-   "claimText": "Mike Parkes led the Stratos's engineering development until his death in a road accident in August 1977, with Nicola Materazzi responsible for calculations and Cesare Fiorio directing the competition programme.",
+   "claimText": "Mike Parkes led the Stratos's engineering development until his death in a road accident in August 1977, with Nicola Materazzi responsible for calculations and Cesare Fiorio directing the competition program.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -353,7 +353,7 @@ export const seedStratos = {
   },
   {
    "section": "specs",
-   "claimText": "Quoted output for the Stradale is 190 bhp with about 166 lb-ft of torque, but the crank speed at which peak power is reached is given as 7,000 rpm by Supercar Nostalgia and 7,400 rpm by Motor Sport's 1976 road test, by WhichCar and by DK Engineering.",
+   "claimText": "Quoted output for the Stradale is 190 hp with about 166 lb-ft of torque, but the crank speed at which peak power is reached is given as 7,000 rpm by Supercar Nostalgia and 7,400 rpm by Motor Sport's 1976 road test, by WhichCar and by DK Engineering.",
    "confidence": "medium",
    "status": "unverified",
    "sourceRefs": [
@@ -365,7 +365,7 @@ export const seedStratos = {
   },
   {
    "section": "specs",
-   "claimText": "The structure is a central steel monocoque with tubular subframes front and rear carrying non-structural glass-fibre clamshells that hinge clear for access, with a quoted Stradale weight of 980 kg against about 880 kg for Group 4 specification.",
+   "claimText": "The structure is a central steel monocoque with tubular subframes front and rear carrying non-structural glass-fiber clamshells that hinge clear for access, with a quoted Stradale weight of 2,161 lb against about 1,940 lb for Group 4 specification.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -401,7 +401,7 @@ export const seedStratos = {
   },
   {
    "section": "history",
-   "claimText": "Lancia won the World Rally Championship for manufacturers with the Stratos in 1974, 1975 and 1976, three consecutive titles, with the car's world championship victory tally usually given as seventeen; Sandro Munari won the Monte Carlo Rally three years running from 1975, and after the works effort was wound down in favour of the Fiat 131 Abarth privateers continued to win, Bernard Darniche taking the 1979 Monte Carlo.",
+   "claimText": "Lancia won the World Rally Championship for manufacturers with the Stratos in 1974, 1975 and 1976, three consecutive titles, with the car's world championship victory tally usually given as seventeen; Sandro Munari won the Monte Carlo Rally three years running from 1975, and after the works effort was wound down in favor of the Fiat 131 Abarth privateers continued to win, Bernard Darniche taking the 1979 Monte Carlo.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -446,7 +446,7 @@ export const seedStratos = {
   },
   {
    "section": "problems",
-   "claimText": "Corrosion of the central steel structure and of the clamshell mountings is the defining structural fault, the non-structural glass-fibre panels concealing rather than protecting the steel beneath them, while cooling, braking and electrical systems are the mechanical areas Car & Classic singles out for careful testing; specialist bills are substantial, DK Engineering recording about 15,000 pounds spent recommissioning one car in 2018 and Girardo & Co over 14,000 pounds of work on another.",
+   "claimText": "Corrosion of the central steel structure and of the clamshell mountings is the defining structural fault, the non-structural glass-fiber panels concealing rather than protecting the steel beneath them, while cooling, braking and electrical systems are the mechanical areas Car & Classic singles out for careful testing; specialist bills are substantial, DK Engineering recording about 15,000 pounds spent recommissioning one car in 2018 and Girardo & Co over 14,000 pounds of work on another.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [

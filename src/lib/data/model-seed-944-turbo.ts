@@ -16,19 +16,19 @@ export const seed944Turbo = {
   "Cabriolet (944 Turbo Cabriolet, 1991, non-US markets)"
  ],
  "engines": [
-  "2.5L (2,479 cc) M44/51 SOHC 8-valve inline-4, KKK turbocharger with intercooler, 8.0:1 compression (220 PS / 217 hp US, 1986-1988)",
-  "2.5L (2,479 cc) M44/52 SOHC 8-valve inline-4, larger KKK K26-8 turbine housing, revised mapping (250 PS / 247 hp; 1988 Turbo S, then standard on 1989-1991 Turbo)"
+  "2.5L (2,479 cc) M44/51 SOHC 8-valve inline-4, KKK turbocharger with intercooler, 8.0:1 compression (217 hp / 217 hp US, 1986-1988)",
+  "2.5L (2,479 cc) M44/52 SOHC 8-valve inline-4, larger KKK K26-8 turbine housing, revised mapping (247 hp / 247 hp; 1988 Turbo S, then standard on 1989-1991 Turbo)"
  ],
  "productionTotal": null,
- "productionNotes": "Sources agree the 944 Turbo run totalled roughly 25,245 cars across model years 1985-1991, but they disagree on whether the 1,635 Turbo S cars are counted inside that figure or alongside it, so no single total is asserted here. Wikipedia's year-by-year table (178 in 1985, 10,937 in 1986, 4,955 in 1987, 4,097 in 1988 including 1,635 Turbo S, 4,103 in 1989, 1,251 in 1990, 938 in 1991) sums to 25,245 with the S included; stuttcars.com lists '944 Turbo 25,245' and '944 Turbo S 1,635' as separate lines, implying about 26,880. The 1,635 Turbo S figure itself is well attested and confirmed by Porsche. Roughly 13,982 Turbos of all years went to the US; PCA notes the Turbo was withdrawn from the US market after 1989 while rest-of-world production (including Canada) continued to 1991. A 944 Turbo Cabriolet was built for 1991 in small numbers, cited at 625 cars, and was not a US model. The wider 944 series total is itself disputed: Porsche's own material states 163,302 cars built 1981/82-1991, while stuttcars.com's variant table sums to 173,238.",
+ "productionNotes": "Sources agree the 944 Turbo run totaled roughly 25,245 cars across model years 1985-1991, but they disagree on whether the 1,635 Turbo S cars are counted inside that figure or alongside it, so no single total is asserted here. Wikipedia's year-by-year table (178 in 1985, 10,937 in 1986, 4,955 in 1987, 4,097 in 1988 including 1,635 Turbo S, 4,103 in 1989, 1,251 in 1990, 938 in 1991) sums to 25,245 with the S included; stuttcars.com lists '944 Turbo 25,245' and '944 Turbo S 1,635' as separate lines, implying about 26,880. The 1,635 Turbo S figure itself is well attested and confirmed by Porsche. Roughly 13,982 Turbos of all years went to the US; PCA notes the Turbo was withdrawn from the US market after 1989 while rest-of-world production (including Canada) continued to 1991. A 944 Turbo Cabriolet was built for 1991 in small numbers, cited at 625 cars, and was not a US model. The wider 944 series total is itself disputed: Porsche's own material states 163,302 cars built 1981/82-1991, while stuttcars.com's variant table sums to 173,238.",
  "notableTrims": [
   {
    "name": "944 Turbo (951)",
-   "note": "1986-1988 specification: 220 PS / 243 lb-ft, 8.0:1 compression, water-cooled turbo bearing, 911-derived four-piston fixed calipers. ABS standard from 1987."
+   "note": "1986-1988 specification: 217 hp / 243 lb-ft, 8.0:1 compression, water-cooled turbo bearing, 911-derived four-piston fixed calipers. ABS standard from 1987."
   },
   {
    "name": "944 Turbo S",
-   "note": "1988 only, 1,635 built. 250 PS / 258 lb-ft via a larger K26-8 turbine housing holding full boost to 5,800 rpm, plus M030 suspension, limited-slip differential, 928 S4 front brakes and 7x16/9x16 forged Club Sport wheels. Option code 758; engine stamped M44/52."
+   "note": "1988 only, 1,635 built. 247 hp / 258 lb-ft via a larger K26-8 turbine housing holding full boost to 5,800 rpm, plus M030 suspension, limited-slip differential, 928 S4 front brakes and 7x16/9x16 forged Club Sport wheels. Option code 758; engine stamped M44/52."
   },
   {
    "name": "944 Turbo (1989-1991)",
@@ -45,15 +45,15 @@ export const seed944Turbo = {
   "compression": "8.0:1",
   "forced_induction": "KKK turbocharger with air-to-air intercooler; ceramic port liners in the exhaust ports; water-cooled turbo bearing housing",
   "transmission": "5-speed manual transaxle, strengthened over the naturally aspirated 944, with external engine and transmission oil coolers",
-  "power_1986_1988": "220 PS (162 kW); 217 hp in US trim, at 5,800 rpm",
-  "torque_1986_1988": "243 lb-ft (329 Nm) at 3,500 rpm",
-  "power_turbo_s_and_1989_on": "250 PS (184 kW / 247 hp) at 6,000 rpm",
-  "torque_turbo_s_and_1989_on": "258 lb-ft (350 Nm) at 4,000 rpm",
-  "curb_weight_1986": "~2,822 lb (1,280 kg)",
-  "curb_weight_1989": "~2,998 lb (1,360 kg)",
+  "power_1986_1988": "217 hp (217 hp); 217 hp in US trim, at 5,800 rpm",
+  "torque_1986_1988": "243 lb-ft at 3,500 rpm",
+  "power_turbo_s_and_1989_on": "247 hp (247 hp / 247 hp) at 6,000 rpm",
+  "torque_turbo_s_and_1989_on": "258 lb-ft at 4,000 rpm",
+  "curb_weight_1986": "~2,822 lb",
+  "curb_weight_1989": "~2,998 lb",
   "weight_distribution": "Close to 50/50 front/rear by design of the transaxle layout; Porsche describes the concept as giving near-perfect axle load distribution",
   "0_60_mph": "~5.9 s (1987 Turbo, Car and Driver); ~5.5 s (1988 Turbo S, Car and Driver); ~5.7 s (1989 Turbo)",
-  "top_speed": "~152 mph (1986 Turbo); ~162 mph / 261 km/h (Turbo S and 1989-on Turbo)",
+  "top_speed": "~152 mph (1986 Turbo); ~162 mph / 162 mph (Turbo S and 1989-on Turbo)",
   "brakes": "Ventilated discs all round with fixed four-piston calipers derived from the 911; Turbo S adopted 928 S4 front brakes. ABS standard on the Turbo from 1987",
   "wheels_1986": "16x7 front, 16x8 rear",
   "wheels_turbo_s": "16x7 front, 16x9 rear forged Club Sport design",
@@ -61,8 +61,8 @@ export const seed944Turbo = {
   "length": "166.5 in (4,230 mm)",
   "drag_coefficient": "0.33"
  },
- "summary": "The Porsche 944 Turbo, built to internal type number 951, is the turbocharged development of Porsche's front-engined transaxle four-cylinder car, sold from the 1986 model year to 1991. It paired the 2,479 cc single-overhead-cam balance-shaft four with a KKK turbocharger, an intercooler and 8.0:1 compression for 220 PS, driving through a rear-mounted five-speed transaxle that gives the car close to 50/50 weight distribution. The Turbo received four-piston brakes derived from the 911, standard ABS from 1987, and a standard driver's airbag. For 1988 Porsche built 1,635 examples of the 944 Turbo S, rated at 250 PS with a larger K26-8 turbine housing, M030 suspension, a limited-slip differential and 928 S4 front brakes; from 1989 that drivetrain became the standard Turbo specification. Long treated as the cheap way into a Porsche, the 951 has spent the last decade climbing, held back mainly by the cost of its belt-driven service schedule.",
- "history": "## From 924 to 944 to 951\nThe 944 arrived in September 1981 as Porsche's answer to the 924's borrowed Audi-derived engine, using instead a 2.5-litre inline-four that Porsche developed in-house and which the factory describes as effectively half of the 928's V8. Like the 924 and 928 before it, the 944 used the transaxle layout: engine over the front axle, clutch at the front, a slim driveshaft running in a rigid central torque tube between the seats, and the gearbox and differential mounted at the rear axle. Porsche's stated aim for the concept was an axle load split as close as possible to 50:50, and the 944's handling reputation rests almost entirely on it. The 944 sold faster than any Porsche before it, and the factory extended it into a family: Turbo, S, S2 and Cabriolet.\n\n## The Turbo, Type 951\nThe turbocharged car carried the internal type number 951 and reached the market for the 1986 model year, with a short pre-production run recorded in 1985. It used the eight-valve engine with compression dropped to 8.0:1, a KKK turbocharger fed through an air-to-air intercooler, ceramic liners in the exhaust ports to keep heat in the gas rather than the head, and a water-cooled turbo bearing housing to prevent oil coking after shutdown. Output was 220 PS and 243 lb-ft, roughly a hundred horsepower more than the base 944. The gearbox was strengthened and given a different final drive, and both engine and transmission ran external oil coolers. Brakes were four-piston fixed calipers on ventilated discs, taken from the 911. ABS became standard on the Turbo for 1987, when it was also an option rather than standard equipment on the rest of the range, and the Turbo was among the first cars anywhere to carry a driver's airbag as standard.\n\n## The 1988 Turbo S\nFor 1988 Porsche released the 944 Turbo S. The engine, stamped M44/52, took a larger K26-8 turbine housing and revised mapping that held maximum boost to 5,800 rpm, lifting output to 250 PS and 258 lb-ft at 4,000 rpm and, on the factory's numbers, a 261 km/h top speed. With it came the M030 suspension package - height-adjustable Koni dampers, progressive-rate springs, 27 mm front and 18 mm rear anti-roll bars and firmer bushings - along with a limited-slip differential, 928 S4 front brakes, and forged 7x16 and 9x16 Club Sport wheels. Porsche planned around 1,000 cars in Silver Rose Metallic with burgundy interiors but demand ran past that; 1,635 were built, and PCA notes that the Silver Rose colour scheme covered only about the first hundred. Genuine cars are identified by option code 758 on the build sticker and the M44/52 engine stamp near the bell housing.\n\n## S Spec as Standard, and the End\nFor 1989 the S designation was dropped and the Turbo S drivetrain simply became the 944 Turbo, minus the M030 suspension and the forged Club Sport wheels, which reverted to the options list. The Turbo left the US market after 1989 but continued in rest-of-world markets, including Canada, until 1991, when a small run of 944 Turbo Cabriolets closed out the model. The 968 replaced the 944 for 1992. By the end of the series Porsche records 163,302 944s of all types, though independent variant tallies run higher.",
+ "summary": "The Porsche 944 Turbo, built to internal type number 951, is the turbocharged development of Porsche's front-engined transaxle four-cylinder car, sold from the 1986 model year to 1991. It paired the 2,479 cc single-overhead-cam balance-shaft four with a KKK turbocharger, an intercooler and 8.0:1 compression for 217 hp, driving through a rear-mounted five-speed transaxle that gives the car close to 50/50 weight distribution. The Turbo received four-piston brakes derived from the 911, standard ABS from 1987, and a standard driver's airbag. For 1988 Porsche built 1,635 examples of the 944 Turbo S, rated at 247 hp with a larger K26-8 turbine housing, M030 suspension, a limited-slip differential and 928 S4 front brakes; from 1989 that drivetrain became the standard Turbo specification. Long treated as the cheap way into a Porsche, the 951 has spent the last decade climbing, held back mainly by the cost of its belt-driven service schedule.",
+ "history": "## From 924 to 944 to 951\nThe 944 arrived in September 1981 as Porsche's answer to the 924's borrowed Audi-derived engine, using instead a 2.5-liter inline-four that Porsche developed in-house and which the factory describes as effectively half of the 928's V8. Like the 924 and 928 before it, the 944 used the transaxle layout: engine over the front axle, clutch at the front, a slim driveshaft running in a rigid central torque tube between the seats, and the gearbox and differential mounted at the rear axle. Porsche's stated aim for the concept was an axle load split as close as possible to 50:50, and the 944's handling reputation rests almost entirely on it. The 944 sold faster than any Porsche before it, and the factory extended it into a family: Turbo, S, S2 and Cabriolet.\n\n## The Turbo, Type 951\nThe turbocharged car carried the internal type number 951 and reached the market for the 1986 model year, with a short pre-production run recorded in 1985. It used the eight-valve engine with compression dropped to 8.0:1, a KKK turbocharger fed through an air-to-air intercooler, ceramic liners in the exhaust ports to keep heat in the gas rather than the head, and a water-cooled turbo bearing housing to prevent oil coking after shutdown. Output was 217 hp and 243 lb-ft, roughly a hundred horsepower more than the base 944. The gearbox was strengthened and given a different final drive, and both engine and transmission ran external oil coolers. Brakes were four-piston fixed calipers on ventilated discs, taken from the 911. ABS became standard on the Turbo for 1987, when it was also an option rather than standard equipment on the rest of the range, and the Turbo was among the first cars anywhere to carry a driver's airbag as standard.\n\n## The 1988 Turbo S\nFor 1988 Porsche released the 944 Turbo S. The engine, stamped M44/52, took a larger K26-8 turbine housing and revised mapping that held maximum boost to 5,800 rpm, lifting output to 247 hp and 258 lb-ft at 4,000 rpm and, on the factory's numbers, a 162 mph top speed. With it came the M030 suspension package - height-adjustable Koni dampers, progressive-rate springs, 27 mm front and 18 mm rear anti-roll bars and firmer bushings - along with a limited-slip differential, 928 S4 front brakes, and forged 7x16 and 9x16 Club Sport wheels. Porsche planned around 1,000 cars in Silver Rose Metallic with burgundy interiors but demand ran past that; 1,635 were built, and PCA notes that the Silver Rose color scheme covered only about the first hundred. Genuine cars are identified by option code 758 on the build sticker and the M44/52 engine stamp near the bell housing.\n\n## S Spec as Standard, and the End\nFor 1989 the S designation was dropped and the Turbo S drivetrain simply became the 944 Turbo, minus the M030 suspension and the forged Club Sport wheels, which reverted to the options list. The Turbo left the US market after 1989 but continued in rest-of-world markets, including Canada, until 1991, when a small run of 944 Turbo Cabriolets closed out the model. The 968 replaced the 944 for 1992. By the end of the series Porsche records 163,302 944s of all types, though independent variant tallies run higher.",
  "marketNotes": "As of August 2026, classic.com's 944 Turbo market benchmark stands at roughly $27,800 with an average sale near $28,200 and recent results spread from about $9,300 to $49,000; the benchmark trend is upward. The 944 Turbo S sits close behind on classic.com, with a benchmark near $29,800 and an average around $29,900 on a thin sample running from about $13,500 for a 155,000-mile car to $42,500 for a 51,000-mile original, and that page's data ran through late October 2025 with a downward benchmark arrow - the Turbo S sample is small enough that its benchmark should be treated as indicative rather than firm. Retail-facing guides sit above the auction averages: stuttcars.com's buyer's guide puts sorted Turbos at roughly $20,000-$35,000 and 1988 Turbo S cars at $40,000-$60,000 or more, while Classics World's 2026 UK guide quotes Turbos from around GBP 20,000 with strong examples at GBP 30,000-45,000. The spread between benchmark and best-of-market is unusually wide, which is normal for a car whose value is dominated by documented belt service history and whether it has been left standard.",
  "whatToLookFor": "Service history is the single most valuable document on a 951. Ask for dated evidence of timing belt, balance shaft belt, water pump, rollers and tensioner replacement; the engine is an interference design and a belt failure destroys it. Check for oil weeping from the front crank seal and the cam tower seals, because that oil lands on the belt. Confirm the turbocharger has been serviced and listen for shaft noise or smoke on overrun. Verify a claimed Turbo S properly: option code 758 on the sticker near the spare, engine stamped M44/52 near the bell housing at the number four exhaust manifold, transmission oil cooler loop, adjustable spring perches on the front Konis, 27 mm front and 18 mm rear anti-roll bars, and the 7x16/9x16 forged wheels. PCA's own advice is that few of these cars have escaped modification, so a pre-purchase inspection at a specialist familiar with 944 turbos is not optional. Bodies were galvanised, so visible rust points to accident repair or long neglect rather than normal ageing - check the battery tray, sills behind their covers, wheel arches and the hatch surround. Test every electrical function; a clutch that is high, slipping or hard to shift means a transaxle-out job.",
  "commonProblems": "The defining cost is belt service. The camshaft belt and the balance shaft belts must be replaced together on a mileage or time interval - published guidance ranges from 30,000-35,000 miles (Pelican Parts) to 30,000-40,000 miles or five years (stuttcars.com), while Classics World advises every four years - with the water pump, rollers and tensioners changed at least every other belt job. Belts need re-tensioning shortly after fitting. A full service commonly runs $1,200-$1,800. Oil leaks from the front crank seal, cam tower seals and oil pan gasket are routine and matter because they contaminate the belt area; the pan gasket is largely a labour charge. Head gasket failure shows as frothy oil. Turbochargers need periodic attention and eventually rebuilding. Clutches wear faster on turbocharged cars and replacement is expensive because the transaxle must come out, quoted at roughly $1,500-$2,500 in the US or GBP 1,200-1,800 and up in the UK. Elsewhere: vacuum leaks and failing air flow meters that dull performance, oil cooler failure that mixes oil and coolant, cracked plug leads, corroded battery trays, dead odometers on the oval-dash cars, speedometer pulse generator failures, and the general electrical unreliability of thirty-five-year-old grounds and connectors.",
@@ -74,7 +74,7 @@ export const seed944Turbo = {
    "title": "Porsche 944",
    "url": "https://en.wikipedia.org/wiki/Porsche_944",
    "publisher": "Wikipedia",
-   "sourceType": "reference",
+   "sourceType": "reference-book",
    "reliability": "medium",
    "notes": "Year-by-year Turbo production table summing to 25,245 (S included in 1988), engine codes M44/51 and M44/52, power outputs, K26-8, ABS and airbag firsts, 1989 S-spec-as-standard."
   },
@@ -85,7 +85,7 @@ export const seed944Turbo = {
    "publisher": "Porsche AG",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Manufacturer: 163,302 built 1982-1991, Turbo 220 PS, Turbo S 250 PS and 261 km/h, engine derived from half the 928 V8, transaxle layout."
+   "notes": "Manufacturer: 163,302 built 1982-1991, Turbo 217 hp, Turbo S 247 hp and 162 mph, engine derived from half the 928 V8, transaxle layout."
   },
   {
    "ref": "porsche-presskit",
@@ -112,7 +112,7 @@ export const seed944Turbo = {
    "publisher": "Porsche Newsroom / Porsche Klassik",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Manufacturer confirmation of 1,635 Turbo S built in 1988 at 184 kW (250 PS), standard M030 with height-adjustable Koni suspension, LSD, 928 S4-derived ABS, reinforced gearbox with external oil cooler."
+   "notes": "Manufacturer confirmation of 1,635 Turbo S built in 1988 at 247 hp (247 hp), standard M030 with height-adjustable Koni suspension, LSD, 928 S4-derived ABS, reinforced gearbox with external oil cooler."
   },
   {
    "ref": "pca-model-guide",
@@ -155,7 +155,7 @@ export const seed944Turbo = {
    "title": "Porsche 944 Production Numbers",
    "url": "https://www.stuttcars.com/porsche-944-production-numbers/",
    "publisher": "StuttCars",
-   "sourceType": "reference",
+   "sourceType": "reference-book",
    "reliability": "medium",
    "notes": "Variant table: 944 Turbo 25,245, Turbo S 1,635, Turbo Cabriolet 625, 944 113,070, 944 S 12,936, S2 14,071, S2 Cabriolet 5,656; stated series total 173,238."
   },
@@ -164,7 +164,7 @@ export const seed944Turbo = {
    "title": "Porsche 944 Buyer's Guide: Everything You Need to Know",
    "url": "https://www.stuttcars.com/porsche-buyers-guides/porsche-944-buyers-guide/",
    "publisher": "StuttCars",
-   "sourceType": "reference",
+   "sourceType": "reference-book",
    "reliability": "medium",
    "notes": "Belt and water pump every 30,000-40,000 miles or 5 years, interference engine, $1,200-$1,800 service; clutch $1,500-$2,500; rust areas; retail value bands including 1988 Turbo S at $40,000-$60,000+."
   },
@@ -227,9 +227,9 @@ export const seed944Turbo = {
    "title": "1988 Porsche 944 Turbo S, Amelia Island 2017, Lot 162",
    "url": "https://rmsothebys.com/auctions/am17/lots/r162-1988-porsche-944-turbo-s/",
    "publisher": "RM Sotheby's",
-   "sourceType": "auction",
+   "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "1,635 Turbo S built in 1988; 247 bhp from 2,479 cc SOHC turbo four with full boost to 5,800 rpm; 928 S4 front brakes, adjustable Konis, ABS, LSD; sold $46,200."
+   "notes": "1,635 Turbo S built in 1988; 247 hp from 2,479 cc SOHC turbo four with full boost to 5,800 rpm; 928 S4 front brakes, adjustable Konis, ABS, LSD; sold $46,200."
   }
  ],
  "claims": [
@@ -256,7 +256,7 @@ export const seed944Turbo = {
   },
   {
    "section": "specs",
-   "claimText": "The 1986-1988 944 Turbo produced 220 PS (217 hp in US trim) at 5,800 rpm and 243 lb-ft at 3,500 rpm, with a curb weight of about 2,822 lb and a top speed near 152 mph.",
+   "claimText": "The 1986-1988 944 Turbo produced 217 hp (217 hp in US trim) at 5,800 rpm and 243 lb-ft at 3,500 rpm, with a curb weight of about 2,822 lb and a top speed near 152 mph.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -267,7 +267,7 @@ export const seed944Turbo = {
   },
   {
    "section": "specs",
-   "claimText": "The 1988 Turbo S used the M44/52 engine with a larger KKK K26-8 turbine housing and revised mapping holding maximum boost to 5,800 rpm, producing 250 PS (247 hp) and 258 lb-ft at 4,000 rpm for a factory top speed of 261 km/h (about 162 mph), and carried the M030 package with height-adjustable Koni dampers, progressive-rate springs, 27 mm front and 18 mm rear anti-roll bars, plus a limited-slip differential, 928 S4 front brakes and forged 7x16 / 9x16 Club Sport wheels.",
+   "claimText": "The 1988 Turbo S used the M44/52 engine with a larger KKK K26-8 turbine housing and revised mapping holding maximum boost to 5,800 rpm, producing 247 hp and 258 lb-ft at 4,000 rpm for a factory top speed of about 162 mph, and carried the M030 package with height-adjustable Koni dampers, progressive-rate springs, 27 mm front and 18 mm rear anti-roll bars, plus a limited-slip differential, 928 S4 front brakes and forged 7x16 / 9x16 Club Sport wheels.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -305,7 +305,7 @@ export const seed944Turbo = {
   },
   {
    "section": "production",
-   "claimText": "944 Turbo production totalled roughly 25,245 cars across 1985-1991, but sources disagree over whether the 1,635 Turbo S cars are inside that figure or additional to it, so no single total is asserted.",
+   "claimText": "944 Turbo production totaled roughly 25,245 cars across 1985-1991, but sources disagree over whether the 1,635 Turbo S cars are inside that figure or additional to it, so no single total is asserted.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [

@@ -17,20 +17,20 @@ export const seedCorvetteC1 = {
   "2-door Convertible with optional bolt-on removable hardtop (1956-1962)"
  ],
  "engines": [
-  "235.5 cu in (3,859 cc) 'Blue Flame' overhead-valve inline six, three Carter YH sidedraught carburettors, solid lifters, 8.0:1 compression, 150 bhp at 4,200 rpm (1953-1955); raised to a quoted 155 bhp on a revised camshaft during 1954",
-  "265 cu in (4,343 cc) overhead-valve V8, single Carter four-barrel, 195 bhp at 5,000 rpm and 260 lb-ft at 3,000 rpm (1955)",
-  "265 cu in V8, 210 bhp at 5,600 rpm base; 225 bhp with twin four-barrels; 240 bhp with the RPO 449 high-lift camshaft on premium fuel (1956)",
-  "283 cu in (4,638 cc) V8, 220 bhp base; 245 and 270 bhp on twin four-barrels; 250 and 283 bhp on Rochester Ramjet mechanical fuel injection, the 283 bhp version at 6,200 rpm on 10.5:1 compression (1957)",
-  "283 cu in V8, 230 bhp base; 245 and 270 bhp on twin four-barrels; 250 and 290 bhp fuel-injected (1958-1960 per VetteFacts tabulations)",
-  "283 cu in V8 fuel-injected at 275 and 315 bhp, with twin four-barrels at 245 and 270 bhp offered for the last time (1961)",
-  "327 cu in (5,360 cc) V8: 250 bhp and 300 bhp on a single four-barrel with hydraulic lifters, 340 bhp on a four-barrel with solid lifters, and 360 bhp on Rochester fuel injection with solid lifters (1962)"
+  "235.5 cu in (3,859 cc) 'Blue Flame' overhead-valve inline six, three Carter YH sidedraught carburettors, solid lifters, 8.0:1 compression, 150 hp at 4,200 rpm (1953-1955); raised to a quoted 155 hp on a revised camshaft during 1954",
+  "265 cu in (4,343 cc) overhead-valve V8, single Carter four-barrel, 195 hp at 5,000 rpm and 260 lb-ft at 3,000 rpm (1955)",
+  "265 cu in V8, 210 hp at 5,600 rpm base; 225 hp with twin four-barrels; 240 hp with the RPO 449 high-lift camshaft on premium fuel (1956)",
+  "283 cu in (4,638 cc) V8, 220 hp base; 245 and 270 hp on twin four-barrels; 250 and 283 hp on Rochester Ramjet mechanical fuel injection, the 283 hp version at 6,200 rpm on 10.5:1 compression (1957)",
+  "283 cu in V8, 230 hp base; 245 and 270 hp on twin four-barrels; 250 and 290 hp fuel-injected (1958-1960 per VetteFacts tabulations)",
+  "283 cu in V8 fuel-injected at 275 and 315 hp, with twin four-barrels at 245 and 270 hp offered for the last time (1961)",
+  "327 cu in (5,360 cc) V8: 250 hp and 300 hp on a single four-barrel with hydraulic lifters, 340 hp on a four-barrel with solid lifters, and 360 hp on Rochester fuel injection with solid lifters (1962)"
  ],
  "productionTotal": null,
- "productionNotes": "No source consulted here publishes a grand total for the generation. The year-by-year figures are consistent across the independent tabulations checked and sum to 69,015 cars - 1953 300; 1954 3,640; 1955 700; 1956 3,467; 1957 6,339; 1958 9,168; 1959 9,670; 1960 10,261; 1961 10,939; 1962 14,531 - but that sum is arithmetic rather than a published figure, and two sub-counts inside it are contested, so no single total is asserted. CorvSport states that of the 700 cars built for 1955 only 674 were sold, so a build figure and a sales figure will not agree for that year, and the six-cylinder count for 1955 is unsettled: VetteFacts gives seven sixes against 693 V8s while CorvSport reports that published sources say six or seven. Option take-up is well recorded from 1957 through RPO tabulations. VetteFacts breaks the 1957 fuel-injected cars into 182 RPO 579A (250 bhp), 713 RPO 579B (283 bhp), 102 RPO 579C (250 bhp) and 43 RPO 579E (283 bhp with the cold-air plenum) for 1,040; Vette Vues prints the same table without the 579C row and so sums to 938; CorvSport states a flat 240. RPO 684 heavy-duty racing suspension went on 51 cars in 1957, and its successor RPO 687 on 119 in 1960 and 246 in 1962. The Borg-Warner four-speed, released 9 April 1957, took 664 cars that season and 11,318 of the 14,531 built for 1962. The 327/360 injected engine accounted for 1,918 cars in 1962 and only 65 buyers took RPO 488, the 24-gallon 'tanker' tank. Colour splits are documented year by year: 1957 ran 2,189 Onyx Black, 1,320 Venetian Red, 1,273 Polo White, 550 Cascade Green, 487 Arctic Blue, 452 Aztec Copper and 65 Inca Silver.",
+ "productionNotes": "No source consulted here publishes a grand total for the generation. The year-by-year figures are consistent across the independent tabulations checked and sum to 69,015 cars - 1953 300; 1954 3,640; 1955 700; 1956 3,467; 1957 6,339; 1958 9,168; 1959 9,670; 1960 10,261; 1961 10,939; 1962 14,531 - but that sum is arithmetic rather than a published figure, and two sub-counts inside it are contested, so no single total is asserted. CorvSport states that of the 700 cars built for 1955 only 674 were sold, so a build figure and a sales figure will not agree for that year, and the six-cylinder count for 1955 is unsettled: VetteFacts gives seven sixes against 693 V8s while CorvSport reports that published sources say six or seven. Option take-up is well recorded from 1957 through RPO tabulations. VetteFacts breaks the 1957 fuel-injected cars into 182 RPO 579A (250 hp), 713 RPO 579B (283 hp), 102 RPO 579C (250 hp) and 43 RPO 579E (283 hp with the cold-air plenum) for 1,040; Vette Vues prints the same table without the 579C row and so sums to 938; CorvSport states a flat 240. RPO 684 heavy-duty racing suspension went on 51 cars in 1957, and its successor RPO 687 on 119 in 1960 and 246 in 1962. The Borg-Warner four-speed, released 9 April 1957, took 664 cars that season and 11,318 of the 14,531 built for 1962. The 327/360 injected engine accounted for 1,918 cars in 1962 and only 65 buyers took RPO 488, the 24-gallon 'tanker' tank. Color splits are documented year by year: 1957 ran 2,189 Onyx Black, 1,320 Venetian Red, 1,273 Polo White, 550 Cascade Green, 487 Arctic Blue, 452 Aztec Copper and 65 Inca Silver.",
  "notableTrims": [
   {
    "name": "1953 (hand-built, 300 cars)",
-   "note": "Serials E53F001001 to E53F001300, assembled largely by hand at Flint from 30 June 1953. Every car Polo White over Sportsman Red, Blue Flame six and Powerglide only. Panel fit and press-moulded front-end parts vary car to car, which is why build dates and serials carry weight."
+   "note": "Serials E53F001001 to E53F001300, assembled largely by hand at Flint from 30 June 1953. Every car Polo White over Sportsman Red, Blue Flame six and Powerglide only. Panel fit and press-molded front-end parts vary car to car, which is why build dates and serials carry weight."
   },
   {
    "name": "1955 V8 (gold V, 12-volt)",
@@ -38,32 +38,32 @@ export const seedCorvetteC1 = {
   },
   {
    "name": "1957 RPO 579B - 283/283 'Fuelie'",
-   "note": "Rochester Ramjet injection rated 283 bhp at 6,200 rpm on 10.5:1 compression, one horsepower per cubic inch. 713 cars took this RPO at $484.20. The benchmark carburettor-versus-injection distinction for the whole generation."
+   "note": "Rochester Ramjet injection rated 283 hp at 6,200 rpm on 10.5:1 compression, one horsepower per cubic inch. 713 cars took this RPO at $484.20. The benchmark carburettor-versus-injection distinction for the whole generation."
   },
   {
    "name": "1957 RPO 579E / RPO 684 'Airbox Big Brake'",
-   "note": "43 cars are believed to have combined the hand-laid fibreglass cold-air plenum with the $780.10 racing package: finned scooped drums, cera-metallic linings, Positraction, a 16.3:1 steering adapter and stiffer springs. No heater and no radio. The most valuable ordinary-production C1 specification."
+   "note": "43 cars are believed to have combined the hand-laid fiberglass cold-air plenum with the $780.10 racing package: finned scooped drums, cera-metallic linings, Positraction, a 16.3:1 steering adapter and stiffer springs. No heater and no radio. The most valuable ordinary-production C1 specification."
   },
   {
-   "name": "1958 (quad headlamps, washboard bonnet)",
-   "note": "Nine inches longer, two wider and over 3,000 lb for the first time, with simulated bonnet louvres and chrome boot spears used this year only. 1958 was also the first Corvette model year to turn a profit for GM. Collectors treat the extra chrome as either the point or the problem."
+   "name": "1958 (quad headlamps, washboard hood)",
+   "note": "Nine inches longer, two wider and over 3,000 lb for the first time, with simulated hood louvres and chrome boot spears used this year only. 1958 was also the first Corvette model year to turn a profit for GM. Collectors treat the extra chrome as either the point or the problem."
   },
   {
    "name": "1960 Cunningham Le Mans cars",
-   "note": "Three Corvettes entered privately by Briggs Cunningham with no factory support, GM's racing ban having also cost Duntov his drive. The number 3 car of Fitch and Grossman finished eighth overall and won the 4,000-5,000 cc class. The aluminium heads that failed retail quality control went to this team."
+   "note": "Three Corvettes entered privately by Briggs Cunningham with no factory support, GM's racing ban having also cost Duntov his drive. The number 3 car of Fitch and Grossman finished eighth overall and won the 4,000-5,000 cc class. The aluminum heads that failed retail quality control went to this team."
   },
   {
    "name": "1961 (ducktail, last dual-quad)",
-   "note": "The boat-tail rear from Mitchell's XP-700 and the Stingray racer brought four round tail lamps, a treatment the Corvette has kept since. Last year for contrasting cove paint at $16.15, for the twin four-barrel engines and for the 283. An aluminium crossflow radiator became standard."
+   "note": "The boat-tail rear from Mitchell's XP-700 and the Stingray racer brought four round tail lamps, a treatment the Corvette has kept since. Last year for contrasting cove paint at $16.15, for the twin four-barrel engines and for the 283. An aluminum crossflow radiator became standard."
   },
   {
    "name": "1962 327/360 fuel injection and RPO 488",
-   "note": "1,918 cars took the 360 bhp injected 327 and 65 took the 24-gallon tank. Cove chrome and contrasting cove paint were deleted, giving the cleanest C1 body. The last solid rear axle and the last exposed headlamps until 2005."
+   "note": "1,918 cars took the 360 hp injected 327 and 65 took the 24-gallon tank. Cove chrome and contrasting cove paint were deleted, giving the cleanest C1 body. The last solid rear axle and the last exposed headlamps until 2005."
   }
  ],
  "specs": {
   "layout": "Front-mounted longitudinal engine, rear-wheel drive",
-  "chassis": "Steel box-section perimeter frame with an X-brace, carrying a glass-reinforced plastic (fibreglass) body on a steel cowl and inner structure",
+  "chassis": "Steel box-section perimeter frame with an X-brace, carrying a glass-reinforced plastic (fiberglass) body on a steel cowl and inner structure",
   "wheelbase": "102 in (2,591 mm) throughout; overall length 167.3 in (1953-1955) rising to 177.2 in (1958-1962)",
   "suspension": "Independent front by unequal-length wishbones and coil springs; live rear axle on longitudinal semi-elliptic leaf springs, with trailing radius rods added for 1959",
   "brakes": "Four-wheel hydraulic drums throughout the run; RPO 684 (1957-1959) and RPO 687 (1960-1962) added finned drums with air scoops and cera-metallic linings",
@@ -71,8 +71,8 @@ export const seedCorvetteC1 = {
   "engine": "Blue Flame 235.5 cu in inline six 1953-1955; 265 cu in V8 1955-1956; 283 cu in V8 1957-1961; 327 cu in V8 1962",
   "engine_1953_1955": "235.5 cu in overhead-valve six, three Carter YH sidedraught carburettors, solid lifters, 8.0:1 compression",
   "engine_1957": "283 cu in V8 with Rochester Ramjet continuous-flow mechanical injection, 10.5:1 compression on the solid-lifter version",
-  "engine_1962": "327 cu in V8, hydraulic lifters on the 250 and 300 bhp ratings, solid lifters on the 340 and 360 bhp ratings",
-  "power": "150 bhp at 4,200 rpm (1953-1955 six); 195 bhp (1955 V8); 210-240 bhp (1956); 220-283 bhp (1957); 230-290 bhp (1958-1960); 230-315 bhp (1961); 250-360 bhp (1962). All are gross SAE ratings of the period, not comparable with modern net figures",
+  "engine_1962": "327 cu in V8, hydraulic lifters on the 250 and 300 hp ratings, solid lifters on the 340 and 360 hp ratings",
+  "power": "150 hp at 4,200 rpm (1953-1955 six); 195 hp (1955 V8); 210-240 hp (1956); 220-283 hp (1957); 230-290 hp (1958-1960); 230-315 hp (1961); 250-360 hp (1962). All are gross SAE ratings of the period, not comparable with modern net figures",
   "torque": "260 lb-ft at 3,000 rpm (1955 265 V8); 270 lb-ft (1956 base 265); 290 lb-ft at 4,400 rpm (1957 fuel-injected 283)",
   "transmission": "2-speed Powerglide automatic only (1953-1954); 3-speed manual from late 1955; Borg-Warner T-10 4-speed manual from 9 April 1957, in close- and wide-ratio forms",
   "weight": "2,705 lb per GM's own 1953 record against 2,886 lb in the Wikipedia specification table; 2,805 lb (1955), 2,849 lb (1957), 2,926 lb (1958), 3,065 lb (1962)",
@@ -80,12 +80,12 @@ export const seedCorvetteC1 = {
   "fuel_system": "Carter sidedraughts (six); single and twin four-barrel carburettors; Rochester Ramjet mechanical fuel injection from 1957, priced at $484.20 in its standard form",
   "assembly": "Flint, Michigan (1953 and the first cars of 1954); St. Louis, Missouri thereafter"
  },
- "summary": "The Chevrolet Corvette C1 (1953-1962) began as a Motorama show car and spent its first two seasons close to cancellation. The 300 cars built largely by hand at Flint in 1953 were all Polo White over red, carried a 235.5 cu in Blue Flame six breathing through three sidedraught Carters and drove through a two-speed Powerglide; there was no manual gearbox and no wind-up glass. The 265 cu in V8 arrived for 1955 and rescued the programme, the 1956 restyle brought real doors and glass, and Rochester Ramjet fuel injection followed in 1957, taking the 283 cu in V8 to one horsepower per cubic inch. From there the car earned its billing: heavy-duty brake and suspension packages drawn from Sebring, a class win at Le Mans in 1960 with Briggs Cunningham's privately entered cars, and a 360 bhp injected 327 in the ducktailed 1962 run-out model. Ten model years produced 69,015 cars, the last of them on the solid rear axle that the Sting Ray would replace.",
- "history": "## Motorama to Flint\nThe Corvette was a Harley Earl show car before it was a product. General Motors exhibited it at the Motorama at the Waldorf-Astoria in New York in January 1953, and GM's own heritage record dates the first production car to 30 June 1953, built largely by hand at a pilot facility in Flint, Michigan. Three hundred were made, serialled E53F001001 to E53F001300, every one Polo White over a red interior with a black canvas top, at a base price GM states as $3,498. The reinforced plastic body was adopted as an expedient to get a show car built quickly and then kept for production, which is the root of both the car's identity and its restoration problems.\n\n## Two Years of Near-Failure\nThe 1953 car was slow by the standards of the imports it was aimed at, had side curtains rather than glass, and leaked. Production moved to St. Louis for 1954 and 3,640 cars were built, of which around 1,500 were still unsold at dealers at the end of the year. The National Corvette Museum credits Don MacDonald's December 1953 Motor Trend road test, which set the car against MG, Jaguar and Triumph and found it equal or better, with shifting showroom perception at the moment Chevrolet most needed it.\n\n## The V8 That Saved It\nFor 1955 the 265 cu in V8 went in, rated 195 bhp at 5,000 rpm and 260 lb-ft, identified by an enlarged gold V in the fender script and accompanied by a 12-volt system where the surviving sixes kept 6-volt. Only 700 cars were built, and a three-speed manual arrived late in the year on roughly 75 of them. The 1956 restyle gave the car wind-up windows, the scalloped bodyside coves, a power soft top and an optional bolt-on hardtop, and dropped the six altogether; outputs ran 210, 225 and 240 bhp, the last on the RPO 449 high-lift camshaft. In January 1956 a modified car recorded a two-way 150.583 mph at Daytona Speed Weeks.\n\n## One Horsepower Per Cubic Inch\nThe 283 cu in V8 followed for 1957 and with it Rochester's Ramjet continuous-flow mechanical injection, developed by a GM engineering team rather than by Rochester itself. In solid-lifter form it was rated 283 bhp at 6,200 rpm on 10.5:1 compression. A Borg-Warner four-speed became available on 9 April 1957 at $188.30. RPO 684, at $780.10, packaged the 1956 Sebring programme's finned and scooped drums, cera-metallic linings, Positraction, stiffer springs and a 16.3:1 steering adapter; a further 43 cars added the hand-laid fibreglass cold-air plenum known as the airbox, which cost them the heater and the radio. Period Road & Track testing of a 283 bhp four-speed recorded 0-60 mph in 5.7 seconds and the standing quarter in 14.3. The injection was capable but unforgiving, and a great many units were removed by mechanics who did not understand them.\n\n## Chrome, Le Mans and the Ducktail\n1958 added quad headlamps, simulated bonnet louvres and chrome boot spears, 9.2 inches of length and enough mass to pass 3,000 lb; it was also the first Corvette model year to make money for GM. 1959 deleted the louvres and spears and added trailing radius rods. 1960 broke 10,000 cars, and in June of that year Briggs Cunningham entered three Corvettes at Le Mans without factory backing, GM's racing ban having also removed Duntov from the driver list; the number 3 car of John Fitch and Bob Grossman finished eighth overall and won the 4,000-5,000 cc class. For 1961 the tail was reworked into the boat-tail taken from Bill Mitchell's XP-700 and the Stingray racer, with four round lamps. 1962 brought the 327, deleted the cove chrome, and closed the solid-axle era.",
- "marketNotes": "As of August 2026 classic.com records an average sale of $114,984 across the C1 generation, with 158 cars listed, a lowest tracked result of $11,000 for a 1961 in April 2023 and a highest of $294,675 for a customised 1958 convertible with hardtop in August 2026. The spread within a single year is wider than the spread between years, and specification does almost all of the work. A 1957 Big Brake Fuelie with the airbox, VIN E57S105065, was recorded at $715,000 at Mecum Kissimmee on 18 January 2025; an ordinary 1957 with the 250 bhp injected engine and a four-speed made $75,900 in RM Sotheby's Ron and Sarah Jury Grand National Collection sale, held online from Blenheim, Ontario between 30 October and 6 November 2024. On the 1962 injected cars, RM Sotheby's sold one for $112,000 in the Dare to Dream Collection at Toronto on 31 May to 1 June 2024, while Gooding & Company achieved $285,500 at Pebble Beach in August 2019 for a Bloomington Gold certified, NCRS Top Flight and Duntov Award big-brake tanker. For the 1953 cars, RM Sotheby's sold chassis E53F001245 for $184,800 at Monterey in August 2018, and classic.com records Mecum results of $302,500 in January 2026 and $368,500 in March 2026 against $24,200 in January 2026 for a replica. Premium arrangements differ between houses; these are the published results as each house or classic.com records them.",
- "whatToLookFor": "Get the car on a lift. The steel frame rusts, and specialists single out the section where it kicks up over the rear axle; the light steel inner structure the body panels bond to rots in parallel and takes the bonding with it. On the body, the fibreglass bonding strips are the tell. Mismatched, missing or unusually smooth strips, and interior panel surfaces tidier than the factory ever made them, indicate that panels have been off. Stress cracks gather around windscreen posts, panel cut-outs and wheelarch lips. Uneven gaps are not conclusive on their own, because 1950s Corvette panel fit was variable when new, but they justify a closer look. Establish the driveline before the paint. Not every C1 is a four-speed car: the three-speed manual and the two-speed Powerglide were both common, and the four-speed only appeared in April 1957 on 664 cars that season. Matching engine and chassis numbers are widely reported to move value by twenty to thirty per cent, and many early cars lost theirs during 1970s restorations. On a car sold as fuel-injected, confirm the Rochester unit is the correct RPO for the year and that it works; complete systems are quoted from $5,000 upward. Documentation carries the weight it does on any car with reproduction bodywork available: a 1953 replica sold for $24,200 in January 2026 against six-figure results for genuine cars. NCRS Top Flight requires 94 per cent of 4,500 points and the Duntov Mark of Excellence 97 per cent plus a running performance test, so those awards say something specific.",
- "commonProblems": "The recurring faults are corrosion and past repair rather than mechanical fragility. Frame rot at the rear kick-up, corrosion of the steel body-mounting structure, and delamination or replacement of the fibreglass bonding strips are the three that cost real money, and all three stay hidden until the car is on a hoist. Fibreglass ages: stress cracking around screen posts, arch lips and panel cut-outs is normal in moderation and a sign of exposure or accident repair when extensive. Early cars leak, and the bodies have not improved with age. Mechanically, the Rochester Ramjet injection is the defining liability. It was described in period as finicky, suffered drive-cable problems and had no fuel shut-off solenoid, so hydraulic lock was a known risk, and many units were removed and replaced with carburettors by mechanics who could not set them up. Most of those weaknesses were reduced over the system's nine-year run, so a late unit on an early car is a question worth asking. Four-wheel drums are the other constant: adequate for the traffic of 1955, marginal behind 283 or 360 bhp, and the reason the finned, scooped and cera-metallic RPO 684 and 687 packages existed. Aluminium cylinder heads trialled for 1960 warped when overheated and never reached retail.",
- "valueTrajectory": "The C1's value is a story about specification rather than about the generation. The 1953 cars are the fixed point: 300 built and consistent six-figure results. Above them sit the small-volume performance options, and the gap has widened. A 1957 airbox big-brake car recorded $715,000 at Mecum Kissimmee in January 2025 against an average sale of $114,984 across the whole generation on classic.com as of August 2026 - roughly six times the generation average for a $780.10 option box that 43 cars ticked. Ordinary cars have moved far less. A 250 bhp 1957 fuelie with a four-speed made $75,900 in an RM Sotheby's collection sale in late 2024, and classic.com's tracked C1 results as of August 2026 still run down to $11,000. The pattern rewards documentation over cosmetics: judged cars with NCRS or Bloomington Gold status and verifiable engine numbers clear the field, while cosmetically restored cars with replaced bodywork and no paperwork sit near the bottom of their year. Customs and restomods now trade in a separate column, the highest classic.com C1 result as of August 2026 being a modified 1958 at $294,675.",
+ "summary": "The Chevrolet Corvette C1 (1953-1962) began as a Motorama show car and spent its first two seasons close to cancellation. The 300 cars built largely by hand at Flint in 1953 were all Polo White over red, carried a 235.5 cu in Blue Flame six breathing through three sidedraught Carters and drove through a two-speed Powerglide; there was no manual gearbox and no wind-up glass. The 265 cu in V8 arrived for 1955 and rescued the program, the 1956 restyle brought real doors and glass, and Rochester Ramjet fuel injection followed in 1957, taking the 283 cu in V8 to one horsepower per cubic inch. From there the car earned its billing: heavy-duty brake and suspension packages drawn from Sebring, a class win at Le Mans in 1960 with Briggs Cunningham's privately entered cars, and a 360 hp injected 327 in the ducktailed 1962 run-out model. Ten model years produced 69,015 cars, the last of them on the solid rear axle that the Sting Ray would replace.",
+ "history": "## Motorama to Flint\nThe Corvette was a Harley Earl show car before it was a product. General Motors exhibited it at the Motorama at the Waldorf-Astoria in New York in January 1953, and GM's own heritage record dates the first production car to 30 June 1953, built largely by hand at a pilot facility in Flint, Michigan. Three hundred were made, serialled E53F001001 to E53F001300, every one Polo White over a red interior with a black canvas top, at a base price GM states as $3,498. The reinforced plastic body was adopted as an expedient to get a show car built quickly and then kept for production, which is the root of both the car's identity and its restoration problems.\n\n## Two Years of Near-Failure\nThe 1953 car was slow by the standards of the imports it was aimed at, had side curtains rather than glass, and leaked. Production moved to St. Louis for 1954 and 3,640 cars were built, of which around 1,500 were still unsold at dealers at the end of the year. The National Corvette Museum credits Don MacDonald's December 1953 Motor Trend road test, which set the car against MG, Jaguar and Triumph and found it equal or better, with shifting showroom perception at the moment Chevrolet most needed it.\n\n## The V8 That Saved It\nFor 1955 the 265 cu in V8 went in, rated 195 hp at 5,000 rpm and 260 lb-ft, identified by an enlarged gold V in the fender script and accompanied by a 12-volt system where the surviving sixes kept 6-volt. Only 700 cars were built, and a three-speed manual arrived late in the year on roughly 75 of them. The 1956 restyle gave the car wind-up windows, the scalloped bodyside coves, a power soft top and an optional bolt-on hardtop, and dropped the six altogether; outputs ran 210, 225 and 240 hp, the last on the RPO 449 high-lift camshaft. In January 1956 a modified car recorded a two-way 150.583 mph at Daytona Speed Weeks.\n\n## One Horsepower Per Cubic Inch\nThe 283 cu in V8 followed for 1957 and with it Rochester's Ramjet continuous-flow mechanical injection, developed by a GM engineering team rather than by Rochester itself. In solid-lifter form it was rated 283 hp at 6,200 rpm on 10.5:1 compression. A Borg-Warner four-speed became available on 9 April 1957 at $188.30. RPO 684, at $780.10, packaged the 1956 Sebring program's finned and scooped drums, cera-metallic linings, Positraction, stiffer springs and a 16.3:1 steering adapter; a further 43 cars added the hand-laid fiberglass cold-air plenum known as the airbox, which cost them the heater and the radio. Period Road & Track testing of a 283 hp four-speed recorded 0-60 mph in 5.7 seconds and the standing quarter in 14.3. The injection was capable but unforgiving, and a great many units were removed by mechanics who did not understand them.\n\n## Chrome, Le Mans and the Ducktail\n1958 added quad headlamps, simulated hood louvres and chrome boot spears, 9.2 inches of length and enough mass to pass 3,000 lb; it was also the first Corvette model year to make money for GM. 1959 deleted the louvres and spears and added trailing radius rods. 1960 broke 10,000 cars, and in June of that year Briggs Cunningham entered three Corvettes at Le Mans without factory backing, GM's racing ban having also removed Duntov from the driver list; the number 3 car of John Fitch and Bob Grossman finished eighth overall and won the 4,000-5,000 cc class. For 1961 the tail was reworked into the boat-tail taken from Bill Mitchell's XP-700 and the Stingray racer, with four round lamps. 1962 brought the 327, deleted the cove chrome, and closed the solid-axle era.",
+ "marketNotes": "As of August 2026 classic.com records an average sale of $114,984 across the C1 generation, with 158 cars listed, a lowest tracked result of $11,000 for a 1961 in April 2023 and a highest of $294,675 for a customised 1958 convertible with hardtop in August 2026. The spread within a single year is wider than the spread between years, and specification does almost all of the work. A 1957 Big Brake Fuelie with the airbox, VIN E57S105065, was recorded at $715,000 at Mecum Kissimmee on 18 January 2025; an ordinary 1957 with the 250 hp injected engine and a four-speed made $75,900 in RM Sotheby's Ron and Sarah Jury Grand National Collection sale, held online from Blenheim, Ontario between 30 October and 6 November 2024. On the 1962 injected cars, RM Sotheby's sold one for $112,000 in the Dare to Dream Collection at Toronto on 31 May to 1 June 2024, while Gooding & Company achieved $285,500 at Pebble Beach in August 2019 for a Bloomington Gold certified, NCRS Top Flight and Duntov Award big-brake tanker. For the 1953 cars, RM Sotheby's sold chassis E53F001245 for $184,800 at Monterey in August 2018, and classic.com records Mecum results of $302,500 in January 2026 and $368,500 in March 2026 against $24,200 in January 2026 for a replica. Premium arrangements differ between houses; these are the published results as each house or classic.com records them.",
+ "whatToLookFor": "Get the car on a lift. The steel frame rusts, and specialists single out the section where it kicks up over the rear axle; the light steel inner structure the body panels bond to rots in parallel and takes the bonding with it. On the body, the fiberglass bonding strips are the tell. Mismatched, missing or unusually smooth strips, and interior panel surfaces tidier than the factory ever made them, indicate that panels have been off. Stress cracks gather around windshield posts, panel cut-outs and wheel arch lips. Uneven gaps are not conclusive on their own, because 1950s Corvette panel fit was variable when new, but they justify a closer look. Establish the driveline before the paint. Not every C1 is a four-speed car: the three-speed manual and the two-speed Powerglide were both common, and the four-speed only appeared in April 1957 on 664 cars that season. Matching engine and chassis numbers are widely reported to move value by twenty to thirty per cent, and many early cars lost theirs during 1970s restorations. On a car sold as fuel-injected, confirm the Rochester unit is the correct RPO for the year and that it works; complete systems are quoted from $5,000 upward. Documentation carries the weight it does on any car with reproduction bodywork available: a 1953 replica sold for $24,200 in January 2026 against six-figure results for genuine cars. NCRS Top Flight requires 94 per cent of 4,500 points and the Duntov Mark of Excellence 97 per cent plus a running performance test, so those awards say something specific.",
+ "commonProblems": "The recurring faults are corrosion and past repair rather than mechanical fragility. Frame rot at the rear kick-up, corrosion of the steel body-mounting structure, and delamination or replacement of the fiberglass bonding strips are the three that cost real money, and all three stay hidden until the car is on a hoist. Fiberglass ages: stress cracking around screen posts, arch lips and panel cut-outs is normal in moderation and a sign of exposure or accident repair when extensive. Early cars leak, and the bodies have not improved with age. Mechanically, the Rochester Ramjet injection is the defining liability. It was described in period as finicky, suffered drive-cable problems and had no fuel shut-off solenoid, so hydraulic lock was a known risk, and many units were removed and replaced with carburettors by mechanics who could not set them up. Most of those weaknesses were reduced over the system's nine-year run, so a late unit on an early car is a question worth asking. Four-wheel drums are the other constant: adequate for the traffic of 1955, marginal behind 283 or 360 hp, and the reason the finned, scooped and cera-metallic RPO 684 and 687 packages existed. Aluminum cylinder heads trialled for 1960 warped when overheated and never reached retail.",
+ "valueTrajectory": "The C1's value is a story about specification rather than about the generation. The 1953 cars are the fixed point: 300 built and consistent six-figure results. Above them sit the small-volume performance options, and the gap has widened. A 1957 airbox big-brake car recorded $715,000 at Mecum Kissimmee in January 2025 against an average sale of $114,984 across the whole generation on classic.com as of August 2026 - roughly six times the generation average for a $780.10 option box that 43 cars ticked. Ordinary cars have moved far less. A 250 hp 1957 fuelie with a four-speed made $75,900 in an RM Sotheby's collection sale in late 2024, and classic.com's tracked C1 results as of August 2026 still run down to $11,000. The pattern rewards documentation over cosmetics: judged cars with NCRS or Bloomington Gold status and verifiable engine numbers clear the field, while cosmetically restored cars with replaced bodywork and no paperwork sit near the bottom of their year. Customs and restomods now trade in a separate column, the highest classic.com C1 result as of August 2026 being a modified 1958 at $294,675.",
  "overallConfidence": "high",
  "sources": [
   {
@@ -113,7 +113,7 @@ export const seedCorvetteC1 = {
    "publisher": "CorvSport",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1953: 300 built, VIN E53F001001-E53F001300, Flint assembly, $3,498.00 against a $3,490 sticker, 150 bhp on three Carter YH sidedraughts at 8.0:1, 0-60 in 11.2 s, quarter 17.9 s at 77 mph."
+   "notes": "1953: 300 built, VIN E53F001001-E53F001300, Flint assembly, $3,498.00 against a $3,490 sticker, 150 hp on three Carter YH sidedraughts at 8.0:1, 0-60 in 11.2 s, quarter 17.9 s at 77 mph."
   },
   {
    "ref": "corvsport-1954",
@@ -122,7 +122,7 @@ export const seedCorvetteC1 = {
    "publisher": "CorvSport",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1954: 3,640 built, roughly 1,500 unsold at dealers at year end, first fourteen or fifteen cars at Flint before the move to St. Louis, Blue Flame raised to 155 bhp mid-year, base $2,774.00."
+   "notes": "1954: 3,640 built, roughly 1,500 unsold at dealers at year end, first fourteen or fifteen cars at Flint before the move to St. Louis, Blue Flame raised to 155 hp mid-year, base $2,774.00."
   },
   {
    "ref": "corvsport-1955",
@@ -131,7 +131,7 @@ export const seedCorvetteC1 = {
    "publisher": "CorvSport",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1955: 700 built and 674 sold; all but six or seven took the V8, with the source noting sources vary; 265 V8 at 195 bhp and 260 lb-ft; 625 Powerglide against roughly 75 three-speed manuals."
+   "notes": "1955: 700 built and 674 sold; all but six or seven took the V8, with the source noting sources vary; 265 V8 at 195 hp and 260 lb-ft; 625 Powerglide against roughly 75 three-speed manuals."
   },
   {
    "ref": "corvsport-1956",
@@ -140,7 +140,7 @@ export const seedCorvetteC1 = {
    "publisher": "CorvSport",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1956: 3,467 built; roll-up windows; chrome-outlined coves; hardtop $215.20; 210 bhp base, 225 twin four-barrel, 240 on the RPO 449 camshaft; two-way 150.583 mph at Daytona, January 1956."
+   "notes": "1956: 3,467 built; roll-up windows; chrome-outlined coves; hardtop $215.20; 210 hp base, 225 twin four-barrel, 240 on the RPO 449 camshaft; two-way 150.583 mph at Daytona, January 1956."
   },
   {
    "ref": "corvsport-1958",
@@ -158,7 +158,7 @@ export const seedCorvetteC1 = {
    "publisher": "CorvSport",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1959: 9,670 built at $3,875; boot spears and fake louvres deleted; trailing radius rods added against axle wind-up; engines 230, 245, 270 bhp carburetted and 250 or 290 bhp injected."
+   "notes": "1959: 9,670 built at $3,875; boot spears and fake louvres deleted; trailing radius rods added against axle wind-up; engines 230, 245, 270 hp carburetted and 250 or 290 hp injected."
   },
   {
    "ref": "corvsport-1960",
@@ -167,7 +167,7 @@ export const seedCorvetteC1 = {
    "publisher": "CorvSport",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1960: 10,261 sold; base $3,872.00; the aluminium heads from the 1957 Sebring Corvette SS that warped when overheated, failed casting quality control and went only to Cunningham's team; Fitch and Grossman eighth at Le Mans."
+   "notes": "1960: 10,261 sold; base $3,872.00; the aluminum heads from the 1957 Sebring Corvette SS that warped when overheated, failed casting quality control and went only to Cunningham's team; Fitch and Grossman eighth at Le Mans."
   },
   {
    "ref": "corvsport-1961",
@@ -176,7 +176,7 @@ export const seedCorvetteC1 = {
    "publisher": "CorvSport",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1961: 10,939 built; ducktail from the Stingray racer and Mitchell's XP-700 with four round lamps; last year for cove paint at $16.15, twin four-barrels and the 283; aluminium radiator standard; $3,934.00."
+   "notes": "1961: 10,939 built; ducktail from the Stingray racer and Mitchell's XP-700 with four round lamps; last year for cove paint at $16.15, twin four-barrels and the 283; aluminum radiator standard; $3,934.00."
   },
   {
    "ref": "corvsport-buyers-guide",
@@ -185,7 +185,7 @@ export const seedCorvetteC1 = {
    "publisher": "CorvSport",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "C1 inspection guidance: frame corrosion and weld condition on a lift, fibreglass stress cracking at wheel wells, door edges and windscreen posts, and mismatched or missing bonding strips as evidence of bodywork."
+   "notes": "C1 inspection guidance: frame corrosion and weld condition on a lift, fiberglass stress cracking at wheel wells, door edges and windshield posts, and mismatched or missing bonding strips as evidence of bodywork."
   },
   {
    "ref": "vettefacts-1955",
@@ -194,7 +194,7 @@ export const seedCorvetteC1 = {
    "publisher": "VetteFacts",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1955 tabulation: 700 built, of which 7 six-cylinder and 693 V8; VIN VE55S001001-VE55S001700, the V prefix denoting the V8; six 150 bhp at 4,200 rpm, V8 195 bhp at 5,000 rpm, both 8.0:1."
+   "notes": "1955 tabulation: 700 built, of which 7 six-cylinder and 693 V8; VIN VE55S001001-VE55S001700, the V prefix denoting the V8; six 150 hp at 4,200 rpm, V8 195 hp at 5,000 rpm, both 8.0:1."
   },
   {
    "ref": "vettefacts-1957",
@@ -203,7 +203,7 @@ export const seedCorvetteC1 = {
    "publisher": "VetteFacts",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1957 RPO tabulation: 6,339 built; base 220 bhp (2,060), 469A 245 (2,045), 469C 270 (1,621), 579A 250 (182), 579B 283 (713), 579C 250 (102), 579E 283 (43), giving 1,040 injected; four-speed 664; RPO 684 51."
+   "notes": "1957 RPO tabulation: 6,339 built; base 220 hp (2,060), 469A 245 (2,045), 469C 270 (1,621), 579A 250 (182), 579B 283 (713), 579C 250 (102), 579E 283 (43), giving 1,040 injected; four-speed 664; RPO 684 51."
   },
   {
    "ref": "vettefacts-1960",
@@ -212,7 +212,7 @@ export const seedCorvetteC1 = {
    "publisher": "VetteFacts",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1960: 10,261 built; RPO 579 250 bhp injected 100 cars and 579D 290 bhp injected 759 cars, ratings that conflict with CorvSport's 275 and 315 for the same year; RPO 687 119 cars."
+   "notes": "1960: 10,261 built; RPO 579 250 hp injected 100 cars and 579D 290 hp injected 759 cars, ratings that conflict with CorvSport's 275 and 315 for the same year; RPO 687 119 cars."
   },
   {
    "ref": "vettefacts-1962",
@@ -221,7 +221,7 @@ export const seedCorvetteC1 = {
    "publisher": "VetteFacts",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "1962: 14,531 built, VIN 20867S100001-20867S114531, base $4,038.00; 327 at 250, 300, 340 (4,412) and 360 bhp injected (1,918); four-speed 11,318; RPO 488 24-gallon tank 65; RPO 687 246."
+   "notes": "1962: 14,531 built, VIN 20867S100001-20867S114531, base $4,038.00; 327 at 250, 300, 340 (4,412) and 360 hp injected (1,918); four-speed 11,318; RPO 488 24-gallon tank 65; RPO 687 246."
   },
   {
    "ref": "vettevues-1957",
@@ -230,7 +230,7 @@ export const seedCorvetteC1 = {
    "publisher": "Vette Vues",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Independent 1957 RPO table: 579A 182, 579B 713, 579E 43, RPO 684 51 at $780.10, four-speed 664 at $188.30, Positraction counts and colour splits. It omits the 579C row, so its injection columns sum to 938."
+   "notes": "Independent 1957 RPO table: 579A 182, 579B 713, 579E 43, RPO 684 51 at $780.10, four-speed 664 at $188.30, Positraction counts and color splits. It omits the 579C row, so its injection columns sum to 938."
   },
   {
    "ref": "curbside-283-fi",
@@ -239,7 +239,7 @@ export const seedCorvetteC1 = {
    "publisher": "Curbside Classic",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Rochester Ramjet history: continuous-port injection designed by a GM team rather than by Rochester, 250 bhp hydraulic-cam and 283 bhp solid-lifter versions, drive-cable failures, no fuel shut-off solenoid, and R&T's 5.7 s to 60 mph and 14.3 s quarter."
+   "notes": "Rochester Ramjet history: continuous-port injection designed by a GM team rather than by Rochester, 250 hp hydraulic-cam and 283 hp solid-lifter versions, drive-cable failures, no fuel shut-off solenoid, and R&T's 5.7 s to 60 mph and 14.3 s quarter."
   },
   {
    "ref": "rememberroad-airbox",
@@ -284,7 +284,7 @@ export const seedCorvetteC1 = {
    "publisher": "Automobile Club de l'Ouest",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "The organiser's own record of 1960: Cunningham entered three Corvettes, the number 3 car of Fitch and Grossman finished eighth overall and won the 4,000-5,000 cc class, and the other two retired."
+   "notes": "The organizer's own record of 1960: Cunningham entered three Corvettes, the number 3 car of Fitch and Grossman finished eighth overall and won the 4,000-5,000 cc class, and the other two retired."
   },
   {
    "ref": "scm-1957-fuelie",
@@ -320,7 +320,7 @@ export const seedCorvetteC1 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $184,800 at Monterey, August 2018, lot 169. Chassis E53F001245, number 245 of the 300 built for 1953, 150 hp Blue Flame six with Powerglide, built late November 1953 with early press-moulded front-end parts."
+   "notes": "Sold $184,800 at Monterey, August 2018, lot 169. Chassis E53F001245, number 245 of the 300 built for 1953, 150 hp Blue Flame six with Powerglide, built late November 1953 with early press-molded front-end parts."
   },
   {
    "ref": "rm-rj24-1957",
@@ -347,7 +347,7 @@ export const seedCorvetteC1 = {
    "publisher": "Gooding & Company",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $285,500 at Pebble Beach, August 2019, against a $325,000-$375,000 estimate. Chassis 20867S103973, matching-numbers injected 327 at 360 bhp, T-10 close-ratio, heavy-duty metallic-lined drums, Bloomington Gold, NCRS Top Flight and Duntov."
+   "notes": "Sold $285,500 at Pebble Beach, August 2019, against a $325,000-$375,000 estimate. Chassis 20867S103973, matching-numbers injected 327 at 360 hp, T-10 close-ratio, heavy-duty metallic-lined drums, Bloomington Gold, NCRS Top Flight and Duntov."
   },
   {
    "ref": "classic-1953",
@@ -405,7 +405,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "specs",
-   "claimText": "The 1953-1955 cars used a 235.5 cu in overhead-valve 'Blue Flame' inline six with three Carter YH sidedraught carburettors, solid lifters and 8.0:1 compression, rated 150 bhp, driving through a two-speed Powerglide automatic with no manual gearbox offered until late 1955.",
+   "claimText": "The 1953-1955 cars used a 235.5 cu in overhead-valve 'Blue Flame' inline six with three Carter YH sidedraught carburettors, solid lifters and 8.0:1 compression, rated 150 hp, driving through a two-speed Powerglide automatic with no manual gearbox offered until late 1955.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -425,7 +425,7 @@ export const seedCorvetteC1 = {
     "gm-heritage-1953",
     "wikipedia-c1"
    ],
-   "conflictNote": "GM's heritage page states 2,705 lb; Wikipedia's C1 table gives 2,886 lb for 1953-1954. Neither says whether the figure is dry, kerb or shipping weight, and the difference is not resolved by any source consulted here."
+   "conflictNote": "GM's heritage page states 2,705 lb; Wikipedia's C1 table gives 2,886 lb for 1953-1954. Neither says whether the figure is dry, curb or shipping weight, and the difference is not resolved by any source consulted here."
   },
   {
    "section": "history",
@@ -451,7 +451,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "specs",
-   "claimText": "The 265 cu in V8 introduced for 1955 was rated 195 bhp at 5,000 rpm and 260 lb-ft at 3,000 rpm, was identified by an enlarged gold V in the front-fender script, and brought a 12-volt electrical system where the surviving six-cylinder cars kept 6-volt.",
+   "claimText": "The 265 cu in V8 introduced for 1955 was rated 195 hp at 5,000 rpm and 260 lb-ft at 3,000 rpm, was identified by an enlarged gold V in the front-fender script, and brought a 12-volt electrical system where the surviving six-cylinder cars kept 6-volt.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -462,7 +462,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "history",
-   "claimText": "The 1956 restyle replaced the clip-in side curtains with wind-up glass, introduced the chrome-outlined bodyside coves and an optional bolt-on hardtop at $215.20 and dropped the six-cylinder engine, with 210, 225 and 240 bhp available from the 265 cu in V8; in January 1956 a modified car recorded a two-way average of 150.583 mph at Daytona Speed Weeks.",
+   "claimText": "The 1956 restyle replaced the clip-in side curtains with wind-up glass, introduced the chrome-outlined bodyside coves and an optional bolt-on hardtop at $215.20 and dropped the six-cylinder engine, with 210, 225 and 240 hp available from the 265 cu in V8; in January 1956 a modified car recorded a two-way average of 150.583 mph at Daytona Speed Weeks.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -472,7 +472,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "specs",
-   "claimText": "Rochester Ramjet continuous-flow mechanical fuel injection arrived on the 283 cu in V8 for 1957, reaching 283 bhp at 6,200 rpm on 10.5:1 compression - one horsepower per cubic inch - with a Borg-Warner four-speed available from 9 April 1957 at $188.30; period Road & Track testing of a 283 bhp four-speed recorded 0-60 mph in 5.7 seconds and the standing quarter in 14.3 seconds.",
+   "claimText": "Rochester Ramjet continuous-flow mechanical fuel injection arrived on the 283 cu in V8 for 1957, reaching 283 hp at 6,200 rpm on 10.5:1 compression - one horsepower per cubic inch - with a Borg-Warner four-speed available from 9 April 1957 at $188.30; period Road & Track testing of a 283 hp four-speed recorded 0-60 mph in 5.7 seconds and the standing quarter in 14.3 seconds.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -498,7 +498,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "production",
-   "claimText": "RPO 684, the $780.10 heavy-duty racing package derived from Chevrolet's 1956 Sebring programme, was fitted to 51 cars in 1957, and only 43 cars are believed to have combined it with the RPO 579E cold-air 'airbox' plenum, which cost them the heater and the radio.",
+   "claimText": "RPO 684, the $780.10 heavy-duty racing package derived from Chevrolet's 1956 Sebring program, was fitted to 51 cars in 1957, and only 43 cars are believed to have combined it with the RPO 579E cold-air 'airbox' plenum, which cost them the heater and the radio.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -510,7 +510,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "problems",
-   "claimText": "The Rochester injection system was described in period as finicky, suffered drive-cable failures and lacked a fuel shut-off solenoid, and many units were removed in favour of carburettors by mechanics who could not set them up; most of the weaknesses were reduced across its nine-year production run.",
+   "claimText": "The Rochester injection system was described in period as finicky, suffered drive-cable failures and lacked a fuel shut-off solenoid, and many units were removed in favor of carburettors by mechanics who could not set them up; most of the weaknesses were reduced across its nine-year production run.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -541,7 +541,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "specs",
-   "claimText": "Published fuel-injection ratings for the 1960 model year do not agree: VetteFacts tabulates RPO 579 at 250 bhp and RPO 579D at 290 bhp, while CorvSport lists the 1960 injected engines as 275 and 315 bhp.",
+   "claimText": "Published fuel-injection ratings for the 1960 model year do not agree: VetteFacts tabulates RPO 579 at 250 hp and RPO 579D at 290 hp, while CorvSport lists the 1960 injected engines as 275 and 315 hp.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -549,7 +549,7 @@ export const seedCorvetteC1 = {
     "corvsport-1960",
     "wikipedia-c1"
    ],
-   "conflictNote": "VetteFacts gives 1960 injected outputs of 250 bhp (100 cars) and 290 bhp (759 cars). CorvSport lists 275 bhp and 315 bhp for the same year, which are the ratings Wikipedia and VetteFacts both assign to 1961. The discrepancy is not resolved by any source consulted here, so both are reported."
+   "conflictNote": "VetteFacts gives 1960 injected outputs of 250 hp (100 cars) and 290 hp (759 cars). CorvSport lists 275 hp and 315 hp for the same year, which are the ratings Wikipedia and VetteFacts both assign to 1961. The discrepancy is not resolved by any source consulted here, so both are reported."
   },
   {
    "section": "history",
@@ -563,7 +563,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "history",
-   "claimText": "1958 brought quad headlamps, simulated bonnet louvres and chrome boot spears, 9.2 inches of extra length and the first Corvette weight over 3,000 lb, and was the first Corvette model year to turn a profit for General Motors; the louvres and spears were deleted for 1959 and trailing radius rods added to control axle wind-up.",
+   "claimText": "1958 brought quad headlamps, simulated hood louvres and chrome boot spears, 9.2 inches of extra length and the first Corvette weight over 3,000 lb, and was the first Corvette model year to turn a profit for General Motors; the louvres and spears were deleted for 1959 and trailing radius rods added to control axle wind-up.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -585,7 +585,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "production",
-   "claimText": "For 1962 the 327 cu in V8 replaced the 283 in four ratings of 250, 300, 340 and 360 bhp, with 1,918 cars taking the 360 bhp Rochester-injected engine, 11,318 of the 14,531 built taking the four-speed and only 65 taking RPO 488, the 24-gallon fuel tank.",
+   "claimText": "For 1962 the 327 cu in V8 replaced the 283 in four ratings of 250, 300, 340 and 360 hp, with 1,918 cars taking the 360 hp Rochester-injected engine, 11,318 of the 14,531 built taking the four-speed and only 65 taking RPO 488, the 24-gallon fuel tank.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -596,7 +596,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "problems",
-   "claimText": "The defining structural faults on a C1 are frame corrosion, particularly where the frame kicks up over the rear axle, rot in the light steel body-mounting structure that destroys panel adhesion, and fibreglass bonding strips that have been cut out and replaced during accident repair.",
+   "claimText": "The defining structural faults on a C1 are frame corrosion, particularly where the frame kicks up over the rear axle, rot in the light steel body-mounting structure that destroys panel adhesion, and fiberglass bonding strips that have been cut out and replaced during accident repair.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -607,7 +607,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "problems",
-   "claimText": "Four-wheel drum brakes were carried throughout the generation and are the standing mechanical weakness behind the larger engines, which is why the finned, scooped and cera-metallic RPO 684 and RPO 687 packages existed; aluminium cylinder heads trialled for 1960 warped when overheated, failed casting quality control and were supplied only to Cunningham's Le Mans team.",
+   "claimText": "Four-wheel drum brakes were carried throughout the generation and are the standing mechanical weakness behind the larger engines, which is why the finned, scooped and cera-metallic RPO 684 and RPO 687 packages existed; aluminum cylinder heads trialled for 1960 warped when overheated, failed casting quality control and were supplied only to Cunningham's Le Mans team.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -641,7 +641,7 @@ export const seedCorvetteC1 = {
   },
   {
    "section": "market",
-   "claimText": "Ordinary injected cars sit far below the option-package outliers: a 250 bhp 1957 fuelie with a four-speed made $75,900 in RM Sotheby's Ron and Sarah Jury Grand National Collection sale of late October and early November 2024, and RM Sotheby's sold a 1962 327/360 for $112,000 at the Dare to Dream Collection in Toronto on 31 May to 1 June 2024, while Gooding & Company achieved $285,500 at Pebble Beach in August 2019 for a Bloomington Gold certified, NCRS Top Flight and Duntov Award big-brake tanker.",
+   "claimText": "Ordinary injected cars sit far below the option-package outliers: a 250 hp 1957 fuelie with a four-speed made $75,900 in RM Sotheby's Ron and Sarah Jury Grand National Collection sale of late October and early November 2024, and RM Sotheby's sold a 1962 327/360 for $112,000 at the Dare to Dream Collection in Toronto on 31 May to 1 June 2024, while Gooding & Company achieved $285,500 at Pebble Beach in August 2019 for a Bloomington Gold certified, NCRS Top Flight and Duntov Award big-brake tanker.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

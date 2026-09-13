@@ -1,32 +1,32 @@
 /**
- * Researched model draft — Mazda MX-5 (1989-1997).
+ * Researched model draft -- Mazda MX-5 Miata (1989-1997).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedMx5Na = {
  "slug": "mazda/mx-5-na",
  "make": "Mazda",
  "model": "MX-5",
- "generation": "NA (MX-5 / Miata / Eunos Roadster)",
+ "generation": "NA (Miata / MX-5 / Eunos Roadster)",
  "generationCode": "NA6CE (1.6) / NA8C (1.8)",
  "trim": null,
  "yearStart": 1989,
  "yearEnd": 1997,
  "bodyStyles": [
-  "2-door roadster with manually folding fabric hood and pop-up headlamps",
+  "2-door roadster with manually folding fabric top and pop-up headlamps",
   "2-door roadster with removable hardtop (factory option and dealer accessory)"
  ],
  "engines": [
-  "1,598 cc B6-ZE(RS) DOHC 16-valve inline four, 86 kW (115 bhp) at 6,500 rpm and 136 Nm at 5,500 rpm as launched; 78.5 kW (105 bhp) with the four-speed automatic",
-  "1,598 cc B6-ZE in later reduced-output form, kept below the 1.8 in some markets from 1994; quoted variously at 66 kW (89 bhp), 90 bhp and 110 bhp",
-  "1,839 cc BP-ZE DOHC 16-valve inline four from 1994, 96 kW (129 bhp) at 6,500 rpm and 149 Nm at 5,500 rpm, revised to 99 kW (133 bhp) and 155 Nm for 1996",
-  "Dealer-fitted BBR turbocharger conversion offered in the United Kingdom from 1991 on the 1.6, at 110 kW (150 bhp) and 209 Nm"
+  "1,598 cc B6-ZE(RS) DOHC 16-valve inline four, 115 hp at 6,500 rpm and 100 lb-ft at 5,500 rpm as launched; 105 hp with the four-speed automatic",
+  "1,598 cc B6-ZE in later reduced-output form, kept below the 1.8 in some markets from 1994; quoted variously at 89 hp, 90 hp and 110 hp",
+  "1,839 cc BP-ZE DOHC 16-valve inline four from 1994, 129 hp at 6,500 rpm and 110 lb-ft at 5,500 rpm, revised to 133 hp and 114 lb-ft for 1996",
+  "Dealer-fitted BBR turbocharger conversion offered in the United Kingdom from 1991 on the 1.6, at 150 hp and 154 lb-ft"
  ],
  "productionTotal": null,
  "productionNotes": "No single figure for the NA generation survives contact with the sources. Wikipedia's Mazda MX-5 overview carries two irreconcilable numbers on the same page: a production table headed \"First Generation (NA) (Total Production 431,506)\" and, in the running text, \"The first generation MX-5 sold 228,961 units between 1989 and 1997.\" JDMBUYSELL repeats 431,506; BOFI Racing says only that production \"exceeded 400,000 units\". Nothing consulted here explains whether the gap is a production-versus-registrations distinction, a difference of market scope, or an error, so no total is asserted. What can be pinned down is the United States: the miata.net production FAQ, compiled by Brian Sundue, gives 51,636 cars for 1990, 38,287 for 1991, 26,636 for 1992, 21,482 for 1993, 20,110 for 1994, 19,590 for 1995, 18,971 for 1996 and 18,652 for 1997, summing to 215,364, with no Japanese or European breakdown at all.\n\nSpecial-edition counts are better documented, because Mazda published them at the time. Wikipedia lists 250 British Racing Green Limited Editions for the United Kingdom in 1991, 3,997 US and 1,051 Canadian cars in the parallel North American Racing Green run, 800 Eunos J Limited and 800 J Limited II for Japan, 1,505 US and 300 Canadian 1993 Limited Editions, 1,841 R-Package cars across 1994-1997, M-Editions at roughly 3,000 to 3,500 a year, 1,500 Special Touring Option cars for 1997, 800 UK Monza cars and 400 UK Berkeleys. The Berkeley is why the run is sometimes given as ending in 1998: it was a British edition sold after mainstream production finished.",
  "notableTrims": [
   {
    "name": "Limited Edition (United Kingdom, 1991)",
-   "note": "250 cars in British Racing Green with tan trim and colour-matched 15-inch OZ alloys, on the 115 bhp 1.6. The first UK special, and the template for a decade of them"
+   "note": "250 cars in British Racing Green with tan trim and color-matched 15-inch OZ alloys, on the 115 hp 1.6. The first UK special, and the template for a decade of them"
   },
   {
    "name": "Limited Edition (United States and Canada, 1993)",
@@ -38,7 +38,7 @@ export const seedMx5Na = {
   },
   {
    "name": "M-Edition (United States, 1994-1997)",
-   "note": "An annual colour-and-equipment package - Montego Blue Mica 1994, Merlot Mica 1995, Starlight Blue Mica 1996, Marina Green Mica 1997 - at roughly 3,000 to 3,500 cars a year, and the best-recognised NA special in America."
+   "note": "An annual color-and-equipment package - Montego Blue Mica 1994, Merlot Mica 1995, Starlight Blue Mica 1996, Marina Green Mica 1997 - at roughly 3,000 to 3,500 cars a year, and the best-known NA special in America."
   },
   {
    "name": "Special Touring Option (United States, 1997)",
@@ -46,40 +46,40 @@ export const seedMx5Na = {
   },
   {
    "name": "Eunos Roadster J Limited and J Limited II (Japan, 1991 and 1993)",
-   "note": "800 cars each in sunburst yellow, the second with blacked-out A-pillars. Specials of this kind are why imported Eunos cars often carry equipment a contemporary UK MX-5 did not have."
+   "note": "800 cars each in sunburst yellow, the second with blacked-out A-pillars. Specials of this kind are why an imported Eunos often carries equipment no US-market Miata was given."
   },
   {
    "name": "M2-1001 Cafe Roadster and M2-1028 Street Competition (Japan, 1991 and 1994)",
-   "note": "300 cars each from Mazda's M2 Corporation subsidiary. The 1001 was quoted at 98 kW (131 bhp) at 7,000 rpm; the 1028 had a six-point cage, an aluminium duck-tail bootlid and close to 110 kW (150 bhp)."
+   "note": "300 cars each from Mazda's M2 Corporation subsidiary. The 1001 was quoted at 131 hp at 7,000 rpm; the 1028 had a six-point cage, an aluminum duck-tail trunklid and close to 150 hp."
   },
   {
    "name": "Berkeley (United Kingdom, 1998)",
-   "note": "400 cars in Sparkle Green with numbered plaques, unique alloys and a chrome boot rack, sold after mainstream production had ended."
+   "note": "400 cars in Sparkle Green with numbered plaques, unique alloys and a chrome luggage rack, sold after mainstream production had ended."
   }
  ],
  "specs": {
   "layout": "Front longitudinal engine, rear-wheel drive, two seats",
-  "chassis": "Unitary steel monocoque with an aluminium power plant frame bolting engine and gearbox rigidly to the differential housing; braced from 1994 with a track bar between the seatbelt towers and reinforced subframes",
+  "chassis": "Unitary steel monocoque with an aluminum power plant frame bolting engine and gearbox rigidly to the differential housing; braced from 1994 with a track bar between the seatbelt towers and reinforced subframes",
   "engine": "1,598 cc B6-ZE(RS) DOHC 16-valve four (1989-1997); 1,839 cc BP-ZE DOHC 16-valve four from 1994 (encyCARpedia states 1,840 cc)",
   "bore_stroke_compression": "1.8 BP-ZE: 83.0 x 85.0 mm and 9.4:1 per encyCARpedia; no fetched figure for the 1.6 is asserted",
-  "power": "1.6: 86 kW (115 bhp) at 6,500 rpm as launched, later reduced to a figure sources dispute. 1.8: 96 kW (129 bhp) from 1994, 99 kW (133 bhp) from 1996",
-  "torque": "1.6: 136 Nm at 5,500 rpm. 1.8: 149 Nm at 5,500 rpm from 1994, 155 Nm from 1996",
+  "power": "1.6: 115 hp at 6,500 rpm as launched, later reduced to a figure sources dispute. 1.8: 129 hp from 1994, 133 hp from 1996",
+  "torque": "1.6: 100 lb-ft at 5,500 rpm. 1.8: 110 lb-ft at 5,500 rpm from 1994, 114 lb-ft from 1996",
   "transmission": "5-speed manual derived from the rear-drive Mazda 929/Luce; 4-speed automatic optional in the American and Japanese markets",
   "differential": "Open as standard, viscous limited-slip on some specifications, Torsen on the 1994-1997 R-Package",
   "suspension": "Independent double wishbones front and rear with anti-roll bars at both ends",
   "brakes": "Discs all round, ventilated front and solid rear on the 1.8; larger brakes from 1994",
-  "weight": "980 kg at launch and 990 kg from 1994 per Wikipedia; evo quotes 940 kg, BOFI Racing about 960 kg. Sources do not agree",
+  "weight": "2,161 lb at launch and 2,183 lb from 1994 per Wikipedia; evo quotes 2,072 lb, BOFI Racing about 2,116 lb. Sources do not agree",
   "dimensions": "3,970 mm long (encyCARpedia gives 3,975 mm for the 1.8), 1,675 mm wide, 1,235 mm high, 2,265 mm wheelbase; Cd 0.38",
   "acceleration": "Mazda claimed 8.6 s to 60 mph; Car and Driver recorded 9.2 s, Motor Trend 8.9 s, Autocar 9.1 s. encyCARpedia gives 7.9 s for the 1.8",
   "top_speed": "116.8 mph claimed for the 1.6; 116 mph by Car and Driver with hardtop, 114 mph by Autocar. encyCARpedia gives 122 mph for the 1.8",
-  "fuel_capacity": "48 litres for the 1.8 per encyCARpedia, larger than the early 1.6"
+  "fuel_capacity": "48 liters for the 1.8 per encyCARpedia, larger than the early 1.6"
  },
- "summary": "The Mazda MX-5 - Miata in North America, Eunos Roadster in Japan - was shown at the Chicago Auto Show in February 1989 and put a small, cheap, front-engine rear-drive roadster back on sale after the MGB, the Triumph Spitfire and the Fiat 124 Spider had all gone. The idea belonged to an American motoring journalist, Bob Hall, who put it to Mazda's research chief Kenichi Yamamoto and was later hired to develop it; the shape came out of a design competition between Mazda's Californian studio and its Tokyo team, with the original Lotus Elan studied openly as the benchmark. A 1,598 cc twin-cam four drove the rear wheels through a five-speed gearbox and an aluminium power plant frame that tied engine to differential, double wishbones sat at each corner, and the car weighed under a tonne. From the 1994 model year came a 1,839 cc engine, a substantially braced shell and larger brakes, with a reduced-output 1.6 kept below it in some markets. It is the best-selling two-seat sports car ever built, and the cheapest examples are the ones most likely to be structurally rotten.",
- "history": "## An American Idea Put to a Japanese Company\nBob Hall was a Californian motoring journalist, fluent in self-taught Japanese, whose father had run MGs, Triumphs and Austin-Healeys. Hagerty places the decisive conversation in 1978, when Hall was at AutoWeek and met Kenichi Yamamoto, then head of Mazda research and development, and suggested recasting the rear-drive 323 as a two-seat roadster. Yamamoto was noncommittal. In 1981 he asked Hall to study it properly; Hall joined Mazda's Californian research organisation as a product planner and argued in an early-1982 position paper that recycling existing components was the only way to make the numbers work. The programme ran off-line, and the American position was that it should be a front-engine, rear-drive roadster or nothing at all.\n\n## Duo 101, V705 and the Elan on the Bench\nFrom 1983 the concept became an internal competition between the Californian studio and the Tokyo team. At the first judging in 1984 California's front-engine rear-drive proposal, Duo 101, beat Tokyo's front-drive and mid-engine alternatives, the mid-engine layout having struggled against noise and vibration targets. Mazda's own account confirms the reasoning: the linear responses of the original lightweight sports cars were judged unobtainable without rear drive, and a new powertrain accepted rather than compromise. A running prototype, V705, was completed by the British consultancy IAD in August 1985 with a glassfibre body over 323 mechanicals. Production approval brought the codename P729 and Toshihiko Hirai as chief engineer. Mark Jordan drew the exterior in California and Masao Yagi pushed the styling further towards the Lotus Elan; Tom Matano and Koichi Hayashi settled the detail once the project moved back to Japan. The Elan was not a vague influence - it was the reference object.\n\n## Jinba Ittai and the Power Plant Frame\nMazda's design principle was jinba ittai, horse and rider as one. The engineering that carries it is mostly unglamorous: double wishbones at all four corners, near-equal weight distribution, a five-speed gearbox lifted from the rear-drive 929/Luce with a very short throw, and an aluminium power plant frame bolting engine and gearbox rigidly to the differential housing so that driveline movement is taken out of the response. Mazda still calls the frame unique to its sports cars and essential to their directness, while conceding it is awkward to assemble on a mixed line. The car reached the United States in May 1989 as a 1990 model and Japan on 1 September 1989. Autocar recorded 9.1 seconds to 60 mph and 114 mph, called the gearchange the car's real advantage and scored it nine out of ten.\n\n## The 1994 Rebuild\nFor the 1994 model year the car was reworked around new side-impact legislation. The 1,839 cc BP-ZE arrived at 96 kW (129 bhp), rising to 99 kW (133 bhp) for 1996; brakes grew, and the shell was braced, most visibly by a track bar between the seatbelt towers but also through both subframes. Dual airbags went into a redesigned dashboard. The car gained weight and, on the published figures, very little speed. In some markets, Europe among them, the 1.6 was kept on below the 1.8 as the cheap option in reduced-output form - by how much is genuinely unsettled, with published figures ranging from 89 bhp to 110 bhp.\n\n## Three Names and the End of the Run\nIn Japan the car was sold as the Eunos Roadster, Eunos being a separate premium channel Mazda was building in the manner of Acura or Lexus; in North America it was the Mazda Miata, elsewhere the MX-5. Japanese specials came thick and fast, along with M2 Corporation's low-volume conversions, and Britain received a long series of named editions ending with the Berkeley in 1998. Mainstream production closed in 1997, replaced by the NB, which kept the layout and dropped the pop-up headlamps.",
- "marketNotes": "As of August 2026, classic.com's NA sub-markets separate more usefully than any single aggregate figure. The base-model page shows a $11,181 benchmark and $11,185 average on a rising trend, with a lowest recorded sale of $2,475 in April 2022 and a $31,998 asking price on a 1996 example - an asking price, not a result. The M-Edition runs higher at a $14,783 benchmark and $14,518 average, also rising, over recorded results from $3,500 in October 2023 to $46,000 for a modified 1997 car in November 2025. The 1993 Limited Edition is the outlier, at a $12,751 benchmark against a $13,352 average on a declining trend, between $7,025 in August 2023 and $13,000 in March 2026. In the United Kingdom, The Classic Valuer reports a median of £9,118 across 850 tracked auction entries at a 91 per cent sell-through rate, with a high of £37,980 in March 2025 and a low of £500 at Mathewsons in June 2024. Its DVLA extract puts 7,298 cars licensed against 13,253 registered but off the road - the clearest indication of how many survivors are projects.",
- "whatToLookFor": "Structure first. The sills are double-skinned and spot-welded and corrode from the inside, where trapped moisture cannot escape, so a clean-looking sill proves very little. Hagerty's UK guide names the bottoms of the rear wings ahead of the wheels as the worst area, because moisture sits behind the panel, followed by inner and outer rear arches, floorpans, the bases and tops of the front wings and the feet of the windscreen pillars. Classic & Sports Car adds that sills are rarely repaired properly and that clear drain channels are the best available proxy for an attentive owner. Panels welded over existing rust are common and leave the corrosion running underneath. Then the crankshaft. On early 1.6 cars the pulley nose is short and the small pulley bolt carries both timing and accessory loads; the MX-5 Owners Club identifies the short-nose crank by four slots in the pulley against eight on the later part. Look for a wobbling pulley, ferrous powder around the bolt or key, a bent or rusted key, and an engine running poorly because the timing has crept. Beyond that, check the radiator is not silted; check the hood for clouding and rot; check the rear calipers on a car that has stood. Establish market origin from the rear number plate recess, rectangular on European cars and square on a Eunos, and from the VIN prefix - JMZ European, JM0 Australian, JM1 North American - with Eunos cars carrying a shorter Japanese chassis number instead.",
- "commonProblems": "Two faults decide what an NA is worth. The first is rust: sills, rear arches and floors, developing from the inside, expensive to put right properly and frequently disguised. LucaCarMods quotes €500 to €1,000 a side for a competent sill repair and over €1,000 where inner sills and quarter panels are involved. The second is the short-nose crankshaft on early 1.6 engines. Miata.net puts the keyway engagement area at 0.045 square inches against 0.087 on the long-nose part, notes that the timing cog acts as a structural member so the small pulley bolt carries both timing and accessory belt loads, and records the change to the large-bolt big-nose crankshaft at US VIN 209447 during 1991. Worn keyways are not repairable; the fix is a later crankshaft assembly, which on a big-nose conversion also means the oil pump and possibly the front cover. Away from those two, the mechanical package is durable, with Hagerty UK reporting that serviced examples pass 200,000 km without drama. The recurring smaller faults are a silted radiator causing head gasket failure, a rattle on start-up from the hydraulic tappets, rear calipers sticking on cars that sit, and hoods that cloud and split, with Classic & Sports Car putting a full replacement near £1,000.",
- "valueTrajectory": "The MX-5 spent two decades as a cheap car, and the bottom of the market still behaves like one. Hagerty's origin piece records a US launch price around $14,000 in 1990; Classic & Sports Car has projects at £500-£1,000 and ordinary cars at £1,500-£3,750, Petrolicious good ones at £1,000-£3,500, and Hagerty UK decent examples at £3,000-£4,000 with exceptional Eunos R-Limited and RS-Limited cars beyond £10,000. Those are the guides' own figures rather than current observations. What the market data shows as of August 2026 is separation rather than a general rise: classic.com has the base NA and the M-Edition both trending upward, at benchmarks of $11,181 and $14,783, while the 1993 Limited Edition trends downward at $12,751. The mechanism is straightforward: attrition has been severe, unrestored dry cars are finite, and doing sills and arches properly now costs more than a mediocre example is worth, so sound cars are pulled up while rotten ones are written off. The UK figure of 7,298 licensed against 13,253 off the road is the same story in one line.",
+ "summary": "The Mazda MX-5, sold in the US as the Miata and in Japan as the Eunos Roadster, was shown at the Chicago Auto Show in February 1989 and put a small, cheap, front-engine rear-drive roadster back on sale after the MGB, the Triumph Spitfire and the Fiat 124 Spider had all gone. The idea belonged to an American motoring journalist, Bob Hall, who put it to Mazda's research chief Kenichi Yamamoto and was later hired to develop it; the shape came out of a design competition between Mazda's Californian studio and its Tokyo team, with the original Lotus Elan studied openly as the benchmark. A 1,598 cc twin-cam four drove the rear wheels through a five-speed gearbox and an aluminum power plant frame that tied engine to differential, double wishbones sat at each corner, and the car weighed under 2,205 lb. From the 1994 model year came a 1,839 cc engine, a substantially braced shell and larger brakes, with a reduced-output 1.6 kept below it in some markets. It is the best-selling two-seat sports car ever built, and the cheapest examples are the ones most likely to be structurally rotten.",
+ "history": "## An American Idea Put to a Japanese Company\n\nBob Hall was a Californian motoring journalist, fluent in self-taught Japanese, whose father had run MGs, Triumphs and Austin-Healeys. Hagerty places the decisive conversation in 1978, when Hall was at AutoWeek and met Kenichi Yamamoto, then head of Mazda research and development, and suggested recasting the rear-drive 323 as a two-seat roadster. Yamamoto was noncommittal. In 1981 he asked Hall to study it properly; Hall joined Mazda's Californian research organization as a product planner and argued in an early-1982 position paper that recycling existing components was the only way to make the numbers work. The program ran off-line, and the American position was that it should be a front-engine, rear-drive roadster or nothing at all.\n\n## Duo 101, V705 and the Elan on the Bench\n\nFrom 1983 the concept became an internal competition between the Californian studio and the Tokyo team. At the first judging in 1984 California's front-engine rear-drive proposal, Duo 101, beat Tokyo's front-drive and mid-engine alternatives, the mid-engine layout having struggled against noise and vibration targets. Mazda's own account confirms the reasoning: the linear responses of the original lightweight sports cars were judged unobtainable without rear drive, and a new powertrain accepted rather than compromise. A running prototype, V705, was completed by the British consultancy IAD in August 1985 with a fiberglass body over 323 mechanicals. Production approval brought the codename P729 and Toshihiko Hirai as chief engineer. Mark Jordan drew the exterior in California and Masao Yagi pushed the styling further towards the Lotus Elan; Tom Matano and Koichi Hayashi settled the detail once the project moved back to Japan. The Elan was not a vague influence, it was the reference object.\n\n## Jinba Ittai and the Power Plant Frame\n\nMazda's design principle was jinba ittai, horse and rider as one. The engineering that carries it is mostly unglamorous: double wishbones at all four corners, near-equal weight distribution, a five-speed gearbox lifted from the rear-drive 929/Luce with a very short throw, and an aluminum power plant frame bolting engine and gearbox rigidly to the differential housing so that driveline movement is taken out of the response. Mazda still calls the frame unique to its sports cars and essential to their directness, while conceding it is awkward to assemble on a mixed line. The car reached the United States as the Miata in May 1989 as a 1990 model, at a base price of $13,800, and Japan on 1 September 1989. Autocar recorded 9.1 seconds to 60 mph and 114 mph, called the gearshift the car's real advantage and scored it nine out of ten.\n\n## The 1994 Rebuild\n\nFor the 1994 model year the car was reworked around new side-impact legislation. The 1,839 cc BP-ZE arrived at 129 hp, rising to 133 hp for 1996; brakes grew, and the shell was braced, most visibly by a track bar between the seatbelt towers but also through both subframes. Dual airbags went into a redesigned dashboard. The car gained weight and, on the published figures, very little speed. In some markets, Europe among them, the 1.6 was kept on below the 1.8 as the cheap option in reduced-output form, by how much is genuinely unsettled, with published figures ranging from 89 hp to 110 hp.\n\n## Three Names and the End of the Run\n\nIn Japan the car was sold as the Eunos Roadster, Eunos being a separate premium channel Mazda was building in the manner of Acura or Lexus; in North America it was the Mazda Miata, elsewhere the MX-5. Japanese specials came thick and fast, along with M2 Corporation's low-volume conversions, and Britain received a long series of named editions ending with the Berkeley in 1998. The American price climbed from $13,800 at launch to $19,125 for the last 1997 cars. Mainstream production closed in 1997, replaced by the NB, which kept the layout and dropped the pop-up headlamps.",
+ "marketNotes": "As of September 2026, classic.com's NA sub-markets separate more usefully than any single aggregate figure. Across the generation the benchmark sits at $12,255, with the lowest recorded sale at $1,450 for a 1995 Eunos-badged import in December 2021. The base model sits below that at an $11,138 benchmark and an $11,183 average on a rising trend, its lowest recorded result $2,475 in April 2022, and current asking prices spread from $9,500 to $30,500, a much wider band than the sales data supports. The M-Edition is the strongest sub-market, at a $15,218 benchmark and a $14,807 average, also rising, over results running from $3,500 in October 2023 to $24,250 in September 2026. Two sub-markets trend the other way on very thin evidence: the 1993 Limited Edition at a $12,611 benchmark against a $13,011 average across three comparable sales, between $7,025 in August 2023 and $13,000 in March 2026, and the R-Package at a $12,640 benchmark against a $13,098 average across four, between $7,000 in October 2022 and $14,500 in May 2026. A sub-market counted in single-digit sales moves on one car, so those downward arrows say considerably less than the base model's upward one.",
+ "whatToLookFor": "Structure first. The rocker panels are double-skinned and spot-welded and corrode from the inside, where trapped moisture cannot escape, so a clean-looking rocker proves very little. Hagerty's US guide calls them notorious for rust, worst ahead of the rear wheel arches, and warns that body drains plug up and back water into the cabin, taking the floors with the carpets. Hagerty's UK guide ranks the bottoms of the rear fenders ahead of the wheels as the worst area, because moisture sits behind the panel, followed by inner and outer rear arches, floorpans, the bases and tops of the front fenders and the feet of the windshield pillars. Classic & Sports Car adds that rockers are rarely repaired properly and that clear drain channels are the best available proxy for an attentive owner. Panels welded over existing rust are common and leave the corrosion running underneath. Then the crankshaft. On early 1.6 cars the pulley nose is short and the small pulley bolt carries both timing and accessory loads; the MX-5 Owners Club identifies the short-nose crank by four slots in the pulley against eight on the later part. Look for a wobbling pulley, ferrous powder around the bolt or key, a bent or rusted key, and an engine running poorly because the timing has crept. Beyond that, check the radiator is not silted; check the top for clouding and rot; check the rear calipers on a car that has stood. Twenty-five-year import rules have put Japanese-market Eunos Roadsters on American roads alongside home-market Miatas, so establish origin from the rear license plate recess, square on a Eunos and rectangular on a European car, and from the VIN prefix, JM1 North American, JMZ European, JM0 Australian, with Eunos cars carrying a shorter Japanese chassis number instead.",
+ "commonProblems": "Two faults decide what an NA Miata is worth. The first is rust: rocker panels, rear arches and floors, developing from the inside, expensive to put right properly and frequently disguised. LucaCarMods, a restoration specialist, explains the mechanism: the rockers are double-skinned and spot-welded, trapped moisture cannot escape, and a proper repair means cutting back to sound metal, zinc coating and welding in new steel. Owner-reported costs on the Grassroots Motorsports forum run from $370 for rust cut out and fresh metal let in at a local shop to under $1,000 for both rockers done in primer, with worse cars quoted high enough that a better shell becomes the cheaper route. The second is the short-nose crankshaft on early 1.6 engines. Miata.net puts the keyway engagement area at 0.045 square inches against 0.087 on the long-nose part, notes that the timing cog acts as a structural member so the small pulley bolt carries both timing and accessory belt loads, and records the change to the large-bolt big-nose crankshaft at US VIN 209447 during 1991. Hagerty reckons it reached about 1 percent of 1990 and early 1991 owners, usually after the pulley key was reassembled wrong at a timing belt service. Worn keyways are not repairable; the fix is a later crankshaft assembly, which on a big-nose conversion also means the oil pump and possibly the front cover. Away from those two the mechanical package is durable, with Hagerty UK reporting serviced examples past 124,000 miles. The recurring smaller faults are a silted radiator causing head gasket failure, a rattle on start-up from the hydraulic tappets, rear calipers sticking on cars that sit, and soft tops that cloud and split.",
+ "valueTrajectory": "The Miata spent two decades as a cheap car and the bottom of the market still behaves like one. It launched in the United States at $13,800 for 1990 and left at $19,125 for 1997, cheap in its own period and part of why so many were simply used up. Hagerty's US buyer's guide, working from condition rather than sales, puts #3 (Good) base cars in the $6,000 to $7,000 range and a 1995 M Edition at about $12,500; those are the guide's own figures rather than current observations. What the sales data shows as of September 2026 is separation rather than a general rise. classic.com has the base car at an $11,138 benchmark on a rising trend and the M-Edition at $15,218, also rising, while the thinly traded 1993 Limited Edition and R-Package sub-markets trend down at $12,611 and $12,640. The mechanism is straightforward: attrition has been severe, sound dry cars are finite, and doing rockers and arches properly now costs more than a mediocre example is worth, so good cars are pulled up while rotten ones are written off. At the top, Hagerty records a 28,000-mile 1990 car making $27,500 at Barrett-Jackson and names $36,750 for a 1993 Limited Edition as the unmodified record, and dates the turn upward to about 2018 rather than the pandemic.",
  "overallConfidence": "high",
  "sources": [
   {
@@ -89,7 +89,7 @@ export const seedMx5Na = {
    "publisher": "Mazda Motor Corporation",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Mazda's own account of the early-1980s concept, the jinba ittai principle, and the rejection of front-drive and mid-engine layouts in favour of rear drive."
+   "notes": "Mazda's own account of the early-1980s concept, the jinba ittai principle, and the rejection of front-drive and mid-engine layouts in favor of rear drive."
   },
   {
    "ref": "mazda-ppf-story",
@@ -98,7 +98,7 @@ export const seedMx5Na = {
    "publisher": "Mazda Motor Corporation",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Manufacturer source for the power plant frame - rigidity between transmission and differential, unique to Mazda's sports cars - and for Hirai as first programme manager"
+   "notes": "Manufacturer source for the power plant frame - rigidity between transmission and differential, unique to Mazda's sports cars - and for Hirai as first program manager"
   },
   {
    "ref": "wikipedia-mx5-na",
@@ -107,7 +107,7 @@ export const seedMx5Na = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Launch dates; B6-ZE 115 bhp/136 Nm and 105 bhp automatic; BP-ZE 129 bhp from 1994, 133 bhp from 1996; European 1.6 at 66 kW (89 bhp); the 1994 track bar and subframe bracing; 980/990 kg; and the special-edition list with counts."
+   "notes": "Launch dates; B6-ZE 115 hp/100 lb-ft and 105 hp automatic; BP-ZE 129 hp from 1994, 133 hp from 1996; European 1.6 at 89 hp; the 1994 track bar and subframe bracing; 980/2,183 lb; and the special-edition list with counts."
   },
   {
    "ref": "wikipedia-mx5",
@@ -143,7 +143,7 @@ export const seedMx5Na = {
    "publisher": "Autocar",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Autocar's original UK road test: 9.1 seconds to 60 mph, 114 mph, nine out of ten, the gearchange named the car's real advantage and the firm ride the cost of the handling."
+   "notes": "The original period road test: 9.1 seconds to 60 mph, 114 mph, nine out of ten, the gearshift named the car's real advantage and the firm ride the cost of the handling."
   },
   {
    "ref": "classicsportscar-guide",
@@ -152,7 +152,34 @@ export const seedMx5Na = {
    "publisher": "Classic & Sports Car",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "The 89-105 bhp band for the post-1993 1.6; the small-bolt short-nose crank as a broken-crankshaft risk; sills rarely repaired properly; Eunos imports with inferior rust protection; hoods near £1,000."
+   "notes": "The 89-105 hp band for the post-1993 1.6; the small-bolt short-nose crank as a broken-crankshaft risk; rocker panels rarely repaired properly; clear drain channels as a proxy for care; Eunos imports with inferior rust protection."
+  },
+  {
+   "ref": "hagerty-us-guide",
+   "title": "Your handy (1990-97) Mazda Miata buyer's guide",
+   "url": "https://www.hagerty.com/media/buying-and-selling/1990-97-mazda-miata-buyers-guide/",
+   "publisher": "Hagerty Media",
+   "sourceType": "journalism",
+   "reliability": "medium",
+   "notes": "US condition-based guidance: #3 (Good) base cars at $6,000 to $7,000 and a 1995 M Edition around $12,500; rocker panels notorious for rust, worst ahead of the rear wheel arches; plugged body drains rotting floors; the crank keyway failure reaching about 1 percent of 1990 and early 1991 owners after bad timing-belt reassembly."
+  },
+  {
+   "ref": "hagerty-na-collectible",
+   "title": "$27,500, low-mile NA confirms Miata's collectible status",
+   "url": "https://www.hagerty.com/media/market-trends/27500-low-mile-na-confirms-miatas-collectible-status/",
+   "publisher": "Hagerty Media",
+   "sourceType": "journalism",
+   "reliability": "medium",
+   "notes": "The top of the US market: a 28,000-mile 1990 base car at $27,500 at Barrett-Jackson, $36,750 named as the unmodified record for a 1993 Limited Edition, appreciation dated to about 2018 rather than the pandemic, and Gen Z at 27 percent of first-generation quotes against 7 percent of the market overall."
+  },
+  {
+   "ref": "carscoops-base-prices",
+   "title": "You're Paying Less For A New Miata Now Than 36 Years Ago",
+   "url": "https://www.carscoops.com/2025/12/miata-prices-inflation-adjusted-true-cost-analysis/",
+   "publisher": "Carscoops",
+   "sourceType": "journalism",
+   "reliability": "medium",
+   "notes": "Period US list prices by model year, published December 2025: $13,800 for the 1990 launch car rising to $19,125 for the 1997 model year, the last of the NA run."
   },
   {
    "ref": "hagerty-uk-guide",
@@ -161,7 +188,7 @@ export const seedMx5Na = {
    "publisher": "Hagerty UK",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "The rust map in severity order, from rear wing bottoms ahead of the wheels through arches, sills, floorpans and screen pillar feet; engine longevity past 200,000 km; four- versus eight-slot pulley identification."
+   "notes": "The rust map in severity order, from rear fender bottoms ahead of the wheels through arches, rockers, floorpans and screen pillar feet; engine longevity past 124,000 miles; four- versus eight-slot pulley identification."
   },
   {
    "ref": "petrolicious-mk1-guide",
@@ -170,7 +197,7 @@ export const seedMx5Na = {
    "publisher": "Petrolicious",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "The European special-edition chronology by year to the 1998 Berkeley; a 1.6 reduced to a stated 110 bhp from 1995; the 1991 BBR turbo at 150 bhp; the eight-slot pulley replacing the four-slot original."
+   "notes": "The European special-edition chronology by year to the 1998 Berkeley; a 1.6 reduced to a stated 110 hp from 1995; the 1991 BBR turbo at 150 hp; the eight-slot pulley replacing the four-slot original."
   },
   {
    "ref": "miatanet-production",
@@ -197,7 +224,16 @@ export const seedMx5Na = {
    "publisher": "MX-5 Owners Club (UK)",
    "sourceType": "club-forum",
    "reliability": "low",
-   "notes": "Club identification guidance only: four pulley slots indicate a short-nose crank, eight a long-nose; the problem centres on pre-spring-1991 cars; a loosening bolt transfers drive to the feather key and retards valve timing."
+   "notes": "Club identification guidance only: four pulley slots indicate a short-nose crank, eight a long-nose; the problem centers on pre-spring-1991 cars; a loosening bolt transfers drive to the feather key and retards valve timing."
+  },
+  {
+   "ref": "grm-bodywork-thread",
+   "title": "Another Miata bodywork thread",
+   "url": "https://grassrootsmotorsports.com/forum/grm/another-miata-bodywork-thread/97229/page1/",
+   "publisher": "Grassroots Motorsports",
+   "sourceType": "club-forum",
+   "reliability": "low",
+   "notes": "US owner-reported bodywork costs only: $370 for rust cut out and fresh metal welded in at a local shop, under $1,000 for both rocker panels repaired and left in primer, and body shop quotes above that treated as the point where a different shell becomes the cheaper route."
   },
   {
    "ref": "bofi-na-guide",
@@ -206,7 +242,7 @@ export const seedMx5Na = {
    "publisher": "BOFI Racing",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "NA6C and NA8C codes, 114 and 128 bhp, production stated only as exceeding 400,000 units, the 1994 larger brakes, side-impact beams and subframe reinforcement, and about 960 kg."
+   "notes": "NA6C and NA8C codes, 114 and 128 hp, production stated only as exceeding 400,000 units, the 1994 larger brakes, side-impact beams and subframe reinforcement, and about 2,116 lb."
   },
   {
    "ref": "mx5parts-model-info",
@@ -215,7 +251,7 @@ export const seedMx5Na = {
    "publisher": "MX5parts",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Rectangular rear plate recess and Mazda badging on European cars against a square recess and Eunos badging on Japanese ones; the JMZ, JM0 and JM1 VIN prefixes; UK 1.6 at 90 bhp after 1993."
+   "notes": "Rectangular rear plate recess and Mazda badging on European cars against a square recess and Eunos badging on Japanese ones; the JMZ, JM0 and JM1 VIN prefixes; UK 1.6 at 90 hp after 1993."
   },
   {
    "ref": "jdmbuysell-roadster-na",
@@ -233,7 +269,16 @@ export const seedMx5Na = {
    "publisher": "encyCARpedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "1.8 specification: 1,840 cc, 83.0 x 85.0 mm, 9.4:1, 128 bhp at 6,500 rpm, 990 kg, 3,975 x 1,675 x 1,230 mm on a 2,265 mm wheelbase, double wishbones, 48-litre tank, 7.9 s to 60 mph, 122 mph."
+   "notes": "1.8 specification: 1,840 cc, 83.0 x 85.0 mm, 9.4:1, 128 hp at 6,500 rpm, 2,183 lb, 3,975 x 1,675 x 1,230 mm on a 2,265 mm wheelbase, double wishbones, 48-liter tank, 7.9 s to 60 mph, 122 mph."
+  },
+  {
+   "ref": "classic-na-generation",
+   "title": "Mazda MX-5 Miata NA 1st Gen Market",
+   "url": "https://www.classic.com/m/mazda/mx-5-miata/na-1st-gen/",
+   "publisher": "classic.com",
+   "sourceType": "market-data",
+   "reliability": "high",
+   "notes": "Generation-level aggregate as of September 2026: benchmark and average both $12,255, lowest recorded sale $1,450 for a 1995 Eunos-badged car on 14 December 2021, and the sub-market benchmarks used to compare base, M-Edition and Special Edition cars."
   },
   {
    "ref": "classic-na-base",
@@ -242,7 +287,7 @@ export const seedMx5Na = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "Base-model sub-market as of August 2026: benchmark $11,181, average $11,185, rising, lowest sale $2,475 on 27 April 2022, and a $31,998 asking price on a 1996 car."
+   "notes": "Base-model sub-market as of September 2026: benchmark $11,138 on a rising trend, average $11,183, lowest recorded sale $2,475 on 27 April 2022, and live asking prices spread from $9,500 to $30,500 across 22 cars offered."
   },
   {
    "ref": "classic-na-medition",
@@ -251,7 +296,7 @@ export const seedMx5Na = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "M-Edition sub-market as of August 2026: benchmark $14,783, average $14,518, rising, results from $3,500 on 5 October 2023 to $46,000 on 14 November 2025."
+   "notes": "M-Edition sub-market as of September 2026: benchmark $15,218 on a rising trend, average $14,807, results from $3,500 on 5 October 2023 to $24,250 for a 1996 car on 9 September 2026."
   },
   {
    "ref": "classic-na-limited",
@@ -260,16 +305,16 @@ export const seedMx5Na = {
    "publisher": "classic.com",
    "sourceType": "market-data",
    "reliability": "high",
-   "notes": "1993 Limited Edition sub-market as of August 2026: benchmark $12,751 against a $13,352 average, declining, between $7,025 on 16 August 2023 and $13,000 on 6 March 2026."
+   "notes": "1993 Limited Edition sub-market as of September 2026: benchmark $12,611 against a $13,011 average on a declining trend, across three comparable sales between $7,025 on 16 August 2023 and $13,000 on 6 March 2026, with none currently offered."
   },
   {
-   "ref": "classicvaluer-mx5-na",
-   "title": "Mazda MX-5 NA: Buyer's Guide",
-   "url": "https://www.theclassicvaluer.com/buyers-guide/mazda/mx-5-na",
-   "publisher": "The Classic Valuer",
+   "ref": "classic-na-rpackage",
+   "title": "Mazda MX-5 Miata - R-Package - NA Market",
+   "url": "https://www.classic.com/m/mazda/mx-5-miata/na-1st-gen/r-package/",
+   "publisher": "classic.com",
    "sourceType": "market-data",
-   "reliability": "medium",
-   "notes": "UK auction aggregation as of August 2026: median £9,118 across 850 entries with 772 sold, a £37,980 high on 5 March 2025 and a £500 low on 13 June 2024, plus a 2022 DVLA extract of 7,298 licensed against 13,253 off the road."
+   "reliability": "high",
+   "notes": "R-Package sub-market as of September 2026: benchmark $12,640 against a $13,098 average on a declining trend, across four analyzed sales between $7,000 on 19 October 2022 and $14,500 on 4 May 2026, with none currently offered."
   },
   {
    "ref": "lucacarmods-sills",
@@ -278,13 +323,13 @@ export const seedMx5Na = {
    "publisher": "LucaCarMods",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Restoration specialist on sill corrosion: double-skinned spot-welded construction traps moisture so rust works outward; proper repair means cutting back, zinc coating and welding in new metal at €500-€1,000 per side."
+   "notes": "Restoration specialist on rocker panel corrosion: double-skinned spot-welded construction traps moisture so rust works outward, and a proper repair means cutting back to sound metal, zinc coating and welding in new steel rather than plating over the damage."
   }
  ],
  "claims": [
   {
    "section": "history",
-   "claimText": "The MX-5 originated with the American motoring journalist Bob Hall, who proposed a rear-drive two-seat roadster based on the Mazda 323 to Kenichi Yamamoto in 1978, was asked to study the idea in 1981, and joined Mazda's Californian research organisation as a product planner.",
+   "claimText": "The Miata originated with the American motoring journalist Bob Hall, who proposed a rear-drive two-seat roadster based on the Mazda 323 to Kenichi Yamamoto in 1978, was asked to study the idea in 1981, and joined Mazda's Californian research organization as a product planner.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -305,7 +350,7 @@ export const seedMx5Na = {
   },
   {
    "section": "history",
-   "claimText": "A running prototype designated V705 was completed by the British consultancy IAD in August 1985 with a glassfibre body over Mazda 323 mechanicals, after which the programme was renamed P729 and Toshihiko Hirai was appointed chief engineer.",
+   "claimText": "A running prototype designated V705 was completed by the British consultancy IAD in August 1985 with a fiberglass body over Mazda 323 mechanicals, after which the program was renamed P729 and Toshihiko Hirai was appointed chief engineer.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -327,13 +372,22 @@ export const seedMx5Na = {
   },
   {
    "section": "history",
-   "claimText": "The MX-5 was launched at the Chicago Auto Show on 10 February 1989, reached the United States in May 1989 as a 1990 model and Japan on 1 September 1989, and Autocar's road test recorded 9.1 seconds to 60 mph and 114 mph, scoring the car nine out of ten and naming the gearchange its real advantage.",
+   "claimText": "The car was launched at the Chicago Auto Show on 10 February 1989, reached the United States in May 1989 as a 1990 model and Japan on 1 September 1989, and the period Autocar road test recorded 9.1 seconds to 60 mph and 114 mph, scoring the car nine out of ten and naming the gearshift its real advantage.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
     "wikipedia-mx5-na",
     "autocar-1990-roadtest",
     "evo-birth"
+   ]
+  },
+  {
+   "section": "history",
+   "claimText": "The Miata's US base list price ran from $13,800 for the 1990 launch model year to $19,125 for the final 1997 cars. It is single-sourced because it is the only model-year price table for the NA run reached in this session.",
+   "confidence": "medium",
+   "status": "verified",
+   "sourceRefs": [
+    "carscoops-base-prices"
    ]
   },
   {
@@ -348,7 +402,7 @@ export const seedMx5Na = {
   },
   {
    "section": "specs",
-   "claimText": "The car uses a unitary steel monocoque with double wishbones and anti-roll bars at both ends and a five-speed manual gearbox derived from that of the rear-drive Mazda 929/Luce, together with an aluminium power plant frame that Mazda describes as maintaining rigidity between transmission and differential and essential to the car's direct feel.",
+   "claimText": "The car uses a unitary steel monocoque with double wishbones and anti-roll bars at both ends and a five-speed manual gearbox derived from that of the rear-drive Mazda 929/Luce, together with an aluminum power plant frame that Mazda describes as maintaining rigidity between transmission and differential and essential to the car's direct feel.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -359,7 +413,7 @@ export const seedMx5Na = {
   },
   {
    "section": "specs",
-   "claimText": "The launch engine was the 1,598 cc B6-ZE(RS) twin-cam 16-valve four producing 86 kW (115 bhp) at 6,500 rpm and 136 Nm at 5,500 rpm, falling to 78.5 kW (105 bhp) with the optional four-speed automatic offered in the American and Japanese markets.",
+   "claimText": "The launch engine was the 1,598 cc B6-ZE(RS) twin-cam 16-valve four producing 115 hp at 6,500 rpm and 100 lb-ft at 5,500 rpm, falling to 105 hp with the optional four-speed automatic offered in the American and Japanese markets.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -370,7 +424,7 @@ export const seedMx5Na = {
   },
   {
    "section": "specs",
-   "claimText": "For the 1994 model year the 1,839 cc BP-ZE engine was introduced at 96 kW (129 bhp) and 149 Nm, rising to 99 kW (133 bhp) and 155 Nm for 1996, alongside dual airbags, larger brakes and a braced shell adding a track bar between the seatbelt towers and reinforced subframes to meet new side-impact standards.",
+   "claimText": "For the 1994 model year the 1,839 cc BP-ZE engine was introduced at 129 hp and 110 lb-ft, rising to 133 hp and 114 lb-ft for 1996, alongside dual airbags, larger brakes and a braced shell adding a track bar between the seatbelt towers and reinforced subframes to meet new side-impact standards.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -381,7 +435,7 @@ export const seedMx5Na = {
   },
   {
    "section": "specs",
-   "claimText": "The 1.6-litre engine was retained below the 1.8 in some markets after 1993 in reduced-output form, but the output figure is not settled across sources.",
+   "claimText": "The 1.6-liter engine was retained below the 1.8 in some markets after 1993 in reduced-output form, but the output figure is not settled across sources.",
    "confidence": "low",
    "status": "disputed",
    "sourceRefs": [
@@ -390,7 +444,7 @@ export const seedMx5Na = {
     "petrolicious-mk1-guide",
     "classicsportscar-guide"
    ],
-   "conflictNote": "Wikipedia states the European 1.6 was detuned to 66 kW (89 bhp). MX5parts gives 90 bhp for UK 1.6 cars from 1993. Petrolicious states it was reduced to 110 bhp from 1995. Classic & Sports Car gives a band of 89-105 bhp for post-1993 cars. These cannot be resolved from the sources consulted here and no single detuned output is asserted."
+   "conflictNote": "Wikipedia states the European 1.6 was detuned to 89 hp. MX5parts gives 90 hp for UK 1.6 cars from 1993. Petrolicious states it was reduced to 110 hp from 1995. Classic & Sports Car gives a band of 89-105 hp for post-1993 cars. These cannot be resolved from the sources consulted here and no single detuned output is asserted."
   },
   {
    "section": "production",
@@ -427,14 +481,35 @@ export const seedMx5Na = {
   },
   {
    "section": "problems",
-   "claimText": "Corrosion of the double-skinned, spot-welded sills develops from the inside out because trapped moisture cannot escape, so external condition is a poor guide, and it typically appears alongside rust in the rear wing bottoms ahead of the wheels, the inner and outer rear arches, the floorpans, the front wing bases and the windscreen pillar feet.",
+   "claimText": "Corrosion of the double-skinned, spot-welded rocker panels develops from the inside out because trapped moisture cannot escape, so external condition is a poor guide, and it typically appears alongside rust in the rear fender bottoms ahead of the wheels, the inner and outer rear arches, the floorpans, the front fender bases and the windshield pillar feet.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
     "hagerty-uk-guide",
+    "hagerty-us-guide",
     "lucacarmods-sills",
     "classicsportscar-guide",
     "petrolicious-mk1-guide"
+   ]
+  },
+  {
+   "section": "problems",
+   "claimText": "Blocked body drains are a distinct and common cause of floor corrosion on US cars, backing water up into the cabin and taking the floors as well as the carpets, which is why clear drain channels are treated as a proxy for an attentive owner.",
+   "confidence": "medium",
+   "status": "verified",
+   "sourceRefs": [
+    "hagerty-us-guide",
+    "classicsportscar-guide"
+   ]
+  },
+  {
+   "section": "problems",
+   "claimText": "US owner-reported costs for rocker panel repair run from $370 for rust cut out and new metal welded in at a local shop to under $1,000 for both sides finished in primer, with heavier quotes reaching the point where buying a sounder shell is the cheaper route. These are individual owner reports on a forum, not shop rate cards.",
+   "confidence": "low",
+   "status": "unverified",
+   "sourceRefs": [
+    "grm-bodywork-thread",
+    "lucacarmods-sills"
    ]
   },
   {
@@ -450,6 +525,16 @@ export const seedMx5Na = {
   },
   {
    "section": "problems",
+   "claimText": "Hagerty puts the incidence of the short-nose crankshaft failure at about 1 percent of 1990 and early 1991 owners and attributes it to the crank pulley key being reassembled incorrectly during timing belt service rather than to a defect that reaches every affected car.",
+   "confidence": "medium",
+   "status": "verified",
+   "sourceRefs": [
+    "hagerty-us-guide",
+    "miatanet-crankshaft"
+   ]
+  },
+  {
+   "section": "problems",
    "claimText": "A short-nose crankshaft can be identified by four slots in the crankshaft pulley against eight on the later part, and impending failure shows as a wobbling pulley, ferrous powder around the bolt or key, a deformed or rusted key, and an engine running poorly because the valve timing has retarded.",
    "confidence": "medium",
    "status": "verified",
@@ -461,7 +546,7 @@ export const seedMx5Na = {
   },
   {
    "section": "market",
-   "claimText": "Japanese-market Eunos Roadsters can be told from home-market European cars by a square rather than rectangular rear number plate recess, Eunos badging, and a shorter Japanese chassis number against the JMZ, JM0 and JM1 VIN prefixes; imported cars often carry equipment their UK counterparts lacked, but are reported to have had inferior rust protection.",
+   "claimText": "Japanese-market Eunos Roadsters, now importable to the United States under the twenty-five-year rule, can be told from European-market cars by a square rather than rectangular rear license plate recess, Eunos badging, and a shorter Japanese chassis number against the JMZ, JM0 and JM1 VIN prefixes; imported cars often carry equipment no US-market Miata was given, but are reported to have had inferior rust protection.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -472,22 +557,35 @@ export const seedMx5Na = {
   },
   {
    "section": "market",
-   "claimText": "As of August 2026 classic.com's NA sub-markets diverge: the base model at a $11,181 benchmark and the M-Edition at $14,783 are both trending upward, while the 1993 Limited Edition trends downward at $12,751 against a $13,352 average.",
+   "claimText": "As of September 2026 classic.com puts the NA generation benchmark at $12,255 and its sub-markets diverge: the base model at an $11,138 benchmark and the M-Edition at $15,218 are both trending upward, while the thinly traded 1993 Limited Edition at $12,611 and the R-Package at $12,640 trend downward on three and four analyzed sales respectively.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
+    "classic-na-generation",
     "classic-na-base",
     "classic-na-medition",
-    "classic-na-limited"
+    "classic-na-limited",
+    "classic-na-rpackage"
    ]
   },
   {
    "section": "market",
-   "claimText": "As of August 2026 The Classic Valuer records a UK-weighted median of £9,118 across 850 tracked auction entries at a 91 per cent sell-through rate, with a high of £37,980 in March 2025 and a low of £500 in June 2024, alongside a 2022 DVLA extract showing 7,298 cars licensed against 13,253 registered but off the road. It is single-sourced because it is the only UK-weighted aggregation reached in this session.",
+   "claimText": "Hagerty's US buyer's guide, which values by condition rather than by recorded sales, puts #3 (Good) base cars at $6,000 to $7,000 and a 1995 M Edition at about $12,500, below the sales-derived classic.com benchmarks for the same cars as of September 2026.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
-    "classicvaluer-mx5-na"
+    "hagerty-us-guide",
+    "classic-na-base",
+    "classic-na-medition"
+   ]
+  },
+  {
+   "section": "market",
+   "claimText": "At the top of the US market Hagerty records a 28,000-mile 1990 base car making $27,500 at Barrett-Jackson and names $36,750 for a 1993 Limited Edition as the unmodified record, dating the upward turn in NA values to about 2018 rather than to the pandemic.",
+   "confidence": "medium",
+   "status": "verified",
+   "sourceRefs": [
+    "hagerty-na-collectible"
    ]
   }
  ]

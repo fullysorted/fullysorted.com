@@ -1,12 +1,12 @@
 /**
- * Researched model draft — DeLorean DMC-12 (1981–1983).
+ * Researched model draft — DeLorean DMC-12 (1981-1983).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedDeLoreanDmc12 = {
  "slug": "delorean/dmc-12",
  "make": "DeLorean",
  "model": "DMC-12",
- "generation": "1981–1983",
+ "generation": "1981-1983",
  "generationCode": null,
  "trim": null,
  "yearStart": 1981,
@@ -41,7 +41,7 @@ export const seedDeLoreanDmc12 = {
   "transmission": "5-speed manual or 3-speed automatic",
   "layout": "Rear engine, rear-wheel drive; steel backbone chassis (Lotus-derived) with fiberglass underbody and brushed 304 stainless-steel outer panels",
   "doors": "Gullwing, torsion-bar/gas-strut assisted",
-  "weight": "~2,700 lb (1,233 kg)",
+  "weight": "~2,700 lb",
   "0-60mph": "Claimed ~8.8s (manual); road tests measured ~10.5s",
   "topSpeed": "Claimed ~130 mph; tested closer to ~110 mph",
   "designer": "Giorgetto Giugiaro / Italdesign",
@@ -104,7 +104,7 @@ export const seedDeLoreanDmc12 = {
  "claims": [
   {
    "section": "production",
-   "claimText": "Approximately 8,975 DeLorean DMC-12s were built in Dunmurry, Northern Ireland, with production running 1981–1982 (some 1983 designations).",
+   "claimText": "Approximately 8,975 DeLorean DMC-12s were built in Dunmurry, Northern Ireland, with production running 1981-1982 (some 1983 designations).",
    "confidence": "high",
    "status": "disputed",
    "sourceRefs": [

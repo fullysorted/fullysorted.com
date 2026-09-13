@@ -1,5 +1,5 @@
 /**
- * Researched model draft — Ferrari 288 GTO (1984-1987).
+ * Researched model draft - Ferrari 288 GTO (1984-1987).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seed288Gto = {
@@ -17,11 +17,11 @@ export const seed288Gto = {
   "2-door Berlinetta (fixed-roof coupe), composite panels on a tubular steel frame"
  ],
  "engines": [
-  "2,855 cc Tipo F114 B twin-turbocharged 90-degree V8, longitudinally mounted, DOHC per bank, 4 valves per cylinder, twin IHI turbochargers at 0.8 bar with twin Behr intercoolers, Weber-Marelli IAW injection, 400 bhp (400 CV) at 7,000 rpm claimed",
-  "2,855 cc Tipo F114 CR (October 1984) and Tipo F114 CK (September 1985) development engines fitted to the GTO Evoluzione, quoted at 530 bhp at 7,500 rpm and 650 bhp at 7,800 rpm respectively; not fitted to road cars"
+  "2,855 cc Tipo F114 B twin-turbocharged 90-degree V8, longitudinally mounted, DOHC per bank, 4 valves per cylinder, twin IHI turbochargers at 0.8 bar with twin Behr intercoolers, Weber-Marelli IAW injection, 400 hp at 7,000 rpm claimed",
+  "2,855 cc Tipo F114 CR (October 1984) and Tipo F114 CK (September 1985) development engines fitted to the GTO Evoluzione, quoted at 530 hp at 7,500 rpm and 650 hp at 7,800 rpm respectively; not fitted to road cars"
  ],
  "productionTotal": null,
- "productionNotes": "The figure most sources print is 272, and it is the one Ferrari's own heritage page gives, alongside a chassis range of 52465 to 58345 and a build period of 1984 to 1986. Wikipedia, Girardo and Co, classic.com, the Gooding Christie's Paris 2026 catalogue and the RM Sotheby's Paris 2026 catalogue all repeat 272. The disagreement is at the edges. Supercar Nostalgia and Hagerty both describe 271 cars built in 1984 and 1985, with a 272nd completed in March 1986 for Niki Lauda (chassis 58329) as a personal gesture from Enzo Ferrari; a Drive magazine road test states 271 without the Lauda addendum. Talacrest, a long-established Ferrari dealer, states 273 road cars 'with 1 official pre-production prototype', while conceding that figures for the run vary; whether its 273 includes that prototype is not clear from the page. duPont Registry calls 272 the accepted figure but adds that two further cars were produced afterwards for specific clients, which would make 274. RM Sotheby's Monterey 2026 catalogue avoids the question entirely with 'less than 300 cars were built'. None of the sources consulted reconciles these counts, and the difference appears to turn on whether the prototype, the Lauda car and any late client cars are included, so no single total is asserted here. All sources agree on the shape of the story: 200 cars were required for FIA Group B homologation, all 200 were sold before production began, and the run was extended by roughly 70 cars plus a handful for favoured clients. The five Evoluzione cars and their prototype are counted separately. No GTOs were imported into North America by the factory, and a small number were converted to right-hand drive for the Sultan of Brunei; the Drive road test gives approximately four.",
+ "productionNotes": "The figure most sources print is 272, and it is the one Ferrari's own heritage page gives, alongside a chassis range of 52465 to 58345 and a build period of 1984 to 1986. Wikipedia, Girardo and Co, classic.com, the Gooding Christie's Paris 2026 catalog and the RM Sotheby's Paris 2026 catalog all repeat 272. The disagreement is at the edges. Supercar Nostalgia and Hagerty both describe 271 cars built in 1984 and 1985, with a 272nd completed in March 1986 for Niki Lauda (chassis 58329) as a personal gesture from Enzo Ferrari; a Drive magazine road test states 271 without the Lauda addendum. Talacrest, a long-established Ferrari dealer, states 273 road cars 'with 1 official pre-production prototype', while conceding that figures for the run vary; whether its 273 includes that prototype is not clear from the page. duPont Registry calls 272 the accepted figure but adds that two further cars were produced afterwards for specific clients, which would make 274. RM Sotheby's Monterey 2026 catalog avoids the question entirely with 'less than 300 cars were built'. None of the sources consulted reconciles these counts, and the difference appears to turn on whether the prototype, the Lauda car and any late client cars are included, so no single total is asserted here. All sources agree on the shape of the story: 200 cars were required for FIA Group B homologation, all 200 were sold before production began, and the run was extended by roughly 70 cars plus a handful for favored clients. The five Evoluzione cars and their prototype are counted separately. No GTOs were imported into North America by the factory, and a small number were converted to right-hand drive for the Sultan of Brunei; the Drive road test gives approximately four.",
  "notableTrims": [
   {
    "name": "288 GTO (standard European specification)",
@@ -29,7 +29,7 @@ export const seed288Gto = {
   },
   {
    "name": "288 GTO with full options",
-   "note": "Girardo lists four factory extras: air conditioning, electric windows, a Blaupunkt radio and full-leather Daytona-style seats. Most cars with one option have all of them, and cars with air conditioning and electric windows are called out in every recent catalogue entry."
+   "note": "Girardo lists four factory extras: air conditioning, electric windows, a Blaupunkt radio and full-leather Daytona-style seats. Most cars with one option have all of them, and cars with air conditioning and electric windows are called out in every recent catalog entry."
   },
   {
    "name": "288 GTO with cloth seat inserts",
@@ -41,38 +41,38 @@ export const seed288Gto = {
   },
   {
    "name": "288 GTO, Brunei right-hand-drive conversions",
-   "note": "A small number of cars, approximately four according to Drive magazine, were converted to right-hand drive for the Sultan of Brunei. One returned to the UK through DK Engineering in 2015 with under 1,000 km recorded and needed a full restoration after years of storage."
+   "note": "A small number of cars, approximately four according to Drive magazine, were converted to right-hand drive for the Sultan of Brunei. One returned to the UK through DK Engineering in 2015 with under 621 miles recorded and needed a full restoration after years of storage."
   },
   {
    "name": "288 GTO Evoluzione",
-   "note": "Five cars plus a prototype (50253), built as the competition development of the GTO with a carbon composite structure quoted at three times the stiffness and 40 per cent less weight, and engines rising to 650 bhp. Never homologated or raced; became the test bed for the F40. Trades in a separate market and almost never publicly."
+   "note": "Five cars plus a prototype (50253), built as the competition development of the GTO with a carbon composite structure quoted at three times the stiffness and 40 percent less weight, and engines rising to 650 hp. Never homologated or raced; became the test bed for the F40. Trades in a separate market and almost never publicly."
   }
  ],
  "specs": {
   "layout": "Mid-mounted longitudinal engine, rear-wheel drive; the first longitudinally mounted V8 in a Ferrari production road car",
-  "chassis": "Tubular steel frame with composite and resin-moulded body panels; steel doors; Kevlar bonnet; Kevlar and carbon-fibre roof; full roll hoop within roof and B-pillars",
+  "chassis": "Tubular steel frame with composite and resin-molded body panels; steel doors; Kevlar hood; Kevlar and carbon-fiber roof; full roll hoop within roof and B-pillars",
   "engine": "2,855 cc Tipo F114 B 90-degree V8, twin IHI turbochargers at 0.8 bar, twin Behr air-to-air intercoolers, dry sump",
   "valvetrain": "Twin overhead camshafts per bank, four valves per cylinder, toothed-belt drive",
   "bore_stroke": "80 mm x 71 mm",
   "compression": "7.6:1",
   "fuel_ignition": "Weber-Marelli IAW combined ignition and fuel injection, one system per bank",
-  "power": "400 bhp (400 CV) at 7,000 rpm claimed; some sources render the same figure as 395 bhp",
-  "torque": "496 Nm (366 lb-ft) at 3,800 rpm claimed",
+  "power": "400 hp at 7,000 rpm claimed; some sources render the same figure as 395 hp",
+  "torque": "366 lb-ft at 3,800 rpm claimed",
   "transmission": "5-speed all-synchromesh manual transaxle mounted behind the differential, hydraulically actuated single-plate clutch",
   "suspension": "Independent unequal-length wishbones front and rear, coil springs, manually adjustable Koni dampers, anti-roll bars both ends; unassisted rack-and-pinion steering",
   "brakes": "Ventilated discs all round, approximately 12 in front and rear, twin-piston calipers, servo assisted",
-  "wheels_tyres": "16 in Speedline split-rim centre-lock alloys, 8J front and 10J rear; 225/50 front and 255/50 rear Goodyear NCT",
-  "weight": "1,160 kg dry claimed (Wikipedia gives 1,159 kg; Girardo 'just over 1,200 kg')",
+  "wheels_tires": "16 in Speedline split-rim center-lock alloys, 8J front and 10J rear; 225/50 front and 255/50 rear Goodyear NCT",
+  "weight": "2,557 lb dry claimed (Wikipedia gives 2,555 lb; Girardo 'just over 2,646 lb')",
   "wheelbase": "2,450 mm, 110 mm longer than the 308 GTB; overall length 4,290 mm, 5 mm shorter than the 308 through a reduced rear overhang",
-  "top_speed": "189 mph (305 km/h) - manufacturer claim; Auto Motor und Sport recorded 188 mph in 1985 and Road & Track 179 mph, per period tests cited in an owners' forum thread",
-  "acceleration": "0-60 mph in about 4.8-5.0 s claimed; 0-100 km/h in 4.9 s quoted by RM Sotheby's; 0-125 mph in 15 s claimed; quarter mile about 14.1 s at 113 mph"
+  "top_speed": "189 mph - manufacturer claim; Auto Motor und Sport recorded 188 mph in 1985 and Road & Track 179 mph, per period tests cited in an owners' forum thread",
+  "acceleration": "0-60 mph in about 4.8-5.0 s claimed; 0-62 mph in 4.9 s quoted by RM Sotheby's; 0-125 mph in 15 s claimed; quarter mile about 14.1 s at 113 mph"
  },
- "summary": "The Ferrari 288 GTO (1984-1987) was built to homologate Ferrari for FIA Group B, a category that was abandoned before the car could ever compete. Announced in September 1983 and shown at Geneva in March 1984, it took the 308 GTB's outline and stretched it around a 2,855 cc twin-turbocharged V8 mounted lengthways rather than across the frame, the first such installation in a Ferrari road car and the marque's first twin-turbo production engine. Ferrari claimed 400 bhp at 7,000 rpm, 189 mph and 0-60 mph in under five seconds, from a car weighing around 1,160 kg with a tubular steel frame and Kevlar, carbon-fibre and glass-fibre panels. Group B required 200 cars; all 200 were sold before production began and the run was extended to somewhere between 271 and 274 depending on who is counting. The GTO's competition development, the Evoluzione, became the test bed for the F40, and the GTO itself is now treated as the first of Ferrari's limited-series flagship cars. It was the least valuable of them for many years. As of September 2026 that is no longer the case.",
- "history": "## Group B and the Entry Ticket\n\nThe FIA's Group B rules of 1982 asked manufacturers to build only 200 road-legal examples to homologate a car, with few limits on technology and none on boost. Ferrari announced a Gran Turismo Omologata in September 1983 and showed it at Geneva in March 1984. The factory never publicly used the name '288'; it was the internal designation for a 2.8-litre eight-cylinder, and the tail badge read GTO. Development ran under Giovanni Sguazzini with Nicola Materazzi on the engine and Harvey Postlethwaite on the composite structure. By the time cars reached customers in 1985 the fatal accidents in Group B rallying had already condemned the category, and its cancellation left the GTO with nothing to homologate.\n\n## An Engine Turned Lengthways\n\nThe 308 carried its V8 transversely. For the GTO it was turned through 90 degrees, mounted longitudinally with the five-speed gearbox behind the differential, and the wheelbase grew by 110 mm to 2,450 mm. Ferrari records this as the first longitudinal V8 in one of its production road cars and its first twin-turbo road engine. Capacity was 2,855 cc from an 80 mm by 71 mm bore and stroke, so that the Group B equivalence factor of 1.4 for forced induction kept the car under the four-litre class limit. Twin IHI turbochargers ran 0.8 bar through Behr intercoolers, with Weber-Marelli IAW injection and ignition, one system per bank. Ferrari claimed 400 bhp at 7,000 rpm and 496 Nm at 3,800 rpm. The 189 mph top speed was a factory figure from Nardo; Auto Motor und Sport recorded 188 mph on electronic timing in 1985 and Road & Track later published 179 mph.\n\n## Body and Frame\n\nPininfarina's Leonardo Fioravanti kept the 308's proportions and little else. The tubular steel frame carried resin-moulded, glass-fibre and Kevlar panels, a Kevlar bonnet, a Kevlar and carbon-fibre roof and steel doors, with a full roll hoop inside the roof and B-pillars. The rear subframe carrying engine, transaxle and suspension was designed to drop out as a unit, and the cam belts are reached through a removable panel behind the seats, which is why the two-year belt interval is less painful than on later Ferraris. Dry weight was quoted at 1,160 kg. Inside were Kevlar-framed bucket seats and pedals Girardo describes as comically offset.\n\n## Two Hundred Sold, Then More\n\nAll 200 homologation cars were sold before production started. Ferrari's page states that 272 were built between 1984 and 1986, chassis 52465 to 58345; the extra cars are usually explained as roughly 70 further orders plus a handful for the Agnelli family and other favoured clients. The last is generally taken to be chassis 58329, completed in March 1986 for Niki Lauda after Enzo Ferrari and Fiat's Vittorio Ghidella agreed to build one more. Whether that car makes 272 or is the 272nd of 271 plus one, whether Talacrest's 273 includes its pre-production prototype, and whether two further client cars followed, are questions the sources answer differently, and this page does not pick a number. No cars were federalised for the United States; every car left Maranello in Rosso Corsa with a black interior and left-hand drive, and a few were later converted to right-hand drive for Brunei.\n\n## The Evoluzione, the F40 and the Long Wait\n\nWith Group B gone, five Evoluzione cars and a prototype were built, with carbon composite structures and engines developed through the 530 bhp F114 CR to the 650 bhp F114 CK at around 940 kg. Ferrari quietly turned the programme into a test bed for the F40, which took the Evoluzione's enlarged, more heavily boosted engine, its construction methods and much of its silhouette. For two decades the GTO was then the quiet one: it listed at around £73,000 or US$83,400 in 1984, was overshadowed by the F40 within three years, and traded below it into the 2010s. It was re-rated as the market turned to analogue cars and as a run roughly a fifth the size of the F40's began to count for more than a modest power figure. By 2026 it had overtaken the F40 decisively.",
- "marketNotes": "As of September 2026, classic.com's Ferrari 288 GTO market benchmark stands at $7,799,629 on a rising trend, with an average recorded sale of $6,150,438. The tracked range runs from $3,464,375 for a 1985 car in February 2022 to $11,555,000 in August 2026. The 2026 sales sequence is the story. Mecum sold a Rosso Corsa 1985 car from the Bachman Collection for $8,525,000 at Kissimmee in January 2026, which duPont Registry called the strongest public result the model had achieved. Days later Gooding Christie's sold chassis 52471, a two-owner 1984 car with just over 1,500 km, Classiche Red Book and a Massini report, for €9,117,500 at its Rétromobile Paris sale on 29 January 2026 (Octane described that figure as a hammer price; the house press release, which calls it a world record for the model, does not break out premium). RM Sotheby's Paris the same week made €5,855,000 for chassis 52727, a single-owner 1985 car with 24,244 km, air conditioning, electric windows and stereo, Classiche certified in December 2025. Then at Monterey in August 2026 RM Sotheby's sold chassis 54789, a 1985 car with 1,541 km, air conditioning and electric windows and a February 2026 Red Book, for $11,555,000 against a $9-11 million estimate, a new model record. classic.com also records a $6,825,000 online sale in July 2026. The spread between the Paris RM car and the Monterey car, roughly a factor of two for cars of the same year and specification, is almost entirely mileage and preservation. Auction house 'sold for' figures include buyer's premium unless stated otherwise; the Gooding figure is the one where that is not certain.",
- "whatToLookFor": "Ferrari Classiche certification and a Marcel Massini history report are now close to standard at the top of the market; every 2026 headline result carried a Red Book confirming matching engine and transaxle, and a car without one will be asked why. Because all cars left the factory in the same colour and layout, originality is read in details: the correct Speedline split rims and centre nuts, the three-shade red fabric seat inserts on non-leather cars, the tool roll with jack, wheel socket, mallet and spare belts, the round plastic tub of fuses and bulbs, the leather or Gucci-pattern document pouch, and the single Schedoni luggage piece where fitted. Girardo notes the pouches and tubs are especially elusive today. Establish the option content against the build record, since air conditioning, electric windows, radio and full leather were separate items and most cars had either all or none. Confirm the cam-belt service is within the two-year interval the handbook specifies; the job is done through the panel behind the seats and is not engine-out, so there is little excuse for it being overdue. Ask for evidence of turbocharger health, fuel-system work and cooling-system function, and look at the composite panels and the tubular frame for stress cracks or repair. Long storage is the GTO's characteristic history rather than hard use, so perished hoses, seals and fuel lines, seized ancillaries and a full recommissioning bill are the usual consequence of a very low odometer reading. Mileage should be reconciled with paperwork rather than believed.",
- "commonProblems": "The two-year cam-belt interval is the defining routine cost, though the GTO's access panel behind the seats means the belts can be changed from inside the cabin without removing the engine, and the belts themselves are cheap; a specialist described the job as quick by Ferrari standards. Turbochargers and the fuel system are the areas that wear: smoke on start-up, lag beyond the small pause inherent in the installation, and fuel-pressure faults are the symptoms, and a buyer's guide puts repair bills in the tens of thousands of dollars. The composite panels and the steel frame can develop stress cracks, and weld repairs to the frame are expensive to put right properly. Air conditioning, where fitted, struggles against heat from the bulkhead and was marginal even when new. The Kevlar-framed seats are narrow and the pedals offset, which is character rather than a fault but does put people off using the cars. The single most common issue is disuse: many GTOs have covered under 2,000 km in forty years, and the sub-1,000 km cars that make the headlines have typically needed full mechanical services before sale, as the 2022-2024 recommissioning of the Monterey 2026 record car shows. Cars stored badly rather than driven gently are the ones to be cautious of.",
- "valueTrajectory": "The 288 GTO listed at roughly £73,000 in the UK and US$83,400 at launch in 1984, and for most of its life it sat below the F40 in value. Auction results between 2011 and 2015 ran from about $748,000 to $2.75 million, the top of that range being the first car delivered to Japan with under 11,000 km. A 2017 British road test put a good car at £1 to £1.5 million, and Talacrest's undated guide gives £1.5 to £2 million depending on mileage. The lowest sale classic.com records since 2020 is $3,464,375 in February 2022. The step change came in the first eight months of 2026: $8,525,000 at Kissimmee in January, €9,117,500 at Paris in the same week, and $11,555,000 at Monterey in August, each a model record, so that as of September 2026 the classic.com benchmark stands at $7,799,629 and rising. Commentary at the time was cautious: Classic Driver attributed the Kissimmee results to two motivated bidders rather than the market at large, and Girardo's own guide questioned whether the rate of increase was sustainable while agreeing the car had been undervalued for years. The GTO now trades above the F40 and closer to Ferrari's 1960s berlinettas than to its 1980s contemporaries. Low-mileage certified cars and ordinary driven cars are separating into two markets, and that gap is widening.",
+ "summary": "The Ferrari 288 GTO (1984-1987) was built to homologate Ferrari for FIA Group B, a category that was abandoned before the car could ever compete. Announced in September 1983 and shown at Geneva in March 1984, it took the 308 GTB's outline and stretched it around a 2,855 cc twin-turbocharged V8 mounted lengthways rather than across the frame, the first such installation in a Ferrari road car and the marque's first twin-turbo production engine. Ferrari claimed 400 hp at 7,000 rpm, 189 mph and 0-60 mph in under five seconds, from a car weighing around 2,557 lb with a tubular steel frame and Kevlar, carbon-fiber and glass-fiber panels. Group B required 200 cars; all 200 were sold before production began and the run was extended to somewhere between 271 and 274 depending on who is counting. The GTO's competition development, the Evoluzione, became the test bed for the F40, and the GTO itself is now treated as the first of Ferrari's limited-series flagship cars. It was the least valuable of them for many years. As of September 2026 that is no longer the case.",
+ "history": "## Group B and the Entry Ticket\n\nThe FIA's Group B rules of 1982 asked manufacturers to build only 200 road-legal examples to homologate a car, with few limits on technology and none on boost. Ferrari announced a Gran Turismo Omologata in September 1983 and showed it at Geneva in March 1984. The factory never publicly used the name '288'; it was the internal designation for a 2.8-liter eight-cylinder, and the tail badge read GTO. Development ran under Giovanni Sguazzini with Nicola Materazzi on the engine and Harvey Postlethwaite on the composite structure. By the time cars reached customers in 1985 the fatal accidents in Group B rallying had already condemned the category, and its cancellation left the GTO with nothing to homologate.\n\n## An Engine Turned Lengthways\n\nThe 308 carried its V8 transversely. For the GTO it was turned through 90 degrees, mounted longitudinally with the five-speed gearbox behind the differential, and the wheelbase grew by 110 mm to 2,450 mm. Ferrari records this as the first longitudinal V8 in one of its production road cars and its first twin-turbo road engine. Capacity was 2,855 cc from an 80 mm by 71 mm bore and stroke, so that the Group B equivalence factor of 1.4 for forced induction kept the car under the four-liter class limit. Twin IHI turbochargers ran 0.8 bar through Behr intercoolers, with Weber-Marelli IAW injection and ignition, one system per bank. Ferrari claimed 400 hp at 7,000 rpm and 366 lb-ft at 3,800 rpm. The 189 mph top speed was a factory figure from Nardo; Auto Motor und Sport recorded 188 mph on electronic timing in 1985 and Road & Track later published 179 mph.\n\n## Body and Frame\n\nPininfarina's Leonardo Fioravanti kept the 308's proportions and little else. The tubular steel frame carried resin-molded, glass-fiber and Kevlar panels, a Kevlar hood, a Kevlar and carbon-fiber roof and steel doors, with a full roll hoop inside the roof and B-pillars. The rear subframe carrying engine, transaxle and suspension was designed to drop out as a unit, and the cam belts are reached through a removable panel behind the seats, which is why the two-year belt interval is less painful than on later Ferraris. Dry weight was quoted at 2,557 lb. Inside were Kevlar-framed bucket seats and pedals Girardo describes as comically offset.\n\n## Two Hundred Sold, Then More\n\nAll 200 homologation cars were sold before production started. Ferrari's page states that 272 were built between 1984 and 1986, chassis 52465 to 58345; the extra cars are usually explained as roughly 70 further orders plus a handful for the Agnelli family and other favored clients. The last is generally taken to be chassis 58329, completed in March 1986 for Niki Lauda after Enzo Ferrari and Fiat's Vittorio Ghidella agreed to build one more. Whether that car makes 272 or is the 272nd of 271 plus one, whether Talacrest's 273 includes its pre-production prototype, and whether two further client cars followed, are questions the sources answer differently, and this page does not pick a number. No cars were federalized for the United States; every car left Maranello in Rosso Corsa with a black interior and left-hand drive, and a few were later converted to right-hand drive for Brunei.\n\n## The Evoluzione, the F40 and the Long Wait\n\nWith Group B gone, five Evoluzione cars and a prototype were built, with carbon composite structures and engines developed through the 530 hp F114 CR to the 650 hp F114 CK at around 2,072 lb. Ferrari quietly turned the program into a test bed for the F40, which took the Evoluzione's enlarged, more heavily boosted engine, its construction methods and much of its silhouette. For two decades the GTO was then the quiet one: it listed at about US$83,400 in 1984, was overshadowed by the F40 within three years, and traded below it into the 2010s. It was re-rated as the market turned to analog cars and as a run roughly a fifth the size of the F40's began to count for more than a modest power figure. By 2026 it had overtaken the F40 decisively.",
+ "marketNotes": "As of September 2026, classic.com's Ferrari 288 GTO market benchmark stands at $7,799,629 on a rising trend, with an average recorded sale of $6,150,438. The tracked range runs from $3,464,375 for a 1985 car in February 2022 to $11,555,000 in August 2026. The 2026 sales sequence is the story. Mecum sold a Rosso Corsa 1985 car from the Bachman Collection for $8,525,000 at Kissimmee in January 2026, which duPont Registry called the model's strongest public result. Then at Monterey in August 2026 RM Sotheby's sold chassis 54789, a 1985 car with 958 miles, air conditioning and electric windows and a February 2026 Red Book, for $11,555,000 against a $9-11 million estimate, a new model record. classic.com also records a $6,825,000 online sale in July 2026. Sports Car Market reads the Paris pair in dollars at $10,917,295 and $7,010,777, as of September 2026. The spread between the Paris RM car and the Monterey car, roughly a factor of two for cars of the same year and specification, is mileage and preservation. Auction house 'sold for' figures include buyer's premium unless stated otherwise; the Gooding figure is the one where that is not certain.",
+ "whatToLookFor": "Ferrari Classiche certification and a Marcel Massini history report are now close to standard at the top of the market; every 2026 headline result carried a Red Book confirming matching engine and transaxle, and a car without one will be asked why. Because all cars left the factory in the same color and layout, originality is read in details: the correct Speedline split rims and center nuts, the three-shade red fabric seat inserts on non-leather cars, the tool roll with jack, wheel socket, mallet and spare belts, the round plastic tub of fuses and bulbs, the leather or Gucci-pattern document pouch, and the single Schedoni luggage piece where fitted. Girardo notes the pouches and tubs are especially elusive today. Establish the option content against the build record, since air conditioning, electric windows, radio and full leather were separate items and most cars had either all or none. Confirm the cam-belt service is within the two-year interval the handbook specifies; the job is done through the panel behind the seats and is not engine-out, so there is little excuse for it being overdue. Ask for evidence of turbocharger health, fuel-system work and cooling-system function, and look at the composite panels and the tubular frame for stress cracks or repair. Long storage is the GTO's characteristic history rather than hard use, so perished hoses, seals and fuel lines, seized ancillaries and a full recommissioning bill are the usual consequence of a very low odometer reading. Mileage should be reconciled with paperwork rather than believed.",
+ "commonProblems": "The two-year cam-belt interval is the defining routine cost, though the GTO's access panel behind the seats means the belts can be changed from inside the cabin without removing the engine, and the belts themselves are cheap; a specialist described the job as quick by Ferrari standards. Turbochargers and the fuel system are the areas that wear: smoke on start-up, lag beyond the small pause inherent in the installation, and fuel-pressure faults are the symptoms, and a buyer's guide puts repair bills in the tens of thousands of dollars. The composite panels and the steel frame can develop stress cracks, and weld repairs to the frame are expensive to put right properly. Air conditioning, where fitted, struggles against heat from the bulkhead and was marginal even when new. The Kevlar-framed seats are narrow and the pedals offset, which is character rather than a fault but does put people off using the cars. The single most common issue is disuse: many GTOs have covered under 1,243 miles in forty years, and the sub-621 miles cars that make the headlines have typically needed full mechanical services before sale, as the 2022-2024 recommissioning of the Monterey 2026 record car shows. Cars stored badly rather than driven gently are the ones to be cautious of.",
+ "valueTrajectory": "The 288 GTO listed at about $83,400 at launch in 1984, and for most of its life it sat below the F40 in value. Auction results between 2011 and 2015 ran from about $748,000 to $2.75 million, the top of that range being the first car delivered to Japan with under 6,835 miles. Sports Car Market's recorded sales, as of September 2026, show roughly $1.2 to $2.7 million across 2013 to 2015, $2.1 to $3.9 million in 2016 and 2017, and $3.8 to $3.9 million as late as 2024. The lowest sale classic.com records since 2020 is $3,464,375 in February 2022. The step change came in the first eight months of 2026: $8,525,000 at Kissimmee in January and $11,555,000 at Monterey in August, each a model record, so that as of September 2026 the classic.com benchmark stands at $7,799,629 and rising. Commentary at the time was cautious: Classic Driver attributed the Kissimmee results to two motivated bidders, and Girardo's own guide questioned whether the rate of increase was sustainable while agreeing the car had been undervalued for years. The GTO now trades above the F40 and closer to Ferrari's 1960s berlinettas than to its 1980s contemporaries. Low-mileage certified cars and ordinary driven cars are separating into two markets, and that gap is widening.",
  "overallConfidence": "high",
  "sources": [
   {
@@ -82,7 +82,7 @@ export const seed288Gto = {
    "publisher": "Ferrari S.p.A.",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Ferrari's heritage record: 272 built against a planned 200, built 1984-1986, chassis 52465 to 58345, announced September 1983 and shown at Geneva March 1984, 2855cc, 80 x 71 mm, 7.6:1, 400 bhp at 7000 rpm, IHI turbos at 0.8 bar, Behr intercoolers, Weber-Marelli IAW, five-speed synchromesh gearbox, 2450 mm wheelbase (110 mm longer than 308), 5 mm shorter overall, tubular steel frame, 16 x 8J and 16 x 10J Speedline split rims, first longitudinal V8 and first twin-turbo Ferrari road car."
+   "notes": "Ferrari's heritage record: 272 built against a planned 200, built 1984-1986, chassis 52465 to 58345, announced September 1983 and shown at Geneva March 1984, 2855cc, 80 x 71 mm, 7.6:1, 400 hp at 7000 rpm, IHI turbos at 0.8 bar, Behr intercoolers, Weber-Marelli IAW, five-speed synchromesh gearbox, 2450 mm wheelbase (110 mm longer than 308), 5 mm shorter overall, tubular steel frame, 16 x 8J and 16 x 10J Speedline split rims, first longitudinal V8 and first twin-turbo Ferrari road car."
   },
   {
    "ref": "wikipedia-288",
@@ -91,7 +91,7 @@ export const seed288Gto = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Aggregated reference: 272 built 1984-1987 (200 plus about 70 plus a couple for the Agnelli family), 400 PS / 395 bhp at 7,000 rpm, 496 Nm at 3,800 rpm, 1,159 kg, 2,450 mm wheelbase, steel doors, fibreglass panels, Kevlar bonnet, Kevlar and carbon roof, Ferrari claims of 189 mph and 0-60 in about 5 s against Road & Track's 179 mph and 5.0 s, six Evoluzione (five plus prototype) at 650 hp and about 940 kg, Lauda car 58329, 1977 Pininfarina 308 design exercise."
+   "notes": "Aggregated reference: 272 built 1984-1987 (200 plus about 70 plus a couple for the Agnelli family), 395 hp / 395 hp at 7,000 rpm, 366 lb-ft at 3,800 rpm, 2,555 lb, 2,450 mm wheelbase, steel doors, fiberglass panels, Kevlar hood, Kevlar and carbon roof, Ferrari claims of 189 mph and 0-60 in about 5 s against Road & Track's 179 mph and 5.0 s, six Evoluzione (five plus prototype) at 650 hp and about 2,072 lb, Lauda car 58329, 1977 Pininfarina 308 design exercise."
   },
   {
    "ref": "classic-288",
@@ -109,7 +109,7 @@ export const seed288Gto = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $11,555,000, Monterey August 2026, lot 340. Chassis ZFFPA16B000054789, 99th built, 1,541 km, Rosso Corsa over Nero, optional air conditioning and power windows, Classiche Red Book February 2026, European delivery, stored largely unused in Germany then the US, full mechanical service 2022-2024. Catalogue says 'less than 300 cars were built', quotes 400 hp, 366 lb-ft, 189 mph, 0-60 in 4.8 s, and 'potentially only six or less' sub-1,000-mile cars."
+   "notes": "Sold $11,555,000, Monterey August 2026, lot 340. Chassis ZFFPA16B000054789, 99th built, 958 miles, Rosso Corsa over Nero, optional air conditioning and power windows, Classiche Red Book February 2026, European delivery, stored largely unused in Germany then the US, full mechanical service 2022-2024. Catalog says 'less than 300 cars were built', quotes 400 hp, 366 lb-ft, 189 mph, 0-60 in 4.8 s, and 'potentially only six or less' sub-1,000-mile cars."
   },
   {
    "ref": "gooding-pa26-52471",
@@ -118,7 +118,7 @@ export const seed288Gto = {
    "publisher": "Gooding Christie's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold €9,117,500, Rétromobile Paris, January 2026. Chassis ZFFPA16B000052471, engine F114B 00045, just over 1,500 km, two owners, 30 years single-family ownership, Classiche Red Book and Massini report, original tools, manuals and warranty card. Specification 2,855 cc, IHI turbos, Behr intercoolers, Weber-Marelli, 400 bhp at 7,000 rpm, five-speed transaxle. States 'one of just 272 examples built'."
+   "notes": "Sold €9,117,500, Rétromobile Paris, January 2026. Chassis ZFFPA16B000052471, engine F114B 00045, just over 932 miles, two owners, 30 years single-family ownership, Classiche Red Book and Massini report, original tools, manuals and warranty card. Specification 2,855 cc, IHI turbos, Behr intercoolers, Weber-Marelli, 400 hp at 7,000 rpm, five-speed transaxle. States 'one of just 272 examples built'."
   },
   {
    "ref": "gooding-press-paris",
@@ -136,7 +136,7 @@ export const seed288Gto = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold €5,855,000, Paris, January 2026, lot 192. Chassis ZFFPA16B000052727, engine 00112, gearbox N105, 24,244 km, single ownership from new via Sa.Mo.Car of Rome, optional air conditioning, electric windows and stereo, Classiche Red Book December 2025. States 272 built, this about the 18th; quotes 400 hp, 496 Nm, 0-100 km/h 4.9 s, 305 km/h, GRP and carbon composite body, Kevlar-framed seats, and the 'Big Six' framing."
+   "notes": "Sold €5,855,000, Paris, January 2026, lot 192. Chassis ZFFPA16B000052727, engine 00112, gearbox N105, 15,065 miles, single ownership from new via Sa.Mo.Car of Rome, optional air conditioning, electric windows and stereo, Classiche Red Book December 2025. States 272 built, this about the 18th; quotes 400 hp, 366 lb-ft, 0-62 mph 4.9 s, 190 mph, GRP and carbon composite body, Kevlar-framed seats, and the 'Big Six' framing."
   },
   {
    "ref": "dupont-spotlight",
@@ -190,7 +190,7 @@ export const seed288Gto = {
    "publisher": "Talacrest",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Dealer model page: states 'a total of 273 roadcars were made with 1 official pre production prototype' and that figures for the total run vary, produced 1984-1986, 200 required for homologation; five Evoluzione or six counting the one built from a GTO chassis, 650 bhp and 940 kg; undated price guidance of £1.5-2 million by mileage and £2.5 million plus for an Evoluzione."
+   "notes": "Dealer model page: states 'a total of 273 roadcars were made with 1 official pre production prototype' and that figures for the total run vary, produced 1984-1986, 200 required for homologation; five Evoluzione or six counting the one built from a GTO chassis, 650 hp and 2,072 lb. Its undated price guidance is in pounds sterling and is not reproduced here."
   },
   {
    "ref": "supercarnostalgia-52737",
@@ -208,7 +208,7 @@ export const seed288Gto = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Evoluzione: five cars plus prototype 50253 (chassis 70167, 70205, 79887, 79888, 79889, the last three completed 1988); engines F114 B 400 bhp, F114 CR 530 bhp at 7,500 rpm from October 1984, F114 CK 650 bhp at 7,800 rpm from September 1985; carbon composite structure three times stiffer and 40 per cent lighter; never FIA homologated; programme redirected as an F40 test bed."
+   "notes": "Evoluzione: five cars plus prototype 50253 (chassis 70167, 70205, 79887, 79888, 79889, the last three completed 1988); engines F114 B 400 hp, F114 CR 530 hp at 7,500 rpm from October 1984, F114 CK 650 hp at 7,800 rpm from September 1985; carbon composite structure three times stiffer and 40 percent lighter; never FIA homologated; program redirected as an F40 test bed."
   },
   {
    "ref": "hagerty-lauda",
@@ -217,7 +217,7 @@ export const seed288Gto = {
    "publisher": "Hagerty Media",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Lauda car chassis 58329 completed March 1986 at Lauda's request with Fiat CEO Vittorio Ghidella involved, presented at an airfield near Reggio Emilia; states Ferrari built 272 while noting the standard figure cited was 271 for 1984-85; Fioravanti styling, Postlethwaite's Kevlar honeycomb, planned rate of 20 cars a month, twin IHI turbos, 400 bhp."
+   "notes": "Lauda car chassis 58329 completed March 1986 at Lauda's request with Fiat CEO Vittorio Ghidella involved, presented at an airfield near Reggio Emilia; states Ferrari built 272 while noting the standard figure cited was 271 for 1984-85; Fioravanti styling, Postlethwaite's Kevlar honeycomb, planned rate of 20 cars a month, twin IHI turbos, 400 hp."
   },
   {
    "ref": "girardo-guide",
@@ -226,7 +226,7 @@ export const seed288Gto = {
    "publisher": "Girardo & Co.",
    "sourceType": "specialist",
    "reliability": "high",
-   "notes": "Dealer guide: 272 sold in 1984 and 1985; Tipo F114B, 400 bhp at 7,000 rpm, 0-60 in 4.8 s, 189 mph; development under Sguazzini with Materazzi and Postlethwaite; Fioravanti design; Ferrari never publicly used the '288' name; four options (leather Daytona-style seats, air conditioning, Blaupunkt radio, electric windows) usually specified together; three shades of red seat inserts; tool roll, fuse tub, document pouches, single Schedoni bag; offset pedals, narrow seats, weak air conditioning; six of 20 planned Evoluzione; market commentary on sustainability."
+   "notes": "Dealer guide: 272 sold in 1984 and 1985; Tipo F114B, 400 hp at 7,000 rpm, 0-60 in 4.8 s, 189 mph; development under Sguazzini with Materazzi and Postlethwaite; Fioravanti design; Ferrari never publicly used the '288' name; four options (leather Daytona-style seats, air conditioning, Blaupunkt radio, electric windows) usually specified together; three shades of red seat inserts; tool roll, fuse tub, document pouches, single Schedoni bag; offset pedals, narrow seats, weak air conditioning; six of 20 planned Evoluzione; market commentary on sustainability."
   },
   {
    "ref": "supercars-net",
@@ -235,7 +235,7 @@ export const seed288Gto = {
    "publisher": "Supercars.net",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Full specification: 272 built, all 200 sold before production; 80 x 71 mm, 7.6:1, 400 bhp at 7000, 366 lb-ft at 3800, dual Weber-Marelli systems; drop-out rear subframe; Koni adjustable dampers; brakes about 12 in with twin-piston calipers; 16 in Speedline centre-lock, 225/50 and 255/50; length 4,290 mm, width 1,910 mm, height 1,120 mm, 1,160 kg; 1984 price $83,400 / £72,999; no GTOs imported to North America by Ferrari; auction range 2011-2015 $748,000 to $2,750,000, the latter the first car delivered to Japan with under 11,000 km."
+   "notes": "Full specification: 272 built, all 200 sold before production; 80 x 71 mm, 7.6:1, 400 hp at 7000, 366 lb-ft at 3800, dual Weber-Marelli systems; drop-out rear subframe; Koni adjustable dampers; brakes about 12 in with twin-piston calipers; 16 in Speedline center-lock, 225/50 and 255/50; length 4,290 mm, width 1,910 mm, height 1,120 mm, 2,557 lb; 1984 price $83,400; no GTOs imported to North America by Ferrari; auction range 2011-2015 $748,000 to $2,750,000, the latter the first car delivered to Japan with under 6,835 miles."
   },
   {
    "ref": "drive-brunei-test",
@@ -244,7 +244,7 @@ export const seed288Gto = {
    "publisher": "Drive (drive-my.com)",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "November 2017 road test of an ex-Brunei right-hand-drive conversion, one of approximately four, returned via DK Engineering in 2015 with under 1,000 km and fully restored. Quotes 395 bhp at 7000, 366 lb-ft at 3800, 1160 kg, 0-60 4.9 s, 187 mph, £73,000 new, £1-1.5 million in 2017; states 271 built; driving impressions of a small turbo pause, light accurate steering and 7,800 rpm redline."
+   "notes": "November 2017 road test of an ex-Brunei right-hand-drive conversion, one of approximately four, returned via DK Engineering in 2015 with under 621 miles and fully restored. Quotes 395 hp at 7000, 366 lb-ft at 3800, 2,557 lb, 0-60 4.9 s, 187 mph; states 271 built; driving impressions of a small turbo pause, light accurate steering and 7,800 rpm redline."
   },
   {
    "ref": "ferrarichat-topspeed",
@@ -265,6 +265,24 @@ export const seed288Gto = {
    "notes": "Specialist workshop account: owner's manual specifies belt replacement every two years; a removable panel behind the seats gives access to the front of the engine so the job is done from the cabin without removing the engine; belts themselves are inexpensive; job saves dozens of hours against engine-out Ferraris."
   },
   {
+   "ref": "scm-buyers-guide",
+   "title": "Buyer's Guide to the Ferrari 288 GTO - Sports Car Market",
+   "url": "https://www.sportscarmarket.com/kb/ferrari-288-gto",
+   "publisher": "Sports Car Market",
+   "sourceType": "market-data",
+   "reliability": "high",
+   "notes": "US market database, page last modified 4 September 2026: recorded 288 GTO sales from 2000 to 2026 in dollars, roughly $230,000-$320,000 in 2000-2005, $475,000-$616,000 in 2007-2009, $1.2-$2.7 million in 2013-2015, $2.1-$3.9 million in 2016-2017 and $3.8-$3.9 million in 2022-2024; 2026 entries at $8,525,000 (17 January), $7,010,777 (28 January), $10,917,295 (29 January) and $6,832,500 (10 July), the two January Paris figures being the dollar readings of the euro results."
+  },
+  {
+   "ref": "classicdriver-10m",
+   "title": "Will the Ferrari 288 GTO soon be a 10-million-dollar car? | Classic Driver Magazine",
+   "url": "https://www.classicdriver.com/en/article/cars/will-ferrari-288-gto-soon-be-a-10-million-dollar-car",
+   "publisher": "Classic Driver",
+   "sourceType": "journalism",
+   "reliability": "medium",
+   "notes": "Preview dated 8 July 2026 of chassis 54789 ahead of RM Sotheby's Monterey: notes the model had yet to cross $10 million at public auction, suggests the 958 miles car could fetch $11 million and join the eight-figure club, and sets it against the $12.21 million Ferrari F50 and $17.88 million Enzo results of January 2026."
+  },
+  {
    "ref": "cci-buyers-guide",
    "title": "Ferrari 288 GTO Buyer's Guide (1984-1987) | Car Collector International",
    "url": "https://www.carcollectorinternational.com/research/buyers-guides/ferrari/288-gto",
@@ -277,7 +295,7 @@ export const seed288Gto = {
  "claims": [
   {
    "section": "history",
-   "claimText": "The 288 GTO was built to homologate Ferrari for FIA Group B, which required 200 road cars; it was announced in September 1983, shown at Geneva in March 1984, and never raced because the category was cancelled.",
+   "claimText": "The 288 GTO was built to homologate Ferrari for FIA Group B, which required 200 road cars; it was announced in September 1983, shown at Geneva in March 1984, and never raced because the category was canceled.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -289,7 +307,7 @@ export const seed288Gto = {
   },
   {
    "section": "history",
-   "claimText": "Ferrari never publicly used the '288' name on the car; it was the internal designation for the 2.8-litre eight-cylinder engine. Development was led by Giovanni Sguazzini with Nicola Materazzi on the engine and Harvey Postlethwaite on the composite structure, and Leonardo Fioravanti of Pininfarina styled the body.",
+   "claimText": "Ferrari never publicly used the '288' name on the car; it was the internal designation for the 2.8-liter eight-cylinder engine. Development was led by Giovanni Sguazzini with Nicola Materazzi on the engine and Harvey Postlethwaite on the composite structure, and Leonardo Fioravanti of Pininfarina styled the body.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -299,7 +317,7 @@ export const seed288Gto = {
   },
   {
    "section": "specs",
-   "claimText": "The engine is a 2,855 cc Tipo F114 B 90-degree V8 with an 80 mm by 71 mm bore and stroke, 7.6:1 compression, twin IHI turbochargers at 0.8 bar, twin Behr intercoolers and Weber-Marelli IAW injection and ignition, and Ferrari claimed 400 bhp at 7,000 rpm and 496 Nm (366 lb-ft) at 3,800 rpm.",
+   "claimText": "The engine is a 2,855 cc Tipo F114 B 90-degree V8 with an 80 mm by 71 mm bore and stroke, 7.6:1 compression, twin IHI turbochargers at 0.8 bar, twin Behr intercoolers and Weber-Marelli IAW injection and ignition, and Ferrari claimed 400 hp at 7,000 rpm and 366 lb-ft at 3,800 rpm.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -322,7 +340,7 @@ export const seed288Gto = {
   },
   {
    "section": "specs",
-   "claimText": "The body uses composite and resin-moulded panels on a tubular steel frame, with steel doors, a Kevlar bonnet and a Kevlar and carbon-fibre roof, a full roll hoop inside the roof, 16-inch Speedline split-rim centre-lock wheels on 225/50 and 255/50 tyres, and a quoted dry weight of about 1,160 kg.",
+   "claimText": "The body uses composite and resin-molded panels on a tubular steel frame, with steel doors, a Kevlar hood and a Kevlar and carbon-fiber roof, a full roll hoop inside the roof, 16-inch Speedline split-rim center-lock wheels on 225/50 and 255/50 tires, and a quoted dry weight of about 2,557 lb.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -334,7 +352,7 @@ export const seed288Gto = {
   },
   {
    "section": "specs",
-   "claimText": "The 189 mph (305 km/h) top speed is a Ferrari claim; Auto Motor und Sport recorded 188 mph on electronic timing in 1985, Road & Track published 179 mph, and a 2017 British road test quoted 187 mph, so the claim is close to but not independently matched by every test.",
+   "claimText": "The 189 mph top speed is a Ferrari claim; Auto Motor und Sport recorded 188 mph on electronic timing in 1985, Road & Track published 179 mph, and a 2017 British road test quoted 187 mph, so the claim is close to but not independently matched by every test.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -363,7 +381,7 @@ export const seed288Gto = {
     "dupont-spotlight",
     "rm-mo26-54789"
    ],
-   "conflictNote": "Ferrari's heritage page states 272 (chassis 52465-58345, built 1984-1986), as do Wikipedia, Girardo, classic.com and the Gooding and RM Sotheby's Paris 2026 catalogues. Supercar Nostalgia and Hagerty describe 271 cars in 1984-85 plus a 272nd for Niki Lauda in March 1986; Drive magazine states 271. Talacrest states 273 road cars 'with 1 official pre-production prototype', and itself notes that figures vary. duPont Registry gives 272 as accepted but adds two later client cars for a potential 274. RM Sotheby's Monterey 2026 catalogue says only 'less than 300'. Not reconciled by any source consulted, so productionTotal is null."
+   "conflictNote": "Ferrari's heritage page states 272 (chassis 52465-58345, built 1984-1986), as do Wikipedia, Girardo, classic.com and the Gooding and RM Sotheby's Paris 2026 catalogs. Supercar Nostalgia and Hagerty describe 271 cars in 1984-85 plus a 272nd for Niki Lauda in March 1986; Drive magazine states 271. Talacrest states 273 road cars 'with 1 official pre-production prototype', and itself notes that figures vary. duPont Registry gives 272 as accepted but adds two later client cars for a potential 274. RM Sotheby's Monterey 2026 catalog says only 'less than 300'. Not reconciled by any source consulted, so productionTotal is null."
   },
   {
    "section": "production",
@@ -390,7 +408,7 @@ export const seed288Gto = {
   },
   {
    "section": "production",
-   "claimText": "Five 288 GTO Evoluzione cars plus a prototype (50253) were built, with carbon composite structures and engines developed through the 530 bhp F114 CR to the 650 bhp F114 CK; they were never homologated or raced and the programme became the test bed for the F40.",
+   "claimText": "Five 288 GTO Evoluzione cars plus a prototype (50253) were built, with carbon composite structures and engines developed through the 530 hp F114 CR to the 650 hp F114 CK; they were never homologated or raced and the program became the test bed for the F40.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -444,7 +462,7 @@ export const seed288Gto = {
   },
   {
    "section": "market",
-   "claimText": "In 2026 the model record was reset three times: $8,525,000 at Mecum Kissimmee in January, €9,117,500 for chassis 52471 at Gooding Christie's Paris on 29 January, and $11,555,000 for chassis 54789 with 1,541 km at RM Sotheby's Monterey in August; RM Sotheby's Paris made €5,855,000 for a 24,244 km car in the same January week.",
+   "claimText": "In 2026 the model record was reset three times: $8,525,000 at Mecum Kissimmee in January, €9,117,500 for chassis 52471 at Gooding Christie's Paris on 29 January, and $11,555,000 for chassis 54789 with 958 miles at RM Sotheby's Monterey in August; RM Sotheby's Paris made €5,855,000 for a 15,065 miles car in the same January week.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -459,15 +477,26 @@ export const seed288Gto = {
   },
   {
    "section": "market",
-   "claimText": "The 288 GTO listed at about £73,000 or US$83,400 in 1984, traded between roughly $748,000 and $2.75 million at auction in 2011-2015, and was guided at £1-2 million by British sources in the late 2010s before the 2026 re-rating; contemporary commentary attributed the January 2026 results partly to two motivated bidders and questioned whether the pace was sustainable.",
+   "claimText": "The 288 GTO listed at about US$83,400 in 1984, traded between roughly $748,000 and $2.75 million at auction in 2011-2015, and sat at $2.1 to $3.9 million in 2016-2017 and $3.8 to $3.9 million as late as 2024 on Sports Car Market's recorded sales before the 2026 re-rating; contemporary commentary attributed the January 2026 results partly to two motivated bidders and questioned whether the pace was sustainable.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
     "supercars-net",
-    "drive-brunei-test",
-    "talacrest-288",
+    "scm-buyers-guide",
     "classicdriver-kissimmee",
     "girardo-guide"
+   ]
+  },
+  {
+   "section": "market",
+   "claimText": "As of September 2026 Sports Car Market records the two January 2026 Paris results in dollars at $10,917,295 and $7,010,777, and Classic Driver asked in July 2026 whether the model would become a ten-million-dollar car, which the $11,555,000 Monterey sale in August 2026 answered.",
+   "confidence": "high",
+   "status": "verified",
+   "sourceRefs": [
+    "scm-buyers-guide",
+    "classicdriver-10m",
+    "rm-mo26-54789",
+    "classic-288"
    ]
   },
   {

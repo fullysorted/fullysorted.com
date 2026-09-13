@@ -1,12 +1,12 @@
 /**
- * Researched model draft — Amphicar 770 (1961–1968).
+ * Researched model draft — Amphicar 770 (1961-1968).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedAmphicar770 = {
  "slug": "amphicar/770",
  "make": "Amphicar",
  "model": "770",
- "generation": "1961–1968",
+ "generation": "1961-1968",
  "generationCode": null,
  "trim": null,
  "yearStart": 1961,
@@ -15,10 +15,10 @@ export const seedAmphicar770 = {
   "Amphibious convertible"
  ],
  "engines": [
-  "Triumph Herald 1147cc inline-four (rear-mounted, ~43 bhp at 4,750 rpm), driving the rear wheels on land and twin nylon propellers in the water"
+  "Triumph Herald 1147cc inline-four (rear-mounted, ~43 hp at 4,750 rpm), driving the rear wheels on land and twin nylon propellers in the water"
  ],
  "productionTotal": 3878,
- "productionNotes": "Most sources agree ~3,878 Amphicars were built. The bulk of physical assembly occurred roughly 1960–1965 at Quandt Group facilities (Lübeck, later Berlin-Borsigwalde), though the car was marketed and sold through 1968 as inventory was cleared. The vast majority were exported to the United States: Heacock Classic cites 3,046 US imports and ~832 European sales; other accounts say roughly 3,700 reached the US. Only about 97 were right-hand-drive. Estimates of survivors vary from 'several hundred' to around 500 still operable.",
+ "productionNotes": "Most sources agree ~3,878 Amphicars were built. The bulk of physical assembly occurred roughly 1960-1965 at Quandt Group facilities (Lübeck, later Berlin-Borsigwalde), though the car was marketed and sold through 1968 as inventory was cleared. The vast majority were exported to the United States: Heacock Classic cites 3,046 US imports and ~832 European sales; other accounts say roughly 3,700 reached the US. Only about 97 were right-hand-drive. Estimates of survivors vary from 'several hundred' to around 500 still operable.",
  "notableTrims": [
   {
    "name": "Model 770",
@@ -32,21 +32,21 @@ export const seedAmphicar770 = {
  "specs": {
   "layout": "Rear-mounted engine, rear-wheel drive on land; twin rear propellers on water",
   "engine": "Triumph Herald 1147cc inline-four (Standard-Triumph SC unit)",
-  "power": "~43 bhp (32 kW) at 4,750 rpm",
+  "power": "~43 hp at 4,750 rpm",
   "landTransmission": "4-speed all-synchromesh manual",
   "waterTransmission": "Separate 2-speed marine gearbox driving twin nylon propellers (forward/reverse); a selector lets the engine drive wheels only, props only, or both",
   "steeringOnWater": "Front wheels act as rudimentary rudders",
-  "topSpeedLand": "~70 mph (110 km/h)",
-  "topSpeedWater": "~7 knots (roughly 6.5–8 mph)",
+  "topSpeedLand": "~70 mph",
+  "topSpeedWater": "~7 knots (roughly 6.5-8 mph)",
   "length": "171 in (4,343 mm)",
   "width": "62 in (1,575 mm)",
   "height": "60 in (1,524 mm)",
   "wheelbase": "84 in (2,134 mm)",
-  "curbWeight": "~2,315–2,324 lb (1,050–1,054 kg)",
+  "curbWeight": "~2,315-2,324 lb (2,315-2,324 lb)",
   "originalPrice": "approx. $2,800–$3,300 (1960s US)"
  },
  "summary": "The Amphicar 770 is the world's first — and by far the most successful — mass-produced civilian amphibious car: a car that drives straight into a lake and floats away under its own power. Designed by German engineer Hans Trippel and built by the Quandt Group from 1961 to 1968, it paired a jaunty finned convertible body with a rear-mounted 1147cc Triumph Herald four-cylinder engine. On land it drove the rear wheels through a conventional 4-speed manual (~70 mph); in the water a second gearbox spun twin nylon propellers (~7 knots), giving rise to the '770' name. About 3,878 were built, most exported to the United States. Its most famous owner, President Lyndon B. Johnson, delighted in terrifying guests by feigning brake failure and plunging his Amphicar into the lake at his Texas ranch. Today it is a beloved, genuinely usable novelty and a social-media favorite; running, water-worthy examples command strong money while corrosion is the perennial enemy.",
- "history": "## Origins and Design\nThe Amphicar was the brainchild of Hans Trippel, a German engineer who had developed amphibious vehicles during WWII (his lineage is often linked to the era of the Volkswagen Schwimmwagen). His civilian amphibious car reached the public in 1960 and entered series production in 1961. It was manufactured by the Quandt Group, initially in Lübeck and later at Berlin-Borsigwalde.\n\n## Engineering the Car-Boat\nRather than build a bespoke drivetrain, Trippel used a proven, serviceable powerplant: the 1147cc inline-four from Britain's Triumph Herald, producing around 43 bhp. Mounted at the rear, it drove the rear wheels on land through a 4-speed manual, and a separate marine gearbox engaged twin nylon propellers under the rear bumper for water travel. A selector allowed wheels-only, propellers-only, or both together — useful for clawing up a slippery boat ramp. The front wheels doubled as rudders. The name '770' reflects its dual nature: roughly 7 (knots/mph) on water and 70 mph on land. Its tailfins were famously said to be the tallest on any production car, an inch higher than a 1959 Cadillac.\n\n## Selling to America\nThe Amphicar was aimed squarely at the US market — the '70 into the 770' export focus — where its novelty had obvious appeal. Of ~3,878 built, the great majority were left-hand-drive US exports (Heacock cites 3,046 US imports); only ~97 were right-hand drive.\n\n## The LBJ Prank\nThe car's most enduring story belongs to President Lyndon B. Johnson, who kept a Lagoon Blue Amphicar at his Stonewall, Texas ranch. He would drive unsuspecting guests toward the lake shouting that the brakes had failed — 'We're going in! We're going under!' — before the car simply floated. Aide Joseph Califano was a noted victim.\n\n## Decline\nRising costs, tightening US safety and emissions rules, and a limited niche market ended production; the last cars were sold off through 1968. No direct mass-produced successor ever matched it.",
+ "history": "## Origins and Design\nThe Amphicar was the brainchild of Hans Trippel, a German engineer who had developed amphibious vehicles during WWII (his lineage is often linked to the era of the Volkswagen Schwimmwagen). His civilian amphibious car reached the public in 1960 and entered series production in 1961. It was manufactured by the Quandt Group, initially in Lübeck and later at Berlin-Borsigwalde.\n\n## Engineering the Car-Boat\nRather than build a bespoke drivetrain, Trippel used a proven, serviceable powerplant: the 1147cc inline-four from Britain's Triumph Herald, producing around 43 hp. Mounted at the rear, it drove the rear wheels on land through a 4-speed manual, and a separate marine gearbox engaged twin nylon propellers under the rear bumper for water travel. A selector allowed wheels-only, propellers-only, or both together — useful for clawing up a slippery boat ramp. The front wheels doubled as rudders. The name '770' reflects its dual nature: roughly 7 (knots/mph) on water and 70 mph on land. Its tailfins were famously said to be the tallest on any production car, an inch higher than a 1959 Cadillac.\n\n## Selling to America\nThe Amphicar was aimed squarely at the US market — the '70 into the 770' export focus — where its novelty had obvious appeal. Of ~3,878 built, the great majority were left-hand-drive US exports (Heacock cites 3,046 US imports); only ~97 were right-hand drive.\n\n## The LBJ Prank\nThe car's most enduring story belongs to President Lyndon B. Johnson, who kept a Lagoon Blue Amphicar at his Stonewall, Texas ranch. He would drive unsuspecting guests toward the lake shouting that the brakes had failed — 'We're going in! We're going under!' — before the car simply floated. Aide Joseph Califano was a noted victim.\n\n## Decline\nRising costs, tightening US safety and emissions rules, and a limited niche market ended production; the last cars were sold off through 1968. No direct mass-produced successor ever matched it.",
  "marketNotes": "As of mid-2026, the Amphicar 770 trades as a fun, usable, headline-grabbing collectible rather than a blue-chip investment. Aggregated auction data (CLASSIC.COM) shows an average sale price around $76,000, with a benchmark near $69,000 and a range from roughly $15,000 for a project to about $93,500 at the top. Notable recent results include two sales at $93,500 (Hershey PA Oct 2025; Fort Worth TX Nov 2025), $85,800 (Kissimmee FL, Jan 2026) and $78,100 (Tulsa OK, June 2026); the benchmark trend has ticked slightly downward. Provenance, cosmetic quality and — crucially — proven, water-tested seaworthiness drive the premiums, while rough or non-floating projects trade far cheaper. A well-restored car was estimated at $80,000–$100,000 as far back as 2022, so values have broadly held in that band.",
  "whatToLookFor": "Prioritize a hull and body that are genuinely rust-free — the steel unibody doubles as the boat hull, so corrosion in the floors, sills, seams and lower body is both a value-killer and a safety issue. Confirm the car actually floats and has been water-tested recently; ask about the condition of the rubber seals and the two large door/bilge drain plugs and bilge pump. Check that both drive systems work: the road gearbox and the separate propeller gearbox, plus the nylon propellers and their shafts/seals. Complete, original trim and the distinctive tall fins are hard to source. Documented restoration history, service records and evidence of regular use (rather than a long static sit) are strong positives.",
  "commonProblems": "Corrosion is the number-one enemy because the body is the boat; hidden rust in the hull, floor pans and seams can be dangerous and expensive. Water intrusion past worn door seals or drain plugs is common if the car has been neglected. The dual-gearbox setup and propeller drive add mechanical complexity and require specialist knowledge; parts for the marine portion and body are scarce. The Triumph-derived engine is reliable and serviceable but modestly powered. Cars that have sat unused often have seized water-drive components, perished seals and electrical faults from moisture.",
@@ -73,7 +73,7 @@ export const seedAmphicar770 = {
   },
   {
    "ref": "lanemotor",
-   "title": "Amphicar 770 – 1964",
+   "title": "Amphicar 770-1964",
    "url": "https://www.lanemotormuseum.org/collection/cars/item/amphicar-1964/",
    "publisher": "Lane Motor Museum",
    "sourceType": "reference-book",
@@ -96,7 +96,7 @@ export const seedAmphicar770 = {
    "publisher": "CLASSIC.COM",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Auction aggregator; average ~$76,009, benchmark ~$69,451, range $15,236–$93,500, dated 2025–2026 sale results."
+   "notes": "Auction aggregator; average ~$76,009, benchmark ~$69,451, range $15,236–$93,500, dated 2025-2026 sale results."
   },
   {
    "ref": "historyfacts",
@@ -122,7 +122,7 @@ export const seedAmphicar770 = {
   },
   {
    "section": "specs",
-   "claimText": "It used a rear-mounted 1147cc Triumph Herald inline-four (~43 bhp at 4,750 rpm) driving the rear wheels on land and twin nylon propellers in the water.",
+   "claimText": "It used a rear-mounted 1147cc Triumph Herald inline-four (~43 hp at 4,750 rpm) driving the rear wheels on land and twin nylon propellers in the water.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -209,7 +209,7 @@ export const seedAmphicar770 = {
   },
   {
    "section": "market",
-   "claimText": "As of mid-2026, aggregated auction data shows an average sale price around $76,000 and a range from roughly $15,000 (project) to about $93,500 (best examples), with recent 2025–2026 top sales at $93,500, $85,800 and $78,100.",
+   "claimText": "As of mid-2026, aggregated auction data shows an average sale price around $76,000 and a range from roughly $15,000 (project) to about $93,500 (best examples), with recent 2025-2026 top sales at $93,500, $85,800 and $78,100.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
