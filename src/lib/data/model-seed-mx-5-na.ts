@@ -69,7 +69,7 @@ export const seedMx5Na = {
   "suspension": "Independent double wishbones front and rear with anti-roll bars at both ends",
   "brakes": "Discs all round, ventilated front and solid rear on the 1.8; larger brakes from 1994",
   "weight": "2,161 lb at launch and 2,183 lb from 1994 per Wikipedia; evo quotes 2,072 lb, BOFI Racing about 2,116 lb. Sources do not agree",
-  "dimensions": "3,970 mm long (encyCARpedia gives 3,975 mm for the 1.8), 1,675 mm wide, 1,235 mm high, 2,265 mm wheelbase; Cd 0.38",
+  "dimensions": "156.3 in (3,970 mm) long (encyCARpedia gives 156.5 in (3,975 mm) for the 1.8), 65.9 in (1,675 mm) wide, 48.6 in (1,235 mm) high, 89.2 in (2,265 mm) wheelbase; Cd 0.38",
   "acceleration": "Mazda claimed 8.6 s to 60 mph; Car and Driver recorded 9.2 s, Motor Trend 8.9 s, Autocar 9.1 s. encyCARpedia gives 7.9 s for the 1.8",
   "top_speed": "116.8 mph claimed for the 1.6; 116 mph by Car and Driver with hardtop, 114 mph by Autocar. encyCARpedia gives 122 mph for the 1.8",
   "fuel_capacity": "48 liters for the 1.8 per encyCARpedia, larger than the early 1.6"

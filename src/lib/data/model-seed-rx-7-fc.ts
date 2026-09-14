@@ -1,5 +1,5 @@
 /**
- * Researched model draft — Mazda RX-7 FC (1986-1992).
+ * Researched model draft - Mazda RX-7 FC (1986-1992).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedRx7Fc = {
@@ -51,7 +51,7 @@ export const seedRx7Fc = {
  ],
  "specs": {
   "layout": "Front-mounted longitudinal rotary engine, rear-wheel drive, 2+2 coupe or two-seat convertible",
-  "chassis": "Unitary steel bodyshell; wheelbase 2,430 mm (95.7 in), length 4,290 mm (168.9 in) for 1986-88 cars and 4,315 mm (169.9 in) for 1989-92, width 1,690 mm, height 1,265 mm",
+  "chassis": "Unitary steel bodyshell; wheelbase 95.7 in (2,430 mm) (95.7 in), length 4,290 mm (168.9 in) for 1986-88 cars and 4,315 mm (169.9 in) for 1989-92, width 1,690 mm, height 49.8 in (1,265 mm)",
   "engine": "1,308 cc 13B twin-rotor Wankel, 654 cc per chamber, quoted as a 2,616 cc equivalent swept volume in some reference data; naturally aspirated 13B-DEI or turbocharged 13B-T",
   "induction": "Six-port induction on naturally aspirated cars; single turbocharger with twin-scroll housing, split intake manifold and air-to-air intercooler on the 13B-T",
   "compression": "9.4:1 naturally aspirated, 9.0:1 turbocharged",
@@ -61,7 +61,7 @@ export const seedRx7Fc = {
   "final_drive": "4.300 naturally aspirated, 4.100 turbocharged; viscous limited-slip differential optional, standard on GTU/GTUs",
   "suspension_front": "MacPherson struts, coil springs, anti-roll bar",
   "suspension_rear": "Independent semi-trailing arm with Dynamic Tracking Suspension System toe-control hubs and anti-roll bar; Auto Adjusting Suspension damping optional",
-  "brakes": "Ventilated discs front and rear, vacuum assisted; 277 mm front and 274 mm rear on later turbocharged and GTUs cars; ABS optional",
+  "brakes": "Ventilated discs front and rear, vacuum assisted; 10.9 in (277 mm) front and 10.8 in (274 mm) rear on later turbocharged and GTUs cars; ABS optional",
   "weight": "2,626-2,723 lb for Series 4 naturally aspirated cars; about 2,888 lb curb for a Series 5 Turbo II; convertibles about 2,822 lb",
   "acceleration": "6.5 seconds 0-60 mph and 143 mph quoted for the Series 5 Turbo II in reference data; no independently measured period road-test figure was obtained here"
  },

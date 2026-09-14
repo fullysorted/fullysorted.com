@@ -64,8 +64,8 @@ URL is a liability.
 | `productionNotes` | 900–2,500 chars. Where the numbers came from and why they differ |
 | `notableTrims` | 4–8 entries of `{ name, note }`; the note says why a collector cares |
 | `specs` | 12–18 keys, snake_case. Include `layout`, `chassis`, `engine`, `power`, `torque`, `transmission`, `weight`, `acceleration`. Mark manufacturer claims as claims |
-| `summary` | 700–1,100 chars, one paragraph, no headings |
-| `history` | **3,000–4,200 chars**, 4–6 `##` sections |
+| `summary` | 700–1,150 chars, one paragraph, no headings |
+| `history` | **3,000–4,300 chars**, 4–6 `##` sections |
 | `marketNotes` | **1,000–1,700 chars** — see §6 |
 | `whatToLookFor` | **1,000–2,000 chars** |
 | `commonProblems` | **900–1,700 chars** |
@@ -170,7 +170,7 @@ one `sourceRef` needs a reason to be single-sourced.
 
 ## 7. Voice
 
-Unhurried, factual, US spelling (color, liter, curb weight, aluminum, percent, catalog). US market only: every price in US dollars from US sources; never quote pounds sterling or UK asking prices, and never lean on UK-market buyer guides for values. The 360 and older exemplars predate this rule; the spec wins. The register of a good marque registry
+Unhurried, factual, US spelling (color, liter, curb weight, aluminum, percent, catalog). US market only: see section 7a for the units, currency and spelling standard, which is enforced by scripts/validate-seed.mjs. The 360 and older exemplars predate that rule; the spec wins. The register of a good marque registry
 newsletter, not a listing site. Specific over emphatic: "213 cars were
 federalised for the United States" does the work that "incredibly rare" does not.
 
@@ -185,6 +185,70 @@ exclamation marks, and any sentence that tells the reader how to feel.
 
 Do not give buying or valuation advice in the imperative — describe what
 separates a good car from a bad one and let the reader conclude.
+
+## 7a. US data standard
+
+Every model history is written for a US reader. A US reader must never have to
+convert anything to understand the car. This section is mechanically enforced by
+`scripts/validate-seed.mjs`; a seed that breaks it does not ship.
+
+**Units. US measure first, always.**
+
+| Quantity | Write | Never |
+| --- | --- | --- |
+| Power | hp | bhp, PS, kW, CV |
+| Torque | lb-ft | Nm, N-m, kgm, kgf |
+| Weight | lb | kg, tonnes |
+| Speed | mph | km/h, kph |
+| Distance | miles, feet, inches | km, kilometers, meters |
+| Dimensions (wheelbase, length, width, height, ride height, disc diameter) | inches first, mm in parentheses: `104.9 in (2,665 mm)` | mm alone |
+| Temperature | Fahrenheit | Celsius |
+| Fuel economy | mpg (US gallons; say so if a source used Imperial) | l/100km, Imperial mpg unlabeled |
+
+Four things stay metric because metric is what US writing uses for them:
+engine **bore and stroke** (`80 x 71 mm`), **displacement in cc**, wheel **bolt
+patterns** (`5 x 130 mm`), and a metric figure that is itself a proper name (the
+FIA 5,000 km record) - which takes the US equivalent in parentheses right after.
+
+Convert with arithmetic, never by eye. 1 in = 25.4 mm, 1 lb = 0.45359237 kg,
+1 mph = 1.609344 km/h, 1 lb-ft = 1.35582 Nm, 1 hp = 0.98632 PS = 0.7457 kW.
+Round dimensions to one decimal inch. Never state the same figure twice in two
+units of the same kind (`276 hp (276 hp)` is a conversion bug, not a spec).
+
+**Currency. Dollars first, the home-market figure in parentheses.**
+
+1. Anything a reader would use to judge what a car is worth - market values,
+   auction results, price guidance, parts and labor costs, running costs - is
+   US dollars from a US source. No exceptions. UK and European buyer guides
+   (Magneto, Classic & Sports Car, Octane, Classics World, The Classic Valuer,
+   Retro Motor, PistonHeads, Auto Express, WhichCar) are not value sources for
+   this site, whatever the car.
+2. Historical home-market prices are facts and may stay, in the
+   `launch price / price when new` sense only, written US first:
+   `$9,395 in the US (DM 23,240 in Germany)`. When no US price exists because
+   the car was never sold here, say that in the sentence rather than leaving a
+   bare foreign figure: `DM 23,240 in Germany; the car was not sold new in the US.`
+3. A foreign auction result may only appear converted, with the rate and its
+   date stated in the source notes, and only when no US comparable covers the
+   same point. A US comparable always wins.
+4. Never convert a currency by eye or at today's rate to stand in for a period
+   price. If the US list price is not documented, say it is not documented.
+   "No verified US list price exists for the 1969-71 car" is an acceptable
+   sentence. Inventing one is not.
+
+**Spelling and punctuation.** US spelling throughout: color, liter, aluminum,
+tire, hood, trunk, windshield, curb, center, gasoline, labor, license, gray,
+carburetor, sedan, percent (spelled out, never `%`), and -ize not -ise. The
+exception is a proper name, which is quoted verbatim: Heritage Parts Centre
+stays Heritage Parts Centre. No em dashes and no en dashes anywhere in rendered
+copy; use ` - ` or a comma, and a plain hyphen between figures in a range.
+
+**Sourcing. No guessing.** Every number in a model history traces to a source in
+the `sources` array through a claim. If two good sources disagree, the claim is
+`disputed` with both sides in `conflictNote` - that is what the
+"Where sources differ" block is for. If only one source has a figure and it is
+below the reliability bar, the figure does not go in. A gap stated plainly beats
+a number nobody can stand behind.
 
 ## 8. Fabrication — hard bans
 

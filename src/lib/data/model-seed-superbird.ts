@@ -1,5 +1,5 @@
 /**
- * Researched model draft — Plymouth Road Runner Superbird (1970).
+ * Researched model draft - Plymouth Road Runner Superbird (1970).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedSuperbird = {
@@ -15,8 +15,8 @@ export const seedSuperbird = {
   "2-door hardtop coupe with bolt-on aerodynamic nose cone and pedestal-mounted rear wing (Chrysler B-body, model code RM23)"
  ],
  "engines": [
-  "7,210 cc (440 cu in) Super Commando RB V8, single four-barrel carburettor, 375 hp at 4,600 rpm and 480 lb-ft at 3,200 rpm (SAE gross); VIN engine code U",
-  "7,210 cc (440 cu in) Super Commando Six Barrel RB V8, three Holley two-barrel carburettors, 390 hp (SAE gross); VIN engine code V",
+  "7,210 cc (440 cu in) Super Commando RB V8, single four-barrel carburetor, 375 hp at 4,600 rpm and 480 lb-ft at 3,200 rpm (SAE gross); VIN engine code U",
+  "7,210 cc (440 cu in) Super Commando Six Barrel RB V8, three Holley two-barrel carburetors, 390 hp (SAE gross); VIN engine code V",
   "7,000 cc (426 cu in) Hemi V8, 425 hp at 5,000 rpm and 490 lb-ft at 4,000 rpm (SAE gross); VIN engine code R"
  ],
  "productionTotal": null,
@@ -28,7 +28,7 @@ export const seedSuperbird = {
   },
   {
    "name": "440 Six Barrel",
-   "note": "Three Holley two-barrel carburettors and 390 hp for roughly $250 over the base car. 716 built per Chrysler Historical, 665 per the NASCAR list. Engine code V."
+   "note": "Three Holley two-barrel carburetors and 390 hp for roughly $250 over the base car. 716 built per Chrysler Historical, 665 per the NASCAR list. Engine code V."
   },
   {
    "name": "426 Hemi",

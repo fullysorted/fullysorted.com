@@ -1,5 +1,5 @@
 /**
- * Model draft — Datsun 240Z (Nissan S30), 1969-1973 (US-market 240Z).
+ * Model draft - Datsun 240Z (Nissan S30), 1969-1973 (US-market 240Z).
  *
  * This content was cross-checked across multiple INDEPENDENT sources
  * (Nissan Heritage Collection, Wikipedia citing the Japan Automobile
@@ -9,13 +9,13 @@
  * and ZCarGuide's technical guides) per the Sourcing & Truth-Seeking
  * methodology in RESEARCH-AND-REGISTRY-ROADMAP.md.
  *
- * It is seeded as status = 'draft' — NOT published. Chris reviews each
+ * It is seeded as status = 'draft' - NOT published. Chris reviews each
  * section + claim in /admin/models before it can go live. Where sources
  * disagree (production totals, the famous design-credit debate, the Series
  * naming conventions), the conflict is recorded as a 'disputed' claim with
  * both sides.
  *
- * Nothing here is copied verbatim from any source — it is synthesized in our
+ * Nothing here is copied verbatim from any source - it is synthesized in our
  * own words, with citations stored alongside in `sources`.
  */
 
@@ -32,20 +32,20 @@ export const seed240z = {
   yearEnd: 1973,
   bodyStyles: ['Coupe (2-seat fastback)'],
   engines: [
-    'L24 2.4L SOHC inline-six (151 hp SAE gross / 138 hp DIN) — export 240Z',
-    'L20A 2.0L SOHC inline-six (128 hp JIS) — Japanese-market Fairlady Z',
-    'S20 2.0L DOHC 24-valve inline-six (158 hp JIS) — Japan-only Fairlady Z432',
+    'L24 2.4L SOHC inline-six (151 hp SAE gross / 138 hp DIN) - export 240Z',
+    'L20A 2.0L SOHC inline-six (128 hp JIS) - Japanese-market Fairlady Z',
+    'S20 2.0L DOHC 24-valve inline-six (158 hp JIS) - Japan-only Fairlady Z432',
   ],
   productionTotal: 164616,
   productionNotes:
-    'Nissan-released figures (compiled by Carl Beck / IZCC at zhome.com) show 168,584 S30s exported from Japan across 1969-1973, of which 164,616 are documented specifically as 240Z; the ~3,968-car difference may be late-1973 cars that were in fact early-1974 260Zs. Export build by year: 1970 ≈ 17,005; 1971 ≈ 40,219; 1972 ≈ 60,025; 1973 ≈ 51,332. The United States took roughly 90% of 240Z output. These totals cover the export 240Z only — they do NOT include the separate Japanese-market Fairlady Z (L20-engined) or the Fairlady Z432/Z432R. Across the whole S30 family (240Z/260Z/280Z + Fairlady, 1969-1978) Nissan and the motoring press cite well over half a million cars, a sports-car production record for a single model line. Per-year/market figures here are flagged in the claims where sources phrase them differently.',
+    'Nissan-released figures (compiled by Carl Beck / IZCC at zhome.com) show 168,584 S30s exported from Japan across 1969-1973, of which 164,616 are documented specifically as 240Z; the ~3,968-car difference may be late-1973 cars that were in fact early-1974 260Zs. Export build by year: 1970 ≈ 17,005; 1971 ≈ 40,219; 1972 ≈ 60,025; 1973 ≈ 51,332. The United States took roughly 90 percent of 240Z output. These totals cover the export 240Z only - they do NOT include the separate Japanese-market Fairlady Z (L20-engined) or the Fairlady Z432/Z432R. Across the whole S30 family (240Z/260Z/280Z + Fairlady, 1969-1978) Nissan and the motoring press cite well over half a million cars, a sports-car production record for a single model line. Per-year/market figures here are flagged in the claims where sources phrase them differently.',
   notableTrims: [
-    { name: '240Z (HLS30, LHD)', note: 'The left-hand-drive export car — the one Americans know. ~90% of all 240Z production went to the US.' },
-    { name: '240Z (HS30, RHD)', note: 'Right-hand-drive export car for the UK, Australia and other RHD markets. Just ~4,287 RHD export cars were built — comparatively rare.' },
+    { name: '240Z (HLS30, LHD)', note: 'The left-hand-drive export car - the one Americans know. ~90 percent of all 240Z production went to the US.' },
+    { name: '240Z (HS30, RHD)', note: 'Right-hand-drive export car for the UK, Australia and other RHD markets. Just ~4,287 RHD export cars were built - comparatively rare.' },
     { name: 'Fairlady Z (S30, JDM)', note: 'Japanese home-market car with the smaller 2.0L L20 six (128 hp JIS), to sit under Japan’s engine-displacement road-tax threshold. Sold as "Fairlady" to echo the earlier Datsun Sports roadster.' },
     { name: 'Fairlady 240Z (HS30-H / 240ZG)', note: 'Japan-only 2.4L home-market car. The 240ZG (Oct 1971) added a long fiberglass "aero-dyna" G-nose, over-fenders and spoiler to homologate for Group 4 racing.' },
     { name: 'Fairlady Z432 (PS30)', note: 'Japan-only halo car using the Skyline GT-R’s S20 2.0L DOHC 24-valve six (158 hp JIS). "432" = 4 valves/cyl, 3 carbs, 2 cams. ~420 built.' },
-    { name: 'Fairlady Z432-R (PS30-SB)', note: 'Lightweight homologation special of the Z432 — thinner steel, fiberglass hood, acrylic windows, stripped interior, 100 L tank. Fewer than ~50 thought built; the most valuable Z.' },
+    { name: 'Fairlady Z432-R (PS30-SB)', note: 'Lightweight homologation special of the Z432 - thinner steel, fiberglass hood, acrylic windows, stripped interior, 100 L tank. Fewer than ~50 thought built; the most valuable Z.' },
   ],
   specs: {
     'Engine (240Z export)': 'Nissan L24, 2,393 cc SOHC cast-iron-block / alloy-head inline-six, 7-bearing crank',
@@ -53,7 +53,7 @@ export const seed240z = {
     'Compression ratio': '9.0:1',
     'Fuel system': 'Twin Hitachi 1.75 in (44 mm) SU-type (constant-velocity) carburetors',
     'Power (240Z export)': '151 hp SAE gross @ 5,600 rpm; 138 hp DIN',
-    'Torque (240Z export)': '146 lb·ft (198 N·m) SAE gross @ 4,400 rpm',
+    'Torque (240Z export)': '146 lb-ft (198 N·m) SAE gross @ 4,400 rpm',
     'Transmission': '4-speed manual (US standard); 5-speed manual (non-US); 3-speed automatic optional from late 1970',
     'Drivetrain': 'Front-engine, rear-wheel-drive',
     'Suspension': 'Four-wheel independent: front MacPherson struts; rear Chapman struts, coil springs',
@@ -65,7 +65,7 @@ export const seed240z = {
   heroPhoto: null as string | null,
   overallConfidence: 'high' as const,
 
-  summary: `The Datsun 240Z is the car that put Japan on the sports-car map. Launched for 1970 (built from late 1969), it paired a smooth 2.4-liter overhead-cam inline-six, four-wheel independent suspension and genuinely pretty long-hood fastback styling with a price that badly undercut the European competition. For roughly the cost of an MGB you got performance and sophistication closer to a Jaguar E-Type or BMW coupe — and from a dealer network that could actually service it.
+  summary: `The Datsun 240Z is the car that put Japan on the sports-car map. Launched for 1970 (built from late 1969), it paired a smooth 2.4-liter overhead-cam inline-six, four-wheel independent suspension and genuinely pretty long-hood fastback styling with a price that badly undercut the European competition. For roughly the cost of an MGB you got performance and sophistication closer to a Jaguar E-Type or BMW coupe - and from a dealer network that could actually service it.
 
 The result was an instant hit with long waiting lists. Americans bought the overwhelming majority of them; the 240Z became Datsun's "halo" car and changed how the world saw Japanese automakers, who until then were known for sensible economy cars rather than desirable sports machines.
 
@@ -73,47 +73,47 @@ In Japan the same car was sold as the Nissan Fairlady Z, with a smaller 2.0-lite
 
   history: `## Mister K's idea
 
-The Z was driven into existence by **Yutaka "Mister K" Katayama**, president of Nissan Motor Corporation U.S.A., who wanted an attainable, youth-oriented sports car for the American market with the look and feel of something far more expensive — his own touchstone was the Jaguar E-Type. The car went on sale in the US as a 1970 model in October 1969, and in Japan as the Nissan Fairlady Z (the "Fairlady" name carried over from Datsun's earlier sports roadster).
+The Z was driven into existence by **Yutaka "Mister K" Katayama**, president of Nissan Motor Corporation U.S.A., who wanted an attainable, youth-oriented sports car for the American market with the look and feel of something far more expensive - his own touchstone was the Jaguar E-Type. The car went on sale in the US as a 1970 model in October 1969, and in Japan as the Nissan Fairlady Z (the "Fairlady" name carried over from Datsun's earlier sports roadster).
 
 ## The design-credit debate
 
-Who actually styled the S30 is one of the most persistent arguments in collector-car history, so we present it neutrally. The factory and the Nissan enthusiast community credit a team led by **Yoshihiko Matsuo**, head of Nissan's Sports Car Styling Studio, and there is a well-documented trail of his sketches showing the shape evolving. A competing popular story gives credit to German designer **Albrecht Graf von Goertz** (of BMW 507 fame), who consulted for Nissan from 1963-1965 on an unrelated two-liter sports-car project (a stillborn Nissan–Yamaha collaboration) that was never produced. In a 1980 letter — written to head off a threatened lawsuit — Nissan stated that the 240Z was the work of its own design staff, while acknowledging that those designers had been "influenced by" and "had the benefit of" Goertz's earlier work for Nissan. Most marque historians today credit Matsuo's team for the production S30 and treat the "Goertz designed the Z" claim as a myth; we record both positions rather than pick a side.
+Who actually styled the S30 is one of the most persistent arguments in collector-car history, so we present it neutrally. The factory and the Nissan enthusiast community credit a team led by **Yoshihiko Matsuo**, head of Nissan's Sports Car Styling Studio, and there is a well-documented trail of his sketches showing the shape evolving. A competing popular story gives credit to German designer **Albrecht Graf von Goertz** (of BMW 507 fame), who consulted for Nissan from 1963-1965 on an unrelated two-liter sports-car project (a stillborn Nissan - Yamaha collaboration) that was never produced. In a 1980 letter - written to head off a threatened lawsuit - Nissan stated that the 240Z was the work of its own design staff, while acknowledging that those designers had been "influenced by" and "had the benefit of" Goertz's earlier work for Nissan. Most marque historians today credit Matsuo's team for the production S30 and treat the "Goertz designed the Z" claim as a myth; we record both positions rather than pick a side.
 
 ## Why it mattered
 
-The 240Z undercut its rivals dramatically while offering things they didn't: an overhead-cam straight-six (not a four), four-wheel independent suspension, front disc brakes, and a comfortable, well-equipped cabin. Period reviewers and buyers responded immediately, and the car generated long waiting lists. It also won on track and in rallying — including the 1973 East African Safari Rally in Shekhar Mehta's hands — and is widely credited, alongside the Datsun 510, with kick-starting the Japanese performance-aftermarket industry in the US.
+The 240Z undercut its rivals dramatically while offering things they didn't: an overhead-cam straight-six (not a four), four-wheel independent suspension, front disc brakes, and a comfortable, well-equipped cabin. Period reviewers and buyers responded immediately, and the car generated long waiting lists. It also won on track and in rallying - including the 1973 East African Safari Rally in Shekhar Mehta's hands - and is widely credited, alongside the Datsun 510, with kick-starting the Japanese performance-aftermarket industry in the US.
 
 ## One car, several names
 
 In export markets the car was the **Datsun 240Z** (chassis **HLS30** for left-hand drive, **HS30** for right-hand drive). In Japan it was the **Nissan Fairlady Z**, normally with the smaller 2.0-liter L20 six so it fell under a lower engine-displacement road-tax band; a 2.4-liter Fairlady 240Z (HS30) was also offered there at a higher tax cost. The Japan-only **Fairlady Z432 (PS30)** used the Skyline GT-R's exotic S20 twin-cam 24-valve two-liter, with the lightweight **Z432-R** as a homologation special. The Japan-only **240ZG** (HS30-H) wore the aerodynamic "G-nose."
 
-The 240Z ran in the US through the 1973 model year, after which a larger-displacement **260Z** (2.6L) took over for 1974, followed by the fuel-injected **280Z** (2.8L) — but the 2.4-liter original is the car enthusiasts mean when they say "the Z."`,
+The 240Z ran in the US through the 1973 model year, after which a larger-displacement **260Z** (2.6L) took over for 1974, followed by the fuel-injected **280Z** (2.8L) - but the 2.4-liter original is the car enthusiasts mean when they say "the Z."`,
 
   marketNotes: `The 240Z spent decades as a cheap, attainable classic, which is exactly why so many were modified, neglected, or lost to rust. That has changed sharply. Hagerty's buyer's guide noted that a #2 ("Excellent") condition 240Z worth roughly US$20,000 around 2011 had climbed to about US$54,500 by early 2021, with especially strong appreciation in the 2015-2018 window and several recent six-figure outliers for exceptional cars. Interest skews younger than most classics, toward Gen X and millennial buyers.
 
-At the very top of the market, rarity rules: a 1970 Fairlady Z432-R sold at a Japanese auction in January 2020 for about A$1.17 million (roughly US$837,000) — but that is a Japan-only, sub-50-unit homologation special, not a US 240Z, and should not be read across to ordinary cars.
+At the very top of the market, rarity rules: a 1970 Fairlady Z432-R sold at a Japanese auction in January 2020 for about A$1.17 million (roughly US$837,000) - but that is a Japan-only, sub-50-unit homologation special, not a US 240Z, and should not be read across to ordinary cars.
 
-For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Series I" cars, documented originality, and clean metal command large premiums, while rusty or heavily modified cars trade for far less. These are directional, date-stamped observations (the Hagerty figures above are early-2020s), not a price guarantee — collector values move. Use the Fully Sorted Value Guide for live comps before buying or selling.`,
+For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Series I" cars, documented originality, and clean metal command large premiums, while rusty or heavily modified cars trade for far less. These are directional, date-stamped observations (the Hagerty figures above are early-2020s), not a price guarantee - collector values move. Use the Fully Sorted Value Guide for live comps before buying or selling.`,
 
-  whatToLookFor: `**Rust is the number-one issue — assume it until proven otherwise.** These unibody cars rot in well-known places: the floor pans, frame rails, rocker/sill panels, the battery tray area (battery acid accelerates it), the front fenders behind the wheels, the dogleg/rear quarter and wheel arches, around the windshield and the rear hatch surround, and the spare-wheel well. Even a car advertised as "rust-free" frequently hides rot or past filler/fiberglass repairs. Sound metal here is worth more than almost any other attribute.
+  whatToLookFor: `**Rust is the number-one issue - assume it until proven otherwise.** These unibody cars rot in well-known places: the floor pans, frame rails, rocker/sill panels, the battery tray area (battery acid accelerates it), the front fenders behind the wheels, the dogleg/rear quarter and wheel arches, around the windshield and the rear hatch surround, and the spare-wheel well. Even a car advertised as "rust-free" frequently hides rot or past filler/fiberglass repairs. Sound metal here is worth more than almost any other attribute.
 
-**Check for bad past repairs.** Because they were cheap for so long, many 240Zs were patched with body filler or fiberglass over rot. Most panels are now reproduced, so budget honestly rather than walking away from an otherwise good car — but price accordingly.
+**Check for bad past repairs.** Because they were cheap for so long, many 240Zs were patched with body filler or fiberglass over rot. Most panels are now reproduced, so budget honestly rather than walking away from an otherwise good car - but price accordingly.
 
-**SU carbs that have sat.** The twin Hitachi/SU-type carbs are simple and excellent when set up, but they fall out of tune and gum up if a car sits, and modern ethanol fuel is hard on them. A car that's been parked will usually want the carbs cleaned/rebuilt and properly balanced and tuned — ask the seller directly.
+**SU carbs that have sat.** The twin Hitachi/SU-type carbs are simple and excellent when set up, but they fall out of tune and gum up if a car sits, and modern ethanol fuel is hard on them. A car that's been parked will usually want the carbs cleaned/rebuilt and properly balanced and tuned - ask the seller directly.
 
-**Originality / running changes.** Nissan made constant running changes across Series I–IV; verify part numbers, badges and stampings if originality matters to you, and be wary of top-dollar cars with no paperwork. The earliest 1969–mid-1971 "Series I" cars (chrome sail-pillar 240Z badge, hatch vents) are the most prized.
+**Originality / running changes.** Nissan made constant running changes across Series I - IV; verify part numbers, badges and stampings if originality matters to you, and be wary of top-dollar cars with no paperwork. The earliest 1969 - mid-1971 "Series I" cars (chrome sail-pillar 240Z badge, hatch vents) are the most prized.
 
 **Drivetrain and rubber.** Listen and drive: the L24 is tough but check for the usual leaks/smoke; budget for perished suspension and weatherstrip rubber (all readily available) and old tires (check date codes).`,
 
   commonProblems: `**Rust (the defining problem).** The S30 unibody rusts in the floors, frame rails, rockers/sills, battery tray, front fenders, rear quarters/dogleg, wheel arches, windshield and hatch surrounds, and spare-wheel well. It is the single biggest factor in 240Z values and restoration cost.
 
-**SU-type carburetor tuning.** The twin 1.75 in Hitachi SU-type (constant-velocity) carbs reward correct setup with smooth response and good economy, but they drift out of balance, wear (throttle-shaft/needle), and clog after sitting — and modern fuel doesn't help. Specialists often use a Gunson Colortune and a carb balancer to set mixture and synchronize them. A poorly running 240Z is very often just out-of-tune or tired carbs rather than anything catastrophic.
+**SU-type carburetor tuning.** The twin 1.75 in Hitachi SU-type (constant-velocity) carbs reward correct setup with smooth response and good economy, but they drift out of balance, wear (throttle-shaft/needle), and clog after sitting - and modern fuel doesn't help. Specialists often use a Gunson Colortune and a carb balancer to set mixture and synchronize them. A poorly running 240Z is very often just out-of-tune or tired carbs rather than anything catastrophic.
 
 **Emissions-era running changes (1973).** For the 1973 model year US cars got emissions-oriented "flat-top" SU carburetors and a revised (E88) cylinder head; the flat-top carbs in particular are widely considered harder to keep tuned, and many owners convert to the earlier round-top SUs.
 
 **General age items.** Perished suspension bushings and body weatherstripping, tired cooling systems, and decades-old wiring are routine on unrestored cars. The L-series six itself is robust and parts support (including upgrades from the later 280ZX) is strong.`,
 
-  valueTrajectory: `Cheap, modified and rust-prone "affordable classic" through the 1990s–2000s → steady climb through the 2010s (Hagerty cites ~74% growth for #2 cars across 2015-2018) → strong demand into the early 2020s with occasional six-figure results for the best cars, while rough/rusty cars stay far cheaper. Series I US cars, documented original examples, and rare RHD/Japan-only variants (240ZG, Z432, Z432-R) sit at the top; rusty or heavily modified cars trail. The long arc is a car that moved from punchline to genuinely respected blue-chip Japanese classic, helped by a younger collector base.`,
+  valueTrajectory: `Cheap, modified and rust-prone "affordable classic" through the 1990s - 2000s → steady climb through the 2010s (Hagerty cites ~74 percent growth for #2 cars across 2015-2018) → strong demand into the early 2020s with occasional six-figure results for the best cars, while rough/rusty cars stay far cheaper. Series I US cars, documented original examples, and rare RHD/Japan-only variants (240ZG, Z432, Z432-R) sit at the top; rusty or heavily modified cars trail. The long arc is a car that moved from punchline to genuinely respected blue-chip Japanese classic, helped by a younger collector base.`,
 
   sources: [
     {
@@ -185,7 +185,7 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
     {
       section: 'production',
       claimText:
-        'Roughly 164,616 export 240Zs were built/exported across 1969-1973 (out of ~168,584 total S30 export cars in that window), with the US taking about 90%.',
+        'Roughly 164,616 export 240Zs were built/exported across 1969-1973 (out of ~168,584 total S30 export cars in that window), with the US taking about 90 percent.',
       confidence: 'medium',
       status: 'disputed',
       sourceRefs: ['zhome-production', 'wikipedia'],
@@ -200,7 +200,7 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
       status: 'disputed',
       sourceRefs: ['wikipedia', 'jnc-goertz', 'nissan-heritage'],
       conflictNote:
-        'Nissan and most marque historians credit Matsuo’s in-house team, backed by a documented sketch trail. A widespread popular account instead credits German designer Albrecht von Goertz, who consulted for Nissan 1963-65 on a separate, never-produced Nissan–Yamaha sports car. Nissan’s 1980 letter (drafted to avert a threatened Goertz lawsuit) called the 240Z the work of its own staff while acknowledging they had "the benefit of" Goertz’s earlier work. We present both sides and lean to Matsuo for the production car.',
+        'Nissan and most marque historians credit Matsuo’s in-house team, backed by a documented sketch trail. A widespread popular account instead credits German designer Albrecht von Goertz, who consulted for Nissan 1963-65 on a separate, never-produced Nissan - Yamaha sports car. Nissan’s 1980 letter (drafted to avert a threatened Goertz lawsuit) called the 240Z the work of its own staff while acknowledging they had "the benefit of" Goertz’s earlier work. We present both sides and lean to Matsuo for the production car.',
     },
     {
       section: 'specs',
@@ -215,7 +215,7 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
     {
       section: 'specs',
       claimText:
-        'The 240Z had four-wheel independent suspension (front MacPherson struts, rear Chapman struts), front disc brakes and rack-and-pinion steering — sophistication associated with far pricier European cars.',
+        'The 240Z had four-wheel independent suspension (front MacPherson struts, rear Chapman struts), front disc brakes and rack-and-pinion steering - sophistication associated with far pricier European cars.',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['wikipedia', 'hagerty'],
@@ -239,7 +239,7 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
     {
       section: 'history',
       claimText:
-        'US 240Z production is commonly divided into "Series" (I–IV) reflecting running changes; early 1969–mid-1971 "Series I" cars (chrome sail-pillar badge, hatch vents) are the most collectible.',
+        'US 240Z production is commonly divided into "Series" (I - IV) reflecting running changes; early 1969 - mid-1971 "Series I" cars (chrome sail-pillar badge, hatch vents) are the most collectible.',
       confidence: 'medium',
       status: 'disputed',
       sourceRefs: ['hagerty'],
@@ -249,7 +249,7 @@ For an ordinary US 240Z, the value story is condition-and-rust-driven: early "Se
     {
       section: 'problems',
       claimText:
-        'Rust is the defining problem on the S30 — floors, frame rails, rockers/sills, battery tray, front fenders, rear quarters, wheel arches, and the windshield and hatch surrounds — and is the biggest driver of value and restoration cost.',
+        'Rust is the defining problem on the S30 - floors, frame rails, rockers/sills, battery tray, front fenders, rear quarters, wheel arches, and the windshield and hatch surrounds - and is the biggest driver of value and restoration cost.',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['hagerty', 'zcarguide-rust'],

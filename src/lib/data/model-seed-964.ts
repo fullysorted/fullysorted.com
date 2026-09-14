@@ -1,5 +1,5 @@
 /**
- * Pilot model draft — Porsche 911 (964), 1989-1994.
+ * Pilot model draft - Porsche 911 (964), 1989-1994.
  *
  * This content was cross-checked across multiple INDEPENDENT sources
  * (Porsche AG, Wikipedia citing Kittler's "Deutsche Autos seit 1990",
@@ -7,11 +7,11 @@
  * per the Sourcing & Truth-Seeking methodology in
  * RESEARCH-AND-REGISTRY-ROADMAP.md.
  *
- * It is seeded as status = 'draft' — NOT published. Chris reviews each
+ * It is seeded as status = 'draft' - NOT published. Chris reviews each
  * section + claim in /admin/models before it can go live. Where sources
  * disagree, the conflict is recorded as a 'disputed' claim with both sides.
  *
- * Nothing here is copied verbatim from any source — it is synthesized in our
+ * Nothing here is copied verbatim from any source - it is synthesized in our
  * own words, with citations stored alongside in `sources`.
  */
 
@@ -57,22 +57,22 @@ export const seed964 = {
   ],
   productionTotal: 63762,
   productionNotes:
-    'Total of 63,762 cars built across the run (Porsche AG figures, corroborated by Kittler). Porsche describes the 964 as the rarest 911 generation — the preceding G-series sold over 196,000 cars from 1974-1989. Build of the standard cars ran 1989–December 1993, with some special/Turbo variants completed into 1994. Per-variant figures below come from Kittler, "Deutsche Autos seit 1990" (vol. 6), as compiled on Wikipedia; where a figure is contested it is flagged in the claims.',
+    'Total of 63,762 cars built across the run (Porsche AG figures, corroborated by Kittler). Porsche describes the 964 as the rarest 911 generation - the preceding G-series sold over 196,000 cars from 1974-1989. Build of the standard cars ran 1989 - December 1993, with some special/Turbo variants completed into 1994. Per-variant figures below come from Kittler, "Deutsche Autos seit 1990" (vol. 6), as compiled on Wikipedia; where a figure is contested it is flagged in the claims.',
   notableTrims: [
     { name: 'Carrera 4 (C4)', note: 'The launch model (1989). First all-wheel-drive 911. ~20,395 built across body styles.' },
-    { name: 'Carrera 2 (C2)', note: 'Rear-drive, added 1990. The enthusiasts’ pick — lighter and more communicative than the C4, and the only way to get the Tiptronic auto.' },
+    { name: 'Carrera 2 (C2)', note: 'Rear-drive, added 1990. The enthusiasts’ pick - lighter and more communicative than the C4, and the only way to get the Tiptronic auto.' },
     { name: 'Carrera RS (Europe)', note: 'Lightweight, ~256 hp, stripped and stiffened. ~2,282 built. Not US-road-legal.' },
     { name: 'RS America', note: 'US-market spiritual RS: 701 built (1993-94), based on the US C2, lighter, M030 suspension, whale-tail.' },
     { name: 'Turbo 3.3', note: 'Launched March 1990 using a revised 930 3.3 engine; 3,660 built. Whale tail, wide arches.' },
-    { name: 'Turbo 3.6', note: 'Jan 1993, 3.6 M64-based turbo, ~355 hp. One of the rarest/most sought 964s — see production conflict.' },
+    { name: 'Turbo 3.6', note: 'Jan 1993, 3.6 M64-based turbo, ~355 hp. One of the rarest/most sought 964s - see production conflict.' },
     { name: 'Turbo S Leichtbau / Flachbau', note: 'Ultra-rare lightweight and slant-nose Turbos built by Porsche Exclusiv.' },
     { name: '911 Speedster', note: 'Cut-down screen, C2-based, 1993-94. 936 built per most sources (see conflict).' },
-    { name: '30 Jahre / 30th Anniversary', note: 'Wide Turbo body, AWD, NA engine. 911 units built — a deliberate nod to the 911 name.' },
+    { name: '30 Jahre / 30th Anniversary', note: 'Wide Turbo body, AWD, NA engine. 911 units built - a deliberate nod to the 911 name.' },
   ],
   specs: {
     'Engine (Carrera)': 'M64, 3,600 cc air/oil-cooled SOHC flat-six',
     'Power (Carrera)': '247 hp @ 6,100 rpm',
-    'Torque (Carrera)': '310 N·m (229 lb·ft) @ 4,800 rpm',
+    'Torque (Carrera)': '229 lb-ft (310 N·m) @ 4,800 rpm',
     'Transmission': '5-speed Getrag G50 manual; 4-speed Tiptronic auto (C2 only); G64 5-speed manual (C4)',
     'Drivetrain': 'Rear-engine; RWD (C2) or AWD (C4)',
     '0-60 mph': '~5.5 s (manual)',
@@ -85,7 +85,7 @@ export const seed964 = {
   heroPhoto: null as string | null,
   overallConfidence: 'high' as const,
 
-  summary: `The Porsche 964 is the 911 that dragged Stuttgart's icon into the modern era without losing its soul. Sold from 1989 to 1994, it was pitched by Porsche as roughly 85% new versus the outgoing G-series Carrera 3.2, yet from ten feet away it still read unmistakably as a 911 — the big change most people noticed was the smooth, body-colored bumpers.
+  summary: `The Porsche 964 is the 911 that dragged Stuttgart's icon into the modern era without losing its soul. Sold from 1989 to 1994, it was pitched by Porsche as roughly 85 percent new versus the outgoing G-series Carrera 3.2, yet from ten feet away it still read unmistakably as a 911 - the big change most people noticed was the smooth, body-colored bumpers.
 
 Underneath, the changes were real. The 964 introduced the 3.6-liter M64 flat-six, all-wheel drive (the Carrera 4 was the very first AWD 911), ABS, power steering, and the option of Porsche's Tiptronic automatic. The torsion-bar suspension that had defined every 911 since 1963 was finally replaced with coil springs.
 
@@ -93,9 +93,9 @@ Today the 964 occupies a sweet spot collectors prize: classic air-cooled charact
 
   history: `## A cautious revolution
 
-Porsche developed the 964 through the mid-1980s under design lead Benjamin Dimson, with the brief to modernize the 911 without alienating the faithful. The result went on sale in 1989. Porsche has repeatedly described the car as around 85% new compared with its predecessor — though note that some respected outlets cite 87%, a small but honest discrepancy in the historical record (both numbers come from the same "almost entirely new" story Porsche told at launch).
+Porsche developed the 964 through the mid-1980s under design lead Benjamin Dimson, with the brief to modernize the 911 without alienating the faithful. The result went on sale in 1989. Porsche has repeatedly described the car as around 85 percent new compared with its predecessor - though note that some respected outlets cite 87 percent, a small but honest discrepancy in the historical record (both numbers come from the same "almost entirely new" story Porsche told at launch).
 
-The first 964 to reach customers was the **Carrera 4** — significantly, an all-wheel-drive car. Until then virtually every 911 (and nearly every Porsche save the limited 959) had been rear-drive. The rear-wheel-drive **Carrera 2** followed in 1990, and it's the C2 that most enthusiasts gravitate to: it's lighter, more communicative, and was the only way to get the new four-speed Tiptronic automatic.
+The first 964 to reach customers was the **Carrera 4** - significantly, an all-wheel-drive car. Until then virtually every 911 (and nearly every Porsche save the limited 959) had been rear-drive. The rear-wheel-drive **Carrera 2** followed in 1990, and it's the C2 that most enthusiasts gravitate to: it's lighter, more communicative, and was the only way to get the new four-speed Tiptronic automatic.
 
 ## What actually changed
 
@@ -105,31 +105,31 @@ Beyond AWD, the 964 added ABS and power steering to the 911 for the first time, 
 
 For a short production run, the 964 spawned an unusually broad lineup: Coupe, Targa, and Cabriolet body styles in both C2 and C4; the **Turbo** (first the 3.3, then the 3.6); the track-focused European **Carrera RS** and its US-market cousin the **RS America**; the **Speedster**; rare **Turbo S** Leichtbau and Flachbau cars from Porsche Exclusiv; and the **30 Jahre** (30th Anniversary) special. The 964 also underpinned the one-make Carrera Cup, which grew into the global Supercup that still supports Formula 1 today.
 
-The 964 was replaced by the 993 — the last and most beloved air-cooled 911 — in 1994, after Porsche had used it to keep the 911 alive through a difficult financial stretch.`,
+The 964 was replaced by the 993 - the last and most beloved air-cooled 911 - in 1994, after Porsche had used it to keep the 911 alive through a difficult financial stretch.`,
 
-  marketNotes: `The 964 spent years as the unloved, "cheap" air-cooled 911, which is exactly why it later became a darling of the restomod world (Singer and others built their reputations on 964 donor cars) — and why so many were modified or neglected. As air-cooled values climbed through the late 2010s and into the 2021-2022 peak, clean original 964s appreciated hard.
+  marketNotes: `The 964 spent years as the unloved, "cheap" air-cooled 911, which is exactly why it later became a darling of the restomod world (Singer and others built their reputations on 964 donor cars) - and why so many were modified or neglected. As air-cooled values climbed through the late 2010s and into the 2021-2022 peak, clean original 964s appreciated hard.
 
-More recently the market has cooled and stabilized rather than crashed. Aggregated listing data (classic.com) through 2024-2025 shows transaction volume holding up while prices flatten, with standard Carrera 2 coupes broadly trading in the high-five-figures to around US$90k depending on condition, miles, and originality — and exceptional, low-mileage or rare-color cars trading well above that on collector logic. Coupes command a clear premium over Cabriolets and Tiptronic cars; manual C2 coupes are the most sought of the standard cars.
+More recently the market has cooled and stabilized rather than crashed. Aggregated listing data (classic.com) through 2024-2025 shows transaction volume holding up while prices flatten, with standard Carrera 2 coupes broadly trading in the high-five-figures to around US$90k depending on condition, miles, and originality - and exceptional, low-mileage or rare-color cars trading well above that on collector logic. Coupes command a clear premium over Cabriolets and Tiptronic cars; manual C2 coupes are the most sought of the standard cars.
 
-These are directional observations, not a price guarantee — collector values move, and the figures here should be treated as a snapshot (mid-2020s) rather than a current quote. Use the Fully Sorted Value Guide for live comps before buying or selling.`,
+These are directional observations, not a price guarantee - collector values move, and the figures here should be treated as a snapshot (mid-2020s) rather than a current quote. Use the Fully Sorted Value Guide for live comps before buying or selling.`,
 
   whatToLookFor: `**Buy the car, not the spec.** A sorted, well-documented C4 beats a tired "better-spec" C2 every time. Service history and receipts from a known Porsche specialist matter enormously on these.
 
 **Rust is real.** Because 964s were cheap for so long, neglect and poor repairs are common. Check the headlamp surrounds, where the front wing meets the bumper, around the front and rear screens, and the rear arches and inner arches near the suspension mounts. Sound there usually means a sound body.
 
-**Engine leaks are expected — know which ones matter.** Almost every 964 weeps a little oil. A light film around joints is normal; the expensive ones are leaks that need the engine apart (see Common Problems). A broken cylinder head stud shows up as oil leaks or a high-rpm misfire and means a costly head rebuild.
+**Engine leaks are expected - know which ones matter.** Almost every 964 weeps a little oil. A light film around joints is normal; the expensive ones are leaks that need the engine apart (see Common Problems). A broken cylinder head stud shows up as oil leaks or a high-rpm misfire and means a costly head rebuild.
 
-**Flywheel rattle.** Earlier dual-mass flywheels (pre-1992) are failure-prone; a rattle/vibration at idle is the tell. Most should have been upgraded to the later LuK unit by now — confirm it.
+**Flywheel rattle.** Earlier dual-mass flywheels (pre-1992) are failure-prone; a rattle/vibration at idle is the tell. Most should have been upgraded to the later LuK unit by now - confirm it.
 
 **Distributor vent kit.** Look for evidence one has been fitted; it addresses a known failure of the distributor connecting belt that can cause serious engine damage if it lets go.
 
 **Open cars:** check Cabriolet/Targa seals and headliner for damp, and budget for soft-top wear.
 
-**Don't fear tasteful upgrades** if they're documented and done by a recognized specialist — many 964s have had sensible improvements.`,
+**Don't fear tasteful upgrades** if they're documented and done by a recognized specialist - many 964s have had sensible improvements.`,
 
-  commonProblems: `**Dual-mass flywheel (DMF).** Introduced for MY1990. Early Freudenberg units are prone to premature wear, causing idle vibration and notchy shifts. Porsche revised this for 1992 (the Carrera 4 got a turbo-derived secondary mass; the Carrera 2 moved to a LuK-sourced DMF). Many early cars have already been converted to the sprung LuK unit — verify on any pre-1992 car.
+  commonProblems: `**Dual-mass flywheel (DMF).** Introduced for MY1990. Early Freudenberg units are prone to premature wear, causing idle vibration and notchy shifts. Porsche revised this for 1992 (the Carrera 4 got a turbo-derived secondary mass; the Carrera 2 moved to a LuK-sourced DMF). Many early cars have already been converted to the sprung LuK unit - verify on any pre-1992 car.
 
-**Oil leaks (cylinder head/base).** The M64 was originally built without head gaskets, and oil tended to weep from the base of the cylinders/head-stud area. Porsche changed the design during the 1991 model year to address it, so 1991-on cars are generally better. A broken head stud (showing as leaks or a high-speed misfire) is the bad case — a full twin-head rebuild runs into several thousand dollars/pounds.
+**Oil leaks (cylinder head/base).** The M64 was originally built without head gaskets, and oil tended to weep from the base of the cylinders/head-stud area. Porsche changed the design during the 1991 model year to address it, so 1991-on cars are generally better. A broken head stud (showing as leaks or a high-speed misfire) is the bad case - a full twin-head rebuild runs into several thousand dollars/pounds.
 
 **Case through-bolt O-rings.** Less common, but a leak from the engine-case through-bolt O-rings requires engine disassembly to fix and, under high rpm, can move real volumes of oil rather than just drip.
 
@@ -208,12 +208,12 @@ These are directional observations, not a price guarantee — collector values m
     },
     {
       section: 'summary',
-      claimText: 'Porsche describes the 964 as roughly 85% new versus the Carrera 3.2.',
+      claimText: 'Porsche describes the 964 as roughly 85 percent new versus the Carrera 3.2.',
       confidence: 'high',
       status: 'disputed',
       sourceRefs: ['porsche', 'wikipedia', 'hagerty'],
       conflictNote:
-        'Porsche AG and Wikipedia state ~85% new; Hagerty’s buying guide says 87%. Both trace to Porsche’s own launch-era "almost entirely new" claim. We present 85% as the manufacturer figure and note the 87% variant rather than picking a winner.',
+        'Porsche AG and Wikipedia state ~85 percent new; Hagerty’s buying guide says 87 percent. Both trace to Porsche’s own launch-era "almost entirely new" claim. We present 85 percent as the manufacturer figure and note the 87 percent variant rather than picking a winner.',
     },
     {
       section: 'history',

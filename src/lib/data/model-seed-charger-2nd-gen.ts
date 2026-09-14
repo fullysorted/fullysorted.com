@@ -1,5 +1,5 @@
 /**
- * Researched model draft — Dodge Charger, second generation (B-body, 1968-1970).
+ * Researched model draft - Dodge Charger, second generation (B-body, 1968-1970).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedCharger2ndGen = {
@@ -21,7 +21,7 @@ export const seedCharger2ndGen = {
   "383 cu in four-barrel V-8, 330 hp / 425 lb-ft",
   "383 cu in Magnum V-8, 335 hp / 425 lb-ft",
   "440 cu in Magnum V-8, 375 hp / 480 lb-ft (standard on R/T)",
-  "440 cu in Six Pack (three two-barrel carburettors), 390 hp / 490 lb-ft (1970 only)",
+  "440 cu in Six Pack (three two-barrel carburetors), 390 hp / 490 lb-ft (1970 only)",
   "426 cu in Street Hemi V-8, 425 hp / 490 lb-ft (optional across the run)"
  ],
  "productionTotal": null,
@@ -53,7 +53,7 @@ export const seedCharger2ndGen = {
   }
  ],
  "specs": {
-  "layout": "Front engine, rear-wheel drive, unitised B-body",
+  "layout": "Front engine, rear-wheel drive, unitized B-body",
   "body": "Two-door hardtop only; no convertible or pillared coupe offered",
   "power_ratings_basis": "All figures are SAE gross, taken on a test stand without accessories or emissions equipment",
   "engine_base_six": "225 cu in slant-six, 145 hp / 215 lb-ft",

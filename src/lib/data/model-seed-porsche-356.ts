@@ -1,5 +1,5 @@
 /**
- * Researched model draft — Porsche 356 (1948-1965).
+ * Researched model draft - Porsche 356 (1948-1965).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seed356 = {
@@ -25,7 +25,7 @@ export const seed356 = {
   "1,300 cc Type 506 and 1,500 cc Type 527/528 pushrod flat-fours through the Pre-A run; a 1,488 cc 1500 was quoted at 65 hp in period Road & Track testing",
   "1,582 cc Type 616/1 and 616/2 pushrod flat-fours from the 356 A: 1600 at 60 hp at 4,500 rpm, 1600 Super at 75 hp",
   "1,582 cc Super 90 pushrod flat-four, 90 hp, 356 B",
-  "1,582 cc 356 C engines: 75 hp C and the Type 616/16 SC at 95 hp, the latter with a counterweighted crankshaft and larger Solex carburettors",
+  "1,582 cc 356 C engines: 75 hp C and the Type 616/16 SC at 95 hp, the latter with a counterweighted crankshaft and larger Solex carburetors",
   "1,498 cc Type 547/1 four-cam 'Fuhrmann' flat-four, 100 hp, in the 356 A Carrera 1500 GS and GT from late 1955",
   "1,966 cc Type 587 four-cam flat-four, 130 hp, Carrera 2 (356 B and 356 C)"
  ],
@@ -75,7 +75,7 @@ export const seed356 = {
   "top_speed": "107 mph observed by Road & Track on a 1,488 cc 1500 in period; about 99 mph for the 356 A 1600 Speedster; 125 mph claimed for the SC",
   "bore_stroke": "82.5 mm x 74.0 mm for the 1,582 cc pushrod four",
   "compression": "9.5:1 for the Type 616/16 SC",
-  "wheelbase": "2,101 mm (82.7 in)",
+  "wheelbase": "82.7 in (2,101 mm) (82.7 in)",
   "bodywork": "Steel by Reutter, bought by Porsche in 1963, and by Karmann; aluminum on the Gmund cars",
   "assembly": "Gmund, Austria 1948-1950; Zuffenhausen from 6 April 1950 until April 1965"
  },
@@ -393,7 +393,7 @@ export const seed356 = {
   },
   {
    "section": "specs",
-   "claimText": "The 356 A introduced the 1,582 cc Type 616/1 and 616/2 pushrod flat-fours, quoted at 60 hp at 4,500 rpm for the 1600 and 75 hp for the 1600 Super, with a bore and stroke of 82.5 mm by 74 mm; the 356 A 1600 Speedster weighed 1,750 lb on a 2,101 mm wheelbase and was quoted at about 99 mph, 13.9 seconds to 60 mph and $2,995 new.",
+   "claimText": "The 356 A introduced the 1,582 cc Type 616/1 and 616/2 pushrod flat-fours, quoted at 60 hp at 4,500 rpm for the 1600 and 75 hp for the 1600 Super, with a bore and stroke of 82.5 mm by 2.9 in (74 mm); the 356 A 1600 Speedster weighed 1,750 lb on a 82.7 in (2,101 mm) wheelbase and was quoted at about 99 mph, 13.9 seconds to 60 mph and $2,995 new.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -414,7 +414,7 @@ export const seed356 = {
   },
   {
    "section": "specs",
-   "claimText": "The 356 C of July 1963 was the first 356 with Ate disc brakes at all four corners as standard, and its SC engine used a counterweighted crankshaft, short-skirt pistons and larger Solex carburettors, quoted at 91 lb-ft at 4,200 rpm on a 9.5:1 compression ratio.",
+   "claimText": "The 356 C of July 1963 was the first 356 with Ate disc brakes at all four corners as standard, and its SC engine used a counterweighted crankshaft, short-skirt pistons and larger Solex carburetors, quoted at 91 lb-ft at 4,200 rpm on a 9.5:1 compression ratio.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [

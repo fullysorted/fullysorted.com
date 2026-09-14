@@ -79,7 +79,7 @@ The 993 occupies the air-cooled 911's sweet spot: vintage flat-six character and
 
   history: `## "Practically only the roofline remained"
 
-Porsche has said that with the 993, every part of the car was redesigned from the ground up, though it also conceded that only about 20% of parts carried over and that, visually, "practically only the roofline remained unchanged" from the 964. The new body, by Tony Hatter, traded the upright 964 look for flatter front wings (made possible by polyellipsoid headlights), integrated bumpers, flush windows, and dramatically flared rear arches.
+Porsche has said that with the 993, every part of the car was redesigned from the ground up, though it also conceded that only about 20 percent of parts carried over and that, visually, "practically only the roofline remained unchanged" from the 964. The new body, by Tony Hatter, traded the upright 964 look for flatter front wings (made possible by polyellipsoid headlights), integrated bumpers, flush windows, and dramatically flared rear arches.
 
 The 993 went on sale in 1994 (1995 model year in the US), initially as Coupe and Cabriolet, both offered in rear-drive and all-wheel-drive form. The whole body shell was galvanized, which is a large part of why sound 993s are still common three decades later while contemporaries from other makers are not.
 

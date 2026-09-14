@@ -1,5 +1,5 @@
 /**
- * Model draft — Acura / Honda NSX (NA1/NA2), 1990-2005.
+ * Model draft - Acura / Honda NSX (NA1/NA2), 1990-2005.
  *
  * Cross-checked across multiple INDEPENDENT sources per the Sourcing &
  * Truth-Seeking methodology in RESEARCH-AND-REGISTRY-ROADMAP.md:
@@ -10,11 +10,11 @@
  *   - NSX Prime (the marque's primary owners' forum, production charts),
  *   - and reputable enthusiast/market journalism (Magneto, classic.com).
  *
- * Seeded as status = 'draft' — NOT published. Chris reviews each section +
+ * Seeded as status = 'draft' - NOT published. Chris reviews each section +
  * claim in /admin/models before it can go live. Where sources disagree, the
  * conflict is recorded as a 'disputed' claim with both sides + sources.
  *
- * Nothing here is copied verbatim — synthesized in our own words, with
+ * Nothing here is copied verbatim - synthesized in our own words, with
  * citations stored alongside in `sources`.
  *
  * Note on naming: marketed as "Acura NSX" in North America and Hong Kong, and
@@ -35,31 +35,31 @@ export const seedNsx = {
   yearEnd: 2005,
   bodyStyles: ['Coupe', 'Targa (NSX-T)'],
   engines: [
-    'C30A 3.0L DOHC VTEC V6 (NA1) — 270 hp / 270 hp manual; 252 hp automatic',
-    'C32B 3.2L DOHC VTEC V6 (NA2) — 290 hp / 290 hp (1997-on, manual only)',
+    'C30A 3.0L DOHC VTEC V6 (NA1) - 270 hp / 270 hp manual; 252 hp automatic',
+    'C32B 3.2L DOHC VTEC V6 (NA2) - 290 hp / 290 hp (1997-on, manual only)',
   ],
   productionTotal: 18734,
   productionNotes:
-    'Honda reported worldwide sales of "more than 18,000 units" as of the end of June 2005, a few months before production ended on 30 November 2005 (Acura/Honda heritage material via Wikipedia). Total lifetime production is commonly summarized as "fewer than 20,000" across the full 1990-2005 run, with detailed enthusiast registries (NSX Prime production charts) putting the figure in the ~18,700 range. We record 18,734 as a widely-cited registry total but flag the spread in the claims — exact lifetime totals are NOT firmly established in a single primary source. The chassis-code split is the key fact: NA1 = original C30A 3.0L (all automatics for the whole run, plus all manuals 1991-1996); NA2 = C32B 3.2L (manual cars only, 1997-2005).',
+    'Honda reported worldwide sales of "more than 18,000 units" as of the end of June 2005, a few months before production ended on 30 November 2005 (Acura/Honda heritage material via Wikipedia). Total lifetime production is commonly summarized as "fewer than 20,000" across the full 1990-2005 run, with detailed enthusiast registries (NSX Prime production charts) putting the figure in the ~18,700 range. We record 18,734 as a widely-cited registry total but flag the spread in the claims - exact lifetime totals are NOT firmly established in a single primary source. The chassis-code split is the key fact: NA1 = original C30A 3.0L (all automatics for the whole run, plus all manuals 1991-1996); NA2 = C32B 3.2L (manual cars only, 1997-2005).',
   notableTrims: [
     { name: 'NSX Coupe (NA1)', note: 'The launch car (1990 JP / late 1990 US as Acura). Pop-up headlamps, C30A 3.0 VTEC V6, all-aluminum monocoque.' },
     { name: 'NSX-T (Targa)', note: 'Removable targa roof, introduced 1995. Became the default body in North America after 1994; added ~99 lb of bracing to offset lost rigidity.' },
     { name: 'NSX (NA2, 3.2)', note: '1997 update: C32B 3.2L, 290 hp, new 6-speed manual. Automatics kept the 3.0 (NA1) to the end.' },
-    { name: 'NSX-R / Type R (NA1)', note: 'JDM-only track special, ~265 lb lighter. Built late 1992–Sept 1995. ~483 units per most records (some say 500 — see conflict).' },
+    { name: 'NSX-R / Type R (NA1)', note: 'JDM-only track special, ~265 lb lighter. Built late 1992 - Sept 1995. ~483 units per most records (some say 500 - see conflict).' },
     { name: 'NSX Type S', note: 'JDM "winding-road" trim, 1997-2001, lightweight options. 209 built per NSX Prime registry.' },
-    { name: 'NSX Type S-Zero', note: 'Stripped, circuit-focused S. Only 30 built (1997-2001) — one of the rarest NA1/NA2 variants.' },
+    { name: 'NSX Type S-Zero', note: 'Stripped, circuit-focused S. Only 30 built (1997-2001) - one of the rarest NA1/NA2 variants.' },
     { name: 'NSX Alex Zanardi Edition', note: 'US-only 1999 special honoring Zanardi’s 1997-98 CART titles. Exactly 51 built, all Formula Red, fixed roof, manual steering.' },
-    { name: 'NSX-R (NA2, 2002)', note: 'Second R, JDM-only, on the facelift car. Extensive carbon fiber (incl. vented hood). 140 built (per most sources — see conflict).' },
+    { name: 'NSX-R (NA2, 2002)', note: 'Second R, JDM-only, on the facelift car. Extensive carbon fiber (incl. vented hood). 140 built (per most sources - see conflict).' },
   ],
   specs: {
-    'Engine (NA1)': 'C30A — 2,977 cc DOHC 24-valve VTEC V6, titanium connecting rods',
+    'Engine (NA1)': 'C30A - 2,977 cc DOHC 24-valve VTEC V6, titanium connecting rods',
     'Power (NA1 manual)': '270 hp @ 7,100 rpm; 252 hp on the automatic',
-    'Engine (NA2)': 'C32B — 3,179 cc DOHC VTEC V6 (1997-on manual)',
+    'Engine (NA2)': 'C32B - 3,179 cc DOHC VTEC V6 (1997-on manual)',
     'Power (NA2)': '290 hp @ 7,100 rpm',
     'Redline': '8,000 rpm (C30A)',
     'Transmission': '5-speed manual or 4-speed automatic (NA1); 6-speed manual added 1997 (NA2); auto stayed 4-speed',
     'Layout': 'Transverse rear-mid-engine, rear-wheel drive',
-    'Chassis': 'All-aluminum monocoque — a production-car first — with aluminum suspension arms',
+    'Chassis': 'All-aluminum monocoque - a production-car first - with aluminum suspension arms',
     '0-60 mph': '~5.0-5.5 s (NA1); ~4.5-5.0 s (NA2 3.2/6-speed)',
     'Top speed': '~168-175 mph depending on year',
     'Drag coefficient': '0.32 (pre-facelift); 0.30 (2002 facelift)',
@@ -68,47 +68,47 @@ export const seedNsx = {
   heroPhoto: null as string | null,
   overallConfidence: 'high' as const,
 
-  summary: `The Honda NSX — sold as the Acura NSX in North America from late 1990 — is the car that proved a mid-engine supercar didn't have to be temperamental. Honda benchmarked the Ferrari 328/348, then set out to match that performance with the reliability, visibility, and ease of use of a Honda. The result, on sale from 1990 to 2005, rewrote what buyers could expect from an exotic.
+  summary: `The Honda NSX - sold as the Acura NSX in North America from late 1990 - is the car that proved a mid-engine supercar didn't have to be temperamental. Honda benchmarked the Ferrari 328/348, then set out to match that performance with the reliability, visibility, and ease of use of a Honda. The result, on sale from 1990 to 2005, rewrote what buyers could expect from an exotic.
 
-Two things make the NSX historically important. First, it was the world's first production car with an all-aluminum monocoque body and chassis — a genuine engineering milestone that saved roughly 441 lb over steel. Second, its 3.0-liter C30A V6 was the first road application of Honda's VTEC variable valve timing in a V6, complete with titanium connecting rods and an 8,000-rpm redline.
+Two things make the NSX historically important. First, it was the world's first production car with an all-aluminum monocoque body and chassis - a genuine engineering milestone that saved roughly 441 lb over steel. Second, its 3.0-liter C30A V6 was the first road application of Honda's VTEC variable valve timing in a V6, complete with titanium connecting rods and an 8,000-rpm redline.
 
-The "everyday supercar" thesis is the NSX's enduring legacy: a car you could commute in, that wouldn't strand you, with light controls and a clear view out — yet would still run with the exotics of its day. That reputation, plus genuine rarity, is why clean original cars have appreciated sharply over the last decade.`,
+The "everyday supercar" thesis is the NSX's enduring legacy: a car you could commute in, that wouldn't strand you, with light controls and a clear view out - yet would still run with the exotics of its day. That reputation, plus genuine rarity, is why clean original cars have appreciated sharply over the last decade.`,
 
   history: `## From a cut-in-half City to a Ferrari-fighter
 
-The NSX traces back to early-1980s Honda experiments — famously a Honda City test mule cut in half with the engine moved behind the driver. That fed into the 1984 Pininfarina-designed HP-X concept, which evolved into the NS-X prototype ("New Sports eXperimental"). The production car was led by Executive Chief Engineer Shigeru Uehara and Chief Designer Masahito Nakano. Honda's brief was explicit: match Italian and German supercars, but do it with Honda reliability and a lower price.
+The NSX traces back to early-1980s Honda experiments - famously a Honda City test mule cut in half with the engine moved behind the driver. That fed into the 1984 Pininfarina-designed HP-X concept, which evolved into the NS-X prototype ("New Sports eXperimental"). The production car was led by Executive Chief Engineer Shigeru Uehara and Chief Designer Masahito Nakano. Honda's brief was explicit: match Italian and German supercars, but do it with Honda reliability and a lower price.
 
 ## The VTEC V6 and the aluminum body
 
-The original plan used a non-VTEC 3.0-liter DOHC V6. Late in development — reportedly at the urging of Honda president Tadashi Kume — the engine was re-engineered to use VTEC, gaining a stronger block and titanium connecting rods that pushed the redline to 8,000 rpm. The new C30A was physically larger, forcing engineers to tilt it back about 5 degrees to fit. The body was the other headline: an all-aluminum monocoque, a production first, paired with aluminum suspension arms and (later) the first electronic throttle in a Honda road car.
+The original plan used a non-VTEC 3.0-liter DOHC V6. Late in development - reportedly at the urging of Honda president Tadashi Kume - the engine was re-engineered to use VTEC, gaining a stronger block and titanium connecting rods that pushed the redline to 8,000 rpm. The new C30A was physically larger, forcing engineers to tilt it back about 5 degrees to fit. The body was the other headline: an all-aluminum monocoque, a production first, paired with aluminum suspension arms and (later) the first electronic throttle in a Honda road car.
 
-## Senna's role — handled carefully
+## Senna's role - handled carefully
 
-The popular story is that Ayrton Senna "developed" the NSX. The more careful, sourced version: Senna, then a Honda-powered McLaren F1 driver, tested a prototype at Suzuka and told Honda the chassis felt insufficiently rigid. Honda used that feedback (among other inputs) and ultimately stiffened the structure by over 50%. But Wikipedia, citing Japanese-language sources, explicitly cautions that Senna was *not* the development driver — he drove the car only a handful of times and offered advice. The actual lead development driver was Motoharu "Gan-san" Kurosawa, with much chassis work done at the Nürburgring, plus on-track input from Satoru Nakajima and Bobby Rahal. We present Senna's contribution as real but limited, and flag the "development driver" framing as a disputed/overstated claim.
+The popular story is that Ayrton Senna "developed" the NSX. The more careful, sourced version: Senna, then a Honda-powered McLaren F1 driver, tested a prototype at Suzuka and told Honda the chassis felt insufficiently rigid. Honda used that feedback (among other inputs) and ultimately stiffened the structure by over 50 percent. But Wikipedia, citing Japanese-language sources, explicitly cautions that Senna was *not* the development driver - he drove the car only a handful of times and offered advice. The actual lead development driver was Motoharu "Gan-san" Kurosawa, with much chassis work done at the Nürburgring, plus on-track input from Satoru Nakajima and Bobby Rahal. We present Senna's contribution as real but limited, and flag the "development driver" framing as a disputed/overstated claim.
 
 ## Variants and the long run
 
-Over 15 years the NSX spawned a broad family: the original **Coupe**; the targa-roofed **NSX-T** (1995-on); the JDM track-special **NSX-R / Type R** (NA1, ~1992-95); the JDM **Type S** and ultra-rare **Type S-Zero** (1997-2001); the US-only **Alex Zanardi Edition** (1999, 51 cars); and a second **NSX-R** (NA2) on the 2002 facelift car. The big mechanical watershed was 1997, when manual cars got the larger 3.2-liter C32B (the NA2) and a 6-speed gearbox; automatics kept the 3.0 (NA1) to the end. In December 2001 the car was facelifted — most visibly, the pop-up headlamps gave way to fixed xenon units — and it ran in that form until production ended 30 November 2005.`,
+Over 15 years the NSX spawned a broad family: the original **Coupe**; the targa-roofed **NSX-T** (1995-on); the JDM track-special **NSX-R / Type R** (NA1, ~1992-95); the JDM **Type S** and ultra-rare **Type S-Zero** (1997-2001); the US-only **Alex Zanardi Edition** (1999, 51 cars); and a second **NSX-R** (NA2) on the 2002 facelift car. The big mechanical watershed was 1997, when manual cars got the larger 3.2-liter C32B (the NA2) and a 6-speed gearbox; automatics kept the 3.0 (NA1) to the end. In December 2001 the car was facelifted - most visibly, the pop-up headlamps gave way to fixed xenon units - and it ran in that form until production ended 30 November 2005.`,
 
-  marketNotes: `For years the NSX was the "sensible exotic" — admired but relatively affordable, in part because its Honda badge (or Acura badge in the US) capped its prestige next to Ferrari. That changed through the 2010s as the everyday-supercar reputation hardened into collector consensus and clean, unmodified, low-owner cars became scarce.
+  marketNotes: `For years the NSX was the "sensible exotic" - admired but relatively affordable, in part because its Honda badge (or Acura badge in the US) capped its prestige next to Ferrari. That changed through the 2010s as the everyday-supercar reputation hardened into collector consensus and clean, unmodified, low-owner cars became scarce.
 
 Hagerty has noted NSX values roughly tripling over the dozen years to the mid-2020s, with top-condition cars comfortably exceeding their original sticker. As a directional snapshot (mid-2020s), Hagerty's condition tiers have run broadly in the low-$40k range for fair cars up into six figures for the best examples, with rare variants (NSX-R, Zanardi, low-mile NA2 coupes) far above that. Two attributes consistently *reduce* value: the automatic transmission and the targa roof versus a fixed coupe.
 
-These are date-stamped observations, not a price quote — collector values move, and the figures here should be treated as a mid-2020s snapshot. Use the Fully Sorted Value Guide for live comps before buying or selling.`,
+These are date-stamped observations, not a price quote - collector values move, and the figures here should be treated as a mid-2020s snapshot. Use the Fully Sorted Value Guide for live comps before buying or selling.`,
 
-  whatToLookFor: `**Snap-ring transmission (early manual cars).** A narrow band of 1991–early-1992 5-speed cars left the factory with an out-of-tolerance snap-ring groove that can let the ring walk and eventually fail, sometimes catastrophically. It's tied to a specific transmission serial range, and Honda issued a fix. Confirm whether an affected-range car has had the snap-ring service done — this is the single most important early-car check.
+  whatToLookFor: `**Snap-ring transmission (early manual cars).** A narrow band of 1991 - early-1992 5-speed cars left the factory with an out-of-tolerance snap-ring groove that can let the ring walk and eventually fail, sometimes catastrophically. It's tied to a specific transmission serial range, and Honda issued a fix. Confirm whether an affected-range car has had the snap-ring service done - this is the single most important early-car check.
 
 **Notchy 2nd gear when cold.** Many NSXs baulk slightly going into 2nd until warm. A little cold reluctance is normal; persistent grinding when warm is not.
 
-**Timing belt + water pump.** An interference V6 — a snapped belt means major engine damage. Service interval is roughly 90k miles / 7 years on early cars and ~105k / 7 years on later cars; many specialists do the water pump at the same time. Get dated proof it's been done.
+**Timing belt + water pump.** An interference V6 - a snapped belt means major engine damage. Service interval is roughly 90k miles / 7 years on early cars and ~105k / 7 years on later cars; many specialists do the water pump at the same time. Get dated proof it's been done.
 
 **Clutch life.** The early small-diameter clutch wears faster than a typical Honda (often ~40-50k miles). Budget for it.
 
 **Aluminum body = expensive crash repair.** The all-aluminum structure is a strength, but accident repair needs aluminum-qualified shops. Inspect carefully for poor prior repairs, panel-gap inconsistency, and overspray.
 
-**Originality and records.** Modified NSXs are common. A documented, unmodified car with service history from a known specialist is worth a clear premium — especially coupe over targa, manual over automatic.`,
+**Originality and records.** Modified NSXs are common. A documented, unmodified car with service history from a known specialist is worth a clear premium - especially coupe over targa, manual over automatic.`,
 
-  commonProblems: `**Snap-ring transmission failure (early cars).** A manufacturing tolerance issue on a defined range of 1991–early-1992 5-speed transmission cases: the snap-ring groove was cut too wide, so the ring can move and eventually break, with severe consequences. Failure is unpredictable (some affected cars run trouble-free for high mileage; others failed early). Honda addressed it; verify the fix on in-range cars (NSX FAQ documents the affected serial range).
+  commonProblems: `**Snap-ring transmission failure (early cars).** A manufacturing tolerance issue on a defined range of 1991 - early-1992 5-speed transmission cases: the snap-ring groove was cut too wide, so the ring can move and eventually break, with severe consequences. Failure is unpredictable (some affected cars run trouble-free for high mileage; others failed early). Honda addressed it; verify the fix on in-range cars (NSX FAQ documents the affected serial range).
 
 **Timing belt (interference engine).** The C30A/C32B will be damaged if the belt fails. Replace on schedule (~90k mi/7 yr early, ~105k mi later) with the water pump.
 
@@ -120,7 +120,7 @@ These are date-stamped observations, not a price quote — collector values move
 
 **General:** like any aging supercar, expect supercar-sized bills for major service despite the car's everyday-reliability reputation.`,
 
-  valueTrajectory: `Long undervalued as the "affordable exotic" through the 2000s → steadily re-rated through the 2010s as the everyday-supercar legacy and engineering significance became collector consensus → values roughly tripled over the dozen years to the mid-2020s (Hagerty), with the best cars topping their original price. Manual coupes, the NA2 3.2 cars, and rare variants (NSX-R, Zanardi, Type S/S-Zero) sit at the top; automatics and targa cars trail. Snapshot only — refresh against live comps before any deal.`,
+  valueTrajectory: `Long undervalued as the "affordable exotic" through the 2000s → steadily re-rated through the 2010s as the everyday-supercar legacy and engineering significance became collector consensus → values roughly tripled over the dozen years to the mid-2020s (Hagerty), with the best cars topping their original price. Manual coupes, the NA2 3.2 cars, and rare variants (NSX-R, Zanardi, Type S/S-Zero) sit at the top; automatics and targa cars trail. Snapshot only - refresh against live comps before any deal.`,
 
   sources: [
     {
@@ -205,12 +205,12 @@ These are date-stamped observations, not a price quote — collector values move
     },
     {
       section: 'history',
-      claimText: 'Ayrton Senna tested a prototype at Suzuka and his feedback helped lead Honda to stiffen the chassis (by over 50%), but he was NOT the lead development driver — that was Motoharu Kurosawa.',
+      claimText: 'Ayrton Senna tested a prototype at Suzuka and his feedback helped lead Honda to stiffen the chassis (by over 50 percent), but he was NOT the lead development driver - that was Motoharu Kurosawa.',
       confidence: 'medium',
       status: 'disputed',
       sourceRefs: ['wikipedia'],
       conflictNote:
-        'Popular accounts (and much marketing-adjacent coverage) credit Senna as a/the NSX development driver. Wikipedia, citing Japanese-language sources, states this is incorrect: Senna drove the prototype only a few times and gave advice, while Motoharu "Gan-san" Kurosawa was the actual development driver (with Satoru Nakajima and Bobby Rahal also contributing). The ~50% rigidity increase is well-documented; Senna’s precise causal role is overstated in many tellings. We present his contribution as real but limited.',
+        'Popular accounts (and much marketing-adjacent coverage) credit Senna as a/the NSX development driver. Wikipedia, citing Japanese-language sources, states this is incorrect: Senna drove the prototype only a few times and gave advice, while Motoharu "Gan-san" Kurosawa was the actual development driver (with Satoru Nakajima and Bobby Rahal also contributing). The ~50 percent rigidity increase is well-documented; Senna’s precise causal role is overstated in many tellings. We present his contribution as real but limited.',
     },
     {
       section: 'specs',
@@ -264,7 +264,7 @@ These are date-stamped observations, not a price quote — collector values move
     },
     {
       section: 'problems',
-      claimText: 'A defined range of 1991–early-1992 5-speed cars has a snap-ring transmission defect (an out-of-tolerance groove) that can cause the ring to fail; Honda issued a fix.',
+      claimText: 'A defined range of 1991 - early-1992 5-speed cars has a snap-ring transmission defect (an out-of-tolerance groove) that can cause the ring to fail; Honda issued a fix.',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['nsxfaq'],

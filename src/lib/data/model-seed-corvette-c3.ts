@@ -1,5 +1,5 @@
 /**
- * Researched model draft — Chevrolet Corvette C3 (1968-1982).
+ * Researched model draft - Chevrolet Corvette C3 (1968-1982).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedCorvetteC3 = {

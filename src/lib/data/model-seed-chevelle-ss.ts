@@ -1,5 +1,5 @@
 /**
- * Researched model draft — Chevrolet Chevelle SS (1968-1972).
+ * Researched model draft - Chevrolet Chevelle SS (1968-1972).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedChevelleSs = {

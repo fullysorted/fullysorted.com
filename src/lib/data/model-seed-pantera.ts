@@ -1,5 +1,5 @@
 /**
- * Researched model draft — De Tomaso Pantera (1971-1992).
+ * Researched model draft - De Tomaso Pantera (1971-1992).
  * Cross-checked across independent sources; seeded as status='draft' for review.
  */
 export const seedPantera = {
@@ -15,7 +15,7 @@ export const seedPantera = {
   "2-door mid-engined coupe (steel monocoque)"
  ],
  "engines": [
-  "5,763 cc Ford 351 Cleveland OHV V8, single four-barrel carburettor, 330 hp claimed for the 1971 high-compression car",
+  "5,763 cc Ford 351 Cleveland OHV V8, single four-barrel carburetor, 330 hp claimed for the 1971 high-compression car",
   "5,763 cc Ford 351 Cleveland in emissions-era US tune, 8.6:1 then 8.0:1 compression, approximately 248-264 hp for the Pantera L",
   "5,763 cc Ford 351 Cleveland, European high-compression GTS and GT5 tune, approximately 345 hp at 6,000 rpm and 333 lb-ft at 3,800 rpm",
   "5,763 cc Ford 351 Windsor OHV V8, fitted from the late 1980s in 300 or 350 hp tune",
@@ -63,15 +63,15 @@ export const seedPantera = {
   "engine": "5,763 cc Ford 351 Cleveland V8; 351 Windsor from the late 1980s; 4,942 cc fuel-injected 302 in the 90 Si",
   "valvetrain": "Pushrod overhead valve, two valves per cylinder, single central camshaft",
   "compression": "11.0:1 European; 8.6:1 US 1971; 8.0:1 Pantera L",
-  "fuel_system": "Single four-barrel carburettor, Holley on later European cars; electronic injection on the 90 Si",
+  "fuel_system": "Single four-barrel carburetor, Holley on later European cars; electronic injection on the 90 Si",
   "power": "330 hp claimed for the 1971 car and about 345 hp at 6,000 rpm for the European GTS and GT5; 248-264 hp for the emissions-era Pantera L - manufacturer claims on differing standards",
   "torque": "333 lb-ft at 3,800 rpm quoted for the GT5 and GT5-S; 355 lb-ft at 4,000 rpm quoted for the 1971 car",
   "transmission": "ZF 5DS-25 five-speed manual transaxle with limited-slip differential; 4.22:1 final drive on early cars",
   "suspension": "Independent front and rear, unequal-length wishbones, coil springs, anti-roll bars",
   "brakes": "Servo-assisted discs all round; vented fronts adopted during the Ford era and enlarged on the GT5",
   "steering": "Rack and pinion, unassisted",
-  "wheelbase": "2,500 mm (98.4 in) early; 2,515 mm (99 in) later",
-  "dimensions": "4,013 x 1,702 x 1,100 mm (1971); 4,270 x 1,811 mm on late wide-body cars",
+  "wheelbase": "98.4 in (2,500 mm) (98.4 in) early; 2,515 mm (99 in) later",
+  "dimensions": "158.0 x 67.0 x 43.3 in (4,013 x 1,702 x 1,100 mm) for 1971; 168.1 x 71.3 in (4,270 x 1,811 mm) on late wide-body cars",
   "weight": "3,124-3,131 lb early and GT5-S; 3,250 lb quoted for the widest late cars; 2,425 lb Group 4",
   "acceleration": "0-60 mph in 5.5 s and a standing quarter of 14.0 s at 99.4 mph for the 1971 car; 0-62 mph in 5.3 s quoted for GT5 and GT5-S",
   "top_speed": "159 mph recorded for the 1971 car; 158 mph quoted for GT5 and GT5-S - claims and period tests, not one verified figure",

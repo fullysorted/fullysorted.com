@@ -18,11 +18,11 @@ export const seedGt40 = {
  ],
  "engines": [
   "4,262 cc Ford Fairlane-derived small-block V8 as fitted to the Lola Mk6 GT the program started from, rated at 260 hp on four Webers and upgraded to a 4.7-liter Cobra unit for Le Mans 1963",
-  "4,736 cc (289 cu in) Ford small-block V8, cast-iron block with pushrod overhead valves, four twin-choke Weber 48 IDA carburetors, 10.0:1 compression, 380 hp at 6,500 rpm and 330 lb ft at 5,500 rpm in Mk I competition trim",
+  "4,736 cc (289 cu in) Ford small-block V8, cast-iron block with pushrod overhead valves, four twin-choke Weber 48 IDA carburetors, 10.0:1 compression, 380 hp at 6,500 rpm and 330 lb-ft at 5,500 rpm in Mk I competition trim",
   "4,736 cc small-block V8 in Mk I road trim: a single Holley four-barrel at 9.0:1 for 306 hp, or the four-Weber option for 335 hp",
   "4,942 cc (302 cu in) Windsor V8 in the 1968-69 Gulf Mk I, 10.6:1 compression, four twin-choke 48 IDA Webers, 425 hp at 6,000 rpm",
   "6,997 cc (427 cu in) Ford FE big-block V8 in the Mk II with a Kar Kraft four-speed transaxle; RM Sotheby's describes chassis P/1032 as carrying a NASCAR 427 with the T-44 unit",
-  "4,737 cc (289 cu in) V8 detuned for the Mk III road car, 10.5:1 compression, 306 hp at 6,000 rpm and 329 lb ft at 4,200 rpm",
+  "4,737 cc (289 cu in) V8 detuned for the Mk III road car, 10.5:1 compression, 306 hp at 6,000 rpm and 329 lb-ft at 4,200 rpm",
   "427 cu in FE big-block in the Mk IV, quoted at approximately 500 hp at 6,400 rpm, 530 hp or 550 hp depending on the source consulted"
  ],
  "productionTotal": null,
@@ -67,7 +67,7 @@ export const seedGt40 = {
   "body": "Fiberglass doors and panels by Glass Fiber Engineering, Farnham; roof-cut doors that take a section of the roof with them",
   "engine": "4,736 cc (289 cu in) Ford small-block on four Weber 48 IDA in Mk I form; 427 cu in Ford FE big-block in Mk II and Mk IV; 302 cu in Windsor in the 1968-69 Gulf cars",
   "power": "380 hp at 6,500 rpm (Mk I competition); 306 hp (Mk III); 425 hp at 6,000 rpm (Gulf Mk I); Mk IV quoted at approximately 500-550 hp depending on source",
-  "torque": "330 lb ft at 5,500 rpm (Mk I competition); 329 lb ft at 4,200 rpm (Mk III)",
+  "torque": "330 lb-ft at 5,500 rpm (Mk I competition); 329 lb-ft at 4,200 rpm (Mk III)",
   "transmission": "ZF 5DS-25 five-speed all-synchromesh transaxle with triple-plate clutch and limited-slip differential, replacing the Colotti four-speed of the earliest cars; Kar Kraft T-44 four-speed on Mk II and Mk IV",
   "suspension": "Independent front and rear with Koni adjustable dampers",
   "brakes": "Four-wheel Girling stage II ventilated discs",
@@ -211,7 +211,7 @@ export const seedGt40 = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Mk I run given as GT40 P/1000 to P/1084, roughly 85 cars. Competition engine 4,736 cc, four Weber 48 IDA, 10.0:1, 380 hp at 6,500 rpm and 330 lb ft at 5,500 rpm; road versions 306 hp on a Holley or 335 hp on Webers. Colotti replaced by the ZF DS25; steel semi-monocoque by Abbey Panels, fiberglass panels by Glass Fiber Engineering, 2,006 lb."
+   "notes": "Mk I run given as GT40 P/1000 to P/1084, roughly 85 cars. Competition engine 4,736 cc, four Weber 48 IDA, 10.0:1, 380 hp at 6,500 rpm and 330 lb-ft at 5,500 rpm; road versions 306 hp on a Holley or 335 hp on Webers. Colotti replaced by the ZF DS25; steel semi-monocoque by Abbey Panels, fiberglass panels by Glass Fiber Engineering, 2,006 lb."
   },
   {
    "ref": "supercarnostalgia-mk3",
@@ -220,7 +220,7 @@ export const seedGt40 = {
    "publisher": "Supercar Nostalgia",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Seven Mk IIIs built between December 1966 and June 1969, three sold to customers (M3/1103, 1104, 1105) and four retained for promotion (M3/1101, 1102, 1106, 1107). Dry-sumped 4,737 cc V8, 10.5:1, 306 hp at 6,000 rpm, 329 lb ft at 4,200 rpm; $18,500 against $16,500 for a racing Mk I; 265 mm longer; criticism of the central gearchange."
+   "notes": "Seven Mk IIIs built between December 1966 and June 1969, three sold to customers (M3/1103, 1104, 1105) and four retained for promotion (M3/1101, 1102, 1106, 1107). Dry-sumped 4,737 cc V8, 10.5:1, 306 hp at 6,000 rpm, 329 lb-ft at 4,200 rpm; $18,500 against $16,500 for a racing Mk I; 265 mm longer; criticism of the central gearchange."
   },
   {
    "ref": "motorcities-mk3",

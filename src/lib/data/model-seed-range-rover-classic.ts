@@ -19,8 +19,8 @@ export const seedRangeRoverClassic = {
  ],
  "engines": [
   "3,528 cc Rover V8, all-alloy 90-degree pushrod unit derived from the Buick 215, twin carburetors, 135 hp net at 4,750 rpm on a lowered compression ratio to permit 91-octane fuel",
-  "3,528 cc Rover V8 with Lucas electronic fuel injection from 1986, later the Lucas 14CUX system; approximately 150 hp and 195 lb ft in the specification federalized for the United States in 1987",
-  "3,947 cc Rover V8, fuel injected, from the 1989 model year; 185 hp at 4,750 rpm and 235 lb ft at 2,600 rpm in 1990-91 CSK tune",
+  "3,528 cc Rover V8 with Lucas electronic fuel injection from 1986, later the Lucas 14CUX system; approximately 150 hp and 195 lb-ft in the specification federalized for the United States in 1987",
+  "3,947 cc Rover V8, fuel injected, from the 1989 model year; 185 hp at 4,750 rpm and 235 lb-ft at 2,600 rpm in 1990-91 CSK tune",
   "4,197 cc Rover V8 from 1992, fitted to the long-wheelbase LSE and County LWB",
   "2.4-liter VM Motori turbocharged inline-four diesel from 1986, enlarged to 2.5 liters in 1989",
   "Land Rover 200Tdi 2.5-liter turbodiesel from 1992, replaced by the 300Tdi from late 1994"
@@ -67,13 +67,13 @@ export const seedRangeRoverClassic = {
   "bodywork": "Aluminum alloy outer panels over the steel inner frame; clamshell hood, unbroken waistline, split tailgate. CSK frames were welded rather than bolted",
   "engine": "3,528 cc all-alloy Rover V8 derived from the Buick 215 at launch; 3,947 cc from 1989 and 4,197 cc from 1992; VM 2.4 and 2.5 turbodiesels 1986-1992, 200Tdi from 1992, 300Tdi from late 1994",
   "power": "135 hp net at 4,750 rpm for the 1970 carburetor 3.5; about 150 hp for the injected 3.5 federalized for the United States in 1987; 185 hp at 4,750 rpm for the 3.9-liter CSK",
-  "torque": "235 lb ft at 2,600 rpm for the 3.9-liter CSK; about 195 lb ft quoted for the injected 3.5 sold in the United States. No period torque figure for the 1970 carburetor engine was recovered here",
+  "torque": "235 lb-ft at 2,600 rpm for the 3.9-liter CSK; about 195 lb-ft quoted for the injected 3.5 sold in the United States. No period torque figure for the 1970 carburetor engine was recovered here",
   "transmission": "Four-speed LT95 combined gearbox and transfer box to 1983, then LT77 five-speed with separate LT230; Chrysler TorqueFlite three-speed automatic from October 1982, ZF four-speed from 1985",
   "suspension": "Live axles front and rear on long-travel coil springs with a Boge self-leveling rear strut; anti-roll bars first on the CSK; electronic air suspension on the LSE from 1992",
   "brakes": "Servo-assisted discs on all four wheels from launch; ventilated fronts and four-wheel ABS on later cars, ABS arriving in 1989",
   "steering": "Worm-and-roller and unassisted at launch, four turns lock to lock with a 37 ft turning circle as tested in February 1971; power-assisted recirculating ball later",
   "wheelbase": "100 in (2,540 mm); 108 in (2,743 mm) for the LSE and County LWB from 1992",
-  "dimensions": "183 in (4,648 mm) long in long-wheelbase form, 70.1 in (1,781 mm) wide from 1980; 4,470 x 1,778 x 1,778 mm quoted for the 1991 CSK",
+  "dimensions": "183 in (4,648 mm) long in long-wheelbase form, 70.1 in (1,781 mm) wide from 1980; 176.0 x 70.0 x 70.0 in (4,470 x 1,778 x 1,778 mm) quoted for the 1991 CSK",
   "weight": "No curb weight for the 1970 two-door was recovered from the sources consulted here; 4,435 lb is quoted for the 1991 CSK",
   "acceleration": "Under 14 seconds to 60 mph and a standing quarter a little over 19 seconds in February 1971; 9.5 seconds to 60 mph quoted for the CSK by Classic & Sports Car against 9.9 in Land Rover's own record",
   "top_speed": "Around 90 mph with 85 mph a reasonable cruise in the February 1971 test; 114 mph quoted for the 3.9-liter CSK",
@@ -175,7 +175,7 @@ export const seedRangeRoverClassic = {
    "publisher": "TopSpeed",
    "sourceType": "journalism",
    "reliability": "low",
-   "notes": "US launch: 1987 introduction at about $30,000; injected 3.5 V8 quoted at 150 hp and 195 lb ft with a four-speed automatic; allocation of roughly 5,000 cars a model year; the Jeep Grand Wagoneer the only comparable product."
+   "notes": "US launch: 1987 introduction at about $30,000; injected 3.5 V8 quoted at 150 hp and 195 lb-ft with a four-speed automatic; allocation of roughly 5,000 cars a model year; the Jeep Grand Wagoneer the only comparable product."
   },
   {
    "ref": "insidehook-ownership",
@@ -193,7 +193,7 @@ export const seedRangeRoverClassic = {
    "publisher": "Classic & Sports Car",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "CSK specification panel: 200 built, 74 survivors traced, Beluga Black only; 3947 cc, 185 hp, 235 lb ft at 2,600 rpm; 0-60 mph 9.5 s, 114 mph, 15-21 mpg; anti-roll bars front and rear for the first time, Boge self-leveling, ABS; 4,435 lb; CSK frames welded not bolted."
+   "notes": "CSK specification panel: 200 built, 74 survivors traced, Beluga Black only; 3947 cc, 185 hp, 235 lb-ft at 2,600 rpm; 0-60 mph 9.5 s, 114 mph, 15-21 mpg; anti-roll bars front and rear for the first time, Boge self-leveling, ABS; 4,435 lb; CSK frames welded not bolted."
   },
   {
    "ref": "aronline-in-vogue",
@@ -421,7 +421,7 @@ export const seedRangeRoverClassic = {
   },
   {
    "section": "history",
-   "claimText": "Range Rover of North America launched the car in the United States on 16 March 1987 at around $30,000, on an initial allocation of roughly 5,000 cars per model year and using the injected 3.5-liter V8 quoted at approximately 150 hp and 195 lb ft with a four-speed automatic, into a market in which the Jeep Grand Wagoneer was the only comparable product.",
+   "claimText": "Range Rover of North America launched the car in the United States on 16 March 1987 at around $30,000, on an initial allocation of roughly 5,000 cars per model year and using the injected 3.5-liter V8 quoted at approximately 150 hp and 195 lb-ft with a four-speed automatic, into a market in which the Jeep Grand Wagoneer was the only comparable product.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": [
@@ -444,7 +444,7 @@ export const seedRangeRoverClassic = {
   },
   {
    "section": "production",
-   "claimText": "The CSK of 1990-91 was a run of 200 two-door cars named for Charles Spencer King and the first Range Rover with anti-roll bars front and rear, its 3.9-liter V8 quoted at 185 hp and 235 lb ft; Land Rover's Heritage Collection records 49 automatics and 0-60 mph in 9.9 seconds, Classic & Sports Car 9.5 seconds and 74 known survivors.",
+   "claimText": "The CSK of 1990-91 was a run of 200 two-door cars named for Charles Spencer King and the first Range Rover with anti-roll bars front and rear, its 3.9-liter V8 quoted at 185 hp and 235 lb-ft; Land Rover's Heritage Collection records 49 automatics and 0-60 mph in 9.9 seconds, Classic & Sports Car 9.5 seconds and 74 known survivors.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
