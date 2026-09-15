@@ -261,8 +261,8 @@ const quickPicks = TRADE_CATEGORIES.map((c) => ({ label: c.label, type: c.key as
 export function Hero() {
   return (
     <section className="relative" style={{ background: "var(--bg-primary)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-16 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-9 pb-16 sm:pt-11 sm:pb-20 lg:pt-12 lg:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center lg:items-start">
 
           {/* LEFT: headline + service search */}
           <div className="lg:col-span-7">

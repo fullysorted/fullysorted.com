@@ -83,10 +83,10 @@ export const seedF430 = {
  },
  "summary": "The Ferrari F430 replaced the 360 in 2004 on a development of the same aluminum spaceframe, but almost everything the driver deals with was new. The 4,308 cc F136 E V8, sharing its architecture with Maserati, was a fresh engine rated at 483 hp at 8,500 rpm, and it drove through an electronic differential controlled, along with the dampers and the stability system, from a steering wheel switch Ferrari called the manettino. Timing chains replaced the 360's belts, which took the engine-out belt service out of the ownership arithmetic. The berlinetta appeared at Paris in September 2004 and the Spider at Geneva in March 2005. The 430 Scuderia followed at Frankfurt in 2007 with 503 hp and roughly 220 lb removed, and the Scuderia Spider 16M closed the run in 2009 in a stated series of 499 cars. The F430 was the last mid-engined V8 Ferrari offered with a gated six-speed manual, taken by roughly a tenth of buyers, and that single fact now shapes the market more than condition or mileage do.",
  "history": "## Paris 2004: A New Engine in a Familiar Frame\n\nThe F430 was shown at the Paris Motor Show in September 2004 and, at a glance, looked like a reskinned 360. Underneath it kept the aluminum spaceframe philosophy, the 102.4 in (2,600 mm) wheelbase and the Pininfarina proportions, with new elliptical front intakes quoting the 156 Sharknose. The substance was elsewhere. The 3.6-liter five-valve V8 was gone, replaced by a 4,308 cc four-valve unit, the Tipo F136 E, developed jointly with Maserati and rated at 483 hp at 8,500 rpm and 343 lb-ft at 5,250 rpm. It ran chains rather than belts, which quietly removed the 360's three-yearly engine-out cambelt service from the running-cost table. MOTOR magazine's November 2004 test recorded 4.0 seconds to 62 mph using launch control and reported the car lapping Fiorano three seconds inside the 360 Modena and two seconds outside the Enzo.\n\n## The Manettino and the E-Diff\n\nThe more consequential change was electronic. Ferrari fitted a road car with an electronically controlled differential for the first time, taken from Formula 1 practice, and gave the driver a rotary switch on the steering wheel that set the differential, the stability system, the dampers and the gearshift speed together. The manettino became the template for every Ferrari since. The gearbox itself was offered two ways: a gated six-speed manual, or the F1 single-clutch automated manual that most buyers took. Only about one car in ten left Maranello with three pedals, and the F430 turned out to be the last mid-engined V8 Ferrari to offer the choice at all, the 458 Italia arriving in 2009 with a dual-clutch transmission and no manual option.\n\n## Spider, Then Scuderia\n\nThe Spider followed at Geneva in March 2005, quoted at 154 lb heavier for its roof mechanism and reinforcement, a tenth slower to 62 mph and 3 mph down on top speed. In July 2007 Ferrari announced the 430 Scuderia, launched physically at Frankfurt that September. Developed with input from Michael Schumacher, it took roughly 220 lb out through carbon panels, thinner glass and stripped trim, raised compression and fitted a carbon-fiber intake for 503 hp, and used Superfast2 software that cut shifts to 60 milliseconds. Carbon-ceramic brakes of 15.7 in (398 mm), titanium springs and hollow anti-roll bars came as standard, and a manettino button let the driver soften the dampers without dulling the rest. evo lapped Bedford in 1:21.7, within four tenths of an Enzo on the old layout.\n\n## 16M and the End of the Line\n\nIn November 2008 Ferrari announced the Scuderia Spider 16M, an open Scuderia marking the sixteenth constructors' championship won that season. It was stated as a series of 499 cars, all pre-sold to existing clients, delivered from early 2009 and quoted at 176 lb below the standard Spider. Production of the whole family stopped in the summer of 2009. The 16M is the only F430 variant whose production figure no consulted source disputes.\n\n## Racing: Challenge, GTC and GT3\n\nThe competition cars ran in parallel throughout. The F430 Challenge, built for the one-make Ferrari Challenge Trofeo Pirelli and introduced for the 2006 season, was the first Ferrari racer with carbon-ceramic brakes as standard, and dropped the E-Diff for a mechanical unit. The F430 GT and GTC, hand-built by Michelotto Automobili with Ferrari's Corse Clienti department, ran a de-stroked engine of roughly four liters to suit GT2 rules and took the FIA GT2 manufacturers' and drivers' titles in 2006 and 2007, the ALMS GT2 manufacturers' title in 2007 and the GT2 class win at Le Mans in 2008. Later, Kessel Racing converted Challenge chassis to GT3 specification for club and national racing.\n\n## One-offs at the Edges\n\nTwo cars sit outside the count. The SP1 of 2008 opened Ferrari's Special Projects coachbuilding program: a single berlinetta commissioned by the Japanese collector Junichiro Hiramatsu and drawn by Leonardo Fioravanti from his 1998 F100 concept. Separately, a lone F430 Spider Bio Fuel appeared at Detroit in January 2008 running E85, claiming ten more horsepower and five percent better economy, part of an ambition to cut emissions by 40 percent by 2012. Neither went further.",
- "marketNotes": "As of September 2026, classic.com records an average F430 sale of $209,520 across the family with 92 cars listed, a lowest tracked result of $40,000 for a 2005 car in May 2025, and a market split almost entirely along the transmission line. Berlinetta benchmarks stand at $130,158 for the F1 car against $303,105 for the factory manual; Spider benchmarks at $147,340 F1 against $310,237 manual, though that manual Spider page shows a lowest tracked sale of $485,000 sitting above its own $288,953 average, an internal inconsistency not reconciled here. Aftermarket manual conversions carry their own benchmark of $189,604 on a rising indicator. The Scuderia benchmark is $425,353 on an upward indicator with an average sale of $336,918, and the 16M sits at $749,024, average $596,672, with sales at $1,050,000 recorded in 2026 and a low of $239,500 as recently as July 2023. Race cars price inversely to their rarity: the F430 Challenge benchmark is $85,097 on a downward indicator, the GT3 $192,165, the GTC $607,715. Auction evidence as of September 2026 tracks the same shape. RM Sotheby's sold a 6,200-mile 2008 Scuderia for $1,352,500 at Monterey in August 2026, a 26,134 miles car for 359,375 euros at Monaco in 2026 and a 673-mile car for $434,000 at Arizona in January 2025; Gooding sold one with under 4,000 miles for $302,000 at Pebble Beach in 2024. A 16M made 421,250 euros at RM Sotheby's Paris in 2024. All are published results with buyer's premium not separately identified.",
+ "marketNotes": "As of September 2026, classic.com records an average F430 sale of $209,520 across the family with 92 cars listed, a lowest tracked result of $40,000 for a 2005 car in May 2025, and a market split almost entirely along the transmission line. Berlinetta benchmarks stand at $130,158 for the F1 car against $303,105 for the factory manual; Spider benchmarks at $147,340 F1 against $310,237 manual, though that manual Spider page shows a lowest tracked sale of $485,000 sitting above its own $288,953 average, an internal inconsistency not reconciled here. Aftermarket manual conversions carry their own benchmark of $189,604 on a rising indicator. The Scuderia benchmark is $425,353 on an upward indicator with an average sale of $336,918, and the 16M sits at $749,024, average $596,672, with sales at $1,050,000 recorded in 2026 and a low of $239,500 as recently as July 2023. Race cars price inversely to their rarity: the F430 Challenge benchmark is $85,097 on a downward indicator, the GT3 $192,165, the GTC $607,715. Auction evidence as of September 2026 tracks the same shape. RM Sotheby's sold a 6,200-mile 2008 Scuderia for $1,352,500 at Monterey in August 2026, and a 673-mile car for $434,000 at Arizona in January 2025; Gooding sold one with under 4,000 miles for $302,000 at Pebble Beach in 2024, and a 16M made $1,105,000 at RM Sotheby's Cavallino Palm Beach. European results exist for both models and are left unconverted, since US comparables cover the same ground. All are published results with buyer's premium not separately identified.",
  "whatToLookFor": "Establish the gearbox first and whether it is original, because classic.com tracks factory manuals and later conversions as separate categories with a six-figure gap between them. On an F1 car, ask for the clutch wear percentage from a diagnostic read rather than inferring it from mileage: specialists treat 70 percent as a warning and 80 to 85 percent as replacement due. Quoted F1 clutch life runs from as little as 12,000 miles in town use to about 16,000, against 20,000 to 30,000 for the manual. The exhaust manifolds are the other decisive check. The original items crack around the welds under repeated heat cycling and the integral pre-catalysts break up internally, and debris drawn back through the engine is what turns a manifold bill into an engine bill. Listen for metallic ticking on a cold start that fades as the car warms, look for soot around the manifold flanges and for an exhaust smell in the engine bay, and read the fault codes. Cars up to 2007 are the most often cited, though no year is immune, and an invoice for aftermarket manifolds is a positive rather than a worry. Check the hydraulic circuit that serves both the F1 gearbox and the E-Diff, since a failed solenoid can disable the differential, and confirm the transmission fluid has been changed on its three-year schedule. Engine mounts crack and worn ones load the manifolds further. Ball joints and wishbone bushes are a consumable and announce themselves over bumps; lowered suspension or oversized wheels accelerate the wear. On a Spider, cycle the roof fully and check the frame is straight, and confirm the soft-top hydraulic recall on cars up to 2007. Headlight units mist when the seals fail and are expensive to replace. Soft-touch switchgear goes sticky, dashboard leather shrinks in hot climates, and cars laid up for long periods seize caliper pistons.",
- "commonProblems": "Two faults define the model. The first is the exhaust manifolds, described by specialists as the best-known weak point of the car: cracking concentrated in the welds and tubing, with the integrated pre-catalysts degrading and risking fragments traveling back into the engine. Replacement or upgrade is a four-figure job. The second is the F1 hydraulic system, where the actuator, the pump and the clutch and flywheel are each expensive to put right. Air ingress causes selection problems, master cylinders have leaked and were subject to recall, and because the E-Diff shares the circuit a solenoid fault can disable the differential as well as the gearbox. Beyond those, engine mounts crack routinely and increase the load on the manifolds; catalytic converters break up internally; variator solenoids rattle at idle; coolant tanks develop hairline cracks. Ball joints are treated as a wear item, with one guide putting them at about 20,000 miles, and damper actuator motors fail. Headlight seals let in moisture and replacement units are costly. Carbon-ceramic brakes, optional early and standard on late cars, are the single largest consumable on the car. Rear light brackets are fragile, door handles work loose, window regulator guides break and satin black under-hood paint flakes. The aluminum body does not rust but corrosion starts at stone chips around the arches, window surrounds and rear buttresses. What the F430 does not have is a cambelt: the chain-driven engine needs no engine-out belt service, and evo's checkpoints guide calls the engine itself free of innate problems.",
- "valueTrajectory": "Through the 2010s the standard cars were simply used Ferraris: Sports Car Market's profile of a Scuderia sold at RM Sotheby's Phoenix in January 2022 for $285,500 including premium noted, with some puzzlement, that ordinary manual F430s were by then repeatedly clearing $300,000 while the faster and rarer Scuderia lagged. That gap has since closed from the Scuderia side. As of September 2026 classic.com shows the Scuderia benchmark at $425,353 on a rising indicator and the 16M at $749,024 with seven-figure sales recorded in 2026, while F1-gearbox coupes and Spiders sit at $130,158 and $147,340. The pattern is stratification rather than a general rise: ordinary F1 cars are held down by their maintenance liability and their numbers, while manuals, the Scuderia and the 16M are pulled up by the wider market for lightweight and manual Ferraris.",
+ "commonProblems": "Two faults define the model. The first is the exhaust manifolds, described by specialists as the best-known weak point of the car: cracking concentrated in the welds and tubing, with the integrated pre-catalysts degrading and risking fragments traveling back into the engine. A US maker of replacement headers lists them at $4,473.95 to $5,755.95 as of September 2026 and builds them without pre-cats. The second is the F1 hydraulic system: as of September 2026 a New Jersey specialist prices the F1 clutch kit from $8,798 on a coupe and from $9,375 on a Spider. Air ingress causes selection problems, master cylinders have leaked and were subject to recall, and because the E-Diff shares the circuit a solenoid fault can disable the differential as well as the gearbox. Beyond those, engine mounts crack routinely and increase the load on the manifolds; catalytic converters break up internally; variator solenoids rattle at idle; coolant tanks develop hairline cracks. Ball joints are treated as a wear item, with one guide putting them at about 20,000 miles, and damper actuator motors fail. Headlight seals let in moisture and the units are replaced, not resealed. Carbon-ceramic brakes, optional early and standard on late cars, are the single largest consumable. Rear light brackets are fragile, door handles work loose, window regulator guides break and satin black under-hood paint flakes. The aluminum body does not rust but corrosion starts at stone chips around the arches, window surrounds and rear buttresses. What the F430 does not have is a cambelt: the chain-driven engine needs no engine-out belt service, and evo's checkpoints guide calls the engine itself free of innate problems.",
+ "valueTrajectory": "Through the 2010s the standard cars were simply used Ferraris: Sports Car Market's profile of a Scuderia sold at RM Sotheby's Phoenix in January 2022 for $285,500 including premium noted, with some puzzlement, that ordinary manual F430s were by then repeatedly clearing $300,000 while the faster and rarer Scuderia lagged. That gap has since closed from the Scuderia side. As of September 2026 classic.com shows the Scuderia benchmark at $425,353 on a rising indicator and the 16M at $749,024 with seven-figure sales recorded in 2026, while F1-gearbox coupes and Spiders sit at $130,158 and $147,340. The pattern is stratification rather than a general rise: ordinary F1 cars are held down by their maintenance liability and their numbers, while manuals, the Scuderia and the 16M are pulled up by the wider market for lightweight and manual Ferraris. That liability is smaller than the folklore suggests but lands in lumps. As of September 2026 a New Jersey Ferrari specialist lists the 430 annual service from $875 and the two-year major from $1,650, while the F1 clutch kit due on every paddle-shift car starts at $8,798. A deferred clutch and a cracked set of manifolds can exceed the gap between a cheap F1 coupe and a good one, which is why the bottom of that market stays soft.",
  "overallConfidence": "medium",
  "sources": [
   {
@@ -195,7 +195,7 @@ export const seedF430 = {
    "publisher": "Artcurial Motorcars",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Catalog entry for chassis F131 EVOGT #2456, engine F136GT #037, sold at Retromobile 2018 for 417,200 euros against a 400,000 to 600,000 euro estimate. States the GTC was 'construite en 38 exemplaires operationnels', that is built in 38 operational examples. The lowest of the three Michelotto figures found and independent of the dealer sources, with the qualifier 'operational' possibly explaining part of the spread."
+   "notes": "Catalog entry for chassis F131 EVOGT #2456, engine F136GT #037, sold at Retromobile 2018, with the result and estimate published in euros and deliberately not converted here. States the GTC was 'construite en 38 exemplaires operationnels', that is built in 38 operational examples. The lowest of the three Michelotto figures found and independent of the dealer sources, with the qualifier 'operational' possibly explaining part of the spread."
   },
   {
    "ref": "techracingcars-f430gt",
@@ -303,7 +303,7 @@ export const seedF430 = {
    "publisher": "Magneto",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Buying guide: manual gearboxes roughly 10 percent of production and worth about a 10,000 pound premium; 16M limited to 499; service every 6,250 miles or annually and transmission fluid every three years; F1 clutch about 16,000 miles against 20,000-30,000 manual; cracked manifolds 'particularly on cars up to 2007' with debris risk; F1 actuator failure at 6,000 pounds; leaking clutch master cylinders subject to recall; E-diff solenoids; ball joints as a consumable; sticky switches; Spider soft-top frame damage; condition-banded UK and US values for a 2006 F1 coupe."
+   "notes": "Buying guide: manual gearboxes roughly 10 percent of production and carrying a clear premium; 16M limited to 499; service every 6,250 miles or annually and transmission fluid every three years; F1 clutch about 16,000 miles against 20,000-30,000 manual; cracked manifolds 'particularly on cars up to 2007' with debris risk; F1 actuator failure named as a major cost, quoted in sterling and not used for costs here; leaking clutch master cylinders subject to recall; E-diff solenoids; ball joints as a consumable; sticky switches; Spider soft-top frame damage; condition-banded values for a 2006 F1 coupe. A UK title, so used here for technical and fault content only, never for values or costs."
   },
   {
    "ref": "evo-scuderia",
@@ -312,7 +312,7 @@ export const seedF430 = {
    "publisher": "evo",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Scuderia review and data: 503 hp at 8,500 rpm, 347 lb-ft, 2,976 lb and 220 lb lighter than the standard car, 378 hp/ton, 43:57 distribution, 683 lb of downforce at 186 mph, 0-62 mph 3.6 s, 198 mph; F1 Superfast2 with 60 ms shifts; carbon-fiber intake manifold and revised piston crowns with compression quoted at 11.75:1; 398 mm carbon-ceramic brakes; the Schumacher-credited 'bumpy road' damper button; evo's own Bedford lap of 1:21.7 against an Enzo's 1:21.3; original UK price 172,605 pounds; the last mid-engined Ferrari with a single-clutch F1 gearbox before the 458."
+   "notes": "Scuderia review and data: 503 hp at 8,500 rpm, 347 lb-ft, 2,976 lb and 220 lb lighter than the standard car, 378 hp/ton, 43:57 distribution, 683 lb of downforce at 186 mph, 0-62 mph 3.6 s, 198 mph; F1 Superfast2 with 60 ms shifts; carbon-fiber intake manifold and revised piston crowns with compression quoted at 11.75:1; 398 mm carbon-ceramic brakes; the Schumacher-credited 'bumpy road' damper button; evo's own Bedford lap of 1:21.7 against an Enzo's 1:21.3; a UK title, so its sterling list price is not carried into the copy; the last mid-engined Ferrari with a single-clutch F1 gearbox before the 458."
   },
   {
    "ref": "evo-checkpoints",
@@ -321,7 +321,7 @@ export const seedF430 = {
    "publisher": "evo",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Ownership checkpoints: no cambelts and an engine described as free of innate problems; cracked manifolds expensive to replace; manual and F1 clutches are the same unit, with F1 cars wearing them in as few as 12,000 miles through first-gear clutch riding, and the flywheel usually replaced alongside; ball joints and wishbone bushes wear quickly; carbon-ceramic brakes optional and costly; fragile rear light mounting brackets; flaking satin black under-hood paint; service costs of 948 pounds annually or at 6,250 miles, 1,188 pounds at 18,000 miles, clutch from 2,076 pounds; period values of 60,000 pounds upward for good cars, to 100,000 pounds for late low-mileage F1 coupes, Spider about 10,000 pounds more, Scuderia 120,000-200,000 pounds; 3,194 lb, 483 hp, 343 lb-ft."
+   "notes": "Ownership checkpoints: no cambelts and an engine described as free of innate problems; cracked manifolds expensive to replace; manual and F1 clutches are the same unit, with F1 cars wearing them in as few as 12,000 miles through first-gear clutch riding, and the flywheel usually replaced alongside; ball joints and wishbone bushes wear quickly; carbon-ceramic brakes optional and costly; fragile rear light mounting brackets; flaking satin black under-hood paint; 3,194 lb, 483 hp, 343 lb-ft. Its service costs and period values are quoted in sterling and are not carried into the copy: US menu pricing is used instead."
   },
   {
    "ref": "motor-2004-test",
@@ -366,7 +366,7 @@ export const seedF430 = {
    "publisher": "Collecting Cars",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Ownership guide dated 15 May 2026: cracking manifolds and F1 hydraulic failures named as the two notorious faults, with ceramic pre-cat debris risking engine failure; shared hydraulic circuit affecting E-Diff and actuator; variator solenoid rattle; coolant tank hairline cracks; worn engine mounts increasing manifold stress; ball joints by about 20,000 miles; damper actuator motor failures; headlight seal condensation; window regulator guides; dashboard leather shrinkage. Costs: manifolds 3,500-5,500 pounds, F1 pump about 1,500 pounds plus labour, headlights 1,000-3,000 pounds, F1 clutch 3,000-6,000 pounds, carbon-ceramic renewal 12,000 pounds or more. Clutch wear read as a percentage with caution at 70 and replacement by 80-85. No cambelt service. Values described as stable over four to five years, higher-mileage F1 coupes about 55,000 pounds, best manual Spiders past 120,000 pounds."
+   "notes": "Ownership guide dated 15 May 2026: cracking manifolds and F1 hydraulic failures named as the two notorious faults, with ceramic pre-cat debris risking engine failure; shared hydraulic circuit affecting E-Diff and actuator; variator solenoid rattle; coolant tank hairline cracks; worn engine mounts increasing manifold stress; ball joints by about 20,000 miles; damper actuator motor failures; headlight seal condensation; window regulator guides; dashboard leather shrinkage. Clutch wear read as a percentage with caution at 70 and replacement by 80-85. No cambelt service. Its repair costs and values are quoted in sterling throughout and are deliberately not carried into the copy; it is used here for the fault list only, with US sources supplying every dollar figure."
   },
   {
    "ref": "maseratinet-manifolds",
@@ -384,7 +384,7 @@ export const seedF430 = {
    "publisher": "Petrolicious",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Buying guide: variant list and dates (berlinetta 2004-2009, Spider 2005-2009, Scuderia 2007-2009 berlinetta only, 16M 2008 limited to 499); manual take-up about 10 percent; 483 hp standard and 503 hp Scuderia; cracked manifolds affecting most cars with later modifications but no car fully immune; engine mount cracking; catalytic converter fragmentation; F1 clutches about 15,000 miles; transmission fluid every three years; E-diff solenoid damage; clutch master cylinder recall; carbon-ceramic brakes standard after late 2007; seized caliper pistons after disuse; F430 Spider soft-top hydraulic fluid fire recall through 2007; camchain removes the three-yearly belt change; condition-banded values and a highest auction result of 380,000 pounds for a delivery-mileage Spider 16M."
+   "notes": "Buying guide: variant list and dates (berlinetta 2004-2009, Spider 2005-2009, Scuderia 2007-2009 berlinetta only, 16M 2008 limited to 499); manual take-up about 10 percent; 483 hp standard and 503 hp Scuderia; cracked manifolds affecting most cars with later modifications but no car fully immune; engine mount cracking; catalytic converter fragmentation; F1 clutches about 15,000 miles; transmission fluid every three years; E-diff solenoid damage; clutch master cylinder recall; carbon-ceramic brakes standard after late 2007; seized caliper pistons after disuse; F430 Spider soft-top hydraulic fluid fire recall through 2007; camchain removes the three-yearly belt change; condition-banded values quoted in sterling, which are not carried into the copy; used here for the fault and specification content only."
   },
   {
    "ref": "sbr-challenge",
@@ -411,7 +411,7 @@ export const seedF430 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Private sales listing, chassis ZFFEX63X000159322, asking 320,000 euros, 10,396 miles. States the car is 'one of just 54 F430 Challenge chassis upgraded to GT3 specification by Ferrari Racing Partner team Kessel Racing', that only 25 received the 2010 Scuderia GT3 upgrade and just 7 were modified that year, and quotes 550 hp against 490 hp standard. Belcar race history 2008-2011 including 12th overall and 6th in class at the 2008 Zolder 24 Hours and a class win at Spa. Establishes both the GT3 conversion route and the 54-car figure used in the production dispute."
+   "notes": "Private sales listing, chassis ZFFEX63X000159322, 10,396 miles, asking price published in euros and not converted here. States the car is 'one of just 54 F430 Challenge chassis upgraded to GT3 specification by Ferrari Racing Partner team Kessel Racing', that only 25 received the 2010 Scuderia GT3 upgrade and just 7 were modified that year, and quotes 550 hp against 490 hp standard. Belcar race history 2008-2011 including 12th overall and 6th in class at the 2008 Zolder 24 Hours and a class win at Spa. Establishes both the GT3 conversion route and the 54-car figure used in the production dispute."
   },
   {
    "ref": "classic-f430",
@@ -519,7 +519,7 @@ export const seedF430 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold 359,375 euros, Monaco, 2026, lot 131. Chassis ZFFKZ64B000163276, 26,134 miles, Bianco Avus with Grigio stripes, black Alcantara with white stitching, carbon racing seats and four-point harnesses. Catalog quotes 510 hp, Superfast2, 198 mph, development with Michael Schumacher and a lightweight philosophy following the 360 Challenge Stradale. Useful as the high-mileage counterpoint to the delivery-mileage results."
+   "notes": "Sold at Monaco, 2026, lot 131, the result published in euros and not converted here. Chassis ZFFKZ64B000163276, 26,134 miles, Bianco Avus with Grigio stripes, black Alcantara with white stitching, carbon racing seats and four-point harnesses. Catalog quotes 510 hp, Superfast2, 198 mph, development with Michael Schumacher and a lightweight philosophy following the 360 Challenge Stradale. Useful as the high-mileage counterpoint to the delivery-mileage results."
   },
   {
    "ref": "rm-az25-scuderia",
@@ -546,7 +546,7 @@ export const seedF430 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold 421,250 euros, Paris, 2024, lot 130. Chassis ZFFKZ66B000166384, 13,634 miles, special-order tricolore livery against the standard black, two owners from new. Catalog states 'one of only 499 built to commemorate Ferrari's 16th F1 constructors' title', 4,308 cc and 510 hp, six-speed Superfast gearbox, 176 lb lighter than the standard 430 Spider, E-Diff and F1-Trac, a manettino developed with input from Michael Schumacher, carbon-ceramic brakes, special 19-inch wheels, 0-62 mph in 3.7 seconds and more than 196 mph."
+   "notes": "Sold at Paris, 2024, lot 130, the result published in euros and not converted here. Chassis ZFFKZ66B000166384, 13,634 miles, special-order tricolore livery against the standard black, two owners from new. Catalog states 'one of only 499 built to commemorate Ferrari's 16th F1 constructors' title', 4,308 cc and 510 hp, six-speed Superfast gearbox, 176 lb lighter than the standard 430 Spider, E-Diff and F1-Trac, a manettino developed with input from Michael Schumacher, carbon-ceramic brakes, special 19-inch wheels, 0-62 mph in 3.7 seconds and more than 196 mph."
   },
   {
    "ref": "iconic-nec21-16m",
@@ -555,7 +555,34 @@ export const seedF430 = {
    "publisher": "Iconic Auctioneers",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold 320,625 pounds at the NEC Classic Motor Show Sale on 13 November 2021. Chassis ZFFKZ66C000166278, 17,700 miles, Blu Abu Dhabi over black with a dark blue hood, right-hand drive. Catalog states it was the first of 49 UK-supplied 16Ms and the only one in that color, one of 499 worldwide, 510 hp, 0-60 mph in 3.6 seconds, with LED shift lights, yellow calipers, carbon package and fire extinguisher. The only source consulted here giving a UK allocation figure."
+   "notes": "Sold at the NEC Classic Motor Show Sale on 13 November 2021, the result published in sterling and not converted here. Chassis ZFFKZ66C000166278, 17,700 miles, Blu Abu Dhabi over black with a dark blue hood, right-hand drive. Catalog states it was the first of 49 UK-supplied 16Ms and the only one in that color, one of 499 worldwide, 510 hp, 0-60 mph in 3.6 seconds, with LED shift lights, yellow calipers, carbon package and fire extinguisher. The only source consulted here giving a UK allocation figure."
+  },
+  {
+   "ref": "jscuderia-430-menu",
+   "title": "430 Service Menu",
+   "url": "https://jscuderiautomotive.com/services/ferrari-service/430-service-menu/",
+   "publisher": "J. Scuderia Automotive, Cranbury, New Jersey",
+   "sourceType": "specialist",
+   "reliability": "high",
+   "notes": "Published US service menu from an independent Ferrari specialist at 18 Haypress Rd, Cranbury, New Jersey, and the primary US labor-cost source used here. Annual service priced starting at $875.00, or $975.00 for a Scuderia on 10w60 racing oil. Two-year major service at 12,500 miles starting at $1,650.00, or $1,775.00 for a Scuderia. F1 clutch kit, F1 cars only, starting at $8,798.00 for a coupe and $9,375.00 for a convertible. The page states prices are based on current costs and subject to change."
+  },
+  {
+   "ref": "ricambi-f430-parts",
+   "title": "F430 F1 Clutch Combo and F430 30K Service Kit",
+   "url": "https://www.ricambiamerica.com/f430ckit-f430-f1-clutch-combo.html",
+   "publisher": "Ricambi America, Inc.",
+   "sourceType": "specialist",
+   "reliability": "high",
+   "notes": "US Ferrari parts specialist, North Carolina. Part F430CKIT, the F430 F1 clutch combo, is listed at $5,700.00 per set and contains the clutch and pressure plate assembly, a Hill Engineering release bearing, pilot bearing, clutch position sensor, two sealing rings and an o-ring, and is marked not for use on six-speed manual cars. The same catalog lists the F430 30K service kit at $675.00 with oil, air and cabin filters, sump o-rings and mesh filter, accessory belt and eight spark plugs. Establishes the US parts half of the cost picture against J. Scuderia's installed prices."
+  },
+  {
+   "ref": "fabspeed-f430-headers",
+   "title": "Fabspeed Ferrari F430 Sport Headers",
+   "url": "https://www.fabspeed.com/ferrari-f430-sport-headers/",
+   "publisher": "Fabspeed Motorsport, Philadelphia, Pennsylvania",
+   "sourceType": "specialist",
+   "reliability": "medium",
+   "notes": "US aftermarket manufacturer in Philadelphia, Pennsylvania, listing F430 sport headers at $4,473.95 to $5,755.95 depending on specification. Describes the product as a direct replacement and upgrade for the failure-prone factory headers and states they are designed without pre-cats in the headers for increased flow, which independently confirms that the factory item carries the pre-catalysts at the center of the model's best-known fault. Used here for the US dollar cost of the manifold job."
   }
  ],
  "claims": [
@@ -826,11 +853,12 @@ export const seedF430 = {
   },
   {
    "section": "problems",
-   "claimText": "The original exhaust manifolds crack around the welds under repeated heat cycling and their integrated pre-catalysts break down internally, with debris drawn back into the engine the reason a manifold fault can become an engine fault; cars up to 2007 are most often cited but no year is immune, and replacement or upgrade is quoted at 3,500 to 5,500 pounds.",
+   "claimText": "The original exhaust manifolds crack around the welds under repeated heat cycling and their integrated pre-catalysts break down internally, with debris drawn back into the engine the reason a manifold fault can become an engine fault; cars up to 2007 are most often cited but no year is immune. A US aftermarket manufacturer lists replacement headers at $4,473.95 to $5,755.95 as of September 2026 and builds them without pre-cats, which confirms where the fault sits.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
     "maseratinet-manifolds",
+    "fabspeed-f430-headers",
     "collectingcars-guide",
     "magneto-guide",
     "petrolicious-guide",
@@ -839,10 +867,12 @@ export const seedF430 = {
   },
   {
    "section": "problems",
-   "claimText": "The F1 hydraulic circuit serves both the gearbox and the E-Diff, so a failed solenoid can disable the differential as well as the gearshift; actuator replacement is quoted at about 6,000 pounds, the pump at about 1,500 pounds plus labor and a clutch and flywheel job at 3,000 to 6,000 pounds, with transmission fluid due every three years and clutch master cylinders subject to a leakage recall.",
+   "claimText": "The F1 hydraulic circuit serves both the gearbox and the E-Diff, so a failed solenoid can disable the differential as well as the gearshift, with transmission fluid due every three years and clutch master cylinders subject to a leakage recall. As of September 2026 a New Jersey Ferrari specialist prices the F1 clutch kit from $8,798 on a coupe and from $9,375 on a Spider, against $5,700 for the clutch parts set alone from a US parts supplier.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
+    "jscuderia-430-menu",
+    "ricambi-f430-parts",
     "collectingcars-guide",
     "magneto-guide",
     "petrolicious-guide"
@@ -862,7 +892,7 @@ export const seedF430 = {
   },
   {
    "section": "problems",
-   "claimText": "Recurring secondary faults are cracked engine mounts that load the manifolds further, catalytic converters breaking up internally, variator solenoid rattle, hairline cracks in the coolant expansion tank, ball joints and wishbone bushes treated as consumables, failing electronic damper actuator motors, misting headlight units at 1,000 to 3,000 pounds, sticky soft-touch switchgear and fragile rear light mounting brackets.",
+   "claimText": "Recurring secondary faults are cracked engine mounts that load the manifolds further, catalytic converters breaking up internally, variator solenoid rattle, hairline cracks in the coolant expansion tank, ball joints and wishbone bushes treated as consumables, failing electronic damper actuator motors, misting headlight units that are replaced rather than resealed, sticky soft-touch switchgear and fragile rear light mounting brackets. No US price for the headlight unit could be sourced, so none is stated.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -921,7 +951,7 @@ export const seedF430 = {
   },
   {
    "section": "market",
-   "claimText": "Auction evidence for the 430 Scuderia as of September 2026: RM Sotheby's sold a 6,200-mile 2008 car for $1,352,500 at Monterey in August 2026, a 26,134 miles car for 359,375 euros at Monaco in 2026 and a 673-mile car for $434,000 at Arizona in January 2025, while Gooding sold a sub-4,000-mile car for $302,000 at Pebble Beach in 2024; all are published results and buyer's premium is not separately identified.",
+   "claimText": "Auction evidence for the 430 Scuderia as of September 2026: RM Sotheby's sold a 6,200-mile 2008 car for $1,352,500 at Monterey in August 2026, and a 673-mile car for $434,000 at Arizona in January 2025, while Gooding sold a sub-4,000-mile car for $302,000 at Pebble Beach in 2024; all are published results and buyer's premium is not separately identified.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
@@ -933,13 +963,13 @@ export const seedF430 = {
   },
   {
    "section": "market",
-   "claimText": "Scuderia Spider 16M results include 421,250 euros for a 13,634 miles tricolore car at RM Sotheby's Paris in 2024 and 320,625 pounds for a 17,700-mile right-hand-drive car at Iconic Auctioneers in November 2021, against a classic.com benchmark of $749,024 and recorded sales of $1,050,000 in 2026.",
+   "claimText": "Scuderia Spider 16M values are stated from US results only: as of September 2026 classic.com gives a benchmark of $749,024, an average sale of $596,672 and recorded sales of $1,050,000 in 2026 against a low of $239,500 in July 2023. European results exist for the model but are not converted here, because US comparables cover the same point.",
    "confidence": "high",
    "status": "verified",
    "sourceRefs": [
-    "rm-pa24-16m",
-    "iconic-nec21-16m",
-    "classic-16m"
+    "classic-16m",
+    "rm-cc26-16m",
+    "gooding-am20-16m"
    ]
   },
   {
@@ -955,14 +985,12 @@ export const seedF430 = {
   },
   {
    "section": "market",
-   "claimText": "UK ownership guidance places higher-mileage F1 coupes at around 55,000 pounds and the best manual Spiders past 120,000 pounds in May 2026, with values described as broadly stable over the preceding four to five years, against evo's earlier checkpoints guidance of 60,000 pounds upward for good cars and 120,000 to 200,000 pounds for a Scuderia that listed new at 172,605 pounds.",
-   "confidence": "medium",
+   "claimText": "Scheduled maintenance is a smaller number than the model's reputation suggests and is stated here from US menu pricing: as of September 2026 a New Jersey Ferrari specialist lists the 430 annual service from $875, or $975 on a Scuderia, and the two-year major service at 12,500 miles from $1,650, or $1,775 on a Scuderia, with a US parts supplier listing the 30,000 kilometer service kit at $675.",
+   "confidence": "high",
    "status": "verified",
    "sourceRefs": [
-    "collectingcars-guide",
-    "evo-checkpoints",
-    "evo-scuderia",
-    "petrolicious-guide"
+    "jscuderia-430-menu",
+    "ricambi-f430-parts"
    ]
   }
  ]

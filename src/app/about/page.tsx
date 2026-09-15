@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import { TRADE_CATEGORIES } from "@/lib/service-categories";
+import { TradeGridType } from "@/components/services/TradeGrid";
 
 /**
  * /about
@@ -68,24 +69,6 @@ function Caption({ children }: { children: React.ReactNode }) {
     </span>
   );
 }
-
-/**
- * Categories that actually have a photo at public/images/services/<key>.jpg.
- * Upholstery and title & registration were added 2026-09-09 and have not been
- * shot yet, so their cards render as a solid tint panel rather than firing a
- * 404 at a file that is not there. Add the key here the moment the photo lands
- * (and credit it in that folder's CREDITS.md).
- */
-const CATEGORY_PHOTOS = new Set([
-  "inspection",
-  "transport",
-  "mechanical",
-  "bodywork",
-  "restoration",
-  "detailing",
-  "storage",
-  "photography",
-]);
 
 export default function AboutPage() {
   const verbs = TRADE_CATEGORIES.map((c) => c.verb.toLowerCase());
@@ -212,52 +195,9 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Timeline rule */}
-          <div className="hidden lg:grid mb-6" style={{ gridTemplateColumns: `repeat(${TRADE_CATEGORIES.length}, minmax(0, 1fr))` }}>
-            {TRADE_CATEGORIES.map((c, i) => (
-              <div key={c.key} className="relative pt-4">
-                <span className="absolute top-0 left-0 right-0 h-px" style={{ background: RULE }} aria-hidden />
-                <span className="absolute -top-[3px] left-0 h-[7px] w-[7px] rounded-full" style={{ background: i === 0 ? GOLD : INK }} aria-hidden />
-                <span className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: MUTED }}>{c.verb}</span>
-              </div>
-            ))}
-          </div>
-
-          <ol className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {TRADE_CATEGORIES.map((c, i) => (
-              <li key={c.key}>
-                <Link
-                  href={`/services?type=${c.key}`}
-                  className="group block overflow-hidden rounded-xl bg-white transition-transform hover:-translate-y-0.5"
-                  style={{ border: `1px solid ${RULE}` }}
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden" style={{ background: CATEGORY_PHOTOS.has(c.key) ? NAVY : c.tint }}>
-                    {CATEGORY_PHOTOS.has(c.key) && (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
-                        src={`/images/services/${c.key}.jpg`}
-                        alt=""
-                        width={640}
-                        height={480}
-                        loading="lazy"
-                        decoding="async"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                    )}
-                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(15,32,50,0.7) 0%, rgba(15,32,50,0) 55%)" }} aria-hidden />
-                    <span className="absolute left-3 bottom-2.5 price-display text-xs text-white/85">{String(i + 1).padStart(2, "0")}</span>
-                  </div>
-                  <div className="p-4">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: BLUE }}>{c.verb}</span>
-                    <h3 className="font-display text-base sm:text-lg font-semibold tracking-tight leading-snug mt-1" style={{ color: INK }}>
-                      {c.longLabel}
-                    </h3>
-                    <p className="mt-1 font-display text-sm italic" style={{ color: MUTED }}>&ldquo;{c.askedFor}&rdquo;</p>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ol>
+          {/* Typographic cards. Swapped with the homepage 2026-09-14:
+              the photography now works the front door, this page explains. */}
+          <TradeGridType />
         </div>
       </section>
 

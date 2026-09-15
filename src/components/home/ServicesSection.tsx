@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { TRADE_CATEGORIES, REFERRAL_SERVICES } from "@/lib/service-categories";
+import { OwnershipYearRail, TradeGridPhoto } from "@/components/services/TradeGrid";
 
 /**
  * Homepage services section.
@@ -58,47 +59,10 @@ export function ServicesSection() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
-          {TRADE_CATEGORIES.map((c, i) => (
-            <motion.div
-              key={c.key}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: (i % 4) * 0.06 }}
-            >
-              <Link
-                href={`/services?type=${c.key}`}
-                className="group flex h-full flex-col pt-4"
-                style={{ borderTop: `2px solid ${INK}` }}
-              >
-                <div className="flex items-baseline justify-between">
-                  <span className="price-display text-xs tabular-nums" style={{ color: MUTED }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: BLUE }}>
-                    {c.verb}
-                  </span>
-                </div>
-                <h3 className="font-display text-[1.35rem] font-semibold tracking-tight leading-snug mt-3" style={{ color: INK }}>
-                  {c.longLabel}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed flex-1" style={{ color: MUTED }}>
-                  {c.blurb}
-                </p>
-                <p className="mt-4 font-display text-sm italic" style={{ color: MUTED }}>
-                  &ldquo;{c.askedFor}&rdquo;
-                </p>
-                <span
-                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold transition-transform group-hover:translate-x-0.5"
-                  style={{ color: BLUE }}
-                >
-                  Find one near you <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+        {/* The ownership year, as a timeline: verb rail then photo cards.
+            Swapped in from /about on 2026-09-14. */}
+        <OwnershipYearRail />
+        <TradeGridPhoto />
 
         {/*
           Referral services. Not directory categories: there is nobody local to
