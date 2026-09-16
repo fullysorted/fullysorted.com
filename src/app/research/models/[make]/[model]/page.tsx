@@ -239,24 +239,6 @@ export default async function ModelPage({ params }: Props) {
           <div className="lg:col-span-2">
             {m.summary && <div className="article-body" dangerouslySetInnerHTML={{ __html: renderMarkdown(m.summary) }} />}
 
-            {/* Where sources differ */}
-            {disputed.length > 0 && (
-              <div className="mt-8 rounded-2xl p-5" style={{ background: "rgba(176,141,63,0.08)", border: "1px solid rgba(176,141,63,0.28)" }}>
-                <div className="flex items-center gap-2 mb-3">
-                  <Scale className="w-4 h-4" style={{ color: "#8a6d2f" }} />
-                  <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: "#8a6d2f" }}>Where sources differ</h2>
-                </div>
-                <div className="space-y-3">
-                  {disputed.map((c) => (
-                    <div key={c.id}>
-                      <p className="text-sm font-semibold" style={{ color: "#1a1a18" }}>{c.claim_text}</p>
-                      {c.conflict_note && <p className="text-sm mt-0.5" style={{ color: "#6b6b5e" }}>{c.conflict_note}</p>}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {m.production_total != null && m.production_total > 0 && (
               <div className="mt-8">
                 <RarityScale total={m.production_total} make={m.make} model={m.model} notes={m.production_notes} />
@@ -288,6 +270,24 @@ export default async function ModelPage({ params }: Props) {
               <Section icon={TrendingUp} title="Market Notes">
                 <div className="article-body" dangerouslySetInnerHTML={{ __html: renderMarkdown(m.market_notes) }} />
               </Section>
+            )}
+
+            {/* Where sources differ: footnote weight, on purpose. Facts first, bookkeeping last. */}
+            {disputed.length > 0 && (
+              <div className="mt-10 pt-5" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
+                <div className="flex items-center gap-2 mb-2">
+                  <Scale className="w-3.5 h-3.5" style={{ color: "#9a9a8a" }} />
+                  <h2 className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: "#9a9a8a" }}>Where sources differ</h2>
+                </div>
+                <div className="space-y-2">
+                  {disputed.map((c) => (
+                    <div key={c.id}>
+                      <p className="text-xs" style={{ color: "#4a4a42" }}>{c.claim_text}</p>
+                      {c.conflict_note && <p className="text-xs mt-0.5" style={{ color: "#9a9a8a" }}>{c.conflict_note}</p>}
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
 
             {/* Sources */}

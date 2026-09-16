@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, AlertTriangle, ShieldCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 
 /** A make earns its own landing page at this many published histories. */
 export const MAKE_PAGE_MIN = 3;
@@ -84,11 +84,6 @@ export function ModelCard({ m, showMake = true }: { m: ModelCardItem; showMake?:
         {m.source_count > 0 && (
           <span className="text-[11px] font-medium px-2 py-0.5 rounded-full" style={{ background: "#f3f2ee", color: "#6b6b5e" }}>
             {m.source_count} cited {m.source_count === 1 ? "source" : "sources"}
-          </span>
-        )}
-        {m.disputed_count > 0 && (
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full" style={{ background: "rgba(176,141,63,0.16)", color: "#8a6d2f" }}>
-            <AlertTriangle className="w-3 h-3" /> {m.disputed_count} disputed
           </span>
         )}
       </div>

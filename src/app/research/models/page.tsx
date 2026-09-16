@@ -24,6 +24,7 @@ export default async function ModelsIndexPage() {
     year_start: m.year_start, year_end: m.year_end, production_total: m.production_total,
     summary: m.summary, overall_confidence: m.overall_confidence,
     source_count: m.source_count, claim_count: m.claim_count, disputed_count: m.disputed_count,
+      hero_photo: m.hero_photo ?? null,
   }));
 
   const itemListSchema = {

@@ -47,8 +47,9 @@ Header comment, three lines:
 ```
 
 Do **not** include a `status` field — the seed route sets `status='draft'`.
-Omit `heroPhoto` entirely; we do not have licensed imagery and a placeholder
-URL is a liability.
+Omit `heroPhoto` and `heroPhotoCredit`; the orchestrator adds them afterwards
+from the Wikimedia Commons pipeline (`public/images/models/credits.json`). A
+placeholder URL is a liability.
 
 ## 3. Required fields and floors
 
@@ -117,6 +118,82 @@ current market sources, and specialist ownership writing.
 `notes` must be specific enough that a reviewer can tell which claim rests on
 which source without re-fetching. "General overview" is a failed note.
 
+## 4a. Source coverage map: the US reader's questions first
+
+"Every source possible" does not mean every page on the internet. It means
+every **category** below is checked once, in this order, and the fetch stops
+when a category is covered. A source that answers no question in this map is
+not worth a fetch.
+
+The reader is an American owner or buyer. Their questions, in order:
+
+1. **What exactly was sold in the US, and when.** US model years (not launch
+   year in Europe), federalization changes, US-only trims and deletions, what
+   was never imported. Sources: the manufacturer's US press release or press
+   kit (media.<make>.com, media sites, or the archived US brochure),
+   NHTSA (recalls, TSBs, VIN decoder for model-year confirmation), EPA fuel
+   economy data for the US-spec engine (fueleconomy.gov).
+2. **What it cost new, in dollars.** US MSRP by model year from the US press
+   release, a period US road test, or a dealer price sheet. Never a converted
+   home-market price. If none is documented: say so in `productionNotes`
+   (spec 7a NO_US_PRICE phrase).
+3. **What the period press said, here.** At least two US period road tests:
+   Car and Driver, Road & Track, MotorTrend, Automobile, Autoweek. Their
+   archives are fetchable for most cars since the 1990s; for older cars use
+   the magazine's own retrospective or a reprint on the marque club site. A
+   British test (Autocar, EVO, CAR) is a supplementary source for driving
+   character, never for price, output or model-year facts, because the
+   home-market car is often a different spec.
+4. **How many were built, and how many of THIS variant.** Manufacturer heritage
+   or archive first, then the marque registry or club (Aston Martin Heritage
+   Trust, Porsche Club of America, Ferrari Club of America, Corvette Registry
+   and their equivalents), then the reference books via Google Books snippets.
+   Wikipedia is a pointer to these, never the citation.
+5. **What goes wrong and what it costs to fix here.** US specialist shops and
+   their tech articles, owner forums (6speedonline, Rennlist, FerrariChat,
+   PistonHeads is UK and gets `low`), NHTSA complaint counts. Label a forum
+   figure as a forum figure.
+6. **What it trades for, here, now.** classic.com first (US-dollar, dated).
+   Then individual lot pages: RM Sotheby's, Gooding, Broad Arrow, Mecum,
+   Barrett-Jackson, and Cars and Bids or BaT results where fetchable (BaT
+   itself is 403; BaT results quoted on classic.com are fine). Hagerty
+   editorial articles are citable; Hagerty valuation pages are not (redirect
+   loop). Every figure stamped with its month and year.
+7. **Variant-specific facts when the page is about a variant.** For a page
+   like "DB9, 2008, six-speed manual, US": the manual's take rate, how the
+   manual car differs (gearbox supplier, final drive, clutch, badging,
+   options), how many US manual cars the sources will actually support, and
+   which years the manual was offered in the US versus elsewhere. If nobody
+   publishes a number, the page says nobody publishes a number.
+
+**Coverage rule.** A finished seed cites at least one source from each of
+categories 1, 2, 3, 4 and 6. Categories 5 and 7 as available. A file that has
+sixteen sources from category 6 and none from category 1 is under-sourced.
+
+**British-perspective tells to remove on sight:** "on sale in the UK from",
+"RHD", prices in pounds, "MoT", "tax", "kerb weight", "estate", "saloon",
+"tyres", "bonnet", "boot", model years counted from the European launch. The
+page reads as if written in Los Angeles about a car in Los Angeles.
+
+## 4b. Reference books
+
+The best information on most of these cars is in books: marque monographs,
+serial-number registers, factory histories. They are the highest-reliability
+source type on the site and the one most often missing.
+
+How they enter a seed: Chris photographs the relevant pages from his own
+copies into the project folder (`_book-pages/<slug>/`). The agent reads the
+photos, logs each fact with author, title, year, edition and page under
+`sourceType: "reference-book"`, `reliability: "high"`, and states the fact in
+its own words. The `evidence` entry carries `page`, not `quote`.
+
+Three lines that hold: facts are not owned, expression is, so nothing is
+reproduced beyond a short attributed phrase where the exact wording matters;
+no page image or passage is ever rendered on the site; the source is a copy
+Chris owns or a Google Books snippet fetched normally. No pirated PDFs, ever.
+If no book pages are in the folder for a car, the seed says nothing about
+books and does not cite one from memory.
+
 ## 5. Claims — the honesty layer
 
 ```ts
@@ -126,9 +203,22 @@ which source without re-fetching. "General overview" is a failed note.
   "confidence": "high",
   "status": "disputed",
   "sourceRefs": ["ref-a", "ref-b"],
-  "conflictNote": "Source A states X. Source B states Y. Not resolved by any source consulted here."
+  "conflictNote": "Source A states X. Source B states Y. Not resolved by any source consulted here.",
+  "evidence": [
+    { "ref": "ref-a", "quote": "the exact sentence, or the exact fragment of 8 to 30 words, as it appears on the page" },
+    { "ref": "ref-b", "quote": "..." }
+  ]
 }
 ```
+
+**Evidence is what makes a claim checkable without a second model.** Every
+claim carries one `evidence` entry per `sourceRef`: the verbatim words from
+that page that support the claim, 8 to 30 words, copied not paraphrased.
+`scripts/verify-quotes.mjs` re-fetches each page and looks for the words. A
+quote that cannot be found is a failed claim, whatever the prose says. For a
+`reference-book` source the quote is replaced by `"page": 143` and the
+orchestrator checks it against the page photo. Quotes are never rendered on
+the site; they exist so that fabricated citations fail mechanically.
 
 `section` is a closed set: `summary` · `history` · `specs` · `production` ·
 `market` · `problems`.
@@ -250,6 +340,27 @@ the `sources` array through a claim. If two good sources disagree, the claim is
 below the reliability bar, the figure does not go in. A gap stated plainly beats
 a number nobody can stand behind.
 
+## 7b. Soul
+
+An encyclopedia has no soul because nobody in it ever had an opinion or
+touched the car. These pages are written by someone who has. Four things, all
+still sourced:
+
+1. **Why this car exists.** The first `##` section of `history` is the problem
+   the factory was solving, who pushed it through, and what nearly killed it.
+   Not the launch date.
+2. **The Cars and Coffee detail.** Every page has at least one specific thing
+   a reader would repeat to a friend: a take rate, a supplier, a decision made
+   for a reason nobody expected. Put it where it belongs, not in a box.
+3. **Chris's Take is not yours to write.** Leave the field out. In the receipt,
+   return `chrisTakeQuestions`: three pointed questions only someone who has
+   driven, sold or judged the car could answer ("what does the manual DB9 feel
+   like next to a Touchtronic car at 40 mph?"). Chris answers by voice; that
+   becomes the field.
+4. **Specifics over adjectives.** "The manual was a no-cost option that almost
+   nobody ordered" beats "rare and desirable" every time. If a sentence tells
+   the reader how to feel, delete it.
+
 ## 8. Fabrication — hard bans
 
 - No figure, date, chassis range or production number that is not in a source
@@ -276,6 +387,9 @@ the device. Do not use the device as your draft surface.
 3. Every `status: "disputed"` claim has a `conflictNote`.
 4. No banned copy present.
 5. Every market figure carries its "as of September 2026" stamp.
+6. `node scripts/verify-quotes.mjs <file>` prints its summary. Fix or drop
+   every `missing` claim before you finish; `unreachable` is reported, not
+   fixed.
 
 ## 10. Your return value
 
@@ -292,6 +406,61 @@ Return **only** this JSON. Never return file content — it is already on disk.
   "productionTotal": null,
   "overallConfidence": "high",
   "productionCheckedAgainst": ["ref-a", "ref-b"],
+  "fetches": 18,
+  "categoriesCovered": [1, 2, 3, 4, 5, 6, 7],
+  "quoteCheck": { "checked": 14, "found": 14, "unreachable": 0, "missing": 0 },
+  "chrisTakeQuestions": ["...", "...", "..."],
   "notes": "One line, only if something needs a human. Otherwise empty."
 }
 ```
+
+## 11. Research procedure and token budget
+
+The cost of a seed is the pages you read, not the words you write. Budget:
+**one search per category in 4a (at most 8 searches), at most 22 fetches, and
+never a full-page read when a targeted extraction will do.**
+
+1. Read this spec, the exemplar seed you were pointed at, and the existing
+   seed for this model if there is one. Nothing else from the repo.
+2. Search each category once. Pick the two most authoritative results per
+   category. Skip a result whose domain is on the blocked list in section 6.
+3. Fetch with an extraction prompt that names the facts you want ("US MSRP by
+   model year, transmission options offered in the US, production figures
+   with the sentence they appear in"). Do not ask for a summary of the page.
+4. Log each fetched page into `sources` immediately with its `notes`, while
+   you still know what it established. A source added at the end from memory
+   is how fabricated citations happen.
+5. **Two-source rule for every number.** Output, torque, weight, price,
+   production, 0-60. A number with one source is `confidence: "medium"` at
+   best and says so. Two sources that disagree is a `disputed` claim (section
+   5), not an average.
+6. Stop fetching when every category in 4a is covered and every number has
+   two sources or an honest single-source note. More fetches past that point
+   are cost, not quality.
+7. Write the file, validate (section 9), return the receipt (section 10).
+
+What a fetch may not do: cite a page it did not retrieve; treat a 403, a
+redirect loop, a cookie wall or an SPA shell as a source; rely on a British
+buyer guide for a dollar figure; pull a figure from a listing aggregator's
+AI-written blurb.
+
+## 12. Upgrade mode: bringing an existing seed up to this standard
+
+Used for the 92 files already on disk. You are not rewriting from scratch, so
+the token cost is the gap, not the whole page.
+
+1. Read the existing seed. List which categories of 4a it already covers and
+   which numbers have two sources. That list is your work order.
+2. Fill the missing categories with the procedure in section 11. Do not
+   re-fetch a source that is already in the file unless its `notes` are so
+   vague you cannot tell what it established.
+3. Run the British-perspective sweep from 4a and the units and currency rules
+   from 7a over every prose field. Model years become US model years; add the
+   sentence that says what was and was not sold here.
+4. Re-verify the six highest-risk numbers (production total, US price, output,
+   weight, 0-60, top speed) against the new sources. Where the file's number
+   and a new source disagree, that is a new `disputed` claim.
+5. Keep every verified claim and source that survives. Do not shorten prose to
+   make room; the ceilings in section 3 were raised for this.
+6. Receipt (section 10) plus two extra fields: `categoriesAdded` (array of 4a
+   category numbers) and `numbersRechecked` (integer). Never return the diff.
