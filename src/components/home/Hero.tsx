@@ -79,7 +79,7 @@ function FeaturedCard({ m }: { m: FeaturedModel }) {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay: 0.25 }}
-      className="rounded-2xl p-5 w-full lg:w-[264px]"
+      className="rounded-2xl p-4 w-[232px] self-start"
       style={{ background: CREAM, color: INK, boxShadow: "0 20px 40px rgba(0,0,0,0.25)" }}
       aria-label="This week's car"
     >
@@ -91,10 +91,10 @@ function FeaturedCard({ m }: { m: FeaturedModel }) {
           No. {String(m.index).padStart(3, "0")}
         </span>
       </div>
-      <p className="font-display text-[1.35rem] leading-tight mt-2">
+      <p className="font-display text-[1.15rem] leading-tight mt-1.5">
         {m.make} {m.model}
       </p>
-      <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 mt-3 text-[13px]" style={{ fontFamily: MONO }}>
+      <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 mt-2.5 text-[12px]" style={{ fontFamily: MONO }}>
         {years && (<><dt><Label>Years</Label></dt><dd>{years}</dd></>)}
         {m.generationCode && (<><dt><Label>Code</Label></dt><dd>{m.generationCode}</dd></>)}
         <dt><Label>Built</Label></dt>
@@ -102,7 +102,7 @@ function FeaturedCard({ m }: { m: FeaturedModel }) {
       </dl>
       <Link
         href={`/research/models/${m.slug}`}
-        className="inline-flex items-center gap-1.5 mt-4 text-[13px] font-bold hover:underline underline-offset-4"
+        className="inline-flex items-center gap-1.5 mt-3 text-[12px] font-bold hover:underline underline-offset-4"
         style={{ color: TEAL }}
       >
         Read the model history <ArrowRight className="w-3.5 h-3.5" />
@@ -127,7 +127,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-5 sm:pt-6">
         {/* The frame */}
         <div
-          className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[560px] lg:min-h-[600px]"
+          className="relative overflow-hidden rounded-[28px] sm:rounded-[32px]"
           style={{ background: INK }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -148,8 +148,8 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
             style={{ background: "linear-gradient(180deg, rgba(18,53,42,0.2) 0%, rgba(18,53,42,0.85) 70%)" }}
           />
 
-          <div className="relative p-6 sm:p-10 lg:p-14 flex flex-col lg:flex-row gap-8 lg:gap-10 min-h-[560px] lg:min-h-[600px]">
-            <div className="flex-1 flex flex-col justify-between gap-8" style={{ color: CREAM }}>
+          <div className="relative p-6 sm:p-10 lg:p-12 flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-10 min-h-[440px] lg:min-h-[520px]">
+            <div className="flex-1 flex flex-col justify-between gap-8 lg:self-stretch" style={{ color: CREAM }}>
               <div>
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -164,7 +164,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.05 }}
-                  className="font-display text-[2.6rem] sm:text-[3.6rem] lg:text-[4.6rem] leading-[1.02] tracking-[-0.02em] mt-4 max-w-[16ch]"
+                  className="font-display text-[2.1rem] sm:text-[2.8rem] lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em] mt-3 max-w-[18ch]"
                 >
                   The right specialist for your collector car.
                 </motion.h1>
@@ -172,7 +172,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.12 }}
-                  className="text-base sm:text-lg mt-5 max-w-lg leading-relaxed"
+                  className="text-[15px] sm:text-base mt-4 max-w-md leading-relaxed"
                   style={{ opacity: 0.9 }}
                 >
                   Shops and specialists are joining every week. Find help with
@@ -210,7 +210,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
             </div>
 
             {featured && (
-              <div className="lg:w-[264px] shrink-0 flex items-start lg:justify-end">
+              <div className="hidden lg:flex w-[232px] shrink-0 items-start justify-end">
                 <FeaturedCard m={featured} />
               </div>
             )}
