@@ -3,7 +3,7 @@ import { Hero, type FeaturedModel } from "@/components/home/Hero";
 import { getPublishedModels } from "@/lib/data/models";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { FeaturedListings } from "@/components/home/FeaturedListings";
-import { MarketMovers } from "@/components/home/MarketMovers";
+import { ResearchPicks, type ResearchPick } from "@/components/home/ResearchPicks";
 import { ValueGuidePreview } from "@/components/home/ValueGuidePreview";
 import { CTASection } from "@/components/home/CTASection";
 import type { Vehicle } from "@/lib/sample-data";
@@ -101,14 +101,26 @@ async function getActiveListings(): Promise<Vehicle[]> {
  * the same car all week. No DB, or no photos yet: the hero shows its stock
  * photograph and no card. Never a made-up number.
  */
-async function getFeaturedModel(): Promise<FeaturedModel | null> {
+type HomeResearch = { featured: FeaturedModel | null; picks: ResearchPick[]; total: number };
+
+/**
+ * One read of the published model histories feeds two things:
+ * - "This week's car" in the hero: one model with a photo, chosen by ISO week
+ *   so it changes on its own and every visitor sees the same car all week.
+ * - Research picks lower down: six more models with photos, rotating from the
+ *   same week offset so the row changes too and never repeats the hero.
+ * No DB, or no photos yet: the hero shows its stock photograph and no card,
+ * and the research section stays off the page. Never a made-up number.
+ */
+async function getHomeResearch(): Promise<HomeResearch> {
   const models = await getPublishedModels();
   const withPhoto = models.filter((m) => m.hero_photo);
-  if (withPhoto.length === 0) return null;
+  if (withPhoto.length === 0) return { featured: null, picks: [], total: models.length };
   const now = new Date();
   const week = Math.floor((now.getTime() - Date.UTC(now.getUTCFullYear(), 0, 1)) / 604_800_000);
-  const m = withPhoto[(now.getUTCFullYear() * 53 + week) % withPhoto.length];
-  return {
+  const start = (now.getUTCFullYear() * 53 + week) % withPhoto.length;
+  const m = withPhoto[start];
+  const featured: FeaturedModel = {
     slug: m.slug,
     make: m.make,
     model: m.model,
@@ -120,24 +132,40 @@ async function getFeaturedModel(): Promise<FeaturedModel | null> {
     heroPhotoCredit: m.hero_photo_credit,
     index: models.findIndex((x) => x.slug === m.slug) + 1,
   };
+  const picks: ResearchPick[] = [];
+  for (let i = 1; i < withPhoto.length && picks.length < 6; i++) {
+    const p = withPhoto[(start + i) % withPhoto.length];
+    picks.push({
+      slug: p.slug,
+      make: p.make,
+      model: p.model,
+      yearStart: p.year_start,
+      yearEnd: p.year_end,
+      heroPhoto: p.hero_photo as string,
+      summary: p.summary,
+    });
+  }
+  return { featured, picks, total: models.length };
 }
 
 export default async function Home() {
-  const [listings, featured] = await Promise.all([getActiveListings(), getFeaturedModel()]);
+  const [listings, research] = await Promise.all([getActiveListings(), getHomeResearch()]);
 
   return (
     <>
       {/* Honest about being early, without telling anyone to come back later */}
       <FoundingBand />
       {/* Services first — the hub is the front door */}
-      <Hero featured={featured} />
+      <Hero featured={research.featured} />
       <ServicesSection />
       {/* Marketplace second — one strong section */}
       <FeaturedListings listings={listings} />
       {/* Market intelligence — the data moat. Hidden until the comp set can
           answer an ordinary search; see src/lib/features.ts. */}
       {VALUE_GUIDE_PUBLIC && <ValueGuidePreview />}
-      <MarketMovers />
+      {/* Research: model histories, the part of the hub that is alive today.
+          MarketMovers (sample data) came off the homepage 2026-09-16. */}
+      <ResearchPicks picks={research.picks} total={research.total} />
       <CTASection />
     </>
   );

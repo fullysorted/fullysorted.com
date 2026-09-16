@@ -185,10 +185,10 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.2 }}
-                className="flex items-center gap-2 rounded-full p-2 max-w-2xl"
+                className="flex flex-col sm:flex-row sm:items-center gap-2 rounded-[22px] sm:rounded-full p-2 max-w-2xl"
                 style={{ background: CREAM, boxShadow: "0 20px 40px rgba(0,0,0,0.25)" }}
               >
-                <label className="flex-1 flex items-center gap-3 pl-4 min-w-0">
+                <label className="flex-1 flex items-center gap-3 pl-3 sm:pl-4 min-w-0">
                   <Search className="w-5 h-5 shrink-0" style={{ color: MUTED }} aria-hidden />
                   <input
                     type="text"
@@ -201,7 +201,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
                 </label>
                 <button
                   type="submit"
-                  className="h-11 px-5 sm:px-7 rounded-full text-[15px] font-bold shrink-0 transition-colors"
+                  className="h-11 px-5 sm:px-7 rounded-full text-[15px] font-bold shrink-0 transition-colors w-full sm:w-auto"
                   style={{ background: TEAL, color: CREAM }}
                 >
                   Find a specialist
