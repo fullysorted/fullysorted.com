@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight, ShieldCheck } from "lucide-react";
 
 /** A make earns its own landing page at this many published histories. */
 export const MAKE_PAGE_MIN = 3;
@@ -21,11 +20,11 @@ export interface ModelCardItem {
   disputed_count: number;
 }
 
-const CONF: Record<string, { label: string; bg: string; fg: string }> = {
-  high: { label: "High confidence", bg: "rgba(106,176,76,0.14)", fg: "#3f7a2e" },
-  medium: { label: "Medium confidence", bg: "rgba(176,141,63,0.16)", fg: "#8a6d2f" },
-  low: { label: "Low confidence", bg: "rgba(193,68,14,0.12)", fg: "#a5390c" },
-};
+const INK = "#12352A";
+const TEAL = "#1C8C87";
+const MUTED = "#6B7280";
+const RULE = "rgba(18,53,42,0.14)";
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 
 export function modelHref(slug: string): string {
   const parts = slug.split("/");
@@ -38,57 +37,67 @@ export function displayGeneration(m: Pick<ModelCardItem, "model" | "generation">
   return m.generation.trim().toLowerCase() === m.model.trim().toLowerCase() ? null : m.generation;
 }
 
+export function yearsLabel(m: Pick<ModelCardItem, "year_start" | "year_end">): string {
+  if (!m.year_start) return "";
+  if (!m.year_end || m.year_end === m.year_start) return String(m.year_start);
+  return `${m.year_start}-${m.year_end}`;
+}
+
 /**
- * One model history in a grid. `showMake` is off on make pages, where the
- * make is the page title and repeating it on every card is noise.
+ * One model history in a grid. Restyled 2026-09-16 to match the homepage
+ * research picks: photo (or a quiet placeholder), years, name, one meta
+ * line. The summary blurb is gone; the page it links to is the summary.
+ * `showMake` is off on make pages, where the make is the page title.
  */
 export function ModelCard({ m, showMake = true }: { m: ModelCardItem; showMake?: boolean }) {
-  const conf = CONF[(m.overall_confidence || "medium").toLowerCase()] || CONF.medium;
   const generation = displayGeneration(m);
-  const years = [m.year_start, m.year_end].filter(Boolean).join("–");
+  const years = yearsLabel(m);
+  const meta = [
+    m.production_total ? `${m.production_total.toLocaleString("en-US")} built` : null,
+    m.source_count > 0 ? `${m.source_count} ${m.source_count === 1 ? "source" : "sources"}` : null,
+  ].filter(Boolean).join(" · ");
+
   return (
     <Link
       href={modelHref(m.slug)}
-      className="flex flex-col p-5 bg-white hover:shadow-md hover:-translate-y-0.5 transition-all group rounded-xl"
-      style={{ border: "1px solid rgba(0,0,0,0.08)", borderTop: "2px solid #1a1a18" }}
+      className="group flex flex-col rounded-[20px] overflow-hidden bg-white transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(18,53,42,0.45)]"
+      style={{ border: `1px solid ${RULE}` }}
     >
-      {m.hero_photo && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={m.hero_photo}
-          alt={`${m.make} ${m.model}`}
-          loading="lazy"
-          className="w-full aspect-[3/2] object-cover rounded-lg mb-4"
-          style={{ background: "#eee" }}
-        />
-      )}
-      {showMake && (
-        <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#6b6b5e" }}>{m.make}</span>
-      )}
-      <h3 className="font-display font-semibold text-lg mt-1 leading-snug group-hover:text-accent transition-colors" style={{ color: "#1a1a18" }}>
-        {m.model} {generation && <span className="font-normal" style={{ color: "#9a9a8a" }}>({generation})</span>}
-      </h3>
-      <p className="text-xs mt-1 price-display" style={{ color: "#9a9a8a" }}>
-        {years}
-        {m.production_total ? ` · ${m.production_total.toLocaleString()} built` : ""}
-      </p>
-      {m.summary && (
-        <p className="text-sm mt-3 line-clamp-3 flex-1" style={{ color: "#6b6b5e" }}>
-          {m.summary.replace(/[#*]/g, "").slice(0, 155)}…
-        </p>
-      )}
-      <div className="flex flex-wrap items-center gap-2 mt-3.5">
-        <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full" style={{ background: conf.bg, color: conf.fg }}>
-          <ShieldCheck className="w-3 h-3" /> {conf.label}
-        </span>
-        {m.source_count > 0 && (
-          <span className="text-[11px] font-medium px-2 py-0.5 rounded-full" style={{ background: "#f3f2ee", color: "#6b6b5e" }}>
-            {m.source_count} cited {m.source_count === 1 ? "source" : "sources"}
-          </span>
+      <div className="relative aspect-[16/10] overflow-hidden" style={{ background: INK }}>
+        {m.hero_photo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={m.hero_photo}
+            alt={`${m.make} ${m.model}`}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-end p-4" aria-hidden="true">
+            <span className="font-display text-2xl leading-none" style={{ color: "rgba(245,239,230,0.35)" }}>
+              {m.model}
+            </span>
+          </div>
         )}
       </div>
-      <div className="flex items-center gap-1 mt-3 text-xs font-semibold" style={{ color: "#1E6091" }}>
-        Read history <ArrowRight className="w-3 h-3" />
+      <div className="p-4 flex flex-col gap-1">
+        <span className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.08em", color: MUTED }}>
+          {showMake ? m.make : years}
+          {showMake && years ? ` · ${years}` : ""}
+        </span>
+        <h3 className="font-display text-[1.15rem] leading-tight transition-colors group-hover:text-[#1C8C87]" style={{ color: INK }}>
+          {m.model}
+          {generation && <span className="text-[0.85em]" style={{ color: MUTED }}> ({generation})</span>}
+        </h3>
+        {meta && (
+          <span className="text-[12px]" style={{ fontFamily: MONO, color: MUTED }}>
+            {meta}
+          </span>
+        )}
+        <span className="text-[13px] font-bold mt-1" style={{ color: TEAL }}>
+          Read the history &rarr;
+        </span>
       </div>
     </Link>
   );

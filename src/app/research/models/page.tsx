@@ -48,33 +48,35 @@ export default async function ModelsIndexPage() {
   };
 
   return (
-    <div style={{ background: "#faf9f7" }} className="min-h-screen">
+    <div style={{ background: "#F5EFE6" }} className="min-h-screen">
       <ResearchNav active="models" />
       <JsonLd data={itemListSchema} />
 
-      {/* Header */}
-      <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <Link href="/research" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8" style={{ color: "#6b6b5e" }}>
+      {/* Header, in the homepage's language (2026-09-16) */}
+      <div style={{ background: "#F5EFE6", borderBottom: "1px solid rgba(18,53,42,0.14)" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+          <Link href="/research" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8" style={{ color: "#6B7280" }}>
             <ArrowLeft className="w-4 h-4" /> Research
           </Link>
-          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#6b6b5e" }}>Model histories</p>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4" style={{ color: "#1a1a18" }}>
-            Collector car model histories, by make<span style={{ color: "#B08D3F" }}>.</span>
+          <p className="text-[11px] uppercase" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em", color: "#1C8C87" }}>
+            Model histories
+          </p>
+          <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4" style={{ color: "#12352A" }}>
+            Know the car before you buy it.
           </h1>
-          <p className="text-base sm:text-lg leading-relaxed max-w-2xl" style={{ color: "#6b6b5e" }}>
+          <p className="text-base sm:text-lg leading-relaxed max-w-2xl" style={{ color: "#6B7280" }}>
             One page per model: production numbers, specs, what to look for, common problems and market
             context. Every non-obvious fact is cross-checked and cited. Where the sources disagree, we say so
             instead of picking a number.
           </p>
-          <Link href="/research/compare" className="inline-flex items-center gap-1.5 text-sm font-semibold mt-5 hover:opacity-70 transition-opacity" style={{ color: "#1E6091" }}>
+          <Link href="/research/compare" className="inline-flex items-center gap-1.5 text-sm font-bold mt-5 hover:underline underline-offset-4" style={{ color: "#1C8C87" }}>
             Compare two models head to head <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
 
       {/* Directory */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         {items.length === 0 && !modelsOk ? (
           <div className="rounded-2xl bg-white px-6 py-16 text-center" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
             <Database className="w-8 h-8 mx-auto mb-4" style={{ color: "#cfcabb" }} />
