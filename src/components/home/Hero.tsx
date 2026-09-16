@@ -164,7 +164,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.05 }}
-                  className="font-display text-[2.6rem] sm:text-[3.6rem] lg:text-[4.6rem] leading-[1.02] tracking-[-0.02em] mt-4 max-w-[13ch]"
+                  className="font-display text-[2.6rem] sm:text-[3.6rem] lg:text-[4.6rem] leading-[1.02] tracking-[-0.02em] mt-4 max-w-[16ch]"
                 >
                   The right specialist for your collector car.
                 </motion.h1>
@@ -210,7 +210,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
             </div>
 
             {featured && (
-              <div className="lg:w-[264px] shrink-0 flex lg:justify-end">
+              <div className="lg:w-[264px] shrink-0 flex items-start lg:justify-end">
                 <FeaturedCard m={featured} />
               </div>
             )}
