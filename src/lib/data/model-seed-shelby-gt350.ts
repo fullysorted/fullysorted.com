@@ -4,6 +4,8 @@
  */
 export const seedShelbyGt350 = {
  "slug": "shelby/gt350",
+ "heroPhoto": "/images/models/shelby-gt350.jpg",
+ "heroPhotoCredit": "Photo: Charles from Port Chester, CC BY 2.0, via Wikimedia Commons",
  "make": "Shelby",
  "model": "GT350",
  "generation": "Shelby Mustang GT350",

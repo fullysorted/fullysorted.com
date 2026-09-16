@@ -4,6 +4,8 @@
  */
 export const seed911LongHood = {
  "slug": "porsche/911-long-hood",
+ "heroPhoto": "/images/models/porsche-911-long-hood.jpg",
+ "heroPhotoCredit": "Photo: Lothar Spurzem, CC BY-SA 2.0 de, via Wikimedia Commons",
  "make": "Porsche",
  "model": "911",
  "generation": "Long-hood (incl. 2.7 RS)",

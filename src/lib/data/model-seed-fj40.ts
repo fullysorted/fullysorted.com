@@ -4,6 +4,8 @@
  */
 export const seedFj40 = {
  "slug": "toyota/land-cruiser-fj40",
+ "heroPhoto": "/images/models/toyota-land-cruiser-fj40.jpg",
+ "heroPhotoCredit": "Photo: Tommi Nummelin, CC BY-SA 3.0, via Wikimedia Commons",
  "make": "Toyota",
  "model": "Land Cruiser",
  "generation": "FJ40 (40 Series)",

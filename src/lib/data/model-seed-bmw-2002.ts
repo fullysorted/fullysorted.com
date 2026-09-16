@@ -4,6 +4,8 @@
  */
 export const seedBmw2002 = {
  "slug": "bmw/2002",
+ "heroPhoto": "/images/models/bmw-2002.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "BMW",
  "model": "2002",
  "generation": "02 Series",

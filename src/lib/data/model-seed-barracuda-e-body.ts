@@ -4,6 +4,8 @@
  */
 export const seedBarracudaEBody = {
  "slug": "plymouth/barracuda-e-body",
+ "heroPhoto": "/images/models/plymouth-barracuda-e-body.jpg",
+ "heroPhotoCredit": "Photo: Fiver, der Hellseher, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Plymouth",
  "model": "Barracuda",
  "generation": "Third generation (E-body)",

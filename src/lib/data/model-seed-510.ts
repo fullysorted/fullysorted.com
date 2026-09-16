@@ -4,6 +4,8 @@
  */
 export const seed510 = {
  "slug": "datsun/510",
+ "heroPhoto": "/images/models/datsun-510.jpg",
+ "heroPhotoCredit": "Photo: Mr.choppers, CC BY-SA 3.0, via Wikimedia Commons",
  "make": "Datsun",
  "model": "510",
  "generation": "Third-generation Bluebird (510)",

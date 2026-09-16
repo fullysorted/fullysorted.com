@@ -4,6 +4,8 @@
  */
 export const seedNineElevenSc = {
  "slug": "porsche/911-sc",
+ "heroPhoto": "/images/models/porsche-911-sc.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Porsche",
  "model": "911 SC",
  "generation": "G-series (impact bumper)",

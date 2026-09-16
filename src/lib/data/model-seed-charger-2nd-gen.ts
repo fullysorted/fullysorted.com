@@ -4,6 +4,8 @@
  */
 export const seedCharger2ndGen = {
  "slug": "dodge/charger-1968-1970",
+ "heroPhoto": "/images/models/dodge-charger-1968-1970.jpg",
+ "heroPhotoCredit": "Photo: Mustang Joe, CC0, via Wikimedia Commons",
  "make": "Dodge",
  "model": "Charger",
  "generation": "Second generation",

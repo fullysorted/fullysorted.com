@@ -4,6 +4,8 @@
  */
 export const seed356 = {
  "slug": "porsche/356",
+ "heroPhoto": "/images/models/porsche-356.jpg",
+ "heroPhotoCredit": "Photo: Vauxford, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Porsche",
  "model": "356",
  "generation": "356 (all series)",

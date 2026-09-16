@@ -4,6 +4,8 @@
  */
 export const seedUrQuattro = {
  "slug": "audi/ur-quattro",
+ "heroPhoto": "/images/models/audi-ur-quattro.jpg",
+ "heroPhotoCredit": "Photo: Thesupermat, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Audi",
  "model": "Ur-Quattro",
  "generation": "Original quattro coupe (B2 platform)",

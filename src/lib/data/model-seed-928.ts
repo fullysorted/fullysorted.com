@@ -4,6 +4,8 @@
  */
 export const seed928 = {
  "slug": "porsche/928",
+ "heroPhoto": "/images/models/porsche-928.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Porsche",
  "model": "928",
  "generation": "928 (front-engine transaxle V8)",

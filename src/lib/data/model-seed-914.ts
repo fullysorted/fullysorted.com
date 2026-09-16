@@ -4,6 +4,8 @@
  */
 export const seed914 = {
  "slug": "porsche/914",
+ "heroPhoto": "/images/models/porsche-914.jpg",
+ "heroPhotoCredit": "Photo: Don Ramey Logan, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Porsche",
  "model": "914",
  "generation": "914/4 and 914/6",

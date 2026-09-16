@@ -4,6 +4,8 @@
  */
 export const seedType2Bus = {
  "slug": "volkswagen/type-2-bus",
+ "heroPhoto": "/images/models/volkswagen-type-2-bus.jpg",
+ "heroPhotoCredit": "Photo: Sicnag, CC BY 2.0, via Wikimedia Commons",
  "make": "Volkswagen",
  "model": "Type 2",
  "generation": "T1 Split-Screen / T2 Bay Window",

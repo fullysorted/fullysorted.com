@@ -4,6 +4,8 @@
  */
 export const seedGt40 = {
  "slug": "ford/gt40",
+ "heroPhoto": "/images/models/ford-gt40.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ford",
  "model": "GT40",
  "generation": "Mk I / Mk II / Mk III / Mk IV",

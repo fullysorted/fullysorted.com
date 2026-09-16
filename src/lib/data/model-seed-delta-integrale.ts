@@ -4,6 +4,8 @@
  */
 export const seedDeltaIntegrale = {
  "slug": "lancia/delta-hf-integrale",
+ "heroPhoto": "/images/models/lancia-delta-hf-integrale.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Lancia",
  "model": "Delta",
  "generation": "HF Integrale (Type 831)",

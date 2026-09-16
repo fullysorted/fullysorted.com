@@ -4,6 +4,8 @@
  */
 export const seedMiura = {
  "slug": "lamborghini/miura",
+ "heroPhoto": "/images/models/lamborghini-miura.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Lamborghini",
  "model": "Miura",
  "generation": "Miura",

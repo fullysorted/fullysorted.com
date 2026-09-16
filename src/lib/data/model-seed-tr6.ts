@@ -4,6 +4,8 @@
  */
 export const seedTr6 = {
  "slug": "triumph/tr6",
+ "heroPhoto": "/images/models/triumph-tr6.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Triumph",
  "model": "TR6",
  "generation": "TR6",

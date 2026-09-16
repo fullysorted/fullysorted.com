@@ -4,6 +4,8 @@
  */
 export const seedCitroenDs = {
  "slug": "citroen/ds",
+ "heroPhoto": "/images/models/citroen-ds.jpg",
+ "heroPhotoCredit": "Photo: Balise42, CC BY 4.0, via Wikimedia Commons",
  "make": "Citroen",
  "model": "DS",
  "generation": "D-Series",

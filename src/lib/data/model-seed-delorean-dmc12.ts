@@ -4,6 +4,8 @@
  */
 export const seedDeLoreanDmc12 = {
  "slug": "delorean/dmc-12",
+ "heroPhoto": "/images/models/delorean-dmc-12.jpg",
+ "heroPhotoCredit": "Photo: Ethan Llamas, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "DeLorean",
  "model": "DMC-12",
  "generation": "1981-1983",

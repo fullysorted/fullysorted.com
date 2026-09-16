@@ -62,7 +62,8 @@ export const seed240z = {
     '0-60 mph': '~8.0 s (period road tests)',
     'Top speed': '~125 mph',
   },
-  heroPhoto: null as string | null,
+  heroPhoto: "/images/models/datsun-240z.jpg" as string | null,
+  heroPhotoCredit: "Photo: Calreyn88, CC BY 4.0, via Wikimedia Commons" as string | null,
   overallConfidence: 'high' as const,
 
   summary: `The Datsun 240Z is the car that put Japan on the sports-car map. Launched for 1970 (built from late 1969), it paired a smooth 2.4-liter overhead-cam inline-six, four-wheel independent suspension and genuinely pretty long-hood fastback styling with a price that badly undercut the European competition. For roughly the cost of an MGB you got performance and sophistication closer to a Jaguar E-Type or BMW coupe - and from a dealer network that could actually service it.

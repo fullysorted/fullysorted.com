@@ -68,7 +68,8 @@ export const seedE30M3 = {
     'Brakes': 'Four-wheel discs with Bosch ABS, derived from the E28 5 Series',
     'Bodywork': 'Bespoke vs standard E30: widened fenders front and rear, deeper valences, extended sills, re-angled rear glass via a reshaped C-pillar, taller bootlid and rear spoiler. Only the hood, roof panel and sunroof are commonly cited as shared with the regular E30 coupe.',
   },
-  heroPhoto: null as string | null,
+  heroPhoto: "/images/models/bmw-m3-e30.jpg" as string | null,
+  heroPhotoCredit: "Photo: MrWalkr, CC BY-SA 4.0, via Wikimedia Commons" as string | null,
   overallConfidence: 'high' as const,
 
   summary: `The BMW M3 (E30) is the car that founded the M3 name, and it was born for one reason: to go racing. BMW needed a homologation special to qualify a 3 Series for Group A touring-car competition (most famously the DTM), and the rules required a run of road cars to make the racer legal. The result, shown at the 1985 Frankfurt show and built from 1986, was not a tarted-up 320i but a purpose-built machine with bespoke bodywork and a bespoke engine.

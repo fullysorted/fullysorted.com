@@ -4,6 +4,8 @@
  */
 export const seedCarrera32 = {
  "slug": "porsche/911-carrera-3-2",
+ "heroPhoto": "/images/models/porsche-911-carrera-3-2.jpg",
+ "heroPhotoCredit": "Photo: Matti Blume, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Porsche",
  "model": "911 Carrera 3.2",
  "generation": "G-Series",

@@ -4,6 +4,8 @@
  */
 export const seedSuperbird = {
  "slug": "plymouth/superbird",
+ "heroPhoto": "/images/models/plymouth-superbird.jpg",
+ "heroPhotoCredit": "Photo: MrWalkr, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Plymouth",
  "model": "Road Runner Superbird",
  "generation": "Superbird",

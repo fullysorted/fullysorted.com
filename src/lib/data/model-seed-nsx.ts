@@ -65,7 +65,8 @@ export const seedNsx = {
     'Drag coefficient': '0.32 (pre-facelift); 0.30 (2002 facelift)',
     'Curb weight': '~3,010 lb early coupe; ~2,712 lb NSX-R',
   },
-  heroPhoto: null as string | null,
+  heroPhoto: "/images/models/acura-nsx-na1-na2.jpg" as string | null,
+  heroPhotoCredit: "Photo: 先従隗始, CC0, via Wikimedia Commons" as string | null,
   overallConfidence: 'high' as const,
 
   summary: `The Honda NSX - sold as the Acura NSX in North America from late 1990 - is the car that proved a mid-engine supercar didn't have to be temperamental. Honda benchmarked the Ferrari 328/348, then set out to match that performance with the reliability, visibility, and ease of use of a Honda. The result, on sale from 1990 to 2005, rewrote what buyers could expect from an exotic.

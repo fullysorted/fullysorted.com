@@ -4,6 +4,8 @@
  */
 export const seedMgb = {
  "slug": "mg/mgb",
+ "heroPhoto": "/images/models/mg-mgb.jpg",
+ "heroPhotoCredit": "Photo: Michael Barera, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "MG",
  "model": "MGB",
  "generation": "MGB (Roadster and GT)",

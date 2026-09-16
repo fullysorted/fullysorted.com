@@ -4,6 +4,8 @@
  */
 export const seed300SL = {
  "slug": "mercedes-benz/300sl-w198",
+ "heroPhoto": "/images/models/mercedes-benz-300sl-w198.jpg",
+ "heroPhotoCredit": "Photo: MrWalkr, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Mercedes-Benz",
  "model": "300 SL",
  "generation": "W198",

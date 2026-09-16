@@ -4,6 +4,8 @@
  */
 export const seedS2000 = {
  "slug": "honda/s2000",
+ "heroPhoto": "/images/models/honda-s2000.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Honda",
  "model": "S2000",
  "generation": "AP1 / AP2",

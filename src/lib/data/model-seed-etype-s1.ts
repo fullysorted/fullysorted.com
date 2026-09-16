@@ -4,6 +4,8 @@
  */
 export const seedETypeS1 = {
  "slug": "jaguar/e-type-series-1",
+ "heroPhoto": "/images/models/jaguar-e-type-series-1.jpg",
+ "heroPhotoCredit": "Photo: Coolalabright, CC BY 4.0, via Wikimedia Commons",
  "make": "Jaguar",
  "model": "E-Type",
  "generation": "Series 1",

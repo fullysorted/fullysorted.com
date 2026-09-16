@@ -4,6 +4,8 @@
  */
 export const seedClassicMini = {
  "slug": "mini/classic-mini",
+ "heroPhoto": "/images/models/mini-classic-mini.jpg",
+ "heroPhotoCredit": "Photo: Charles from Port Chester, CC0, via Wikimedia Commons",
  "make": "Mini",
  "model": "Classic Mini",
  "generation": "Classic Mini (Mk I-Mk VII)",

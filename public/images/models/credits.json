@@ -120,9 +120,534 @@
  },
  "ferrari/dino-246": {
   "file": "/images/models/ferrari-dino-246.jpg",
-  "author": "Pedro Ribeiro Sim\u00f5es from Lisboa, Portugal",
+  "author": "Pedro Ribeiro Simões from Lisboa, Portugal",
   "license": "CC BY 2.0",
   "source": "https://commons.wikimedia.org/wiki/File:Ferrari_Dino_GT.jpg",
   "commons_title": "File:Ferrari Dino GT.jpg"
+ },
+ "mercedes-benz/190e-cosworth": {
+  "file": "/images/models/mercedes-benz-190e-cosworth.jpg",
+  "author": "GerdeeX",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_190E_2.5-16_Evo_II_front_-_Stuttgart_Museum.jpg",
+  "commons_title": "File:Mercedes-Benz 190E 2.5-16 Evo II front - Stuttgart Museum.jpg"
+ },
+ "mercedes-benz/300sl-w198": {
+  "file": "/images/models/mercedes-benz-300sl-w198.jpg",
+  "author": "MrWalkr",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1955_Mercedes-Benz_300SL_W198_I_FOS21.jpg",
+  "commons_title": "File:1955 Mercedes-Benz 300SL W198 I FOS21.jpg"
+ },
+ "nissan/300zx-z32": {
+  "file": "/images/models/nissan-300zx-z32.jpg",
+  "author": "Sicnag",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1990_Nissan_300ZX_Z32_(23706944325).jpg",
+  "commons_title": "File:1990 Nissan 300ZX Z32 (23706944325).jpg"
+ },
+ "datsun/510": {
+  "file": "/images/models/datsun-510.jpg",
+  "author": "Mr.choppers",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1970-1972_Datsun_510_2-door_sedan_in_Mexican_Orange,_front_left.jpg",
+  "commons_title": "File:1970-1972 Datsun 510 2-door sedan in Mexican Orange, front left.jpg"
+ },
+ "porsche/911-long-hood": {
+  "file": "/images/models/porsche-911-long-hood.jpg",
+  "author": "Lothar Spurzem",
+  "license": "CC BY-SA 2.0 de",
+  "source": "https://commons.wikimedia.org/wiki/File:Porsche_911_Carrera_RS,_Bj._1972-73_(2016-07-02_01_Sp).JPG",
+  "commons_title": "File:Porsche 911 Carrera RS, Bj. 1972-73 (2016-07-02 01 Sp).JPG"
+ },
+ "porsche/911-sc": {
+  "file": "/images/models/porsche-911-sc.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1980_Porsche_911_SC_Targa_1.jpg",
+  "commons_title": "File:1980 Porsche 911 SC Targa 1.jpg"
+ },
+ "porsche/912": {
+  "file": "/images/models/porsche-912.jpg",
+  "author": "Andrew Bone",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Porsche_912_(1967)_(36957646496).jpg",
+  "commons_title": "File:Porsche 912 (1967) (36957646496).jpg"
+ },
+ "porsche/914": {
+  "file": "/images/models/porsche-914.jpg",
+  "author": "Don Ramey Logan",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Porsche_914_by_Don_Ramey_Logan.jpg",
+  "commons_title": "File:Porsche 914 by Don Ramey Logan.jpg"
+ },
+ "porsche/924": {
+  "file": "/images/models/porsche-924.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1985_Porsche_924.jpg",
+  "commons_title": "File:1985 Porsche 924.jpg"
+ },
+ "porsche/928": {
+  "file": "/images/models/porsche-928.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Porsche_928_(51198).jpg",
+  "commons_title": "File:Porsche 928 (51198).jpg"
+ },
+ "porsche/944-turbo": {
+  "file": "/images/models/porsche-944-turbo.jpg",
+  "author": "MercurySable99",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1989_Porsche_944_Turbo,_front_left,_07-05-2024.jpg",
+  "commons_title": "File:1989 Porsche 944 Turbo, front left, 07-05-2024.jpg"
+ },
+ "porsche/944": {
+  "file": "/images/models/porsche-944.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1986_Porsche_944_(46751).jpg",
+  "commons_title": "File:1986 Porsche 944 (46751).jpg"
+ },
+ "porsche/968": {
+  "file": "/images/models/porsche-968.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1992_Porsche_968_Auto.jpg",
+  "commons_title": "File:1992 Porsche 968 Auto.jpg"
+ },
+ "alfa-romeo/spider-105": {
+  "file": "/images/models/alfa-romeo-spider-105.jpg",
+  "author": "Rundvald",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Alfa-Romeo-1750-Spider-Duetto-AVG-byRundvald.jpg",
+  "commons_title": "File:Alfa-Romeo-1750-Spider-Duetto-AVG-byRundvald.jpg"
+ },
+ "amphicar/770": {
+  "file": "/images/models/amphicar-770.jpg",
+  "author": "Michael Barera",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:2024_Downtown_West_Allis_Classic_Car_Show_32_(1966_Amphicar_770).jpg",
+  "commons_title": "File:2024 Downtown West Allis Classic Car Show 32 (1966 Amphicar 770).jpg"
+ },
+ "austin-healey/3000": {
+  "file": "/images/models/austin-healey-3000.jpg",
+  "author": "Berthold Werner",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Austin-Healey_3000_MK_I_BW_2016-09-03_13-25-04.jpg",
+  "commons_title": "File:Austin-Healey 3000 MK I BW 2016-09-03 13-25-04.jpg"
+ },
+ "plymouth/barracuda-e-body": {
+  "file": "/images/models/plymouth-barracuda-e-body.jpg",
+  "author": "Fiver, der Hellseher",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Black_and_purble_Plymouth_Barracuda_(E-body)_(front).jpg",
+  "commons_title": "File:Black and purble Plymouth Barracuda (E-body) (front).jpg"
+ },
+ "bmw/2002": {
+  "file": "/images/models/bmw-2002.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1974_BMW_2002_ti_1.jpg",
+  "commons_title": "File:1974 BMW 2002 ti 1.jpg"
+ },
+ "bmw/isetta": {
+  "file": "/images/models/bmw-isetta.jpg",
+  "author": "Michael Barera",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Stahls_Automotive_Collection_December_2021_124_(1961_BMW_Isetta_300).jpg",
+  "commons_title": "File:Stahls Automotive Collection December 2021 124 (1961 BMW Isetta 300).jpg"
+ },
+ "chevrolet/camaro-1st-gen": {
+  "file": "/images/models/chevrolet-camaro-1st-gen.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1969_Chevrolet_Camaro_SS_2.jpg",
+  "commons_title": "File:1969 Chevrolet Camaro SS 2.jpg"
+ },
+ "porsche/911-carrera-3-2": {
+  "file": "/images/models/porsche-911-carrera-3-2.jpg",
+  "author": "Matti Blume",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Porsche_911_Carrera_Targa,_18._ADAC_Stormarn_Classic,_Zarpen_(TR257264).jpg",
+  "commons_title": "File:Porsche 911 Carrera Targa, 18. ADAC Stormarn Classic, Zarpen (TR257264).jpg"
+ },
+ "dodge/challenger-1st-gen": {
+  "file": "/images/models/dodge-challenger-1st-gen.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1970_Dodge_Challenger_R_T.jpg",
+  "commons_title": "File:1970 Dodge Challenger R T.jpg"
+ },
+ "dodge/charger-1968-1970": {
+  "file": "/images/models/dodge-charger-1968-1970.jpg",
+  "author": "Mustang Joe",
+  "license": "CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:1969_Dodge_Charger_(53632248223).jpg",
+  "commons_title": "File:1969 Dodge Charger (53632248223).jpg"
+ },
+ "chevrolet/chevelle-ss": {
+  "file": "/images/models/chevrolet-chevelle-ss.jpg",
+  "author": "Oleg Yunakov",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1970_Chevrolet_Chevelle_SS_-_01.jpg",
+  "commons_title": "File:1970 Chevrolet Chevelle SS - 01.jpg"
+ },
+ "citroen/ds": {
+  "file": "/images/models/citroen-ds.jpg",
+  "author": "Balise42",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Citroen_DS_in_Zürich.jpg",
+  "commons_title": "File:Citroen DS in Zürich.jpg"
+ },
+ "mini/classic-mini": {
+  "file": "/images/models/mini-classic-mini.jpg",
+  "author": "Charles from Port Chester",
+  "license": "CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:Morris_Mini_Cooper_S_(1966)_(55082952889).jpg",
+  "commons_title": "File:Morris Mini Cooper S (1966) (55082952889).jpg"
+ },
+ "chevrolet/corvette-c1": {
+  "file": "/images/models/chevrolet-corvette-c1.jpg",
+  "author": "TheK",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:58_Corvette_front.jpg",
+  "commons_title": "File:58 Corvette front.jpg"
+ },
+ "chevrolet/corvette-c2": {
+  "file": "/images/models/chevrolet-corvette-c2.jpg",
+  "author": "Greg Gjerdingen",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1965_Chevrolet_Corvette_Sting_Ray_Roadster_(29801116245).jpg",
+  "commons_title": "File:1965 Chevrolet Corvette Sting Ray Roadster (29801116245).jpg"
+ },
+ "chevrolet/corvette-c3": {
+  "file": "/images/models/chevrolet-corvette-c3.jpg",
+  "author": "Iamjosemom",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Chevrolet-Corvette-Stingray.jpg",
+  "commons_title": "File:Chevrolet-Corvette-Stingray.jpg"
+ },
+ "chevrolet/corvette-c4-zr1": {
+  "file": "/images/models/chevrolet-corvette-c4-zr1.jpg",
+  "author": "Sicnag",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1993_Chevrolet_C4_Corvette_(33286046741).jpg",
+  "commons_title": "File:1993 Chevrolet C4 Corvette (33286046741).jpg"
+ },
+ "lamborghini/countach": {
+  "file": "/images/models/lamborghini-countach.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1989_Lamborghini_Countach_25th_Anniversary.jpg",
+  "commons_title": "File:1989 Lamborghini Countach 25th Anniversary.jpg"
+ },
+ "aston-martin/db9-manual": {
+  "file": "/images/models/aston-martin-db9-manual.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:2016_Aston_Martin_DB9_GT_Auto.jpg",
+  "commons_title": "File:2016 Aston Martin DB9 GT Auto.jpg"
+ },
+ "land-rover/defender": {
+  "file": "/images/models/land-rover-defender.jpg",
+  "author": "Mr.choppers",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1991_Land_Rover_Defender_90_200TDI_pickup_in_blue,_front_left.jpg",
+  "commons_title": "File:1991 Land Rover Defender 90 200TDI pickup in blue, front left.jpg"
+ },
+ "delorean/dmc-12": {
+  "file": "/images/models/delorean-dmc-12.jpg",
+  "author": "Ethan Llamas",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1983_DeLorean_DMC-12,_front_right,_05-18-2024.jpg",
+  "commons_title": "File:1983 DeLorean DMC-12, front right, 05-18-2024.jpg"
+ },
+ "lancia/delta-hf-integrale": {
+  "file": "/images/models/lancia-delta-hf-integrale.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Lancia_Delta_HF_Integrale_Evo.jpg",
+  "commons_title": "File:Lancia Delta HF Integrale Evo.jpg"
+ },
+ "jaguar/e-type-series-1": {
+  "file": "/images/models/jaguar-e-type-series-1.jpg",
+  "author": "Coolalabright",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1964_Jaguar_E-Type_Series_1_Roadster.jpg",
+  "commons_title": "File:1964 Jaguar E-Type Series 1 Roadster.jpg"
+ },
+ "ford/f-100-5th-gen": {
+  "file": "/images/models/ford-f-100-5th-gen.jpg",
+  "author": "Sicnag",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1968_Ford_F-100_Custom_Pickup_(36238022751).jpg",
+  "commons_title": "File:1968 Ford F-100 Custom Pickup (36238022751).jpg"
+ },
+ "ferrari/f430": {
+  "file": "/images/models/ferrari-f430.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Ferrari_F430_17.jpg",
+  "commons_title": "File:Ferrari F430 17.jpg"
+ },
+ "toyota/land-cruiser-fj40": {
+  "file": "/images/models/toyota-land-cruiser-fj40.jpg",
+  "author": "Tommi Nummelin",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Dark_green_Land_Cruiser.JPG",
+  "commons_title": "File:Dark green Land Cruiser.JPG"
+ },
+ "volkswagen/golf-gti-mk1": {
+  "file": "/images/models/volkswagen-golf-gti-mk1.jpg",
+  "author": "Jeremy from Sydney",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1983_Volkswagen_Golf_(Type_17)_GTI_3-door_hatchback_(27543044652).jpg",
+  "commons_title": "File:1983 Volkswagen Golf (Type 17) GTI 3-door hatchback (27543044652).jpg"
+ },
+ "ford/gt40": {
+  "file": "/images/models/ford-gt40.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Ford_GT40.jpg",
+  "commons_title": "File:Ford GT40.jpg"
+ },
+ "toyota/land-cruiser-60-series": {
+  "file": "/images/models/toyota-land-cruiser-60-series.jpg",
+  "author": "Leighblackall",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Crossing_the_upper_murray_river_at_Tom_Groggin.jpg",
+  "commons_title": "File:Crossing the upper murray river at Tom Groggin.jpg"
+ },
+ "toyota/land-cruiser-80": {
+  "file": "/images/models/toyota-land-cruiser-80.jpg",
+  "author": "Cruiser-Aust",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Land_Cruiser_80-series_5.jpg",
+  "commons_title": "File:Land Cruiser 80-series 5.jpg"
+ },
+ "bmw/m3-e36": {
+  "file": "/images/models/bmw-m3-e36.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1998_BMW_M3.jpg",
+  "commons_title": "File:1998 BMW M3.jpg"
+ },
+ "bmw/m5-e28": {
+  "file": "/images/models/bmw-m5-e28.jpg",
+  "author": "Charles from Port Chester",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:BMW_M5_(E28,_1988)_(52228319885).jpg",
+  "commons_title": "File:BMW M5 (E28, 1988) (52228319885).jpg"
+ },
+ "mg/mgb": {
+  "file": "/images/models/mg-mgb.jpg",
+  "author": "Michael Barera",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:2022_Downtown_West_Allis_Classic_Car_Show_051_(1974_MG_MGB).jpg",
+  "commons_title": "File:2022 Downtown West Allis Classic Car Show 051 (1974 MG MGB).jpg"
+ },
+ "lamborghini/miura": {
+  "file": "/images/models/lamborghini-miura.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1970_Lamborghini_Miura_P400_S.jpg",
+  "commons_title": "File:1970 Lamborghini Miura P400 S.jpg"
+ },
+ "mazda/mx-5-na": {
+  "file": "/images/models/mazda-mx-5-na.jpg",
+  "author": "free photos and art",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1990_Mazda_MX_5_Miata_1.8_(8066696559).jpg",
+  "commons_title": "File:1990 Mazda MX 5 Miata 1.8 (8066696559).jpg"
+ },
+ "de-tomaso/pantera": {
+  "file": "/images/models/de-tomaso-pantera.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1974_De_Tomaso_Pantera_22.jpg",
+  "commons_title": "File:1974 De Tomaso Pantera 22.jpg"
+ },
+ "porsche/356": {
+  "file": "/images/models/porsche-356.jpg",
+  "author": "Vauxford",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1960_Porsche_356B_T5_1600_Super_Coupe_Front.jpg",
+  "commons_title": "File:1960 Porsche 356B T5 1600 Super Coupe Front.jpg"
+ },
+ "land-rover/range-rover-classic": {
+  "file": "/images/models/land-rover-range-rover-classic.jpg",
+  "author": "Alexander Migl",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Range_Rover_Classic_(1970)_Classic-Gala_2022_1X7A0286.jpg",
+  "commons_title": "File:Range Rover Classic (1970) Classic-Gala 2022 1X7A0286.jpg"
+ },
+ "mazda/rx-7-fc": {
+  "file": "/images/models/mazda-rx-7-fc.jpg",
+  "author": "Elise240SX",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1988_Mazda_RX-7_GXL_in_Claret_Mica,_Front_Right,_07-25-2023.jpg",
+  "commons_title": "File:1988 Mazda RX-7 GXL in Claret Mica, Front Right, 07-25-2023.jpg"
+ },
+ "honda/s2000": {
+  "file": "/images/models/honda-s2000.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:2003_Honda_S2000.jpg",
+  "commons_title": "File:2003 Honda S2000.jpg"
+ },
+ "shelby/cobra": {
+  "file": "/images/models/shelby-cobra.jpg",
+  "author": "Ermell",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1966_Shelby_427_S-C_Cobra_6170718.jpg",
+  "commons_title": "File:1966 Shelby 427 S-C Cobra 6170718.jpg"
+ },
+ "shelby/gt350": {
+  "file": "/images/models/shelby-gt350.jpg",
+  "author": "Charles from Port Chester",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Ford_Mustang_Shelby_G.T._350_(1965)_(53995054148).jpg",
+  "commons_title": "File:Ford Mustang Shelby G.T. 350 (1965) (53995054148).jpg"
+ },
+ "nissan/skyline-gtr-r32": {
+  "file": "/images/models/nissan-skyline-gtr-r32.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Nissan_Skyline_GT-R_3.jpg",
+  "commons_title": "File:Nissan Skyline GT-R 3.jpg"
+ },
+ "nissan/skyline-gt-r-r34": {
+  "file": "/images/models/nissan-skyline-gt-r-r34.jpg",
+  "author": "Mr.choppers",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Nissan_Skyline_GT-R_(R34)_in_Blue,_front_left_2.jpg",
+  "commons_title": "File:Nissan Skyline GT-R (R34) in Blue, front left 2.jpg"
+ },
+ "mercedes-benz/sl-r107": {
+  "file": "/images/models/mercedes-benz-sl-r107.jpg",
+  "author": "PLawrence99cx",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1988_Mercedes-Benz_560SL_US_Model_-_cowcatcher.jpg",
+  "commons_title": "File:1988 Mercedes-Benz 560SL US Model - cowcatcher.jpg"
+ },
+ "lancia/stratos": {
+  "file": "/images/models/lancia-stratos.jpg",
+  "author": "Mr.choppers",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1974_Lancia_Stratos_Stradale_at_Greenwich_2021,_front_left.jpg",
+  "commons_title": "File:1974 Lancia Stratos Stradale at Greenwich 2021, front left.jpg"
+ },
+ "plymouth/superbird": {
+  "file": "/images/models/plymouth-superbird.jpg",
+  "author": "MrWalkr",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1970_Plymouth_Road_Runner_Superbird_LC23.jpg",
+  "commons_title": "File:1970 Plymouth Road Runner Superbird LC23.jpg"
+ },
+ "ford/thunderbird-1st-gen": {
+  "file": "/images/models/ford-thunderbird-1st-gen.jpg",
+  "author": "MercurySable99",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1957_Ford_Thunderbird,_front_left,_08-27-2023.jpg",
+  "commons_title": "File:1957 Ford Thunderbird, front left, 08-27-2023.jpg"
+ },
+ "triumph/tr6": {
+  "file": "/images/models/triumph-tr6.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1972_Triumph_TR6_(40756).jpg",
+  "commons_title": "File:1972 Triumph TR6 (40756).jpg"
+ },
+ "volkswagen/type-2-bus": {
+  "file": "/images/models/volkswagen-type-2-bus.jpg",
+  "author": "Sicnag",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1966_Volkswagen_Type_2_T1_Deluxe_Microbus_(21905686831).jpg",
+  "commons_title": "File:1966 Volkswagen Type 2 T1 Deluxe Microbus (21905686831).jpg"
+ },
+ "audi/ur-quattro": {
+  "file": "/images/models/audi-ur-quattro.jpg",
+  "author": "Thesupermat",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Paris_-_Bonhams_2017_-_Audi_Quattro_sport_coupé_-_1985_-_001.jpg",
+  "commons_title": "File:Paris - Bonhams 2017 - Audi Quattro sport coupé - 1985 - 001.jpg"
+ },
+ "mercedes-benz/sl-pagoda-w113": {
+  "file": "/images/models/mercedes-benz-sl-pagoda-w113.jpg",
+  "author": "Berthold Werner",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_230_SL_BW_2016-09-03_13-32-29.jpg",
+  "commons_title": "File:Mercedes-Benz 230 SL BW 2016-09-03 13-32-29.jpg"
+ },
+ "porsche/911-930-turbo": {
+  "file": "/images/models/porsche-911-930-turbo.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Porsche_911_930_Turbo_3.jpg",
+  "commons_title": "File:Porsche 911 930 Turbo 3.jpg"
+ },
+ "toyota/supra-a80": {
+  "file": "/images/models/toyota-supra-a80.jpg",
+  "author": "Pitak",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Supra_a80_krk.JPG",
+  "commons_title": "File:Supra a80 krk.JPG"
+ },
+ "ford/bronco-first-gen": {
+  "file": "/images/models/ford-bronco-first-gen.jpg",
+  "author": "Mr.choppers",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1970_Ford_Bronco_in_light_gray,_front_right.jpg",
+  "commons_title": "File:1970 Ford Bronco in light gray, front right.jpg"
+ },
+ "porsche/911-964": {
+  "file": "/images/models/porsche-911-964.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1991_Porsche_911_964_Carrera_RS_5.jpg",
+  "commons_title": "File:1991 Porsche 911 964 Carrera RS 5.jpg"
+ },
+ "bmw/m3-e30": {
+  "file": "/images/models/bmw-m3-e30.jpg",
+  "author": "MrWalkr",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1988_BMW_M3_E30_Evolution_Red.jpg",
+  "commons_title": "File:1988 BMW M3 E30 Evolution Red.jpg"
+ },
+ "porsche/911-993": {
+  "file": "/images/models/porsche-911-993.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Porsche_911_993_(44865).jpg",
+  "commons_title": "File:Porsche 911 993 (44865).jpg"
+ },
+ "acura/nsx-na1-na2": {
+  "file": "/images/models/acura-nsx-na1-na2.jpg",
+  "author": "先従隗始",
+  "license": "CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:Honda_E-NA1_NSX_(22022010312).jpg",
+  "commons_title": "File:Honda E-NA1 NSX (22022010312).jpg"
+ },
+ "ford/mustang-first-gen": {
+  "file": "/images/models/ford-mustang-first-gen.jpg",
+  "author": "GPS 56",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1965_Ford_Mustang_Fastback_(16747255345).jpg",
+  "commons_title": "File:1965 Ford Mustang Fastback (16747255345).jpg"
+ },
+ "datsun/240z": {
+  "file": "/images/models/datsun-240z.jpg",
+  "author": "Calreyn88",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1973_Datsun_240Z_white.jpg",
+  "commons_title": "File:1973 Datsun 240Z white.jpg"
+ },
+ "mazda/rx-7-fd": {
+  "file": "/images/models/mazda-rx-7-fd.jpg",
+  "author": "Yu Chu Chin",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Mazda_RX-7_(FD3S)_at_the_2026_Adelaide_Motorsport_Festival_(DSCF2585).jpg",
+  "commons_title": "File:Mazda RX-7 (FD3S) at the 2026 Adelaide Motorsport Festival (DSCF2585).jpg"
  }
 }

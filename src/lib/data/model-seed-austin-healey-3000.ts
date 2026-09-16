@@ -4,6 +4,8 @@
  */
 export const seedAustinHealey3000 = {
  "slug": "austin-healey/3000",
+ "heroPhoto": "/images/models/austin-healey-3000.jpg",
+ "heroPhotoCredit": "Photo: Berthold Werner, CC BY-SA 3.0, via Wikimedia Commons",
  "make": "Austin-Healey",
  "model": "3000",
  "generation": "Big Healey (3000, Mk I to Mk III)",

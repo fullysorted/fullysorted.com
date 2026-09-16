@@ -4,6 +4,8 @@
  */
 export const seedF1005thGen = {
  "slug": "ford/f-100-5th-gen",
+ "heroPhoto": "/images/models/ford-f-100-5th-gen.jpg",
+ "heroPhotoCredit": "Photo: Sicnag, CC BY 2.0, via Wikimedia Commons",
  "make": "Ford",
  "model": "F-100",
  "generation": "Fifth generation (‘bumpside’)",

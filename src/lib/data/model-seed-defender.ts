@@ -4,6 +4,8 @@
  */
 export const seedDefender = {
  "slug": "land-rover/defender",
+ "heroPhoto": "/images/models/land-rover-defender.jpg",
+ "heroPhotoCredit": "Photo: Mr.choppers, CC BY-SA 3.0, via Wikimedia Commons",
  "make": "Land Rover",
  "model": "Defender",
  "generation": "Coil-sprung Ninety / One Ten / Defender",

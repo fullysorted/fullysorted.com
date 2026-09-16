@@ -4,6 +4,8 @@
  */
 export const seedPantera = {
  "slug": "de-tomaso/pantera",
+ "heroPhoto": "/images/models/de-tomaso-pantera.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "De Tomaso",
  "model": "Pantera",
  "generation": "Pantera",

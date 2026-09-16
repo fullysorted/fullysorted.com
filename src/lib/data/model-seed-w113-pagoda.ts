@@ -4,6 +4,8 @@
  */
 export const seedW113Pagoda = {
  "slug": "mercedes-benz/sl-pagoda-w113",
+ "heroPhoto": "/images/models/mercedes-benz-sl-pagoda-w113.jpg",
+ "heroPhotoCredit": "Photo: Berthold Werner, CC BY-SA 3.0, via Wikimedia Commons",
  "make": "Mercedes-Benz",
  "model": "SL",
  "generation": "W113 'Pagoda'",

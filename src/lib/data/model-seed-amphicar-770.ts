@@ -4,6 +4,8 @@
  */
 export const seedAmphicar770 = {
  "slug": "amphicar/770",
+ "heroPhoto": "/images/models/amphicar-770.jpg",
+ "heroPhotoCredit": "Photo: Michael Barera, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Amphicar",
  "model": "770",
  "generation": "1961-1968",

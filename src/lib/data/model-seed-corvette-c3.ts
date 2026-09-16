@@ -4,6 +4,8 @@
  */
 export const seedCorvetteC3 = {
  "slug": "chevrolet/corvette-c3",
+ "heroPhoto": "/images/models/chevrolet-corvette-c3.jpg",
+ "heroPhotoCredit": "Photo: Iamjosemom, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Chevrolet",
  "model": "Corvette",
  "generation": "C3",

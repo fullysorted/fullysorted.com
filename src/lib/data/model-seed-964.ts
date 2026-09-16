@@ -82,7 +82,8 @@ export const seed964 = {
     'Brakes': 'Power-assisted, ABS standard (a 911 first)',
     'Curb weight (C2)': '~3,031 lb',
   },
-  heroPhoto: null as string | null,
+  heroPhoto: "/images/models/porsche-911-964.jpg" as string | null,
+  heroPhotoCredit: "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons" as string | null,
   overallConfidence: 'high' as const,
 
   summary: `The Porsche 964 is the 911 that dragged Stuttgart's icon into the modern era without losing its soul. Sold from 1989 to 1994, it was pitched by Porsche as roughly 85 percent new versus the outgoing G-series Carrera 3.2, yet from ten feet away it still read unmistakably as a 911 - the big change most people noticed was the smooth, body-colored bumpers.

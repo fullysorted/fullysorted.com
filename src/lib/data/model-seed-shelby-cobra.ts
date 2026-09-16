@@ -4,6 +4,8 @@
  */
 export const seedShelbyCobra = {
  "slug": "shelby/cobra",
+ "heroPhoto": "/images/models/shelby-cobra.jpg",
+ "heroPhotoCredit": "Photo: Ermell, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Shelby",
  "model": "Cobra",
  "generation": "CSX2000 leaf-spring and CSX3000 coil-spring cars",

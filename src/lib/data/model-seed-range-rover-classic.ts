@@ -4,6 +4,8 @@
  */
 export const seedRangeRoverClassic = {
  "slug": "land-rover/range-rover-classic",
+ "heroPhoto": "/images/models/land-rover-range-rover-classic.jpg",
+ "heroPhotoCredit": "Photo: Alexander Migl, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Land Rover",
  "model": "Range Rover Classic",
  "generation": "First generation",

@@ -4,6 +4,8 @@
  */
 export const seedDb9Manual = {
  "slug": "aston-martin/db9-manual",
+ "heroPhoto": "/images/models/aston-martin-db9-manual.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Aston Martin",
  "model": "DB9",
  "generation": "2008 six-speed manual, US market",

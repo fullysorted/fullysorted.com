@@ -4,6 +4,8 @@
  */
 export const seedCountach = {
  "slug": "lamborghini/countach",
+ "heroPhoto": "/images/models/lamborghini-countach.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Lamborghini",
  "model": "Countach",
  "generation": "Countach (LP400 to 25th Anniversary)",

@@ -4,6 +4,8 @@
  */
 export const seedRx7Fc = {
  "slug": "mazda/rx-7-fc",
+ "heroPhoto": "/images/models/mazda-rx-7-fc.jpg",
+ "heroPhotoCredit": "Photo: Elise240SX, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Mazda",
  "model": "RX-7",
  "generation": "Second generation",

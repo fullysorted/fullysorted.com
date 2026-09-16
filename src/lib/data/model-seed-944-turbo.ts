@@ -4,6 +4,8 @@
  */
 export const seed944Turbo = {
  "slug": "porsche/944-turbo",
+ "heroPhoto": "/images/models/porsche-944-turbo.jpg",
+ "heroPhotoCredit": "Photo: MercurySable99, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Porsche",
  "model": "944 Turbo",
  "generation": "944",

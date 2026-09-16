@@ -4,6 +4,8 @@
  */
 export const seedThunderbird1stGen = {
  "slug": "ford/thunderbird-1st-gen",
+ "heroPhoto": "/images/models/ford-thunderbird-1st-gen.jpg",
+ "heroPhotoCredit": "Photo: MercurySable99, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ford",
  "model": "Thunderbird",
  "generation": "First generation (the two-seat 'Baby Bird' or 'Classic Thunderbird')",

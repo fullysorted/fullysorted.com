@@ -4,6 +4,8 @@
  */
 export const seed190ECosworth = {
  "slug": "mercedes-benz/190e-cosworth",
+ "heroPhoto": "/images/models/mercedes-benz-190e-cosworth.jpg",
+ "heroPhotoCredit": "Photo: GerdeeX, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Mercedes-Benz",
  "model": "190E Cosworth",
  "generation": "190 E 16-valve (2.3-16, 2.5-16, Evolution I, Evolution II)",

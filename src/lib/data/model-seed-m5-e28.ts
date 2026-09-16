@@ -4,6 +4,8 @@
  */
 export const seedM5E28 = {
  "slug": "bmw/m5-e28",
+ "heroPhoto": "/images/models/bmw-m5-e28.jpg",
+ "heroPhotoCredit": "Photo: Charles from Port Chester, CC BY 2.0, via Wikimedia Commons",
  "make": "BMW",
  "model": "M5",
  "generation": "E28",

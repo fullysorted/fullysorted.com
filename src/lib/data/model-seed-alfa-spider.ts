@@ -4,6 +4,8 @@
  */
 export const seedAlfaSpider = {
  "slug": "alfa-romeo/spider-105",
+ "heroPhoto": "/images/models/alfa-romeo-spider-105.jpg",
+ "heroPhotoCredit": "Photo: Rundvald, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Alfa Romeo",
  "model": "Spider",
  "generation": "105/115 Series",

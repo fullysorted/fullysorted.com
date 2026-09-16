@@ -4,6 +4,8 @@
  */
 export const seed300zxZ32 = {
  "slug": "nissan/300zx-z32",
+ "heroPhoto": "/images/models/nissan-300zx-z32.jpg",
+ "heroPhotoCredit": "Photo: Sicnag, CC BY 2.0, via Wikimedia Commons",
  "make": "Nissan",
  "model": "300ZX",
  "generation": "Z32 (fourth-generation Z)",

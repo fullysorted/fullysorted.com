@@ -68,7 +68,8 @@ export const seed993 = {
     brakes: 'Larger cross-drilled discs than the 964; Turbo and RS share four-piston calipers',
     weight: 'Curb weight about 1,370 to 3,064 lb (3,020 to 3,064 lb) for the Carrera coupe',
   },
-  heroPhoto: null,
+  heroPhoto: "/images/models/porsche-911-993.jpg",
+  heroPhotoCredit: "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons" as string | null,
   overallConfidence: 'high',
 
   summary: `The Porsche 993 is, for many enthusiasts, the definitive 911: the last of the air-cooled cars, sold from 1994 to 1998. Penned by English designer Tony Hatter, it kept the unmistakable 911 silhouette but smoothed and widened it, with flared arches, flush glass, polyellipsoid headlamps and a wide, angled tail that is widely regarded as one of the best-looking 911s ever made.

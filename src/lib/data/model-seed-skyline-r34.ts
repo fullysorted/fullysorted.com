@@ -4,6 +4,8 @@
  */
 export const seedSkylineR34 = {
  "slug": "nissan/skyline-gt-r-r34",
+ "heroPhoto": "/images/models/nissan-skyline-gt-r-r34.jpg",
+ "heroPhotoCredit": "Photo: Mr.choppers, CC BY-SA 3.0, via Wikimedia Commons",
  "make": "Nissan",
  "model": "Skyline GT-R",
  "generation": "R34 (BNR34)",

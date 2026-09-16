@@ -4,6 +4,8 @@
  */
 export const seedF430 = {
  "slug": "ferrari/f430",
+ "heroPhoto": "/images/models/ferrari-f430.jpg",
+ "heroPhotoCredit": "Photo: Calreyn88, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "F430",
  "generation": "Berlinetta, Spider, 430 Scuderia, Scuderia Spider 16M",

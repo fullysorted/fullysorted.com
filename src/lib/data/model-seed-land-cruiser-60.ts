@@ -4,6 +4,8 @@
  */
 export const seedLandCruiser60 = {
  "slug": "toyota/land-cruiser-60-series",
+ "heroPhoto": "/images/models/toyota-land-cruiser-60-series.jpg",
+ "heroPhotoCredit": "Photo: Leighblackall, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Toyota",
  "model": "Land Cruiser",
  "generation": "60 Series",

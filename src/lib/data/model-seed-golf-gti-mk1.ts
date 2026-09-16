@@ -4,6 +4,8 @@
  */
 export const seedGolfGtiMk1 = {
  "slug": "volkswagen/golf-gti-mk1",
+ "heroPhoto": "/images/models/volkswagen-golf-gti-mk1.jpg",
+ "heroPhotoCredit": "Photo: Jeremy from Sydney, CC BY 2.0, via Wikimedia Commons",
  "make": "Volkswagen",
  "model": "Golf GTI",
  "generation": "Mk1",

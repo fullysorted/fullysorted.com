@@ -4,6 +4,8 @@
  */
 export const seedBmwIsetta = {
  "slug": "bmw/isetta",
+ "heroPhoto": "/images/models/bmw-isetta.jpg",
+ "heroPhotoCredit": "Photo: Michael Barera, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "BMW",
  "model": "Isetta",
  "generation": "Isetta 250 / 300 and BMW 600",

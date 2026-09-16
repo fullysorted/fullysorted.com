@@ -4,6 +4,8 @@
  */
 export const seedChevelleSs = {
  "slug": "chevrolet/chevelle-ss",
+ "heroPhoto": "/images/models/chevrolet-chevelle-ss.jpg",
+ "heroPhotoCredit": "Photo: Oleg Yunakov, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Chevrolet",
  "model": "Chevelle SS",
  "generation": "Second generation",

@@ -4,6 +4,8 @@
  */
 export const seedMx5Na = {
  "slug": "mazda/mx-5-na",
+ "heroPhoto": "/images/models/mazda-mx-5-na.jpg",
+ "heroPhotoCredit": "Photo: free photos and art, CC BY 2.0, via Wikimedia Commons",
  "make": "Mazda",
  "model": "MX-5",
  "generation": "NA (Miata / MX-5 / Eunos Roadster)",

@@ -4,6 +4,8 @@
  */
 export const seedSlR107 = {
  "slug": "mercedes-benz/sl-r107",
+ "heroPhoto": "/images/models/mercedes-benz-sl-r107.jpg",
+ "heroPhotoCredit": "Photo: PLawrence99cx, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Mercedes-Benz",
  "model": "SL",
  "generation": "R107",

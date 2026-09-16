@@ -63,7 +63,8 @@ export const seedSupraA80 = {
     'Construction': 'Steel monocoque; extensive weight-saving (hollow carpet fibers, aluminum components) cut ~220 lb vs the A70',
     'Curb weight (US Turbo)': '~3,307-3,461 lb depending on spec',
   },
-  heroPhoto: null as string | null,
+  heroPhoto: "/images/models/toyota-supra-a80.jpg" as string | null,
+  heroPhotoCredit: "Photo: Pitak, CC BY-SA 4.0, via Wikimedia Commons" as string | null,
   overallConfidence: 'high' as const,
 
   summary: `The fourth-generation Toyota Supra - chassis code A80, known to enthusiasts as the Mk4 - is the car that turned a competent Japanese grand tourer into a global legend. Launched in 1993 (Japan and the US) and built through 2002 for the home market, it paired flowing, aerodynamically aggressive styling with two new 3.0-liter inline-six engines from Toyota's JZ family: the naturally aspirated 2JZ-GE and the now-iconic twin-turbo 2JZ-GTE.

@@ -4,6 +4,8 @@
  */
 export const seedStratos = {
  "slug": "lancia/stratos",
+ "heroPhoto": "/images/models/lancia-stratos.jpg",
+ "heroPhotoCredit": "Photo: Mr.choppers, CC BY-SA 3.0, via Wikimedia Commons",
  "make": "Lancia",
  "model": "Stratos HF",
  "generation": "Stratos HF",
