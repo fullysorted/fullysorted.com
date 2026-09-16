@@ -41,7 +41,8 @@ export type ServiceCategoryKey =
   | 'upholstery'
   | 'titling'
   | 'dealer'
-  | 'consignment';
+  | 'consignment'
+  | 'auction-rep';
 
 /**
  * 'trade' is work done TO a car: the ten ownership-year categories that the
@@ -198,6 +199,17 @@ export const ALL_CATEGORIES: ServiceCategory[] = [
     tint: '#4a4a40',
     group: 'sales',
   },
+  {
+    key: 'auction-rep',
+    label: 'Auction Representation',
+    longLabel: 'Online Auction Representation',
+    verb: 'Sell it online',
+    blurb: 'They prepare, photograph, write up and run your car on the online auction sites, and handle the questions while the clock runs. Added 2026-09-16.',
+    askedFor: 'Someone to run my online auction',
+    active: true,
+    tint: '#2f2f28',
+    group: 'sales',
+  },
 ];
 
 /**
@@ -210,7 +222,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = ALL_CATEGORIES.filter((c) =
 /** The ten trades, in ownership-year order. This is what the homepage tells as a story. */
 export const TRADE_CATEGORIES: ServiceCategory[] = SERVICE_CATEGORIES.filter((c) => (c.group ?? 'trade') === 'trade');
 
-/** Dealers and consignment: the buying-and-selling side of the directory. */
+/** Dealers, consignment and auction reps: the buying-and-selling side of the directory. */
 export const SALES_CATEGORIES: ServiceCategory[] = SERVICE_CATEGORIES.filter((c) => c.group === 'sales');
 
 export function categoryGroup(key: string): ServiceCategoryGroup {

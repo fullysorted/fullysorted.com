@@ -3,7 +3,7 @@
 import { Search, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { TRADE_CATEGORIES, type ServiceCategoryKey } from "@/lib/service-categories";
+import { TRADE_CATEGORIES, SALES_CATEGORIES, type ServiceCategoryKey } from "@/lib/service-categories";
 import { TradeIcon } from "@/components/home/TradeIcon";
 
 /*
@@ -158,7 +158,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
                   className="text-[11px] uppercase"
                   style={{ fontFamily: MONO, letterSpacing: "0.12em", opacity: 0.8 }}
                 >
-                  The collector car services hub
+                  Collector car specialists and research
                 </motion.p>
                 <motion.h1
                   initial={{ opacity: 0, y: 16 }}
@@ -207,6 +207,18 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
                   Find a specialist
                 </button>
               </motion.form>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.45, delay: 0.3 }}
+                className="text-sm -mt-4"
+                style={{ opacity: 0.85 }}
+              >
+                Buying a car?{" "}
+                <Link href="/research/models" className="font-bold underline underline-offset-4 hover:opacity-80" style={{ color: CREAM }}>
+                  Research it first
+                </Link>
+              </motion.p>
             </div>
 
             {featured && (
@@ -249,6 +261,34 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
               </Link>
             ))}
           </div>
+
+          {/* Buying and selling: dealers, consignment, auction reps. Its own
+              row, separate from the trades, per the 2026-09-04 decision. */}
+          {SALES_CATEGORIES.length > 0 && (
+            <>
+              <div className="flex items-baseline justify-between mt-8 mb-3 gap-4">
+                <h3 className="font-display text-xl" style={{ color: INK }}>
+                  Buying and selling
+                </h3>
+                <Link href="/browse" className="text-sm font-bold whitespace-nowrap hover:underline underline-offset-4" style={{ color: TEAL }}>
+                  Cars for sale &rarr;
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                {SALES_CATEGORIES.map((c) => (
+                  <Link
+                    key={c.key}
+                    href={`/services?type=${encodeURIComponent(c.key)}`}
+                    className="flex flex-col gap-3 rounded-2xl p-4 text-[15px] font-medium transition-colors hover:bg-[#E6F3F2]"
+                    style={{ color: INK, background: "#EDE4D6", border: `1px solid ${RULE}` }}
+                  >
+                    <TradeIcon k={c.key} className="w-8 h-8" />
+                    {c.label}
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>

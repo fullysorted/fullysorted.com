@@ -56,6 +56,7 @@ Each category has its own directory filter at https://fullysorted.com/services. 
 - Automotive Photography (photography): listing shoots, editorial, event coverage
 - Collector Car Dealer (dealer): licensed dealers who buy, sell and source, marked as dealers everywhere
 - Consignment (consignment): sells the car on the owner's behalf for a fee or percentage; owner keeps title until sale
+- Online Auction Representation (auction-rep): prepares, photographs, lists and runs the car on online auction sites on the owner's behalf
 
 ## Research library
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake, Armchair, FileText } from 'lucide-react';
+import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake, Armchair, FileText, Gavel } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -33,6 +33,7 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   titling: <FileText className="w-5 h-5" />,
   dealer: <Store className="w-5 h-5" />,
   consignment: <Handshake className="w-5 h-5" />,
+  'auction-rep': <Gavel className="w-5 h-5" />,
 };
 const CATEGORIES = [
   { key: 'all', label: 'All Services', icon: <Sparkles className="w-5 h-5" /> },
@@ -472,7 +473,7 @@ export default function ServicesDirectory() {
             <>
               <div className="flex items-baseline justify-between gap-4 mb-1 pt-2" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
                 <h2 className="font-display font-semibold tracking-tight text-2xl text-stone-900 mt-4">Buying and selling</h2>
-                <p className="text-xs text-stone-500 mt-4">Dealers and consignment houses. Marked as such on every listing they post.</p>
+                <p className="text-xs text-stone-500 mt-4">Dealers, consignment houses and online auction reps. Marked as such on every listing they post.</p>
               </div>
               <ResultsGrid
                 providers={filtered.filter((p) => categoryGroup(p.category) === 'sales' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'sales'))}

@@ -26,6 +26,13 @@ const PATHS: Partial<Record<ServiceCategoryKey, string>> = {
     "M12 2l10 6v14H2V8zm-6 9v2h12v-2zm0 4v2h12v-2zm0 4v1h12v-1z",
   titling:
     "M6 2h9l5 5v15H6zm2 8v2h10v-2zm0 4v2h7v-2zm9.5 4a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z",
+  // Buying and selling
+  dealer:
+    "M2 20h20v2H2zM4 9h16v9H4zm3 3v4h4v-4zm7 0v4h2v-4zM3 3h18l1 5H2z",
+  consignment:
+    "M12 2l4 4h-3v6h-2V6H8zM5 13h14l1 2v6H4v-6zm2.5 3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm9 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z",
+  "auction-rep":
+    "M13.5 2l7 7-2.1 2.1-1.4-1.4L12 14.7l1.4 1.4L11.3 18 4.3 11l2.1-2.1 1.4 1.4L12.8 5.3l-1.4-1.4zM2 20h11v2H2z",
 };
 
 export function TradeIcon({
