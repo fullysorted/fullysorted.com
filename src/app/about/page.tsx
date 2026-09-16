@@ -187,7 +187,7 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-7 lg:col-start-6 text-base sm:text-lg leading-relaxed" style={{ color: "#3a3a30" }}>
               <p>
-                Ten trades, in the order a car usually meets them. {verbLine.charAt(0).toUpperCase() + verbLine.slice(1)}.
+                The trades, in the order a car usually meets them. {verbLine.charAt(0).toUpperCase() + verbLine.slice(1)}.
                 Buy it, get it home, make it legal, keep it right, keep it clean, put it
                 away, and one day sell it well. Every specialist on the platform is listed under one
                 of these, so you search for the job, not the jargon.

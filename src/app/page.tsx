@@ -1,5 +1,6 @@
 import { FoundingBand } from "@/components/home/FoundingBand";
-import { Hero } from "@/components/home/Hero";
+import { Hero, type FeaturedModel } from "@/components/home/Hero";
+import { getPublishedModels } from "@/lib/data/models";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { FeaturedListings } from "@/components/home/FeaturedListings";
 import { MarketMovers } from "@/components/home/MarketMovers";
@@ -94,15 +95,42 @@ async function getActiveListings(): Promise<Vehicle[]> {
   }
 }
 
+/**
+ * "This week's car" for the hero: one published model history that has a
+ * photo, chosen by ISO week so it changes on its own and every visitor sees
+ * the same car all week. No DB, or no photos yet: the hero shows its stock
+ * photograph and no card. Never a made-up number.
+ */
+async function getFeaturedModel(): Promise<FeaturedModel | null> {
+  const models = await getPublishedModels();
+  const withPhoto = models.filter((m) => m.hero_photo);
+  if (withPhoto.length === 0) return null;
+  const now = new Date();
+  const week = Math.floor((now.getTime() - Date.UTC(now.getUTCFullYear(), 0, 1)) / 604_800_000);
+  const m = withPhoto[(now.getUTCFullYear() * 53 + week) % withPhoto.length];
+  return {
+    slug: m.slug,
+    make: m.make,
+    model: m.model,
+    generationCode: m.generation_code,
+    yearStart: m.year_start,
+    yearEnd: m.year_end,
+    productionTotal: m.production_total,
+    heroPhoto: m.hero_photo,
+    heroPhotoCredit: m.hero_photo_credit,
+    index: models.findIndex((x) => x.slug === m.slug) + 1,
+  };
+}
+
 export default async function Home() {
-  const listings = await getActiveListings();
+  const [listings, featured] = await Promise.all([getActiveListings(), getFeaturedModel()]);
 
   return (
     <>
       {/* Honest about being early, without telling anyone to come back later */}
       <FoundingBand />
       {/* Services first — the hub is the front door */}
-      <Hero />
+      <Hero featured={featured} />
       <ServicesSection />
       {/* Marketplace second — one strong section */}
       <FeaturedListings listings={listings} />

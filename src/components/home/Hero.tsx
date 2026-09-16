@@ -1,358 +1,254 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { Search, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Search, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { TRADE_CATEGORIES, type ServiceCategoryKey } from "@/lib/service-categories";
+import { TradeIcon } from "@/components/home/TradeIcon";
 
 /*
-   Services-first hero.
-   Left: "What does your car need?" search → /services
-   Right: the ownership year, one service at a time (no DB dependency, never empty)
+   Homepage hero, rebuilt 2026-09-16 from the "Build sheet" proof.
 
-   Restyled 2026-09-01. The previous version stacked an animated gradient mesh,
-   film grain, speed lines, a three-square badge, a squiggle under the headline,
-   per-slide icon tiles and alternating blue/gold accents. Individually fine;
-   together they read as a template. This version keeps the structure and the
-   Heritage Blue tokens and removes the decoration. One accent, one typeface
-   pairing, real photographs.
+   One full-bleed photograph in a rounded frame, the headline and the
+   services search on top of it, and a "This week's car" card in the corner
+   that reads from the model histories (see page.tsx: getFeaturedModel).
+   Under it, every live trade as an icon tile. Apricot and teal circles sit
+   behind the frame so the page has a hand in it.
+
+   Everything a returning visitor already knows is still here: the search
+   posts to /services with `q`, the tiles are the same /services?type= links
+   the old quick picks were, and the model card links into /research/models.
 */
 
-const INK = "#1a1a18";
-const MUTED = "#6b6b5e";
-const BLUE = "#1E6091";
-const GOLD = "#B08D3F";
-const RULE = "rgba(26,26,24,0.12)";
+const INK = "#12352A";
+const TEAL = "#1C8C87";
+const APRICOT = "#F2B27A";
+const CREAM = "#F5EFE6";
+const MUTED = "#6B7280";
+const RULE = "rgba(18,53,42,0.14)";
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
+
+export type FeaturedModel = {
+  slug: string;
+  make: string;
+  model: string;
+  generationCode: string | null;
+  yearStart: number | null;
+  yearEnd: number | null;
+  productionTotal: number | null;
+  heroPhoto: string | null;
+  heroPhotoCredit: string | null;
+  /** 1-based position in the published list, for the "No. 014" corner mark */
+  index: number;
+};
 
 /**
- * Showcase copy per category. Photos live in public/images/services (credits
- * in CREDITS.md there) and are named by category key, so adding a category to
- * lib/service-categories and dropping in a photo is the whole job. Order comes
- * from TRADE_CATEGORIES, which is the ownership year.
+ * Tile order on the homepage. Photography, detailing and inspections lead
+ * (the trades most owners come for); the rest follow the ownership year that
+ * lib/service-categories already defines, so a new category joins the row
+ * without touching this file.
  */
-const SHOWCASE: Partial<Record<ServiceCategoryKey, { tagline: string; desc: string }>> = {
-  inspection: {
-    tagline: "Know before the wire goes",
-    desc: "A trusted set of eyes on the car before you commit. Compression numbers, panel gaps, the things sellers do not photograph.",
-  },
-  transport: {
-    tagline: "Your car rides inside",
-    desc: "Door-to-door enclosed hauling, nationwide. Liftgates, soft straps, and drivers who know what they are carrying.",
-  },
-  mechanical: {
-    tagline: "Wrenches you can trust",
-    desc: "Carbs, points, cam chains, cooling systems. Mechanics who know your model, not just the diagnostic port.",
-  },
-  bodywork: {
-    tagline: "Straight panels, correct paint",
-    desc: "Metal shaping, color matching and factory-correct finishes, from the shops other shops recommend.",
-  },
-  restoration: {
-    tagline: "Bare metal to concours lawn",
-    desc: "Sympathetic refresh through to a full rotisserie rebuild, with the photos and invoices to prove it.",
-  },
-  detailing: {
-    tagline: "Show-ready, garage-proud",
-    desc: "Ceramic coating, full correction and concours prep, by specialists who treat your car like their own.",
-  },
-  storage: {
-    tagline: "A safe home between drives",
-    desc: "Climate, security, battery tending and someone who will actually start it. Storing a car well is active, not passive.",
-  },
-  photography: {
-    tagline: "Twelve pictures decide the price",
-    desc: "Listing shoots, editorial and event work. Photographers who wait for the light and show the flaws honestly.",
-  },
-};
+const LEAD: ServiceCategoryKey[] = ["photography", "detailing", "inspection"];
+const tiles = [
+  ...LEAD.map((k) => TRADE_CATEGORIES.find((c) => c.key === k)).filter(Boolean),
+  ...TRADE_CATEGORIES.filter((c) => !LEAD.includes(c.key)),
+] as typeof TRADE_CATEGORIES;
 
-// A category only joins the slider once it has SHOWCASE copy and a photo at
-// public/images/services/<key>.jpg. Newer categories still appear everywhere
-// else (quick picks, homepage cards, directory) until a photo is shot.
-const slides = TRADE_CATEGORIES.filter((c) => SHOWCASE[c.key]).map((c) => ({
-  key: c.key,
-  title: c.longLabel,
-  verb: c.verb,
-  photo: `/images/services/${c.key}.jpg`,
-  href: `/services?type=${c.key}`,
-  ...SHOWCASE[c.key],
-}));
+function formatYears(m: FeaturedModel): string | null {
+  if (!m.yearStart) return null;
+  if (!m.yearEnd || m.yearEnd === m.yearStart) return String(m.yearStart);
+  return `${m.yearStart}-${m.yearEnd}`;
+}
 
-const slideVariants = {
-  enter: (d: number) => ({ x: d > 0 ? 40 : -40, opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (d: number) => ({ x: d > 0 ? -40 : 40, opacity: 0 }),
-};
-
-function ServiceShowcase() {
-  const [index, setIndex] = useState(0);
-  const [dir, setDir] = useState(1);
-  const [paused, setPaused] = useState(false);
-
-  const go = useCallback((next: number, d: number) => {
-    setDir(d);
-    setIndex((next + slides.length) % slides.length);
-  }, []);
-
-  // WCAG 2.2.2: auto-advancing content must be pausable, and must not move at
-  // all for anyone who has asked the OS for reduced motion.
-  useEffect(() => {
-    if (paused) return;
-    if (typeof window !== "undefined" &&
-        window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => go(index + 1, 1), 4600);
-    return () => clearInterval(id);
-  }, [index, paused, go]);
-
-  const s = slides[index];
-  const n = String(index + 1).padStart(2, "0");
-  const total = String(slides.length).padStart(2, "0");
-
+function Label({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
-      role="region"
-      aria-roledescription="carousel"
-      aria-label="The ownership year, one service at a time"
+    <span
+      className="text-[11px] uppercase"
+      style={{ fontFamily: MONO, letterSpacing: "0.08em", color: MUTED }}
     >
-      <div className="flex items-baseline justify-between mb-3">
-        <span className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: MUTED }}>
-          The ownership year
-        </span>
-        <span className="price-display text-xs tabular-nums" style={{ color: MUTED }}>
-          {n} / {total}
-        </span>
-      </div>
-
-      <div
-        className="overflow-hidden rounded-xl bg-white"
-        style={{ border: `1px solid ${RULE}`, boxShadow: "0 18px 40px -24px rgba(26,26,24,0.35)" }}
-      >
-        {/* Photograph */}
-        <div className="relative aspect-[16/10] overflow-hidden" style={{ background: "#0F2032" }}>
-          <AnimatePresence mode="wait" custom={dir}>
-            <motion.div
-              key={s.key}
-              custom={dir}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.36, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="absolute inset-0"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={s.photo}
-                alt=""
-                width={1280}
-                height={832}
-                fetchPriority={index === 0 ? "high" : "auto"}
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: "linear-gradient(to top, rgba(15,32,50,0.78) 0%, rgba(15,32,50,0.15) 45%, rgba(15,32,50,0) 70%)" }}
-              />
-              <div className="absolute left-5 right-5 bottom-4">
-                <div className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "rgba(255,255,255,0.72)" }}>
-                  {n} · {s.verb}
-                </div>
-                <div className="font-display text-xl sm:text-2xl font-semibold leading-tight text-white mt-1">
-                  {s.title}
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Copy */}
-        <div className="px-5 pt-4 pb-4 sm:px-6">
-          <AnimatePresence mode="wait" custom={dir}>
-            <motion.div
-              key={s.key + "-copy"}
-              custom={dir}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.04 }}
-            >
-              <p className="font-display text-base italic" style={{ color: INK }}>{s.tagline}</p>
-              <p className="text-sm mt-1.5 leading-relaxed" style={{ color: MUTED }}>{s.desc}</p>
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="flex items-center justify-between mt-4 pt-4" style={{ borderTop: `1px solid ${RULE}` }}>
-            <Link
-              href={s.href}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
-              style={{ color: BLUE }}
-            >
-              Find a specialist <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-            <div className="flex items-center gap-1.5">
-              <button
-                type="button"
-                onClick={() => go(index - 1, -1)}
-                aria-label="Previous service"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-stone-100"
-                style={{ border: `1px solid ${RULE}`, color: INK }}
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => go(index + 1, 1)}
-                aria-label="Next service"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-stone-100"
-                style={{ border: `1px solid ${RULE}`, color: INK }}
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Segmented progress: one bar per service, the current one filled */}
-      <div className="grid gap-1 mt-3" style={{ gridTemplateColumns: `repeat(${slides.length}, minmax(0, 1fr))` }}>
-        {slides.map((sl, i) => (
-          <button
-            key={sl.key}
-            type="button"
-            onClick={() => go(i, i > index ? 1 : -1)}
-            aria-label={`Show ${sl.title}`}
-            aria-current={i === index ? "true" : undefined}
-            className="py-1.5"
-          >
-            <span
-              className="block h-[3px] rounded-full transition-colors duration-300"
-              style={{ background: i === index ? BLUE : "rgba(26,26,24,0.14)" }}
-            />
-          </button>
-        ))}
-      </div>
-
-      {/* Bridge to the marketplace. Second billing, still present. */}
-      <Link
-        href="/browse"
-        className="group mt-4 flex items-center justify-between gap-3 text-sm"
-        style={{ color: MUTED }}
-      >
-        <span>
-          Buying or selling? <span className="font-semibold" style={{ color: INK }}>Visit the marketplace</span>
-        </span>
-        <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" style={{ color: BLUE }} />
-      </Link>
-    </div>
+      {children}
+    </span>
   );
 }
 
-// Every live category, in the canonical order. These use the SHORT label:
-// sitting directly under a search box they read as filters.
-const quickPicks = TRADE_CATEGORIES.map((c) => ({ label: c.label, type: c.key as string }));
-
-export function Hero() {
+function FeaturedCard({ m }: { m: FeaturedModel }) {
+  const years = formatYears(m);
+  const built = m.productionTotal ? m.productionTotal.toLocaleString("en-US") : null;
   return (
-    <section className="relative" style={{ background: "var(--bg-primary)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-9 pb-16 sm:pt-11 sm:pb-20 lg:pt-12 lg:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center lg:items-start">
+    <motion.aside
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay: 0.25 }}
+      className="rounded-2xl p-5 w-full lg:w-[264px]"
+      style={{ background: CREAM, color: INK, boxShadow: "0 20px 40px rgba(0,0,0,0.25)" }}
+      aria-label="This week's car"
+    >
+      <div className="flex items-baseline justify-between">
+        <span className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.08em", color: TEAL }}>
+          This week&apos;s car
+        </span>
+        <span className="text-[10px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.08em", color: MUTED }}>
+          No. {String(m.index).padStart(3, "0")}
+        </span>
+      </div>
+      <p className="font-display text-[1.35rem] leading-tight mt-2">
+        {m.make} {m.model}
+      </p>
+      <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 mt-3 text-[13px]" style={{ fontFamily: MONO }}>
+        {years && (<><dt><Label>Years</Label></dt><dd>{years}</dd></>)}
+        {m.generationCode && (<><dt><Label>Code</Label></dt><dd>{m.generationCode}</dd></>)}
+        <dt><Label>Built</Label></dt>
+        <dd>{built ?? <span style={{ color: MUTED }}>see history</span>}</dd>
+      </dl>
+      <Link
+        href={`/research/models/${m.slug}`}
+        className="inline-flex items-center gap-1.5 mt-4 text-[13px] font-bold hover:underline underline-offset-4"
+        style={{ color: TEAL }}
+      >
+        Read the model history <ArrowRight className="w-3.5 h-3.5" />
+      </Link>
+    </motion.aside>
+  );
+}
 
-          {/* LEFT: headline + service search */}
-          <div className="lg:col-span-7">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.45 }}
-              className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-5"
-              style={{ color: MUTED }}
-            >
-              The collector car services hub
-            </motion.p>
+export function Hero({ featured }: { featured: FeaturedModel | null }) {
+  const photo = featured?.heroPhoto ?? "/images/services/restoration.jpg";
+  const credit = featured?.heroPhoto
+    ? featured.heroPhotoCredit
+    : "Photo: Egor Vikhrev / Unsplash";
 
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.05 }}
-              className="font-display text-[2.7rem] sm:text-5xl lg:text-[3.6rem] font-semibold leading-[1.05] tracking-tight"
-              style={{ color: INK }}
-            >
-              Get your car{" "}
-              <span className="whitespace-nowrap" style={{ color: BLUE }}>
-                fully sorted<span style={{ color: GOLD }}>.</span>
-              </span>
-            </motion.h1>
+  return (
+    <section className="relative overflow-hidden" style={{ background: "var(--bg-primary)" }}>
+      {/* Shapes behind the frame. Apricot is teal's complement. */}
+      <div aria-hidden className="absolute rounded-full pointer-events-none" style={{ right: -140, top: 40, width: 520, height: 520, background: APRICOT }} />
+      <div aria-hidden className="absolute rounded-full pointer-events-none" style={{ left: -90, top: 470, width: 320, height: 320, background: TEAL, opacity: 0.18 }} />
+      <div aria-hidden className="absolute rounded-full pointer-events-none" style={{ left: 300, top: 690, width: 120, height: 120, background: APRICOT, opacity: 0.7 }} />
 
-            <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.12 }}
-              className="text-base sm:text-lg mt-5 max-w-xl leading-relaxed"
-              style={{ color: MUTED }}
-            >
-              The right specialist for whatever your car needs, found in minutes.
-              Built by people who have spent their lives around these cars.
-            </motion.p>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-5 sm:pt-6">
+        {/* The frame */}
+        <div
+          className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] min-h-[560px] lg:min-h-[600px]"
+          style={{ background: INK }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={photo}
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ opacity: 0.9 }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "linear-gradient(90deg, rgba(18,53,42,0.94) 0%, rgba(18,53,42,0.62) 45%, rgba(18,53,42,0.15) 75%)" }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none lg:hidden"
+            style={{ background: "linear-gradient(180deg, rgba(18,53,42,0.2) 0%, rgba(18,53,42,0.85) 70%)" }}
+          />
 
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.2 }}
-              className="mt-8 max-w-xl"
-            >
-              <form action="/services" className="relative">
-                <Search
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
-                  style={{ color: "#9a9a8a" }}
-                  aria-hidden
-                />
-                <input
-                  type="text"
-                  name="q"
-                  aria-label="What does your car need?"
-                  placeholder='What does your car need? Try "inspection" or "ceramic coating"'
-                  className="w-full h-[54px] pl-12 pr-[7.5rem] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1E6091]/30"
-                  style={{ background: "#ffffff", color: INK, border: `1px solid ${RULE}`, boxShadow: "0 8px 24px -16px rgba(26,26,24,0.35)" }}
-                />
+          <div className="relative p-6 sm:p-10 lg:p-14 flex flex-col lg:flex-row gap-8 lg:gap-10 min-h-[560px] lg:min-h-[600px]">
+            <div className="flex-1 flex flex-col justify-between gap-8" style={{ color: CREAM }}>
+              <div>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.45 }}
+                  className="text-[11px] uppercase"
+                  style={{ fontFamily: MONO, letterSpacing: "0.12em", opacity: 0.8 }}
+                >
+                  The collector car services hub
+                </motion.p>
+                <motion.h1
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: 0.05 }}
+                  className="font-display text-[2.6rem] sm:text-[3.6rem] lg:text-[4.6rem] leading-[1.02] tracking-[-0.02em] mt-4 max-w-[13ch]"
+                >
+                  The right specialist for your collector car.
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: 0.12 }}
+                  className="text-base sm:text-lg mt-5 max-w-lg leading-relaxed"
+                  style={{ opacity: 0.9 }}
+                >
+                  Shops and specialists are joining every week. Find help with
+                  maintenance, restoration, inspections and more, rated by real owners.
+                </motion.p>
+              </div>
+
+              <motion.form
+                action="/services"
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.2 }}
+                className="flex items-center gap-2 rounded-full p-2 max-w-2xl"
+                style={{ background: CREAM, boxShadow: "0 20px 40px rgba(0,0,0,0.25)" }}
+              >
+                <label className="flex-1 flex items-center gap-3 pl-4 min-w-0">
+                  <Search className="w-5 h-5 shrink-0" style={{ color: MUTED }} aria-hidden />
+                  <input
+                    type="text"
+                    name="q"
+                    aria-label="What does your car need?"
+                    placeholder="What does your car need?"
+                    className="w-full h-11 bg-transparent text-[15px] focus:outline-none min-w-0"
+                    style={{ color: INK }}
+                  />
+                </label>
                 <button
                   type="submit"
-                  className="absolute right-1.5 top-1/2 -translate-y-1/2 h-[42px] px-5 text-white text-sm font-semibold rounded-md transition-colors hover:bg-[#174B72]"
-                  style={{ background: BLUE }}
+                  className="h-11 px-5 sm:px-7 rounded-full text-[15px] font-bold shrink-0 transition-colors"
+                  style={{ background: TEAL, color: CREAM }}
                 >
-                  Find a Pro
+                  Find a specialist
                 </button>
-              </form>
+              </motion.form>
+            </div>
 
-              <div className="flex flex-wrap gap-1 mt-4">
-                {quickPicks.map((cat) => (
-                  <Link
-                    key={cat.type}
-                    href={`/services?type=${encodeURIComponent(cat.type)}`}
-                    className="px-3 py-1 text-[13px] font-medium rounded-full transition-colors hover:bg-white"
-                    style={{ color: INK, border: `1px solid ${RULE}` }}
-                  >
-                    {cat.label}
-                  </Link>
-                ))}
+            {featured && (
+              <div className="lg:w-[264px] shrink-0 flex lg:justify-end">
+                <FeaturedCard m={featured} />
               </div>
-            </motion.div>
+            )}
           </div>
 
-          {/* RIGHT: the ownership year, one service at a time */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.18 }}
-            className="lg:col-span-5"
-          >
-            <ServiceShowcase />
-          </motion.div>
+          {credit && (
+            <div
+              className="absolute left-5 bottom-3 text-[10px] uppercase hidden sm:block"
+              style={{ fontFamily: MONO, letterSpacing: "0.08em", color: CREAM, opacity: 0.7 }}
+            >
+              {credit}
+            </div>
+          )}
+        </div>
+
+        {/* Every live trade, as an icon tile */}
+        <div className="relative pt-10 sm:pt-12 pb-4">
+          <div className="flex items-baseline justify-between mb-4 gap-4">
+            <h2 className="font-display text-2xl sm:text-[1.9rem]" style={{ color: INK }}>
+              What does your car need?
+            </h2>
+            <Link href="/services" className="text-sm font-bold whitespace-nowrap hover:underline underline-offset-4" style={{ color: TEAL }}>
+              All service categories &rarr;
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {tiles.map((c) => (
+              <Link
+                key={c.key}
+                href={`/services?type=${encodeURIComponent(c.key)}`}
+                className="flex flex-col gap-3 rounded-2xl bg-white p-4 text-[15px] font-medium transition-colors hover:bg-[#E6F3F2]"
+                style={{ color: INK, border: `1px solid ${RULE}` }}
+              >
+                <TradeIcon k={c.key} className="w-8 h-8" />
+                {c.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>

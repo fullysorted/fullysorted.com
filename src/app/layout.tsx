@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Fraunces } from "next/font/google";
+import { Schibsted_Grotesk, JetBrains_Mono, Young_Serif } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Header } from "@/components/layout/Header";
@@ -11,8 +11,11 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { JsonLd, organizationSchema, websiteSchema } from "@/components/seo/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
 
-const inter = Inter({
-  variable: "--font-inter",
+// Type pairing changed 2026-09-16. Fraunces over Inter is the default
+// AI-landing-page recipe and read as one; Young Serif (display) over
+// Schibsted Grotesk (body) does not. JetBrains Mono stays for data.
+const body = Schibsted_Grotesk({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
@@ -23,11 +26,11 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const display = Young_Serif({
+  variable: "--font-display-serif",
   subsets: ["latin"],
+  weight: "400",
   display: "swap",
-  axes: ["SOFT", "WONK", "opsz"],
 });
 
 export const metadata: Metadata = {
@@ -97,15 +100,15 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         variables: {
-          colorPrimary: "#1E6091",
+          colorPrimary: "#1C8C87",
           colorTextOnPrimaryBackground: "#ffffff",
           borderRadius: "0.75rem",
         },
       }}
     >
-      <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${fraunces.variable}`}>
+      <html lang="en" className={`${body.variable} ${jetbrainsMono.variable} ${display.variable}`}>
         <head>
-          <meta name="theme-color" content="#1E6091" />
+          <meta name="theme-color" content="#1C8C87" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
           {/* Favicon, apple-icon, opengraph-image, and twitter-image are

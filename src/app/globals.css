@@ -9,10 +9,10 @@
   --text-secondary: #6B7280;
   --text-tertiary: #9CA3AF;
 
-  /* Primary accent: Heritage Racing Blue */
-  --accent: #1E6091;
-  --accent-hover: #174B72;
-  --accent-light: #E8F0F8;
+  /* Primary accent: teal */
+  --accent: #1C8C87;           /* teal: friendlier than red or blue (2026-09-16) */
+  --accent-hover: #16716D;
+  --accent-light: #E6F3F2;
 
   /* Warm metallic pop — brass/trophy gold, used sparingly */
   --accent-gold: #B08D3F;
@@ -69,9 +69,9 @@
   --color-border-medium: var(--border-medium);
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-body);
   --font-mono: var(--font-jetbrains-mono);
-  --font-display: var(--font-fraunces);
+  --font-display: var(--font-display-serif);
 }
 
 * {
@@ -103,7 +103,7 @@ select option {
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+  font-family: var(--font-body, 'Schibsted Grotesk', system-ui, sans-serif);
   line-height: 1.6;
 }
 
@@ -167,7 +167,7 @@ body {
   margin-bottom: 1.1em;
 }
 .article-body h2 {
-  font-family: var(--font-fraunces, 'Fraunces', Georgia, serif);
+  font-family: var(--font-display-serif, 'Young Serif', Georgia, serif);
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -296,4 +296,12 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .paddock-mesh, .flag-border { animation: none; }
   .shine::after { transition: none; }
+}
+
+/* Young Serif ships one weight. Utilities that ask the display face for
+   semibold or bold would otherwise get a browser-synthesized fake bold. */
+.font-display.font-semibold,
+.font-display.font-bold,
+.font-display.font-medium {
+  font-weight: 400;
 }
