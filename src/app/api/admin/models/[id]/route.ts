@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 function isAdmin(request: NextRequest): boolean {
   const cookie = request.cookies.get('fs_admin')?.value;
@@ -94,6 +95,15 @@ export async function PATCH(request: NextRequest, ctx: { params: Promise<{ id: s
     }
   }
 
+  // The hub, the make page and the model page are ISR-cached for an hour.
+  // A status change or edit must show up now, not at the top of the hour.
+  const slugRow = (await sql`SELECT slug FROM vehicle_models WHERE id=${modelId} LIMIT 1`) as { slug: string }[];
+  if (slugRow[0]?.slug) {
+    revalidatePath('/research/models');
+    revalidatePath(`/research/models/${slugRow[0].slug.split('/')[0]}`);
+    revalidatePath(`/research/models/${slugRow[0].slug}`);
+    revalidatePath('/');
+  }
   const updated = (await sql`SELECT id, status, published_at, reviewed_at FROM vehicle_models WHERE id=${modelId} LIMIT 1`) as Record<string, unknown>[];
   return NextResponse.json({ success: true, model: updated[0] });
 }

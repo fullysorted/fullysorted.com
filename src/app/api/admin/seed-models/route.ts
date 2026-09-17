@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { seed964 } from '@/lib/data/model-seed-964';
 import { seed240z } from '@/lib/data/model-seed-240z';
 import { seed993 } from '@/lib/data/model-seed-993';
@@ -323,6 +324,10 @@ export async function POST(request: NextRequest) {
             SELECT 'Porsche', '911', '964', 100, 'drafted'
             WHERE NOT EXISTS (SELECT 1 FROM model_queue WHERE make='Porsche' AND model='911' AND generation='964')`;
 
+  // Seeded rows feed ISR-cached pages; clear them so a seed shows at once.
+  revalidatePath('/research/models');
+  revalidatePath('/research/models', 'layout');
+  revalidatePath('/');
   const nextOffset = offset + batch.length;
   return NextResponse.json({
     success: true,
