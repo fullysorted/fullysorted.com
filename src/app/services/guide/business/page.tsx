@@ -122,11 +122,6 @@ export default function BusinessGuidePage() {
         />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
           <div className="inline-flex items-center gap-2.5 border border-white/30 bg-white/10 rounded-full px-4 py-1.5 mb-5">
-            <span className="flex gap-1" aria-hidden="true">
-              <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#29ABE2" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
-            </span>
             <span className="text-white text-xs font-bold uppercase tracking-widest">Running the Business</span>
           </div>
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-4">

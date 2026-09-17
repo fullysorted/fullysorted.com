@@ -52,11 +52,6 @@ export default async function GigsPage() {
         <div aria-hidden className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(90deg, transparent, #1E6091 35%, #B08D3F 65%, transparent)" }} />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
           <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest text-white" style={{ border: "1px solid rgba(255,255,255,0.28)", background: "rgba(30,96,145,0.35)" }}>
-            <span aria-hidden className="inline-flex items-center gap-1">
-              <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
-            </span>
             Gigs Marketplace
           </span>
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl mt-4 mb-4 text-white" style={{ lineHeight: 1.08 }}>

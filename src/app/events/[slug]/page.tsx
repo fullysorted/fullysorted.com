@@ -238,11 +238,6 @@ export default async function EventPage({ params }: Props) {
               border: "1px solid rgba(255,255,255,0.3)",
             }}
           >
-            <span className="flex gap-1" aria-hidden="true">
-              <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
-            </span>
             {event.category}
           </span>
 

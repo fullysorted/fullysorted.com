@@ -82,11 +82,6 @@ export default function EventsPage() {
         />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
           <p className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2 text-white/90">
-            <span className="flex gap-1" aria-hidden="true">
-              <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
-            </span>
             Events
           </p>
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-6 text-white">

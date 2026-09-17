@@ -119,11 +119,6 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
             transition={{ duration: 0.55, ease: "easeOut" }}
           >
             <div className="mb-3 flex items-center gap-2.5">
-              <span className="flex gap-1" aria-hidden="true">
-                <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
-                <span className="w-1.5 h-1.5" style={{ background: "#29ABE2" }} />
-                <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
-              </span>
               <span className="text-xs font-bold tracking-widest uppercase text-white/85">
                 Collector Car Marketplace
               </span>

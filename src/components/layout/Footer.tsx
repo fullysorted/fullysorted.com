@@ -85,12 +85,6 @@ export function Footer() {
               The collector car services network, marketplace and research hub.
               Built by enthusiasts, for enthusiasts.
             </p>
-            {/* Tricolor motif */}
-            <div className="flex items-center gap-1.5 mt-4" aria-hidden>
-              <span className="w-2 h-2" style={{ background: "#6ab04c" }} />
-              <span className="w-2 h-2" style={{ background: "#1E6091" }} />
-              <span className="w-2 h-2" style={{ background: "#B08D3F" }} />
-            </div>
             <div className="mt-4 space-y-1">
               <p className="text-xs" style={{ color: "rgba(230,238,247,0.38)" }}>
                 San Diego, CA

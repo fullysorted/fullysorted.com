@@ -487,19 +487,13 @@ export default function ServicesDirectory() {
 
       {/* CTA to Apply */}
       <div className="mt-12 relative overflow-hidden rounded-2xl text-center">
-        {/* Photographic backdrop under a racing-green overlay */}
-        <div
-          className="absolute inset-0"
-          style={{ background: 'radial-gradient(900px 500px at 80% -10%, rgba(30,96,145,0.38) 0%, rgba(14,33,54,0) 60%), linear-gradient(160deg, #10233b 0%, #0b1a2e 55%, #0a1626 100%)' }}
-        />
-        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
+        <div className="absolute inset-0" style={{ background: '#12352A' }} />
+        <div aria-hidden className="absolute rounded-full pointer-events-none" style={{ right: -90, top: -120, width: 320, height: 320, background: '#F2B27A', opacity: 0.9 }} />
         <div className="relative p-8">
-        <div className="flex justify-center gap-1.5 mb-4" aria-hidden>
-          {['#6ab04c', '#29ABE2', '#B08D3F'].map((c) => (
-            <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
-          ))}
-        </div>
-        <h3 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-white mb-3">Join the Directory</h3>
+        <p className="text-[11px] uppercase mb-4" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: '0.12em', color: '#F2B27A' }}>
+          Founding 500
+        </p>
+        <h3 className="font-display tracking-tight text-2xl sm:text-3xl mb-3" style={{ color: '#F5EFE6' }}>Join the directory</h3>
         <p className="text-stone-200 mb-2 font-medium">Are you a specialist? Get listed.</p>
         <p className="text-stone-300 mb-6 max-w-xl mx-auto">
           If you do exceptional work with collector cars (inspection, transport, mechanical, body and paint, restoration, detailing, storage, or photography), or you buy, sell or consign them as a licensed dealer, apply to join the directory, build your review record, and get in front of serious collectors who care about who touches their car.

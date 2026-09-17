@@ -35,16 +35,9 @@ export default function SellPage() {
 
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           {/* Founder credibility line — instant trust signal */}
-          <div className="inline-flex items-center gap-2.5 bg-white/10 border border-white/25 rounded-full px-4 py-1.5 mb-6">
-            <span className="flex gap-1" aria-hidden="true">
-              {['#6ab04c', '#29ABE2', '#B08D3F'].map((c) => (
-                <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
-              ))}
-            </span>
-            <span className="text-stone-200 text-xs font-bold uppercase tracking-widest">
-              Built by collectors, for collectors
-            </span>
-          </div>
+          <p className="text-[11px] uppercase mb-6" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: '0.12em', color: '#F2B27A' }}>
+            Built by collectors, for collectors
+          </p>
 
           {/* The car leads. The fee is a fact, not the headline.
               Until 2026-09-07 this hero carried four separate price statements

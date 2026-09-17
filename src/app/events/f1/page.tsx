@@ -147,11 +147,6 @@ export default async function F1Page() {
             All events
           </Link>
           <p className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2" style={{ color: "#6ab04c" }}>
-            <span className="flex gap-1" aria-hidden="true">
-              <span className="w-1.5 h-1.5" style={{ background: "#6ab04c" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
-            </span>
             <Flag className="inline w-3.5 h-3.5" />
             Live · Updated daily
           </p>

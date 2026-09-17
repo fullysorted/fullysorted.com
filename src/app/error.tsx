@@ -22,11 +22,6 @@ export default function GlobalError({
   return (
     <main className="min-h-[60vh] flex items-center justify-center px-4 py-20">
       <div className="max-w-md w-full text-center">
-        <div className="flex items-center justify-center gap-1.5 mb-5" aria-hidden="true">
-          <span className="w-2 h-2 rounded-sm" style={{ background: "#6ab04c" }} />
-          <span className="w-2 h-2 rounded-sm" style={{ background: "#1E6091" }} />
-          <span className="w-2 h-2 rounded-sm" style={{ background: "#B08D3F" }} />
-        </div>
         <h1 className="font-display text-3xl font-semibold tracking-tight text-foreground mb-3">
           Something went wrong on our end.
         </h1>
