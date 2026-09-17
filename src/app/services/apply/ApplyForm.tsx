@@ -172,12 +172,12 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
           <span className="text-accent text-xs font-bold uppercase tracking-widest">Services Directory</span>
         </div>
         <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl text-foreground mb-4 leading-[1.08]">
-          Get found by the collectors <span className="text-accent">who actually pay.</span>
+          Get found by <span className="text-accent">collectors.</span>
         </h1>
         <p className="text-lg text-text-secondary max-w-2xl mx-auto">
           One form, whatever the size of your operation: a shop with six lifts, a two-person restoration house,
-          or you and a van. Detailing, mechanical, inspection, transport, storage, photography, restoration and
-          body &amp; paint.
+          or you and a van. Detailing, mechanical, inspection, transport, storage, photography, restoration,
+          body &amp; paint, upholstery and title work.
         </p>
       </motion.div>
 
