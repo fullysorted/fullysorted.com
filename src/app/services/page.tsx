@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
+import { Check } from 'lucide-react';
 import ServicesDirectory from './ServicesDirectory';
 
 export const metadata = {
@@ -8,99 +9,62 @@ export const metadata = {
   description: 'Find specialists for your collector car: inspection, transport, mechanical work, body and paint, restoration, detailing, storage, and photography, backed by owner reviews.',
 };
 
+const INK = '#12352A';
+const TEAL = '#1C8C87';
+const APRICOT = '#F2B27A';
+const CREAM = '#F5EFE6';
+const MUTED = '#6B7280';
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
+
+const PROOFS = ['Free to browse', 'Specialists apply to be listed', 'Open to every owner'];
+
 export default function ServicesPage() {
   return (
     <div style={{ background: 'var(--bg-primary)' }} className="min-h-screen">
-      {/* Photographic hero — vintage garage under a racing-green overlay */}
-      <div className="relative overflow-hidden">
-        {/* Top accent line */}
-        <div
-          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)' }}
-        />
+      {/* Header, in the homepage language: cream, deep green type, teal eyebrow, framed photo */}
+      <div className="relative overflow-hidden" style={{ background: CREAM, borderBottom: '1px solid rgba(18,53,42,0.14)' }}>
+        <div aria-hidden className="absolute rounded-full pointer-events-none hidden lg:block" style={{ right: -120, top: -80, width: 420, height: 420, background: APRICOT }} />
+        <div aria-hidden className="absolute rounded-full pointer-events-none hidden lg:block" style={{ right: 300, bottom: -60, width: 160, height: 160, background: TEAL, opacity: 0.18 }} />
 
-        <Image
-          src="/images/archive/porsche-904-workshop.jpg"
-          alt="Porsche 904 in a workshop with its race engine on a stand"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        {/* Legibility overlay — deep racing green */}
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(rgba(15,32,50,0.62), rgba(15,32,50,0.82))' }}
-        />
-        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
-        <div className="absolute inset-0 speed-lines opacity-[0.03] pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:grid lg:grid-cols-12 lg:gap-10 lg:items-center">
+          <div className="lg:col-span-7">
+            <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: '0.12em', color: TEAL }}>
+              Services directory
+            </p>
+            <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4 max-w-[16ch]" style={{ color: INK }}>
+              Find the specialist your car needs.
+            </h1>
+            <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: MUTED }}>
+              Whether you need a detailer who understands patina, a mechanic who knows your model,
+              or a transporter who treats every car like their own, this is the place to find them.
+              Open to anyone who loves collector cars.
+            </p>
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
-          {/* Eyebrow badge with tricolor squares */}
-          <div
-            className="inline-flex items-center gap-2.5 mb-5 px-3.5 py-2 rounded-full"
-            style={{ border: '1px solid rgba(255,255,255,0.28)', background: 'rgba(255,255,255,0.08)' }}
-          >
-            <div className="flex gap-1">
-              {['#6ab04c', '#29ABE2', '#B08D3F'].map((c) => (
-                <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
+            <ul className="flex flex-wrap gap-x-6 gap-y-3 mt-7">
+              {PROOFS.map((text) => (
+                <li key={text} className="flex items-center gap-2">
+                  <span className="flex items-center justify-center w-5 h-5 rounded-full shrink-0" style={{ background: '#E6F3F2' }}>
+                    <Check className="w-3 h-3" strokeWidth={3} style={{ color: TEAL }} />
+                  </span>
+                  <span className="text-sm font-semibold" style={{ color: INK }}>{text}</span>
+                </li>
               ))}
-            </div>
-            <span className="text-xs font-bold tracking-widest uppercase text-white/90">
-              The services directory
-            </span>
+            </ul>
           </div>
 
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-4 text-white">
-            Find the specialist<br className="hidden sm:block" />{' '}
-            <span className="relative whitespace-nowrap">
-              your car needs.
-              <svg
-                className="absolute -bottom-1.5 left-0 w-full overflow-visible"
-                viewBox="0 0 200 6"
-                fill="none"
-                preserveAspectRatio="none"
-                style={{ height: '6px' }}
-                aria-hidden
-              >
-                <path
-                  d="M0 5 Q25 1 50 5 Q75 9 100 5 Q125 1 150 5 Q175 9 200 5"
-                  stroke="#B08D3F"
-                  strokeWidth="1.5"
-                  strokeOpacity="0.55"
-                  fill="none"
-                />
-              </svg>
-            </span>
-          </h1>
-          <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: 'rgba(245,239,230,0.85)' }}>
-            Whether you need a detailer who understands patina, a mechanic who knows your model,
-            or a transporter who treats every car like their own, this is the place to find them.
-            Open to anyone who loves collector cars.
-          </p>
-
-          <div
-            className="flex flex-wrap gap-6 mt-8 pt-8"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.18)' }}
-          >
-            {[
-              { text: 'Free to browse', dot: '#6ab04c' },
-              { text: 'Specialists apply to be listed', dot: '#29ABE2' },
-              { text: 'Open to every owner', dot: '#B08D3F' },
-            ].map((s) => (
-              <div key={s.text} className="flex items-center gap-2.5">
-                <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: s.dot }} />
-                <span className="text-sm font-semibold text-white">{s.text}</span>
-              </div>
-            ))}
+          <div className="hidden lg:block lg:col-span-5">
+            <div className="relative aspect-[5/4] rounded-[28px] overflow-hidden" style={{ background: INK, boxShadow: '0 30px 60px -30px rgba(18,53,42,0.45)' }}>
+              <Image
+                src="/images/archive/porsche-904-workshop.jpg"
+                alt="Porsche 904 in a workshop with its race engine on a stand"
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 0px"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
-
-        {/* Bottom feather */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-3 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.15))' }}
-        />
       </div>
 
       {/* Directory */}
