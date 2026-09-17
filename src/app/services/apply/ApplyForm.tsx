@@ -163,14 +163,12 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: 'easeOut' }}
       >
-        <div className="inline-flex items-center gap-2.5 bg-accent-light border border-accent rounded-full px-4 py-1.5 mb-5">
-          <span className="flex gap-1" aria-hidden="true">
-            <span className="w-1.5 h-1.5" style={{ background: '#1E6091' }} />
-            <span className="w-1.5 h-1.5" style={{ background: '#1E6091' }} />
-            <span className="w-1.5 h-1.5" style={{ background: '#B08D3F' }} />
-          </span>
-          <span className="text-accent text-xs font-bold uppercase tracking-widest">Services Directory</span>
-        </div>
+        <p
+          className="text-[11px] uppercase mb-5"
+          style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: '0.12em', color: '#1C8C87' }}
+        >
+          Services directory
+        </p>
         <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl text-foreground mb-4 leading-[1.08]">
           Get found by <span className="text-accent">collectors.</span>
         </h1>
