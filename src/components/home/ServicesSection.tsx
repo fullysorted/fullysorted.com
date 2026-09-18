@@ -19,11 +19,12 @@ import { OwnershipYearRail, TradeGridPhoto } from "@/components/services/TradeGr
  * typographic cards in one ink, four across on desktop (8 = 2 clean rows),
  * two across on tablet, one on a phone.
  */
-const INK = "#1a1a18";
+const INK = "#12352A";
 const MUTED = "#6b6b5e";
-const BLUE = "#1E6091";
-const GOLD = "#B08D3F";
-const RULE = "rgba(26,26,24,0.12)";
+const TEAL = "#1C8C87";
+const APRICOT_INK = "#B5652A";  // apricot deepened for legibility on paper
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
+const RULE = "rgba(18,53,42,0.14)";
 
 export function ServicesSection() {
   const verbs = TRADE_CATEGORIES.map((c) => c.verb.toLowerCase());
@@ -43,7 +44,7 @@ export function ServicesSection() {
           className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 mb-12"
         >
           <div className="lg:col-span-7">
-            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: MUTED }}>
+            <p className="text-[11px] uppercase mb-4" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>
               The whole ownership year
             </p>
             <h2 className="font-display text-3xl sm:text-[2.6rem] font-semibold leading-[1.1] tracking-tight" style={{ color: INK }}>
@@ -87,7 +88,7 @@ export function ServicesSection() {
                 <span className="price-display text-xs tabular-nums" style={{ color: MUTED }}>
                   {String(TRADE_CATEGORIES.length + i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
+                <span className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: APRICOT_INK }}>
                   {r.verb}
                 </span>
               </div>
@@ -101,7 +102,7 @@ export function ServicesSection() {
               </div>
               <span
                 className="lg:col-span-2 lg:justify-self-end inline-flex items-center gap-1.5 text-sm font-semibold transition-transform group-hover:translate-x-0.5"
-                style={{ color: BLUE }}
+                style={{ color: TEAL }}
               >
                 What to ask for <ArrowRight className="w-4 h-4" />
               </span>
@@ -121,7 +122,7 @@ export function ServicesSection() {
             {/* An owner recommending their mechanic goes to /contact, the same
                 route the directory already uses for "Recommend a Provider". */}
             Can&apos;t find the trade you need?{" "}
-            <Link href="/contact" className="font-semibold" style={{ color: BLUE }}>
+            <Link href="/contact" className="font-semibold" style={{ color: TEAL }}>
               Tell us who should be on here
             </Link>
             .
@@ -129,7 +130,7 @@ export function ServicesSection() {
           <Link
             href="/services"
             className="inline-flex items-center gap-1.5 text-sm font-semibold"
-            style={{ color: BLUE }}
+            style={{ color: TEAL }}
           >
             Browse the whole directory <ArrowRight className="w-4 h-4" />
           </Link>

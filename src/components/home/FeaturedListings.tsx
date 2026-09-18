@@ -6,6 +6,10 @@ import { motion } from "framer-motion";
 import { ListingCard } from "@/components/listings/ListingCard";
 import type { Vehicle } from "@/lib/sample-data";
 
+const INK = "#12352A";
+const TEAL = "#1C8C87";
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
+
 /* ─────────────────────────────────────────────────────────────
    The Marketplace — the homepage's single, strong marketplace
    section. Services lead the site; this is where buying and
@@ -44,7 +48,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8"
         >
           <div>
-            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#6b6b5e" }}>
+            <p className="text-[11px] uppercase mb-3" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>
               The Marketplace
             </p>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
@@ -58,8 +62,8 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
           <div className="flex items-center gap-3 shrink-0">
             <Link
               href="/browse"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white transition-colors hover:bg-[#174B72]"
-              style={{ background: "#1E6091" }}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white transition-colors hover:bg-[#16716D]"
+              style={{ background: TEAL }}
             >
               Browse Cars <ArrowRight className="w-4 h-4" />
             </Link>
@@ -87,7 +91,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
               className="flex items-center gap-4 px-5 py-4 rounded-xl"
               style={{ background: "#ffffff", border: "1px solid rgba(26,26,24,0.12)" }}
             >
-              <span className="price-display text-xl whitespace-nowrap" style={{ color: "#1E6091" }}>{vp.stat}</span>
+              <span className="price-display text-xl whitespace-nowrap" style={{ color: INK }}>{vp.stat}</span>
               <span className="text-xs leading-snug" style={{ color: "#6b6b5e" }}>{vp.label}</span>
             </div>
           ))}
@@ -120,7 +124,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
               <Link
                 href="/browse"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold"
-                style={{ color: "#1E6091" }}
+                style={{ color: TEAL }}
               >
                 Browse All Listings
                 <ArrowRight className="w-4 h-4" />
@@ -141,7 +145,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
             <Link
               href="/sell"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl hover:opacity-90 transition-opacity"
-              style={{ background: "#1E6091" }}
+              style={{ background: TEAL }}
             >
               List your car from $9.99
             </Link>

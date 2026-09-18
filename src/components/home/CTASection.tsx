@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 import { ArrowRight } from "lucide-react";
 
 /**
@@ -19,7 +20,7 @@ export function CTASection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="relative overflow-hidden rounded-xl p-8 sm:p-12 lg:p-16"
-          style={{ background: "#0F2032" }}
+          style={{ background: "#12352A" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -30,15 +31,15 @@ export function CTASection() {
           />
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(to right, rgba(15,32,50,0.92) 0%, rgba(15,32,50,0.78) 55%, rgba(15,32,50,0.45) 100%)" }}
+            style={{ background: "linear-gradient(to right, rgba(18,53,42,0.94) 0%, rgba(18,53,42,0.8) 55%, rgba(18,53,42,0.45) 100%)" }}
           />
 
           <div className="max-w-2xl relative">
-            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-5" style={{ color: "rgba(255,255,255,0.65)" }}>
+            <p className="text-[11px] uppercase mb-5" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: "#F2B27A" }}>
               Start here
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.08]">
-              Let&apos;s get it sorted<span style={{ color: "#B08D3F" }}>.</span>
+              Let&apos;s get it sorted<span style={{ color: "#F2B27A" }}>.</span>
             </h2>
             <p className="text-white/80 mt-4 text-lg leading-relaxed max-w-xl">
               Whatever your car needs, from an inspection before the wire goes to a
@@ -49,8 +50,8 @@ export function CTASection() {
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-sm font-semibold rounded-lg hover:bg-[#F5EFE6] transition-colors"
-                style={{ color: "#1a1a18" }}
+                className="inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                style={{ background: "#F2B27A", color: "#12352A" }}
               >
                 Find a Pro
               </Link>
