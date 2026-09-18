@@ -23,7 +23,7 @@ type NavEntry = { href: string; label: string };
 const navEntries: NavEntry[] = [
   { href: "/services", label: "Services" },
   { href: "/browse", label: "Browse Cars" },
-  { href: "/research", label: "Research" },
+  { href: "/research/models", label: "Research" },
   { href: "/shop", label: "Shop" },
   { href: "/about", label: "About" },
 ];
@@ -36,13 +36,13 @@ export function Header() {
   return (
     <>
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
-      {/* Signature tricolor accent hairline */}
+      {/* Teal-to-apricot accent hairline (build-sheet palette) */}
       <div
         aria-hidden
         className="h-px"
         style={{
           background:
-            "linear-gradient(to right, transparent, #1E6091 35%, #B08D3F 65%, transparent)",
+            "linear-gradient(to right, transparent, #1C8C87 35%, #F2B27A 65%, transparent)",
         }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">

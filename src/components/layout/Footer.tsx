@@ -57,15 +57,17 @@ const assurances = [
   { label: "$0 buyer's premium" },
 ];
 
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
+
 export function Footer() {
   return (
-    <footer style={{ background: "linear-gradient(180deg, #10233b 0%, #0b1a2e 100%)" }}>
-      {/* Top accent line — signature tricolor, matching the header hairline */}
+    <footer style={{ background: "#12352A", color: "#F5EFE6" }}>
+      {/* Top accent line, matching the header hairline */}
       <div
         className="h-px"
         style={{
           background:
-            "linear-gradient(to right, transparent, #1E6091 35%, #B08D3F 65%, transparent)",
+            "linear-gradient(to right, transparent, #1C8C87 35%, #F2B27A 65%, transparent)",
         }}
       />
 
@@ -74,22 +76,22 @@ export function Footer() {
           {/* Brand Column */}
           <div className="col-span-2 lg:col-span-1">
             <div className="mb-4">
-              {/* Cream wordmark variant — footer is always dark */}
+              {/* Cream wordmark variant, footer is always dark */}
               <img
                 src="/fullysorted-logo-cream.svg"
                 alt="Fully Sorted"
                 style={{ height: 28, width: "auto", maxWidth: 160 }}
               />
             </div>
-            <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(230,238,247,0.55)" }}>
+            <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(245,239,230,0.62)" }}>
               The collector car services network, marketplace and research hub.
               Built by enthusiasts, for enthusiasts.
             </p>
             <div className="mt-4 space-y-1">
-              <p className="text-xs" style={{ color: "rgba(230,238,247,0.38)" }}>
+              <p className="text-xs" style={{ color: "rgba(245,239,230,0.42)" }}>
                 San Diego, CA
               </p>
-              <p className="text-xs" style={{ color: "rgba(230,238,247,0.38)" }}>
+              <p className="text-xs" style={{ color: "rgba(245,239,230,0.42)" }}>
                 (619) 823-2132
               </p>
             </div>
@@ -99,8 +101,8 @@ export function Footer() {
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
               <h3
-                className="text-xs font-bold uppercase tracking-widest mb-4"
-                style={{ color: "#C6A85C" }}
+                className="text-[11px] uppercase mb-4"
+                style={{ color: "#F2B27A", fontFamily: MONO, letterSpacing: "0.12em" }}
               >
                 {title}
               </h3>
@@ -110,7 +112,7 @@ export function Footer() {
                     <Link
                       href={link.href}
                       className="text-sm transition-colors hover:text-white"
-                      style={{ color: "rgba(230,238,247,0.55)" }}
+                      style={{ color: "rgba(245,239,230,0.62)" }}
                     >
                       {link.label}
                     </Link>
@@ -124,22 +126,22 @@ export function Footer() {
         {/* Trust strip */}
         <div
           className="mt-12 pt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+          style={{ borderTop: "1px solid rgba(245,239,230,0.12)" }}
         >
           {assurances.map((b) => (
             <span
               key={b.label}
               className="inline-flex items-center gap-2 text-xs font-medium"
-              style={{ color: "rgba(230,238,247,0.6)" }}
+              style={{ color: "rgba(245,239,230,0.7)" }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
                   d="M12 2l7 3v6c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V5l7-3z"
-                  stroke="#6ab04c"
+                  stroke="#1C8C87"
                   strokeWidth="1.8"
                   strokeLinejoin="round"
                 />
-                <path d="M8.5 12l2.5 2.5L15.5 10" stroke="#6ab04c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8.5 12l2.5 2.5L15.5 10" stroke="#1C8C87" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               {b.label}
             </span>
@@ -149,11 +151,11 @@ export function Footer() {
         {/* Bottom Bar */}
         <div
           className="mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+          style={{ borderTop: "1px solid rgba(245,239,230,0.12)" }}
         >
-          <p className="text-xs" style={{ color: "rgba(230,238,247,0.38)" }}>
+          <p className="text-xs" style={{ color: "rgba(245,239,230,0.42)" }}>
             &copy; {new Date().getFullYear()} Fully Sorted. All rights reserved. &nbsp;·&nbsp;{" "}
-            <Link href="/privacy#your-choices" className="hover:text-white transition-colors" style={{ color: "rgba(230,238,247,0.38)" }}>
+            <Link href="/privacy#your-choices" className="hover:text-white transition-colors" style={{ color: "rgba(245,239,230,0.42)" }}>
               Do Not Sell or Share My Personal Information
             </Link>
           </p>
@@ -163,7 +165,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs transition-colors hover:text-white"
-              style={{ color: "rgba(230,238,247,0.45)" }}
+              style={{ color: "rgba(245,239,230,0.5)" }}
             >
               Instagram
             </a>
@@ -172,7 +174,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs transition-colors hover:text-white"
-              style={{ color: "rgba(230,238,247,0.45)" }}
+              style={{ color: "rgba(245,239,230,0.5)" }}
             >
               Facebook
             </a>

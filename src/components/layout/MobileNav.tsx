@@ -24,13 +24,13 @@ export function MobileNav() {
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-border pb-safe shadow-[0_-2px_10px_rgba(0,0,0,0.05)]" style={{ backgroundColor: '#FFFFFF' }}>
-      {/* Signature tricolor accent hairline — mirrors Header */}
+      {/* Teal-to-apricot accent hairline (build-sheet palette) — mirrors Header */}
       <div
         aria-hidden
         className="h-px"
         style={{
           background:
-            "linear-gradient(to right, transparent, #1E6091 35%, #B08D3F 65%, transparent)",
+            "linear-gradient(to right, transparent, #1C8C87 35%, #F2B27A 65%, transparent)",
         }}
       />
       <div className="flex items-center justify-around h-16 px-2">

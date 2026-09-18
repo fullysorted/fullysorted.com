@@ -39,13 +39,13 @@ export function CookieBanner() {
     >
       <div
         className="max-w-2xl mx-auto rounded-2xl p-4 sm:p-5 shadow-2xl pointer-events-auto flex flex-col sm:flex-row items-start sm:items-center gap-4"
-        style={{ background: "#0F2032", border: "1px solid rgba(245,239,230,0.12)" }}
+        style={{ background: "#12352A", border: "1px solid rgba(245,239,230,0.14)" }}
       >
         <p className="text-sm leading-relaxed flex-1" style={{ color: "rgba(245,239,230,0.78)" }}>
           Essential cookies keep you signed in. With your OK we also use Google Analytics to see
           what gets read, and a Meta pixel to measure our own ads. We never sell your data.{" "}
           {gpc && (
-            <span style={{ color: "#C6A85C" }}>
+            <span style={{ color: "#F2B27A" }}>
               Your browser is sending a Global Privacy Control signal, so analytics and advertising
               cookies stay off.{" "}
             </span>
@@ -53,7 +53,7 @@ export function CookieBanner() {
           <Link
             href="/privacy#cookies"
             className="underline hover:opacity-80 transition-opacity"
-            style={{ color: "#C6A85C" }}
+            style={{ color: "#F2B27A" }}
           >
             Privacy Policy
           </Link>
@@ -63,7 +63,7 @@ export function CookieBanner() {
             <button
               onClick={() => choose(true)}
               className="px-5 py-2 text-sm font-bold rounded-xl transition-opacity hover:opacity-90"
-              style={{ background: "#F5EFE6", color: "#1E6091" }}
+              style={{ background: "#F2B27A", color: "#12352A" }}
             >
               Accept all
             </button>
