@@ -7,6 +7,8 @@ import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
 import { normalizeWorkSettings, normalizeTeamSize, radiusForSettings } from '@/lib/work-settings';
 
 // Cap a free-text field to a sane length to prevent abuse / DB bloat.
+import { formatBusinessName, formatLocation } from '@/lib/provider-format';
+
 const cap = (v: unknown, n: number): string | null => {
   if (v === null || v === undefined) return null;
   const s = String(v).trim();
@@ -179,11 +181,11 @@ export async function POST(request: NextRequest) {
 
     const [provider] = await db.insert(schema.serviceProviders).values({
       clerkUserId: userId || null,
-      businessName: cap(businessName, 255)!,
+      businessName: cap(formatBusinessName(String(businessName)), 255)!,
       ownerName: cap(ownerName, 255)!,
       slug,
       category: cap(category, 100)!,
-      location: cap(location, 255)!,
+      location: cap(formatLocation(String(location)), 255)!,
       email: cap(email, 255)!,
       phone: cap(phone, 50),
       website: cap(website, 500),

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { formatBusinessName, formatLocation } from '@/lib/provider-format';
 import { randomBytes } from 'crypto';
 import { isTeam } from '@/lib/team-auth';
 import { rateLimit } from '@/lib/rate-limit';
@@ -758,12 +759,12 @@ export async function PATCH(request: NextRequest) {
   }
 
   const next = {
-    businessName: pick(businessNew, provider.business_name as string),
+    businessName: formatBusinessName(pick(businessNew, provider.business_name as string)),
     ownerName: pick(ownerNew, provider.owner_name as string),
     email: pick(emailNew, provider.email as string),
     phone: pick(phoneNew, (provider.phone as string | null) ?? null),
     category: pick(categoryNew, provider.category as string),
-    location: pick(locationNew, provider.location as string),
+    location: formatLocation(pick(locationNew, provider.location as string)),
     website: pick(websiteValue, (provider.website as string | null) ?? null),
     instagram: pick(instagramValue, (provider.instagram as string | null) ?? null),
     description: pick(descriptionNew, provider.description as string),

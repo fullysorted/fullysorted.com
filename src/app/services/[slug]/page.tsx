@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { categoryLabel } from '@/lib/service-categories';
+import { formatBusinessName, formatLocation } from '@/lib/provider-format';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -120,10 +121,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   // The root layout's template appends "| Fully Sorted"; adding it here doubled it.
   // Label, not the raw key, and the town: that is what an owner searches for.
-  const title = `${provider.businessName}: ${categoryLabel(provider.category)} in ${provider.location}`;
+  const bizName = formatBusinessName(provider.businessName);
+  const town = formatLocation(provider.location);
+  const title = `${bizName}: ${categoryLabel(provider.category)} in ${town}`;
   const description =
     (provider.description?.slice(0, 200) ??
-      `${provider.businessName}, a collector car ${categoryLabel(provider.category).toLowerCase()} specialist in ${provider.location}.`);
+      `${bizName}, a collector car ${categoryLabel(provider.category).toLowerCase()} specialist in ${town}.`);
 
   return {
     title,
@@ -180,10 +183,10 @@ export default async function ProviderProfilePage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@id': `https://fullysorted.com/services/${provider.slug}#business`,
-    name: provider.businessName,
+    name: formatBusinessName(provider.businessName),
     description: provider.description,
     url: `https://fullysorted.com/services/${provider.slug}`,
-    address: { '@type': 'PostalAddress', addressLocality: provider.location },
+    address: { '@type': 'PostalAddress', addressLocality: formatLocation(provider.location) },
     knowsAbout: specialties,
     priceRange: provider.priceRange ?? '$$',
   };
@@ -280,11 +283,11 @@ export default async function ProviderProfilePage({ params }: Props) {
               </div>
 
               <h1 className="font-display font-semibold tracking-tight leading-[1.08] text-3xl sm:text-4xl lg:text-[2.75rem] mb-2 text-white">
-                {provider.businessName}
+                {formatBusinessName(provider.businessName)}
               </h1>
 
               <p className="text-sm sm:text-base" style={{ color: 'rgba(245,239,230,0.78)' }}>
-                {provider.ownerName} · {provider.location}
+                {provider.ownerName} · {formatLocation(provider.location)}
               </p>
 
               {/* Badges */}
@@ -433,7 +436,7 @@ export default async function ProviderProfilePage({ params }: Props) {
                   Location
                 </p>
                 <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
-                  {provider.location}
+                  {formatLocation(provider.location)}
                 </p>
               </div>
               {provider.yearsInBusiness && (

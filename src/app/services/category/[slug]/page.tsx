@@ -5,6 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { CATEGORY_PAGES, getCategoryPage } from '@/lib/data/categoryPages';
 import { SERVICE_CATEGORIES, isServiceCategory } from '@/lib/service-categories';
 import { getProvidersForCategory } from '@/lib/data/providers';
+import { formatBusinessName, formatLocation } from '@/lib/provider-format';
 
 // One indexable page per trade. The directory itself is a client-side filter,
 // so without these there was nothing for "collector car transport" to land on.
@@ -68,7 +69,7 @@ export default async function CategoryPage({ params }: Props) {
       itemListElement: providers.map((p, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        name: p.business_name,
+        name: formatBusinessName(p.business_name),
         url: `${BASE}/services/${p.slug}`,
       })),
     });
@@ -112,8 +113,8 @@ export default async function CategoryPage({ params }: Props) {
               {providers.map((p) => (
                 <li key={p.slug}>
                   <Link href={`/services/${p.slug}`} className="block rounded-xl p-5 h-full hover:shadow-md transition-shadow" style={{ background: '#fff', border: '1px solid rgba(18,53,42,0.14)' }}>
-                    <span className="block font-semibold" style={{ color: INK }}>{p.business_name}</span>
-                    {p.location ? <span className="block text-sm mt-0.5" style={{ color: TEAL }}>{p.location}</span> : null}
+                    <span className="block font-semibold" style={{ color: INK }}>{formatBusinessName(p.business_name)}</span>
+                    {p.location ? <span className="block text-sm mt-0.5" style={{ color: TEAL }}>{formatLocation(p.location)}</span> : null}
                     {p.description ? (
                       <span className="block text-sm mt-2 leading-relaxed" style={{ color: MUTED }}>
                         {p.description.length > 150 ? `${p.description.slice(0, 150).trimEnd()}...` : p.description}

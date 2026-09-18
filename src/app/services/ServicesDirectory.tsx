@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { formatBusinessName, formatLocation } from '@/lib/provider-format';
 import { useSearchParams } from 'next/navigation';
 import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake, Armchair, FileText, Gavel } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -127,7 +128,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
                   href={`/services/${provider.slug}`}
                   className="transition-colors hover:text-accent focus-visible:underline"
                 >
-                  {provider.businessName}
+                  {formatBusinessName(provider.businessName)}
                 </Link>
               </h3>
               {/* Earned by the review record, not by an admin flag. This was
@@ -151,7 +152,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
             </div>
             <div className="flex items-center gap-3 text-sm text-stone-500">
               <span className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5" /> {provider.location}
+                <MapPin className="w-3.5 h-3.5" /> {formatLocation(provider.location)}
               </span>
               {/* No average below the minimum-n threshold — a single review is
                   not a rating. Below it the card shows nothing and the profile
