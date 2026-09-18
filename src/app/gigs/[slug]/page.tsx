@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!gig) return { title: "Gig Not Found" };
   const desc = (gig.description || "").slice(0, 155) || `${gig.title} by ${gig.provider_name} on Fully Sorted.`;
   return {
-    title: `${gig.title} | Fully Sorted`,
+    title: gig.title,
     description: desc,
     alternates: { canonical: `/gigs/${gig.slug}` },
     openGraph: { type: "website", title: gig.title, description: desc, url: `https://fullysorted.com/gigs/${gig.slug}` },

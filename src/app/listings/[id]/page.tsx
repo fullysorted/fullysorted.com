@@ -100,10 +100,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!vehicle) return { title: "Listing Not Found" };
 
   return {
-    title: `${vehicle.title} | Fully Sorted`,
+    title: `${vehicle.title} for sale`,
+    alternates: { canonical: `/listings/${id}` },
     description: `${vehicle.title}: ${vehicle.condition} condition, ${vehicle.mileage.toLocaleString()} miles, ${vehicle.transmission}. ${vehicle.location}.`,
     openGraph: {
-      title: `${vehicle.title} | Fully Sorted`,
+      title: `${vehicle.title} for sale`,
+      url: `https://fullysorted.com/listings/${id}`,
       description: vehicle.description?.slice(0, 200) ?? '',
       images: [{ url: vehicle.imageUrl, width: 800, height: 500, alt: vehicle.title }],
       type: "website",

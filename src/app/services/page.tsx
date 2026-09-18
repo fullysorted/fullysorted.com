@@ -1,12 +1,15 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
 import { Check } from 'lucide-react';
+import Link from 'next/link';
 import ServicesDirectory from './ServicesDirectory';
+import { CATEGORY_PAGES } from '@/lib/data/categoryPages';
+import { isServiceCategory } from '@/lib/service-categories';
 
 export const metadata = {
   alternates: { canonical: "/services" },
   title: 'Services Directory',
-  description: 'Find specialists for your collector car: inspection, transport, mechanical work, body and paint, restoration, detailing, storage, and photography, backed by owner reviews.',
+  description: 'Find specialists for your collector car: inspection, transport, title and registration, mechanical work, body and paint, restoration, upholstery, detailing, storage and photography, reviewed by real owners.',
 };
 
 const INK = '#12352A';
@@ -73,6 +76,20 @@ export default function ServicesPage() {
         <Suspense fallback={null}>
           <ServicesDirectory />
         </Suspense>
+
+        {/* Server-rendered links to the trade pages. The directory above is a
+            client-side filter; these are what a crawler can actually follow. */}
+        <nav aria-label="Trades" className="mt-14 pt-8" style={{ borderTop: '1px solid rgba(18,53,42,0.14)' }}>
+          <h2 className="font-display text-xl mb-1" style={{ color: INK }}>New to hiring one of these?</h2>
+          <p className="text-sm mb-4" style={{ color: MUTED }}>What each trade does, and what to ask before you book.</p>
+          <div className="flex flex-wrap gap-2">
+            {CATEGORY_PAGES.filter((c) => isServiceCategory(c.key)).map((c) => (
+              <Link key={c.slug} href={`/services/category/${c.slug}`} className="px-3.5 py-2 rounded-full text-sm" style={{ border: '1px solid rgba(18,53,42,0.25)', color: INK }}>
+                {c.heading}
+              </Link>
+            ))}
+          </div>
+        </nav>
       </div>
     </div>
   );

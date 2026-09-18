@@ -118,14 +118,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const provider = await getProvider(slug);
   if (!provider) return { title: 'Provider Not Found' };
 
-  const title = `${provider.businessName} · ${provider.category} | Fully Sorted`;
+  // The root layout's template appends "| Fully Sorted"; adding it here doubled it.
+  // Label, not the raw key, and the town: that is what an owner searches for.
+  const title = `${provider.businessName}: ${categoryLabel(provider.category)} in ${provider.location}`;
   const description =
     (provider.description?.slice(0, 200) ??
-      `${provider.businessName}, a collector car ${provider.category.toLowerCase()} specialist in ${provider.location}.`);
+      `${provider.businessName}, a collector car ${categoryLabel(provider.category).toLowerCase()} specialist in ${provider.location}.`);
 
   return {
     title,
     description,
+    alternates: { canonical: `/services/${provider.slug}` },
     openGraph: {
       title,
       description,

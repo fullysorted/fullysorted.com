@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 // noindex: these are one-time private links. They must never be crawled,
 // cached by a proxy, or turn up in a search result.
 export const metadata: Metadata = {
-  title: 'Write a review | Fully Sorted',
+  title: 'Write a review',
   robots: { index: false, follow: false },
 };
 

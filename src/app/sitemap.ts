@@ -8,6 +8,7 @@ import { getRegisterModels, getAllPublishedChassisPaths } from "@/lib/data/regis
 import { PROVIDER_TRACKS } from "@/lib/data/providerTracks";
 import { isServiceCategory } from "@/lib/service-categories";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
+import { CATEGORY_PAGES } from "@/lib/data/categoryPages";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://fullysorted.com";
@@ -65,6 +66,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.6,
+    }));
+
+  // Owner-facing trade landing pages: the indexable front door to the directory.
+  const categoryPages: MetadataRoute.Sitemap = CATEGORY_PAGES
+    .filter((c) => isServiceCategory(c.key))
+    .map((c) => ({
+      url: `${base}/services/category/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
     }));
 
   const articlePages: MetadataRoute.Sitemap = articles.map((a) => ({
@@ -179,5 +190,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     gigPages = [];
   }
 
-  return [...staticPages, ...trackPages, ...articlePages, ...eventPages, ...modelPages, ...registerPages, ...providerPages, ...gigPages, ...listingPages];
+  return [...staticPages, ...categoryPages, ...trackPages, ...articlePages, ...eventPages, ...modelPages, ...registerPages, ...providerPages, ...gigPages, ...listingPages];
 }

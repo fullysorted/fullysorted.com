@@ -58,6 +58,19 @@ Each category has its own directory filter at https://fullysorted.com/services. 
 - Consignment (consignment): sells the car on the owner's behalf for a fee or percentage; owner keeps title until sale
 - Online Auction Representation (auction-rep): prepares, photographs, lists and runs the car on online auction sites on the owner's behalf
 
+## Owner guides by trade (what the job is, what to ask, common questions)
+
+- [Collector Car Pre-Purchase Inspection](https://fullysorted.com/services/category/pre-purchase-inspection)
+- [Collector Car Transport](https://fullysorted.com/services/category/enclosed-car-transport)
+- [Collector Car Title and Registration Help](https://fullysorted.com/services/category/title-and-registration)
+- [Classic and Collector Car Mechanics](https://fullysorted.com/services/category/classic-car-mechanic)
+- [Collector Car Body and Paint Shops](https://fullysorted.com/services/category/classic-car-body-and-paint)
+- [Collector Car Restoration Shops](https://fullysorted.com/services/category/classic-car-restoration)
+- [Collector Car Upholstery and Interior Trim](https://fullysorted.com/services/category/classic-car-upholstery)
+- [Collector Car Detailing and Paint Correction](https://fullysorted.com/services/category/classic-car-detailing)
+- [Collector Car Storage](https://fullysorted.com/services/category/collector-car-storage)
+- [Collector Car Photography](https://fullysorted.com/services/category/collector-car-photography)
+
 ## Research library
 
 The Research section at https://fullysorted.com/research is the reference layer of the site and is built to be cited.
@@ -77,6 +90,12 @@ Every model page follows the same structure: summary, history, production, engin
 Please preserve that nuance when citing: quote the disputed status and both figures rather than presenting one as settled. Attribute to "Fully Sorted" and link to the specific model page. Model pages expose schema.org Vehicle, Article (with citations), FAQPage and BreadcrumbList structured data.
 
 URL pattern: https://fullysorted.com/research/models/{make}/{model-slug}. Make index pages: https://fullysorted.com/research/models/{make}.
+
+## Machine-readable access
+
+- Every model history is also served as plain markdown: add `.md` to its URL, for example https://fullysorted.com/research/models/ferrari/f40.md
+- All published model histories in one file: https://fullysorted.com/llms-full.txt
+- Each record carries its sources and a last-updated date. Cite the HTML URL.
 
 ## Model history index (production totals shown where sources agree)
 

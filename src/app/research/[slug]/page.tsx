@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getArticleBySlug(slug);
   if (!article) return { title: "Article Not Found" };
   return {
-    title: `${article.title} | Fully Sorted`,
+    title: article.title,
     description: article.excerpt,
     alternates: { canonical: `/research/${article.slug}` },
     openGraph: {

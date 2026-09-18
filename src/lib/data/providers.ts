@@ -26,3 +26,31 @@ export async function getPublicProviderSlugs(): Promise<PublicProviderSlug[]> {
     return [];
   }
 }
+
+// Providers for a category landing page (/services/category/{slug}). Matches
+// the headline category or an extra key in service_types, as the directory does.
+export interface CategoryProvider {
+  slug: string;
+  business_name: string;
+  location: string | null;
+  description: string | null;
+}
+
+export async function getProvidersForCategory(key: string): Promise<CategoryProvider[]> {
+  if (!process.env.DATABASE_URL) return [];
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+    const rows = (await sql`
+      SELECT slug, business_name, location, description
+      FROM service_providers
+      WHERE status = 'active' AND slug IS NOT NULL AND slug <> ''
+        AND (category = ${key} OR COALESCE(service_types, '[]'::jsonb) ? ${key})
+      ORDER BY created_at ASC
+      LIMIT 60
+    `) as CategoryProvider[];
+    return rows;
+  } catch {
+    return [];
+  }
+}

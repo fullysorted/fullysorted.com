@@ -32,6 +32,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    // Machine-readable twin of every model history, for AI assistants:
+    // /research/models/{make}/{model}.md. Runs before the dynamic page route.
+    return [
+      {
+        source: "/research/models/:make/:model.md",
+        destination: "/api/research/model-md/:make/:model",
+      },
+    ];
+  },
   async headers() {
     // Defense-in-depth security headers applied to every response.
     // NOTE: no strict Content-Security-Policy is set here because the app loads

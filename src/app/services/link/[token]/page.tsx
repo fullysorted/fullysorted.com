@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 // noindex: a private, single-use link. It must never be crawled or cached.
 export const metadata: Metadata = {
-  title: 'Set up your login | Fully Sorted',
+  title: 'Set up your login',
   robots: { index: false, follow: false },
 };
 
