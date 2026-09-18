@@ -11,6 +11,7 @@ import { ResearchNav } from "@/components/research/ResearchNav";
 import { RarityScale } from "@/components/research/RarityScale";
 import { ProductionBreakdown } from "@/components/research/ProductionBreakdown";
 import { ContributeBox } from "@/components/research/ContributeBox";
+import { RegisterSubmitForm } from "@/components/register/RegisterSubmitForm";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 import { renderMarkdownLite as renderMarkdown } from "@/lib/markdown-lite";
 import { MarqueNotice } from "@/components/research/MarqueNotice";
@@ -38,7 +39,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${name}: History, Specs and Buyer's Guide`,
     description: desc,
-    alternates: { canonical: `/research/models/${m.slug}` },
+    alternates: {
+      canonical: `/research/models/${m.slug}`,
+      // The same record as plain markdown, for AI assistants.
+      types: { "text/markdown": `/research/models/${m.slug}.md` },
+    },
     openGraph: {
       type: "article",
       title: `${name}: History, Specs and Buyer's Guide`,
@@ -315,6 +320,35 @@ export default async function ModelPage({ params }: Props) {
                 <MarqueNotice make={m.make} className="mt-4" />
               </Section>
             )}
+
+            {/* ── Chassis register ──────────────────────────────────────────
+                Every model page carries the register, seeded or not. A page
+                with zero recorded cars is where the first record comes from.
+                Submissions land in /admin/register as pending; nothing is
+                published without review. */}
+            <section className="mt-10" id="register">
+              <div className="flex items-baseline gap-2.5 mb-1">
+                <h2 className="font-display text-xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
+                  Chassis register
+                </h2>
+                {registerCount > 0 && (
+                  <span className="text-xs" style={{ color: "#9a9a8a" }}>
+                    {registerCount.toLocaleString()} {registerCount === 1 ? "car" : "cars"} recorded
+                  </span>
+                )}
+              </div>
+              <p className="text-sm mb-4" style={{ color: "#6b6b5e" }}>
+                {registerCount > 0
+                  ? "Cars tracked by chassis number, with what the record shows and where it came from. Own one, or know one? Add what you can prove."
+                  : "Nobody has recorded a car here yet. Own one, or know one? Chassis number, what you can prove about it, and a source if there is one. Every entry is reviewed before it appears."}
+              </p>
+              {registerCount > 0 && (
+                <Link href={`/register/${m.slug}`} className="inline-flex items-center gap-1.5 text-sm font-bold mb-4" style={{ color: "#1E6091" }}>
+                  Open the register <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              )}
+              <RegisterSubmitForm modelSlug={m.slug} compact />
+            </section>
 
             {/* ── Nerd Notes ────────────────────────────────────────────────
                 Owner contributions, approved by Chris. Rendered after the

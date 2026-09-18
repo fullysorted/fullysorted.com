@@ -53,13 +53,16 @@ manual-car page.
 | # | Car | slug | file | export | mode |
 |---|---|---|---|---|---|
 | 1 | Aston Martin DB9, 2008 model year, six-speed manual, US market | `aston-martin/db9-manual` | `model-seed-db9-manual.ts` | `seedDb9Manual` | new |
+| 2 | Ferrari 250 Testa Rossa, 1957-1961 | `ferrari/250-testa-rossa` | `model-seed-250-testa-rossa.ts` | `seed250TestaRossa` | new |
+| 3 | Ferrari 458 Italia, Spider and Speciale, 2010-2015 | `ferrari/458` | `model-seed-458.ts` | `seed458` | new |
+| 4 | Ferrari 599 GTB Fiorano and 599 GTO, 2006-2012 | `ferrari/599` | `model-seed-599.ts` | `seed599` | new |
+| 5 | Ferrari 575M Maranello, 2002-2006 | `ferrari/575m-maranello` | `model-seed-575m-maranello.ts` | `seed575mMaranello` | new |
+| 6 | Ferrari LaFerrari and Aperta, 2013-2018 | `ferrari/laferrari` | `model-seed-laferrari.ts` | `seedLaFerrari` | new |
 
 Row 1 is written for a reader who already owns one. Lead with what the
 manual car is and how it differs, then what to look for, what goes wrong,
 and what it trades for. The model-line story is background, two sections at
 most.
-
-Further rows are added by the orchestrator before the run.
 
 ## Agent prompt (verbatim, one car per agent)
 
