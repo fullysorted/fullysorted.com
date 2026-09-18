@@ -53,6 +53,21 @@ export default function ServicesPage() {
                 </li>
               ))}
             </ul>
+
+            {/* Provider entry point. This used to live in a nav dropdown next
+                to the visitor links; it belongs here, quietly, on the page
+                shops arrive at. */}
+            <p className="mt-6 text-sm" style={{ color: MUTED }}>
+              Run a shop?{' '}
+              <Link href="/services/apply" className="font-semibold underline underline-offset-4" style={{ color: INK }}>
+                List your services
+              </Link>
+              {' '}or read the{' '}
+              <Link href="/services/guide" className="font-semibold underline underline-offset-4" style={{ color: INK }}>
+                provider playbook
+              </Link>
+              .
+            </p>
           </div>
 
           <div className="hidden lg:block lg:col-span-5">
