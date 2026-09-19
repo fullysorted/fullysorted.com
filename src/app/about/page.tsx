@@ -85,13 +85,11 @@ export default function AboutPage() {
             className="font-display font-semibold tracking-tight text-[2.5rem] sm:text-5xl lg:text-[3.6rem] leading-[1.05] mt-5 max-w-4xl"
             style={{ color: INK }}
           >
-            We are the part between you and the people who get your car{" "}
-            <span style={{ color: BLUE }}>fully sorted<span style={{ color: GOLD }}>.</span></span>
+            Know it. Fix it. Buy it. Sell it<span style={{ color: GOLD }}>.</span>
           </h1>
           <p className="text-lg sm:text-xl mt-6 max-w-2xl leading-relaxed" style={{ color: MUTED }}>
-            A directory of the specialists a collector car needs across an ownership
-            year, ranked by the owners who used them. Built from inside the hobby,
-            by people who have spent their lives around these cars.
+            The specialists a collector car needs, rated by the owners who used them.
+            Run by people who have spent their lives around these cars.
           </p>
         </div>
       </section>

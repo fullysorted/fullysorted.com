@@ -103,15 +103,9 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(rgba(15,32,50,0.72), rgba(15,32,50,0.84))" }}
+          style={{ background: "linear-gradient(rgba(18,53,42,0.78), rgba(18,53,42,0.9))" }}
         />
         <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
-        {/* Top accent line */}
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(90deg, transparent, #1E6091 35%, #B08D3F 65%, transparent)" }}
-        />
-
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -119,17 +113,20 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
             transition={{ duration: 0.55, ease: "easeOut" }}
           >
             <div className="mb-3 flex items-center gap-2.5">
-              <span className="text-xs font-bold tracking-widest uppercase text-white/85">
-                Collector Car Marketplace
+              <span
+                className="text-[11px] uppercase text-white/80"
+                style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em" }}
+              >
+                Marketplace
               </span>
             </div>
             <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl mb-2 text-white [text-wrap:balance] leading-[1.08]">
-              Browse Listings
+              Browse cars
             </h1>
             <p className="text-sm mb-8 text-white/75">
               {hasRealListings
-                ? `${initialListings.length} ${initialListings.length === 1 ? "car" : "cars"} available · Private sellers and dealers, each marked as which`
-                : "No listings yet · Be the first to list your car"}
+                ? `${initialListings.length} ${initialListings.length === 1 ? "car" : "cars"} listed. Private sellers and dealers, marked as which.`
+                : "Nothing listed yet. Yours could be first."}
             </p>
           </motion.div>
 

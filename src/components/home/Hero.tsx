@@ -22,7 +22,6 @@ import { TradeIcon } from "@/components/home/TradeIcon";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
-const APRICOT = "#F2B27A";
 const CREAM = "#F5EFE6";
 const MUTED = "#6B7280";
 const RULE = "rgba(18,53,42,0.14)";
@@ -119,11 +118,6 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
 
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--bg-primary)" }}>
-      {/* Shapes behind the frame. Apricot is teal's complement. */}
-      <div aria-hidden className="absolute rounded-full pointer-events-none" style={{ right: -140, top: 40, width: 520, height: 520, background: APRICOT }} />
-      <div aria-hidden className="absolute rounded-full pointer-events-none" style={{ left: -90, top: 470, width: 320, height: 320, background: TEAL, opacity: 0.18 }} />
-      <div aria-hidden className="absolute rounded-full pointer-events-none" style={{ left: 300, top: 690, width: 120, height: 120, background: APRICOT, opacity: 0.7 }} />
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-5 sm:pt-6">
         {/* The frame */}
         <div
