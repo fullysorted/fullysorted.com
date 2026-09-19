@@ -10,6 +10,7 @@ import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { JsonLd, organizationSchema, websiteSchema } from "@/components/seo/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Type pairing changed 2026-09-16. Fraunces over Inter is the default
 // AI-landing-page recipe and read as one; Young Serif (display) over
@@ -125,6 +126,7 @@ export default function RootLayout({
           <MobileNav />
           <CookieBanner />
           <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
