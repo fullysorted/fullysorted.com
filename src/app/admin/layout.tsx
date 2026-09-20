@@ -18,6 +18,10 @@ import {
   Zap,
   Star,
   Hash,
+  Warehouse,
+  DollarSign,
+  Inbox,
+  Database,
 } from "lucide-react";
 
 const nav = [
@@ -32,6 +36,12 @@ const nav = [
   // notification email points at, and it was in no nav.
   { href: "/admin/contributions", label: "Contributions", icon: MessageSquare },
   { href: "/admin/register", label: "Register", icon: Hash },
+  { href: "/admin/stable", label: "The Stable", icon: Warehouse },
+  // These three were reachable only from cards on the dashboard, which is a
+  // long scroll on a phone.
+  { href: "/admin/submissions", label: "Sale Submissions", icon: Inbox },
+  { href: "/admin/orders", label: "Orders", icon: DollarSign },
+  { href: "/admin/import", label: "Import", icon: Database },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
