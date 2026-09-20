@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { Check } from 'lucide-react';
 import Link from 'next/link';
 import ServicesDirectory from './ServicesDirectory';
+import { getPublishedModels } from '@/lib/data/models';
+import { toSearchModels } from '@/lib/search-intent';
 import { CATEGORY_PAGES } from '@/lib/data/categoryPages';
 import { isServiceCategory } from '@/lib/service-categories';
 
@@ -14,20 +16,22 @@ export const metadata = {
 
 const INK = '#12352A';
 const TEAL = '#1C8C87';
-const APRICOT = '#F2B27A';
-const CREAM = '#F5EFE6';
+const CREAM = '#FFFFFF';
 const MUTED = '#6B7280';
 const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 
 const PROOFS = ['Free to browse', 'Specialists apply to be listed', 'Open to every owner'];
 
-export default function ServicesPage() {
+// One cached read an hour feeds the search suggestions and the "read the
+// history" link. The directory itself still loads from /api/providers.
+export const revalidate = 3600;
+
+export default async function ServicesPage() {
+  const searchModels = toSearchModels(await getPublishedModels());
   return (
     <div style={{ background: 'var(--bg-primary)' }} className="min-h-screen">
       {/* Header, in the homepage language: cream, deep green type, teal eyebrow, framed photo */}
       <div className="relative overflow-hidden" style={{ background: CREAM, borderBottom: '1px solid rgba(18,53,42,0.14)' }}>
-        <div aria-hidden className="absolute rounded-full pointer-events-none hidden lg:block" style={{ right: -120, top: -80, width: 420, height: 420, background: APRICOT }} />
-        <div aria-hidden className="absolute rounded-full pointer-events-none hidden lg:block" style={{ right: 300, bottom: -60, width: 160, height: 160, background: TEAL, opacity: 0.18 }} />
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:grid lg:grid-cols-12 lg:gap-10 lg:items-center">
           <div className="lg:col-span-7">
@@ -89,7 +93,7 @@ export default function ServicesPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         {/* Suspense boundary required: ServicesDirectory reads URL search params */}
         <Suspense fallback={null}>
-          <ServicesDirectory />
+          <ServicesDirectory models={searchModels} />
         </Suspense>
 
         {/* Server-rendered links to the trade pages. The directory above is a

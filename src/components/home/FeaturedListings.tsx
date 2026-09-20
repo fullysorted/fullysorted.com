@@ -36,7 +36,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
   ].slice(0, 8);
 
   return (
-    <section className="relative py-14 sm:py-20" style={{ background: "#F5EFE6", borderTop: "1px solid rgba(26,26,24,0.12)" }}>
+    <section className="relative py-14 sm:py-20" style={{ background: "var(--bg-surface)", borderTop: "1px solid rgba(26,26,24,0.12)" }}>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}

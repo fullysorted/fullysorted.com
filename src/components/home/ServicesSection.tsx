@@ -81,8 +81,8 @@ export function ServicesSection() {
           >
             <Link
               href={r.href}
-              className="group grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-10 items-start rounded-xl p-6 sm:p-8 transition-colors hover:bg-[#F5EFE6]"
-              style={{ border: `1px solid ${RULE}`, background: "#faf9f7" }}
+              className="group grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-10 items-start rounded-xl p-6 sm:p-8 transition-colors hover:bg-[#F4F6F5]"
+              style={{ border: `1px solid ${RULE}`, background: "#FFFFFF" }}
             >
               <div className="lg:col-span-3 flex items-baseline gap-3">
                 <span className="price-display text-xs tabular-nums" style={{ color: MUTED }}>

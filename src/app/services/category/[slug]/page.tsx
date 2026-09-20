@@ -13,7 +13,7 @@ export const revalidate = 3600;
 
 const INK = '#12352A';
 const TEAL = '#1C8C87';
-const CREAM = '#F5EFE6';
+const CREAM = '#FFFFFF';
 const MUTED = '#6B7280';
 const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 const BASE = 'https://fullysorted.com';

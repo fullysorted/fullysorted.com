@@ -1,6 +1,7 @@
 import { FoundingBand } from "@/components/home/FoundingBand";
 import { Hero, type FeaturedModel } from "@/components/home/Hero";
 import { getPublishedModels } from "@/lib/data/models";
+import { toSearchModels, type SearchModel } from "@/lib/search-intent";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { FeaturedListings } from "@/components/home/FeaturedListings";
 import { ResearchPicks, type ResearchPick } from "@/components/home/ResearchPicks";
@@ -101,7 +102,7 @@ async function getActiveListings(): Promise<Vehicle[]> {
  * the same car all week. No DB, or no photos yet: the hero shows its stock
  * photograph and no card. Never a made-up number.
  */
-type HomeResearch = { featured: FeaturedModel | null; picks: ResearchPick[]; total: number };
+type HomeResearch = { featured: FeaturedModel | null; picks: ResearchPick[]; total: number; searchModels: SearchModel[] };
 
 /**
  * One read of the published model histories feeds two things:
@@ -114,8 +115,10 @@ type HomeResearch = { featured: FeaturedModel | null; picks: ResearchPick[]; tot
  */
 async function getHomeResearch(): Promise<HomeResearch> {
   const models = await getPublishedModels();
+  // The same read feeds the search box suggestions: five small fields per model.
+  const searchModels = toSearchModels(models);
   const withPhoto = models.filter((m) => m.hero_photo);
-  if (withPhoto.length === 0) return { featured: null, picks: [], total: models.length };
+  if (withPhoto.length === 0) return { featured: null, picks: [], total: models.length, searchModels };
   const now = new Date();
   const week = Math.floor((now.getTime() - Date.UTC(now.getUTCFullYear(), 0, 1)) / 604_800_000);
   const start = (now.getUTCFullYear() * 53 + week) % withPhoto.length;
@@ -145,7 +148,7 @@ async function getHomeResearch(): Promise<HomeResearch> {
       summary: p.summary,
     });
   }
-  return { featured, picks, total: models.length };
+  return { featured, picks, total: models.length, searchModels };
 }
 
 export default async function Home() {
@@ -156,7 +159,7 @@ export default async function Home() {
       {/* Honest about being early, without telling anyone to come back later */}
       <FoundingBand />
       {/* Services first — the hub is the front door */}
-      <Hero featured={research.featured} />
+      <Hero featured={research.featured} searchModels={research.searchModels} />
       <ServicesSection />
       {/* Marketplace second — one strong section */}
       <FeaturedListings listings={listings} />

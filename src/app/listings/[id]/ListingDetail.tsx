@@ -520,7 +520,7 @@ export function ListingDetail({ vehicle }: Props) {
                 lives in lib/dealer.ts so the sell form promises what the
                 page shows. */}
             {vehicle.sellerType === "dealer" && (
-              <div className="rounded-2xl p-5" style={{ background: "#F5EFE6", border: "1px solid rgba(176,141,63,0.28)" }}>
+              <div className="rounded-2xl p-5" style={{ background: "var(--bg-surface)", border: "1px solid rgba(176,141,63,0.28)" }}>
                 <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#8a6d2f" }}>Dealer listing</p>
                 <p className="text-sm font-semibold text-stone-900">
                   Offered by {vehicle.dealerName || "a licensed dealer"}

@@ -1,6 +1,8 @@
 "use client";
 
-import { Search, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { SmartSearch } from "@/components/search/SmartSearch";
+import type { SearchModel } from "@/lib/search-intent";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { TRADE_CATEGORIES, SALES_CATEGORIES, type ServiceCategoryKey } from "@/lib/service-categories";
@@ -22,7 +24,7 @@ import { TradeIcon } from "@/components/home/TradeIcon";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
-const CREAM = "#F5EFE6";
+const CREAM = "#FFFFFF";
 const MUTED = "#6B7280";
 const RULE = "rgba(18,53,42,0.14)";
 const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
@@ -110,7 +112,7 @@ function FeaturedCard({ m }: { m: FeaturedModel }) {
   );
 }
 
-export function Hero({ featured }: { featured: FeaturedModel | null }) {
+export function Hero({ featured, searchModels = [] }: { featured: FeaturedModel | null; searchModels?: SearchModel[] }) {
   const photo = featured?.heroPhoto ?? "/images/services/restoration.jpg";
   const credit = featured?.heroPhoto
     ? featured.heroPhotoCredit
@@ -121,9 +123,12 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-5 sm:pt-6">
         {/* The frame */}
         <div
-          className="relative overflow-hidden rounded-[28px] sm:rounded-[32px]"
+          className="relative rounded-[28px] sm:rounded-[32px]"
           style={{ background: INK }}
         >
+          {/* The photo layer clips to the frame. The frame itself does not, so
+              the search suggestions can hang below it. */}
+          <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={photo}
@@ -141,6 +146,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
             className="absolute inset-0 pointer-events-none lg:hidden"
             style={{ background: "linear-gradient(180deg, rgba(18,53,42,0.2) 0%, rgba(18,53,42,0.85) 70%)" }}
           />
+          </div>
 
           <div className="relative p-6 sm:p-10 lg:p-12 flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-10 min-h-[440px] lg:min-h-[520px]">
             <div className="flex-1 flex flex-col justify-between gap-8 lg:self-stretch" style={{ color: CREAM }}>
@@ -174,38 +180,20 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
                 </motion.p>
               </div>
 
-              <motion.form
-                action="/services"
+              {/* z-index keeps the suggestion list above the "This week's car" card */}
+              <motion.div
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.2 }}
-                className="flex flex-col sm:flex-row sm:items-center gap-2 rounded-[22px] sm:rounded-full p-2 max-w-2xl"
-                style={{ background: CREAM, boxShadow: "0 20px 40px rgba(0,0,0,0.25)" }}
+                className="relative z-20"
               >
-                <label className="flex-1 flex items-center gap-3 pl-3 sm:pl-4 min-w-0">
-                  <Search className="w-5 h-5 shrink-0" style={{ color: MUTED }} aria-hidden />
-                  <input
-                    type="text"
-                    name="q"
-                    aria-label="What does your car need?"
-                    placeholder="What does your car need?"
-                    className="w-full h-11 bg-transparent text-[15px] focus:outline-none min-w-0"
-                    style={{ color: INK }}
-                  />
-                </label>
-                <button
-                  type="submit"
-                  className="h-11 px-5 sm:px-7 rounded-full text-[15px] font-bold shrink-0 transition-colors w-full sm:w-auto"
-                  style={{ background: TEAL, color: CREAM }}
-                >
-                  Find a specialist
-                </button>
-              </motion.form>
+                <SmartSearch models={searchModels} showExamples examplesColor={CREAM} />
+              </motion.div>
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.45, delay: 0.3 }}
-                className="text-sm -mt-4"
+                className="text-sm -mt-2"
                 style={{ opacity: 0.85 }}
               >
                 Buying a car?{" "}
@@ -274,7 +262,7 @@ export function Hero({ featured }: { featured: FeaturedModel | null }) {
                     key={c.key}
                     href={`/services?type=${encodeURIComponent(c.key)}`}
                     className="flex flex-col gap-3 rounded-2xl p-4 text-[15px] font-medium transition-colors hover:bg-[#E6F3F2]"
-                    style={{ color: INK, background: "#EDE4D6", border: `1px solid ${RULE}` }}
+                    style={{ color: INK, background: "var(--bg-surface)", border: `1px solid ${RULE}` }}
                   >
                     <TradeIcon k={c.key} className="w-8 h-8" />
                     {c.label}

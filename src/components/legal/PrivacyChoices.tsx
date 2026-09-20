@@ -18,7 +18,7 @@ export function PrivacyChoices() {
   return (
     <div
       className="rounded-xl p-5 mt-4"
-      style={{ background: "#F5EFE6", border: "1px solid rgba(0,0,0,0.08)" }}
+      style={{ background: "var(--bg-surface)", border: "1px solid rgba(0,0,0,0.08)" }}
     >
       <p className="text-sm font-bold mb-1" style={{ color: "#1a1a18" }}>
         Analytics and advertising cookies on this device:{" "}

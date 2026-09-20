@@ -156,7 +156,7 @@ export default function InsurancePage() {
       </section>
 
       {/* What carriers ask for */}
-      <section style={{ background: "#F5EFE6" }}>
+      <section style={{ background: "var(--bg-surface)" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
           <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight mb-2" style={{ color: "#1a1a18" }}>
             What a collector carrier usually wants to see

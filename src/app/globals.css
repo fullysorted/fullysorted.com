@@ -2,8 +2,8 @@
 
 :root {
   /* Fully Sorted — Racing Paddock Color System */
-  --bg-primary: #F5EFE6;          /* warm paper, like a vintage race programme */
-  --bg-surface: #EDE4D6;          /* slightly darker warm cream */
+  --bg-primary: #FFFFFF;          /* white page (2026-09-19); was warm paper #F5EFE6 */
+  --bg-surface: #F4F6F5;          /* quiet cool band for alternate sections and callouts; was cream #EDE4D6 */
   --bg-white: #FFFFFF;
   --text-primary: #1A1A1A;
   --text-secondary: #6B7280;

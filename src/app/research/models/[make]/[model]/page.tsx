@@ -377,7 +377,7 @@ export default async function ModelPage({ params }: Props) {
                     <li
                       key={c.id}
                       className="rounded-2xl p-4"
-                      style={{ background: "#F5EFE6", border: "1px solid rgba(176,141,63,0.28)" }}
+                      style={{ background: "var(--bg-surface)", border: "1px solid rgba(176,141,63,0.28)" }}
                     >
                       <p className="text-sm leading-relaxed" style={{ color: "#3a3a30" }}>
                         {c.body}

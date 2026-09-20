@@ -95,7 +95,7 @@ function EventCard({ e }: { e: RegisterEventRow }) {
   const style = disputed
     ? { background: "rgba(176,141,63,0.08)", border: "1px solid rgba(176,141,63,0.28)" }
     : ownerReported
-      ? { background: "#F5EFE6", border: "1px solid rgba(176,141,63,0.28)" }
+      ? { background: "var(--bg-surface)", border: "1px solid rgba(176,141,63,0.28)" }
       : { background: "#fff", border: "1px solid rgba(0,0,0,0.07)" };
   const price = formatMoney(e.price_amount, e.price_currency);
   const estLow = formatMoney(e.estimate_low, e.price_currency);

@@ -48,12 +48,12 @@ export default async function ModelsIndexPage() {
   };
 
   return (
-    <div style={{ background: "#F5EFE6" }} className="min-h-screen">
+    <div style={{ background: "var(--bg-primary)" }} className="min-h-screen">
       <ResearchNav active="models" />
       <JsonLd data={itemListSchema} />
 
       {/* Header, in the homepage's language (2026-09-16) */}
-      <div style={{ background: "#F5EFE6", borderBottom: "1px solid rgba(18,53,42,0.14)" }}>
+      <div style={{ background: "var(--bg-primary)", borderBottom: "1px solid rgba(18,53,42,0.14)" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <Link href="/research" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8" style={{ color: "#6B7280" }}>
             <ArrowLeft className="w-4 h-4" /> Research

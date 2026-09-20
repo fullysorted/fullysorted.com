@@ -1,14 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { formatBusinessName, formatLocation } from '@/lib/provider-format';
 import { useSearchParams } from 'next/navigation';
-import { Search, MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake, Armchair, FileText, Gavel } from 'lucide-react';
+import { MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake, Armchair, FileText, Gavel } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SERVICE_CATEGORIES, TRADE_CATEGORIES, SALES_CATEGORIES, CATEGORY_TINTS, categoryGroup } from '@/lib/service-categories';
 import { ratingDisplay } from '@/lib/reviews';
+import { SmartSearch } from '@/components/search/SmartSearch';
+import { parseSearchIntent, scoreProvider, type SearchModel } from '@/lib/search-intent';
 import {
   WORK_SETTINGS,
   normalizeWorkSettings,
@@ -260,11 +262,13 @@ function ProviderCard({ provider }: { provider: Provider }) {
 // band stood empty with a dashed placeholder. Where the work happens is a
 // filter now, which is the honest shape: an owner narrows, we never assert.
 function ResultsGrid({
-  providers, count, emptyLine,
+  providers, count, emptyLine, request,
 }: {
   providers: Provider[];
   count: number;
   emptyLine: string;
+  /** What the owner was looking for. When set, the empty state asks for it instead of just apologising. */
+  request?: string;
 }) {
   return (
     <section className="mb-12">
@@ -282,22 +286,86 @@ function ResultsGrid({
       ) : (
         <div className="rounded-2xl border border-dashed border-stone-300 bg-white/60 px-6 py-10 text-center">
           <p className="text-sm text-stone-500 max-w-md mx-auto">{emptyLine}</p>
+          {request !== undefined && emptyLine !== '' && <RequestForm need={request} />}
         </div>
       )}
     </section>
   );
 }
 
+// An empty result is a lead, not a dead end. The owner says what they need and
+// where, it goes through /api/contact (the deliver() contract: success is only
+// reported once it has reached us), and outreach knows who to go and find.
+function RequestForm({ need }: { need: string }) {
+  const [what, setWhat] = useState(need);
+  const [where, setWhere] = useState('');
+  const [email, setEmail] = useState('');
+  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
+  const [mailto, setMailto] = useState<string | null>(null);
+
+  if (state === 'sent') {
+    return <p className="mt-5 text-sm font-semibold text-stone-900">Got it. We will go and find someone, and email you when we have.</p>;
+  }
+
+  const field = 'w-full px-4 py-2.5 bg-white rounded-xl border border-stone-200 text-base sm:text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent';
+  return (
+    <form
+      className="mt-6 max-w-md mx-auto grid gap-2.5 text-left"
+      onSubmit={async (e) => {
+        e.preventDefault();
+        setState('sending');
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: 'Directory request',
+              email,
+              subject: `Directory request: ${what.slice(0, 120)}`,
+              message: `Looking for: ${what}\nWhere: ${where || 'not given'}`,
+            }),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.success) setState('sent');
+          else {
+            setMailto(typeof data.mailto === 'string' ? data.mailto : null);
+            setState('failed');
+          }
+        } catch {
+          setState('failed');
+        }
+      }}
+    >
+      <input required value={what} onChange={(e) => setWhat(e.target.value)} aria-label="What you need" placeholder="What you need, and for which car" className={field} />
+      <div className="grid sm:grid-cols-2 gap-2.5">
+        <input value={where} onChange={(e) => setWhere(e.target.value)} aria-label="City or ZIP code" placeholder="City or ZIP code" autoComplete="postal-code" className={field} />
+        <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="Your email" placeholder="Your email" autoComplete="email" className={field} />
+      </div>
+      <button type="submit" disabled={state === 'sending'} className="h-11 rounded-xl text-sm font-bold text-white bg-accent hover:opacity-90 disabled:opacity-60">
+        {state === 'sending' ? 'Sending...' : 'Find me someone'}
+      </button>
+      {state === 'failed' && (
+        <p className="text-sm text-center" style={{ color: '#9a3f2f' }}>
+          That did not send.{' '}
+          {mailto ? <a href={mailto} className="underline font-semibold">Email it to us instead</a> : 'Please try again in a moment.'}
+        </p>
+      )}
+    </form>
+  );
+}
+
 // ─── Main Directory Component ──────────────────────────
-export default function ServicesDirectory() {
+export default function ServicesDirectory({ models = [] }: { models?: SearchModel[] }) {
   // Initialize from URL params so homepage search + category chips deep-link
   // into a pre-filtered directory (/services?q=... or /services?type=...).
   const searchParams = useSearchParams();
   const initialType = searchParams.get('type');
   const initialQuery = searchParams.get('q') ?? '';
+  // An explicit ?type= wins. Otherwise the words decide: "brake job on my 911"
+  // opens the directory on Mechanics rather than on an empty phrase match.
   const validType = CATEGORIES.some((c) => c.key === initialType)
     ? (initialType as CategoryKey)
-    : 'all';
+    : parseSearchIntent(initialQuery, models).category ?? 'all';
 
   const [activeCategory, setActiveCategory] = useState<CategoryKey>(validType);
   // Where the work happens. 'all' plus the three keys from lib/work-settings.
@@ -323,6 +391,15 @@ export default function ServicesDirectory() {
       .finally(() => setLoading(false));
   }, []);
 
+  const intent = useMemo(() => parseSearchIntent(searchQuery, models), [searchQuery, models]);
+
+  const runSearch = (q: string) => {
+    setSearchQuery(q);
+    const next = parseSearchIntent(q, models);
+    if (next.category) setActiveCategory(next.category);
+    else if (q.trim() === '') setActiveCategory('all');
+  };
+
   const matches = (p: Provider) => {
     const matchesCategory =
       activeCategory === 'all' ||
@@ -336,30 +413,56 @@ export default function ServicesDirectory() {
     const declared = normalizeWorkSettings(p.workSettings);
     const matchesSetting =
       activeSetting === 'all' || declared.length === 0 || declared.includes(activeSetting);
+    // Once the words resolve to a trade, that trade is the filter and the
+    // rest of the sentence only sets the order. Without a trade, a provider
+    // has to match something: the make, a leftover word, or their name.
     const matchesSearch =
-      searchQuery === '' ||
-      p.businessName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.specialties.some((s) => s.toLowerCase().includes(searchQuery.toLowerCase()));
+      searchQuery.trim() === '' || intent.category !== null || scoreProvider(p, intent) > 0;
     return matchesCategory && matchesSetting && matchesSearch;
   };
 
-  const filtered = providers.filter(matches);
+  // Marque first, then everything else in the order the API sent it.
+  const filtered = providers
+    .filter(matches)
+    .map((p, i) => ({ p, i, s: scoreProvider(p, intent) }))
+    .sort((a, b) => b.s - a.s || a.i - b.i)
+    .map((x) => x.p);
 
   return (
     <div>
       {/* Search */}
-      <div className="relative mb-8">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400" />
-        <input
-          type="text"
-          aria-label="Search specialists by name, specialty or service type"
-          placeholder="Search by name, specialty, or service type..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-12 pr-4 py-3 bg-white rounded-xl border border-stone-200 text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
-        />
+      <div className="mb-6">
+        <SmartSearch key={searchQuery} models={models} initialQuery={searchQuery} buttonLabel="Search" onSearch={runSearch} />
       </div>
+
+      {/* Say how the words were read, so a result list never feels arbitrary */}
+      {searchQuery.trim() !== '' && (intent.category || intent.make) && (
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 text-sm text-stone-600">
+          <span>
+            Showing{' '}
+            <strong className="text-stone-900">
+              {intent.category ? CATEGORIES.find((c) => c.key === intent.category)?.label : 'all trades'}
+            </strong>
+            {intent.make && (
+              <>
+                , <strong className="text-stone-900">{intent.make}</strong> specialists first
+              </>
+            )}
+            .
+          </span>
+          {(intent.model || intent.makeSlug) && (
+            <Link
+              href={intent.model ? `/research/models/${intent.model.slug}` : `/research/models/${intent.makeSlug}`}
+              className="font-semibold underline underline-offset-4 text-accent"
+            >
+              {intent.model ? `Read the ${intent.model.make} ${intent.model.model} history` : `${intent.make} model histories`}
+            </Link>
+          )}
+          <button type="button" onClick={() => runSearch('')} className="underline underline-offset-4 text-stone-500 hover:text-stone-900">
+            Clear
+          </button>
+        </div>
+      )}
 
       {/* Category Filter: the trades, then buying and selling */}
       <div className="flex flex-wrap gap-2 mb-3">
@@ -452,8 +555,9 @@ export default function ServicesDirectory() {
           emptyLine={
             providers.length === 0
               ? "We're building the directory now. Apply below to be one of the first listed."
-              : 'Nobody matches that yet. Tell us who should be here and we will go and ask them.'
+              : 'Nobody listed for that yet. Tell us what you need and where, and we will go and find them.'
           }
+          request={searchQuery}
         />
       )}
       {/* With no category chosen, dealers and consignment houses sit in their
@@ -467,8 +571,9 @@ export default function ServicesDirectory() {
             emptyLine={
               providers.length === 0
                 ? "We're building the directory now. Apply below to be one of the first listed."
-                : 'Nobody matches that yet. Tell us who should be here and we will go and ask them.'
+                : 'Nobody listed for that yet. Tell us what you need and where, and we will go and find them.'
             }
+            request={searchQuery}
           />
           {filtered.some((p) => categoryGroup(p.category) === 'sales' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'sales')) && (
             <>
@@ -489,7 +594,6 @@ export default function ServicesDirectory() {
       {/* CTA to Apply */}
       <div className="mt-12 relative overflow-hidden rounded-2xl text-center">
         <div className="absolute inset-0" style={{ background: '#12352A' }} />
-        <div aria-hidden className="absolute rounded-full pointer-events-none" style={{ right: -90, top: -120, width: 320, height: 320, background: '#F2B27A', opacity: 0.9 }} />
         <div className="relative p-8">
         <p className="text-[11px] uppercase mb-4" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: '0.12em', color: '#F2B27A' }}>
           Founding 500

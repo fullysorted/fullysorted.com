@@ -27,7 +27,7 @@ const BLUE = "#1E6091";
 const GOLD = "#B08D3F";
 const NAVY = "#0F2032";
 const RULE = "rgba(26,26,24,0.12)";
-const PAPER = "#F5EFE6";
+const PAPER = "#F4F6F5";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/about" },
