@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { SmartSearch } from "@/components/search/SmartSearch";
 import type { SearchModel } from "@/lib/search-intent";
+import { tradeHref } from "@/lib/category-slugs";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { TRADE_CATEGORIES, SALES_CATEGORIES, type ServiceCategoryKey } from "@/lib/service-categories";
@@ -234,7 +235,7 @@ export function Hero({ featured, searchModels = [] }: { featured: FeaturedModel 
             {tiles.map((c) => (
               <Link
                 key={c.key}
-                href={`/services?type=${encodeURIComponent(c.key)}`}
+                href={tradeHref(c.key)}
                 className="flex flex-col gap-3 rounded-2xl bg-white p-4 text-[15px] font-medium transition-colors hover:bg-[#E6F3F2]"
                 style={{ color: INK, border: `1px solid ${RULE}` }}
               >

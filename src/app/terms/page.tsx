@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "The terms governing your use of the Fully Sorted services directory, marketplace and research hub: who can use it, what each side is responsible for, fees, content, and how disputes are handled.",
 };
 
-const LAST_UPDATED = "September 5, 2026";
+const LAST_UPDATED = "September 20, 2026";
 const CONTACT = "chris@fullysorted.com";
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
@@ -61,6 +61,7 @@ const TOC: [string, string][] = [
   ["marketplace", "5. Listing and buying cars"],
   ["providers", "6. Providers and the directory"],
   ["inquiries", "7. Inquiries and messages"],
+  ["wanted", "7A. The wanted board and finder's fees"],
   ["reviews", "8. Reviews"],
   ["fees", "9. Fees and payments"],
   ["content", "10. Your content and our license to it"],
@@ -294,6 +295,31 @@ export default function TermsPage() {
               to the provider or seller they selected; we do not forward it to others. We may
               review messages to prevent fraud and abuse, and we keep them as described in the{" "}
               <A href="/privacy#retention">Privacy Policy</A>.
+            </P>
+          </div>
+
+          <div>
+            <H2 id="wanted">7A. The wanted board and finder&apos;s fees</H2>
+            <P>
+              The wanted board lets members say what car, part or service they are looking for.
+              Posts are reviewed before they appear and may be edited for length, declined or
+              removed at our discretion. Posts must describe a real request, and must not include
+              phone numbers, email addresses or links. Replies are delivered to the poster by
+              email; the poster&apos;s address is not shown on the Service.
+            </P>
+            <P>
+              A poster may choose to offer a finder&apos;s fee. Any such fee is offered by the
+              poster, on terms the poster sets, and is owed and paid by the poster directly to the
+              person who earns it. Fully Sorted does not hold, collect, share in, escrow or
+              guarantee any finder&apos;s fee, does not decide whether one has been earned, and is
+              not a party to any agreement between a poster and a finder. Put the terms in writing
+              between yourselves before anyone starts looking.
+            </P>
+            <P>
+              Laws on being paid for arranging or negotiating the sale of a vehicle, including
+              dealer and broker licensing rules, differ by state. Posters and finders are each
+              responsible for knowing and following the laws that apply to them. Nothing on the
+              wanted board is legal advice, and section 4 applies to everything arranged through it.
             </P>
           </div>
 

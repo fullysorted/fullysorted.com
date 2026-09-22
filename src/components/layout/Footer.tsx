@@ -19,6 +19,7 @@ const footerLinks = {
     { href: "/browse?category=muscle", label: "Muscle Cars" },
     { href: "/browse?category=european", label: "European" },
     { href: "/sell", label: "Sell a Car" },
+    { href: "/wanted", label: "Wanted Board" },
     { href: "/pricing", label: "Listing Pricing" },
     { href: "/shop", label: "Shop" },
   ],

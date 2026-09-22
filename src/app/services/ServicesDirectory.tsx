@@ -344,6 +344,10 @@ function RequestForm({ need }: { need: string }) {
       <button type="submit" disabled={state === 'sending'} className="h-11 rounded-xl text-sm font-bold text-white bg-accent hover:opacity-90 disabled:opacity-60">
         {state === 'sending' ? 'Sending...' : 'Find me someone'}
       </button>
+      <p className="text-xs text-center text-stone-500">
+        Want more people looking?{' '}
+        <Link href="/wanted/new" className="underline font-semibold">Put it on the wanted board</Link>.
+      </p>
       {state === 'failed' && (
         <p className="text-sm text-center" style={{ color: '#9a3f2f' }}>
           That did not send.{' '}

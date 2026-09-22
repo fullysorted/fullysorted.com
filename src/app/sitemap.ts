@@ -18,6 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: base, lastModified: now, changeFrequency: "daily", priority: 1.0 },
     { url: `${base}/browse`, lastModified: now, changeFrequency: "hourly", priority: 0.9 },
     { url: `${base}/sell`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/wanted`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     ...(VALUE_GUIDE_PUBLIC
       ? [{ url: `${base}/value-guide`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 }]
       : []),

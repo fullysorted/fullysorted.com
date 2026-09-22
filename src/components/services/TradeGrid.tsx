@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { tradeHref } from "@/lib/category-slugs";
 import { ArrowRight } from "lucide-react";
 import { TRADE_CATEGORIES } from "@/lib/service-categories";
 
@@ -66,7 +67,7 @@ export function TradeGridPhoto() {
       {TRADE_CATEGORIES.map((c, i) => (
         <li key={c.key}>
           <Link
-            href={`/services?type=${c.key}`}
+            href={tradeHref(c.key)}
             className="group block h-full overflow-hidden rounded-xl bg-white transition-transform hover:-translate-y-0.5"
             style={{ border: `1px solid ${RULE}` }}
           >
@@ -123,7 +124,7 @@ export function TradeGridType() {
       {TRADE_CATEGORIES.map((c, i) => (
         <li key={c.key}>
           <Link
-            href={`/services?type=${c.key}`}
+            href={tradeHref(c.key)}
             className="group flex h-full flex-col pt-4"
             style={{ borderTop: `2px solid ${INK}` }}
           >

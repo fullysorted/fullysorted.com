@@ -12,6 +12,7 @@
  * in the browser on every keystroke and costs nothing.
  */
 import { SERVICE_CATEGORIES, type ServiceCategoryKey } from '@/lib/service-categories';
+import { tradeHref } from '@/lib/category-slugs';
 
 /** The slice of a published model history the search needs. Keep it small: it ships to the browser. */
 export interface SearchModel {
@@ -292,7 +293,9 @@ export function suggest(raw: string, models: SearchModel[] = [], limit = 7): Sug
       kind: 'trade',
       label: intent.make ? `${c.label} for ${intent.make}` : c.label,
       sub: c.longLabel,
-      href: `/services?${params.toString()}`,
+      // A bare trade lands on its own page (what it is, what to ask, who does it).
+      // With a make attached the filtered directory is the better answer.
+      href: intent.make ? `/services?${params.toString()}` : tradeHref(c.key),
     });
   }
 

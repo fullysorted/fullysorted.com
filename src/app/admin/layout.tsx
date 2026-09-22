@@ -23,6 +23,7 @@ import {
   Inbox,
   Database,
   Users,
+  Megaphone,
 } from "lucide-react";
 
 const nav = [
@@ -38,6 +39,7 @@ const nav = [
   { href: "/admin/contributions", label: "Contributions", icon: MessageSquare },
   { href: "/admin/register", label: "Register", icon: Hash },
   { href: "/admin/members", label: "Members", icon: Users },
+  { href: "/admin/wanted", label: "Wanted", icon: Megaphone },
   { href: "/admin/stable", label: "The Stable", icon: Warehouse },
   // These three were reachable only from cards on the dashboard, which is a
   // long scroll on a phone.

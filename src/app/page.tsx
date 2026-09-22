@@ -7,6 +7,8 @@ import { FeaturedListings } from "@/components/home/FeaturedListings";
 import { ResearchPicks, type ResearchPick } from "@/components/home/ResearchPicks";
 import { ValueGuidePreview } from "@/components/home/ValueGuidePreview";
 import { CTASection } from "@/components/home/CTASection";
+import { WantedStrip } from "@/components/home/WantedStrip";
+import { getOpenWantedPosts } from "@/lib/wanted";
 import type { Vehicle } from "@/lib/sample-data";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
@@ -152,7 +154,12 @@ async function getHomeResearch(): Promise<HomeResearch> {
 }
 
 export default async function Home() {
-  const [listings, research] = await Promise.all([getActiveListings(), getHomeResearch()]);
+  // The wanted strip is decoration here: if its read fails the homepage carries on without it.
+  const [listings, research, wanted] = await Promise.all([
+    getActiveListings(),
+    getHomeResearch(),
+    getOpenWantedPosts(3).catch(() => []),
+  ]);
 
   return (
     <>
@@ -163,6 +170,8 @@ export default async function Home() {
       <ServicesSection />
       {/* Marketplace second — one strong section */}
       <FeaturedListings listings={listings} />
+      {/* Wanted: what members are looking for, some with a finder's fee */}
+      <WantedStrip posts={wanted} />
       {/* Market intelligence — the data moat. Hidden until the comp set can
           answer an ordinary search; see src/lib/features.ts. */}
       {VALUE_GUIDE_PUBLIC && <ValueGuidePreview />}

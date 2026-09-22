@@ -134,6 +134,15 @@ export default async function CategoryPage({ params }: Props) {
         </section>
 
         <section>
+          <h2 className="font-display text-2xl sm:text-3xl mb-5" style={{ color: INK }}>Have this ready when you call</h2>
+          <ul className="grid sm:grid-cols-2 gap-3">
+            {page.ready.map((r) => (
+              <li key={r} className="rounded-xl p-4 leading-relaxed" style={{ background: 'var(--bg-surface)', color: INK }}>{r}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
           <h2 className="font-display text-2xl sm:text-3xl mb-5" style={{ color: INK }}>What to ask before you book</h2>
           <ol className="space-y-3 list-decimal pl-5">
             {page.ask.map((q) => (
@@ -152,6 +161,18 @@ export default async function CategoryPage({ params }: Props) {
               </div>
             ))}
           </div>
+          <p className="text-sm mt-8 leading-relaxed" style={{ color: MUTED }}>
+            General guidance only. Every car, shop and state is different, and none of this is legal, insurance or
+            mechanical advice. When it matters, ask the specialist you hire.
+          </p>
+        </section>
+
+        <section className="rounded-2xl p-6" style={{ border: '1px solid rgba(18,53,42,0.14)' }}>
+          <h2 className="font-display text-xl mb-2" style={{ color: INK }}>Can&apos;t find the right person?</h2>
+          <p className="leading-relaxed" style={{ color: MUTED }}>
+            Put it on the <Link href="/wanted/new" className="underline" style={{ color: TEAL }}>wanted board</Link>. Say what the car needs and
+            where it is, and members who know someone can point you to them.
+          </p>
         </section>
 
         <section>

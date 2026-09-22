@@ -892,3 +892,68 @@ export async function sendProviderApprovedEmail(d: {
     }),
   });
 }
+
+// ─── Wanted board ────────────────────────────────────────────────────────────
+
+const SITE = "https://www.fullysorted.com";
+
+function wantedShell(title: string, inner: string): string {
+  return `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#1a1a18;">
+      <div style="background:#12352A;padding:16px 24px;border-radius:12px 12px 0 0;">
+        <h2 style="color:#fff;margin:0;font-size:20px;">${esc(title)}</h2>
+      </div>
+      <div style="background:#fff;border:1px solid #e5e5e0;border-top:none;border-radius:0 0 12px 12px;padding:24px;font-size:15px;line-height:1.55;">
+        ${inner}
+      </div>
+      <p style="text-align:center;font-size:12px;color:#9a9a8a;margin-top:16px;">Fully Sorted · fullysorted.com · ${esc(POSTAL_ADDRESS)}</p>
+    </div>`;
+}
+
+/** To the admin: a new wanted post is waiting for approval. */
+export async function notifyWantedPost(d: { id: number; kind: string; title: string; body: string; handle: string; email: string; feeText: string | null }) {
+  return sendEmail({
+    subject: `Wanted post to review: ${d.title}`,
+    html: wantedShell("Wanted post waiting for approval", `
+      <p style="margin:0 0 8px;"><strong>${esc(d.title)}</strong> (${esc(d.kind)})</p>
+      <p style="margin:0 0 8px;color:#6b6b5e;">From @${esc(d.handle)} · ${esc(d.email)}</p>
+      ${d.feeText ? `<p style="margin:0 0 8px;">Finder's fee offered: <strong>${esc(d.feeText)}</strong></p>` : ""}
+      <div style="margin:16px 0;padding:16px;background:#f4f6f5;border-radius:8px;white-space:pre-line;">${esc(d.body)}</div>
+      <a href="${SITE}/admin/wanted" style="display:inline-block;background:#1C8C87;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">Review it</a>
+    `),
+  });
+}
+
+/** To the poster: their post is live. Transactional, sent once. */
+export async function sendWantedApproved(d: { to: string; id: number; title: string }) {
+  return sendEmail({
+    to: d.to,
+    subject: `Your wanted post is live: ${d.title}`,
+    html: wantedShell("Your wanted post is live", `
+      <p style="margin:0 0 12px;">"${esc(d.title)}" is on the board for the next 60 days. Replies come to this address. Your email is never shown on the site.</p>
+      <p style="margin:0 0 16px;">When you find what you were after, mark it found so people stop looking.</p>
+      <a href="${SITE}/wanted/${d.id}" style="display:inline-block;background:#1C8C87;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">See your post</a>
+    `),
+  });
+}
+
+/** To the poster: someone replied. Reply-To is the replier, so the two of them talk directly from here. */
+export async function sendWantedReply(d: { to: string; postId: number; postTitle: string; feeText: string | null; fromName: string; fromEmail: string; message: string }) {
+  return sendEmail({
+    to: d.to,
+    replyTo: d.fromEmail,
+    bcc: NOTIFY_TO,
+    subject: `Reply to your wanted post: ${d.postTitle}`,
+    html: wantedShell("Someone replied to your wanted post", `
+      <p style="margin:0 0 8px;color:#6b6b5e;">${esc(d.postTitle)}</p>
+      <p style="margin:0 0 4px;"><strong>${esc(d.fromName)}</strong> · <a href="mailto:${esc(d.fromEmail)}" style="color:#1C8C87;">${esc(d.fromEmail)}</a></p>
+      <div style="margin:16px 0;padding:16px;background:#f4f6f5;border-radius:8px;white-space:pre-line;">${esc(d.message)}</div>
+      <p style="margin:0 0 12px;">Reply to this email to answer them directly.</p>
+      <p style="margin:0;font-size:13px;color:#6b6b5e;">
+        ${d.feeText ? "Any finder's fee is between you and the finder. Fully Sorted does not hold, take or guarantee it. " : ""}
+        Take the usual care: see the car or the work before money moves, and be wary of anyone who asks for a deposit to prove they are serious.
+      </p>
+      <p style="margin:16px 0 0;"><a href="${SITE}/wanted/${d.postId}" style="color:#1C8C87;">View or close your post</a></p>
+    `),
+  });
+}
