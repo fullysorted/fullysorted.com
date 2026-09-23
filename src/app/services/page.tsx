@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
-import { Check } from 'lucide-react';
 import Link from 'next/link';
 import ServicesDirectory from './ServicesDirectory';
 import { getPublishedModels } from '@/lib/data/models';
@@ -19,8 +18,6 @@ const TEAL = '#1C8C87';
 const CREAM = '#FFFFFF';
 const MUTED = '#6B7280';
 const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
-
-const PROOFS = ['Free to browse', 'Specialists apply to be listed', 'Open to every owner'];
 
 // One cached read an hour feeds the search suggestions and the "read the
 // history" link. The directory itself still loads from /api/providers.
@@ -47,16 +44,9 @@ export default async function ServicesPage() {
               Open to anyone who loves collector cars.
             </p>
 
-            <ul className="flex flex-wrap gap-x-6 gap-y-3 mt-7">
-              {PROOFS.map((text) => (
-                <li key={text} className="flex items-center gap-2">
-                  <span className="flex items-center justify-center w-5 h-5 rounded-full shrink-0" style={{ background: '#E6F3F2' }}>
-                    <Check className="w-3 h-3" strokeWidth={3} style={{ color: TEAL }} />
-                  </span>
-                  <span className="text-sm font-semibold" style={{ color: INK }}>{text}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-6 text-sm sm:text-base font-semibold max-w-2xl" style={{ color: INK }}>
+              Find it. Fix it. Drive it.
+            </p>
 
             {/* Provider entry point. This used to live in a nav dropdown next
                 to the visitor links; it belongs here, quietly, on the page
