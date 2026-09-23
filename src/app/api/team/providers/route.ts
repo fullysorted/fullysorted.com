@@ -57,6 +57,10 @@ async function ensureColumns(sql: Awaited<ReturnType<typeof getSql>>) {
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS work_settings JSONB DEFAULT '[]'::JSONB`;
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS team_size VARCHAR(20)`;
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS service_radius_miles INTEGER`;
+  // Work gallery (2026-09-22). instrumentation.ts owns this as an ORM-critical
+  // column; repeated here because this console talks raw SQL and must not 500
+  // on a box where the boot hook has not run yet.
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS gallery JSONB DEFAULT '[]'::JSONB`;
 }
 
 // Shared with the two public apply wizards — see lib/images.ts for why a

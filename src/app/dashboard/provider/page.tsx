@@ -4,12 +4,16 @@ import { useState, useEffect } from 'react';
 import ReviewsPanel from './ReviewsPanel';
 import ClaimExistingListing from './ClaimExistingListing';
 import PhotoUpload from '@/components/media/PhotoUpload';
+import GalleryUpload from '@/components/media/GalleryUpload';
 import WorkSettingsFields from '@/components/provider/WorkSettingsFields';
+import MarqueTags from '@/components/provider/MarqueTags';
 import { normalizeWorkSettings, type WorkSettingKey } from '@/lib/work-settings';
+import { normalizeGallery, GALLERY_MAX, type GalleryPhoto } from '@/lib/gallery';
+import { normalizeMarques } from '@/lib/marques';
 import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 import { motion } from 'framer-motion';
 import { useAuth } from '@clerk/nextjs';
-import { Building2, MapPin, Phone, Globe, AtSign, Save, Loader2, CheckCircle, Clock, AlertCircle, ArrowRight, Sparkles, Tag, DollarSign, Wrench } from 'lucide-react';
+import { Building2, MapPin, Phone, Globe, AtSign, Save, Loader2, CheckCircle, Clock, AlertCircle, ArrowRight, Sparkles, Tag, DollarSign, Wrench, Images, Car } from 'lucide-react';
 import Link from 'next/link';
 import type { ServiceProvider } from '@/lib/db/schema';
 import { PayoutsPanel } from './PayoutsPanel';
@@ -61,6 +65,12 @@ export default function ProviderDashboard() {
     // dashboard had no field for it — so a provider whose listing was created
     // by the team, or claimed with a token, could never add one themselves.
     avatarUrl: '',
+    // Everything after the lead photo. Optional, ordered, captioned.
+    gallery: [] as GalleryPhoto[],
+    // What they work on. The column has existed since 2026-08-25 with no field
+    // behind it, which is why every row is empty. Blank stays a valid answer:
+    // it means "anything", not "unfinished".
+    marques: [] as string[],
     // Where the work happens. Every listing seeded before 2026-08-31 has this
     // blank, and blank is what the directory filter treats as "hasn't said" —
     // so this panel is the route by which an existing shop fills it in.
@@ -90,6 +100,8 @@ export default function ProviderDashboard() {
             yearsInBusiness: data.provider.yearsInBusiness || '',
             priceRange: data.provider.priceRange || '$$',
             avatarUrl: data.provider.avatarUrl || '',
+            gallery: normalizeGallery(data.provider.gallery),
+            marques: normalizeMarques(data.provider.marques),
             workSettings: normalizeWorkSettings(data.provider.workSettings),
             teamSize: data.provider.teamSize || '',
             serviceRadiusMiles:
@@ -520,6 +532,50 @@ export default function ProviderDashboard() {
               </div>
             </div>
           </div>
+        </motion.section>
+
+        {/* What they work on. Sits immediately before the gallery: an owner
+            reads "we do air-cooled Porsche" and then looks at the photos that
+            prove it, which is the order the profile renders in too. */}
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.26, ease: 'easeOut' }}
+          className="bg-white rounded-xl border border-border p-6"
+        >
+          <h2 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
+            <Car className="w-5 h-5 text-accent" /> Cars you work on
+          </h2>
+          <p className="text-sm text-text-secondary mb-5">
+            Tag the marques you want to be known for, or leave it blank if you take anything.
+          </p>
+          <MarqueTags
+            value={form.marques}
+            onChange={(marques) => setForm({ ...form, marques })}
+          />
+        </motion.section>
+
+        {/* Your work — the gallery. Deliberately its own section rather than a
+            field inside "About Your Work": it is the part of the profile an
+            owner actually studies, and burying it under a textarea would say
+            otherwise. */}
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.28, ease: 'easeOut' }}
+          className="bg-white rounded-xl border border-border p-6"
+        >
+          <h2 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
+            <Images className="w-5 h-5 text-accent" /> Your work
+          </h2>
+          <p className="text-sm text-text-secondary mb-5">
+            Up to {GALLERY_MAX} photos on your profile, in the order you set. Your main photo above
+            stays the one that appears in the directory.
+          </p>
+          <GalleryUpload
+            value={form.gallery}
+            onChange={(gallery) => setForm({ ...form, gallery })}
+          />
         </motion.section>
 
         {/* Save */}

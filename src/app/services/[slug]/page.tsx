@@ -10,9 +10,12 @@ import type { ServiceProvider } from '@/lib/db/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 import ProviderInquiryForm from './ProviderInquiryForm';
 import ProviderReviews from './ProviderReviews';
+import ProviderGallery from './ProviderGallery';
 import { ratingDisplay, type PublicReview } from '@/lib/reviews';
 import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 import { normalizeWorkSettings, workSetting, teamSizeLabel } from '@/lib/work-settings';
+import { normalizeGallery } from '@/lib/gallery';
+import { normalizeMarques } from '@/lib/marques';
 
 export const dynamic = 'force-dynamic';
 
@@ -152,7 +155,11 @@ export default async function ProviderProfilePage({ params }: Props) {
   // What this shop says it wants to be sent. All optional, all shop-supplied —
   // nothing here is inferred, and a shop that has told us nothing renders
   // exactly as it did before these fields existed.
-  const marques = provider.marques ?? [];
+  const marques = normalizeMarques(provider.marques);
+  // Normalized on the way out as well as on the way in: rows written before
+  // the validator existed, or by a future admin path, must never hand
+  // next/image a host it will throw on.
+  const gallery = normalizeGallery(provider.gallery);
   const minJobValue = provider.minJobValue ?? null;
   const serviceRadius = provider.serviceRadiusMiles ?? null;
   // Where the work happens — the provider's own answer, and the field that
@@ -187,10 +194,20 @@ export default async function ProviderProfilePage({ params }: Props) {
     description: provider.description,
     url: `https://fullysorted.com/services/${provider.slug}`,
     address: { '@type': 'PostalAddress', addressLocality: formatLocation(provider.location) },
-    knowsAbout: specialties,
+    // Specialties and marques both answer "what is this shop expert in", and
+    // an answer engine asked "who does air-cooled Porsche in San Diego" should
+    // find the marque here, not only in the visible copy.
+    knowsAbout: [...specialties, ...marques],
     priceRange: provider.priceRange ?? '$$',
   };
-  if (provider.avatarUrl) jsonLd.image = provider.avatarUrl;
+  // Lead photo first, then the gallery. Google and the answer engines both
+  // take an array here, and a profile with real work photos on it should say so
+  // in the markup rather than only on the page.
+  const jsonLdImages = [provider.avatarUrl, ...gallery.map((g) => g.url)].filter(
+    (u): u is string => Boolean(u),
+  );
+  if (jsonLdImages.length === 1) jsonLd.image = jsonLdImages[0];
+  else if (jsonLdImages.length > 1) jsonLd.image = jsonLdImages;
   if (provider.phone) jsonLd.telephone = provider.phone;
   if (provider.website) jsonLd.sameAs = [normalizeWebsite(provider.website)];
   // aggregateRating rides the same minimum-n gate as the visible badge. Thin
@@ -382,6 +399,8 @@ export default async function ProviderProfilePage({ params }: Props) {
               </section>
             )}
 
+            <ProviderGallery photos={gallery} businessName={formatBusinessName(provider.businessName)} />
+
             {/* What they take on — the shop's own answers, not our inference. */}
             {hasWorkPrefs && (
               <section className="mb-8">
@@ -404,11 +423,25 @@ export default async function ProviderProfilePage({ params }: Props) {
                       {team}
                     </p>
                   )}
+                  {/* Chips rather than a comma list: a shop that named twelve
+                      marques should scan, not read. Absent is absent — a shop
+                      that named none takes anything and this block never
+                      appears, which is the same promise the dashboard makes. */}
                   {marques.length > 0 && (
-                    <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                    <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                       <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>Marques: </span>
-                      {marques.join(', ')}
-                    </p>
+                      <span className="inline-flex flex-wrap gap-1.5 align-middle mt-1">
+                        {marques.map((m) => (
+                          <span
+                            key={m}
+                            className="text-xs font-medium px-2.5 py-1 rounded-full"
+                            style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                          >
+                            {m}
+                          </span>
+                        ))}
+                      </span>
+                    </div>
                   )}
                   {minJobValue !== null && (
                     <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>

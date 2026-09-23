@@ -348,6 +348,15 @@ export const serviceProviders = pgTable('service_providers', {
   skills: jsonb('skills').$type<string[]>().default([]),
   serviceArea: varchar('service_area', { length: 200 }),
   avatarUrl: text('avatar_url'),
+  /**
+   * The work gallery: [{ url, caption? }], max 12, blob-hosted URLs only.
+   * See lib/gallery.ts, which owns the cap and the validation.
+   *
+   * avatarUrl above stays the single lead image — the card in the directory,
+   * the hero on the profile, the OG image. This is everything after it. A
+   * restoration shop showing one photo was the weakest thing on the profile.
+   */
+  gallery: jsonb('gallery').$type<{ url: string; caption?: string }[]>().default([]),
   // Guided onboarding progress
   onboardingStep: integer('onboarding_step').default(0),
   onboardingComplete: boolean('onboarding_complete').default(false),

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDb, schema } from '@/lib/db';
 import { eq } from 'drizzle-orm';
 import { normalizeWorkSettings, normalizeTeamSize, radiusForSettings } from '@/lib/work-settings';
+import { normalizeGallery } from '@/lib/gallery';
 import { auth } from '@clerk/nextjs/server';
 
 // ─── GET /api/providers/me ──────────────────────────────
@@ -60,7 +61,7 @@ export async function PUT(request: NextRequest) {
       description, specialties, yearsInBusiness, priceRange,
       avatarUrl, headline, serviceArea, skills, hourlyRate,
       acceptingWork, marques, serviceTypes, minJobValue, serviceRadiusMiles,
-      workSettings, teamSize,
+      workSettings, teamSize, gallery,
     } = body;
 
     // ── Work preferences ────────────────────────────────────────────────
@@ -92,6 +93,10 @@ export async function PUT(request: NextRequest) {
     // survive the spread below — hence the explicit undefined check, not `&&`.
     const workSettingsClean =
       workSettings === undefined ? undefined : normalizeWorkSettings(workSettings);
+    // Same rule as workSettings: an empty array is a real answer ("I cleared my
+    // gallery"), so undefined is the only value that means "leave it alone".
+    // normalizeGallery drops anything we do not host — see lib/gallery.ts.
+    const galleryClean = gallery === undefined ? undefined : normalizeGallery(gallery);
     const teamSizeClean = teamSize === undefined ? undefined : normalizeTeamSize(teamSize);
 
     // Only allow editing certain fields (not email, status, verified, etc.)
@@ -141,6 +146,7 @@ export async function PUT(request: NextRequest) {
           ),
         }),
         ...(teamSizeClean !== undefined && { teamSize: teamSizeClean }),
+        ...(galleryClean !== undefined && { gallery: galleryClean }),
         updatedAt: new Date(),
       })
       .where(eq(schema.serviceProviders.id, existing.id))

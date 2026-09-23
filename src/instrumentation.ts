@@ -70,6 +70,11 @@ export async function register() {
     // and render exactly as they do today.
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS work_settings JSONB DEFAULT '[]'::JSONB`;
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS team_size VARCHAR(20)`;
+    // Work gallery (2026-09-22). In schema.ts, therefore ORM-critical: without
+    // it every provider read fails, not just the gallery. Defaults to an empty
+    // array, which renders nothing — a shop with no gallery looks exactly as
+    // it does today.
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS gallery JSONB DEFAULT '[]'::JSONB`;
   } catch (err) {
     console.error(
       '[Fully Sorted] CRITICAL: could not ensure ORM-critical service_providers columns. ' +
