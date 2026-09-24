@@ -4,6 +4,8 @@
  */
 export const seedEliseS2 = {
  "slug": "lotus/elise-s2",
+ "heroPhoto": "/images/models/lotus-elise-s2.jpg",
+ "heroPhotoCredit": "Photo: Handelsgeselschaft, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Lotus",
  "model": "Elise",
  "generation": "Series 2, US market (Toyota-engined)",

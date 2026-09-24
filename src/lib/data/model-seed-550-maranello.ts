@@ -22,7 +22,7 @@ export const seed550Maranello = {
   "5,474 cc Tipo F133 C, the same unit as fitted to the 550 Barchetta Pininfarina, 478 hp at 7,000 rpm, 420 lb-ft at 5,000 rpm"
  ],
  "productionTotal": null,
- "productionNotes": "Sources do not agree on how many 550 Maranello berlinettas were built, and the spread is wide enough that no single figure is asserted. Ferrari's own heritage page gives no total at all; it states that the car was produced between 1996 and 2001 and that all examples fell within the continuous road-car chassis sequence 99928 to 126807, a range shared with every other Ferrari of the period and therefore useless for counting. Wikipedia, Classic & Sports Car, PistonHeads, evo and the specialist R&D Automotive all state 3,083 cars, with Classic & Sports Car, PistonHeads and R&D adding that 457 of those were right-hand drive. Sports Car Market's profile of a Gooding & Company lot and Forza magazine both state 'some 3,600'. RM Sotheby's, in two 2026 catalogues, gives 'approximately 3,000' at Monterey and '3,715 examples from 1996 through 2001' at Arizona. None of these sources explains the basis of its number or addresses the others, so the conflict is recorded rather than resolved. The Barchetta is nearly, but not quite, settled: Ferrari, Wikipedia, classic.com, Gooding, RAC and evo all state 448 numbered production cars, built at Maranello in 2001 with the last leaving in December 2001; Wikipedia and Classic & Sports Car add twelve prototypes (P01 to P12), giving 460 in total; PistonHeads and R&D Automotive state 457, which is not explained by either. The 1999 World Speed Record edition is consistently quoted at 33 cars, of which RM Sotheby's states 23 were left-hand drive. The Prodrive-built 550 GTS racing cars are counted separately at ten by evo, Girardo and Wikipedia.",
+ "productionNotes": "Sources do not agree on how many 550 Maranello berlinettas were built, and the spread is wide enough that no single figure is asserted. Ferrari's own heritage page gives no total at all; it states that the car was produced between 1996 and 2001 and that all examples fell within the continuous road-car chassis sequence 99928 to 126807, a range shared with every other Ferrari of the period and therefore useless for counting. Wikipedia, Classic & Sports Car, PistonHeads, evo and the specialist R&D Automotive all state 3,083 cars, with Classic & Sports Car, PistonHeads and R&D adding that 457 of those were right-hand drive. Sports Car Market's profile of a Gooding & Company lot and Forza magazine both state 'some 3,600'. RM Sotheby's, in two 2026 catalogs, gives 'approximately 3,000' at Monterey and '3,715 examples from 1996 through 2001' at Arizona. None of these sources explains the basis of its number or addresses the others, so the conflict is recorded rather than resolved. The Barchetta is nearly, but not quite, settled: Ferrari, Wikipedia, classic.com, Gooding, RAC and evo all state 448 numbered production cars, built at Maranello in 2001 with the last leaving in December 2001; Wikipedia and Classic & Sports Car add twelve prototypes (P01 to P12), giving 460 in total; PistonHeads and R&D Automotive state 457, which is not explained by either. The 1999 World Speed Record edition is consistently quoted at 33 cars, of which RM Sotheby's states 23 were left-hand drive. The Prodrive-built 550 GTS racing cars are counted separately at ten by evo, Girardo and Wikipedia.",
  "notableTrims": [
   {
    "name": "550 Maranello (1996-2001)",
@@ -34,7 +34,7 @@ export const seed550Maranello = {
   },
   {
    "name": "550 Maranello with Fiorano handling package",
-   "note": "Factory suspension and brake package fitted to the WSR cars and available separately. Cars carrying it are identified in auction catalogues as a distinct and generally preferred specification."
+   "note": "Factory suspension and brake package fitted to the WSR cars and available separately. Cars carrying it are identified in auction catalogs as a distinct and generally preferred specification."
   },
   {
    "name": "550 Barchetta Pininfarina (2001)",
@@ -156,7 +156,7 @@ export const seed550Maranello = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 245, Monterey, August 2026: sold $610,000. Chassis ZFFZR49B000114934, 3,382 miles, Blu NART over Beige, Italian delivery, single owner, Classiche certified 2026, Platinum at Palm Beach Cavallino 2026. Catalogue states 'approximately 3,000 examples built' and fewer than 50 in this color combination; quotes 478 hp."
+   "notes": "Lot 245, Monterey, August 2026: sold $610,000. Chassis ZFFZR49B000114934, 3,382 miles, Blu NART over Beige, Italian delivery, single owner, Classiche certified 2026, Platinum at Palm Beach Cavallino 2026. Catalog states 'approximately 3,000 examples built' and fewer than 50 in this color combination; quotes 478 hp."
   },
   {
    "ref": "rm-mu25-wsr",
@@ -183,7 +183,7 @@ export const seed550Maranello = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 146, Arizona, January 2026: sold $274,400. Chassis ZFFZS49A210124990, under 30,000 miles, Blu Pozzi over beige, delivered to Ferrari of Scottsdale July 2001, engine rebuilt 2018 at $25,402, belts October 2025. Catalogue states 'Ferrari produced 3,715 examples from 1996 through 2001', conflicting with the same house's Monterey 2026 figure."
+   "notes": "Lot 146, Arizona, January 2026: sold $274,400. Chassis ZFFZS49A210124990, under 30,000 miles, Blu Pozzi over beige, delivered to Ferrari of Scottsdale July 2001, engine rebuilt 2018 at $25,402, belts October 2025. Catalog states 'Ferrari produced 3,715 examples from 1996 through 2001', conflicting with the same house's Monterey 2026 figure."
   },
   {
    "ref": "gooding-am22-barchetta",
@@ -389,7 +389,7 @@ export const seed550Maranello = {
     "rm-mo26",
     "rm-az26"
    ],
-   "conflictNote": "Wikipedia, Classic & Sports Car, PistonHeads, evo and R&D Automotive state 3,083 (457 RHD). Sports Car Market and Forza state 'some 3,600'. RM Sotheby's Monterey 2026 catalogue states 'approximately 3,000'; RM Sotheby's Arizona 2026 catalogue states 3,715. Ferrari states only the chassis range 99928-126807. Not resolved by any source consulted here, so productionTotal is null."
+   "conflictNote": "Wikipedia, Classic & Sports Car, PistonHeads, evo and R&D Automotive state 3,083 (457 RHD). Sports Car Market and Forza state 'some 3,600'. RM Sotheby's Monterey 2026 catalog states 'approximately 3,000'; RM Sotheby's Arizona 2026 catalog states 3,715. Ferrari states only the chassis range 99928-126807. Not resolved by any source consulted here, so productionTotal is null."
   },
   {
    "section": "production",

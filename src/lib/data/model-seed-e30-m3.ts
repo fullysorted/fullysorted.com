@@ -66,7 +66,7 @@ export const seedE30M3 = {
     'Top speed': '~146 mph standard; ~154 mph Sport Evo',
     'Drag coefficient': '~0.33 (down from ~0.38 on the standard E30 coupe)',
     'Brakes': 'Four-wheel discs with Bosch ABS, derived from the E28 5 Series',
-    'Bodywork': 'Bespoke vs standard E30: widened fenders front and rear, deeper valences, extended sills, re-angled rear glass via a reshaped C-pillar, taller bootlid and rear spoiler. Only the hood, roof panel and sunroof are commonly cited as shared with the regular E30 coupe.',
+    'Bodywork': 'Bespoke vs standard E30: widened fenders front and rear, deeper valences, extended sills, re-angled rear glass via a reshaped C-pillar, taller trunk lid and rear spoiler. Only the hood, roof panel and sunroof are commonly cited as shared with the regular E30 coupe.',
   },
   heroPhoto: "/images/models/bmw-m3-e30.jpg" as string | null,
   heroPhotoCredit: "Photo: MrWalkr, CC BY-SA 4.0, via Wikimedia Commons" as string | null,
@@ -88,7 +88,7 @@ Rather than start from one of BMW's straight-sixes, engineer Paul Rosche built t
 
 ## Bodywork that only looks like a 3 Series
 
-From a distance the M3 reads as an E30 coupe, but very little of the skin is shared. BMW widened the fenders front and rear to cover motorsport rubber, fitted deeper bumper valences and extended sills, reshaped the C-pillar to re-angle the rear glass, and added a taller bootlid with a prominent spoiler - changes that dropped the drag coefficient from roughly 0.38 to about 0.33. Most accounts say only the hood, roof and sunroof carry over from the standard car. Underneath were five-lug hubs, bigger anti-roll bars, stiffer lowered springs, a limited-slip differential and E28-sourced four-wheel discs with ABS.
+From a distance the M3 reads as an E30 coupe, but very little of the skin is shared. BMW widened the fenders front and rear to cover motorsport rubber, fitted deeper bumper valences and extended sills, reshaped the C-pillar to re-angle the rear glass, and added a taller trunk lid with a prominent spoiler - changes that dropped the drag coefficient from roughly 0.38 to about 0.33. Most accounts say only the hood, roof and sunroof carry over from the standard car. Underneath were five-lug hubs, bigger anti-roll bars, stiffer lowered springs, a limited-slip differential and E28-sourced four-wheel discs with ABS.
 
 ## The Evolutions
 
@@ -222,7 +222,7 @@ These are directional, date-stamped observations - a snapshot, not a price quote
     {
       section: 'specs',
       claimText:
-        'The M3 has bespoke bodywork versus a standard E30 coupe - widened fenders, deeper valences, extended sills, a reshaped C-pillar with re-angled rear glass, and a taller bootlid/spoiler - cutting drag from ~0.38 to ~0.33; only the hood, roof and sunroof are commonly cited as carried over.',
+        'The M3 has bespoke bodywork versus a standard E30 coupe - widened fenders, deeper valences, extended sills, a reshaped C-pillar with re-angled rear glass, and a taller trunk lid/spoiler - cutting drag from ~0.38 to ~0.33; only the hood, roof and sunroof are commonly cited as carried over.',
       confidence: 'high',
       status: 'verified',
       sourceRefs: ['hagerty', 'bmw-m'],

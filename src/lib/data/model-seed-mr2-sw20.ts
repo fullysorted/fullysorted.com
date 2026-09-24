@@ -4,6 +4,8 @@
  */
 export const seedMr2Sw20 = {
  "slug": "toyota/mr2-sw20",
+ "heroPhoto": "/images/models/toyota-mr2-sw20.jpg",
+ "heroPhotoCredit": "Photo: Nbvolks, CC BY-SA 3.0, via Wikimedia Commons",
  "make": "Toyota",
  "model": "MR2",
  "generation": null,

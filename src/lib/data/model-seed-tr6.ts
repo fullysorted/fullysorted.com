@@ -103,7 +103,7 @@ export const seedTr6 = {
    "publisher": "Ate Up With Motor",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Names Gerhard Giesecke of Karmann as the TR6 designer, with North American input, clay to production in a little over a year on a retained frame; gives 94,619 total and peak North American sales around 14,000 in 1974; states the 1973 injected re-rating to 124 hp followed rough-idle complaints and used the shorter-duration federal camshaft; California cars ran a single carburettor; attributes the one-piece hardtop to Triumph's in-house styling team."
+   "notes": "Names Gerhard Giesecke of Karmann as the TR6 designer, with North American input, clay to production in a little over a year on a retained frame; gives 94,619 total and peak North American sales around 14,000 in 1974; states the 1973 injected re-rating to 124 hp followed rough-idle complaints and used the shorter-duration federal camshaft; California cars ran a single carburetor; attributes the one-piece hardtop to Triumph's in-house styling team."
   },
   {
    "ref": "autoexpress-tr6",
@@ -148,7 +148,7 @@ export const seedTr6 = {
    "publisher": "Vintage Triumph Register",
    "sourceType": "registry",
    "reliability": "medium",
-   "notes": "Club registry: 91,850 built of which 86,249 exported and 8,370 sold in the UK - figures that do not reconcile with each other; 2,498 cc six; 150 hp PI reduced to 125 hp in 1973, 104 hp US carburettor; compression lowered from 8.5:1 to 7.75:1 in 1972; 1973 restyle with air dam and J-type overdrive; 1975 rubber overriders and air injection; names thrust washers as the biggest engine failure point and frame rot at trailing arm mounts."
+   "notes": "Club registry: 91,850 built of which 86,249 exported and 8,370 sold in the UK - figures that do not reconcile with each other; 2,498 cc six; 150 hp PI reduced to 125 hp in 1973, 104 hp US carburetor; compression lowered from 8.5:1 to 7.75:1 in 1972; 1973 restyle with air dam and J-type overdrive; 1975 rubber overriders and air injection; names thrust washers as the biggest engine failure point and frame rot at trailing arm mounts."
   },
   {
    "ref": "rimmer-tr6-info",
@@ -220,7 +220,7 @@ export const seedTr6 = {
    "publisher": "Wikipedia",
    "sourceType": "encyclopedia",
    "reliability": "medium",
-   "notes": "Establishes the TR6's direct parentage: Lucas mechanical fuel injection rated 150 hp on the TR5, twin Zenith-Stromberg carburettors on the North American TR250 at 111 hp and 10.6 s to 60 mph, Michelotti TR4-derived bodywork, and volumes of 2,947 TR5 and 8,484 TR250 between August 1967 and September 1968."
+   "notes": "Establishes the TR6's direct parentage: Lucas mechanical fuel injection rated 150 hp on the TR5, twin Zenith-Stromberg carburetors on the North American TR250 at 111 hp and 10.6 s to 60 mph, Michelotti TR4-derived bodywork, and volumes of 2,947 TR5 and 8,484 TR250 between August 1967 and September 1968."
   },
   {
    "ref": "curbside-rt-1969",
@@ -229,7 +229,7 @@ export const seedTr6 = {
    "publisher": "Curbside Classic",
    "sourceType": "journalism",
    "reliability": "medium",
-   "notes": "Reprints and discusses the Road & Track test of the 1969 US carburettor car: 104 hp, 0-60 in 10.7 s, standing quarter in 17.9 s, 109 mph; notes R&T's view that the deficit against the 150 hp European car did not spoil the car, and that Lucas mechanical injection could not be metered precisely enough for US emissions law."
+   "notes": "Reprints and discusses the Road & Track test of the 1969 US carburetor car: 104 hp, 0-60 in 10.7 s, standing quarter in 17.9 s, 109 mph; notes R&T's view that the deficit against the 150 hp European car did not spoil the car, and that Lucas mechanical injection could not be metered precisely enough for US emissions law."
   },
   {
    "ref": "motorsport-1974-longterm",

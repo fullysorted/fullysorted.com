@@ -25,7 +25,7 @@ export const seedThunderbird1stGen = {
   "5,113 cc (312 cu in) F-code Y-block V8 with a McCulloch/Paxton VR57 centrifugal supercharger, single four-barrel carburetor, reinforced heads and 8.5:1 compression, factory-rated 300 hp, with a 340 hp competition version listed for 1957"
  ],
  "productionTotal": null,
- "productionNotes": "The three model-year figures are consistent across almost every source consulted: 16,155 for 1955, 15,631 for 1956 and 21,380 for 1957, giving 53,166 two-seat Thunderbirds, all assembled at Dearborn. Two things stop that being asserted here as a flat total. First, Old Cars Weekly gives 16,156 for 1955 where Wikipedia, CTCI, Ate Up With Motor and Curbside Classic all give 16,155, which would put the run at 53,167. Second, and more substantially, the supercharged F-code count for 1957 is not settled. Old Cars Weekly states 196 F-code engines built from the spring of 1957, and separately describes the official total of 211 superchargers across the D and F series as an approximation, noting roughly fifteen D-code cars fitted with Paxton-McCulloch units and known in the trade as DFs. Ate Up With Motor gives 208. RM Sotheby's catalogued a car in 2014 as one of 'some 208-211' and another in 2023 as one of 'approximately 200'. Sports Car Market gives approximately 212, as does Autoblog. Sports Car Market also explains why the list moves at all: D-code cars converted to supercharged specification are counted by some experts and not by others.\n\nThe 1957 model year ran long. The four-seat 1958 car was late, so two-seat production continued into December 1957, which is why the final year is the strongest of the three rather than the weakest. Hyman Ltd states 1,449 E-code cars for 1957; no independent second figure for that variant was located here.",
+ "productionNotes": "The three model-year figures are consistent across almost every source consulted: 16,155 for 1955, 15,631 for 1956 and 21,380 for 1957, giving 53,166 two-seat Thunderbirds, all assembled at Dearborn. Two things stop that being asserted here as a flat total. First, Old Cars Weekly gives 16,156 for 1955 where Wikipedia, CTCI, Ate Up With Motor and Curbside Classic all give 16,155, which would put the run at 53,167. Second, and more substantially, the supercharged F-code count for 1957 is not settled. Old Cars Weekly states 196 F-code engines built from the spring of 1957, and separately describes the official total of 211 superchargers across the D and F series as an approximation, noting roughly fifteen D-code cars fitted with Paxton-McCulloch units and known in the trade as DFs. Ate Up With Motor gives 208. RM Sotheby's cataloged a car in 2014 as one of 'some 208-211' and another in 2023 as one of 'approximately 200'. Sports Car Market gives approximately 212, as does Autoblog. Sports Car Market also explains why the list moves at all: D-code cars converted to supercharged specification are counted by some experts and not by others.\n\nThe 1957 model year ran long. The four-seat 1958 car was late, so two-seat production continued into December 1957, which is why the final year is the strongest of the three rather than the weakest. Hyman Ltd states 1,449 E-code cars for 1957; no independent second figure for that variant was located here.",
  "notableTrims": [
   {
    "name": "1955 Thunderbird",
@@ -137,7 +137,7 @@ export const seedThunderbird1stGen = {
    "publisher": "Ford Thunderbird Forum",
    "sourceType": "club-forum",
    "reliability": "low",
-   "notes": "Owner discussion used only for fault and inspection patterns, never figures: probing the frame on a lift, door pillar and hinge flex as a structural-rust indicator, inner rockers and floors, undercoating concealing rot, overheating described as common, first-hand power brake booster failure, carburettor originality."
+   "notes": "Owner discussion used only for fault and inspection patterns, never figures: probing the frame on a lift, door pillar and hinge flex as a structural-rust indicator, inner rockers and floors, undercoating concealing rot, overheating described as common, first-hand power brake booster failure, carburetor originality."
   },
   {
    "ref": "oldcars-fcode",
@@ -191,7 +191,7 @@ export const seedThunderbird1stGen = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $137,500 at Hershey in 2014. Chassis F7FH394793, invoice $3,538.53, build sheet reading '312 4V Supercharged Eng.'. Catalogue states about 14 cars built for NASCAR homologation in early 1957 and F-code cars said to number some 208-211, at 300 hp."
+   "notes": "Sold for $137,500 at Hershey in 2014. Chassis F7FH394793, invoice $3,538.53, build sheet reading '312 4V Supercharged Eng.'. Catalog states about 14 cars built for NASCAR homologation in early 1957 and F-code cars said to number some 208-211, at 300 hp."
   },
   {
    "ref": "rm-am23-fcode",
@@ -200,7 +200,7 @@ export const seedThunderbird1stGen = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $224,000 at Amelia Island in 2023. Chassis F7FH339026, described as one of approximately 200 F-Code Thunderbirds for 1957, with a McCulloch/Paxton VR57 supercharger and the 300 hp rating called questionable, the catalogue stating that period tests and Paxton Products itself put the figure closer to 400."
+   "notes": "Sold for $224,000 at Amelia Island in 2023. Chassis F7FH339026, described as one of approximately 200 F-Code Thunderbirds for 1957, with a McCulloch/Paxton VR57 supercharger and the 300 hp rating called questionable, the catalog stating that period tests and Paxton Products itself put the figure closer to 400."
   },
   {
    "ref": "rm-dd24-1956",
@@ -209,7 +209,7 @@ export const seedThunderbird1stGen = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $56,000 from the Dare to Dream Collection in 2024. Chassis P6FH349821, 225-horsepower Thunderbird Special V-8 with Fordomatic, white porthole hardtop. Catalogue confirms the 1956-only combination of small front-wing vents, A-pillar wind wings and the Continental-kit rear-mounted spare."
+   "notes": "Sold for $56,000 from the Dare to Dream Collection in 2024. Chassis P6FH349821, 225-horsepower Thunderbird Special V-8 with Fordomatic, white porthole hardtop. Catalog confirms the 1956-only combination of small front-wing vents, A-pillar wind wings and the Continental-kit rear-mounted spare."
   },
   {
    "ref": "rm-pg19-1955",
@@ -218,7 +218,7 @@ export const seedThunderbird1stGen = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for 48,875 euros from the Saragga Collection in 2019. Chassis P5FH179204. Catalogue states 16,155 built for 1955, the 1954 Detroit show introduction, the 9 September 1954 first car and 22 October public introduction, and that unlike the Corvette the Thunderbird was a personal luxury car establishing that segment in America."
+   "notes": "Sold for 48,875 euros from the Saragga Collection in 2019. Chassis P5FH179204. Catalog states 16,155 built for 1955, the 1954 Detroit show introduction, the 9 September 1954 first car and 22 October public introduction, and that unlike the Corvette the Thunderbird was a personal luxury car establishing that segment in America."
   },
   {
    "ref": "hyman-1957-ecode",
@@ -350,7 +350,7 @@ export const seedThunderbird1stGen = {
     "scm-fcode",
     "autoblog-final-week"
    ],
-   "conflictNote": "Old Cars Weekly and TopSpeed each state 196 F-code engines. Ate Up With Motor states 208. RM Sotheby's catalogued a car in 2014 as one of 'some 208-211' and another in 2023 as one of 'approximately 200'. Sports Car Market gives approximately 212, as does Autoblog. Old Cars Weekly offers a partial reconciliation - 196 F-codes plus about fifteen supercharged D-code 'DF' cars against an official approximation of 211 blowers across both series - and Sports Car Market notes that converted Code-D/F cars are counted by some experts and not others. No source consulted here resolves the spread, so productionTotal is left null."
+   "conflictNote": "Old Cars Weekly and TopSpeed each state 196 F-code engines. Ate Up With Motor states 208. RM Sotheby's cataloged a car in 2014 as one of 'some 208-211' and another in 2023 as one of 'approximately 200'. Sports Car Market gives approximately 212, as does Autoblog. Old Cars Weekly offers a partial reconciliation - 196 F-codes plus about fifteen supercharged D-code 'DF' cars against an official approximation of 211 blowers across both series - and Sports Car Market notes that converted Code-D/F cars are counted by some experts and not others. No source consulted here resolves the spread, so productionTotal is left null."
   },
   {
    "section": "production",
@@ -400,7 +400,7 @@ export const seedThunderbird1stGen = {
     "oldcars-fcode",
     "ctci-thunderbird"
    ],
-   "conflictNote": "Wikipedia gives 300 hp at 4,800 rpm with 439 lb-ft at 2,600 rpm. Over-Drive Magazine gives 300 hp at 5,000 rpm with 340 lb-ft at 5,300 rpm. RM Sotheby's Amelia Island 2023 catalogue calls the 300 hp rating questionable and states that period tests and Paxton Products itself put the figure closer to 400. TopSpeed reports anecdotal claims of about 360 hp, Old Cars Weekly gives 325 to 340 after tuning, and CTCI gives a 300-360 hp range. These figures are not resolved by any source consulted here, so no single output is asserted."
+   "conflictNote": "Wikipedia gives 300 hp at 4,800 rpm with 439 lb-ft at 2,600 rpm. Over-Drive Magazine gives 300 hp at 5,000 rpm with 340 lb-ft at 5,300 rpm. RM Sotheby's Amelia Island 2023 catalog calls the 300 hp rating questionable and states that period tests and Paxton Products itself put the figure closer to 400. TopSpeed reports anecdotal claims of about 360 hp, Old Cars Weekly gives 325 to 340 after tuning, and CTCI gives a 300-360 hp range. These figures are not resolved by any source consulted here, so no single output is asserted."
   },
   {
    "section": "specs",

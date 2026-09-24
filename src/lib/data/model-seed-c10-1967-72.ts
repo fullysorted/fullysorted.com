@@ -4,6 +4,8 @@
  */
 export const seedC10ActionLine = {
  "slug": "chevrolet/c10-1967-72",
+ "heroPhoto": "/images/models/chevrolet-c10-1967-72.jpg",
+ "heroPhotoCredit": "Photo: Joost J. Bakker from IJmuiden, CC BY 2.0, via Wikimedia Commons",
  "make": "Chevrolet",
  "model": "C10",
  "generation": null,

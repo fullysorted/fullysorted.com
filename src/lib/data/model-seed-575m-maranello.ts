@@ -4,6 +4,8 @@
  */
 export const seed575mMaranello = {
  "slug": "ferrari/575m-maranello",
+ "heroPhoto": "/images/models/ferrari-575m-maranello.jpg",
+ "heroPhotoCredit": "Photo: Alexandre Prévot from Nancy, France, CC BY-SA 2.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "575M Maranello",
  "generation": null,

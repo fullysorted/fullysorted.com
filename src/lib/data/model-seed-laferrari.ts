@@ -4,6 +4,8 @@
  */
 export const seedLaFerrari = {
  "slug": "ferrari/laferrari",
+ "heroPhoto": "/images/models/ferrari-laferrari.jpg",
+ "heroPhotoCredit": "Photo: Axion23, CC BY 2.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "LaFerrari",
  "generation": null,

@@ -32,7 +32,7 @@ export const seedPantera = {
   },
   {
    "name": "Pantera L (Lusso, 1972-74)",
-   "note": "The federalized rework: large black impact bumpers adding roughly 200 lb, better trim, compression down to 8.0:1 and around 248-264 hp. RM Sotheby's catalogues it as significantly better built than earlier cars, and it is the version most American buyers meet."
+   "note": "The federalized rework: large black impact bumpers adding roughly 200 lb, better trim, compression down to 8.0:1 and around 248-264 hp. RM Sotheby's catalogs it as significantly better built than earlier cars, and it is the version most American buyers meet."
   },
   {
    "name": "Pantera GTS (US, 1974)",
@@ -211,7 +211,7 @@ export const seedPantera = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $246,400 at Monterey, August 2025, lot 176. Chassis THPNNE06879, 213 miles from new, sold new by Leith Lincoln-Mercury of Greensboro in February 1975. Catalogue states one of only 3,500 reportedly produced for the US market and describes the Pantera L as significantly better built than earlier cars."
+   "notes": "Sold $246,400 at Monterey, August 2025, lot 176. Chassis THPNNE06879, 213 miles from new, sold new by Leith Lincoln-Mercury of Greensboro in February 1975. Catalog states one of only 3,500 reportedly produced for the US market and describes the Pantera L as significantly better built than earlier cars."
   },
   {
    "ref": "rm-am19-gt5",
@@ -220,7 +220,7 @@ export const seedPantera = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $140,000 at Amelia Island, 2019, lot 120. Chassis THPNCT09334, fiberglass flares, spoilers and rear wing on gold Campagnolo wheels. Catalogue records George Stauffer taking on GT5 importation in the early 1980s after Ford ceased US imports in 1975."
+   "notes": "Sold $140,000 at Amelia Island, 2019, lot 120. Chassis THPNCT09334, fiberglass flares, spoilers and rear wing on gold Campagnolo wheels. Catalog records George Stauffer taking on GT5 importation in the early 1980s after Ford ceased US imports in 1975."
   },
   {
    "ref": "rm-pa26-group4",
@@ -238,7 +238,7 @@ export const seedPantera = {
    "publisher": "Iconic Auctioneers",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold GBP 157,500 at the Silverstone Classic Sale, Stoneleigh Park, 25 July 2015. Chassis 874/L/THPNHM09534, 39,076 miles. Catalogue states the S denotes steel construction of the blended arches, that this was one of only 17 right-hand-drive cars from a factory total of 187 GT5-S sold worldwide, and that 7,260 Panteras were built 1971-1992."
+   "notes": "Sold GBP 157,500 at the Silverstone Classic Sale, Stoneleigh Park, 25 July 2015. Chassis 874/L/THPNHM09534, 39,076 miles. Catalog states the S denotes steel construction of the blended arches, that this was one of only 17 right-hand-drive cars from a factory total of 187 GT5-S sold worldwide, and that 7,260 Panteras were built 1971-1992."
   },
   {
    "ref": "classic-pantera",
@@ -369,7 +369,7 @@ export const seedPantera = {
     "hagerty-values",
     "forum-production-history"
    ],
-   "conflictNote": "Wikipedia and the Iconic Auctioneers catalogue both state 7,260 built 1971-1992, the figure attributed to De Tomaso. Hagerty states about 7,200. A De Tomaso Forum reconstruction of the chassis sequence gives 7,082. The 9000-series chassis restart and the succession of three coachbuilders are plausible causes, but no source consulted resolves the difference, so productionTotal is left null."
+   "conflictNote": "Wikipedia and the Iconic Auctioneers catalog both state 7,260 built 1971-1992, the figure attributed to De Tomaso. Hagerty states about 7,200. A De Tomaso Forum reconstruction of the chassis sequence gives 7,082. The 9000-series chassis restart and the succession of three coachbuilders are plausible causes, but no source consulted resolves the difference, so productionTotal is left null."
   },
   {
    "section": "production",

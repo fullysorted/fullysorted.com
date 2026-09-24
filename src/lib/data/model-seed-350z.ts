@@ -4,6 +4,8 @@
  */
 export const seed350z = {
  "slug": "nissan/350z",
+ "heroPhoto": "/images/models/nissan-350z.jpg",
+ "heroPhotoCredit": "Photo: Vauxford, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Nissan",
  "model": "350Z",
  "generation": null,

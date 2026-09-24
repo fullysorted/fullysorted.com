@@ -106,7 +106,7 @@ function ModelUnavailable() {
           <AlertTriangle className="w-8 h-8 mx-auto mb-4" style={{ color: "#cfcabb" }} />
           <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>This history could not be loaded</p>
           <p className="text-sm max-w-md mx-auto" style={{ color: "#9a9a8a" }}>
-            The page exists — the research database did not answer. Reloading in
+            The page exists. The research database did not answer. Reloading in
             a few minutes will usually be enough.
           </p>
         </div>
@@ -321,7 +321,7 @@ export default async function ModelPage({ params }: Props) {
                       ) : (
                         <span className="font-medium" style={{ color: "#1a1a18" }}>{s.title}</span>
                       )}
-                      {s.publisher && <span> — {s.publisher}</span>}
+                      {s.publisher && <span>, {s.publisher}</span>}
                       {s.source_type && <span style={{ color: "#9a9a8a" }}> · {s.source_type}</span>}
                     </li>
                   ))}
@@ -366,7 +366,7 @@ export default async function ModelPage({ params }: Props) {
             {/* ── Nerd Notes ────────────────────────────────────────────────
                 Owner contributions, approved by Chris. Rendered after the
                 sources and in a visually distinct card so they never read as
-                part of the cited research above — the pages promise
+                part of the cited research above; the pages promise
                 cross-checked facts, and community input is a different kind
                 of claim with a different warrant. */}
             <section className="mt-10">
@@ -396,7 +396,7 @@ export default async function ModelPage({ params }: Props) {
                         {c.body}
                       </p>
                       <p className="text-xs mt-2.5" style={{ color: "#8a6d1f" }}>
-                        — {c.submitter_name || "Anonymous"}
+                        {c.submitter_name || "Anonymous"}
                         {c.submitter_credential ? `, ${c.submitter_credential}` : ""}
                         {c.kind === "correction" ? " · correction accepted" : ""}
                       </p>
@@ -488,7 +488,7 @@ export default async function ModelPage({ params }: Props) {
                       </div>
                     ) : (
                       <p className="text-xs" style={{ color: "#6b6b5e" }}>
-                        {snapshot.count} recorded sales — too few for a median worth standing behind, so here is the range instead.
+                        {snapshot.count} recorded sales, too few for a median worth standing behind, so here is the range instead.
                       </p>
                     )}
                     {snapshot.low != null && snapshot.high != null && (
@@ -509,7 +509,7 @@ export default async function ModelPage({ params }: Props) {
               </div>
             )}
             {/* The other two doors. A model page that ends in a full stop is a
-                dead end — it should open onto the specialists who work on this
+                dead end; it should open onto the specialists who work on this
                 car and the kit for the state it is in. */}
             <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
               <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6b6b5e" }}>Next</p>

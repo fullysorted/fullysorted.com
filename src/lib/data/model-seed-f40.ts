@@ -21,7 +21,7 @@ export const seedF40 = {
   "2,936 cc Tipo F120 D twin-turbocharged V8 with catalytic converters and revised intake valve timing, quoted at ~484 hp from 1991"
  ],
  "productionTotal": null,
- "productionNotes": "Sources do not agree on the exact total. Ferrari's own model page and the specialist reference at Supercar Nostalgia both state 1,311 cars, with a chassis range running from 76624 to 95317. RM Sotheby's catalogue entries, classic.com and Auto Express all state 1,315. The four-car difference is small but real and is not resolved by any source consulted here, so no single figure is asserted. Both camps agree the run was originally planned at around 400 cars and expanded roughly threefold as orders escalated, and that 213 examples were built to US federalized specification. All production cars were left-hand drive; approximately seven right-hand-drive conversions were carried out by Pininfarina for the Sultan of Brunei. The first fifty or so cars used sliding Lexan/Plexiglas side windows before conventional wind-down glass was adopted. Catalytic converters and an optional hydraulically raised suspension arrived in 1991, making 'non-cat, non-adjust' the shorthand for the earlier and generally more sought-after specification. Race-derived variants (LM, Competizione, GT, GTE) were built in small numbers largely by Michelotto and are counted separately from the road-car run; source counts for these vary widely.",
+ "productionNotes": "Sources do not agree on the exact total. Ferrari's own model page and the specialist reference at Supercar Nostalgia both state 1,311 cars, with a chassis range running from 76624 to 95317. RM Sotheby's catalog entries, classic.com and Auto Express all state 1,315. The four-car difference is small but real and is not resolved by any source consulted here, so no single figure is asserted. Both camps agree the run was originally planned at around 400 cars and expanded roughly threefold as orders escalated, and that 213 examples were built to US federalized specification. All production cars were left-hand drive; approximately seven right-hand-drive conversions were carried out by Pininfarina for the Sultan of Brunei. The first fifty or so cars used sliding Lexan/Plexiglas side windows before conventional wind-down glass was adopted. Catalytic converters and an optional hydraulically raised suspension arrived in 1991, making 'non-cat, non-adjust' the shorthand for the earlier and generally more sought-after specification. Race-derived variants (LM, Competizione, GT, GTE) were built in small numbers largely by Michelotto and are counted separately from the road-car run; source counts for these vary widely.",
  "notableTrims": [
   {
    "name": "F40 (European, non-cat / non-adjust)",
@@ -137,7 +137,7 @@ export const seedF40 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $8,365,000 at Monterey, August 2026. Chassis 87345, 94th of 213 US-market cars, catalyzed, non-adjustable suspension, 320 miles, delivered new to Lee Iacocca. Catalogue states 400 planned and 1,315 built."
+   "notes": "Sold $8,365,000 at Monterey, August 2026. Chassis 87345, 94th of 213 US-market cars, catalyzed, non-adjustable suspension, 320 miles, delivered new to Lee Iacocca. Catalog states 400 planned and 1,315 built."
   },
   {
    "ref": "rm-mo25-noncat",
@@ -146,7 +146,7 @@ export const seedF40 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $3,855,000, Monterey August 2025. European non-cat, non-adjust car, ~224 miles from new, 35 years single static ownership, original 1989 date-coded tires. Catalogue notes early non-cat/non-adjust cars command a premium; states 1,315 built."
+   "notes": "Sold $3,855,000, Monterey August 2025. European non-cat, non-adjust car, ~224 miles from new, 35 years single static ownership, original 1989 date-coded tires. Catalog notes early non-cat/non-adjust cars command a premium; states 1,315 built."
   },
   {
    "ref": "rm-mi25-classiche",
@@ -268,7 +268,7 @@ export const seedF40 = {
     "autoexpress-guide",
     "classic-f40"
    ],
-   "conflictNote": "Ferrari's own model page (with chassis range 76624-95317) and Supercar Nostalgia both state 1,311. RM Sotheby's catalogue entries, Auto Express and classic.com all state 1,315. The discrepancy is not explained by any source consulted, so productionTotal is left null."
+   "conflictNote": "Ferrari's own model page (with chassis range 76624-95317) and Supercar Nostalgia both state 1,311. RM Sotheby's catalog entries, Auto Express and classic.com all state 1,315. The discrepancy is not explained by any source consulted, so productionTotal is left null."
   },
   {
    "section": "production",

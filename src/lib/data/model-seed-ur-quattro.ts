@@ -24,7 +24,7 @@ export const seedUrQuattro = {
   "2,133 cc KW all-alloy turbocharged inline five, DOHC 20-valve, KKK K27 at 1.2 bar, 306 hp at 6,700 rpm - Sport quattro only"
  ],
  "productionTotal": 11452,
- "productionNotes": "The long-wheelbase road car carries one of the better-documented totals of its era: 11,452 cars between the March 1980 Geneva launch and the last example on 17 May 1991. Audi's own fortieth-anniversary material, Wikipedia and the Classics World and Octane buying guides all give that figure, and the year-by-year table at ableitet.no (292 in 1980, then 1,956, 1,935, 1,455, 1,567, 1,530, 774, 435, 610, 462, 413 and 23 in 1991) sums to exactly 11,452. Audi states the run was originally planned at around 400 cars. North American supply was small - 664 to the United States and 99 to Canada, all with the detuned 160 hp WX engine - and right-hand drive did not begin until October 1982.\n\nTwo sub-counts are not settled. The 20-valve RR run is given as 934 cars built between August 1989 and 17 May 1991 by Supercar Nostalgia, while the ableitet.no year table shows 462, 413 and 23 for 1989-91, which is 898; 1989 was a split year in which ten-valve cars were still delivered, so the two cannot be reconciled without knowing where each drew the line. The Sport quattro is worse: Audi and most specialists say 214, Wikipedia and Hagerty say 224, Sports Car Market splits 214 into 164 road cars and 50 competition cars, and RM Sotheby's has catalogued the model variously as one of 214, one of 164, and 214 built of which 161 were road versions. The Group 4 and Group B works cars - A1, A2, S1 and S1 E2 - were built and rebuilt on a separate program and belong to none of these totals.",
+ "productionNotes": "The long-wheelbase road car carries one of the better-documented totals of its era: 11,452 cars between the March 1980 Geneva launch and the last example on 17 May 1991. Audi's own fortieth-anniversary material, Wikipedia and the Classics World and Octane buying guides all give that figure, and the year-by-year table at ableitet.no (292 in 1980, then 1,956, 1,935, 1,455, 1,567, 1,530, 774, 435, 610, 462, 413 and 23 in 1991) sums to exactly 11,452. Audi states the run was originally planned at around 400 cars. North American supply was small - 664 to the United States and 99 to Canada, all with the detuned 160 hp WX engine - and right-hand drive did not begin until October 1982.\n\nTwo sub-counts are not settled. The 20-valve RR run is given as 934 cars built between August 1989 and 17 May 1991 by Supercar Nostalgia, while the ableitet.no year table shows 462, 413 and 23 for 1989-91, which is 898; 1989 was a split year in which ten-valve cars were still delivered, so the two cannot be reconciled without knowing where each drew the line. The Sport quattro is worse: Audi and most specialists say 214, Wikipedia and Hagerty say 224, Sports Car Market splits 214 into 164 road cars and 50 competition cars, and RM Sotheby's has cataloged the model variously as one of 214, one of 164, and 214 built of which 161 were road versions. The Group 4 and Group B works cars - A1, A2, S1 and S1 E2 - were built and rebuilt on a separate program and belong to none of these totals.",
  "notableTrims": [
   {
    "name": "quattro (WR, 1980-1988)",
@@ -215,7 +215,7 @@ export const seedUrQuattro = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $643,000 at Monterey 2025, chassis WAUZZZ85ZEA905037. Catalogue states 'one of only 164 Sport quattros produced'. Engine reworked by Heinz Lehmann to 435 hp - evidence of how heavily modified some survivors are."
+   "notes": "Sold $643,000 at Monterey 2025, chassis WAUZZZ85ZEA905037. Catalog states 'one of only 164 Sport quattros produced'. Engine reworked by Heinz Lehmann to 435 hp - evidence of how heavily modified some survivors are."
   },
   {
    "ref": "rm-az24-sport",
@@ -224,7 +224,7 @@ export const seedUrQuattro = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $665,000 at Arizona 2024, chassis WAUZZZ85ZEA905147, 5,472 miles. Catalogue states 'one of just 214 Sport Quattros constructed' - the same house's alternative to the 164 used at Monterey 2025, and the same chassis RM sold in 2015."
+   "notes": "Sold $665,000 at Arizona 2024, chassis WAUZZZ85ZEA905147, 5,472 miles. Catalog states 'one of just 214 Sport Quattros constructed' - the same house's alternative to the 164 used at Monterey 2025, and the same chassis RM sold in 2015."
   },
   {
    "ref": "rm-lf16-sport",
@@ -340,7 +340,7 @@ export const seedUrQuattro = {
     "scm-sport-2015",
     "ecr-sport"
    ],
-   "conflictNote": "Audi's own press material, Supercar Nostalgia and Exclusive Car Registry state 214. Wikipedia and Hagerty state 224. Sports Car Market gives 214 split into 164 road cars and 50 competition cars, and Supercar Nostalgia says 164 were sold to customers with five more assembled from leftover parts in 1988. RM Sotheby's has catalogued the model as 'one of just 214', 'one of only 164' and '214 produced, of which only 161 were homologated road versions'. Group B homologation required 200 cars, which explains the cluster but not the spread. Not resolved by any source consulted here, and no single Sport quattro figure is asserted."
+   "conflictNote": "Audi's own press material, Supercar Nostalgia and Exclusive Car Registry state 214. Wikipedia and Hagerty state 224. Sports Car Market gives 214 split into 164 road cars and 50 competition cars, and Supercar Nostalgia says 164 were sold to customers with five more assembled from leftover parts in 1988. RM Sotheby's has cataloged the model as 'one of just 214', 'one of only 164' and '214 produced, of which only 161 were homologated road versions'. Group B homologation required 200 cars, which explains the cluster but not the spread. Not resolved by any source consulted here, and no single Sport quattro figure is asserted."
   },
   {
    "section": "history",

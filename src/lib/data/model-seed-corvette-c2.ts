@@ -253,7 +253,7 @@ export const seedCorvetteC2 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $423,000 at Amelia Island 2022. Chassis 30837S109268, one of 199 Z06s, NCRS Top Flight and Bloomington Gold. This catalogue states the Z06 option cost $1,293.35."
+   "notes": "Sold $423,000 at Amelia Island 2022. Chassis 30837S109268, one of 199 Z06s, NCRS Top Flight and Bloomington Gold. This catalog states the Z06 option cost $1,293.35."
   },
   {
    "ref": "rm-az20-z06-tank",
@@ -365,11 +365,11 @@ export const seedCorvetteC2 = {
   },
   {
    "section": "production",
-   "claimText": "Sources disagree on what RPO Z06 cost a buyer in 1963, and two catalogue entries from the same auction house give different figures.",
+   "claimText": "Sources disagree on what RPO Z06 cost a buyer in 1963, and two catalog entries from the same auction house give different figures.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": ["rm-am22-z06", "rm-az20-z06-tank", "cac-1963-production", "corvsport-1963"],
-   "conflictNote": "RM Sotheby's Amelia Island 2022 catalogue states $1,293.35. RM's own Arizona 2020 catalogue, Corvette Action Center's RPO table and CorvSport all state $1,818.45, with the tank separate as RPO N03. Not resolved by any source consulted here."
+   "conflictNote": "RM Sotheby's Amelia Island 2022 catalog states $1,293.35. RM's own Arizona 2020 catalog, Corvette Action Center's RPO table and CorvSport all state $1,818.45, with the tank separate as RPO N03. Not resolved by any source consulted here."
   },
   {
    "section": "production",
@@ -391,7 +391,7 @@ export const seedCorvetteC2 = {
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": ["rm-mo26-grandsport", "revs-grandsport"],
-   "conflictNote": "RM Sotheby's catalogue for chassis 30837X100003 states roughly 1,900 lb against about 3,200 lb for a standard 1963 car. The Revs Institute states 2,150 lb. Not resolved by any source consulted here."
+   "conflictNote": "RM Sotheby's catalog for chassis 30837X100003 states roughly 1,900 lb against about 3,200 lb for a standard 1963 car. The Revs Institute states 2,150 lb. Not resolved by any source consulted here."
   },
   {
    "section": "specs",

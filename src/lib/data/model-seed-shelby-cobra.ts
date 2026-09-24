@@ -26,7 +26,7 @@ export const seedShelbyCobra = {
   "7,014 cc (428 cu in) Ford FE 'Police Interceptor' V8, quoted at 360 horsepower - fitted to much of the second CSX3000 street batch"
  ],
  "productionTotal": null,
- "productionNotes": "No overall figure is asserted: the sources consulted here do not agree, and the disagreement sits entirely in the big-block cars. The leaf-spring side is settled. Wikipedia, the Great Lakes Cobra Club and RM Sotheby's catalogue copy for CSX2496 all give 655 small-block cars in the CSX2000-CSX2602 range - the first 75 Mk1 cars with the 260, the remaining 51 with the 289, and roughly 528 Mark II cars to the summer of 1965. The coil-spring side is not. Wikipedia and the Great Lakes Cobra Club both state 343 CSX3000 cars, giving 998 originals overall. RM Sotheby's, describing CSX3102, says only that 'just over 300 were built'. The Shelby American Collection's component figures - 260 street, 31 early S/C, 19 competition - sum to 310. Cobra Authority states approximately 1,000 originals but only 160 'genuine 427' cars. The internal splits are contested too: semi-competition cars are given as 28 or 31, competition cars as 19, 23 or 50. Two points are common ground: roughly 100 street cars in the CSX3200-CSX3300 band left with the 428 Police Interceptor, and the last four dozen reverted to a single-carburetor 427. CSX3360 left in October 1967.",
+ "productionNotes": "No overall figure is asserted: the sources consulted here do not agree, and the disagreement sits entirely in the big-block cars. The leaf-spring side is settled. Wikipedia, the Great Lakes Cobra Club and RM Sotheby's catalog copy for CSX2496 all give 655 small-block cars in the CSX2000-CSX2602 range - the first 75 Mk1 cars with the 260, the remaining 51 with the 289, and roughly 528 Mark II cars to the summer of 1965. The coil-spring side is not. Wikipedia and the Great Lakes Cobra Club both state 343 CSX3000 cars, giving 998 originals overall. RM Sotheby's, describing CSX3102, says only that 'just over 300 were built'. The Shelby American Collection's component figures - 260 street, 31 early S/C, 19 competition - sum to 310. Cobra Authority states approximately 1,000 originals but only 160 'genuine 427' cars. The internal splits are contested too: semi-competition cars are given as 28 or 31, competition cars as 19, 23 or 50. Two points are common ground: roughly 100 street cars in the CSX3200-CSX3300 band left with the 428 Police Interceptor, and the last four dozen reverted to a single-carburetor 427. CSX3360 left in October 1967.",
  "notableTrims": [
   {
    "name": "260 Cobra (1962-1963)",
@@ -135,7 +135,7 @@ export const seedShelbyCobra = {
    "publisher": "Hagerty Media",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "Chassis bands CSX3001-3026 and CSX3028-3053 (competition) and CSX3101-3360 (street); 16 of the 50 'production' competition roadsters sold by November 1965; 28 sold in S/C configuration; ~100 street cars with the 428, last 54 with a single-carburettor 427; nine 1991-92 Completion Cars ruled not street legal in California; continuation series CSX4000/6000/7000/8000; the first street car's underbody exhaust caused excessive cabin heat; values from $75,000 to over $500,000 within 24 months around 1990, quiet since 2015."
+   "notes": "Chassis bands CSX3001-3026 and CSX3028-3053 (competition) and CSX3101-3360 (street); 16 of the 50 'production' competition roadsters sold by November 1965; 28 sold in S/C configuration; ~100 street cars with the 428, last 54 with a single-carburetor 427; nine 1991-92 Completion Cars ruled not street legal in California; continuation series CSX4000/6000/7000/8000; the first street car's underbody exhaust caused excessive cabin heat; values from $75,000 to over $500,000 within 24 months around 1990, quiet since 2015."
   },
   {
    "ref": "classic-cobra-289",
@@ -276,7 +276,7 @@ export const seedShelbyCobra = {
    "confidence": "low",
    "status": "disputed",
    "sourceRefs": ["wikipedia-ac-cobra", "glcc-genuine-replica", "rm-mo18-csx3102", "sac-csx3269", "cobra-authority-encyclopedia"],
-   "conflictNote": "Wikipedia and the Great Lakes Cobra Club both state 343 coil-spring cars, giving 998 originals in total. RM Sotheby's catalogue copy for CSX3102 states 'just over 300 were built'. The Shelby American Collection's component figures - 260 street, 31 S/C, 19 competition - sum to 310. Cobra Authority states approximately 1,000 originals but only 160 'genuine 427' cars. No source consulted here reconciles these, so productionTotal is null."
+   "conflictNote": "Wikipedia and the Great Lakes Cobra Club both state 343 coil-spring cars, giving 998 originals in total. RM Sotheby's catalog copy for CSX3102 states 'just over 300 were built'. The Shelby American Collection's component figures - 260 street, 31 S/C, 19 competition - sum to 310. Cobra Authority states approximately 1,000 originals but only 160 'genuine 427' cars. No source consulted here reconciles these, so productionTotal is null."
   },
   {
    "section": "production",

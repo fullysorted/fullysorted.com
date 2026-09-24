@@ -4,6 +4,8 @@
  */
 export const seedSpitfire = {
  "slug": "triumph/spitfire",
+ "heroPhoto": "/images/models/triumph-spitfire.jpg",
+ "heroPhotoCredit": "Photo: Lothar Spurzem, CC BY-SA 2.0 de, via Wikimedia Commons",
  "make": "Triumph",
  "model": "Spitfire",
  "generation": null,

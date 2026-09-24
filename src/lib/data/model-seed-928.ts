@@ -23,7 +23,7 @@ export const seed928 = {
   "5,397 cc DOHC 32-valve V8 for the GTS, 345 hp at 5,700 rpm and 362 lb-ft at 4,250 rpm (1992-1995)"
  ],
  "productionTotal": null,
- "productionNotes": "Porsche states 61,056 cars built across the whole run, a figure repeated in its transaxle press kit and in the Christophorus fortieth-anniversary feature, and Wikipedia's variant-by-variant table resolves to the same number. StuttCars publishes a year-by-year table that totals 60,870 and states that figure explicitly. The 186-car gap is not explained by either side and is not resolved by any source consulted here, so no single total is asserted. The same disagreement runs through the sub-totals: Wikipedia gives 17,669 for the 4.5-liter 928 built between 1978 and 1982, while Supercar Nostalgia's model guide gives 17,864 for the 4.5-liter cars and dates them 1977-1982, which may or may not account for the difference. Where the sources do agree is on the shape of the run. Output peaked in the mid-1980s - StuttCars records 5,437 cars in 1979 and 5,035 in 1984 - and then fell away steeply: 3,049 in 1990, 2,037 in 1991, and 955, 811, 645 and 476 in the four GTS years to 1995. Variant totals commonly quoted are 8,315 for the 1980-1983 928 S, 14,347 for the 1984-1986 S/S2, 15,682 for the 1987-1991 S4, 2,078 for the 1989-1991 GT (1,682 European against 396 for the United States and Canada) and 2,904 for the 1992-1995 GTS (2,498 European against 406 for the United States). Small series are countable: 19 Club Sports built 1988-1989, 42 UK-market SE cars in 1988, and 141 European 50th Jubilee cars in 1982. The 1982 Weissach Edition for North America is given as 202 cars by Wikipedia and 205 by Supercar Nostalgia. RM Sotheby's catalogues for the 1995 model year state 77 GTS delivered to the United States, of which 26 were five-speed manuals and 47 automatics.",
+ "productionNotes": "Porsche states 61,056 cars built across the whole run, a figure repeated in its transaxle press kit and in the Christophorus fortieth-anniversary feature, and Wikipedia's variant-by-variant table resolves to the same number. StuttCars publishes a year-by-year table that totals 60,870 and states that figure explicitly. The 186-car gap is not explained by either side and is not resolved by any source consulted here, so no single total is asserted. The same disagreement runs through the sub-totals: Wikipedia gives 17,669 for the 4.5-liter 928 built between 1978 and 1982, while Supercar Nostalgia's model guide gives 17,864 for the 4.5-liter cars and dates them 1977-1982, which may or may not account for the difference. Where the sources do agree is on the shape of the run. Output peaked in the mid-1980s - StuttCars records 5,437 cars in 1979 and 5,035 in 1984 - and then fell away steeply: 3,049 in 1990, 2,037 in 1991, and 955, 811, 645 and 476 in the four GTS years to 1995. Variant totals commonly quoted are 8,315 for the 1980-1983 928 S, 14,347 for the 1984-1986 S/S2, 15,682 for the 1987-1991 S4, 2,078 for the 1989-1991 GT (1,682 European against 396 for the United States and Canada) and 2,904 for the 1992-1995 GTS (2,498 European against 406 for the United States). Small series are countable: 19 Club Sports built 1988-1989, 42 UK-market SE cars in 1988, and 141 European 50th Jubilee cars in 1982. The 1982 Weissach Edition for North America is given as 202 cars by Wikipedia and 205 by Supercar Nostalgia. RM Sotheby's catalogs for the 1995 model year state 77 GTS delivered to the United States, of which 26 were five-speed manuals and 47 automatics.",
  "notableTrims": [
   {
    "name": "928 (1978-1982)",
@@ -240,7 +240,7 @@ export const seed928 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $406,500 at Monterey 2022, lot 314. Chassis WP0AA2926SS820074, five-speed manual, fewer than 16,650 miles. Catalogue states just over 2,900 GTS built 1992-1995, a 5.4-liter V8 of 350 horsepower, and one of just 26 five-speed manuals supplied to the United States for 1995."
+   "notes": "Sold for $406,500 at Monterey 2022, lot 314. Chassis WP0AA2926SS820074, five-speed manual, fewer than 16,650 miles. Catalog states just over 2,900 GTS built 1992-1995, a 5.4-liter V8 of 350 horsepower, and one of just 26 five-speed manuals supplied to the United States for 1995."
   },
   {
    "ref": "rm-am19-gts",
@@ -249,7 +249,7 @@ export const seed928 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $89,600 at Amelia Island 2019 from the Youngtimer Collection. Chassis WP0AA292XSS820093, automatic, just over 12,000 miles. Catalogue states 406 GTS sold new in the United States, only 77 for the 1995 model year, and only 47 of those automatic."
+   "notes": "Sold for $89,600 at Amelia Island 2019 from the Youngtimer Collection. Chassis WP0AA292XSS820093, automatic, just over 12,000 miles. Catalog states 406 GTS sold new in the United States, only 77 for the 1995 model year, and only 47 of those automatic."
   },
   {
    "ref": "iconic-silverstone-gts",
@@ -258,7 +258,7 @@ export const seed928 = {
    "publisher": "Iconic Auctioneers",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for 49,500 pounds, lot 717, The Classic Sale at Silverstone Festival, 26 August 2023. UK-supplied right-hand-drive final-year GTS, chassis WP0ZZZ92ZRS800510, 5.4 liters and 345 hp, automatic, 40,639 miles. Catalogue states the GTS was discontinued in 1995 after 2,904 examples."
+   "notes": "Sold for 49,500 pounds, lot 717, The Classic Sale at Silverstone Festival, 26 August 2023. UK-supplied right-hand-drive final-year GTS, chassis WP0ZZZ92ZRS800510, 5.4 liters and 345 hp, automatic, 40,639 miles. Catalog states the GTS was discontinued in 1995 after 2,904 examples."
   }
  ],
  "claims": [

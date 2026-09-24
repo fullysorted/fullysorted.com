@@ -20,7 +20,7 @@ export const seed510 = {
   "2-door fastback coupe (KP510), Japanese market and knock-down export only"
  ],
  "engines": [
-  "1,595 cc L16 single-overhead-camshaft inline four, chain-driven cam, 3.3 in (83.0 mm) x 73.0 mm bore and stroke; 96 hp gross at 5,600 rpm on a single downdraught carburetor in North American tune",
+  "1,595 cc L16 single-overhead-camshaft inline four, chain-driven cam, 3.3 in (83.0 mm) x 73.0 mm bore and stroke; 96 hp gross at 5,600 rpm on a single downdraft carburetor in North American tune",
   "1,595 cc L16 with twin SU-type Hitachi side-drafts, 99 hp at 6,000 rpm in Japanese 1600 SSS coupe form per Nissan",
   "1,595 cc L16 with dual Solex 44PHH, 129 hp at 6,800 rpm and 116 lb-ft at 4,800 rpm in the 1970 works Safari 1600SSS as recorded by Nissan",
   "1,296 cc L13 single-overhead-camshaft four, 71 hp at 6,000 rpm per Nissan",
@@ -60,7 +60,7 @@ export const seed510 = {
   "layout": "Front-mounted longitudinal engine, rear-wheel drive",
   "chassis": "Unitary steel monocoque, four body styles on a 95.3 in (2,420 mm) wheelbase",
   "engine": "1,595 cc L16 single-overhead-camshaft inline four, chain-driven camshaft, 3.3 in (83.0 mm) x 73.0 mm bore and stroke; L13, L14, L18 and J15 units fitted in other markets",
-  "fuel_system": "Single downdraught carburetor in North American tune; twin SU-type Hitachi side-drafts on the 1600 SSS; dual Solex 44PHH on the 1970 works Safari cars",
+  "fuel_system": "Single downdraft carburetor in North American tune; twin SU-type Hitachi side-drafts on the 1600 SSS; dual Solex 44PHH on the 1970 works Safari cars",
   "power": "96 hp gross at 5,600 rpm for the North American L16 - a manufacturer-advertised gross figure, not a net one; 99 hp at 6,000 rpm for the Japanese 1600 SSS coupe and 128 hp at 6,800 rpm for the 1970 Safari 1600SSS, both per Nissan",
   "torque": "116 lb-ft at 4,800 rpm for the 1970 P510 1600SSS and 97 lb-ft at 4,000 rpm for the KP510 1600SSS coupe, both per Nissan; no North American net torque figure was located",
   "transmission": "Four-speed manual standard, three-speed automatic optional; five-speed manuals on later and on competition cars",
@@ -105,7 +105,7 @@ export const seed510 = {
    "publisher": "Nissan Motor Co., Ltd.",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Factory record, 1969 KP510 1600SSS Coupe: L16 with SU twin carburettors, 99 hp at 6,000 rpm, 97 lb-ft at 4,000 rpm, 2,061 lb, strut front and semi-trailing-arm rear. Dates the coupe's introduction to November 1968."
+   "notes": "Factory record, 1969 KP510 1600SSS Coupe: L16 with SU twin carburetors, 99 hp at 6,000 rpm, 97 lb-ft at 4,000 rpm, 2,061 lb, strut front and semi-trailing-arm rear. Dates the coupe's introduction to November 1968."
   },
   {
    "ref": "nissan-usa-spotlight",

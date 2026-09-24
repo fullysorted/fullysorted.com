@@ -356,7 +356,7 @@ export const seedType2Bus = {
     "heritage-bay-history",
     "wikipedia-type2"
    ],
-   "conflictNote": "Volkswagen's own anniversary release states the Puebla plant built the T2 until 1987. Heritage Parts Centre states Mexican production ran to 1996 followed by imported Brazilian vehicles to 2001. Wikipedia states Puebla built Combi and Panel variants until 1994 with imported Brazilian vehicles to 2002. The three cannot be reconciled from the available sources, so no Mexican production date is asserted."
+   "conflictNote": "Volkswagen's own anniversary release states the Puebla plant built the T2 until 1987. Heritage Parts Center states Mexican production ran to 1996 followed by imported Brazilian vehicles to 2001. Wikipedia states Puebla built Combi and Panel variants until 1994 with imported Brazilian vehicles to 2002. The three cannot be reconciled from the available sources, so no Mexican production date is asserted."
   },
   {
    "section": "problems",

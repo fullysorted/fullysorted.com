@@ -24,7 +24,7 @@ export const seed348 = {
   "3,405 cc V8 in 348 Serie Speciale (US market, 1992-1993) with free-flow exhaust, quoted at 312 hp at 7,200 rpm"
  ],
  "productionTotal": null,
- "productionNotes": "No two independent sources agree on a total, and the disagreement runs through almost every variant, so no single figure is asserted. Ferrari's own heritage pages give 2,894 tb (chassis 81617 to 96679) and 4,228 ts (chassis 81651 to 96964), and describe the whole series as 'just under 9,000' cars with 'more than 1,000' Spiders. Wikipedia and Classic Trader both put the series total at 8,844. Forza magazine states 'more than 8,300' and gives 3,116 berlinettas, 4,446 targas, 1,146 Spiders and 100 Serie Speciale, figures which appear to fold the GTB and GTS into the tb and ts columns and still do not reconcile with Ferrari's own. Supercar Nostalgia gives 2,895 tb (130 right-hand drive) and 4,230 ts (261 right-hand drive), a total of 7,125 for the first series, then 222 GTB (14 RHD), 218 GTS (15 RHD) and 1,090 Spiders (68 RHD). Wikipedia and an RM Sotheby's catalogue instead give 252 GTB and 137 GTS; Rosso Automobili follows Supercar Nostalgia on 222 and 218 but gives 1,146 Spiders. Sports Car Market prints 2,895 tb. The 100-car Serie Speciale total is consistent across Wikipedia, Forza and RM Sotheby's, but its split is not: RM Sotheby's says 35 coupes, Supercar Nostalgia 33 tb and 67 ts, and Rosso Automobili 'around 80' cars in total. The 348 GT Competizione is the one figure every source consulted agrees on: 50 cars, eight of them right-hand drive. Ten Zagato Elaborazione cars are cited by Auto Express and Rosso Automobili. Challenge-car numbers are not given by any source fetched here. The production figures on this page should be read as a spread of roughly 8,300 to 9,000 with the sub-totals contested.",
+ "productionNotes": "No two independent sources agree on a total, and the disagreement runs through almost every variant, so no single figure is asserted. Ferrari's own heritage pages give 2,894 tb (chassis 81617 to 96679) and 4,228 ts (chassis 81651 to 96964), and describe the whole series as 'just under 9,000' cars with 'more than 1,000' Spiders. Wikipedia and Classic Trader both put the series total at 8,844. Forza magazine states 'more than 8,300' and gives 3,116 berlinettas, 4,446 targas, 1,146 Spiders and 100 Serie Speciale, figures which appear to fold the GTB and GTS into the tb and ts columns and still do not reconcile with Ferrari's own. Supercar Nostalgia gives 2,895 tb (130 right-hand drive) and 4,230 ts (261 right-hand drive), a total of 7,125 for the first series, then 222 GTB (14 RHD), 218 GTS (15 RHD) and 1,090 Spiders (68 RHD). Wikipedia and an RM Sotheby's catalog instead give 252 GTB and 137 GTS; Rosso Automobili follows Supercar Nostalgia on 222 and 218 but gives 1,146 Spiders. Sports Car Market prints 2,895 tb. The 100-car Serie Speciale total is consistent across Wikipedia, Forza and RM Sotheby's, but its split is not: RM Sotheby's says 35 coupes, Supercar Nostalgia 33 tb and 67 ts, and Rosso Automobili 'around 80' cars in total. The 348 GT Competizione is the one figure every source consulted agrees on: 50 cars, eight of them right-hand drive. Ten Zagato Elaborazione cars are cited by Auto Express and Rosso Automobili. Challenge-car numbers are not given by any source fetched here. The production figures on this page should be read as a spread of roughly 8,300 to 9,000 with the sub-totals contested.",
  "notableTrims": [
   {
    "name": "348 tb (1989-1993)",
@@ -218,7 +218,7 @@ export const seed348 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $335,000 at Miami 2026, lot 149. Chassis ZFFRG35A8P0094873, serial 45, 19,855 miles, only Serie Speciale in Blu Sera. Catalogue states one of 100 Serie Speciale built 1992-1993, one of 35 coupes; 312 hp, 50 mm wider rear track, shorter final drive, Pirelli P Zero, F40-style carbon/Kevlar seats; Frankfurt 1989 debut."
+   "notes": "Sold $335,000 at Miami 2026, lot 149. Chassis ZFFRG35A8P0094873, serial 45, 19,855 miles, only Serie Speciale in Blu Sera. Catalog states one of 100 Serie Speciale built 1992-1993, one of 35 coupes; 312 hp, 50 mm wider rear track, shorter final drive, Pirelli P Zero, F40-style carbon/Kevlar seats; Frankfurt 1989 debut."
   },
   {
    "ref": "rm-lf23-gtb",
@@ -227,7 +227,7 @@ export const seed348 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold 48,300 pounds at London, November 2023, lot 234. Chassis ZFFUA35C000099209, right-hand drive, 112 miles from new, single owner from new, stored throughout. Catalogue states 'only 252 units of the hard-top GTB' and 'one of 14 examples produced in right-hand drive'."
+   "notes": "Sold 48,300 pounds at London, November 2023, lot 234. Chassis ZFFUA35C000099209, right-hand drive, 112 miles from new, single owner from new, stored throughout. Catalog states 'only 252 units of the hard-top GTB' and 'one of 14 examples produced in right-hand drive'."
   },
   {
    "ref": "classic-348",
@@ -374,7 +374,7 @@ export const seed348 = {
   },
   {
    "section": "production",
-   "claimText": "GTB, GTS and Spider production figures are contested: Wikipedia and an RM Sotheby's catalogue give 252 GTB and 137 GTS, while Supercar Nostalgia and Rosso Automobili give 222 GTB (14 right-hand drive) and 218 GTS (15 right-hand drive); the Spider is given as 1,090 (68 right-hand drive) by Supercar Nostalgia, 1,146 by Forza and Rosso Automobili, and 'more than 1,000' by Ferrari.",
+   "claimText": "GTB, GTS and Spider production figures are contested: Wikipedia and an RM Sotheby's catalog give 252 GTB and 137 GTS, while Supercar Nostalgia and Rosso Automobili give 222 GTB (14 right-hand drive) and 218 GTS (15 right-hand drive); the Spider is given as 1,090 (68 right-hand drive) by Supercar Nostalgia, 1,146 by Forza and Rosso Automobili, and 'more than 1,000' by Ferrari.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [
@@ -399,7 +399,7 @@ export const seed348 = {
     "forza-two-steps-forward",
     "rosso-348-rundown"
    ],
-   "conflictNote": "Wikipedia, Forza and RM Sotheby's state 100 cars. RM Sotheby's catalogue says 35 coupes; Supercar Nostalgia says 33 tb and 67 ts; Rosso Automobili says 'around 80' in total. Not resolved by any source consulted."
+   "conflictNote": "Wikipedia, Forza and RM Sotheby's state 100 cars. RM Sotheby's catalog says 35 coupes; Supercar Nostalgia says 33 tb and 67 ts; Rosso Automobili says 'around 80' in total. Not resolved by any source consulted."
   },
   {
    "section": "production",

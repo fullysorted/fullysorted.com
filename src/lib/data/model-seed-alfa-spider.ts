@@ -93,7 +93,7 @@ export const seedAlfaSpider = {
    "publisher": "Stellantis Heritage (FCA Heritage)",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Official heritage page: 1,570 cc, twin 40mm carburettors, 109-110 hp at 6,000 rpm, 113 mph, five speeds, four disc brakes, 225 mm shorter wheelbase, 'cuttlefish bone' nickname."
+   "notes": "Official heritage page: 1,570 cc, twin 40mm carburetors, 109-110 hp at 6,000 rpm, 113 mph, five speeds, four disc brakes, 225 mm shorter wheelbase, 'cuttlefish bone' nickname."
   },
   {
    "ref": "wikipedia-spider",
@@ -192,7 +192,7 @@ export const seedAlfaSpider = {
    "publisher": "Hemmings Motor News (archived by Wes Ingram Enterprises)",
    "sourceType": "journalism",
    "reliability": "high",
-   "notes": "SPICA = Societa Pompe Iniezione Cassani & Affini; adopted for US emissions compliance from 1969; diesel-injection origins via Autodelta racing; four-plunger crank-driven pump, three-dimensional cam and centrifugal weights, approx. 400 psi; specialist knowledge required, hence carburettor conversions."
+   "notes": "SPICA = Societa Pompe Iniezione Cassani & Affini; adopted for US emissions compliance from 1969; diesel-injection origins via Autodelta racing; four-plunger crank-driven pump, three-dimensional cam and centrifugal weights, approx. 400 psi; specialist knowledge required, hence carburetor conversions."
   },
   {
    "ref": "tdiah-farina",

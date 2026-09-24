@@ -23,7 +23,7 @@ export const seed914 = {
   "914 1.8 (1974-1975): 1,795 cc Type 4 flat-four, Bosch L-Jetronic (AFC) injection in the US with 76 hp at 4,800 rpm and 7.3:1; twin-carburetor European version rated 84 hp at 8.6:1"
  ],
  "productionTotal": null,
- "productionNotes": "No two families of sources agree on the 914's numbers, and the disagreement runs through both the four-cylinder and six-cylinder totals. Porsche's own newsroom, marking the model's fiftieth anniversary in 2019, states that 115,631 four-cylinder cars were built between 1969 and 1975 and that 'exactly 3,338' 914/6s were produced between 1969 and 1972; the Volkswagen newsroom repeats the 115,631 figure and Hagerty's fiftieth-anniversary profile repeats both. The figures most often reproduced elsewhere are different: Wikipedia's infobox, Stuttcars and Nine Motoring give 115,646 four-cylinder cars and 3,332 sixes for a total of 118,978, with Nine Motoring adding eleven 916 prototypes and two 914/8s to reach 118,992. A third six-cylinder figure, 3,351, appears in the body of the same Wikipedia article, on classic.com, in Curbside Classic and in Hagerty's market analysis, the last of which also puts the four-cylinder run at 115,596, a figure Classic Motorsports shares. A fourth, 3,360, is given by Wikipedia's 914/6 GT article and by the enthusiast statistics site p914-6info.net, which explains it as 914/6 production plus the 916 prototypes and breaks it down by calendar year as 2,668 in 1970, 434 in 1971 and 260 in 1972; Nine Motoring's model-year breakdown of 2,789, 306 and 237 sums to 3,332 instead. Auction catalogues sidestep the question with 'approximately 3,300'. None of the sources consulted explains how the others' figures arise, and Porsche's exact 3,338 is not reconciled with the 3,332 or 3,351 that the reference and market sites prefer, so productionTotal is left null. What every source agrees on is the shape of the run: production from late 1969 to spring 1976, the 914/4 built by Karmann at Osnabrück and the 914/6 finished at Zuffenhausen, 1973 the peak year, the six dropped after 1972, and the great majority of cars sold in the United States, where p914-6info.net counts about 1,785 of the sixes and Retro Motor puts the overall US share above 80 per cent. The 1974 Limited Edition is given as 'about 1,000' cars by Nine Motoring; the factory 914/6 GT count is stated as eleven by Hagerty and 'about 20' by Classic Motorsports and is not settled here either.",
+ "productionNotes": "No two families of sources agree on the 914's numbers, and the disagreement runs through both the four-cylinder and six-cylinder totals. Porsche's own newsroom, marking the model's fiftieth anniversary in 2019, states that 115,631 four-cylinder cars were built between 1969 and 1975 and that 'exactly 3,338' 914/6s were produced between 1969 and 1972; the Volkswagen newsroom repeats the 115,631 figure and Hagerty's fiftieth-anniversary profile repeats both. The figures most often reproduced elsewhere are different: Wikipedia's infobox, Stuttcars and Nine Motoring give 115,646 four-cylinder cars and 3,332 sixes for a total of 118,978, with Nine Motoring adding eleven 916 prototypes and two 914/8s to reach 118,992. A third six-cylinder figure, 3,351, appears in the body of the same Wikipedia article, on classic.com, in Curbside Classic and in Hagerty's market analysis, the last of which also puts the four-cylinder run at 115,596, a figure Classic Motorsports shares. A fourth, 3,360, is given by Wikipedia's 914/6 GT article and by the enthusiast statistics site p914-6info.net, which explains it as 914/6 production plus the 916 prototypes and breaks it down by calendar year as 2,668 in 1970, 434 in 1971 and 260 in 1972; Nine Motoring's model-year breakdown of 2,789, 306 and 237 sums to 3,332 instead. Auction catalogs sidestep the question with 'approximately 3,300'. None of the sources consulted explains how the others' figures arise, and Porsche's exact 3,338 is not reconciled with the 3,332 or 3,351 that the reference and market sites prefer, so productionTotal is left null. What every source agrees on is the shape of the run: production from late 1969 to spring 1976, the 914/4 built by Karmann at Osnabrück and the 914/6 finished at Zuffenhausen, 1973 the peak year, the six dropped after 1972, and the great majority of cars sold in the United States, where p914-6info.net counts about 1,785 of the sixes and Retro Motor puts the overall US share above 80 per cent. The 1974 Limited Edition is given as 'about 1,000' cars by Nine Motoring; the factory 914/6 GT count is stated as eleven by Hagerty and 'about 20' by Classic Motorsports and is not settled here either.",
  "notableTrims": [
   {
    "name": "914/6 (1970-1972)",
@@ -95,7 +95,7 @@ export const seed914 = {
    "publisher": "Volkswagen AG (Volkswagen Newsroom)",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Volkswagen's model page: 115,631 four-cylinder cars; 914/4 built by Karmann in Osnabruck; factory code Type 47; 914/6 with 109 hp/108 hp 2.0 flat-six from the 911 T; 1.7 with fuel injection and 79 hp/79 hp and a quoted 115 mph; 2.0 four with 99 hp from 1972 model update; 1.8 twin-carburettor engine from the 412 S with 84 hp for 1973-1975; wheels widened from 4.5 J to 5.5 J and tires from 155 SR to 165 SR in 1973; production ends spring 1976."
+   "notes": "Volkswagen's model page: 115,631 four-cylinder cars; 914/4 built by Karmann in Osnabruck; factory code Type 47; 914/6 with 109 hp/108 hp 2.0 flat-six from the 911 T; 1.7 with fuel injection and 79 hp/79 hp and a quoted 115 mph; 2.0 four with 99 hp from 1972 model update; 1.8 twin-carburetor engine from the 412 S with 84 hp for 1973-1975; wheels widened from 4.5 J to 5.5 J and tires from 155 SR to 165 SR in 1973; production ends spring 1976."
   },
   {
    "ref": "porsche-classic-914",
@@ -167,7 +167,7 @@ export const seed914 = {
    "publisher": "Heritage Parts Centre",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Parts specialist buying guide: engine outputs 80 hp at 4,900 rpm (1.7), 76 hp at 4,800 rpm (1.8), 95 hp at 4,900 rpm (2.0), 125 hp at 5,800 rpm (2.0 six); gearbox types 914/11 (four-cylinder 1969-1972), 914/01 (914/6), 914/05 four-speed Sportomatic optional on the six, 914/12 from 1973; oil leaks at pushrod tubes and flywheel seal contaminating the clutch; D-Jetronic reliable but parts scarce so many cars converted to twin carburettors, with a warning to check engine codes; battery tray rust and acid corroding fuel lines and wiring beneath; 4 x 130 mm bolt pattern on fours, 5 x 130 mm on the six; discs all round, seized rear calipers on neglected cars; left-hand drive only."
+   "notes": "Parts specialist buying guide: engine outputs 80 hp at 4,900 rpm (1.7), 76 hp at 4,800 rpm (1.8), 95 hp at 4,900 rpm (2.0), 125 hp at 5,800 rpm (2.0 six); gearbox types 914/11 (four-cylinder 1969-1972), 914/01 (914/6), 914/05 four-speed Sportomatic optional on the six, 914/12 from 1973; oil leaks at pushrod tubes and flywheel seal contaminating the clutch; D-Jetronic reliable but parts scarce so many cars converted to twin carburetors, with a warning to check engine codes; battery tray rust and acid corroding fuel lines and wiring beneath; 4 x 130 mm bolt pattern on fours, 5 x 130 mm on the six; discs all round, seized rear calipers on neglected cars; left-hand drive only."
   },
   {
    "ref": "ateupwithmotor-914",
@@ -248,7 +248,7 @@ export const seed914 = {
    "publisher": "Gooding Christie's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 107, Pebble Beach, August 2024: sold $173,600 against a $100,000-150,000 estimate, premium status not stated; chassis 9140430236, Ravenna Green over black and Pepita, from The Santa Fe Collection, restored with invoices exceeding $300,000, fitted with a 3,164 cc 911 flat-six on twin carburettors at about 200 hp and a 915 gearbox; catalogue describes the car as 'one of approximately 3,300 examples of the 914/6 built by Porsche' and notes intermittent white exhaust smoke."
+   "notes": "Lot 107, Pebble Beach, August 2024: sold $173,600 against a $100,000-150,000 estimate, premium status not stated; chassis 9140430236, Ravenna Green over black and Pepita, from The Santa Fe Collection, restored with invoices exceeding $300,000, fitted with a 3,164 cc 911 flat-six on twin carburetors at about 200 hp and a 915 gearbox; catalog describes the car as 'one of approximately 3,300 examples of the 914/6 built by Porsche' and notes intermittent white exhaust smoke."
   },
   {
    "ref": "rm-monaco18-914-6-fia",
@@ -257,7 +257,7 @@ export const seed914 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 169, Monaco, May 2018: sold EUR 73,600, premium status not stated; chassis 9142430060, race-prepared with Perspex windows, cage, 7 and 8-inch Fuchs wheels and a quoted 200 hp, FIA HTP valid to end 2025, gearbox overhauled 2016; catalogue text puts 914/6 production at 'just over 3,000 examples' by 1972 and calls the six 'clearly the one to have'."
+   "notes": "Lot 169, Monaco, May 2018: sold EUR 73,600, premium status not stated; chassis 9142430060, race-prepared with Perspex windows, cage, 7 and 8-inch Fuchs wheels and a quoted 200 hp, FIA HTP valid to end 2025, gearbox overhauled 2016; catalog text puts 914/6 production at 'just over 3,000 examples' by 1972 and calls the six 'clearly the one to have'."
   }
  ],
  "claims": [
@@ -325,7 +325,7 @@ export const seed914 = {
     "pca-model-guide-914",
     "stuttcars-914-guide"
    ],
-   "conflictNote": "Porsche Newsroom, Volkswagen Newsroom, Porsche Classic and Wikipedia all give 108 hp at 5,800 rpm. Heritage Parts Centre gives 125 hp at 5,800 rpm, the Porsche Club of America model guide gives 125 hp and Stuttcars' table gives 125 hp. The higher figure is consistent with a period US SAE gross rating but none of the sources labels it as such. Not resolved by any source consulted here."
+   "conflictNote": "Porsche Newsroom, Volkswagen Newsroom, Porsche Classic and Wikipedia all give 108 hp at 5,800 rpm. Heritage Parts Center gives 125 hp at 5,800 rpm, the Porsche Club of America model guide gives 125 hp and Stuttcars' table gives 125 hp. The higher figure is consistent with a period US SAE gross rating but none of the sources labels it as such. Not resolved by any source consulted here."
   },
   {
    "section": "specs",
@@ -400,7 +400,7 @@ export const seed914 = {
     "gooding-pb24-914-6",
     "rm-monaco18-914-6-fia"
    ],
-   "conflictNote": "Porsche Newsroom states 'exactly 3,338 units were produced between 1969 and 1972'. Wikipedia's infobox, Stuttcars and Nine Motoring state 3,332. Wikipedia's article body, classic.com, Curbside Classic and Hagerty Insider state 3,351. Wikipedia's 914/6 GT article states 3,360 and p914-6info.net states 3,360 including the 916 prototypes. Gooding Christie's catalogue says 'approximately 3,300' and RM Sotheby's 'just over 3,000'. Not resolved by any source consulted here."
+   "conflictNote": "Porsche Newsroom states 'exactly 3,338 units were produced between 1969 and 1972'. Wikipedia's infobox, Stuttcars and Nine Motoring state 3,332. Wikipedia's article body, classic.com, Curbside Classic and Hagerty Insider state 3,351. Wikipedia's 914/6 GT article states 3,360 and p914-6info.net states 3,360 including the 916 prototypes. Gooding Christie's catalog says 'approximately 3,300' and RM Sotheby's 'just over 3,000'. Not resolved by any source consulted here."
   },
   {
    "section": "production",

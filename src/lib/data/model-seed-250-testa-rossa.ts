@@ -4,6 +4,8 @@
  */
 export const seed250TestaRossa = {
  "slug": "ferrari/250-testa-rossa",
+ "heroPhoto": "/images/models/ferrari-250-testa-rossa.jpg",
+ "heroPhotoCredit": "Photo: Johannes Maximilian, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "250 Testa Rossa",
  "generation": null,

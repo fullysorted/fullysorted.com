@@ -4,6 +4,8 @@
  */
 export const seedM3E46 = {
  "slug": "bmw/m3-e46",
+ "heroPhoto": "/images/models/bmw-m3-e46.jpg",
+ "heroPhotoCredit": "Photo: Land Rover Series 3, CC0, via Wikimedia Commons",
  "make": "BMW",
  "model": "M3",
  "generation": null,

@@ -23,7 +23,7 @@ export const seed328 = {
   "3,185 cc F105 C tipo 046 catalyzed variant for Switzerland and Sweden from spring 1987, KE3-Jetronic injection, 255 hp at 6,750 rpm SAE net and approximately 202 lb-ft at 5,500 rpm"
  ],
  "productionTotal": 7412,
- "productionNotes": "The 328 is an unusually well-behaved car to count. Ferrari's own model record states 1,344 GTBs, chassis 58735 to 83017; the GTS figure of 6,068, chassis 59301 to 83136, is given identically by Wikipedia, Conceptcarz, the Ferrarista buying guide and three separate RM Sotheby's catalogue entries consulted here. The two add to 7,412, and no source consulted disagreed with either component, so a total is asserted rather than withheld. The split is the interesting part: at roughly four and a half GTS to every GTB, the closed car - normally the volume body in any range - is the rare one, which inverts the scarcity logic buyers usually apply.\n\nRight-hand drive is where the counting gets soft. Supercar Nostalgia gives 130 right-hand-drive GTBs and 542 right-hand-drive GTSs without qualifying the market. The Ferrarista guide gives the same two numbers but describes both as UK cars, and adds a further 152 right-hand-drive GTSs delivered to Australia, along with 135 GTBs for the United States. Whether 542 is the whole right-hand-drive GTS figure or only the British share is not resolved by any source read here, so the numbers are reported as quoted rather than summed.\n\nTwo scope notes. The Ferrarista guide records a single factory convertible, chassis 49453, built during development and never approved for production; that chassis number sits well below the 328 series range and no second source consulted confirms it, so it is reported and not counted. Separately, the 1,991 cc GTB Turbo and GTS Turbo built for the Italian market between 1986 and 1989 - 308 and 828 cars respectively per Wikipedia - wear the 328's restyled bodywork but are two-liter turbocharged cars built to sit under Italy's punitive VAT threshold. They are not 328s and are not included in the 7,412.",
+ "productionNotes": "The 328 is an unusually well-behaved car to count. Ferrari's own model record states 1,344 GTBs, chassis 58735 to 83017; the GTS figure of 6,068, chassis 59301 to 83136, is given identically by Wikipedia, Conceptcarz, the Ferrarista buying guide and three separate RM Sotheby's catalog entries consulted here. The two add to 7,412, and no source consulted disagreed with either component, so a total is asserted rather than withheld. The split is the interesting part: at roughly four and a half GTS to every GTB, the closed car - normally the volume body in any range - is the rare one, which inverts the scarcity logic buyers usually apply.\n\nRight-hand drive is where the counting gets soft. Supercar Nostalgia gives 130 right-hand-drive GTBs and 542 right-hand-drive GTSs without qualifying the market. The Ferrarista guide gives the same two numbers but describes both as UK cars, and adds a further 152 right-hand-drive GTSs delivered to Australia, along with 135 GTBs for the United States. Whether 542 is the whole right-hand-drive GTS figure or only the British share is not resolved by any source read here, so the numbers are reported as quoted rather than summed.\n\nTwo scope notes. The Ferrarista guide records a single factory convertible, chassis 49453, built during development and never approved for production; that chassis number sits well below the 328 series range and no second source consulted confirms it, so it is reported and not counted. Separately, the 1,991 cc GTB Turbo and GTS Turbo built for the Italian market between 1986 and 1989 - 308 and 828 cars respectively per Wikipedia - wear the 328's restyled bodywork but are two-liter turbocharged cars built to sit under Italy's punitive VAT threshold. They are not 328s and are not included in the 7,412.",
  "notableTrims": [
   {
    "name": "328 GTB",
@@ -178,7 +178,7 @@ export const seed328 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $212,800 at Arizona 2026, Longhorn Collection. Chassis ZFFXA19AXJ0076633, 8,380 miles, no ABS, no warranty book; timing-belt service February 2024 and annual service December 2025. Catalogue states one of 1,344 GTBs against 6,068 GTSs."
+   "notes": "Sold for $212,800 at Arizona 2026, Longhorn Collection. Chassis ZFFXA19AXJ0076633, 8,380 miles, no ABS, no warranty book; timing-belt service February 2024 and annual service December 2025. Catalog states one of 1,344 GTBs against 6,068 GTSs."
   },
   {
    "ref": "rm-pa24-gtb",
@@ -196,7 +196,7 @@ export const seed328 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for EUR 92,000 at Villa Erba 2023. Chassis ZFFWA20T0K0082236, 17,657 miles, matching numbers, completed 14 July 1989; EUR 37,305 of work at Charles Pozzi in 2019 and a EUR 4,561 service in March 2023 including timing belts. Catalogue states one of 6,068 GTS."
+   "notes": "Sold for EUR 92,000 at Villa Erba 2023. Chassis ZFFWA20T0K0082236, 17,657 miles, matching numbers, completed 14 July 1989; EUR 37,305 of work at Charles Pozzi in 2019 and a EUR 4,561 service in March 2023 including timing belts. Catalog states one of 6,068 GTS."
   },
   {
    "ref": "rm-mi22-gts",
@@ -205,7 +205,7 @@ export const seed328 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $235,200 at RM Sotheby's Miami in 2022. Chassis ZFFCA20S000082103, engine 18665, 1,491 miles, ABS-equipped, Ferrari Classiche Certificate of Authenticity, cambelt service invoiced October 2022, sold new in Switzerland July 1989. Catalogue states one of 6,068 GTS."
+   "notes": "Sold for $235,200 at RM Sotheby's Miami in 2022. Chassis ZFFCA20S000082103, engine 18665, 1,491 miles, ABS-equipped, Ferrari Classiche Certificate of Authenticity, cambelt service invoiced October 2022, sold new in Switzerland July 1989. Catalog states one of 6,068 GTS."
   },
   {
    "ref": "classicmotorsports-guide",

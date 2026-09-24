@@ -39,7 +39,7 @@ export const seedMiura = {
   },
   {
    "name": "P400 SV, late (split sump)",
-   "note": "The last SV engines separate gearbox lubrication from the engine's, stopping gearbox debris circulating through the V12 and allowing a limited-slip differential. Wikipedia and Classic Trader put this group at the final 96 engines, and split-sump provenance is now a stated selling point in auction catalogues."
+   "note": "The last SV engines separate gearbox lubrication from the engine's, stopping gearbox debris circulating through the V12 and allowing a limited-slip differential. Wikipedia and Classic Trader put this group at the final 96 engines, and split-sump provenance is now a stated selling point in auction catalogs."
   },
   {
    "name": "SV/J",

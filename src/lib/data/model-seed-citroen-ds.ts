@@ -17,7 +17,7 @@ export const seedCitroenDs = {
   "4-door Berline (sedan), fiberglass roof panel over unstressed bolt-on outer panels",
   "5-door Break / Safari / Familiale / Commerciale estate with steel roof, from 1958",
   "2-door Decapotable Usine, the factory-authorized Chapron convertible, from 1960",
-  "2-door Chapron catalogue coachwork built to the coachbuilder's own account, including Le Dandy and Concorde coupes"
+  "2-door Chapron catalog coachwork built to the coachbuilder's own account, including Le Dandy and Concorde coupes"
  ],
  "engines": [
   "1,911 cc four-cylinder OHV, three main bearings, 78 x 100 mm, 8.5:1, twin-choke carburetor; 75 hp at 4,500 rpm as DS 19",
@@ -28,7 +28,7 @@ export const seedCitroenDs = {
   "2,347 cc four (DS 23, 1972-73 on); 115 hp carbureted, 141 hp SAE injected, also quoted at 130 hp DIN"
  ],
  "productionTotal": null,
- "productionNotes": "No grand total is asserted, because the sources do not agree. Wikipedia, Ate Up With Motor, Conceptcarz and Motoring Research all state 1,455,746 D-series cars, with Wikipedia and Conceptcarz splitting that into 1,330,755 built at Paris and the balance assembled at Slough and in Australia, Portugal, South Africa and the former Yugoslavia. The registry site citroen-ds-id.com publishes a year-by-year berline and break table that sums to 1,456,115, a difference of 369 cars, says this includes 1,325 cabriolets and 287 further Chapron cars, and separately offers an adjusted 1,376,631 over seventeen years without explaining the basis. It cites no source. Convertible counts are contested in their own right: RM Sotheby's Monterey 2021 catalogue gives 1,365 factory cabriolets as 770 DS 19s, 483 DS 21s and 112 ID 19s, its Arizona 2022 catalogue says fewer than 1,400 with under 500 DS 21s, and Wikipedia says approximately 1,400. Chapron's catalogue coachwork is counted separately: 37 or 38 Concordes and fewer than 50 Le Dandys.",
+ "productionNotes": "No grand total is asserted, because the sources do not agree. Wikipedia, Ate Up With Motor, Conceptcarz and Motoring Research all state 1,455,746 D-series cars, with Wikipedia and Conceptcarz splitting that into 1,330,755 built at Paris and the balance assembled at Slough and in Australia, Portugal, South Africa and the former Yugoslavia. The registry site citroen-ds-id.com publishes a year-by-year berline and break table that sums to 1,456,115, a difference of 369 cars, says this includes 1,325 cabriolets and 287 further Chapron cars, and separately offers an adjusted 1,376,631 over seventeen years without explaining the basis. It cites no source. Convertible counts are contested in their own right: RM Sotheby's Monterey 2021 catalog gives 1,365 factory cabriolets as 770 DS 19s, 483 DS 21s and 112 ID 19s, its Arizona 2022 catalog says fewer than 1,400 with under 500 DS 21s, and Wikipedia says approximately 1,400. Chapron's catalog coachwork is counted separately: 37 or 38 Concordes and fewer than 50 Le Dandys.",
  "notableTrims": [
   {
    "name": "DS 19 (1955-1965)",
@@ -59,7 +59,7 @@ export const seedCitroenDs = {
    "note": "The factory-authorized convertible, reinforced and with doors four inches longer than the sedan's. RM Sotheby's records 40 DS 21 cabriolets for 1970; the last was completed in 1978."
   },
   {
-   "name": "Chapron catalogue coachwork (Le Dandy, Concorde)",
+   "name": "Chapron catalog coachwork (Le Dandy, Concorde)",
    "note": "Built on Chapron's own account rather than for Citroen, at roughly double a standard DS. Artcurial gives 37 or 38 Concordes and fewer than 50 Le Dandys."
   }
  ],
@@ -295,7 +295,7 @@ export const seedCitroenDs = {
     "citroen-ds-id-production",
     "motoringresearch-ds"
    ],
-   "conflictNote": "RM Sotheby's Monterey and Elkhart catalogues and Motoring Research state 1,365, as 770 DS 19s, 483 DS 21s and 112 ID 19s. RM's own Arizona 2022 catalogue states fewer than 1,400 with under 500 DS 21s. Wikipedia states approximately 1,400. citroen-ds-id.com states 1,325 plus 287. No source reconciles these, and the line between factory Usine cars and Chapron's own coachwork is drawn differently by each. Unresolved."
+   "conflictNote": "RM Sotheby's Monterey and Elkhart catalogs and Motoring Research state 1,365, as 770 DS 19s, 483 DS 21s and 112 ID 19s. RM's own Arizona 2022 catalog states fewer than 1,400 with under 500 DS 21s. Wikipedia states approximately 1,400. citroen-ds-id.com states 1,325 plus 287. No source reconciles these, and the line between factory Usine cars and Chapron's own coachwork is drawn differently by each. Unresolved."
   },
   {
    "section": "history",
@@ -321,7 +321,7 @@ export const seedCitroenDs = {
     "conceptcarz-ds",
     "rm-pa23-decapotable"
    ],
-   "conflictNote": "Wikipedia states 69 hp for the ID 19 against 75 hp for the DS 19, and 106 hp DIN for the DS 21. Ate Up With Motor states 66 hp and 109 hp; Conceptcarz and RM Sotheby's Paris 2023 catalogue also state 109 hp. No source states which rating standard produced which figure, so no single output is asserted."
+   "conflictNote": "Wikipedia states 69 hp for the ID 19 against 75 hp for the DS 19, and 106 hp DIN for the DS 21. Ate Up With Motor states 66 hp and 109 hp; Conceptcarz and RM Sotheby's Paris 2023 catalog also state 109 hp. No source states which rating standard produced which figure, so no single output is asserted."
   },
   {
    "section": "specs",

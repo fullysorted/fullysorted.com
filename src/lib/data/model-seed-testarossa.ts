@@ -24,7 +24,7 @@ export const seedTestarossa = {
   "4,943 cc Tipo F113 A 046, later F113 B 046 - Swiss and Swedish specification, KE-Jetronic throughout"
  ],
  "productionTotal": 7177,
- "productionNotes": "Four independently consulted sources give the same total of 7,177 cars: Red Headed, Supercar Nostalgia, Classic & Sports Car and Petrolicious. Red Headed adds the serial range, 53081 to 91923, and a year-by-year breakdown nothing else consulted contradicts: 110 cars in 1984, 568, 819, 1,008, 1,072, 1,126, 1,308 in 1990 and 1,166 in 1991, with approximate US and Canadian volumes by US model year of 121, 300, 315, 390, 261, 452 and 266. The 1988 figure of 390 is echoed by RM Sotheby's catalogue for a 1988 US car sold at Monterey in August 2026. A further 150 to 200 European cars reached the United States as privately converted gray-market imports, outside that total. Of the 7,177, 438 were right-hand drive - Supercar Nostalgia gives that as the total, Classic & Sports Car as a United Kingdom figure. Eleven Pininfarina Spiders for the Sultan of Brunei sit inside the total; open cars by Straman, Pavesi and Lorenz & Rankl are aftermarket conversions and outside it. When production stopped is not agreed: Red Headed says late 1991, Wikipedia 1984 to 1991, Supercar Nostalgia early 1992, classic.com model years 1984 to 1992. Ferrari and Red Headed both state 2,261 512 TRs; Classic & Sports Car states 2,280. All agree the F512 M ran to 501 cars.",
+ "productionNotes": "Four independently consulted sources give the same total of 7,177 cars: Red Headed, Supercar Nostalgia, Classic & Sports Car and Petrolicious. Red Headed adds the serial range, 53081 to 91923, and a year-by-year breakdown nothing else consulted contradicts: 110 cars in 1984, 568, 819, 1,008, 1,072, 1,126, 1,308 in 1990 and 1,166 in 1991, with approximate US and Canadian volumes by US model year of 121, 300, 315, 390, 261, 452 and 266. The 1988 figure of 390 is echoed by RM Sotheby's catalog for a 1988 US car sold at Monterey in August 2026. A further 150 to 200 European cars reached the United States as privately converted gray-market imports, outside that total. Of the 7,177, 438 were right-hand drive - Supercar Nostalgia gives that as the total, Classic & Sports Car as a United Kingdom figure. Eleven Pininfarina Spiders for the Sultan of Brunei sit inside the total; open cars by Straman, Pavesi and Lorenz & Rankl are aftermarket conversions and outside it. When production stopped is not agreed: Red Headed says late 1991, Wikipedia 1984 to 1991, Supercar Nostalgia early 1992, classic.com model years 1984 to 1992. Ferrari and Red Headed both state 2,261 512 TRs; Classic & Sports Car states 2,280. All agree the F512 M ran to 501 cars.",
  "notableTrims": [
   {
    "name": "Monospecchio, single-nut (1984 to March 1986)",
@@ -242,7 +242,7 @@ export const seedTestarossa = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 311, published result $472,500 USD marked Sold, Monterey August 2026. Chassis ZFFSG17A6J0076950, 1,059 miles, belt service January 2026 with brakes and clutch; catalogue states about 390 US cars built in 1988."
+   "notes": "Lot 311, published result $472,500 USD marked Sold, Monterey August 2026. Chassis ZFFSG17A6J0076950, 1,059 miles, belt service January 2026 with brakes and clutch; catalog states about 390 US cars built in 1988."
   },
   {
    "ref": "gooding-pb26",

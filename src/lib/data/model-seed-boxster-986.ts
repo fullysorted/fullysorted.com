@@ -4,6 +4,8 @@
  */
 export const seedBoxster986 = {
  "slug": "porsche/boxster-986",
+ "heroPhoto": "/images/models/porsche-boxster-986.jpg",
+ "heroPhotoCredit": "Photo: Jeremy from Sydney, Australia, CC BY 2.0, via Wikimedia Commons",
  "make": "Porsche",
  "model": "Boxster",
  "generation": null,

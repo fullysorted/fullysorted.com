@@ -23,7 +23,7 @@ export const seed360 = {
   "3,586 cc Tipo F131 V8 with raised compression (11.2:1), revised intake and polished ports, 419-420 hp at 8,500 rpm, torque unchanged at 275 lb-ft at 4,750 rpm - Challenge Stradale"
  ],
  "productionTotal": null,
- "productionNotes": "No single production figure is asserted because credible sources do not agree, and Ferrari's own model pages consulted here give none. The most widely repeated set is 8,800 Modena, 7,565 Spider and 1,288 Challenge Stradale, which appears in Wikipedia, Classic & Sports Car, the Ferrarista club guide and (for the Modena) Supercar Nostalgia, and which sums to 17,653, consistent with Classic Driver's 'more than 17,000'. Supercar Nostalgia gives 7,579 for the Spider rather than 7,565. A FerrariChat member citing Official Ferrari Magazine issue 4 gives rounded figures of about 8,700 Modena, 7,500 Spider, 1,288 Challenge Stradale and 300 Challenge race cars, roughly 17,500 in all. The Challenge Stradale is the least settled: the ChallengeStradale.com registry wiki lists published totals of 378 (Cavallino), 852 (evo, 2009), 1,167 (Ferraridatabase), 1,200 (Giuseppe Bonollo to evo), 1,274 (f-register), 1,288 (Michael Sheehan) and its own conclusion of about 1,300; RM Sotheby's catalogues state only 'fewer than 1,300', with approximately 378 for North America, while a FerrariChat thread reports 353 US cars from Ferrari North America. The transmission split is better agreed: 2,630 manual Modenas and 2,119 manual Spiders (Ferrarista and Supercar Nostalgia, the latter adding 352 and 478 right-hand-drive manuals respectively), against a FerrariChat rounding of 2,600 and 2,100. Ferrari's US page gives a Modena chassis range of 104376 to 136686. Race variants (360 Challenge, GT, GTC) are counted separately and are not included in any of the road-car figures above.",
+ "productionNotes": "No single production figure is asserted because credible sources do not agree, and Ferrari's own model pages consulted here give none. The most widely repeated set is 8,800 Modena, 7,565 Spider and 1,288 Challenge Stradale, which appears in Wikipedia, Classic & Sports Car, the Ferrarista club guide and (for the Modena) Supercar Nostalgia, and which sums to 17,653, consistent with Classic Driver's 'more than 17,000'. Supercar Nostalgia gives 7,579 for the Spider rather than 7,565. A FerrariChat member citing Official Ferrari Magazine issue 4 gives rounded figures of about 8,700 Modena, 7,500 Spider, 1,288 Challenge Stradale and 300 Challenge race cars, roughly 17,500 in all. The Challenge Stradale is the least settled: the ChallengeStradale.com registry wiki lists published totals of 378 (Cavallino), 852 (evo, 2009), 1,167 (Ferraridatabase), 1,200 (Giuseppe Bonollo to evo), 1,274 (f-register), 1,288 (Michael Sheehan) and its own conclusion of about 1,300; RM Sotheby's catalogs state only 'fewer than 1,300', with approximately 378 for North America, while a FerrariChat thread reports 353 US cars from Ferrari North America. The transmission split is better agreed: 2,630 manual Modenas and 2,119 manual Spiders (Ferrarista and Supercar Nostalgia, the latter adding 352 and 478 right-hand-drive manuals respectively), against a FerrariChat rounding of 2,600 and 2,100. Ferrari's US page gives a Modena chassis range of 104376 to 136686. Race variants (360 Challenge, GT, GTC) are counted separately and are not included in any of the road-car figures above.",
  "notableTrims": [
   {
    "name": "360 Modena, six-speed manual",
@@ -142,7 +142,7 @@ export const seed360 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 245, Miami 2025, marked sold but price not shown on the fetched page. Chassis ZFFDU57A940134806, 6,928 miles, Tour de France Blue with stripe delete. Catalogue states 'fewer than 1,300 examples' with 'approximately 378 specified for North America', 425 hp (+25), weight cut via removal of sound insulation, carbon-ceramic brakes."
+   "notes": "Lot 245, Miami 2025, marked sold but price not shown on the fetched page. Chassis ZFFDU57A940134806, 6,928 miles, Tour de France Blue with stripe delete. Catalog states 'fewer than 1,300 examples' with 'approximately 378 specified for North America', 425 hp (+25), weight cut via removal of sound insulation, carbon-ceramic brakes."
   },
   {
    "ref": "rm-id25-cs",
@@ -151,7 +151,7 @@ export const seed360 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold CHF 297,500, Tailored for Speed Collection sale, 11 October 2025 (date from the auction page). Chassis ZFFDT57B000135709, 5,421 miles, Rosso Scuderia, Nero leather, carbon seats, four-point harness. Catalogue states 'fewer than 1,300 examples' and 425 hp."
+   "notes": "Sold CHF 297,500, Tailored for Speed Collection sale, 11 October 2025 (date from the auction page). Chassis ZFFDT57B000135709, 5,421 miles, Rosso Scuderia, Nero leather, carbon seats, four-point harness. Catalog states 'fewer than 1,300 examples' and 425 hp."
   },
   {
    "ref": "rm-id25-spider",
@@ -160,7 +160,7 @@ export const seed360 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold CHF 155,250, 11 October 2025. Chassis ZFFYT53B000135245, 28,917 miles, Giallo Modena, gated manual, described as one of 20 manual Spiders in that color. Catalogue: Alcoa all-aluminum construction, almost 400 hp, 183 mph, Spider needed minimal reinforcement and weighs 132 lb more than the coupe."
+   "notes": "Sold CHF 155,250, 11 October 2025. Chassis ZFFYT53B000135245, 28,917 miles, Giallo Modena, gated manual, described as one of 20 manual Spiders in that color. Catalog: Alcoa all-aluminum construction, almost 400 hp, 183 mph, Spider needed minimal reinforcement and weighs 132 lb more than the coupe."
   },
   {
    "ref": "rm-mc24-cs",
@@ -169,7 +169,7 @@ export const seed360 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold 241,250 euros, Monaco, May 2024, lot 121. Chassis ZFFDT57B000136548, 26,624 miles, delivered 3 Feb 2004 via Autohaus Gohm. Catalogue: fewer than 1,300 produced, 425 hp, 243 lb lighter, carbon-ceramic brakes, titanium springs, 19-inch wheels, 15 mm lower, launch control."
+   "notes": "Sold 241,250 euros, Monaco, May 2024, lot 121. Chassis ZFFDT57B000136548, 26,624 miles, delivered 3 Feb 2004 via Autohaus Gohm. Catalog: fewer than 1,300 produced, 425 hp, 243 lb lighter, carbon-ceramic brakes, titanium springs, 19-inch wheels, 15 mm lower, launch control."
   },
   {
    "ref": "rm-mo26-sunroof",
@@ -178,7 +178,7 @@ export const seed360 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $445,000, Monterey, August 2026, lot 268. Chassis ZFFYU51A0Y0121782, 27,407 miles, gated manual, believed one of about 25 with factory-painted removable roof panel, an estimated 12 for the US. Catalogue: Alcoa spaceframe 28 per cent lighter and 40 per cent stiffer, Geneva 1999, Goran Popovic, 395 hp."
+   "notes": "Sold $445,000, Monterey, August 2026, lot 268. Chassis ZFFYU51A0Y0121782, 27,407 miles, gated manual, believed one of about 25 with factory-painted removable roof panel, an estimated 12 for the US. Catalog: Alcoa spaceframe 28 per cent lighter and 40 per cent stiffer, Geneva 1999, Goran Popovic, 395 hp."
   },
   {
    "ref": "rm-pa25-challenge",
@@ -411,7 +411,7 @@ export const seed360 = {
   },
   {
    "section": "production",
-   "claimText": "Challenge Stradale production is the least settled figure in the 360 story: 1,288 is the number most often repeated, RM Sotheby's catalogues state only 'fewer than 1,300' with approximately 378 for North America, and an owners' registry lists published totals of 378, 852, 1,167, 1,200, 1,274, 1,288 and about 1,300.",
+   "claimText": "Challenge Stradale production is the least settled figure in the 360 story: 1,288 is the number most often repeated, RM Sotheby's catalogs state only 'fewer than 1,300' with approximately 378 for North America, and an owners' registry lists published totals of 378, 852, 1,167, 1,200, 1,274, 1,288 and about 1,300.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [

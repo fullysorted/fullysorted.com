@@ -26,7 +26,7 @@ export const seedM3E36 = {
   "2,990 cc S50B30 in M3 GT tune: 264-degree inlet camshaft, shortened intake manifold from the later 3.2, revised Bosch Motronic M3.3 mapping and VANOS software, baffled dual-pickup sump, quoted at 295-296 hp"
  ],
  "productionTotal": null,
- "productionNotes": "No single figure is asserted because the two most detailed public tabulations do not quite agree. BIMMERtips, publishing a cross-checked breakdown by engine, market, body and transmission, totals 71,241 cars. Prestige & Performance Car states 71,242, which is also what Wikipedia's body-style figures come to when added together (46,525 coupes, 12,114 convertibles, 12,603 sedans). The gap is a single car and neither side explains it, so the total is left null. The body-style split is not seriously contested; the market split is. Wikipedia gives North American production as 18,961 coupes, 7,760 sedans and 6,211 convertibles. The BIMMERtips table gives US figures of 8,515 manual plus 1,705 automatic S50B30US coupes, 11,793 S52 coupes, 4,574 manual plus 4,036 automatic sedans and 2,252 manual plus 4,017 automatic convertibles - substantially more coupes and sedans than Wikipedia allows. The disagreement is unresolved. Sub-totals the sources do agree on: 748 South African coupes and roughly 700 South African sedans; 1,342 left-hand-drive and 500 right-hand-drive SMG coupes; 694 right-hand-drive sedans; 126 North American M3 Lightweights; and 15 Australian M3-Rs. The M3 GT is stated as 350 by BIMMERtips and as 356 by BMW M itself, by RM Sotheby's catalogue entries and by Supercar Nostalgia - the difference being whether the five or six pre-production cars are counted. Supercar Nostalgia further splits the 3.0-liter phase into 15,436 coupes, 1,283 sedans and 1,975 convertibles, and the 3.2 Evolution phase into 8,962 coupes, 1,990 sedans and 3,870 convertibles.",
+ "productionNotes": "No single figure is asserted because the two most detailed public tabulations do not quite agree. BIMMERtips, publishing a cross-checked breakdown by engine, market, body and transmission, totals 71,241 cars. Prestige & Performance Car states 71,242, which is also what Wikipedia's body-style figures come to when added together (46,525 coupes, 12,114 convertibles, 12,603 sedans). The gap is a single car and neither side explains it, so the total is left null. The body-style split is not seriously contested; the market split is. Wikipedia gives North American production as 18,961 coupes, 7,760 sedans and 6,211 convertibles. The BIMMERtips table gives US figures of 8,515 manual plus 1,705 automatic S50B30US coupes, 11,793 S52 coupes, 4,574 manual plus 4,036 automatic sedans and 2,252 manual plus 4,017 automatic convertibles - substantially more coupes and sedans than Wikipedia allows. The disagreement is unresolved. Sub-totals the sources do agree on: 748 South African coupes and roughly 700 South African sedans; 1,342 left-hand-drive and 500 right-hand-drive SMG coupes; 694 right-hand-drive sedans; 126 North American M3 Lightweights; and 15 Australian M3-Rs. The M3 GT is stated as 350 by BIMMERtips and as 356 by BMW M itself, by RM Sotheby's catalog entries and by Supercar Nostalgia - the difference being whether the five or six pre-production cars are counted. Supercar Nostalgia further splits the 3.0-liter phase into 15,436 coupes, 1,283 sedans and 1,975 convertibles, and the 3.2 Evolution phase into 8,962 coupes, 1,990 sedans and 3,870 convertibles.",
  "notableTrims": [
   {
    "name": "M3 Coupe 3.0 (European S50B30)",
@@ -277,7 +277,7 @@ export const seedM3E36 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $179,200 at Monterey, August 2025. Chassis WBSBF9328SEH07955, built 29 September 1995, one of 126, 200 lb removed. Catalogue states the car existed because the Euro GT could not be sold in North America and IMSA needed homologation; US delivery by Prototype Technology Group."
+   "notes": "Sold $179,200 at Monterey, August 2025. Chassis WBSBF9328SEH07955, built 29 September 1995, one of 126, 200 lb removed. Catalog states the car existed because the Euro GT could not be sold in North America and IMSA needed homologation; US delivery by Prototype Technology Group."
   },
   {
    "ref": "rm-mu25-gt",
@@ -286,7 +286,7 @@ export const seedM3E36 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold 275,000 euros at Munich, October 2025. Chassis WBSBF99030EA40098. Catalogue states 356 M3 GTs built to homologate for FIA and IMSA GT competition, 291 hp, roughly 66 lb saved partly through aluminum doors, Europe only."
+   "notes": "Sold 275,000 euros at Munich, October 2025. Chassis WBSBF99030EA40098. Catalog states 356 M3 GTs built to homologate for FIA and IMSA GT competition, 291 hp, roughly 66 lb saved partly through aluminum doors, Europe only."
   },
   {
    "ref": "scm-ltw",

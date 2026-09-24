@@ -87,7 +87,7 @@ export const seedBmwIsetta = {
    "publisher": "BMW Group PressClub",
    "sourceType": "manufacturer",
    "reliability": "high",
-   "notes": "Licence taken from Iso at the 1954 Geneva show; 12,911 units in year one; 250 cc/12 hp and 300 cc/13 hp from 1956; 53 mph; DM 2,550 plus DM 95 insurance and DM 44 tax; peak year 1957 near 40,000; total 161,728; export version with top-hung windows and optional RHD."
+   "notes": "License taken from Iso at the 1954 Geneva show; 12,911 units in year one; 250 cc/12 hp and 300 cc/13 hp from 1956; 53 mph; DM 2,550 plus DM 95 insurance and DM 44 tax; peak year 1957 near 40,000; total 161,728; export version with top-hung windows and optional RHD."
   },
   {
    "ref": "wikipedia-isetta",
@@ -249,7 +249,7 @@ export const seedBmwIsetta = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 181, sold $27,500 hammer at Hershey, Pennsylvania, 9-10 October 2024. Chassis 570827, engine 570753, 298 cc. Catalogue dates BMW production April 1955 to May 1962 under a license from Iso Autoveicoli SpA in 1954 and attributes the 298 cc engine to 1956 German legislation. Nearly $6,000 of recent work."
+   "notes": "Lot 181, sold $27,500 hammer at Hershey, Pennsylvania, 9-10 October 2024. Chassis 570827, engine 570753, 298 cc. Catalog dates BMW production April 1955 to May 1962 under a license from Iso Autoveicoli SpA in 1954 and attributes the 298 cc engine to 1956 German legislation. Nearly $6,000 of recent work."
   },
   {
    "ref": "rm-daretodream24-isetta",
@@ -267,7 +267,7 @@ export const seedBmwIsetta = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Lot 614, sold $40,250 at the Bruce Weiner Microcar Museum sale, Madison, Georgia, 15-16 February 2013 - a 200-vehicle no-reserve dispersal realizing more than $9.1 million. Chassis 604283, three-wheeled Export model, 297 cc. Catalogue explains British rules required a motorcycle to have three wheels where German rules allowed four, and that BMW built its own three-wheeler for markets Brighton did not serve."
+   "notes": "Lot 614, sold $40,250 at the Bruce Weiner Microcar Museum sale, Madison, Georgia, 15-16 February 2013 - a 200-vehicle no-reserve dispersal realizing more than $9.1 million. Chassis 604283, three-wheeled Export model, 297 cc. Catalog explains British rules required a motorcycle to have three wheels where German rules allowed four, and that BMW built its own three-wheeler for markets Brighton did not serve."
   },
   {
    "ref": "rm-mo24-bmw600",

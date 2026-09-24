@@ -196,7 +196,7 @@ export const seedChevelleSs = {
    "publisher": "Over-Drive Magazine",
    "sourceType": "specialist",
    "reliability": "medium",
-   "notes": "Reprints the 1971 factory table with compression at 8.5:1 across the range and the LS5 454 at 365 hp and 465 lb-ft. Also lists an LS6 454 at 425 hp and 475 lb-ft in the SS package at about $720 - the catalogued 1971 LS6 that other sources say was never built."
+   "notes": "Reprints the 1971 factory table with compression at 8.5:1 across the range and the LS5 454 at 365 hp and 465 lb-ft. Also lists an LS6 454 at 425 hp and 475 lb-ft in the SS package at about $720 - the cataloged 1971 LS6 that other sources say was never built."
   },
   {
    "ref": "oldcars-1971-chevelle-ss",
@@ -345,7 +345,7 @@ export const seedChevelleSs = {
   },
   {
    "section": "production",
-   "claimText": "The LS6 was catalogued for the 1971 Chevelle at 425 hp gross and 325 hp net but sources disagree over whether any Chevelle was actually built with it.",
+   "claimText": "The LS6 was cataloged for the 1971 Chevelle at 425 hp gross and 325 hp net but sources disagree over whether any Chevelle was actually built with it.",
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": [

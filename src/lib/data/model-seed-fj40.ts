@@ -168,7 +168,7 @@ export const seedFj40 = {
     "ecd-restomod",
     "wiki-j40"
    ],
-   "conflictNote": "Hagerty catalogues a 1983 FJ40V as the final US listing, and some sources cite the FJ40 ending US sales in 1983; ECD/other references state production ran 1960-1984 (and into 1985 in select markets). The discrepancy reflects US-import timing versus global end-of-production. Both figures noted; not resolved to a single authoritative US end-year here."
+   "conflictNote": "Hagerty catalogs a 1983 FJ40V as the final US listing, and some sources cite the FJ40 ending US sales in 1983; ECD/other references state production ran 1960-1984 (and into 1985 in select markets). The discrepancy reflects US-import timing versus global end-of-production. Both figures noted; not resolved to a single authoritative US end-year here."
   },
   {
    "section": "production",

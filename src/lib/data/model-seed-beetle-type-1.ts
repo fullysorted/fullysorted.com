@@ -4,6 +4,8 @@
  */
 export const seedBeetleType1 = {
  "slug": "volkswagen/beetle-type-1",
+ "heroPhoto": "/images/models/volkswagen-beetle-type-1.jpg",
+ "heroPhotoCredit": "Photo: Vauxford, CC BY-SA 4.0, via Wikimedia Commons",
  "make": "Volkswagen",
  "model": "Beetle (Type 1)",
  "generation": null,

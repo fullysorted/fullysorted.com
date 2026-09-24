@@ -15,7 +15,7 @@ export const seedShelbyGt350 = {
  "yearEnd": 1970,
  "bodyStyles": [
   "2-door fastback (modified Ford Mustang 2+2 shell; the only body offered 1965-1967)",
-  "2-door convertible (catalogued from 1968; six one-off 1966 convertibles were built for Shelby American staff)"
+  "2-door convertible (cataloged from 1968; six one-off 1966 convertibles were built for Shelby American staff)"
  ],
  "engines": [
   "4,727 cc (289 cu in) Ford K-code Hi-Po Windsor V8, aluminum Cobra inlet manifold, Holley 715 cfm four-barrel, tubular Tri-Y headers, 306 hp at 6,000 rpm and 329 lb-ft at 4,200 rpm (1965-1967)",
@@ -237,7 +237,7 @@ export const seedShelbyGt350 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $500,000 at Monterey, August 2025. Chassis SFM 5S137, completed 27 April 1965 and shipped to Turner Ford, Wichita, with provenance documented through the SAAC Registry. Catalogue states 562 GT350s for 1965."
+   "notes": "Sold $500,000 at Monterey, August 2025. Chassis SFM 5S137, completed 27 April 1965 and shipped to Turner Ford, Wichita, with provenance documented through the SAAC Registry. Catalog states 562 GT350s for 1965."
   },
   {
    "ref": "rm-mo23-carryover",
@@ -246,7 +246,7 @@ export const seedShelbyGt350 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $351,500 at Monterey 2023. Chassis SFM 6S176, described as number 176 of 252 carryovers, the catalogue independently confirming the 252 1965 K-code Mustangs delivered before San Jose retooled."
+   "notes": "Sold $351,500 at Monterey 2023. Chassis SFM 6S176, described as number 176 of 252 carryovers, the catalog independently confirming the 252 1965 K-code Mustangs delivered before San Jose retooled."
   },
   {
    "ref": "classic-gt350-6566",

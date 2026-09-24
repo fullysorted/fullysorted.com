@@ -22,7 +22,7 @@ export const seed456 = {
   "5,474 cc Tipo F116 C 65-degree V12, Bosch Motronic M5.2 from 1996, revised firing order for the 456M from 1998, 436 hp at 6,250 rpm, 406 lb-ft at 4,500 rpm"
  ],
  "productionTotal": null,
- "productionNotes": "The 456's total is usually printed as 3,289 cars over 1992-2003, and Wikipedia, Classic Driver, Petrolicious, Classic Trader, The Intercooler and autoevolution all repeat it. The figure is not, however, agreed once it is broken down. Ferrari's own 456 GT page gives 1,548 cars for the manual first series, chassis 96157 to 111376, and Wikipedia and supercars.net follow with 1,548 GT, 403 GTA, 688 456M GT and 650 456M GTA. Supercar Nostalgia gives the same 456M split of 688 manual (31 right-hand drive) and 650 automatic (136 right-hand drive) for a 456M total of 1,338. Forza magazine states a lower total of 3,222, made up of 1,548 GT, 403 GTA, 640 456M manuals and 631 456M automatics, and RM Sotheby's Monterey 2024 catalogue for a 1999 456M GT likewise describes it as one of 640 manual examples. Classic & Sports Car's buyer's guide prints 3,289 as the total but its own breakdown of 1,526 GT, 402 GTA, 668 456M GT and 660 456M GTA sums to 3,256. The disagreement is concentrated in the 456M manual count, where 688, 668 and 640 are all in print from credible sources, and no source consulted explains the gap. Because the total is not reconcilable from these figures, productionTotal is left null. On the sub-series there is better agreement: the 30-car 456M GT Scaglietti two-tone run of 2002, ten of them manual, is stated consistently by Classic Driver, SBR Engineering and supercars.net. The coachbuilt Brunei cars (Wikipedia lists three sedans, seven Venice estates of which six were taken, and two spiders) rest on the encyclopedia entry alone and are not asserted as verified counts.",
+ "productionNotes": "The 456's total is usually printed as 3,289 cars over 1992-2003, and Wikipedia, Classic Driver, Petrolicious, Classic Trader, The Intercooler and autoevolution all repeat it. The figure is not, however, agreed once it is broken down. Ferrari's own 456 GT page gives 1,548 cars for the manual first series, chassis 96157 to 111376, and Wikipedia and supercars.net follow with 1,548 GT, 403 GTA, 688 456M GT and 650 456M GTA. Supercar Nostalgia gives the same 456M split of 688 manual (31 right-hand drive) and 650 automatic (136 right-hand drive) for a 456M total of 1,338. Forza magazine states a lower total of 3,222, made up of 1,548 GT, 403 GTA, 640 456M manuals and 631 456M automatics, and RM Sotheby's Monterey 2024 catalog for a 1999 456M GT likewise describes it as one of 640 manual examples. Classic & Sports Car's buyer's guide prints 3,289 as the total but its own breakdown of 1,526 GT, 402 GTA, 668 456M GT and 660 456M GTA sums to 3,256. The disagreement is concentrated in the 456M manual count, where 688, 668 and 640 are all in print from credible sources, and no source consulted explains the gap. Because the total is not reconcilable from these figures, productionTotal is left null. On the sub-series there is better agreement: the 30-car 456M GT Scaglietti two-tone run of 2002, ten of them manual, is stated consistently by Classic Driver, SBR Engineering and supercars.net. The coachbuilt Brunei cars (Wikipedia lists three sedans, seven Venice estates of which six were taken, and two spiders) rest on the encyclopedia entry alone and are not asserted as verified counts.",
  "notableTrims": [
   {
    "name": "456 GT (1992-1998)",
@@ -156,7 +156,7 @@ export const seed456 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $95,200 at Monterey, August 2024. Chassis ZFFSP44A4S0099988, Nero Tropicale, six-speed gated manual, 14,353 miles, completed July 1994, supplied via Newport Imports. Catalogue states one of 1,548 produced 1992-1998, 442 hp, over 186 mph, 0-60 in 5.2 s."
+   "notes": "Sold for $95,200 at Monterey, August 2024. Chassis ZFFSP44A4S0099988, Nero Tropicale, six-speed gated manual, 14,353 miles, completed July 1994, supplied via Newport Imports. Catalog states one of 1,548 produced 1992-1998, 442 hp, over 186 mph, 0-60 in 5.2 s."
   },
   {
    "ref": "rm-mo24-456mgt",
@@ -165,7 +165,7 @@ export const seed456 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold for $123,200 at Monterey, August 2024. Chassis ZFFWP44A0X0116665, Rosso Barchetta, gated six-speed manual, 21,345 miles, Daytona seats, completed June 1999. Catalogue states one of just 640 manual 456M examples 1998-2004, 436 hp, and repeats the fastest production four-seater claim."
+   "notes": "Sold for $123,200 at Monterey, August 2024. Chassis ZFFWP44A0X0116665, Rosso Barchetta, gated six-speed manual, 21,345 miles, Daytona seats, completed June 1999. Catalog states one of just 640 manual 456M examples 1998-2004, 436 hp, and repeats the fastest production four-seater claim."
   },
   {
    "ref": "csc-buyers-guide",
@@ -404,7 +404,7 @@ export const seed456 = {
     "rm-mo24-456mgt",
     "classicdriver-guide"
    ],
-   "conflictNote": "Ferrari's 456 GT page states 1,548 GT with chassis 96157-111376. Wikipedia and supercars.net give 1,548 / 403 / 688 / 650 = 3,289; Supercar Nostalgia gives the same 688 / 650 for the 456M. Forza gives 1,548 / 403 / 640 / 631 = 3,222, and RM Sotheby's Monterey 2024 catalogue describes a 1999 456M GT as one of 640 manuals. Classic & Sports Car prints 3,289 as the total but breaks it down as 1,526 / 402 / 668 / 660, which sums to 3,256. Classic Driver, Petrolicious, Classic Trader and The Intercooler repeat 3,289 without a breakdown. The 456M manual figure (688, 668 or 640) is the core of the disagreement and no source consulted resolves it, so productionTotal is null."
+   "conflictNote": "Ferrari's 456 GT page states 1,548 GT with chassis 96157-111376. Wikipedia and supercars.net give 1,548 / 403 / 688 / 650 = 3,289; Supercar Nostalgia gives the same 688 / 650 for the 456M. Forza gives 1,548 / 403 / 640 / 631 = 3,222, and RM Sotheby's Monterey 2024 catalog describes a 1999 456M GT as one of 640 manuals. Classic & Sports Car prints 3,289 as the total but breaks it down as 1,526 / 402 / 668 / 660, which sums to 3,256. Classic Driver, Petrolicious, Classic Trader and The Intercooler repeat 3,289 without a breakdown. The 456M manual figure (688, 668 or 640) is the core of the disagreement and no source consulted resolves it, so productionTotal is null."
   },
   {
    "section": "production",

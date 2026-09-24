@@ -4,6 +4,8 @@
  */
 export const seed599 = {
  "slug": "ferrari/599",
+ "heroPhoto": "/images/models/ferrari-599.jpg",
+ "heroPhotoCredit": "Photo: Mr.choppers, CC BY-SA 3.0, via Wikimedia Commons",
  "make": "Ferrari",
  "model": "599",
  "generation": null,

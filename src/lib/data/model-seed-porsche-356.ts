@@ -258,7 +258,7 @@ export const seed356 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold $423,000 with premium, Monterey, August 2025. Chassis 83352, completed 15 May 1957. Catalogue names the 356 A engines 616/1 and 616/2."
+   "notes": "Sold $423,000 with premium, Monterey, August 2025. Chassis 83352, completed 15 May 1957. Catalog names the 356 A engines 616/1 and 616/2."
   },
   {
    "ref": "rm-mi25-speedster",
@@ -285,7 +285,7 @@ export const seed356 = {
    "publisher": "RM Sotheby's",
    "sourceType": "auction-house",
    "reliability": "high",
-   "notes": "Sold EUR 702,500 at Paris, January 2026. Chassis 159571, matching-numbers 1,966 cc Carrera 2. Catalogue states only thirty Cabriolets had the four-cam engine."
+   "notes": "Sold EUR 702,500 at Paris, January 2026. Chassis 159571, matching-numbers 1,966 cc Carrera 2. Catalog states only thirty Cabriolets had the four-cam engine."
   }
  ],
  "claims": [
@@ -346,7 +346,7 @@ export const seed356 = {
   },
   {
    "section": "production",
-   "claimText": "Carrera 2 production counts do not add up across sources: 126 GS Carrera 2 cars are stated for the 356 C, while RM Sotheby's catalogues describe 101 Carrera 2 coupes for the 1964 model year alone plus thirty Carrera 2 cabriolets.",
+   "claimText": "Carrera 2 production counts do not add up across sources: 126 GS Carrera 2 cars are stated for the 356 C, while RM Sotheby's catalogs describe 101 Carrera 2 coupes for the 1964 model year alone plus thirty Carrera 2 cabriolets.",
    "confidence": "low",
    "status": "disputed",
    "sourceRefs": [
@@ -356,7 +356,7 @@ export const seed356 = {
     "rm-pa26-carrera2-cab",
     "classic-356c-carrera2"
    ],
-   "conflictNote": "Elferspot and Revs Institute both give 126 GS Carrera 2 within the 356 C. RM Sotheby's Tegernsee catalogue states 101 Carrera 2 coupes built for 1964 and its Paris catalogue thirty cabriolets; classic.com states approximately 101 produced across 1963-1964. Coupes and cabriolets together exceed 126, and no source says whether it counts model years, calendar years or the 356 B and C runs separately."
+   "conflictNote": "Elferspot and Revs Institute both give 126 GS Carrera 2 within the 356 C. RM Sotheby's Tegernsee catalog states 101 Carrera 2 coupes built for 1964 and its Paris catalog thirty cabriolets; classic.com states approximately 101 produced across 1963-1964. Coupes and cabriolets together exceed 126, and no source says whether it counts model years, calendar years or the 356 B and C runs separately."
   },
   {
    "section": "specs",
