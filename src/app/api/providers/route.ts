@@ -3,6 +3,7 @@ import { auth } from '@clerk/nextjs/server';
 import { getDb, schema } from '@/lib/db';
 import { eq, sql } from 'drizzle-orm';
 import { rateLimit } from '@/lib/rate-limit';
+import { isMuse } from '@/lib/muse-auth';
 import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
 import { normalizeWorkSettings, normalizeTeamSize, radiusForSettings } from '@/lib/work-settings';
 
@@ -76,7 +77,10 @@ export async function GET() {
 // Submit a new provider application & create pending profile
 export async function POST(request: NextRequest) {
   // Abuse control: throttle anonymous application spam.
-  const limited = rateLimit(request, 'apply-provider', 5, 60_000);
+  // Muse skill requests (x-muse-key) get a generous bucket; everything still
+  // lands pending for admin review.
+  const muse = isMuse(request);
+  const limited = rateLimit(request, muse ? 'apply-provider:muse' : 'apply-provider', muse ? 120 : 5, 60_000);
   if (limited) return limited;
   try {
     const body = await request.json();

@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
+import { isMuse } from '@/lib/muse-auth';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
 
 // POST /api/sales/submit — public. A user reports a sale they know about. Stored
 // as 'pending' and never touches comps until an admin approves it.
 export async function POST(req: NextRequest) {
-  const limited = rateLimit(req, 'sales-submit', 6, 60_000);
+  // Muse skill requests (x-muse-key) get a generous bucket; everything still
+  // lands pending for admin review.
+  const muse = isMuse(req);
+  const limited = rateLimit(req, muse ? 'sales-submit:muse' : 'sales-submit', muse ? 120 : 6, 60_000);
   if (limited) return limited;
   try {
     let body: Record<string, unknown>;

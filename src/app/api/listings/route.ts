@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { normalizeSellerType } from '@/lib/dealer';
 import { FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
 import { rateLimit } from '@/lib/rate-limit';
+import { isMuse } from '@/lib/muse-auth';
 
 // Cap free-text input to prevent abuse / DB bloat / content-injection payloads.
 const cap = (v: unknown, n: number): string | null => {
@@ -70,7 +71,10 @@ const MATCHING = ['yes', 'no', 'unknown'];
 
 export async function POST(request: NextRequest) {
   // Abuse control: cap listing-creation rate per client (spam / content injection).
-  const limited = rateLimit(request, 'listings', 10, 60_000);
+  // Muse skill requests (x-muse-key) get a generous bucket; everything still
+  // lands pending for admin review.
+  const muse = isMuse(request);
+  const limited = rateLimit(request, muse ? 'listings:muse' : 'listings', muse ? 120 : 10, 60_000);
   if (limited) return limited;
   try {
     const body = await request.json();

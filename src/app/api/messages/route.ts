@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
+import { isMuse } from '@/lib/muse-auth';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
 import { randomBytes } from 'crypto';
 import { resolveRelay, isEmailAddress, normalizeBrief, briefToText, type Relay } from '@/lib/leads';
@@ -14,7 +15,10 @@ import { getOrCreateUserByEmail } from '@/lib/identity';
 // when the message actually reached us.
 
 export async function POST(request: NextRequest) {
-  const limited = rateLimit(request, 'messages', 8, 60_000);
+  // Muse skill requests (x-muse-key) get a generous bucket; everything still
+  // lands pending for admin review.
+  const muse = isMuse(request);
+  const limited = rateLimit(request, muse ? 'messages:muse' : 'messages', muse ? 120 : 8, 60_000);
   if (limited) return limited;
 
   let body: Record<string, unknown>;

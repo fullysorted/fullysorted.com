@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
+import { isMuse } from '@/lib/muse-auth';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
 
 /**
@@ -17,7 +18,10 @@ const KINDS = ['correction', 'story'] as const;
 const SECTIONS = ['summary', 'history', 'production', 'specs', 'problems', 'market', 'general'] as const;
 
 export async function POST(req: NextRequest) {
-  const limited = rateLimit(req, 'model-contribute', 5, 60_000);
+  // Muse skill requests (x-muse-key) get a generous bucket; everything still
+  // lands pending for admin review.
+  const muse = isMuse(req);
+  const limited = rateLimit(req, muse ? 'model-contribute:muse' : 'model-contribute', muse ? 120 : 5, 60_000);
   if (limited) return limited;
 
   let body: Record<string, unknown>;
