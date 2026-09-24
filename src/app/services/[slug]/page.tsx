@@ -16,6 +16,8 @@ import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 import { normalizeWorkSettings, workSetting, teamSizeLabel } from '@/lib/work-settings';
 import { normalizeGallery } from '@/lib/gallery';
 import { normalizeMarques } from '@/lib/marques';
+import { shareImageUrl, SITE_URL } from '@/lib/share';
+import { ShareButton } from '@/components/share/ShareButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -140,8 +142,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       type: 'profile',
       url: `https://fullysorted.com/services/${provider.slug}`,
-      ...(provider.avatarUrl ? { images: [{ url: provider.avatarUrl }] } : {}),
+      images: [{ url: shareImageUrl('provider', provider.slug), width: 1200, height: 630, alt: bizName }],
     },
+    twitter: { card: 'summary_large_image', title, description, images: [shareImageUrl('provider', provider.slug)] },
   };
 }
 
@@ -342,6 +345,15 @@ export default async function ProviderProfilePage({ params }: Props) {
                     {provider.priceRange}
                   </span>
                 )}
+              </div>
+
+              <div className="mt-5">
+                <ShareButton
+                  title={`${formatBusinessName(provider.businessName)}: ${categoryLabel(provider.category)} in ${formatLocation(provider.location)}`}
+                  url={`${SITE_URL}/services/${provider.slug}`}
+                  image={shareImageUrl('provider', provider.slug)}
+                  filename={`fully-sorted-${provider.slug}`}
+                />
               </div>
             </div>
           </div>

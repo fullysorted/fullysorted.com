@@ -16,6 +16,10 @@ import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 import { renderMarkdownLite as renderMarkdown } from "@/lib/markdown-lite";
 import { MarqueNotice } from "@/components/research/MarqueNotice";
 import { getRegisterCountForModel } from "@/lib/data/register";
+import { shareImageUrl, SITE_URL } from "@/lib/share";
+import { ShareButton } from "@/components/share/ShareButton";
+import { getOpenPartsForModel } from "@/lib/parts";
+import { PartsCard } from "@/components/parts/PartsCard";
 
 export const revalidate = 3600;
 
@@ -32,10 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const desc =
     (m.summary || "").replace(/[#*]/g, "").slice(0, 155) ||
     `History, specs, production numbers and buyer's notes for the ${name}.`;
-  // Link previews (iMessage, Slack, LinkedIn, mail clients that unfurl) need an absolute image.
-  const ogImage = m.hero_photo
-    ? `https://fullysorted.com${m.hero_photo}`
-    : "https://fullysorted.com/opengraph-image.png";
+  // Link previews (iMessage, Slack, LinkedIn, mail clients that unfurl) get the
+  // branded share card, which carries the hero photo when there is one.
+  const ogImage = shareImageUrl("model", m.slug);
   return {
     title: `${name}: History, Specs and Buyer's Guide`,
     description: desc,
@@ -124,6 +127,7 @@ export default async function ModelPage({ params }: Props) {
   const snapshot = await getModelMarketSnapshot(m.make, m.model);
   const forSale = await getActiveListingsForModel(m.make, m.model);
   const registerCount = await getRegisterCountForModel(m.slug);
+  const parts = await getOpenPartsForModel(m.slug, 4);
 
   const name = modelDisplayName(m);
   // "F40 (F40)": a generation that merely repeats the model name is noise.
@@ -199,13 +203,22 @@ export default async function ModelPage({ params }: Props) {
       {/* Header */}
       <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <nav className="flex flex-wrap items-center gap-2 text-sm font-medium mb-8" style={{ color: "#6b6b5e" }} aria-label="Breadcrumb">
-            <Link href="/research/models" className="inline-flex items-center gap-1.5 hover:opacity-70 transition-opacity">
-              <ArrowLeft className="w-4 h-4" /> Model Histories
-            </Link>
-            <span aria-hidden style={{ color: "#cfcabb" }}>/</span>
-            <Link href={`/research/models/${makeSlug}`} className="hover:opacity-70 transition-opacity">{m.make}</Link>
-          </nav>
+          <div className="flex items-start justify-between gap-3 mb-8">
+            <nav className="flex flex-wrap items-center gap-2 text-sm font-medium" style={{ color: "#6b6b5e" }} aria-label="Breadcrumb">
+              <Link href="/research/models" className="inline-flex items-center gap-1.5 hover:opacity-70 transition-opacity">
+                <ArrowLeft className="w-4 h-4" /> Model Histories
+              </Link>
+              <span aria-hidden style={{ color: "#cfcabb" }}>/</span>
+              <Link href={`/research/models/${makeSlug}`} className="hover:opacity-70 transition-opacity">{m.make}</Link>
+            </nav>
+            <ShareButton
+              variant="quiet"
+              title={`${modelDisplayName(m)}: history, specs and buyer's guide`}
+              url={`${SITE_URL}/research/models/${m.slug}`}
+              image={shareImageUrl("model", m.slug)}
+              filename={`fully-sorted-${m.slug.replace(/\//g, "-")}`}
+            />
+          </div>
           <div className="flex flex-wrap items-center gap-3 mb-3">
             <Link href={`/research/models/${makeSlug}`} className="text-xs font-bold uppercase tracking-widest hover:opacity-70 transition-opacity" style={{ color: "#1E6091" }}>{m.make}</Link>
             {years && <span className="text-xs" style={{ color: "#9a9a8a" }}>{years}</span>}
@@ -555,6 +568,29 @@ export default async function ModelPage({ params }: Props) {
                 </Link>
               </div>
             )}
+
+            {/* Parts and memorabilia tied to this model. The link to list one
+                shows either way: the empty board is where supply starts. */}
+            <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6b6b5e" }}>Parts and memorabilia</p>
+              {parts.length > 0 ? (
+                <div className="space-y-3">
+                  {parts.map((p) => <PartsCard key={p.id} p={p} compact />)}
+                </div>
+              ) : (
+                <p className="text-xs" style={{ color: "#6b6b5e" }}>Nothing listed for this one yet.</p>
+              )}
+              <div className="flex flex-col gap-2 mt-3.5">
+                {parts.length > 0 && (
+                  <Link href={`/parts?q=${encodeURIComponent(`${m.make} ${m.model}`)}`} className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
+                    See all for this model <ArrowRight className="w-3 h-3" />
+                  </Link>
+                )}
+                <Link href={`/parts/new?model=${encodeURIComponent(m.slug)}`} className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
+                  List a part for this car <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
             <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
               <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>Shopping for one?</p>
               <p className="text-xs mb-3" style={{ color: "#6b6b5e" }}>Browse {m.make} listings, or decode a VIN before you buy.</p>

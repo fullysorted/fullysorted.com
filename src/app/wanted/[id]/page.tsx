@@ -6,6 +6,8 @@ import { getWantedPost } from "@/lib/wanted";
 import { WANTED_KINDS } from "@/lib/wanted-shared";
 import { categoryLabel } from "@/lib/service-categories";
 import { WantedActions } from "./WantedActions";
+import { shareImageUrl, SITE_URL } from "@/lib/share";
+import { ShareButton } from "@/components/share/ShareButton";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
@@ -34,6 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.body.slice(0, 155),
     alternates: { canonical: `/wanted/${post.id}` },
     robots: post.status === "open" ? undefined : { index: false },
+    openGraph: {
+      title: `Wanted: ${post.title}`,
+      description: post.body.slice(0, 155),
+      url: `${SITE_URL}/wanted/${post.id}`,
+      siteName: "Fully Sorted",
+      images: [{ url: shareImageUrl("wanted", post.id), width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: { card: "summary_large_image", title: `Wanted: ${post.title}`, images: [shareImageUrl("wanted", post.id)] },
   };
 }
 
@@ -77,6 +87,17 @@ export default async function WantedPostPage({ params, searchParams }: Props) {
           {post.handle ? `@${post.handle}` : "A member"} · posted {day(post.createdAt)}
           {open && post.expiresAt ? ` · on the board until ${day(post.expiresAt)}` : ""}
         </p>
+        {open && (
+          <div className="mt-4">
+            <ShareButton
+              title={`Wanted: ${post.title}`}
+              text={post.feeText ? `Finder's fee ${post.feeText}. ${post.title}` : post.title}
+              url={`${SITE_URL}/wanted/${post.id}`}
+              image={shareImageUrl("wanted", post.id)}
+              filename={`fully-sorted-wanted-${post.id}`}
+            />
+          </div>
+        )}
 
         {post.feeText && (
           <div className="mt-6 rounded-2xl p-5" style={{ background: INK, color: "#fff" }}>

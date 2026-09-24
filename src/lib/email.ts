@@ -957,3 +957,54 @@ export async function sendWantedReply(d: { to: string; postId: number; postTitle
     `),
   });
 }
+
+// ─── Parts board ─────────────────────────────────────────────────────────────
+
+const money = (p: number | null) => (p == null ? "make an offer" : `$${p.toLocaleString("en-US")}`);
+
+/** To the admin: a new parts listing is waiting for approval. */
+export async function notifyPartsPost(d: { id: number; kind: string; title: string; body: string; handle: string; email: string; price: number | null; photo: string | null }) {
+  return sendEmail({
+    subject: `Parts listing to review: ${d.title}`,
+    html: wantedShell("Parts listing waiting for approval", `
+      <p style="margin:0 0 8px;"><strong>${esc(d.title)}</strong> (${esc(d.kind)}) · ${esc(money(d.price))}</p>
+      <p style="margin:0 0 8px;color:#6b6b5e;">From @${esc(d.handle)} · ${esc(d.email)}</p>
+      ${d.photo ? `<img src="${esc(d.photo)}" alt="" style="display:block;max-width:100%;border-radius:8px;margin:12px 0;" />` : ""}
+      <div style="margin:16px 0;padding:16px;background:#f4f6f5;border-radius:8px;white-space:pre-line;">${esc(d.body)}</div>
+      <a href="${SITE}/admin/parts" style="display:inline-block;background:#1C8C87;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">Review it</a>
+    `),
+  });
+}
+
+/** To the seller: their listing is live. Transactional, sent once. */
+export async function sendPartsApproved(d: { to: string; id: number; title: string }) {
+  return sendEmail({
+    to: d.to,
+    subject: `Your listing is live: ${d.title}`,
+    html: wantedShell("Your listing is live", `
+      <p style="margin:0 0 12px;">"${esc(d.title)}" is on the parts board for the next 90 days. Questions and offers come to this address. Your email is never shown on the site.</p>
+      <p style="margin:0 0 16px;">When it sells, mark it sold so people stop asking. The share button on the listing gives you a card for Instagram or a forum, if that is your thing.</p>
+      <a href="${SITE}/parts/${d.id}" style="display:inline-block;background:#1C8C87;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">See your listing</a>
+    `),
+  });
+}
+
+/** To the seller: a buyer wrote. Reply-To is the buyer, so the two of them talk directly from here. */
+export async function sendPartsReply(d: { to: string; postId: number; postTitle: string; price: number | null; fromName: string; fromEmail: string; message: string }) {
+  return sendEmail({
+    to: d.to,
+    replyTo: d.fromEmail,
+    bcc: NOTIFY_TO,
+    subject: `Message about your listing: ${d.postTitle}`,
+    html: wantedShell("Someone wrote about your listing", `
+      <p style="margin:0 0 8px;color:#6b6b5e;">${esc(d.postTitle)} · ${esc(money(d.price))}</p>
+      <p style="margin:0 0 4px;"><strong>${esc(d.fromName)}</strong> · <a href="mailto:${esc(d.fromEmail)}" style="color:#1C8C87;">${esc(d.fromEmail)}</a></p>
+      <div style="margin:16px 0;padding:16px;background:#f4f6f5;border-radius:8px;white-space:pre-line;">${esc(d.message)}</div>
+      <p style="margin:0 0 12px;">Reply to this email to answer them directly.</p>
+      <p style="margin:0;font-size:13px;color:#6b6b5e;">
+        The sale is between you and the buyer. Fully Sorted holds no money and is not a party to it. Get paid in a way that cannot be reversed on a whim, and ship with tracking.
+      </p>
+      <p style="margin:16px 0 0;"><a href="${SITE}/parts/${d.postId}" style="color:#1C8C87;">View or close your listing</a></p>
+    `),
+  });
+}

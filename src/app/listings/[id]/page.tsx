@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { sampleVehicles, type Vehicle } from "@/lib/sample-data";
 import { serializeJsonLd } from "@/lib/escape-html";
 import { ListingDetail } from "./ListingDetail";
+import { shareImageUrl } from "@/lib/share";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -107,9 +108,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${vehicle.title} for sale`,
       url: `https://fullysorted.com/listings/${id}`,
       description: vehicle.description?.slice(0, 200) ?? '',
-      images: [{ url: vehicle.imageUrl, width: 800, height: 500, alt: vehicle.title }],
+      images: [{ url: shareImageUrl("listing", id), width: 1200, height: 630, alt: vehicle.title }],
       type: "website",
     },
+    twitter: { card: "summary_large_image", title: `${vehicle.title} for sale`, images: [shareImageUrl("listing", id)] },
   };
 }
 

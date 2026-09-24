@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ShareButton } from "@/components/share/ShareButton";
 import {
   Heart,
-  Share2,
   MapPin,
   Gauge,
   Cog,
@@ -396,7 +396,6 @@ function ContactForm({
 
 export function ListingDetail({ vehicle }: Props) {
   const [contactOpen, setContactOpen] = useState(false);
-  const [shared, setShared] = useState(false);
 
   // Track view on mount
   useEffect(() => {
@@ -410,24 +409,6 @@ export function ListingDetail({ vehicle }: Props) {
   const priceDiff = vehicle.price - vehicle.compAvg;
   const priceDiffPct = ((priceDiff / vehicle.compAvg) * 100).toFixed(1);
   const isAbove = priceDiff > 0;
-
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: vehicle.title,
-          text: `Check out this ${vehicle.title} on Fully Sorted: $${vehicle.price.toLocaleString()}`,
-          url: window.location.href,
-        });
-      } catch {
-        // user cancelled
-      }
-    } else {
-      await navigator.clipboard.writeText(window.location.href);
-      setShared(true);
-      setTimeout(() => setShared(false), 2000);
-    }
-  };
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
@@ -446,22 +427,13 @@ export function ListingDetail({ vehicle }: Props) {
               Browse
             </Link>
             <div className="flex items-center gap-2">
-              <button
-                onClick={handleShare}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
-                style={{ color: "#6b6b5e", border: "1px solid rgba(0,0,0,0.12)" }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#1a1a18";
-                  (e.currentTarget as HTMLElement).style.borderColor = "#1E6091";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#6b6b5e";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.12)";
-                }}
-              >
-                <Share2 className="w-3.5 h-3.5" />
-                {shared ? "Copied!" : "Share"}
-              </button>
+              <ShareButton
+                variant="quiet"
+                title={`${vehicle.title} for sale`}
+                text={`${vehicle.title} on Fully Sorted: $${vehicle.price.toLocaleString()}`}
+                image={`https://www.fullysorted.com/api/og?type=listing&id=${encodeURIComponent(vehicle.slug || vehicle.id)}`}
+                filename={`fully-sorted-${vehicle.slug || vehicle.id}`}
+              />
               <button
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
                 style={{ color: "#6b6b5e", border: "1px solid rgba(0,0,0,0.12)" }}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "The terms governing your use of the Fully Sorted services directory, marketplace and research hub: who can use it, what each side is responsible for, fees, content, and how disputes are handled.",
 };
 
-const LAST_UPDATED = "September 20, 2026";
+const LAST_UPDATED = "September 23, 2026";
 const CONTACT = "chris@fullysorted.com";
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
@@ -62,6 +62,7 @@ const TOC: [string, string][] = [
   ["providers", "6. Providers and the directory"],
   ["inquiries", "7. Inquiries and messages"],
   ["wanted", "7A. The wanted board and finder's fees"],
+  ["parts", "7B. The parts and memorabilia board"],
   ["reviews", "8. Reviews"],
   ["fees", "9. Fees and payments"],
   ["content", "10. Your content and our license to it"],
@@ -320,6 +321,27 @@ export default function TermsPage() {
               dealer and broker licensing rules, differ by state. Posters and finders are each
               responsible for knowing and following the laws that apply to them. Nothing on the
               wanted board is legal advice, and section 4 applies to everything arranged through it.
+            </P>
+          </div>
+
+          <div>
+            <H2 id="parts">7B. The parts and memorabilia board</H2>
+            <P>
+              The parts board lets members list a part, accessory, piece of literature or memorabilia for
+              sale. Listing is free and no fee is charged on a sale. Listings are reviewed before they
+              appear and may be declined or removed at our discretion. A listing must be for an item the
+              member owns and has the right to sell, must use photos of the actual item, must not include
+              phone numbers, email addresses or links, and must state plainly whether an item is original,
+              a reproduction or a restoration. Messages are delivered to the seller by email; the seller&apos;s
+              address is not shown on the Service.
+            </P>
+            <P>
+              Every description, price, fitment claim and statement about condition, originality or
+              authenticity is made by the seller, not by Fully Sorted. We do not inspect, authenticate or
+              value items listed on the board, do not hold or transfer money, and are not a party to any
+              sale, shipment or dispute between a buyer and a seller. Items that infringe a trademark or
+              copyright, that are unsafe, or that are unlawful to sell in the buyer&apos;s or seller&apos;s
+              jurisdiction may not be listed. Section 4 applies to everything arranged through the board.
             </P>
           </div>
 
