@@ -78,16 +78,18 @@ export default function AboutPage() {
     <main className="min-h-screen" style={{ background: "#ffffff" }}>
 
       {/* Opening */}
-      <section style={{ background: PAPER, borderBottom: `1px solid ${RULE}` }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-14 pb-12 sm:pt-20 sm:pb-16">
-          <Eyebrow>About Fully Sorted</Eyebrow>
+      <section style={{ background: "#FFFFFF", borderBottom: "1px solid rgba(18,53,42,0.14)" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <p className="text-[11px] uppercase" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em", color: "#1C8C87" }}>
+            About Fully Sorted
+          </p>
           <h1
-            className="font-display font-semibold tracking-tight text-[2.5rem] sm:text-5xl lg:text-[3.6rem] leading-[1.05] mt-5 max-w-4xl"
-            style={{ color: INK }}
+            className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4 max-w-4xl"
+            style={{ color: "#12352A" }}
           >
             Know it. Fix it. Buy it. Sell it<span style={{ color: GOLD }}>.</span>
           </h1>
-          <p className="text-lg sm:text-xl mt-6 max-w-2xl leading-relaxed" style={{ color: MUTED }}>
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: "#6B7280" }}>
             The specialists a collector car needs, rated by the owners who used them.
             Run by people who have spent their lives around these cars.
           </p>

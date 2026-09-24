@@ -55,21 +55,16 @@ export default function ShopPage() {
       <JsonLd data={[collectionSchema, breadcrumbSchema]} />
 
       {/* Hero */}
-      <section className="relative overflow-hidden text-white" style={{ background: "linear-gradient(160deg, #10233b 0%, #0b1a2e 60%, #0a1626 100%)" }}>
-        <div
-          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }}
-        />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-          <div className="inline-flex items-center gap-2.5 border border-white/25 bg-white/10 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-white text-xs font-bold uppercase tracking-widest">Garage Essentials</span>
-          </div>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-4">
-            The gear we&rsquo;d put in <span style={{ color: "#D9C08A" }}>our own garage.</span>
+      <section className="relative overflow-hidden" style={{ background: "#FFFFFF", borderBottom: "1px solid rgba(18,53,42,0.14)" }}>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <p className="text-[11px] uppercase" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em", color: "#1C8C87" }}>
+            Garage essentials
+          </p>
+          <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4 max-w-[16ch]" style={{ color: "#12352A" }}>
+            The gear we&rsquo;d put in our own garage.
           </h1>
-          <p className="text-lg text-stone-300 max-w-2xl">
-            Not a store: a short, opinionated list of the detailing supplies, tools, and preservation kit
-            that actually earn their place around a collector car. Chosen for the recommendation, not the catalog.
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: "#6B7280" }}>
+            A short list of the detailing supplies, tools and storage kit we would buy again. Not a store.
           </p>
         </div>
       </section>

@@ -92,20 +92,8 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
-      {/* Photo Header Banner — heritage green over real metal */}
-      <div className="relative overflow-hidden py-12 sm:py-16">
-        {/* Photography backdrop */}
-        <img
-          src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(rgba(18,53,42,0.78), rgba(18,53,42,0.9))" }}
-        />
-        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
+      {/* Header, in the sitewide language: white, deep green type, teal eyebrow */}
+      <div className="relative overflow-hidden py-12 sm:py-16" style={{ background: "#FFFFFF", borderBottom: "1px solid rgba(18,53,42,0.14)" }}>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -114,16 +102,16 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
           >
             <div className="mb-3 flex items-center gap-2.5">
               <span
-                className="text-[11px] uppercase text-white/80"
-                style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em" }}
+                className="text-[11px] uppercase"
+                style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em", color: "#1C8C87" }}
               >
                 Marketplace
               </span>
             </div>
-            <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl mb-2 text-white [text-wrap:balance] leading-[1.08]">
+            <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4" style={{ color: "#12352A" }}>
               Browse cars
             </h1>
-            <p className="text-sm mb-8 text-white/75">
+            <p className="text-base sm:text-lg mb-8 max-w-2xl leading-relaxed" style={{ color: "#6B7280" }}>
               {hasRealListings
                 ? `${initialListings.length} ${initialListings.length === 1 ? "car" : "cars"} listed. Private sellers and dealers, marked as which.`
                 : "Nothing listed yet. Yours could be first."}
@@ -144,10 +132,10 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by make, model, year..."
-                className="w-full h-12 pl-11 pr-4 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-white/60 focus:border-white transition-colors"
+                className="w-full h-12 pl-11 pr-4 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent transition-colors"
                 style={{
                   background: "#fff",
-                  border: "1px solid rgba(255,255,255,0.4)",
+                  border: "1px solid #e7e5e4",
                   color: "#1a1a18",
                 }}
               />
@@ -167,8 +155,8 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               className={cn(
                 "flex items-center gap-2 px-4 h-12 rounded-xl text-sm font-medium transition-colors shrink-0 border",
                 showFilters
-                  ? "bg-white text-accent border-white"
-                  : "bg-white/10 text-white border-white/30 hover:bg-white/20"
+                  ? "bg-accent text-white border-accent"
+                  : "bg-white text-stone-600 border-stone-200 hover:border-stone-300"
               )}
             >
               <SlidersHorizontal className="w-4 h-4" />

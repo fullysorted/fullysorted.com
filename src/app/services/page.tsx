@@ -27,7 +27,7 @@ export default async function ServicesPage() {
   const searchModels = toSearchModels(await getPublishedModels());
   return (
     <div style={{ background: 'var(--bg-primary)' }} className="min-h-screen">
-      {/* Header, in the homepage language: cream, deep green type, teal eyebrow, framed photo */}
+      {/* Header, in the sitewide language: white, deep green type, teal eyebrow, framed photo */}
       <div className="relative overflow-hidden" style={{ background: CREAM, borderBottom: '1px solid rgba(18,53,42,0.14)' }}>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:grid lg:grid-cols-12 lg:gap-10 lg:items-center">
@@ -39,9 +39,8 @@ export default async function ServicesPage() {
               Find the specialist your car needs.
             </h1>
             <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: MUTED }}>
-              Whether you need a detailer who understands patina, a mechanic who knows your model,
-              or a transporter who treats every car like their own, this is the place to find them.
-              Open to anyone who loves collector cars.
+              Detailers, mechanics, transporters, restorers and the rest of the trades a collector
+              car goes through in a year, rated by the owners who used them.
             </p>
 
             <p className="mt-6 text-sm sm:text-base font-semibold max-w-2xl" style={{ color: INK }}>
