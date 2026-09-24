@@ -117,6 +117,15 @@ import { seedCorvetteC6 } from '@/lib/data/model-seed-corvette-c6';
 import { seedGto196474 } from '@/lib/data/model-seed-gto-1964-74';
 import { seedSpitfire } from '@/lib/data/model-seed-spitfire';
 import { seed350z } from '@/lib/data/model-seed-350z';
+import { seedMustangFoxBody } from '@/lib/data/model-seed-mustang-fox-body';
+import { seedM5E39 } from '@/lib/data/model-seed-m5-e39';
+import { seedGrandNational } from '@/lib/data/model-seed-grand-national';
+import { seedJeepCj } from '@/lib/data/model-seed-jeep-cj';
+import { seedW123 } from '@/lib/data/model-seed-w123';
+import { seedViperGen12 } from '@/lib/data/model-seed-viper-gen-1-2';
+import { seedFordGt2005 } from '@/lib/data/model-seed-ford-gt-2005';
+import { seedVolvo240 } from '@/lib/data/model-seed-volvo-240';
+import { seedCrx } from '@/lib/data/model-seed-crx';
 // All researched model drafts to seed (status='draft' for human review).
 // Ferrari wave (2026-09-02) sits at indices 73-84: seed with ?offset=73&limit=6 then ?offset=79&limit=6.
 const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx, seedCorvetteC2, seedMustang1stGen, seed930Turbo, seedRx7Fd, seedETypeS1, seedBronco1stGen, seedFj40, seedW113Pagoda, seedBmw2002, seedSkylineR34, seedCountach, seedTestarossa, seedShelbyCobra, seedDeLoreanDmc12, seedBmwIsetta, seedAmphicar770, seed356, seedCitroenDs,
@@ -130,7 +139,7 @@ const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, see
   seedLandCruiser80,
   seed250GtLusso, seed275Gtb, seed330Gtc, seed365Gtb4Daytona, seed512Bb, seed288Gto,
   seed348, seed456, seed550Maranello, seed360, seedF50, seedEnzo,
-  seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z];
+  seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {
