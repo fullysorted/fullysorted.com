@@ -13,6 +13,8 @@ import type { PublicReview } from '@/lib/reviews';
  * because there is no endpoint behind one.
  */
 export default function ReviewsPanel({ slug }: { slug: string }) {
+  const shareUrl = `https://fullysorted.com/review/ask/${slug}`;
+  const [copied, setCopied] = useState(false);
   const [reviews, setReviews] = useState<PublicReview[]>([]);
   const [loading, setLoading] = useState(true);
   const [openReply, setOpenReply] = useState<number | null>(null);
@@ -110,6 +112,31 @@ export default function ReviewsPanel({ slug }: { slug: string }) {
           <Quote className="w-3.5 h-3.5" /> Add a client testimonial
         </button>
       </div>
+
+      {/* The shareable link. Clients verify their email before they can write,
+          so the shop can hand this out freely: by text, on an invoice, in an
+          email signature. */}
+      <div className="rounded-xl border border-border bg-stone-50 p-4 my-4">
+        <p className="text-sm font-semibold">Your review link</p>
+        <p className="text-xs text-text-secondary mt-0.5 mb-3">
+          Send it to clients after a job. They confirm their email, then write the review.
+        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <code className="text-xs bg-white border border-border rounded-lg px-3 py-2 break-all flex-1 min-w-0">{shareUrl}</code>
+          <button
+            type="button"
+            onClick={() => {
+              navigator.clipboard?.writeText(shareUrl).then(() => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }).catch(() => {});
+            }}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 h-8 rounded-lg border border-border bg-white"
+          >
+            {copied ? <><Check className="w-3.5 h-3.5" /> Copied</> : 'Copy link'}
+          </button>
+        </div>
+      </div>
       <p className="text-xs text-text-tertiary mb-5 leading-relaxed">
         Reviews are written by clients we email directly, and they are permanent — you can reply to one publicly, but
         you cannot edit or remove it. A straight, unapologetic reply to a critical review reads better to a prospective
@@ -157,8 +184,8 @@ export default function ReviewsPanel({ slug }: { slug: string }) {
         </div>
       ) : reviews.length === 0 ? (
         <p className="text-sm text-text-secondary">
-          Nothing published yet. Ask us to invite a few past clients — we email them a one-time link and their review
-          appears here with your reply box under it.
+          Nothing published yet. Send your review link to a few recent clients, or ask us to invite them for you.
+          Each review appears here with your reply box under it.
         </p>
       ) : (
         <ul className="space-y-4">
