@@ -257,7 +257,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "How does Fully Sorted make money?",
-        a: "Two ways, one live today and one planned. Sellers pay a one-time listing fee: $9.99 standard, $29.99 featured, $49.99 premium. When fixed-price gigs open, providers will pay a 10% platform fee on gigs booked through the site. That is the whole list: the listing fee is the only charge on a car sale however much it sells for, there is no buyer's premium, we take nothing out of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
+        a: "Two ways, one live today and one planned. Sellers pay a one-time listing fee, set by the package they pick when they list. When fixed-price gigs open, providers will pay a 10% platform fee on gigs booked through the site. That is the whole list: the listing fee is the only charge on a car sale however much it sells for, there is no buyer's premium, we take nothing out of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
       },
       {
         q: "You're brand new. Why should I trust you?",

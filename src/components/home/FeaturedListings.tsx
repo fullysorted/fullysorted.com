@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { ListingCard } from "@/components/listings/ListingCard";
 import type { Vehicle } from "@/lib/sample-data";
 
-const INK = "#12352A";
 const TEAL = "#1C8C87";
 const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 
@@ -20,13 +19,7 @@ interface FeaturedListingsProps {
   listings?: Vehicle[];
 }
 
-const valueProps = [
-  // "From", not a flat "$9.99": there are three tiers and an early-adopter
-  // free window, and the CTA band and /pricing both already say "from".
-  { stat: "From $9.99", label: "One-time listing fee, paid up front. First 100 cars free." },
-  { stat: "Marked", label: "Private seller or dealer, each listing says which." },
-  { stat: "$0", label: "Buyer's premium. The price you see is the price you pay." },
-];
+
 
 export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
   // Show featured first, then fall back to any active listings, max 8
@@ -77,26 +70,6 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
           </div>
         </motion.div>
 
-        {/* Value props strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.08 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10"
-        >
-          {valueProps.map((vp) => (
-            <div
-              key={vp.stat + vp.label}
-              className="flex items-center gap-4 px-5 py-4 rounded-xl"
-              style={{ background: "#ffffff", border: "1px solid rgba(26,26,24,0.12)" }}
-            >
-              <span className="price-display text-xl whitespace-nowrap" style={{ color: INK }}>{vp.stat}</span>
-              <span className="text-xs leading-snug" style={{ color: "#6b6b5e" }}>{vp.label}</span>
-            </div>
-          ))}
-        </motion.div>
-
         {/* Grid or Empty State */}
         {featured.length > 0 ? (
           <>
@@ -140,14 +113,14 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
               Be the first to list
             </p>
             <p className="mb-5 text-sm" style={{ color: "#9a9a8a" }}>
-              From $9.99 · First 100 listings free
+              First 100 listings free
             </p>
             <Link
               href="/sell"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-xl hover:opacity-90 transition-opacity"
               style={{ background: TEAL }}
             >
-              List your car from $9.99
+              List your car
             </Link>
           </div>
         )}

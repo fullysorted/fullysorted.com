@@ -568,8 +568,8 @@ export default async function EventPage({ params }: Props) {
                 className="text-xs mb-3"
                 style={{ color: "#6b6b5e" }}
               >
-                Bringing a car to sell after the show? List it from $9.99,
-                one-time.
+                Bringing a car to sell after the show? List it here
+                for one flat fee.
               </p>
               <Link
                 href="/sell"

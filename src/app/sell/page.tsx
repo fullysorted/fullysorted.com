@@ -2,8 +2,8 @@ import SellForm from './SellForm';
 
 export const metadata = {
   alternates: { canonical: "/sell" },
-  title: 'Sell Your Collector Car from $9.99',
-  description: 'List your collector car from $9.99. Simple flat-fee listings. Full-resolution photos and direct buyer messaging. Built by collectors, for collectors.',
+  title: 'Sell Your Collector Car',
+  description: 'List your collector car for one flat fee. First 100 listings free. Full-resolution photos and direct buyer messaging. Built by collectors, for collectors.',
 };
 
 export default function SellPage() {
@@ -26,7 +26,7 @@ export default function SellPage() {
             that links to our own research on the model. Buyers contact you directly.
           </p>
           <p className="mt-5 text-sm max-w-2xl" style={{ color: '#6B7280' }}>
-            A flat listing fee <strong style={{ color: '#12352A' }}>from $9.99</strong>, paid once,
+            A <strong style={{ color: '#12352A' }}>flat listing fee</strong>, paid once,
             up front. No commission when it sells, and no buyer&rsquo;s premium.
           </p>
         </div>

@@ -203,7 +203,6 @@ const howToSchema = {
   description:
     "Step-by-step guide to listing a collector car for sale on Fully Sorted. Flat listing fee, direct buyer contact.",
   totalTime: "PT15M",
-  estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: "9.99" },
   step: SELLER_STEPS.map((s, i) => ({
     "@type": "HowToStep",
     position: i + 1,
@@ -430,7 +429,7 @@ export default function HowItWorksPage() {
             One-time listing fee. Straightforward pricing.
           </h2>
           <p className="text-base text-text-secondary">
-            Standard $9.99, Featured $29.99, Premium $49.99: all one-time, paid up front. The first 100 sellers list free as founding members.
+            Three packages, all one-time and paid up front. You pick one when you list. The first 100 sellers list free as founding members.
           </p>
           <div className="mt-8">
             <Link
