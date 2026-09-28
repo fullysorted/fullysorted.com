@@ -488,27 +488,6 @@ export function ListingDetail({ vehicle }: Props) {
               </div>
             </div>
 
-            {/* Dealer disclosure. Every dealer listing carries it; the copy
-                lives in lib/dealer.ts so the sell form promises what the
-                page shows. */}
-            {vehicle.sellerType === "dealer" && (
-              <div className="rounded-2xl p-5" style={{ background: "var(--bg-surface)", border: "1px solid rgba(176,141,63,0.28)" }}>
-                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#8a6d2f" }}>Dealer listing</p>
-                <p className="text-sm font-semibold text-stone-900">
-                  Offered by {vehicle.dealerName || "a licensed dealer"}
-                  {vehicle.dealerLicense ? <span className="font-normal text-stone-500">, licence {vehicle.dealerLicense}</span> : null}
-                </p>
-                {vehicle.dealerFeesNote && (
-                  <p className="text-sm text-stone-700 mt-1">Fees stated by the dealer: {vehicle.dealerFeesNote}</p>
-                )}
-                <ul className="mt-3 space-y-1.5 text-xs leading-relaxed text-stone-600 list-disc pl-4">
-                  {DEALER_DISCLOSURE.map((line) => (
-                    <li key={line}>{line}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             {/* Expert Take */}
             {vehicle.chrisTake && (
               <div
@@ -623,6 +602,27 @@ export function ListingDetail({ vehicle }: Props) {
                 </div>
               </div>
             </div>
+
+            {/* Dealer disclosure. Every dealer listing carries it; the copy
+                lives in lib/dealer.ts so the sell form promises what the
+                page shows. It sits at the foot of the listing, after the car. */}
+            {vehicle.sellerType === "dealer" && (
+              <div className="rounded-2xl p-5" style={{ background: "var(--bg-surface)", border: "1px solid rgba(176,141,63,0.28)" }}>
+                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#8a6d2f" }}>Dealer listing</p>
+                <p className="text-sm font-semibold text-stone-900">
+                  Offered by {vehicle.dealerName || "a licensed dealer"}
+                  {vehicle.dealerLicense ? <span className="font-normal text-stone-500">, license {vehicle.dealerLicense}</span> : null}
+                </p>
+                {vehicle.dealerFeesNote && (
+                  <p className="text-sm text-stone-700 mt-1">Fees stated by the dealer: {vehicle.dealerFeesNote}</p>
+                )}
+                <ul className="mt-3 space-y-1.5 text-xs leading-relaxed text-stone-600 list-disc pl-4">
+                  {DEALER_DISCLOSURE.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* Right Sidebar */}

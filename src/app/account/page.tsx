@@ -163,6 +163,14 @@ export default async function AccountPage() {
                   <p className="text-xs text-text-secondary mt-0.5 capitalize">
                     {String(c.status)}
                     {c.price ? ` · $${Number(c.price).toLocaleString()}` : ''}
+                    {!['denied', 'expired'].includes(String(c.status)) && (
+                      <>
+                        {' · '}
+                        <Link href={`/account/listings/${String(c.id)}`} className="normal-case font-semibold text-accent hover:underline">
+                          Edit
+                        </Link>
+                      </>
+                    )}
                   </p>
                 </li>
               ))}
