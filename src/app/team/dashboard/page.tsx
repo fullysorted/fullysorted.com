@@ -1,4 +1,5 @@
 "use client";
+import ExtraCategoriesFields from '@/components/provider/ExtraCategoriesFields';
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -43,6 +44,7 @@ interface PipelineProvider {
   outreach_last_edited_by: string | null;
   outreach_last_edited_at: string | null;
   work_settings: string[] | null;
+  service_types?: string[] | null;
   team_size: string | null;
   service_radius_miles: number | null;
 }
@@ -122,6 +124,9 @@ export default function TeamDashboard() {
     workSettings: [], teamSize: "", serviceRadiusMiles: "",
   };
   const [editWork, setEditWork] = useState({ ...EMPTY_WORK });
+  // Categories beyond the headline one (service_types). Its own state for the
+  // same reason as work settings: it is an array, not a trimmed string.
+  const [editExtra, setEditExtra] = useState<string[]>([]);
   const [photoInvalid, setPhotoInvalid] = useState(false);
   const [rowMsg, setRowMsg] = useState<{ id: number; msg: string; err?: boolean } | null>(null);
   // Reviews panel — one open at a time, same as the rest of the row UI.
@@ -386,6 +391,12 @@ export default function TeamDashboard() {
       payload.teamSize = editWork.teamSize || null;
       payload.serviceRadiusMiles = nowRadius === "" ? null : nowRadius;
     }
+    const wasExtra = (p.service_types || []).filter((k) => k !== (edit.category || p.category));
+    const nowExtra = editExtra.filter((k) => k !== (edit.category || p.category));
+    if (wasExtra.join(",") !== nowExtra.join(",")) {
+      payload.serviceTypes = nowExtra;
+      if (payload.category === undefined) payload.category = edit.category || p.category;
+    }
 
     if (Object.keys(payload).length === 2) {
       setRowMsg({ id: p.id, msg: "Nothing changed." });
@@ -421,6 +432,7 @@ export default function TeamDashboard() {
           avatarUrl: saved.avatar_url || "",
         });
         setEditWork(workFromRow(saved));
+        setEditExtra(Array.isArray(saved.service_types) ? saved.service_types : []);
       }
       setRowMsg({ id: p.id, msg: "Details updated" });
       load();
@@ -883,6 +895,7 @@ export default function TeamDashboard() {
                               avatarUrl: p.avatar_url || "",
                             });
                             setEditWork(workFromRow(p));
+                            setEditExtra(Array.isArray(p.service_types) ? p.service_types : []);
                             setRowMsg(null);
                           }}
                           className="inline-flex items-center gap-1.5 px-2.5 h-8 text-xs font-medium rounded-lg border border-border text-text-secondary bg-white hover:bg-gray-50"
@@ -994,6 +1007,9 @@ export default function TeamDashboard() {
                                   <option key={c.value} value={c.value}>{c.label}</option>
                                 ))}
                               </select>
+                            </div>
+                            <div className="col-span-full">
+                              <ExtraCategoriesFields headline={edit.category} value={editExtra} onChange={setEditExtra} />
                             </div>
                             <div>
                               <label className="text-[11px] font-medium text-text-tertiary block mb-1">Location</label>

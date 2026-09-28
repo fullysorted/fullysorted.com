@@ -3,6 +3,7 @@ import { Hero, type FeaturedModel } from "@/components/home/Hero";
 import { getPublishedModels } from "@/lib/data/models";
 import { toSearchModels, type SearchModel } from "@/lib/search-intent";
 import { ServicesSection } from "@/components/home/ServicesSection";
+import { getRecentProviders } from "@/lib/data/providers";
 import { FeaturedListings } from "@/components/home/FeaturedListings";
 import { ResearchPicks, type ResearchPick } from "@/components/home/ResearchPicks";
 import { ValueGuidePreview } from "@/components/home/ValueGuidePreview";
@@ -155,10 +156,11 @@ async function getHomeResearch(): Promise<HomeResearch> {
 
 export default async function Home() {
   // The wanted strip is decoration here: if its read fails the homepage carries on without it.
-  const [listings, research, wanted] = await Promise.all([
+  const [listings, research, wanted, recent] = await Promise.all([
     getActiveListings(),
     getHomeResearch(),
     getOpenWantedPosts(3).catch(() => []),
+    getRecentProviders(4),
   ]);
 
   return (
@@ -167,7 +169,7 @@ export default async function Home() {
       <FoundingBand />
       {/* Services first — the hub is the front door */}
       <Hero featured={research.featured} searchModels={research.searchModels} />
-      <ServicesSection />
+      <ServicesSection providers={recent.providers} total={recent.total} />
       {/* Marketplace second — one strong section */}
       <FeaturedListings listings={listings} />
       {/* Wanted: what members are looking for, some with a finder's fee */}

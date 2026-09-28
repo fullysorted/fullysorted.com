@@ -3,6 +3,7 @@ import { getDb, schema } from '@/lib/db';
 import { eq } from 'drizzle-orm';
 import { normalizeWorkSettings, normalizeTeamSize, radiusForSettings } from '@/lib/work-settings';
 import { normalizeGallery } from '@/lib/gallery';
+import { normalizeExtraCategories } from '@/lib/service-categories';
 import { auth } from '@clerk/nextjs/server';
 
 // ─── GET /api/providers/me ──────────────────────────────
@@ -85,7 +86,8 @@ export async function PUT(request: NextRequest) {
       return Math.min(Math.round(n), max);
     };
     const marquesClean = strList(marques, 25, 40);
-    const serviceTypesClean = strList(serviceTypes, 12, 40);
+    const serviceTypesClean =
+      serviceTypes === undefined ? undefined : normalizeExtraCategories(serviceTypes, category ? String(category) : null);
     const minJobClean = num(minJobValue, 1_000_000);
     const radiusClean = num(serviceRadiusMiles, 3_000);
     // Where the work happens. undefined = field not sent, leave it alone.

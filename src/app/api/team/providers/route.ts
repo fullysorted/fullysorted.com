@@ -5,7 +5,7 @@ import { isTeam } from '@/lib/team-auth';
 import { rateLimit } from '@/lib/rate-limit';
 import { normalizeWorkSettings, normalizeTeamSize, radiusForSettings } from '@/lib/work-settings';
 import { isBlobImageUrl } from '@/lib/images';
-import { isServiceCategory } from '@/lib/service-categories';
+import { isServiceCategory, normalizeExtraCategories } from '@/lib/service-categories';
 
 function slugify(s: string): string {
   return s
@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
              outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles
+             work_settings, team_size, service_radius_miles, service_types
       FROM service_providers
       WHERE outreach_status = ${stageFilter}
         AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
@@ -108,7 +108,7 @@ export async function GET(request: NextRequest) {
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
              outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles
+             work_settings, team_size, service_radius_miles, service_types
       FROM service_providers
       WHERE outreach_status = ${stageFilter}
       ORDER BY created_at DESC LIMIT ${limit}
@@ -121,7 +121,7 @@ export async function GET(request: NextRequest) {
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
              outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles
+             work_settings, team_size, service_radius_miles, service_types
       FROM service_providers
       WHERE outreach_status IS NOT NULL AND outreach_status <> 'declined'
         AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
@@ -135,7 +135,7 @@ export async function GET(request: NextRequest) {
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
              outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles
+             work_settings, team_size, service_radius_miles, service_types
       FROM service_providers
       WHERE outreach_status IS NOT NULL AND outreach_status <> 'declined'
       ORDER BY created_at DESC LIMIT ${limit}
@@ -370,7 +370,7 @@ export async function PATCH(request: NextRequest) {
            instagram, description, specialties, years_in_business, avatar_url,
            outreach_notes, application_id, outreach_status, status, clerk_user_id, slug,
            outreach_prev_status, outreach_prev_public_status,
-           work_settings, team_size, service_radius_miles
+           work_settings, team_size, service_radius_miles, service_types
     FROM service_providers WHERE id = ${id} LIMIT 1
   `;
   const provider = rows[0];
@@ -540,6 +540,8 @@ export async function PATCH(request: NextRequest) {
     // rewrite this on a shop that has linked its own login, for exactly the
     // reason the other fields are protected.
     'workSettings', 'teamSize', 'serviceRadiusMiles',
+    // Categories beyond the headline one. Same protection as the rest.
+    'serviceTypes',
   ];
   const touched = EDITABLE_KEYS.filter((k) => body[k] !== undefined);
 
@@ -614,6 +616,10 @@ export async function PATCH(request: NextRequest) {
     body.workSettings === undefined ? undefined : normalizeWorkSettings(body.workSettings);
   const teamSizeNew = body.teamSize === undefined ? undefined : normalizeTeamSize(body.teamSize);
   const radiusNew: unknown = body.serviceRadiusMiles;
+  const serviceTypesNew =
+    body.serviceTypes === undefined
+      ? undefined
+      : normalizeExtraCategories(body.serviceTypes, String(body.category ?? provider.category ?? ''));
 
   if (tooLong.length > 0) {
     return NextResponse.json({ error: `Too long: ${tooLong.join(', ')}.` }, { status: 400 });
@@ -808,6 +814,7 @@ export async function PATCH(request: NextRequest) {
       years_in_business = ${next.yearsInBusiness},
       specialties = ${JSON.stringify(next.specialties)}::jsonb,
       work_settings = ${JSON.stringify(next.workSettings)}::jsonb,
+      service_types = CASE WHEN ${serviceTypesNew === undefined} THEN service_types ELSE ${JSON.stringify(serviceTypesNew ?? [])}::jsonb END,
       team_size = ${next.teamSize},
       service_radius_miles = ${next.serviceRadiusMiles},
       avatar_url = ${next.avatarUrl},
@@ -819,7 +826,7 @@ export async function PATCH(request: NextRequest) {
     RETURNING id, business_name, owner_name, email, phone, category, location, website,
               instagram, description, specialties, years_in_business, avatar_url, outreach_notes,
               outreach_last_edited_by, outreach_last_edited_at,
-              work_settings, team_size, service_radius_miles
+              work_settings, team_size, service_radius_miles, service_types
   `;
 
   // Keep the originating application in step, so the admin Applications view

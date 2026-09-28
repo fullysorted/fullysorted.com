@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Send, Loader2, CheckCircle, Shield, Star, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { CATEGORY_OPTIONS } from '@/lib/service-categories';
+import ExtraCategoriesFields from '@/components/provider/ExtraCategoriesFields';
 import { FOUNDING_PROVIDER_THRESHOLD } from '@/lib/listing-tiers';
 import { WORK_SETTINGS, TEAM_SIZES, type WorkSettingKey } from '@/lib/work-settings';
 import PhotoUpload from '@/components/media/PhotoUpload';
@@ -39,6 +40,7 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
     avatarUrl: '', teamSize: '', serviceRadiusMiles: '',
   });
   const [workSettings, setWorkSettings] = useState<WorkSettingKey[]>([]);
+  const [serviceTypes, setServiceTypes] = useState<string[]>([]);
   const [photoInvalid, setPhotoInvalid] = useState(false);
   const [workInvalid, setWorkInvalid] = useState(false);
   // Set when the server says this email already has a listing. The right answer
@@ -82,6 +84,7 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
         body: JSON.stringify({
           ...form,
           workSettings,
+          serviceTypes: serviceTypes.filter((k) => k !== form.category),
           teamSize: form.teamSize || null,
           serviceRadiusMiles: workSettings.includes('mobile') ? form.serviceRadiusMiles : null,
           clerkUserId: userId || null,
@@ -238,6 +241,10 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
               <input type="text" required placeholder="City, State" value={form.location} onChange={e => update('location', e.target.value)} className={INPUT} />
             </div>
           </div>
+
+          {form.category && (
+            <ExtraCategoriesFields headline={form.category} value={serviceTypes} onChange={setServiceTypes} />
+          )}
 
           {/* ── Where the work happens ────────────────────────────────────
               The question that used to be "are you a business or a

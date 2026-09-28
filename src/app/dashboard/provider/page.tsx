@@ -6,6 +6,7 @@ import ClaimExistingListing from './ClaimExistingListing';
 import PhotoUpload from '@/components/media/PhotoUpload';
 import GalleryUpload from '@/components/media/GalleryUpload';
 import WorkSettingsFields from '@/components/provider/WorkSettingsFields';
+import ExtraCategoriesFields from '@/components/provider/ExtraCategoriesFields';
 import MarqueTags from '@/components/provider/MarqueTags';
 import { normalizeWorkSettings, type WorkSettingKey } from '@/lib/work-settings';
 import { normalizeGallery, GALLERY_MAX, type GalleryPhoto } from '@/lib/gallery';
@@ -75,6 +76,8 @@ export default function ProviderDashboard() {
     // blank, and blank is what the directory filter treats as "hasn't said" —
     // so this panel is the route by which an existing shop fills it in.
     workSettings: [] as WorkSettingKey[],
+    // Categories beyond the headline one (service_types).
+    serviceTypes: [] as string[],
     teamSize: '',
     serviceRadiusMiles: '',
   });
@@ -103,6 +106,7 @@ export default function ProviderDashboard() {
             gallery: normalizeGallery(data.provider.gallery),
             marques: normalizeMarques(data.provider.marques),
             workSettings: normalizeWorkSettings(data.provider.workSettings),
+            serviceTypes: Array.isArray(data.provider.serviceTypes) ? data.provider.serviceTypes : [],
             teamSize: data.provider.teamSize || '',
             serviceRadiusMiles:
               data.provider.serviceRadiusMiles === null || data.provider.serviceRadiusMiles === undefined
@@ -297,6 +301,13 @@ export default function ProviderDashboard() {
                   <option key={c.value} value={c.value}>{c.label}</option>
                 ))}
               </select>
+            </div>
+            <div className="sm:col-span-2">
+              <ExtraCategoriesFields
+                headline={form.category}
+                value={form.serviceTypes}
+                onChange={(next) => setForm({ ...form, serviceTypes: next })}
+              />
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-1.5">

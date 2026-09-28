@@ -54,3 +54,34 @@ export async function getProvidersForCategory(key: string): Promise<CategoryProv
     return [];
   }
 }
+
+// Newest live providers for the homepage "Recently joined" strip. Photo
+// required (it is required at onboarding anyway) so the strip never shows a
+// blank card. `total` is every live provider, for the "see all" link.
+export interface RecentProvider {
+  slug: string;
+  business_name: string;
+  category: string;
+  location: string | null;
+  avatar_url: string;
+}
+
+export async function getRecentProviders(limit = 4): Promise<{ providers: RecentProvider[]; total: number }> {
+  if (!process.env.DATABASE_URL) return { providers: [], total: 0 };
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+    const rows = (await sql`
+      SELECT slug, business_name, category, location, avatar_url,
+             COUNT(*) OVER ()::int AS total
+      FROM service_providers
+      WHERE status = 'active' AND slug IS NOT NULL AND slug <> ''
+        AND avatar_url IS NOT NULL AND avatar_url <> ''
+      ORDER BY created_at DESC
+      LIMIT ${limit}
+    `) as (RecentProvider & { total: number })[];
+    return { providers: rows, total: rows[0]?.total ?? 0 };
+  } catch {
+    return { providers: [], total: 0 };
+  }
+}

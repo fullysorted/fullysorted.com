@@ -283,3 +283,21 @@ export const REFERRAL_SERVICES: ReferralService[] = [
     tint: '#6B4E71',
   },
 ];
+
+/** Most a provider can add on top of their headline category. */
+export const EXTRA_CATEGORIES_MAX = 6;
+
+/**
+ * The extra categories a provider also works in (service_types). Only live
+ * category keys survive, the headline is never repeated, and the list is capped.
+ * A storage yard that also runs online auctions headlines one and lists the
+ * other here, and the directory shows it under both.
+ */
+export function normalizeExtraCategories(v: unknown, headline?: string | null): ServiceCategoryKey[] {
+  if (!Array.isArray(v)) return [];
+  const out: ServiceCategoryKey[] = [];
+  for (const k of v) {
+    if (isServiceCategory(k) && k !== headline && !out.includes(k)) out.push(k);
+  }
+  return out.slice(0, EXTRA_CATEGORIES_MAX);
+}

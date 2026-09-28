@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { normalizeExtraCategories } from '@/lib/service-categories';
 import { auth } from '@clerk/nextjs/server';
 import { getDb, schema } from '@/lib/db';
 import { eq, sql } from 'drizzle-orm';
@@ -89,6 +90,7 @@ export async function POST(request: NextRequest) {
       phone, website, instagram, yearsInBusiness,
       specialties, description, idealClient, whyList, referredBy,
       priceRange, avatarUrl, workSettings, teamSize, serviceRadiusMiles,
+      serviceTypes,
     } = body;
 
     if (!businessName || !ownerName || !category || !location || !email || !description) {
@@ -202,6 +204,7 @@ export async function POST(request: NextRequest) {
       // Whitelisted, not trusted — these render as factual claims on a public
       // business profile, so an unrecognised value is dropped, not stored.
       workSettings: normalizeWorkSettings(workSettings),
+      serviceTypes: normalizeExtraCategories(serviceTypes, String(category)),
       teamSize: normalizeTeamSize(teamSize),
       serviceRadiusMiles: radiusMiles,
       verified: false,

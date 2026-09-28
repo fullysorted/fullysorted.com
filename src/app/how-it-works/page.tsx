@@ -20,6 +20,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { OwnershipYearRail, TradeGridPhoto } from "@/components/services/TradeGrid";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
 export const metadata: Metadata = {
@@ -288,6 +289,19 @@ export default function HowItWorksPage() {
             {HIRE_STEPS.map((s, i) => (
               <StepCard key={i} index={i} {...s} />
             ))}
+          </div>
+
+          {/* The ownership year: every trade in the order a car meets them.
+              Moved here from the homepage on 2026-09-28. */}
+          <div className="mt-14">
+            <p className="text-xs font-bold uppercase tracking-widest mb-2 text-center" style={{ color: "#1E6091" }}>
+              The whole ownership year
+            </p>
+            <h3 className="font-display text-2xl font-semibold tracking-tight text-foreground text-center mb-8">
+              Everything the car needs, in the order it usually needs it
+            </h3>
+            <OwnershipYearRail />
+            <TradeGridPhoto />
           </div>
           <div className="mt-10 text-center">
             <Link

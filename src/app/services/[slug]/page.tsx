@@ -298,7 +298,9 @@ export default async function ProviderProfilePage({ params }: Props) {
                   className="text-xs font-bold tracking-widest uppercase"
                   style={{ color: 'rgba(245,239,230,0.9)' }}
                 >
-                  {categoryLabel(provider.category)}
+                  {[provider.category, ...((provider.serviceTypes as string[] | null) ?? []).filter((k) => k !== provider.category)]
+                    .map((k) => categoryLabel(k))
+                    .join(' · ')}
                 </span>
               </div>
 
