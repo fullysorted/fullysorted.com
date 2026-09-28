@@ -7,7 +7,7 @@ import { MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardChe
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { SERVICE_CATEGORIES, TRADE_CATEGORIES, SALES_CATEGORIES, CATEGORY_TINTS, categoryGroup } from '@/lib/service-categories';
+import { SERVICE_CATEGORIES, TRADE_CATEGORIES, SALES_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
 import { ratingDisplay } from '@/lib/reviews';
 import { SmartSearch } from '@/components/search/SmartSearch';
 import { parseSearchIntent, scoreProvider, type SearchModel } from '@/lib/search-intent';
@@ -293,6 +293,46 @@ function ResultsGrid({
   );
 }
 
+// ─── One trade, with its own heading and count ────────
+// The "All" view used to be one long grid with every trade mixed together.
+// It is grouped now: each trade gets a heading, a count, and a way to narrow
+// to just that trade. Empty trades are left out here; the chips still list them.
+function CategorySection({
+  catKey, label, icon, providers, onOnly,
+}: {
+  catKey: string;
+  label: string;
+  icon: React.ReactNode;
+  providers: Provider[];
+  onOnly: (key: string) => void;
+}) {
+  return (
+    <section id={`trade-${catKey}`} className="mb-12 scroll-mt-24">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-5 pb-3" style={{ borderBottom: '1px solid rgba(18,53,42,0.14)' }}>
+        <h2 className="flex items-center gap-2.5 font-display font-semibold tracking-tight text-2xl text-stone-900">
+          <span style={{ color: CATEGORY_TINT[catKey] ?? DEFAULT_TINT }} aria-hidden>{icon}</span>
+          {label}
+          <span className="text-base font-medium text-stone-400 tabular-nums">{providers.length}</span>
+        </h2>
+        <button
+          type="button"
+          onClick={() => onOnly(catKey)}
+          className="text-sm font-semibold underline underline-offset-4 text-stone-500 hover:text-stone-900"
+        >
+          Show only {label.toLowerCase()}
+        </button>
+      </div>
+      <div className="grid gap-6 md:grid-cols-2">
+        <AnimatePresence mode="popLayout">
+          {providers.map((provider) => (
+            <ProviderCard key={`${catKey}-${provider.id}`} provider={provider} />
+          ))}
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
+
 // An empty result is a lead, not a dead end. The owner says what they need and
 // where, it goes through /api/contact (the deliver() contract: success is only
 // reported once it has reached us), and outreach knows who to go and find.
@@ -404,11 +444,12 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
     else if (q.trim() === '') setActiveCategory('all');
   };
 
-  const matches = (p: Provider) => {
-    const matchesCategory =
-      activeCategory === 'all' ||
-      p.category === activeCategory ||
-      (Array.isArray(p.serviceTypes) && p.serviceTypes.includes(activeCategory));
+  const inCategory = (p: Provider, key: string) =>
+    p.category === key || (Array.isArray(p.serviceTypes) && p.serviceTypes.includes(key));
+
+  // Everything except the trade chip. Chip counts come from this, so a number
+  // on a chip is always what you get when you press it.
+  const matchesOtherFilters = (p: Provider) => {
     // A provider with no work_settings answer has not said no — they have said
     // nothing, and most of the seeded rows predate the question entirely.
     // Hiding them from a filter would make the directory look emptier than it
@@ -422,15 +463,28 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
     // has to match something: the make, a leftover word, or their name.
     const matchesSearch =
       searchQuery.trim() === '' || intent.category !== null || scoreProvider(p, intent) > 0;
-    return matchesCategory && matchesSetting && matchesSearch;
+    return matchesSetting && matchesSearch;
   };
 
   // Marque first, then everything else in the order the API sent it.
-  const filtered = providers
-    .filter(matches)
+  const pool = providers
+    .filter(matchesOtherFilters)
     .map((p, i) => ({ p, i, s: scoreProvider(p, intent) }))
     .sort((a, b) => b.s - a.s || a.i - b.i)
     .map((x) => x.p);
+  const filtered = activeCategory === 'all' ? pool : pool.filter((p) => inCategory(p, activeCategory));
+  const countFor = (key: string) => (key === 'all' ? pool.length : pool.filter((p) => inCategory(p, key)).length);
+  const showCounts = !loading && !loadFailed;
+  const tradeSections = TRADE_CHIPS.filter((c) => c.key !== 'all')
+    .map((c) => ({ ...c, list: pool.filter((p) => inCategory(p, c.key)) }))
+    .filter((c) => c.list.length > 0);
+  const salesSections = SALES_CHIPS
+    .map((c) => ({ ...c, list: pool.filter((p) => inCategory(p, c.key)) }))
+    .filter((c) => c.list.length > 0);
+  const pickCategory = (key: string) => {
+    setActiveCategory(key);
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div>
@@ -482,6 +536,11 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
           >
             {cat.icon}
             {cat.label}
+            {showCounts && (
+              <span className={`tabular-nums text-xs ${activeCategory === cat.key ? 'text-white/75' : 'text-stone-400'}`}>
+                {countFor(cat.key)}
+              </span>
+            )}
           </button>
         ))}
       </div>
@@ -501,6 +560,11 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
           >
             {cat.icon}
             {cat.label}
+            {showCounts && (
+              <span className={`tabular-nums text-xs ${activeCategory === cat.key ? 'text-white/75' : 'text-stone-400'}`}>
+                {countFor(cat.key)}
+              </span>
+            )}
           </button>
         ))}
       </div>
@@ -564,14 +628,14 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
           request={searchQuery}
         />
       )}
-      {/* With no category chosen, dealers and consignment houses sit in their
-          own section under the trades. A provider whose headline is a sales
-          category but who also carries a trade in service_types shows in both. */}
+      {/* With no trade chosen, the directory is grouped: one section per trade
+          in ownership-year order, then buying and selling. A provider whose
+          service_types cover more than one trade shows under each of them. */}
       {!loading && !loadFailed && activeCategory === 'all' && (
-        <>
+        pool.length === 0 ? (
           <ResultsGrid
-            providers={filtered.filter((p) => categoryGroup(p.category) === 'trade' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'trade'))}
-            count={filtered.filter((p) => categoryGroup(p.category) === 'trade' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'trade')).length}
+            providers={[]}
+            count={0}
             emptyLine={
               providers.length === 0
                 ? "We're building the directory now. Apply below to be one of the first listed."
@@ -579,20 +643,29 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
             }
             request={searchQuery}
           />
-          {filtered.some((p) => categoryGroup(p.category) === 'sales' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'sales')) && (
-            <>
-              <div className="flex items-baseline justify-between gap-4 mb-1 pt-2" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
-                <h2 className="font-display font-semibold tracking-tight text-2xl text-stone-900 mt-4">Buying and selling</h2>
-                <p className="text-xs text-stone-500 mt-4">Dealers, consignment houses and online auction reps. Marked as such on every listing they post.</p>
-              </div>
-              <ResultsGrid
-                providers={filtered.filter((p) => categoryGroup(p.category) === 'sales' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'sales'))}
-                count={filtered.filter((p) => categoryGroup(p.category) === 'sales' || (p.serviceTypes ?? []).some((k) => categoryGroup(k) === 'sales')).length}
-                emptyLine=""
-              />
-            </>
-          )}
-        </>
+        ) : (
+          <>
+            <p className="text-sm text-stone-500 mb-8">
+              {pool.length} {pool.length === 1 ? 'specialist' : 'specialists'} across{' '}
+              {tradeSections.length + salesSections.length}{' '}
+              {tradeSections.length + salesSections.length === 1 ? 'category' : 'categories'}
+            </p>
+            {tradeSections.map((c) => (
+              <CategorySection key={c.key} catKey={c.key} label={c.label} icon={c.icon} providers={c.list} onOnly={pickCategory} />
+            ))}
+            {salesSections.length > 0 && (
+              <>
+                <div className="flex items-baseline justify-between gap-4 mb-6 pt-2" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mt-4">Buying and selling</p>
+                  <p className="text-xs text-stone-500 mt-4">Dealers, consignment houses and online auction reps. Marked as such on every listing they post.</p>
+                </div>
+                {salesSections.map((c) => (
+                  <CategorySection key={c.key} catKey={c.key} label={c.label} icon={c.icon} providers={c.list} onOnly={pickCategory} />
+                ))}
+              </>
+            )}
+          </>
+        )
       )}
 
       {/* CTA to Apply */}
