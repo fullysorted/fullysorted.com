@@ -3,6 +3,7 @@ import { normalizeSellerType } from '@/lib/dealer';
 import { FREE_LISTINGS_THRESHOLD } from '@/lib/listing-tiers';
 import { rateLimit } from '@/lib/rate-limit';
 import { isMuse } from '@/lib/muse-auth';
+import { resolveCurrentUser } from '@/lib/identity';
 
 // Cap free-text input to prevent abuse / DB bloat / content-injection payloads.
 const cap = (v: unknown, n: number): string | null => {
@@ -109,6 +110,12 @@ export async function POST(request: NextRequest) {
 
     const sql = await getDbSql();
 
+    // Tie the listing to the seller's account when they are signed in, so it
+    // shows under "Your cars" on /account. Before this, only a paid Stripe
+    // checkout ever set seller_id, which left every free listing orphaned.
+    // A failed lookup never blocks the listing itself.
+    const seller = muse ? null : await resolveCurrentUser().catch(() => null);
+
     // Determine early adopter status
     const [{ total }] = await sql`SELECT COUNT(*)::int AS total FROM listings`;
     const totalCreated = Number(total);
@@ -126,7 +133,8 @@ export async function POST(request: NextRequest) {
         highlights, chris_take, photos, hero_photo,
         status, featured, sorted_price,
         seller_type, dealer_name, dealer_license, dealer_fees_note,
-        vin, chassis, engine_number, matching_numbers, provenance
+        vin, chassis, engine_number, matching_numbers, provenance,
+        seller_id
       ) VALUES (
         ${slug}, ${selectedTier}, ${isFreeEarlyAdopter},
         ${parseInt(year)}, ${cap(make, 60)}, ${cap(model, 60)}, ${cap(trim, 60)},
@@ -144,7 +152,8 @@ export async function POST(request: NextRequest) {
         ${sellerType === 'dealer' ? cap(dealerFeesNote, 1000) : null},
         ${cap(vin, 17)}, ${cap(chassis, 64)}, ${cap(engineNumber, 64)},
         ${MATCHING.includes(String(matchingNumbers)) ? String(matchingNumbers) : null},
-        ${cap(provenance, 2000)}
+        ${cap(provenance, 2000)},
+        ${seller?.id ?? null}
       )
       RETURNING *
     `;

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 function isAdmin(request: NextRequest): boolean {
   const secret = request.cookies.get('fs_admin')?.value;
@@ -123,6 +124,16 @@ export async function PATCH(request: NextRequest) {
 
   if (!result.length) {
     return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+  }
+
+  // The homepage and /browse are cached. Without this an approved car could
+  // sit off the homepage until the cache happened to turn over.
+  try {
+    revalidatePath('/');
+    revalidatePath('/browse');
+    if (result[0].slug) revalidatePath(`/listings/${result[0].slug}`);
+  } catch (e) {
+    console.error('[admin/listings] revalidate failed', e);
   }
 
   return NextResponse.json({ listing: result[0] });
