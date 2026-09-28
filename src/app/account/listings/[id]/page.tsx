@@ -3,6 +3,7 @@ import { notFound, redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { resolveCurrentUser } from '@/lib/identity';
 import EditListingForm, { type EditableListing } from './EditListingForm';
+import { getMaxPhotos, LISTING_TIERS, type ListingTier } from '@/lib/listing-tiers';
 
 export const metadata: Metadata = { title: 'Edit listing', robots: { index: false, follow: false } };
 export const dynamic = 'force-dynamic';
@@ -18,7 +19,8 @@ export default async function EditListingPage({ params }: { params: Promise<{ id
   const [row] = await sql`
     SELECT id, slug, year, make, model, trim, price, mileage, transmission, engine,
            exterior_color, interior_color, city, state, zip_code,
-           COALESCE(ai_description, description) AS description, provenance, status
+           COALESCE(ai_description, description) AS description, provenance, status,
+           photos, hero_photo, tier
     FROM listings WHERE id = ${Number(id) || 0} AND seller_id = ${user.id} LIMIT 1
   `;
   if (!row) notFound();
@@ -40,6 +42,9 @@ export default async function EditListingPage({ params }: { params: Promise<{ id
     zipCode: row.zip_code ?? '',
     description: row.description ?? '',
     provenance: row.provenance ?? '',
+    photos: Array.isArray(row.photos) ? (row.photos as string[]) : [],
+    heroPhoto: row.hero_photo ?? null,
+    maxPhotos: getMaxPhotos((String(row.tier) in LISTING_TIERS ? String(row.tier) : 'standard') as ListingTier),
   };
 
   return (
@@ -48,8 +53,7 @@ export default async function EditListingPage({ params }: { params: Promise<{ id
         <Link href="/account" className="text-sm text-text-secondary hover:text-foreground">Back to your account</Link>
         <h1 className="font-display tracking-tight text-3xl sm:text-4xl mt-3 mb-1 text-stone-900">{listing.title}</h1>
         <p className="text-sm text-text-secondary mb-8">
-          Changes go live when you save. For photos, email{' '}
-          <a href="mailto:chris@fullysorted.com" className="underline">chris@fullysorted.com</a>.
+          Changes go live when you save.
         </p>
         <EditListingForm listing={listing} />
       </div>

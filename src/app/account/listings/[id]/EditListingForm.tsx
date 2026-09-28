@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import PhotoUploader from '@/components/upload/PhotoUploader';
 
 export interface EditableListing {
   id: number;
@@ -20,6 +21,16 @@ export interface EditableListing {
   zipCode: string;
   description: string;
   provenance: string;
+  photos: string[];
+  heroPhoto: string | null;
+  maxPhotos: number;
+}
+
+interface UploadedPhoto {
+  url: string;
+  name: string;
+  size: number;
+  isHero?: boolean;
 }
 
 const field =
@@ -27,6 +38,10 @@ const field =
 
 export default function EditListingForm({ listing }: { listing: EditableListing }) {
   const [f, setF] = useState(listing);
+  const [photos, setPhotos] = useState<UploadedPhoto[]>(() => {
+    const hero = listing.heroPhoto ?? listing.photos[0];
+    return listing.photos.map((url) => ({ url, name: '', size: 0, isHero: url === hero }));
+  });
   const [state, setState] = useState<'idle' | 'saving' | 'saved'>('idle');
   const [error, setError] = useState<string | null>(null);
   const set = (k: keyof EditableListing) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,7 +56,12 @@ export default function EditListingForm({ listing }: { listing: EditableListing 
       const res = await fetch(`/api/account/listings/${listing.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...f, markSold }),
+        body: JSON.stringify({
+          ...f,
+          photos: photos.map((p) => p.url),
+          heroPhoto: photos.find((p) => p.isHero)?.url ?? photos[0]?.url ?? null,
+          markSold,
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.success) throw new Error(data.error || 'That did not save.');
@@ -79,6 +99,18 @@ export default function EditListingForm({ listing }: { listing: EditableListing 
         {text('city', 'City')}
         {text('state', 'State')}
         {text('zipCode', 'ZIP code', { inputMode: 'numeric' })}
+      </div>
+      <div className="grid gap-1.5">
+        <p className="text-sm font-medium text-stone-700">Photos</p>
+        <p className="text-xs text-stone-500">Add, remove or pick the cover. Nothing changes on the listing until you save.</p>
+        <PhotoUploader
+          photos={photos}
+          onChange={(next) => {
+            setPhotos(next);
+            setState('idle');
+          }}
+          maxPhotos={listing.maxPhotos}
+        />
       </div>
       <label className="grid gap-1.5 text-sm font-medium text-stone-700">
         Description
