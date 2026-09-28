@@ -75,6 +75,12 @@ export async function register() {
     // array, which renders nothing — a shop with no gallery looks exactly as
     // it does today.
     await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS gallery JSONB DEFAULT '[]'::JSONB`;
+    // Provider images (2026-09-28): square mark + banner focal point. In
+    // schema.ts, therefore ORM-critical. All nullable; a null mark draws the
+    // trade tile and a null focus centers the crop, exactly as today.
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS logo_url TEXT`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS logo_kind VARCHAR(10)`;
+    await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS banner_focus VARCHAR(20)`;
   } catch (err) {
     console.error(
       '[Fully Sorted] CRITICAL: could not ensure ORM-critical service_providers columns. ' +

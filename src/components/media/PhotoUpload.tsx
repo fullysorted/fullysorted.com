@@ -8,8 +8,34 @@ import { Loader2, ImageIcon, Upload } from "lucide-react";
    Grab the shop's logo or a workshop photo from their website or Instagram,
    save it locally, and upload it here. Required — a listing without a photo
    is a listing nobody clicks. */
+/* Big phone photos are shrunk in the browser before they leave it: faster on
+   a shop's cell signal, and no image work on our servers. PNGs stay PNG so a
+   logo keeps its transparent background. */
+const MAX_EDGE = 2000;
+async function prepare(file: File): Promise<{ file: File; width: number; height: number } | null> {
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type) || typeof createImageBitmap !== "function") return null;
+  try {
+    const bmp = await createImageBitmap(file);
+    const { width, height } = bmp;
+    const scale = Math.min(1, MAX_EDGE / Math.max(width, height));
+    if (scale === 1 && file.size < 4_000_000) { bmp.close(); return { file, width, height }; }
+    const w = Math.round(width * scale), h = Math.round(height * scale);
+    const canvas = document.createElement("canvas");
+    canvas.width = w; canvas.height = h;
+    canvas.getContext("2d")!.drawImage(bmp, 0, 0, w, h);
+    bmp.close();
+    const type = file.type === "image/png" ? "image/png" : "image/jpeg";
+    const blob: Blob | null = await new Promise((r) => canvas.toBlob(r, type, 0.85));
+    if (!blob) return { file, width, height };
+    const name = file.name.replace(/\.[^.]+$/, "") + (type === "image/png" ? ".png" : ".jpg");
+    return { file: new File([blob], name, { type }), width: w, height: h };
+  } catch {
+    return null;
+  }
+}
+
 export default function PhotoUpload({
-  value, onChange, invalid, hint, label,
+  value, onChange, invalid, hint, label, shape = "square", minWidth, onDimensions,
 }: {
   value: string;
   onChange: (url: string) => void;
@@ -19,7 +45,13 @@ export default function PhotoUpload({
   hint?: React.ReactNode;
   /** Overrides the button label. */
   label?: string;
+  /** Preview frame: a square mark or a wide banner. */
+  shape?: "square" | "wide";
+  /** Below this width the uploader says the photo may look soft. Not a block. */
+  minWidth?: number;
+  onDimensions?: (w: number, h: number) => void;
 }) {
+  const [soft, setSoft] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [link, setLink] = useState("");
@@ -45,8 +77,17 @@ export default function PhotoUpload({
     const file = e.target.files?.[0];
     e.target.value = ""; // allow re-selecting the same file after an error
     if (!file) return;
+    if (/heic|heif/i.test(file.type) || /\.hei[cf]$/i.test(file.name)) {
+      // Most iPhones convert on the way out; this one did not, and most
+      // browsers cannot show HEIC at all.
+      setError("That is an iPhone HEIC file. Choose it again from Photos, or export it as a JPEG first.");
+      return;
+    }
+    const ready = await prepare(file);
+    setSoft(Boolean(ready && minWidth && ready.width < minWidth));
+    if (ready) onDimensions?.(ready.width, ready.height);
     const fd = new FormData();
-    fd.append("file", file);
+    fd.append("file", ready?.file ?? file);
     await send(fd);
   }
 
@@ -67,18 +108,18 @@ export default function PhotoUpload({
         {value ? (
           <Image
             src={value}
-            alt="Shop photo preview"
-            width={72}
+            alt="Preview"
+            width={shape === "wide" ? 128 : 72}
             height={72}
-            className="w-18 h-18 rounded-lg object-cover border border-border bg-white"
-            style={{ width: 72, height: 72 }}
+            className={`rounded-lg border border-border bg-white shrink-0 ${shape === "wide" ? "object-cover" : "object-contain"}`}
+            style={{ width: shape === "wide" ? 128 : 72, height: 72 }}
             unoptimized
           />
         ) : (
           <div
             className="rounded-lg border-2 border-dashed bg-white flex items-center justify-center shrink-0"
             style={{
-              width: 72,
+              width: shape === "wide" ? 128 : 72,
               height: 72,
               borderColor: invalid ? "#dc2626" : "rgba(0,0,0,0.18)",
             }}
@@ -133,6 +174,11 @@ export default function PhotoUpload({
           </p>
         </div>
       </div>
+      {soft && !error && (
+        <p className="text-xs text-amber-700 mt-2">
+          This one is on the small side and may look soft on a large screen. A bigger original is better if you have it.
+        </p>
+      )}
       {error && <p className="text-xs text-red-600 font-medium mt-2">{error}</p>}
     </div>
   );

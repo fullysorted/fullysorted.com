@@ -6,7 +6,8 @@ import { useSearchParams } from 'next/navigation';
 import { MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake, Armchair, FileText, Gavel } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
+import { ProviderBanner } from '@/components/providers/ProviderBanner';
+import { ProviderMark } from '@/components/providers/ProviderMark';
 import { SERVICE_CATEGORIES, TRADE_CATEGORIES, SALES_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
 import { ratingDisplay } from '@/lib/reviews';
 import { SmartSearch } from '@/components/search/SmartSearch';
@@ -78,6 +79,9 @@ interface Provider {
   priceRange: string;
   slug: string;
   avatarUrl: string | null;
+  logoUrl?: string | null;
+  logoKind?: string | null;
+  bannerFocus?: string | null;
 }
 
 // ─── Provider Card ────────────────────────────────────
@@ -92,35 +96,37 @@ function ProviderCard({ provider }: { provider: Provider }) {
       whileHover={{ y: -3 }}
       className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)] transition-shadow"
     >
-      {/* Header — the shop's own photo when we have one (required at
-          onboarding), category tint as the fallback for older rows. */}
-      <Link href={`/services/${provider.slug}`} className="block relative h-36 overflow-hidden listing-image-container">
-        {provider.avatarUrl ? (
-          <>
-            <Image
-              src={provider.avatarUrl}
-              alt={`${provider.businessName} photo`}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
-            <div
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(rgba(11,26,46,0.05) 30%, rgba(11,26,46,0.72) 100%)' }}
-            />
-          </>
-        ) : (
-          <div
-            className="absolute inset-0"
-            style={{ background: `linear-gradient(135deg, ${CATEGORY_TINT[provider.category] ?? DEFAULT_TINT} 0%, #0b1a2e 92%)` }}
+      {/* Banner: the shop's own wide photo, cropped around the point they
+          tapped. The mark overlaps its bottom edge. Both fall back to
+          something deliberate (trade photo, drawn trade tile), so a card
+          never shows a hole. See lib/provider-images.ts. */}
+      <Link href={`/services/${provider.slug}`} className="block relative" tabIndex={-1} aria-hidden>
+        <ProviderBanner
+          name={formatBusinessName(provider.businessName)}
+          avatarUrl={provider.avatarUrl}
+          category={provider.category}
+          focus={provider.bannerFocus}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="h-36"
+        />
+        <div className="absolute left-5 -bottom-7">
+          <ProviderMark
+            name={formatBusinessName(provider.businessName)}
+            category={provider.category}
+            logoUrl={provider.logoUrl}
+            logoKind={provider.logoKind}
+            size={56}
+            ring
           />
-        )}
-        <div className="absolute inset-0 film-grain opacity-[0.07] pointer-events-none" />
-        <span className="absolute bottom-2.5 left-5 text-[11px] font-bold uppercase tracking-widest text-white/90">
-          {categoryLabel}
-        </span>
+        </div>
       </Link>
-      <div className="p-6">
+      <p
+        className="pl-[92px] pr-5 pt-2.5 text-[11px] uppercase"
+        style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: '0.12em', color: '#1C8C87' }}
+      >
+        {categoryLabel}
+      </p>
+      <div className="px-6 pb-6 pt-4">
         {/* Header */}
         <div className="flex items-start justify-between mb-3">
           <div>

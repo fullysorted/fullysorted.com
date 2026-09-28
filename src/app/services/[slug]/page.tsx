@@ -3,7 +3,6 @@ import { categoryLabel } from '@/lib/service-categories';
 import { formatBusinessName, formatLocation } from '@/lib/provider-format';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import { getDb, schema } from '@/lib/db';
 import { and, eq } from 'drizzle-orm';
 import type { ServiceProvider } from '@/lib/db/schema';
@@ -18,6 +17,8 @@ import { normalizeGallery } from '@/lib/gallery';
 import { normalizeMarques } from '@/lib/marques';
 import { shareImageUrl, SITE_URL } from '@/lib/share';
 import { ShareButton } from '@/components/share/ShareButton';
+import { ProviderBanner } from '@/components/providers/ProviderBanner';
+import { ProviderMark } from '@/components/providers/ProviderMark';
 
 export const dynamic = 'force-dynamic';
 
@@ -97,17 +98,6 @@ async function getReviews(providerId: number): Promise<PublicReview[]> {
 }
 
 // ─── Category photography (profile header backdrop) ────
-const CATEGORY_PHOTOS: Record<string, string> = {
-  photography: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80',
-  detailing: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1600&q=80',
-  mechanical: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80',
-  transport: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80',
-  storage: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=1600&q=80',
-  inspection: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80',
-  restoration: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&q=80',
-  bodywork: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&q=80',
-};
-const DEFAULT_PHOTO = 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80';
 
 // ─── Helpers ────────────────────────────────────────────
 function normalizeWebsite(url: string): string {
@@ -211,6 +201,8 @@ export default async function ProviderProfilePage({ params }: Props) {
   );
   if (jsonLdImages.length === 1) jsonLd.image = jsonLdImages[0];
   else if (jsonLdImages.length > 1) jsonLd.image = jsonLdImages;
+  // The mark is a logo only when the shop said so; a portrait is not a logo.
+  if (provider.logoUrl && provider.logoKind !== 'photo') jsonLd.logo = provider.logoUrl;
   if (provider.phone) jsonLd.telephone = provider.phone;
   if (provider.website) jsonLd.sameAs = [normalizeWebsite(provider.website)];
   // aggregateRating rides the same minimum-n gate as the visible badge. Thin
@@ -240,77 +232,70 @@ export default async function ProviderProfilePage({ params }: Props) {
     <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
       <JsonLd data={jsonLd} />
 
-      {/* ─── Hero band — full-bleed photography under a navy overlay ─── */}
-      <div className="relative overflow-hidden">
-        <Image
-          src={CATEGORY_PHOTOS[provider.category?.toLowerCase() ?? ''] ?? DEFAULT_PHOTO}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(rgba(15,32,50,0.72), rgba(15,32,50,0.9))' }}
-        />
-        <div className="film-grain absolute inset-0 opacity-[0.05] pointer-events-none" />
-        <div className="speed-lines absolute inset-0 opacity-[0.04] pointer-events-none" />
-        <div
-          className="absolute top-0 left-0 right-0 h-px pointer-events-none"
-          style={{ background: 'linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)' }}
-        />
-
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-10 sm:pt-10 sm:pb-14">
+      {/* ─── Header: the sitewide white pattern (teal mono eyebrow, deep green
+          serif name, gray subhead), then the shop's own banner. The stock
+          photo under a navy overlay is gone (2026-09-28): a profile should
+          lead with the shop, not with a picture of someone else's car. ─── */}
+      <div style={{ background: '#FFFFFF', borderBottom: '1px solid rgba(18,53,42,0.14)' }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-6 pb-8 sm:pt-8 sm:pb-10">
           <Link
             href="/services"
-            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 transition-colors hover:text-white"
-            style={{ color: 'rgba(245,239,230,0.7)' }}
+            className="inline-flex items-center gap-1.5 text-sm font-medium mb-6 transition-colors hover:text-[#12352A]"
+            style={{ color: '#6B7280' }}
           >
             <span aria-hidden>←</span> Back to directory
           </Link>
 
-          <div className="flex flex-col sm:flex-row sm:items-end gap-6">
-            {/* The shop's own photo — required at onboarding, so every profile
-                leads with the business rather than a stock image. */}
-            {provider.avatarUrl && (
-              <div
-                className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-2xl overflow-hidden"
-                style={{
-                  boxShadow: '0 20px 50px -12px rgba(0,0,0,0.6)',
-                  border: '3px solid rgba(245,239,230,0.92)',
-                }}
-              >
-                <Image
-                  src={provider.avatarUrl}
-                  alt={`${provider.businessName} photo`}
-                  fill
-                  sizes="144px"
-                  className="object-cover"
-                />
-              </div>
-            )}
+          <div className="relative">
+            <ProviderBanner
+              name={formatBusinessName(provider.businessName)}
+              avatarUrl={provider.avatarUrl}
+              gallery={gallery}
+              category={provider.category}
+              focus={provider.bannerFocus}
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              priority
+              className="aspect-[2/1] sm:aspect-[3/1] rounded-2xl"
+            />
+            <div className="absolute left-4 sm:left-6 -bottom-12 sm:-bottom-14">
+              <ProviderMark
+                name={formatBusinessName(provider.businessName)}
+                category={provider.category}
+                logoUrl={provider.logoUrl}
+                logoKind={provider.logoKind}
+                size={112}
+                ring
+                className="sm:hidden"
+              />
+              <ProviderMark
+                name={formatBusinessName(provider.businessName)}
+                category={provider.category}
+                logoUrl={provider.logoUrl}
+                logoKind={provider.logoKind}
+                size={132}
+                ring
+                className="hidden sm:block"
+              />
+            </div>
+          </div>
 
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-px" style={{ background: 'var(--accent-gold)' }} />
-                <span
-                  className="text-xs font-bold tracking-widest uppercase"
-                  style={{ color: 'rgba(245,239,230,0.9)' }}
-                >
-                  {[provider.category, ...((provider.serviceTypes as string[] | null) ?? []).filter((k) => k !== provider.category)]
-                    .map((k) => categoryLabel(k))
-                    .join(' · ')}
-                </span>
-              </div>
+          <div className="pt-16 sm:pt-20 min-w-0">
+            <p
+              className="text-[11px] uppercase mb-2"
+              style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: '0.12em', color: '#1C8C87' }}
+            >
+              {[provider.category, ...((provider.serviceTypes as string[] | null) ?? []).filter((k) => k !== provider.category)]
+                .map((k) => categoryLabel(k))
+                .join(' · ')}
+            </p>
 
-              <h1 className="font-display font-semibold tracking-tight leading-[1.08] text-3xl sm:text-4xl lg:text-[2.75rem] mb-2 text-white">
-                {formatBusinessName(provider.businessName)}
-              </h1>
+            <h1 className="font-display tracking-tight leading-[1.08] text-3xl sm:text-4xl lg:text-[2.75rem] mb-2" style={{ color: '#12352A' }}>
+              {formatBusinessName(provider.businessName)}
+            </h1>
 
-              <p className="text-sm sm:text-base" style={{ color: 'rgba(245,239,230,0.78)' }}>
-                {provider.ownerName} · {formatLocation(provider.location)}
-              </p>
+            <p className="text-sm sm:text-base" style={{ color: '#6B7280' }}>
+              {provider.ownerName} · {formatLocation(provider.location)}
+            </p>
 
               {/* Badges */}
               <div className="flex flex-wrap items-center gap-2 mt-4">
@@ -342,7 +327,7 @@ export default async function ProviderProfilePage({ params }: Props) {
                 {provider.priceRange && (
                   <span
                     className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
-                    style={{ background: 'rgba(245,239,230,0.92)', color: 'var(--text-primary)' }}
+                    style={{ background: '#F3F4F6', color: 'var(--text-primary)' }}
                   >
                     {provider.priceRange}
                   </span>
@@ -357,7 +342,6 @@ export default async function ProviderProfilePage({ params }: Props) {
                   filename={`fully-sorted-${provider.slug}`}
                 />
               </div>
-            </div>
           </div>
         </div>
       </div>

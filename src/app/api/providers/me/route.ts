@@ -1,3 +1,5 @@
+import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
+import { normalizeFocus, normalizeLogoKind, normalizeLogoUrl } from '@/lib/provider-images';
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, schema } from '@/lib/db';
 import { eq } from 'drizzle-orm';
@@ -62,8 +64,24 @@ export async function PUT(request: NextRequest) {
       description, specialties, yearsInBusiness, priceRange,
       avatarUrl, headline, serviceArea, skills, hourlyRate,
       acceptingWork, marques, serviceTypes, minJobValue, serviceRadiusMiles,
-      workSettings, teamSize, gallery,
+      workSettings, teamSize, gallery, logoUrl, logoKind, bannerFocus,
     } = body;
+
+    // ── Images (lib/provider-images.ts) ──────────────────────────────────
+    // The main photo stays required and must be one we host: an arbitrary URL
+    // here would 500 the public profile at render time. It was not checked on
+    // this route before 2026-09-28.
+    // An empty value means "not changing it" (a claimed listing that never had
+    // one sends ''), so it cannot fail a save of unrelated fields. Nor can it
+    // blank a photo that is there: the main photo is required.
+    const avatarIn = avatarUrl === '' || avatarUrl === null ? undefined : avatarUrl;
+    if (avatarIn !== undefined && !isBlobImageUrl(avatarIn)) {
+      return NextResponse.json({ error: PHOTO_REQUIRED_MESSAGE }, { status: 400 });
+    }
+    const logo = logoUrl === undefined ? undefined : normalizeLogoUrl(logoUrl);
+    if (logo && !logo.ok) {
+      return NextResponse.json({ error: 'The logo must be uploaded here, not linked from another site.' }, { status: 400 });
+    }
 
     // ── Work preferences ────────────────────────────────────────────────
     // Bounded here rather than trusted: marques render on a public page, and
@@ -125,7 +143,9 @@ export async function PUT(request: NextRequest) {
         // Photo is REQUIRED on both cold-apply paths but was never settable
         // here, so a listing claimed by its owner could never get one. The
         // freelancer fields were in the same position.
-        ...(avatarUrl !== undefined && { avatarUrl }),
+        ...(avatarIn !== undefined && { avatarUrl: String(avatarIn).trim() }),
+        ...(bannerFocus !== undefined && { bannerFocus: normalizeFocus(bannerFocus) }),
+        ...(logo?.ok && { logoUrl: logo.value, logoKind: logo.value ? normalizeLogoKind(logoKind) : null }),
         ...(headline !== undefined && { headline }),
         ...(serviceArea !== undefined && { serviceArea }),
         ...(skills && { skills }),

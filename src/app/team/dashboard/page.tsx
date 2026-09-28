@@ -12,7 +12,7 @@ import {
 import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 import WorkSettingsFields from "@/components/provider/WorkSettingsFields";
 import { normalizeWorkSettings, normalizeTeamSize, type WorkSettingKey } from "@/lib/work-settings";
-import PhotoUpload from '@/components/media/PhotoUpload';
+import ProviderImagesFields from '@/components/media/ProviderImagesFields';
 import { PROVIDER_REVIEWS_PUBLIC } from '@/lib/features';
 
 /* ─── Types ─────────────────────────────────────────────── */
@@ -39,6 +39,9 @@ interface PipelineProvider {
   slug: string;
   created_at: string;
   avatar_url: string | null;
+  logo_url?: string | null;
+  logo_kind?: string | null;
+  banner_focus?: string | null;
   outreach_opted_out_at: string | null;
   owner_linked: boolean;
   outreach_last_edited_by: string | null;
@@ -81,6 +84,7 @@ const EMPTY_FORM = {
   businessName: "", ownerName: "", email: "", phone: "", category: "",
   location: "", website: "", instagram: "", specialties: "", yearsInBusiness: "",
   notes: "", avatarUrl: "",
+  bannerFocus: "50% 50%", logoUrl: "", logoKind: "logo",
 };
 
 /* ─── Page ──────────────────────────────────────────────── */
@@ -114,6 +118,7 @@ export default function TeamDashboard() {
     businessName: "", ownerName: "", email: "", phone: "", category: "",
     location: "", website: "", instagram: "", specialties: "", yearsInBusiness: "",
     description: "", avatarUrl: "",
+    bannerFocus: "50% 50%", logoUrl: "", logoKind: "logo",
   };
   const [edit, setEdit] = useState({ ...EMPTY_EDIT });
   // Kept OUT of `edit`, which is a flat string map that saveDetails diffs with
@@ -364,6 +369,9 @@ export default function TeamDashboard() {
       yearsInBusiness: p.years_in_business || "",
       description: p.description || "",
       avatarUrl: p.avatar_url || "",
+      bannerFocus: p.banner_focus || "50% 50%",
+      logoUrl: p.logo_url || "",
+      logoKind: p.logo_kind === "photo" ? "photo" : "logo",
     };
     if (addedBy) {
       try { window.localStorage.setItem("fs_team_name", addedBy); } catch { /* ignore */ }
@@ -430,6 +438,9 @@ export default function TeamDashboard() {
           yearsInBusiness: saved.years_in_business || "",
           description: saved.description || "",
           avatarUrl: saved.avatar_url || "",
+          bannerFocus: saved.banner_focus || "50% 50%",
+          logoUrl: saved.logo_url || "",
+          logoKind: saved.logo_kind === "photo" ? "photo" : "logo",
         });
         setEditWork(workFromRow(saved));
         setEditExtra(Array.isArray(saved.service_types) ? saved.service_types : []);
@@ -638,12 +649,23 @@ export default function TeamDashboard() {
                   >
                     Required
                   </span>
-                  <label className="text-sm font-bold text-foreground">Shop photo or logo</label>
+                  <label className="text-sm font-bold text-foreground">Photos</label>
                 </div>
-                <PhotoUpload
-                  value={form.avatarUrl}
-                  onChange={(url) => { setField("avatarUrl", url); setPhotoInvalid(false); }}
-                  invalid={photoInvalid}
+                <ProviderImagesFields
+                  value={{
+                    avatarUrl: form.avatarUrl,
+                    bannerFocus: form.bannerFocus,
+                    logoUrl: form.logoUrl,
+                    logoKind: form.logoKind === "photo" ? "photo" : "logo",
+                  }}
+                  onChange={(patch) => {
+                    setForm((prev) => ({ ...prev, ...patch }));
+                    if (patch.avatarUrl) setPhotoInvalid(false);
+                  }}
+                  name={form.businessName}
+                  category={form.category}
+                  bannerInvalid={photoInvalid}
+                  audience="rep"
                 />
               </div>
 
@@ -893,6 +915,9 @@ export default function TeamDashboard() {
                               yearsInBusiness: p.years_in_business || "",
                               description: p.description || "",
                               avatarUrl: p.avatar_url || "",
+                              bannerFocus: p.banner_focus || "50% 50%",
+                              logoUrl: p.logo_url || "",
+                              logoKind: p.logo_kind === "photo" ? "photo" : "logo",
                             });
                             setEditWork(workFromRow(p));
                             setEditExtra(Array.isArray(p.service_types) ? p.service_types : []);
@@ -1102,9 +1127,17 @@ export default function TeamDashboard() {
                             />
                           </div>
                           <div className="mb-3">
-                            <PhotoUpload
-                              value={edit.avatarUrl}
-                              onChange={(url) => editSetField("avatarUrl", url)}
+                            <ProviderImagesFields
+                              value={{
+                                avatarUrl: edit.avatarUrl,
+                                bannerFocus: edit.bannerFocus,
+                                logoUrl: edit.logoUrl,
+                                logoKind: edit.logoKind === "photo" ? "photo" : "logo",
+                              }}
+                              onChange={(patch) => setEdit((prev) => ({ ...prev, ...patch }))}
+                              name={edit.businessName || p.business_name}
+                              category={edit.category || p.category}
+                              audience="rep"
                             />
                           </div>
                           <div className="mb-3 max-w-xs">

@@ -39,14 +39,16 @@ export function TradeIcon({
   k,
   className,
   color = "#12352A",
+  style,
 }: {
   k: ServiceCategoryKey;
   className?: string;
   color?: string;
+  style?: React.CSSProperties;
 }) {
   const d = PATHS[k] ?? PATHS.mechanical!;
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 24 24" className={className} style={style} aria-hidden="true" focusable="false">
       <path d={d} fill={color} />
     </svg>
   );

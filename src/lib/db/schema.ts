@@ -357,6 +357,15 @@ export const serviceProviders = pgTable('service_providers', {
    * restoration shop showing one photo was the weakest thing on the profile.
    */
   gallery: jsonb('gallery').$type<{ url: string; caption?: string }[]>().default([]),
+  /**
+   * The square mark (2026-09-28), optional. avatarUrl above is the wide banner.
+   * logo_kind: 'logo' shows it whole on white, 'photo' fills the square.
+   * banner_focus: CSS object-position for the banner, e.g. "50% 40%".
+   * See lib/provider-images.ts.
+   */
+  logoUrl: text('logo_url'),
+  logoKind: varchar('logo_kind', { length: 10 }),
+  bannerFocus: varchar('banner_focus', { length: 20 }),
   // Guided onboarding progress
   onboardingStep: integer('onboarding_step').default(0),
   onboardingComplete: boolean('onboarding_complete').default(false),

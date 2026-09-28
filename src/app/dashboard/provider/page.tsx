@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import ReviewsPanel from './ReviewsPanel';
 import ClaimExistingListing from './ClaimExistingListing';
-import PhotoUpload from '@/components/media/PhotoUpload';
+import ProviderImagesFields from '@/components/media/ProviderImagesFields';
+import { normalizeLogoKind, type LogoKind } from '@/lib/provider-images';
 import GalleryUpload from '@/components/media/GalleryUpload';
 import WorkSettingsFields from '@/components/provider/WorkSettingsFields';
 import ExtraCategoriesFields from '@/components/provider/ExtraCategoriesFields';
@@ -66,6 +67,10 @@ export default function ProviderDashboard() {
     // dashboard had no field for it — so a provider whose listing was created
     // by the team, or claimed with a token, could never add one themselves.
     avatarUrl: '',
+    // The square mark and the banner's focal point. See lib/provider-images.ts.
+    bannerFocus: '50% 50%',
+    logoUrl: '',
+    logoKind: 'logo' as LogoKind,
     // Everything after the lead photo. Optional, ordered, captioned.
     gallery: [] as GalleryPhoto[],
     // What they work on. The column has existed since 2026-08-25 with no field
@@ -103,6 +108,9 @@ export default function ProviderDashboard() {
             yearsInBusiness: data.provider.yearsInBusiness || '',
             priceRange: data.provider.priceRange || '$$',
             avatarUrl: data.provider.avatarUrl || '',
+            bannerFocus: data.provider.bannerFocus || '50% 50%',
+            logoUrl: data.provider.logoUrl || '',
+            logoKind: normalizeLogoKind(data.provider.logoKind),
             gallery: normalizeGallery(data.provider.gallery),
             marques: normalizeMarques(data.provider.marques),
             workSettings: normalizeWorkSettings(data.provider.workSettings),
@@ -333,17 +341,11 @@ export default function ProviderDashboard() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-foreground mb-1.5">Profile photo</label>
-              <PhotoUpload
-                value={form.avatarUrl}
-                onChange={(url: string) => setForm({ ...form, avatarUrl: url })}
-                label="Upload a photo"
-                hint={
-                  <>
-                    JPEG/PNG/WebP, max 10MB. Your workshop, your work, or you. Listings with a
-                    photo get looked at; listings without one mostly do not.
-                  </>
-                }
+              <ProviderImagesFields
+                value={{ avatarUrl: form.avatarUrl, bannerFocus: form.bannerFocus, logoUrl: form.logoUrl, logoKind: form.logoKind }}
+                onChange={(patch) => setForm((f) => ({ ...f, ...patch }))}
+                name={form.businessName}
+                category={form.category}
               />
             </div>
 

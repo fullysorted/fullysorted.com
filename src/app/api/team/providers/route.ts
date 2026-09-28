@@ -1,3 +1,4 @@
+import { normalizeFocus, normalizeLogoKind, normalizeLogoUrl } from '@/lib/provider-images';
 import { NextRequest, NextResponse } from 'next/server';
 import { formatBusinessName, formatLocation } from '@/lib/provider-format';
 import { randomBytes } from 'crypto';
@@ -61,6 +62,12 @@ async function ensureColumns(sql: Awaited<ReturnType<typeof getSql>>) {
   // column; repeated here because this console talks raw SQL and must not 500
   // on a box where the boot hook has not run yet.
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS gallery JSONB DEFAULT '[]'::JSONB`;
+  // Provider images (2026-09-28): square mark + banner focal point. In
+  // schema.ts, therefore ORM-critical. All nullable; a null mark draws the
+  // trade tile and a null focus centers the crop, exactly as today.
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS logo_url TEXT`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS logo_kind VARCHAR(10)`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS banner_focus VARCHAR(20)`;
 }
 
 // Shared with the two public apply wizards — see lib/images.ts for why a
@@ -94,7 +101,8 @@ export async function GET(request: NextRequest) {
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
              outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles, service_types
+             work_settings, team_size, service_radius_miles, service_types,
+             logo_url, logo_kind, banner_focus
       FROM service_providers
       WHERE outreach_status = ${stageFilter}
         AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
@@ -108,7 +116,8 @@ export async function GET(request: NextRequest) {
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
              outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles, service_types
+             work_settings, team_size, service_radius_miles, service_types,
+             logo_url, logo_kind, banner_focus
       FROM service_providers
       WHERE outreach_status = ${stageFilter}
       ORDER BY created_at DESC LIMIT ${limit}
@@ -121,7 +130,8 @@ export async function GET(request: NextRequest) {
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
              outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles, service_types
+             work_settings, team_size, service_radius_miles, service_types,
+             logo_url, logo_kind, banner_focus
       FROM service_providers
       WHERE outreach_status IS NOT NULL AND outreach_status <> 'declined'
         AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
@@ -135,7 +145,8 @@ export async function GET(request: NextRequest) {
              outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
              outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
              outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles, service_types
+             work_settings, team_size, service_radius_miles, service_types,
+             logo_url, logo_kind, banner_focus
       FROM service_providers
       WHERE outreach_status IS NOT NULL AND outreach_status <> 'declined'
       ORDER BY created_at DESC LIMIT ${limit}
@@ -194,6 +205,9 @@ export async function POST(request: NextRequest) {
   const notes = str('notes', 2000) || null;
   const addedBy = str('addedBy', 100) || null;
   const avatarUrl = str('avatarUrl', 1000);
+  const bannerFocusNew = normalizeFocus(body.bannerFocus);
+  const logoIn = normalizeLogoUrl(body.logoUrl ?? null);
+  const logoKindNew = logoIn.ok && logoIn.value ? normalizeLogoKind(body.logoKind) : null;
   const sendInvite = body.sendInvite === true;
 
   if (!businessName || !ownerName || !email || !category || !location) {
@@ -212,6 +226,9 @@ export async function POST(request: NextRequest) {
   }
   if (!isValidImageUrl(avatarUrl)) {
     return NextResponse.json({ error: 'Photo URL is not valid.' }, { status: 400 });
+  }
+  if (!logoIn.ok) {
+    return NextResponse.json({ error: 'The logo must be uploaded here, not linked from another site.' }, { status: 400 });
   }
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
@@ -302,12 +319,13 @@ export async function POST(request: NextRequest) {
       (business_name, owner_name, slug, category, location, email, phone, website, instagram,
        description, specialties, years_in_business, price_range, verified, founding_provider,
        status, application_id, outreach_status, claim_token, outreach_notes, outreach_added_by, avatar_url,
-       work_settings, team_size, service_radius_miles)
+       work_settings, team_size, service_radius_miles, logo_url, logo_kind, banner_focus)
     VALUES
       (${businessName}, ${ownerName}, ${slug}, ${category}, ${location}, ${email}, ${phone}, ${website}, ${instagram},
        ${description}, ${JSON.stringify(specialtiesArray)}::jsonb, ${yearsInBusiness}, '$$', false, true,
        'pending', ${applicationId}, 'staged', ${claimToken}, ${notes}, ${addedBy}, ${avatarUrl || null},
-       ${JSON.stringify(newWorkSettings)}::jsonb, ${newTeamSize}, ${newRadius})
+       ${JSON.stringify(newWorkSettings)}::jsonb, ${newTeamSize}, ${newRadius},
+       ${logoIn.value}, ${logoKindNew}, ${bannerFocusNew})
     RETURNING id
   `;
   const providerId = provRows[0]?.id;
@@ -542,6 +560,8 @@ export async function PATCH(request: NextRequest) {
     'workSettings', 'teamSize', 'serviceRadiusMiles',
     // Categories beyond the headline one. Same protection as the rest.
     'serviceTypes',
+    // The square mark and the banner's focal point (lib/provider-images.ts).
+    'logoUrl', 'logoKind', 'bannerFocus',
   ];
   const touched = EDITABLE_KEYS.filter((k) => body[k] !== undefined);
 
@@ -648,6 +668,14 @@ export async function PATCH(request: NextRequest) {
   if (avatarNew && !isValidImageUrl(avatarNew)) {
     return NextResponse.json({ error: 'Photo URL is not valid.' }, { status: 400 });
   }
+  // Mark and focus: undefined leaves the column alone, '' clears the mark.
+  const logoEdit = body.logoUrl === undefined ? undefined : normalizeLogoUrl(body.logoUrl);
+  if (logoEdit && !logoEdit.ok) {
+    return NextResponse.json({ error: 'The logo must be uploaded here, not linked from another site.' }, { status: 400 });
+  }
+  const logoUrlEdit = logoEdit?.ok ? logoEdit.value : undefined;
+  const logoKindEdit = body.logoKind === undefined ? undefined : normalizeLogoKind(body.logoKind);
+  const focusEdit = body.bannerFocus === undefined ? undefined : normalizeFocus(body.bannerFocus);
   if (categoryNew && !isServiceCategory(categoryNew)) {
     return NextResponse.json(
       { error: 'Pick a category from the list — a free-text category cannot be filtered for in the directory.' },
@@ -818,6 +846,9 @@ export async function PATCH(request: NextRequest) {
       team_size = ${next.teamSize},
       service_radius_miles = ${next.serviceRadiusMiles},
       avatar_url = ${next.avatarUrl},
+      logo_url = CASE WHEN ${logoUrlEdit === undefined} THEN logo_url ELSE ${logoUrlEdit ?? null} END,
+      logo_kind = CASE WHEN ${logoKindEdit === undefined} THEN logo_kind ELSE ${logoKindEdit ?? null} END,
+      banner_focus = CASE WHEN ${focusEdit === undefined} THEN banner_focus ELSE ${focusEdit ?? null} END,
       outreach_notes = ${next.notes},
       outreach_last_edited_by = CASE WHEN ${touched.length > 0} THEN ${stampBy} ELSE outreach_last_edited_by END,
       outreach_last_edited_at = CASE WHEN ${touched.length > 0} THEN NOW() ELSE outreach_last_edited_at END,
@@ -826,7 +857,8 @@ export async function PATCH(request: NextRequest) {
     RETURNING id, business_name, owner_name, email, phone, category, location, website,
               instagram, description, specialties, years_in_business, avatar_url, outreach_notes,
               outreach_last_edited_by, outreach_last_edited_at,
-              work_settings, team_size, service_radius_miles, service_types
+              work_settings, team_size, service_radius_miles, service_types,
+              logo_url, logo_kind, banner_focus
   `;
 
   // Keep the originating application in step, so the admin Applications view

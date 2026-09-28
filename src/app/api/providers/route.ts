@@ -1,3 +1,4 @@
+import { normalizeFocus, normalizeLogoKind, normalizeLogoUrl } from '@/lib/provider-images';
 import { NextRequest, NextResponse } from 'next/server';
 import { normalizeExtraCategories } from '@/lib/service-categories';
 import { auth } from '@clerk/nextjs/server';
@@ -56,6 +57,9 @@ export async function GET() {
         serviceArea: schema.serviceProviders.serviceArea,
         hourlyRate: schema.serviceProviders.hourlyRate,
         avatarUrl: schema.serviceProviders.avatarUrl,
+        logoUrl: schema.serviceProviders.logoUrl,
+        logoKind: schema.serviceProviders.logoKind,
+        bannerFocus: schema.serviceProviders.bannerFocus,
         createdAt: schema.serviceProviders.createdAt,
       })
       .from(schema.serviceProviders)
@@ -90,7 +94,7 @@ export async function POST(request: NextRequest) {
       phone, website, instagram, yearsInBusiness,
       specialties, description, idealClient, whyList, referredBy,
       priceRange, avatarUrl, workSettings, teamSize, serviceRadiusMiles,
-      serviceTypes,
+      serviceTypes, logoUrl, logoKind, bannerFocus,
     } = body;
 
     if (!businessName || !ownerName || !category || !location || !email || !description) {
@@ -106,6 +110,11 @@ export async function POST(request: NextRequest) {
     // arbitrary URL would 500 the profile page at render time.
     if (!isBlobImageUrl(avatarUrl)) {
       return NextResponse.json({ error: PHOTO_REQUIRED_MESSAGE }, { status: 400 });
+    }
+    // The mark is optional; one we do not host is refused, not silently dropped.
+    const logo = normalizeLogoUrl(logoUrl ?? null);
+    if (!logo.ok) {
+      return NextResponse.json({ error: 'The logo must be uploaded here, not linked from another site.' }, { status: 400 });
     }
 
     // SECURITY: bind ownership to the authenticated session only — never trust a
@@ -201,6 +210,9 @@ export async function POST(request: NextRequest) {
       yearsInBusiness: cap(yearsInBusiness, 50),
       priceRange: priceRange || '$$',
       avatarUrl: String(avatarUrl),
+      bannerFocus: normalizeFocus(bannerFocus),
+      logoUrl: logo.value,
+      logoKind: logo.value ? normalizeLogoKind(logoKind) : null,
       // Whitelisted, not trusted — these render as factual claims on a public
       // business profile, so an unrecognised value is dropped, not stored.
       workSettings: normalizeWorkSettings(workSettings),

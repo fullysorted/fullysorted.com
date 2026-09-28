@@ -9,7 +9,8 @@ import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 import ExtraCategoriesFields from '@/components/provider/ExtraCategoriesFields';
 import { FOUNDING_PROVIDER_THRESHOLD } from '@/lib/listing-tiers';
 import { WORK_SETTINGS, TEAM_SIZES, type WorkSettingKey } from '@/lib/work-settings';
-import PhotoUpload from '@/components/media/PhotoUpload';
+import ProviderImagesFields from '@/components/media/ProviderImagesFields';
+import type { LogoKind } from '@/lib/provider-images';
 import { trackGaEvent } from '@/components/analytics/GoogleAnalytics';
 
 const CATEGORIES = CATEGORY_OPTIONS;
@@ -38,6 +39,7 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
     email: '', phone: '', website: '', instagram: '', description: '',
     idealClient: '', whyList: '', referredBy: '', priceRange: '$$',
     avatarUrl: '', teamSize: '', serviceRadiusMiles: '',
+    bannerFocus: '50% 50%', logoUrl: '', logoKind: 'logo' as LogoKind,
   });
   const [workSettings, setWorkSettings] = useState<WorkSettingKey[]>([]);
   const [serviceTypes, setServiceTypes] = useState<string[]>([]);
@@ -61,7 +63,7 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
     // round trip, and the field is highlighted rather than just a banner.
     if (!form.avatarUrl) {
       setPhotoInvalid(true);
-      setError('Please add a photo. It is the first thing an owner sees.');
+      setError('Please add a main photo. It is the first thing an owner sees.');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -344,21 +346,16 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
           </div>
 
           <div className="border-t border-border pt-6">
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-1">Your photo *</h3>
-            <p className="text-sm text-text-secondary mb-4">
-              One good picture: the workshop, the van, a car you finished, or your logo. It is the first thing an
-              owner sees on your card in the directory, and cards without one get skipped.
-            </p>
-            <PhotoUpload
-              value={form.avatarUrl}
-              onChange={(url) => { update('avatarUrl', url); setPhotoInvalid(false); }}
-              invalid={photoInvalid}
-              hint={
-                <>
-                  JPEG/PNG/WebP, max 10MB. If the picture is already on your website or Instagram, right-click it,
-                  choose &ldquo;Copy image address&rdquo;, and paste it above. We will fetch it for you.
-                </>
-              }
+            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Photos</h3>
+            <ProviderImagesFields
+              value={{ avatarUrl: form.avatarUrl, bannerFocus: form.bannerFocus, logoUrl: form.logoUrl, logoKind: form.logoKind }}
+              onChange={(patch) => {
+                setForm((f) => ({ ...f, ...patch }));
+                if (patch.avatarUrl) setPhotoInvalid(false);
+              }}
+              name={form.businessName}
+              category={form.category}
+              bannerInvalid={photoInvalid}
             />
           </div>
 
