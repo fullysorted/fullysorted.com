@@ -29,6 +29,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
   vehicle: Vehicle;
+  /** The published model history this car belongs to, if one fits. */
+  history?: { slug: string; name: string } | null;
 }
 
 function PhotoGallery({ vehicle }: { vehicle: Vehicle }) {
@@ -394,7 +396,7 @@ function ContactForm({
   );
 }
 
-export function ListingDetail({ vehicle }: Props) {
+export function ListingDetail({ vehicle, history }: Props) {
   const [contactOpen, setContactOpen] = useState(false);
 
   // Track view on mount
@@ -486,6 +488,14 @@ export function ListingDetail({ vehicle }: Props) {
                   {vehicle.sellerType === "dealer" ? `Dealer${vehicle.dealerName ? `: ${vehicle.dealerName}` : ""}` : "Private seller"}
                 </span>
               </div>
+              {history && (
+                <p className="mt-3 text-sm text-stone-500">
+                  The history of the model:{" "}
+                  <Link href={`/research/models/${history.slug}`} className="font-medium hover:underline" style={{ color: "var(--accent)" }}>
+                    {history.name}
+                  </Link>
+                </p>
+              )}
             </div>
 
             {/* Expert Take */}

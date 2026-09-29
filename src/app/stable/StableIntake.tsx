@@ -178,7 +178,7 @@ export function StableIntake() {
             <div className="mt-5 rounded-xl border border-border bg-white p-4">
               <p className="text-sm text-text-secondary mb-1">We have a history for this one.</p>
               <Link
-                href={`/research/${result.modelPage.slug}`}
+                href={`/research/models/${result.modelPage.slug}`}
                 className="font-medium text-accent hover:underline"
               >
                 {result.modelPage.make} {result.modelPage.model}
@@ -217,7 +217,7 @@ export function StableIntake() {
               </div>
               {chosen && (
                 <a
-                  href={`/research/${chosen.slug}`}
+                  href={`/research/models/${chosen.slug}`}
                   className="inline-block mt-3 text-sm text-accent hover:underline"
                 >
                   Read its history

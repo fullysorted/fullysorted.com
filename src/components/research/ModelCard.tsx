@@ -88,8 +88,14 @@ export function ModelCard({ m, showMake = true }: { m: ModelCardItem; showMake?:
         </span>
         <h3 className="font-display text-[1.15rem] leading-tight transition-colors group-hover:text-[#1C8C87]" style={{ color: INK }}>
           {m.model}
-          {generation && <span className="text-[0.85em]" style={{ color: MUTED }}> ({generation})</span>}
         </h3>
+        {/* Generation is a small one-line subtitle, never inline in parentheses at
+            title size (same rule as the model page hero). Long labels truncate. */}
+        {generation && (
+          <span className="text-[13px] leading-snug truncate" title={generation} style={{ color: MUTED }}>
+            {generation}
+          </span>
+        )}
         {meta && (
           <span className="text-[12px]" style={{ fontFamily: MONO, color: MUTED }}>
             {meta}

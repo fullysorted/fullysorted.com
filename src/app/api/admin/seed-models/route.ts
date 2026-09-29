@@ -122,6 +122,7 @@ import { seedM5E39 } from '@/lib/data/model-seed-m5-e39';
 import { seedGrandNational } from '@/lib/data/model-seed-grand-national';
 import { seedJeepCj } from '@/lib/data/model-seed-jeep-cj';
 import { seedW123 } from '@/lib/data/model-seed-w123';
+import { seedFlaminia } from '@/lib/data/model-seed-flaminia';
 import { seedViperGen12 } from '@/lib/data/model-seed-viper-gen-1-2';
 import { seedFordGt2005 } from '@/lib/data/model-seed-ford-gt-2005';
 import { seedVolvo240 } from '@/lib/data/model-seed-volvo-240';
@@ -139,7 +140,7 @@ const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, see
   seedLandCruiser80,
   seed250GtLusso, seed275Gtb, seed330Gtc, seed365Gtb4Daytona, seed512Bb, seed288Gto,
   seed348, seed456, seed550Maranello, seed360, seedF50, seedEnzo,
-  seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx];
+  seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx, seedFlaminia];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {

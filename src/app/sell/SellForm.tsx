@@ -718,7 +718,7 @@ export default function SellForm() {
                 <span className="text-text-secondary">
                   We have a history for this one:{' '}
                   <a
-                    href={`/research/${shownMatch.slug}`}
+                    href={`/research/models/${shownMatch.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-accent hover:underline font-medium"
@@ -742,7 +742,7 @@ export default function SellForm() {
                   {modelChoices.map((m) => (
                     <li key={m.slug}>
                       <a
-                        href={`/research/${m.slug}`}
+                        href={`/research/models/${m.slug}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-block rounded-full border border-border bg-white px-3 py-1.5 text-sm text-accent hover:border-accent"

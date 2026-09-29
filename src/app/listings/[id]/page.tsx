@@ -4,6 +4,7 @@ import { sampleVehicles, type Vehicle } from "@/lib/sample-data";
 import { serializeJsonLd } from "@/lib/escape-html";
 import { ListingDetail } from "./ListingDetail";
 import { shareImageUrl } from "@/lib/share";
+import { matchModelPage } from "@/lib/stable/match";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -120,6 +121,14 @@ export default async function ListingPage({ params }: Props) {
   const vehicle = await getListing(id);
   if (!vehicle) notFound();
 
+  // The model history for this car, when there is exactly one that fits.
+  // A wrong page is worse than none, so ambiguity links nowhere.
+  const lookup = await matchModelPage({ make: vehicle.make, model: vehicle.model, year: vehicle.year || null })
+    .catch(() => ({ match: null, alternatives: [] }));
+  const history = lookup.match
+    ? { slug: lookup.match.slug, name: `${lookup.match.make} ${lookup.match.model}${lookup.match.generation && !lookup.match.generation.includes(lookup.match.model) ? ` (${lookup.match.generation})` : ''}` }
+    : null;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Car",
@@ -159,7 +168,7 @@ export default async function ListingPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
-      <ListingDetail vehicle={vehicle} />
+      <ListingDetail vehicle={vehicle} history={history} />
     </>
   );
 }
