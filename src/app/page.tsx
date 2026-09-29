@@ -116,6 +116,44 @@ type HomeResearch = { featured: FeaturedModel | null; picks: ResearchPick[]; tot
  * No DB, or no photos yet: the hero shows its stock photograph and no card,
  * and the research section stays off the page. Never a made-up number.
  */
+/**
+ * The hero is where the site shows off, so "This week's car" only rotates
+ * through these. Every other history still appears in the research picks
+ * below: a Beetle gets the same research as a Lusso, it just doesn't get the
+ * front page. A slug here without a published history or photo is skipped;
+ * if none qualify the hero falls back to every model with a photo.
+ */
+const HERO_SHOWPIECES = new Set([
+  "ferrari/250-gt-lusso",
+  "ferrari/250-testa-rossa",
+  "ferrari/275-gtb",
+  "ferrari/365-gtb4-daytona",
+  "ferrari/dino-246",
+  "ferrari/288-gto",
+  "ferrari/f40",
+  "ferrari/f50",
+  "ferrari/enzo",
+  "lamborghini/miura",
+  "lamborghini/countach",
+  "mercedes-benz/300sl-w198",
+  "jaguar/e-type-series-1",
+  "ford/gt40",
+  "shelby/cobra",
+  "shelby/gt350",
+  "porsche/356",
+  "porsche/911-long-hood",
+  "porsche/911-930-turbo",
+  "lancia/stratos",
+  "lancia/delta-hf-integrale",
+  "bmw/m3-e30",
+  "nissan/skyline-gtr-r32",
+  "acura/nsx-na1-na2",
+  "de-tomaso/pantera",
+  "chevrolet/corvette-c2",
+  "plymouth/superbird",
+  "citroen/ds",
+]);
+
 async function getHomeResearch(): Promise<HomeResearch> {
   const models = await getPublishedModels();
   // The same read feeds the search box suggestions: five small fields per model.
@@ -124,8 +162,11 @@ async function getHomeResearch(): Promise<HomeResearch> {
   if (withPhoto.length === 0) return { featured: null, picks: [], total: models.length, searchModels };
   const now = new Date();
   const week = Math.floor((now.getTime() - Date.UTC(now.getUTCFullYear(), 0, 1)) / 604_800_000);
-  const start = (now.getUTCFullYear() * 53 + week) % withPhoto.length;
-  const m = withPhoto[start];
+  const seed = now.getUTCFullYear() * 53 + week;
+  const showpieces = withPhoto.filter((x) => HERO_SHOWPIECES.has(x.slug));
+  const heroPool = showpieces.length > 0 ? showpieces : withPhoto;
+  const m = heroPool[seed % heroPool.length];
+  const start = withPhoto.indexOf(m);
   const featured: FeaturedModel = {
     slug: m.slug,
     make: m.make,

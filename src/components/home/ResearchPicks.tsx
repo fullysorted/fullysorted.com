@@ -56,7 +56,8 @@ export function ResearchPicks({ picks, total }: { picks: ResearchPick[]; total: 
             </h2>
             <p className="mt-3 max-w-xl text-base leading-relaxed" style={{ color: MUTED }}>
               Model histories with sources: what was built, what changed year to year,
-              what to look for and what goes wrong.
+              what to look for and what goes wrong. A Beetle gets the same
+              research as a 250 GT Lusso.
             </p>
           </div>
           <Link

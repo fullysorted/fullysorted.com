@@ -152,34 +152,14 @@ export function Hero({ featured, searchModels = [] }: { featured: FeaturedModel 
           <div className="relative p-6 sm:p-10 lg:p-12 flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-10 min-h-[440px] lg:min-h-[520px]">
             <div className="flex-1 flex flex-col justify-between gap-8 lg:self-stretch" style={{ color: CREAM }}>
               <div>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.45 }}
-                  className="text-[11px] uppercase"
-                  style={{ fontFamily: MONO, letterSpacing: "0.12em", opacity: 0.8 }}
-                >
-                  Collector car specialists and research
-                </motion.p>
                 <motion.h1
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.05 }}
-                  className="font-display text-[2.1rem] sm:text-[2.8rem] lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em] mt-3 max-w-[18ch]"
+                  className="font-display text-[2.1rem] sm:text-[2.8rem] lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em] max-w-[18ch]"
                 >
-                  The right specialist for your collector car.
+                  Every car needs someone who knows it.
                 </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: 0.12 }}
-                  className="text-[15px] sm:text-base mt-4 max-w-md leading-relaxed"
-                  style={{ opacity: 0.9 }}
-                >
-                  Shops and specialists are joining every week. Find help with
-                  maintenance, restoration, inspections and more. Reviews come
-                  only from owners who used the shop.
-                </motion.p>
               </div>
 
               {/* z-index keeps the suggestion list above the "This week's car" card */}
