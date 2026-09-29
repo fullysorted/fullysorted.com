@@ -43,9 +43,9 @@ export function CTASection() {
             </h2>
             <p className="text-white/80 mt-4 text-lg leading-relaxed max-w-xl">
               Whatever your car needs, from an inspection before the wire goes to a
-              proper detail or a trusted shop, owner-reviewed specialists are one
+              proper detail or a trusted shop, the right specialist is one
               search away. And when it&apos;s time to sell, the first 100
-              listings are free.
+              car listings are free.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link

@@ -177,7 +177,8 @@ export function Hero({ featured, searchModels = [] }: { featured: FeaturedModel 
                   style={{ opacity: 0.9 }}
                 >
                   Shops and specialists are joining every week. Find help with
-                  maintenance, restoration, inspections and more, rated by real owners.
+                  maintenance, restoration, inspections and more. Reviews come
+                  only from owners who used the shop.
                 </motion.p>
               </div>
 

@@ -55,8 +55,12 @@ export function ListingCard({ vehicle, index = 0 }: ListingCardProps) {
           </div>
 
           {/* Photo Count */}
-          <div className="absolute bottom-3 right-3 px-2 py-1 text-xs font-medium bg-black/60 text-white rounded-md flex items-center gap-1">
-            <Camera className="w-3.5 h-3.5" />
+          <div
+            className="absolute bottom-3 right-3 px-2 py-1 text-xs font-medium bg-black/60 text-white rounded-md flex items-center gap-1"
+            aria-label={`${vehicle.photoCount} photos`}
+            title={`${vehicle.photoCount} photos`}
+          >
+            <Camera className="w-3.5 h-3.5" aria-hidden="true" />
             {vehicle.photoCount}
           </div>
 
@@ -83,15 +87,21 @@ export function ListingCard({ vehicle, index = 0 }: ListingCardProps) {
             <span className="price-display text-xl text-foreground">
               {formatPrice(vehicle.price)}
             </span>
+            {/* Zero counts read as an empty marketplace, so a count shows
+                only once someone has saved or commented. */}
             <div className="flex items-center gap-3 text-text-tertiary">
-              <span className="flex items-center gap-1 text-xs">
-                <Heart className="w-4 h-4" />
-                {vehicle.saves}
-              </span>
-              <span className="flex items-center gap-1 text-xs">
-                <MessageCircle className="w-4 h-4" />
-                {vehicle.comments}
-              </span>
+              {vehicle.saves > 0 && (
+                <span className="flex items-center gap-1 text-xs" aria-label={`${vehicle.saves} saves`} title="Saves">
+                  <Heart className="w-4 h-4" aria-hidden="true" />
+                  {vehicle.saves}
+                </span>
+              )}
+              {vehicle.comments > 0 && (
+                <span className="flex items-center gap-1 text-xs" aria-label={`${vehicle.comments} comments`} title="Comments">
+                  <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                  {vehicle.comments}
+                </span>
+              )}
             </div>
           </div>
 

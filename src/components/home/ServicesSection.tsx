@@ -66,7 +66,7 @@ export function ServicesSection({ providers = [], total = 0 }: { providers?: Rec
           <div className="lg:col-span-5 lg:pt-9">
             <p className="text-base leading-relaxed" style={{ color: MUTED }}>
               {hasProviders
-                ? "The specialists who have just listed. Rated by the owners who use them, and nobody pays to appear here."
+                ? "The specialists who have just listed. Nobody pays to appear here, and reviews come only from owners who used them."
                 : `${verbLine.charAt(0).toUpperCase() + verbLine.slice(1)}. In that order, usually.`}
             </p>
           </div>
@@ -118,7 +118,7 @@ export function ServicesSection({ providers = [], total = 0 }: { providers?: Rec
           review or book, so they get their own row and their own page rather
           than a /services?type= link that would return nothing.
         */}
-        {REFERRAL_SERVICES.map((r, i) => (
+        {REFERRAL_SERVICES.map((r) => (
           <motion.div
             key={r.key}
             initial={{ opacity: 0, y: 16 }}
@@ -133,9 +133,6 @@ export function ServicesSection({ providers = [], total = 0 }: { providers?: Rec
               style={{ border: `1px solid ${RULE}`, background: "#FFFFFF" }}
             >
               <div className="lg:col-span-3 flex items-baseline gap-3">
-                <span className="price-display text-xs tabular-nums" style={{ color: MUTED }}>
-                  {String(TRADE_CATEGORIES.length + i + 1).padStart(2, "0")}
-                </span>
                 <span className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: APRICOT_INK }}>
                   {r.verb}
                 </span>

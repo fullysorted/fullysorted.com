@@ -16,7 +16,22 @@ const US_STATES = new Set([
   'SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC',
 ]);
 
-const SMALL_WORDS = new Set(['of', 'and', 'the', 'at', 'by', 'for', 'in', 'on', 'or', 'a', 'an', '&']);
+// Full state names as shops type them, so "Carlsbad, California" lists
+// beside "Austin, TX" in the same form.
+const STATE_NAMES: Record<string, string> = {
+  alabama: 'AL', alaska: 'AK', arizona: 'AZ', arkansas: 'AR', california: 'CA', colorado: 'CO',
+  connecticut: 'CT', delaware: 'DE', florida: 'FL', georgia: 'GA', hawaii: 'HI', idaho: 'ID',
+  illinois: 'IL', indiana: 'IN', iowa: 'IA', kansas: 'KS', kentucky: 'KY', louisiana: 'LA',
+  maine: 'ME', maryland: 'MD', massachusetts: 'MA', michigan: 'MI', minnesota: 'MN',
+  mississippi: 'MS', missouri: 'MO', montana: 'MT', nebraska: 'NE', nevada: 'NV',
+  'new hampshire': 'NH', 'new jersey': 'NJ', 'new mexico': 'NM', 'new york': 'NY',
+  'north carolina': 'NC', 'north dakota': 'ND', ohio: 'OH', oklahoma: 'OK', oregon: 'OR',
+  pennsylvania: 'PA', 'rhode island': 'RI', 'south carolina': 'SC', 'south dakota': 'SD',
+  tennessee: 'TN', texas: 'TX', utah: 'UT', vermont: 'VT', virginia: 'VA', washington: 'WA',
+  'west virginia': 'WV', wisconsin: 'WI', wyoming: 'WY', 'district of columbia': 'DC',
+};
+
+const SMALL_WORDS =new Set(['of', 'and', 'the', 'at', 'by', 'for', 'in', 'on', 'or', 'a', 'an', '&']);
 
 function titleCase(s: string): string {
   return s
@@ -42,13 +57,17 @@ export function formatBusinessName(raw: string | null | undefined): string {
 }
 
 /**
- * "gardena ca" -> "Gardena, CA"; "san diego, california" left as
- * "San Diego, California"; "Los Angeles, CA" unchanged. Never invents a
- * state that was not typed.
+ * "gardena ca" -> "Gardena, CA"; "san diego, california" -> "San Diego, CA";
+ * "Los Angeles, CA" unchanged. Never invents a state that was not typed.
  */
 export function formatLocation(raw: string | null | undefined): string {
   let s = (raw ?? '').replace(/\s+/g, ' ').replace(/\s*,\s*/g, ', ').trim().replace(/,$/, '');
   if (!s) return '';
+  // A full state name after the last comma becomes its two-letter code.
+  s = s.replace(/,\s*([a-z .]+)$/i, (whole, st: string) => {
+    const code = STATE_NAMES[st.trim().toLowerCase()];
+    return code ? `, ${code}` : whole;
+  });
   // Trailing two-letter state with no comma before it.
   const m = s.match(/^(.*?[a-z])\s+([a-z]{2})$/i);
   if (m && US_STATES.has(m[2].toUpperCase())) s = `${m[1]}, ${m[2]}`;
