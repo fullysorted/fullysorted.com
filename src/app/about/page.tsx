@@ -150,9 +150,16 @@ export default function AboutPage() {
           </div>
           <div className="lg:col-span-7 text-base sm:text-lg leading-relaxed space-y-5 lg:pt-12" style={{ color: "#3a3a30" }}>
             <p>
-              It&apos;s British. In the UK, <em>sorted</em> means handled: dealt with, in
-              order, nothing left hanging. Tell someone in London a job is sorted and
-              they know you have finished it.
+              Fully Sorted is from San Diego, Southern California. The phrase is
+              British: in the UK, <em>sorted</em> means handled, dealt with, nothing
+              left hanging.
+            </p>
+            <p>
+              It got here by way of La Jolla. Early in his career, Chris Peterson wrote
+              the ads for Symbolic Motors, and the race shop there was good enough that
+              &ldquo;fully sorted&rdquo; went on nearly every race car he sold. He wrote
+              it so often it burned into his brain, and when it came time to name this,
+              nothing else fit.
             </p>
             <p>
               Car people took the word somewhere more specific. A <strong style={{ color: INK }}>sorted</strong>{" "}
@@ -270,6 +277,19 @@ export default function AboutPage() {
                 are retiring. A platform that makes ownership easier keeps more cars on
                 the road. One that keeps those specialists busy keeps the knowledge alive.
               </p>
+              <p>
+                There has never been a real network for the collector car hobby, a way
+                for owners to find good help. We are out to change that. Nobody can vet
+                every shop, so we don&apos;t pretend to. We are counting on owners to lift
+                up the shops they trust, and every honest review makes the next
+                owner&apos;s search a little easier.
+              </p>
+              <p>
+                We want this to be useful, a tool anyone can use. The research hub grows
+                every day. If you have a suggestion, spot something we got wrong, or want
+                to help build it (and so help everyone else),{" "}
+                <Link href="/contact" className="underline underline-offset-4 hover:opacity-80" style={{ color: "#ffffff" }}>get in touch</Link>.
+              </p>
               <blockquote
                 className="font-display text-2xl sm:text-3xl italic leading-snug pl-6 mt-10"
                 style={{ borderLeft: `3px solid ${GOLD}`, color: "#ffffff" }}
@@ -277,6 +297,13 @@ export default function AboutPage() {
                 Every specialist in this world built their reputation one referral at a
                 time. We want to give them something better than word of mouth.
               </blockquote>
+              <p className="text-[15px] leading-relaxed pt-2" style={{ color: "rgba(255,255,255,0.7)" }}>
+                Chris Peterson is the founder of Fully Sorted, co-chairman of the La Jolla
+                Concours d&apos;Elegance, and a lifelong car nerd. His grandfather founded
+                Jack in the Box here in San Diego and helped popularize the drive-thru
+                with a two-way intercom: say what you need, and the right people get it
+                done. Same idea, different menu.
+              </p>
             </div>
           </div>
         </div>
