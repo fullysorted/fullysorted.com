@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
-import { parseCarText, matchModelPage, specialistsForMake } from '@/lib/stable/match';
+import { parseCarText, matchModelPage, modelPageBySlug, specialistsForMake, type ModelLookup } from '@/lib/stable/match';
 import { isPlausibleVin, decodeVin } from '@/lib/vin/nhtsa';
+import { decodeChassis, describeDecode } from '@/lib/vin/chassis';
 
 /**
  * POST /api/stable/identify -- PUBLIC, no account, no signup.
@@ -43,6 +44,12 @@ export async function POST(request: NextRequest) {
 
   const candidate = input.replace(/\s/g, '').toUpperCase();
 
+  // Pre-1981 chassis numbers first. NHTSA knows nothing about a 1967 911, and
+  // for most cars on this site the chassis number is the identity. The make
+  // the seller already typed (if any) unlocks the range-only systems.
+  const makeHint = String(body.make ?? '').trim().slice(0, 40) || null;
+  const chassis = candidate.length === 17 ? null : decodeChassis(input, makeHint);
+
   /**
    * NHTSA's vPIC is a free government service and is occasionally slow. This
    * route is public and rate limited per IP, so an unbounded fetch is a way to
@@ -58,7 +65,12 @@ export async function POST(request: NextRequest) {
       ),
     ]);
 
-  if (isPlausibleVin(candidate)) {
+  if (chassis) {
+    year = chassis.year;
+    make = chassis.make;
+    model = chassis.model;
+    trim = chassis.variant;
+  } else if (isPlausibleVin(candidate)) {
     vin = candidate;
     try {
       const decoded = await withTimeout(decodeVin(candidate));
@@ -93,14 +105,41 @@ export async function POST(request: NextRequest) {
     model = parsed.model;
   }
 
+  const lookupYear = year ?? chassis?.yearRange?.[0] ?? null;
+  const findPage = async (): Promise<ModelLookup> => {
+    if (chassis?.slug) {
+      const direct = await modelPageBySlug(chassis.slug, lookupYear, chassis.confidence);
+      if (direct) return { match: direct, alternatives: [] };
+    }
+    if (chassis && !chassis.model) return { match: null, alternatives: [] };
+    return matchModelPage({ make, model, year: lookupYear });
+  };
   const [lookupResult, specialists] = await Promise.all([
-    matchModelPage({ make, model, year }),
+    findPage(),
     specialistsForMake(make),
   ]);
 
   return NextResponse.json({
     car: { year, make, model, trim, vin },
     vinNote,
+    // Set when the input decoded as a pre-1981 chassis number or VIN.
+    chassis: chassis
+      ? {
+          number: chassis.chassis,
+          // Where the form should put it: US makes called theirs a VIN.
+          field: /VIN/.test(chassis.system) ? 'vin' : 'chassis',
+          summary: describeDecode(chassis),
+          system: chassis.system,
+          confidence: chassis.confidence,
+          yearRange: chassis.yearRange,
+          body: chassis.body,
+          market: chassis.market,
+          engine: chassis.engine,
+          plant: chassis.plant,
+          candidates: chassis.candidates,
+          notes: chassis.notes,
+        }
+      : null,
     // Null when we are not confident. A wrong model page is worse than none.
     modelPage: lookupResult.match,
     // Set when several published generations fit the car equally well and

@@ -260,3 +260,43 @@ export async function specialistsForMake(make: string | null | undefined, limit 
     return [];
   }
 }
+
+/**
+ * A published model page by slug, for when a chassis decoder already knows
+ * which page the car belongs on. Returns null if the page is not published or
+ * the year falls outside its span, so the caller can fall back to scoring.
+ */
+export async function modelPageBySlug(
+  slug: string,
+  year: number | null,
+  confidence: 'high' | 'medium',
+): Promise<ModelMatch | null> {
+  const sql = await db();
+  if (!sql || !slug) return null;
+  try {
+    const rows = (await sql`
+      SELECT slug, make, model, generation, year_start, year_end, hero_photo
+      FROM vehicle_models
+      WHERE status = 'published' AND slug = ${slug}
+      LIMIT 1
+    `) as Row[];
+    const r = rows[0];
+    if (!r) return null;
+    const ys = r.year_start == null ? null : Number(r.year_start);
+    const ye = r.year_end == null ? null : Number(r.year_end);
+    if (year && ((ys != null && year < ys) || (ye != null && year > ye))) return null;
+    return {
+      slug: String(r.slug),
+      make: String(r.make),
+      model: String(r.model),
+      generation: r.generation ? String(r.generation) : null,
+      yearStart: ys,
+      yearEnd: ye,
+      heroPhoto: r.hero_photo ? String(r.hero_photo) : null,
+      confidence,
+    };
+  } catch (err) {
+    console.error('[stable/match] slug lookup failed:', err);
+    return null;
+  }
+}

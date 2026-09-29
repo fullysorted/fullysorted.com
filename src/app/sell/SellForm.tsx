@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { AI_ASSIST_ENABLED } from '@/lib/features';
 import { motion } from 'framer-motion';
 import { trackMetaEvent } from '@/components/analytics/MetaPixel';
@@ -17,6 +17,41 @@ const CATEGORIES = ['Muscle', 'European', 'JDM', 'Vintage', 'Modern Classic', 'B
 const TRANSMISSIONS = ['Manual', 'Automatic'];
 const DRIVETRAINS = ['RWD', 'FWD', 'AWD', '4WD'];
 const BODY_STYLES = ['Coupe', 'Sedan', 'Convertible', 'Wagon', 'Hatchback', 'Truck', 'SUV', 'Van', 'Roadster', 'Targa'];
+
+/** A decoded body ("Fixed head coupe", "Open two-seater") onto the form's list. */
+function bodyStyleFor(body: string | null | undefined): string {
+  const b = String(body ?? '').toLowerCase();
+  if (!b) return '';
+  if (b.includes('targa')) return 'Targa';
+  if (b.includes('wagon')) return 'Wagon';
+  if (b.includes('sedan')) return 'Sedan';
+  if (b.includes('el camino')) return 'Truck';
+  if (b.includes('roadster') || b.includes('open two-seater') || b.includes('speedster')) return 'Roadster';
+  if (b.includes('convertible') || b.includes('cabriolet') || b.includes('drophead')) return 'Convertible';
+  if (b.includes('coupe') || b.includes('hardtop') || b.includes('fastback') || b === 'gt') return 'Coupe';
+  return '';
+}
+
+/** One published model history, slimmed for the pickers. See /api/models/catalog. */
+type CatalogModel = {
+  slug: string; make: string; model: string; generation: string | null;
+  yearStart: number | null; yearEnd: number | null; trims: string[]; bodies: string[];
+};
+
+type ChassisInfo = {
+  number: string; field: 'vin' | 'chassis'; summary: string; system: string;
+  confidence: 'high' | 'medium'; candidates: string[]; notes: string[];
+  body: string | null; engine: string | null;
+};
+
+const normName = (v: string) => v.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+/** Makes that turn up often enough to suggest before the catalog has loaded. */
+const COMMON_MAKES = [
+  'Porsche', 'Ferrari', 'Mercedes-Benz', 'Jaguar', 'BMW', 'Chevrolet', 'Ford', 'Alfa Romeo',
+  'Aston Martin', 'Lamborghini', 'Maserati', 'Datsun', 'Toyota', 'Austin-Healey', 'MG', 'Triumph',
+  'Plymouth', 'Dodge', 'Pontiac', 'Shelby', 'Land Rover', 'Volkswagen', 'Lotus', 'Lancia',
+];
 
 type Step = 'vehicle' | 'description' | 'publish';
 
@@ -98,6 +133,8 @@ export default function SellForm() {
   const [matchedModel, setMatchedModel] = useState<Matched | null>(null);
   const [modelChoices, setModelChoices] = useState<Matched[]>([]);
   const [lookupNote, setLookupNote] = useState<string | null>(null);
+  const [chassisInfo, setChassisInfo] = useState<ChassisInfo | null>(null);
+  const [catalog, setCatalog] = useState<CatalogModel[]>([]);
 
   const [form, setForm] = useState({
     // Defaults to the tier the page advertises. This was 'featured', so a
@@ -158,6 +195,17 @@ export default function SellForm() {
   const DRAFT_KEY = 'fs_sell_draft';
   const [draftRestored, setDraftRestored] = useState(false);
 
+  // The published model histories, for the make / model / trim pickers. A
+  // convenience only: if it fails the fields are plain text, as before.
+  useEffect(() => {
+    let live = true;
+    fetch('/api/models/catalog')
+      .then((r) => (r.ok ? r.json() : { models: [] }))
+      .then((d) => { if (live && Array.isArray(d.models)) setCatalog(d.models); })
+      .catch(() => {});
+    return () => { live = false; };
+  }, []);
+
   useEffect(() => {
     try {
       const raw = localStorage.getItem(DRAFT_KEY);
@@ -196,6 +244,53 @@ export default function SellForm() {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
+  // ── Pickers seeded from the model histories ─────────────────────────────
+  const makeOptions = useMemo(() => {
+    const seen = new Set<string>();
+    return [...catalog.map((m) => m.make), ...COMMON_MAKES].filter((m) => {
+      const k = normName(m);
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+  }, [catalog]);
+
+  const forMake = useMemo(
+    () => catalog.filter((m) => form.make && normName(m.make) === normName(form.make)),
+    [catalog, form.make],
+  );
+
+  const modelOptions = useMemo(
+    () => Array.from(new Set(forMake.map((m) => m.model))),
+    [forMake],
+  );
+
+  // The generations that fit what has been typed so far: make, model, year.
+  const fits = useMemo(() => {
+    const y = parseInt(form.year, 10);
+    const wm = normName(form.model);
+    return forMake.filter((m) => {
+      const mm = normName(m.model);
+      if (wm && !(wm === mm || wm.startsWith(mm) || mm.startsWith(wm))) return false;
+      if (y && ((m.yearStart != null && y < m.yearStart) || (m.yearEnd != null && y > m.yearEnd))) return false;
+      return true;
+    });
+  }, [forMake, form.model, form.year]);
+
+  const trimOptions = useMemo(
+    () => Array.from(new Set((form.model ? fits : []).flatMap((m) => m.trims))).slice(0, 30),
+    [fits, form.model],
+  );
+
+  // Typed rather than looked up, and exactly one history fits: say so. The
+  // same "We have a history for this one" line the lookup gives, because the
+  // seller should not have to know the lookup exists to get it.
+  const typedMatch: Matched | null =
+    !matchedModel && form.year && form.model && fits.length === 1
+      ? { slug: fits[0].slug, make: fits[0].make, model: fits[0].model, generation: fits[0].generation }
+      : null;
+  const shownMatch = matchedModel ?? typedMatch;
+
   /**
    * Fill the form in from a VIN or from plain text.
    *
@@ -215,28 +310,36 @@ export default function SellForm() {
     setLookupNote(null);
     setMatchedModel(null);
     setModelChoices([]);
+    setChassisInfo(null);
     try {
       const res = await fetch('/api/stable/identify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ input }),
+        // The make, if typed, unlocks the range-only systems (356, Jaguar
+        // XK, Ferrari serials) where a bare number could be anybody's.
+        body: JSON.stringify({ input, make: form.make }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Could not look that up.');
 
       const car = data.car || {};
+      const ch: ChassisInfo | null = data.chassis || null;
+      setChassisInfo(ch);
       setForm((prev) => ({
         ...prev,
         year: prev.year || (car.year ? String(car.year) : ''),
         make: prev.make || car.make || '',
         model: prev.model || car.model || '',
         trim: prev.trim || car.trim || '',
-        vin: prev.vin || car.vin || '',
+        vin: prev.vin || car.vin || (ch?.field === 'vin' ? ch.number : ''),
+        chassis: prev.chassis || (ch?.field === 'chassis' ? ch.number : ''),
+        bodyStyle: prev.bodyStyle || bodyStyleFor(ch?.body),
+        engine: prev.engine || ch?.engine || '',
       }));
       if (data.modelPage) setMatchedModel(data.modelPage);
       if (Array.isArray(data.modelAlternatives)) setModelChoices(data.modelAlternatives);
       if (data.vinNote) setLookupNote(data.vinNote);
-      if (!car.make && !car.model) {
+      if (!car.make && !car.model && !ch) {
         setLookupError('Nothing came back for that. Fill it in below and carry on.');
       }
     } catch (err) {
@@ -554,8 +657,8 @@ export default function SellForm() {
                 value={lookup}
                 onChange={(e) => setLookup(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); runLookup(); } }}
-                placeholder="1972 Datsun 240Z"
-                className={inputClass}
+                placeholder="911 330 1237, 1E 12345, or 1972 Datsun 240Z"
+                className={`${inputClass} font-mono`}
               />
               <button
                 type="button"
@@ -567,23 +670,61 @@ export default function SellForm() {
               </button>
             </div>
             <p className="text-xs text-text-secondary mt-2">
-              Or just type what it is. Pre-1981 cars have no 17-digit VIN and that is fine.
+              Chassis numbers before 1981 are read here too: Porsche, Jaguar, Mercedes-Benz,
+              Corvette, Mustang, GM, Mopar, Healey, MG, Triumph, Datsun and Ferrari so far.
+              Or just type what it is.
             </p>
             {lookupError && <p className="text-sm text-red-700 mt-3">{lookupError}</p>}
             {lookupNote && <p className="text-sm text-amber-700 mt-3">{lookupNote}</p>}
-            {matchedModel && (
+
+            {/* What the chassis number says, and how sure we are of it. */}
+            {chassisInfo && (
+              <div className="mt-4 rounded-lg border border-border bg-white p-3 sm:p-4 text-sm">
+                <p className="text-text-secondary">
+                  <span className="font-mono text-text-primary">{chassisInfo.number}</span>{' '}
+                  {chassisInfo.confidence === 'high' ? 'reads as' : 'looks like'}
+                </p>
+                <p className="font-medium text-text-primary mt-1">{chassisInfo.summary}</p>
+                {chassisInfo.candidates.length > 0 && (
+                  <div className="mt-2">
+                    <p className="text-text-secondary mb-1.5">It could be any of these. Which is on the title?</p>
+                    <ul className="flex flex-wrap gap-2">
+                      {chassisInfo.candidates.map((c) => (
+                        <li key={c}>
+                          <button
+                            type="button"
+                            onClick={() => updateField('model', c)}
+                            className={`rounded-full border px-3 py-1 text-sm ${form.model === c ? 'border-accent text-accent' : 'border-border text-text-primary hover:border-accent'}`}
+                          >
+                            {c}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {chassisInfo.notes.map((n) => (
+                  <p key={n} className="text-text-secondary mt-1.5">{n}</p>
+                ))}
+                <p className="text-xs text-text-tertiary mt-2">
+                  {chassisInfo.system}. Filled in below where the field was empty; change anything that is wrong.
+                </p>
+              </div>
+            )}
+
+            {shownMatch && (
               <div className="mt-4 flex items-start gap-2 text-sm">
                 <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                 <span className="text-text-secondary">
                   We have a history for this one:{' '}
                   <a
-                    href={`/research/${matchedModel.slug}`}
+                    href={`/research/${shownMatch.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-accent hover:underline font-medium"
                   >
-                    {matchedModel.make} {matchedModel.model}
-                    {matchedModel.generation ? ` (${matchedModel.generation})` : ''}
+                    {shownMatch.make} {shownMatch.model}
+                    {shownMatch.generation ? ` (${shownMatch.generation})` : ''}
                   </a>
                   .
                 </span>
@@ -623,11 +764,17 @@ export default function SellForm() {
             </div>
             <div>
               <label className={labelClass}>Make *</label>
-              <input type="text" value={form.make} onChange={(e) => updateField('make', e.target.value)} placeholder="Ford" className={inputClass} />
+              <input type="text" list="sell-makes" autoComplete="off" value={form.make} onChange={(e) => updateField('make', e.target.value)} placeholder="Ford" className={inputClass} />
+              <datalist id="sell-makes">
+                {makeOptions.map((m) => <option key={m} value={m} />)}
+              </datalist>
             </div>
             <div>
               <label className={labelClass}>Model *</label>
-              <input type="text" value={form.model} onChange={(e) => updateField('model', e.target.value)} placeholder="Mustang" className={inputClass} />
+              <input type="text" list="sell-models" autoComplete="off" value={form.model} onChange={(e) => updateField('model', e.target.value)} placeholder="Mustang" className={inputClass} />
+              <datalist id="sell-models">
+                {modelOptions.map((m) => <option key={m} value={m} />)}
+              </datalist>
             </div>
           </div>
 
@@ -679,7 +826,10 @@ export default function SellForm() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className={labelClass}>Trim / package</label>
-                  <input type="text" value={form.trim} onChange={(e) => updateField('trim', e.target.value)} placeholder="S-Code Fastback" className={inputClass} />
+                  <input type="text" list="sell-trims" autoComplete="off" value={form.trim} onChange={(e) => updateField('trim', e.target.value)} placeholder="S-Code Fastback" className={inputClass} />
+                  <datalist id="sell-trims">
+                    {trimOptions.map((t) => <option key={t} value={t} />)}
+                  </datalist>
                 </div>
                 <div>
                   <label className={labelClass}>Engine</label>
