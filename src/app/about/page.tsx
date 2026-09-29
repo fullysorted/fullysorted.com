@@ -23,9 +23,9 @@ import { TradeGridType } from "@/components/services/TradeGrid";
 
 const INK = "#1a1a18";
 const MUTED = "#6b6b5e";
-const BLUE = "#1E6091";
-const GOLD = "#B08D3F";
-const NAVY = "#0F2032";
+const BLUE = "#1C8C87";
+const GOLD = "#F2B27A";
+const NAVY = "#12352A";
 const RULE = "rgba(26,26,24,0.12)";
 const PAPER = "#F4F6F5";
 
@@ -63,7 +63,7 @@ function Caption({ children }: { children: React.ReactNode }) {
   return (
     <span
       className="absolute left-3 bottom-3 px-2 py-1 text-[11px] font-semibold tracking-[0.14em] uppercase rounded"
-      style={{ background: "rgba(15,32,50,0.72)", color: "rgba(255,255,255,0.9)" }}
+      style={{ background: "rgba(18,53,42,0.72)", color: "rgba(255,255,255,0.9)" }}
     >
       {children}
     </span>
@@ -324,7 +324,7 @@ export default function AboutPage() {
             </div>
             <Link
               href="/services/apply"
-              className="inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-lg text-white transition-colors hover:bg-[#174B72] self-start"
+              className="inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-lg text-white transition-colors hover:bg-[#167370] self-start"
               style={{ background: BLUE }}
             >
               Get listed free <ArrowRight className="w-4 h-4" />
