@@ -342,7 +342,7 @@ export const seedBmw2002 = {
     "wikipedia-02",
     "silodrome-2002"
    ],
-   "conflictNote": "Wikipedia's model table gives 339,092 2002 sedans for 1968-1975 within an 02 Series total of 837,038. Silodrome's history states almost 400,000 2002s over the same period. Neither states a basis and nothing consulted reconciles them. Unresolved, so productionTotal is left null."
+   "conflictNote": "Wikipedia's model table gives 339,092 2002 sedans for 1968-1975 within an 02 Series total of 837,038. Silodrome's history states almost 400,000 2002s over the same period. Neither states a basis and nothing consulted reconciles them. Unresolved, so no single total is given."
   },
   {
    "section": "production",

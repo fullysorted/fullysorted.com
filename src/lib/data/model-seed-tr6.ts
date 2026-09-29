@@ -366,7 +366,7 @@ export const seedTr6 = {
     "ateupwithmotor-tr6",
     "autoexpress-tr6"
    ],
-   "conflictNote": "Wikipedia gives 91,850, the Vintage Triumph Register 91,850 and Hagerty (UK and US) 91,849 with a breakdown of 13,702 injected and 78,147 carbureted cars. Ate Up With Motor gives 94,619, Auto Express 94,619 and Classic Car Hub nearly 95,000. The export figures compound it: Wikipedia's 83,480 exported plus 8,370 UK equals 91,850, while the Vintage Triumph Register's 86,249 exported plus the same 8,370 equals 94,619. No source consulted here explains the 2,769-car difference, so productionTotal is left null."
+   "conflictNote": "Wikipedia gives 91,850, the Vintage Triumph Register 91,850 and Hagerty (UK and US) 91,849 with a breakdown of 13,702 injected and 78,147 carbureted cars. Ate Up With Motor gives 94,619, Auto Express 94,619 and Classic Car Hub nearly 95,000. The export figures compound it: Wikipedia's 83,480 exported plus 8,370 UK equals 91,850, while the Vintage Triumph Register's 86,249 exported plus the same 8,370 equals 94,619. No source consulted here explains the 2,769-car difference, so no single total is given."
   },
   {
    "section": "production",

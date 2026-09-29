@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
+import { SignupForm } from "@/components/newsletter/SignupForm";
 
 // Column order mirrors the site flow: Services → Marketplace → Research →
 // Company. Keep in sync with Header.tsx navEntries and the homepage sections.
@@ -74,6 +75,18 @@ export function Footer() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
+        {/* Signup. Quiet, on every page, never in the way. */}
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center pb-12 mb-12" style={{ borderBottom: "1px solid rgba(245,239,230,0.12)" }}>
+          <div className="lg:col-span-5">
+            <p className="text-[11px] uppercase mb-2" style={{ color: "#F2B27A", fontFamily: MONO, letterSpacing: "0.12em" }}>The short list</p>
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight" style={{ color: "#F5EFE6" }}>New cars and new shops, near you.</h2>
+            <p className="text-sm mt-2" style={{ color: "rgba(245,239,230,0.62)" }}>A short email when there&apos;s something worth your time.</p>
+          </div>
+          <div className="lg:col-span-7">
+            <SignupForm variant="footer" source="footer" />
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
           {/* Brand Column */}
           <div className="col-span-2 lg:col-span-1">

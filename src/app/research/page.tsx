@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SignupForm } from "@/components/newsletter/SignupForm";
 import {
   TrendingUp,
   TrendingDown,
@@ -488,35 +489,16 @@ export default async function ResearchPage() {
             {/* Newsletter */}
             <div
               className="rounded-2xl p-5"
-              style={{
-                background: "#fff",
-                border: "1px solid rgba(0,0,0,0.07)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.05)",
-              }}
+              style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)", boxShadow: "0 4px 24px rgba(0,0,0,0.05)" }}
             >
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-4 h-px" style={{ background: "#1E6091" }} />
-                <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#1E6091" }}>
-                  Free Newsletter
-                </p>
-              </div>
-              <h3 className="font-bold mb-2" style={{ color: "#1a1a18" }}>Monday Market Movers</h3>
-              {/* This was a <form> with no action and no handler inside a server
-                  component: the button reloaded the page and no address was ever
-                  recorded. There is no subscribe endpoint to wire it to, so it
-                  asks through the contact route instead of miming a signup. */}
-              <p className="text-sm mb-4" style={{ color: "#6b6b5e" }}>
-                Auction results, what moved, and where the smart money is going,
-                straight to your inbox. Sign-up is handled by hand for now: send an
-                address through the contact form and it goes on the list.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-1.5 w-full h-10 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
-                style={{ background: "#1E6091" }}
-              >
-                Ask to be added <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              <SignupForm
+                variant="card"
+                source="research"
+                eyebrow="Free email"
+                title="New histories, new cars"
+                blurb="New model histories and market notes, plus cars for sale in the marques you pick."
+                defaults={["research", "cars"]}
+              />
             </div>
 
             {/* Top Movers */}

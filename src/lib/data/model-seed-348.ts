@@ -355,7 +355,7 @@ export const seed348 = {
     "ferrari-numbers-game",
     "forza-two-steps-forward"
    ],
-   "conflictNote": "Wikipedia and Classic Trader state 8,844. Ferrari Magazine states 'just under 9,000'. Forza states 'more than 8,300' with sub-totals of 3,116 berlinettas, 4,446 targas, 1,146 Spiders and 100 Serie Speciale. None of the sources consulted reconciles the totals, so productionTotal is left null."
+   "conflictNote": "Wikipedia and Classic Trader state 8,844. Ferrari Magazine states 'just under 9,000'. Forza states 'more than 8,300' with sub-totals of 3,116 berlinettas, 4,446 targas, 1,146 Spiders and 100 Serie Speciale. None of the sources consulted reconciles the totals, so no single total is given."
   },
   {
    "section": "production",

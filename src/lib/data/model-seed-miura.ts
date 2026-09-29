@@ -389,7 +389,7 @@ export const seedMiura = {
     "goodwood-buyers-guide",
     "sothebys-miura-guide"
    ],
-   "conflictNote": "Lamborghini's per-variant figures sum to 753. classic.com states 764, LamboCARS 763, Goodwood over 760, and Sotheby's fewer than 800 without committing. These figures are not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Lamborghini's per-variant figures sum to 753. classic.com states 764, LamboCARS 763, Goodwood over 760, and Sotheby's fewer than 800 without committing. These figures are not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "history",

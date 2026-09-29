@@ -369,7 +369,7 @@ export const seedM5E28 = {
     "autoadvisor-sa-m5",
     "motor1-m5-e28"
    ],
-   "conflictNote": "BMW M, Wikipedia, Supercar Nostalgia, Classic Trader, classic.com and The Classic Valuer all state 2,241; Motor1 gives approximately 2,200. The published market table (588 LHD Euro, 187 RHD Euro, 1,340 North America, 30 Japan, 96 South Africa) sums exactly to 2,241, but AutoAdvisor states South Africa received 100 cars of which 96 were Rosslyn CKD builds. Wikipedia and Motor1 also run production to June 1988 where the market table ends German assembly in November 1987. Neither the South African count nor the closing date is resolved by any source consulted here; the conflict is unresolved and productionTotal is left null."
+   "conflictNote": "BMW M, Wikipedia, Supercar Nostalgia, Classic Trader, classic.com and The Classic Valuer all state 2,241; Motor1 gives approximately 2,200. The published market table (588 LHD Euro, 187 RHD Euro, 1,340 North America, 30 Japan, 96 South Africa) sums exactly to 2,241, but AutoAdvisor states South Africa received 100 cars of which 96 were Rosslyn CKD builds. Wikipedia and Motor1 also run production to June 1988 where the market table ends German assembly in November 1987. Neither the South African count nor the closing date is resolved by any source consulted here; the conflict is unresolved and no single total is given."
   },
   {
    "section": "production",

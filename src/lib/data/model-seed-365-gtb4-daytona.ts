@@ -329,7 +329,7 @@ export const seed365Gtb4Daytona = {
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": ["ferrari-365gts4", "wikipedia-daytona", "classic-gts4", "petrolicious-guide", "supercarnostalgia-daytona", "rm-mo26-spider", "motorsport-guide-2020"],
-   "conflictNote": "Ferrari's own model page states 122 spiders in the chassis range 14365 to 17073, and Wikipedia, classic.com, Petrolicious and Tom Yang repeat 122. Supercar Nostalgia states 121 production spiders plus prototypes, RM Sotheby's Monterey 2026 catalog describes chassis 14901 as the 37th of 121, and Motor Sport's 2020 guide also says 121. The one-car difference is probably a prototype counted or not counted, but no source says so and it is not resolved here; productionTotal is left null."
+   "conflictNote": "Ferrari's own model page states 122 spiders in the chassis range 14365 to 17073, and Wikipedia, classic.com, Petrolicious and Tom Yang repeat 122. Supercar Nostalgia states 121 production spiders plus prototypes, RM Sotheby's Monterey 2026 catalog describes chassis 14901 as the 37th of 121, and Motor Sport's 2020 guide also says 121. The one-car difference is probably a prototype counted or not counted, but no source says so and it is not resolved here; no single total is given."
   },
   {
    "section": "production",

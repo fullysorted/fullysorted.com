@@ -413,7 +413,7 @@ export const seed512Bb = {
     "supercarnostalgia-512i",
     "motogallery-512bb"
    ],
-   "conflictNote": "Ferrari's model page states 929 for the 512 BB (chassis 19677-38487); Wikipedia, Classic Trader, Maserati-Net, supercars.net and Moto Gallery repeat 929 and Hagerty gives 'just over 900'. Octane states 'one of only 927 BBs produced'. Moto Gallery additionally gives a chassis range of 19781 to 34347 that does not match Ferrari's. The 1,007 BBi figure is uncontested. The 927 versus 929 discrepancy is not explained by any source consulted and remains unresolved, so productionTotal is left null."
+   "conflictNote": "Ferrari's model page states 929 for the 512 BB (chassis 19677-38487); Wikipedia, Classic Trader, Maserati-Net, supercars.net and Moto Gallery repeat 929 and Hagerty gives 'just over 900'. Octane states 'one of only 927 BBs produced'. Moto Gallery additionally gives a chassis range of 19781 to 34347 that does not match Ferrari's. The 1,007 BBi figure is uncontested. The 927 versus 929 discrepancy is not explained by any source consulted and remains unresolved, so no single total is given."
   },
   {
    "section": "production",

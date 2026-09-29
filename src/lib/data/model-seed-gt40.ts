@@ -406,7 +406,7 @@ export const seedGt40 = {
    "confidence": "low",
    "status": "disputed",
    "sourceRefs": ["wikipedia-gt40", "safir-thorp", "supercarnostalgia-mk1", "rm-mi26-p1058", "rm-mi25-mkii", "ultimatecarpage-mkii", "gooding-j10", "shelby-j4"],
-   "conflictNote": "Wikipedia's narrative states around 100 cars in total while its own specification table states 105. Supercar Nostalgia reads the Mk I run as P/1000 to P/1084, roughly 85 cars, where RM Sotheby's states 87 Mk I variants. RM Sotheby's states eight Mk IIs where Ultimatecarpage states eleven plus two prototypes. Wikipedia counts six Mk IVs from nine J-specification chassis, the Shelby American Collection counts two J-cars and six Mk IVs completed in 1967, and Gooding states twelve built with ten remaining. Not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Wikipedia's narrative states around 100 cars in total while its own specification table states 105. Supercar Nostalgia reads the Mk I run as P/1000 to P/1084, roughly 85 cars, where RM Sotheby's states 87 Mk I variants. RM Sotheby's states eight Mk IIs where Ultimatecarpage states eleven plus two prototypes. Wikipedia counts six Mk IVs from nine J-specification chassis, the Shelby American Collection counts two J-cars and six Mk IVs completed in 1967, and Gooding states twelve built with ten remaining. Not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

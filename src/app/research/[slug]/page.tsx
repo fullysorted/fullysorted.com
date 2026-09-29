@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { SignupForm } from "@/components/newsletter/SignupForm";
 import { ArrowLeft, Calendar, Clock, BookOpen, ArrowRight } from "lucide-react";
 import { articles, getArticleBySlug } from "@/lib/articles";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -221,34 +222,16 @@ export default async function ArticlePage({ params }: Props) {
             {/* Newsletter */}
             <div
               className="rounded-2xl p-5"
-              style={{
-                background: "#fff",
-                border: "1px solid rgba(0,0,0,0.07)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.05)",
-              }}
+              style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)", boxShadow: "0 4px 24px rgba(0,0,0,0.05)" }}
             >
-              <p className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">
-                Monday Market Movers
-              </p>
-              <h3 className="font-bold text-stone-800 mb-2">
-                Get the weekly analysis free
-              </h3>
-              {/* Was a <form> with no action and no handler in a server
-                  component — submitting reloaded the page and recorded nothing.
-                  No subscribe endpoint exists, so route the ask to /contact
-                  rather than keep a control that only looks like it works. */}
-              <p className="text-sm text-stone-500 mb-4">
-                Every Monday morning: what moved, what didn't, and what to watch.
-                Sign-up is handled by hand for now. Send an address through the
-                contact form and it goes on the list.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-1.5 w-full h-10 text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity"
-                style={{ background: "#1E6091" }}
-              >
-                Ask to be added <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              <SignupForm
+                variant="card"
+                source="research"
+                eyebrow="Free email"
+                title="Get the next one"
+                blurb="New research and market notes, plus cars for sale in the marques you pick."
+                defaults={["research", "cars"]}
+              />
             </div>
 
             {/* Value Guide CTA */}

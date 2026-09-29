@@ -305,3 +305,16 @@ body {
 .font-display.font-medium {
   font-weight: 400;
 }
+
+/* Newsletter doodle: the car rolls in, the letter bobs. Off for reduced motion. */
+@keyframes fs-nl-in { from { transform: translateX(-60%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes fs-nl-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes fs-nl-spin { to { transform: rotate(360deg); } }
+@keyframes fs-nl-up { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.fs-nl-drive { animation: fs-nl-in 900ms cubic-bezier(.2,.8,.2,1) both; }
+.fs-nl-letter { animation: fs-nl-bob 1.6s ease-in-out 900ms infinite; }
+.fs-nl-wheel { animation: fs-nl-spin 450ms linear 2; }
+.fs-nl-popup { animation: fs-nl-up 380ms cubic-bezier(.2,.8,.2,1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .fs-nl-drive, .fs-nl-letter, .fs-nl-wheel, .fs-nl-popup { animation: none; }
+}

@@ -393,7 +393,7 @@ export const seedCorvetteC4Zr1 = {
     "lsxmag-lt5",
     "corvetteblogger-best90s"
    ],
-   "conflictNote": "Wikipedia, CorvSport, Vette Vues, classic.com, Vettes of Atlanta and Hagerty all state 6,939. LSXmag states 6,922 sold and CorvetteBlogger 6,922 produced. The seventeen-car difference is not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Wikipedia, CorvSport, Vette Vues, classic.com, Vettes of Atlanta and Hagerty all state 6,939. LSXmag states 6,922 sold and CorvetteBlogger 6,922 produced. The seventeen-car difference is not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

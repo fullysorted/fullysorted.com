@@ -361,7 +361,7 @@ export const seed928 = {
     "stuttcars-production",
     "classicsworld-928"
    ],
-   "conflictNote": "Porsche's transaxle press kit and its Christophorus fortieth-anniversary feature both state 61,056, and Wikipedia's variant table resolves to the same figure, as does Classics World. StuttCars states 60,870 and supports it with a year-by-year table. The 186-car difference is not explained on either side and is not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Porsche's transaxle press kit and its Christophorus fortieth-anniversary feature both state 61,056, and Wikipedia's variant table resolves to the same figure, as does Classics World. StuttCars states 60,870 and supports it with a year-by-year table. The 186-car difference is not explained on either side and is not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

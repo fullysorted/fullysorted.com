@@ -452,7 +452,7 @@ export const seedLandCruiser80 = {
     "ih8mud-world-production",
     "flex-lc80"
    ],
-   "conflictNote": "FLEX Automotive and an IH8MUD compilation both state 547,400 units built worldwide. The annual breakdown given in the same IH8MUD thread - 45,329, 60,191, 71,821, 74,052, 67,194, 72,500, 81,804 and 74,484 for 1990 to 1997 - totals 547,375, twenty-five fewer. Neither figure is corroborated by Toyota and the difference is not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "FLEX Automotive and an IH8MUD compilation both state 547,400 units built worldwide. The annual breakdown given in the same IH8MUD thread - 45,329, 60,191, 71,821, 74,052, 67,194, 72,500, 81,804 and 74,484 for 1990 to 1997 - totals 547,375, twenty-five fewer. Neither figure is corroborated by Toyota and the difference is not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

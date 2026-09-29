@@ -316,7 +316,7 @@ export const seedBmwIsetta = {
    "confidence": "medium",
    "status": "disputed",
    "sourceRefs": ["bmw-press-50years", "bmw-classic-isetta", "wikipedia-isetta", "mauto-isetta300", "goodwood-anorak", "bmwblog-65years", "hagerty-uk-isetta"],
-   "conflictNote": "BMW Group PressClub states 161,728, as do Wikipedia, the Museo Nazionale dell'Automobile and Goodwood. BMW Group Classic's own page states 161,000, as does Hagerty UK. BMW Blog states 161,360, which Wikipedia notes some sources cite. The 368-car difference is unexplained by anything consulted here, so productionTotal is left null."
+   "conflictNote": "BMW Group PressClub states 161,728, as do Wikipedia, the Museo Nazionale dell'Automobile and Goodwood. BMW Group Classic's own page states 161,000, as does Hagerty UK. BMW Blog states 161,360, which Wikipedia notes some sources cite. The 368-car difference is unexplained by anything consulted here, so no single total is given."
   },
   {
    "section": "production",

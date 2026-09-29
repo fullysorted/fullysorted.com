@@ -334,7 +334,7 @@ export const seedETypeS1 = {
     "xkedata-numbers",
     "jdht-etype-guide"
    ],
-   "conflictNote": "Wikipedia states 38,419 Series 1 cars, broken down as 15,498 / 16,195 / 6,726. XKEdata's published chassis ranges yield 15,502 / 16,201 / 6,720, or 38,423. The Heritage Trust guide gives ranges only, closing the left-hand-drive 3.8 roadster run at 881886 against XKEdata's 881887 and the left-hand-drive 3.8 coupe run at 890872 against 890873. The discrepancy is not explained by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Wikipedia states 38,419 Series 1 cars, broken down as 15,498 / 16,195 / 6,726. XKEdata's published chassis ranges yield 15,502 / 16,201 / 6,720, or 38,423. The Heritage Trust guide gives ranges only, closing the left-hand-drive 3.8 roadster run at 881886 against XKEdata's 881887 and the left-hand-drive 3.8 coupe run at 890872 against 890873. The discrepancy is not explained by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

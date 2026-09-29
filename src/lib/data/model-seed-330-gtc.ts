@@ -383,7 +383,7 @@ export const seed330Gtc = {
     "evo-330-gtc",
     "audrain-330-gtc"
    ],
-   "conflictNote": "Ferrari's heritage page states '600 were built' in one paragraph and '598 examples were produced. (excluding prototypes)' in another. Wikipedia and Car Collector International state 598. RM Sotheby's, evo, Audrain, Premier Financial Services and Classic Motorsports use 600 or 'approximately 600'. RM Sotheby's separately gives 579 LHD cars and evo gives 22 RHD cars, which sum to 601. Not resolved by any source consulted here; productionTotal is left null."
+   "conflictNote": "Ferrari's heritage page states '600 were built' in one paragraph and '598 examples were produced. (excluding prototypes)' in another. Wikipedia and Car Collector International state 598. RM Sotheby's, evo, Audrain, Premier Financial Services and Classic Motorsports use 600 or 'approximately 600'. RM Sotheby's separately gives 579 LHD cars and evo gives 22 RHD cars, which sum to 601. Not resolved by any source consulted here; no single total is given."
   },
   {
    "section": "production",

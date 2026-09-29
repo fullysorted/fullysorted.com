@@ -320,7 +320,7 @@ export const seedCamaro1stGen = {
     "classicindustries-production",
     "wikipedia-camaro-gen1"
    ],
-   "conflictNote": "The Camaro Research Group and Classic Industries both give 220,906 for 1967, 235,147 for 1968 and 243,085 for 1969. Wikipedia's first-generation article gives 121,051, 159,087 and 150,078 for the same years, and Classic Industries states its own figures are not exact. The gap is not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "The Camaro Research Group and Classic Industries both give 220,906 for 1967, 235,147 for 1968 and 243,085 for 1969. Wikipedia's first-generation article gives 121,051, 159,087 and 150,078 for the same years, and Classic Industries states its own figures are not exact. The gap is not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

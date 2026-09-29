@@ -159,7 +159,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "Do dealers list here too?",
-        a: `Yes, since September 2026. A dealer pays the same listing fee as a private owner, and every dealer listing is marked as one, with the dealership name, its licence number where given, and a standing note that documentation fees, tax and registration are set by the dealer and are not in the asking price. Dealers and consignment houses also have their own section of the business directory. Dealers listing several cars can ask us about a package.`,
+        a: `Yes, since September 2026. A dealer pays the same listing fee as a private owner, and every dealer listing is marked as one, with the dealership name, its license number where given, and a standing note that documentation fees, tax and registration are set by the dealer and are not in the asking price. Dealers and consignment houses also have their own section of the business directory. Dealers listing several cars can ask us about a package.`,
         link: { href: "/contact", label: "Ask about a dealer package" },
       },
       {

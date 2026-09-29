@@ -410,7 +410,7 @@ export const seedS2000 = {
     "wikipedia-s2000",
     "jdmbuysell-ap2"
    ],
-   "conflictNote": "Honda's January 2009 announcement gives cumulative sales of more than 110,000 units worldwide as of December 2008. Wikipedia's infobox states 110,673 produced; the same article's text states that 110,673 was Honda's reported worldwide sales through 2008 and that the final official production figure was 113,889 by the end of 2009, and warns that the per-market columns use different methodologies. JDMBUYSELL repeats about 110,673 as an all-generation build estimate. The build-versus-sales distinction is not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Honda's January 2009 announcement gives cumulative sales of more than 110,000 units worldwide as of December 2008. Wikipedia's infobox states 110,673 produced; the same article's text states that 110,673 was Honda's reported worldwide sales through 2008 and that the final official production figure was 113,889 by the end of 2009, and warns that the per-market columns use different methodologies. JDMBUYSELL repeats about 110,673 as an all-generation build estimate. The build-versus-sales distinction is not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

@@ -18,6 +18,7 @@ import { MarqueNotice } from "@/components/research/MarqueNotice";
 import { getRegisterCountForModel } from "@/lib/data/register";
 import { shareImageUrl, SITE_URL } from "@/lib/share";
 import { ShareButton } from "@/components/share/ShareButton";
+import { SignupForm } from "@/components/newsletter/SignupForm";
 import { getOpenPartsForModel } from "@/lib/parts";
 import { PartsCard } from "@/components/parts/PartsCard";
 
@@ -542,6 +543,19 @@ export default async function ModelPage({ params }: Props) {
                   <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 transition-transform" style={{ color: "#1E6091" }} />
                 </Link>
               </div>
+            </div>
+
+            {/* Alerts for this marque. data-nl-marque also tells the popup what to offer. */}
+            <div className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(0,0,0,0.07)" }} data-nl-marque={m.make}>
+              <SignupForm
+                variant="card"
+                source="model"
+                eyebrow="Alerts"
+                title={`Hear when a ${m.make} is listed`}
+                blurb="New ones for sale, and good shops near you that work on them."
+                defaults={["cars", "shops"]}
+                marque={m.make}
+              />
             </div>
 
             {forSale.length > 0 && (

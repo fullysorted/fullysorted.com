@@ -241,7 +241,7 @@ export const seedSkylineR32 = {
     "wikipedia-gtr",
     "hagerty-r32"
    ],
-   "conflictNote": "GTR USA's chassis-number reconciliation identifies roughly 978 cars unaccounted for between the GT-R Magazine figure of 43,934 and its own count of 42,956, and notes Japanese registrations of only 41,692 for 1989-1994. Hagerty and Wikipedia both publish 43,937. No primary Nissan production statement is publicly available, so productionTotal is left null."
+   "conflictNote": "GTR USA's chassis-number reconciliation identifies roughly 978 cars unaccounted for between the GT-R Magazine figure of 43,934 and its own count of 42,956, and notes Japanese registrations of only 41,692 for 1989-1994. Hagerty and Wikipedia both publish 43,937. No primary Nissan production statement is publicly available, so no single total is given."
   },
   {
    "section": "production",

@@ -369,7 +369,7 @@ export const seedPantera = {
     "hagerty-values",
     "forum-production-history"
    ],
-   "conflictNote": "Wikipedia and the Iconic Auctioneers catalog both state 7,260 built 1971-1992, the figure attributed to De Tomaso. Hagerty states about 7,200. A De Tomaso Forum reconstruction of the chassis sequence gives 7,082. The 9000-series chassis restart and the succession of three coachbuilders are plausible causes, but no source consulted resolves the difference, so productionTotal is left null."
+   "conflictNote": "Wikipedia and the Iconic Auctioneers catalog both state 7,260 built 1971-1992, the figure attributed to De Tomaso. Hagerty states about 7,200. A De Tomaso Forum reconstruction of the chassis sequence gives 7,082. The 9000-series chassis restart and the succession of three coachbuilders are plausible causes, but no source consulted resolves the difference, so no single total is given."
   },
   {
    "section": "production",

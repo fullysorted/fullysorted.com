@@ -280,7 +280,7 @@ export const seedCitroenDs = {
     "motoringresearch-ds",
     "citroen-ds-id-production"
    ],
-   "conflictNote": "Four sources state 1,455,746. The citroen-ds-id.com year-by-year table sums to 1,456,115 and separately offers an adjusted 1,376,631 over seventeen years, citing no source for either. The 369-car difference is not explained by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Four sources state 1,455,746. The citroen-ds-id.com year-by-year table sums to 1,456,115 and separately offers an adjusted 1,376,631 over seventeen years, citing no source for either. The 369-car difference is not explained by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

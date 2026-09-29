@@ -8,8 +8,8 @@ import { ResearchNav } from "@/components/research/ResearchNav";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Compare Collector Cars — Side by Side",
-  description: "Compare any two collector cars head to head — production numbers and rarity, market values, specs, and buyer confidence. Cited, honest data.",
+  title: "Compare Collector Cars: Side by Side",
+  description: "Compare any two collector cars head to head: production numbers and rarity, market values, specs, and buyer confidence. Cited, honest data.",
   alternates: { canonical: "/research/compare" },
 };
 
@@ -31,7 +31,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   const b = sp.b || "";
 
   // Whether the list is empty because nothing is published or because the query
-  // failed changes what this page can honestly say — see src/lib/data/models.ts.
+  // failed changes what this page can honestly say: see src/lib/data/models.ts.
   const { rows: models, ok: modelsOk } = await getPublishedModelsResult();
   const options = models
     .map((m) => ({ slug: m.slug, label: modelDisplayName(m) }))
@@ -88,13 +88,13 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
             <span className="text-xs font-bold uppercase tracking-widest text-white/70">Head to Head</span>
           </div>
           <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl mb-3">Compare collector cars</h1>
-          <p className="text-stone-300 max-w-2xl">Two models, side by side — rarity, market value, specs, and how much we&rsquo;d trust each figure. Cited and honest.</p>
+          <p className="text-stone-300 max-w-2xl">Two models, side by side: rarity, market value, specs, and how much we&rsquo;d trust each figure. Cited and honest.</p>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* With no options the selects were empty and the panel below still read
-            "Pick two models to compare" — an instruction nobody could follow.
+            "Pick two models to compare": an instruction nobody could follow.
             Show the selector only when there is something to select. */}
         {options.length > 0 && <CompareSelector options={options} a={a} b={b} />}
 
@@ -140,7 +140,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
           <div className="mt-8 rounded-2xl bg-white border border-border p-10 text-center">
             <GitCompareArrows className="w-9 h-9 mx-auto mb-3" style={{ color: "#cfcabb" }} />
             <p className="font-semibold text-foreground mb-1">Pick two models to compare</p>
-            <p className="text-sm text-text-secondary">Rarity, market value, specs, and buyer confidence — side by side.</p>
+            <p className="text-sm text-text-secondary">Rarity, market value, specs, and buyer confidence: side by side.</p>
           </div>
         )}
 

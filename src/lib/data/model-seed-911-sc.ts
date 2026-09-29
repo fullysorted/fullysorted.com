@@ -327,7 +327,7 @@ export const seedNineElevenSc = {
     "stuttcars-sc",
     "supercarnostalgia-sc"
    ],
-   "conflictNote": "Wikipedia states 58,914. StuttCars states 60,625. Supercar Nostalgia's text says approximately 58,000. StuttCars and Supercar Nostalgia publish an identical year-by-year table by body style which sums to 60,265, agreeing with neither of the totals printed beside it. Nothing consulted here explains the roughly 1,350-car gap, so it is not resolved and productionTotal is left null."
+   "conflictNote": "Wikipedia states 58,914. StuttCars states 60,625. Supercar Nostalgia's text says approximately 58,000. StuttCars and Supercar Nostalgia publish an identical year-by-year table by body style which sums to 60,265, agreeing with neither of the totals printed beside it. Nothing consulted here explains the roughly 1,350-car gap, so it is not resolved and no single total is given."
   },
   {
    "section": "production",

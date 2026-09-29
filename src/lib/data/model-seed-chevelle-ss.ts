@@ -318,7 +318,7 @@ export const seedChevelleSs = {
     "chevellestuff-1971-production",
     "chevellestuff-1972-production"
    ],
-   "conflictNote": "ChevelleStuff and Hagerty between them give 62,785 SS 396 cars for 1968, 86,307 Z25 cars for 1969, 53,599 Z25 plus 8,773 Z15 cars for 1970, 19,293 Z15 cars for 1971 and 24,946 for 1972, which sum to about 255,700. Hagerty's same article states that just under 192,000 SS Chevelles were built across 1968-1972. Differing treatment of El Camino explains part of the gap but not all of it, and no source consulted here resolves the difference, so productionTotal is left null."
+   "conflictNote": "ChevelleStuff and Hagerty between them give 62,785 SS 396 cars for 1968, 86,307 Z25 cars for 1969, 53,599 Z25 plus 8,773 Z15 cars for 1970, 19,293 Z15 cars for 1971 and 24,946 for 1972, which sum to about 255,700. Hagerty's same article states that just under 192,000 SS Chevelles were built across 1968-1972. Differing treatment of El Camino explains part of the gap but not all of it, and no source consulted here resolves the difference, so no single total is given."
   },
   {
    "section": "production",

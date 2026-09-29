@@ -464,7 +464,7 @@ export const seedRangeRoverClassic = {
     "classicsworld-guide",
     "wikipedia-rrc"
    ],
-   "conflictNote": "Goodwood Road and Racing and the Classics World buyer's guide both state 317,615 units. Wikipedia states 326,070 over the same 1970-1996 period. Neither figure is traced to a published Solihull build record, and the 8,455-car gap is not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Goodwood Road and Racing and the Classics World buyer's guide both state 317,615 units. Wikipedia states 326,070 over the same 1970-1996 period. Neither figure is traced to a published Solihull build record, and the 8,455-car gap is not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

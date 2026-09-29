@@ -333,7 +333,7 @@ export const seedF355 = {
     "whichcar-f355",
     "rm-mc26-spider"
    ],
-   "conflictNote": "Wikipedia, conceptcarz and WhichCar state 11,273, with Berlinetta 4,871, Spider 3,717, GTS 2,577 and Challenge 108. Supercar Nostalgia states 11,206, with Berlinetta 4,915, Spider 3,714 and GTS 2,577. The discrepancy is not explained by any source consulted here and is not resolved, so productionTotal is left null."
+   "conflictNote": "Wikipedia, conceptcarz and WhichCar state 11,273, with Berlinetta 4,871, Spider 3,717, GTS 2,577 and Challenge 108. Supercar Nostalgia states 11,206, with Berlinetta 4,915, Spider 3,714 and GTS 2,577. The discrepancy is not explained by any source consulted here and is not resolved, so no single total is given."
   },
   {
    "section": "production",

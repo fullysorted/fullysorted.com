@@ -277,7 +277,7 @@ export const seedSuperbird = {
     "heacock-superbird",
     "harwood-superbird"
    ],
-   "conflictNote": "Chrysler Historical states 1,935 and RM Sotheby's, Classic Industries and Wikipedia follow it. The NASCAR serial list, which has known omissions, gives 1,920, and that figure is also Chrysler's September 1969 build target; Heacock and Old Cars Weekly print it as the total. Romberg gave 1,923 to Hot Rod, Aero Warriors' registry work identifies 1,969, Old Cars Weekly notes 1,971 in some sources, and 2,783 has been published. Not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Chrysler Historical states 1,935 and RM Sotheby's, Classic Industries and Wikipedia follow it. The NASCAR serial list, which has known omissions, gives 1,920, and that figure is also Chrysler's September 1969 build target; Heacock and Old Cars Weekly print it as the total. Romberg gave 1,923 to Hot Rod, Aero Warriors' registry work identifies 1,969, Old Cars Weekly notes 1,971 in some sources, and 2,783 has been published. Not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

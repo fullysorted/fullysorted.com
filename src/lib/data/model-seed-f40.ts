@@ -268,7 +268,7 @@ export const seedF40 = {
     "autoexpress-guide",
     "classic-f40"
    ],
-   "conflictNote": "Ferrari's own model page (with chassis range 76624-95317) and Supercar Nostalgia both state 1,311. RM Sotheby's catalog entries, Auto Express and classic.com all state 1,315. The discrepancy is not explained by any source consulted, so productionTotal is left null."
+   "conflictNote": "Ferrari's own model page (with chassis range 76624-95317) and Supercar Nostalgia both state 1,311. RM Sotheby's catalog entries, Auto Express and classic.com all state 1,315. The discrepancy is not explained by any source consulted, so no single total is given."
   },
   {
    "section": "production",

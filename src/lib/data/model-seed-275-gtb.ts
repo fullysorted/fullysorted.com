@@ -419,7 +419,7 @@ export const seed275Gtb = {
     "rm-mu25-06897",
     "motorsport-buying-guide"
    ],
-   "conflictNote": "Wikipedia states 442 (236 short-nose, 206 long-nose). Sports Car Market states 440. Classic & Sports Car states 450. RM Sotheby's Munich 2025 catalog states 453 with approximately 250 short-nose. Motor Sport states 456. No source explains the discrepancy, so productionTotal is left null."
+   "conflictNote": "Wikipedia states 442 (236 short-nose, 206 long-nose). Sports Car Market states 440. Classic & Sports Car states 450. RM Sotheby's Munich 2025 catalog states 453 with approximately 250 short-nose. Motor Sport states 456. No source explains the discrepancy, so no single total is given."
   },
   {
    "section": "production",

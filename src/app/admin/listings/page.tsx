@@ -231,7 +231,7 @@ function ListingsContent() {
                   {l.seller_type === "dealer" && (
                     <p className="text-xs mt-1 font-semibold" style={{ color: "#8a6d2f" }}>
                       Dealer listing: {l.dealer_name || "no name given"}
-                      {l.dealer_license ? ` · licence ${l.dealer_license}` : " · no licence number"}
+                      {l.dealer_license ? ` · license ${l.dealer_license}` : " · no license number"}
                       {l.dealer_fees_note ? ` · fees: ${l.dealer_fees_note}` : ""}
                     </p>
                   )}

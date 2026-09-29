@@ -298,8 +298,7 @@ export default function AboutPage() {
                 time. We want to give them something better than word of mouth.
               </blockquote>
               <p className="text-[15px] leading-relaxed pt-2" style={{ color: "rgba(255,255,255,0.7)" }}>
-                Chris Peterson is the founder of Fully Sorted, co-chairman of the La Jolla
-                Concours d&apos;Elegance, and a lifelong car nerd. His grandfather founded
+                Chris Peterson is the founder of Fully Sorted and a lifelong car nerd. His grandfather founded
                 Jack in the Box here in San Diego and helped popularize the drive-thru
                 with a two-way intercom: say what you need, and the right people get it
                 done. Same idea, different menu.

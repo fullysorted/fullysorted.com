@@ -350,7 +350,7 @@ export const seedThunderbird1stGen = {
     "scm-fcode",
     "autoblog-final-week"
    ],
-   "conflictNote": "Old Cars Weekly and TopSpeed each state 196 F-code engines. Ate Up With Motor states 208. RM Sotheby's cataloged a car in 2014 as one of 'some 208-211' and another in 2023 as one of 'approximately 200'. Sports Car Market gives approximately 212, as does Autoblog. Old Cars Weekly offers a partial reconciliation - 196 F-codes plus about fifteen supercharged D-code 'DF' cars against an official approximation of 211 blowers across both series - and Sports Car Market notes that converted Code-D/F cars are counted by some experts and not others. No source consulted here resolves the spread, so productionTotal is left null."
+   "conflictNote": "Old Cars Weekly and TopSpeed each state 196 F-code engines. Ate Up With Motor states 208. RM Sotheby's cataloged a car in 2014 as one of 'some 208-211' and another in 2023 as one of 'approximately 200'. Sports Car Market gives approximately 212, as does Autoblog. Old Cars Weekly offers a partial reconciliation - 196 F-codes plus about fifteen supercharged D-code 'DF' cars against an official approximation of 211 blowers across both series - and Sports Car Market notes that converted Code-D/F cars are counted by some experts and not others. No source consulted here resolves the spread, so no single total is given."
   },
   {
    "section": "production",

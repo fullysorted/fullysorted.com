@@ -25,6 +25,7 @@ import {
   Users,
   Megaphone,
   Package,
+  Mail,
 } from "lucide-react";
 
 const nav = [
@@ -42,6 +43,7 @@ const nav = [
   { href: "/admin/members", label: "Members", icon: Users },
   { href: "/admin/wanted", label: "Wanted", icon: Megaphone },
   { href: "/admin/parts", label: "Parts", icon: Package },
+  { href: "/admin/subscribers", label: "Subscribers", icon: Mail },
   { href: "/admin/stable", label: "The Stable", icon: Warehouse },
   // These three were reachable only from cards on the dashboard, which is a
   // long scroll on a phone.

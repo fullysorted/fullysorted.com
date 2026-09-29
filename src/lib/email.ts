@@ -38,9 +38,11 @@ type EmailPayload = {
   replyTo?: string;
   /** Silent copy. Used to keep Chris on relayed leads without exposing him. */
   bcc?: string;
+  /** Extra headers, e.g. List-Unsubscribe on subscriber mail. */
+  headers?: Record<string, string>;
 };
 
-async function sendEmail({ to = NOTIFY_TO, subject, html, replyTo, bcc }: EmailPayload): Promise<boolean> {
+async function sendEmail({ to = NOTIFY_TO, subject, html, replyTo, bcc, headers }: EmailPayload): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     // Gracefully skip — log so it shows in Vercel logs but don't crash
@@ -58,6 +60,7 @@ async function sendEmail({ to = NOTIFY_TO, subject, html, replyTo, bcc }: EmailP
       ...(isEmailAddress(bcc) ? { bcc: bcc.trim() } : {}),
       subject,
       html,
+      ...(headers ? { headers } : {}),
     });
     if (error) {
       console.error("[email] Resend error:", error);
@@ -1005,6 +1008,55 @@ export async function sendPartsReply(d: { to: string; postId: number; postTitle:
         The sale is between you and the buyer. Fully Sorted holds no money and is not a party to it. Get paid in a way that cannot be reversed on a whim, and ship with tracking.
       </p>
       <p style="margin:16px 0 0;"><a href="${SITE}/parts/${d.postId}" style="color:#1C8C87;">View or close your listing</a></p>
+    `),
+  });
+}
+
+// ─── Newsletter ──────────────────────────────────────────────────────────────
+
+/**
+ * The one email a pending subscriber ever gets: confirm the address. Carries
+ * the unsubscribe link and List-Unsubscribe headers like every subscriber
+ * email must, so a wrong address can say no in one click.
+ */
+export async function sendNewsletterConfirm(d: { to: string; token: string; interests: string[]; zip: string | null; marques: string[] }) {
+  const confirm = `${SITE}/newsletter?c=${d.token}`;
+  const unsub = `${SITE}/newsletter?u=${d.token}`;
+  const what = d.interests.join(", ").toLowerCase() || "the good stuff";
+  const where = d.zip ? ` near ${esc(d.zip)}` : "";
+  const marques = d.marques.length ? `<p style="margin:0 0 12px;color:#6b6b5e;">Marques: ${esc(d.marques.join(", "))}</p>` : "";
+  return sendEmail({
+    to: d.to,
+    subject: "One click and you're on the list",
+    headers: {
+      "List-Unsubscribe": `<${SITE}/api/newsletter/unsubscribe?t=${d.token}>, <mailto:${REPLY_TO}?subject=unsubscribe>`,
+      "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+    },
+    html: `
+    <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:24px;color:#1a1a18;">
+      <div style="background:#fff;border:1px solid #e5e5e0;border-radius:14px;padding:28px;font-size:15px;line-height:1.55;">
+        <p style="margin:0 0 6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#1C8C87;">Fully Sorted</p>
+        <h1 style="margin:0 0 14px;font-size:22px;color:#12352A;">Confirm it's you</h1>
+        <p style="margin:0 0 12px;">You asked to hear about ${esc(what)}${where}. Tap below to confirm and we'll start sending. Nothing goes out until you do.</p>
+        ${marques}
+        <a href="${confirm}" style="display:inline-block;background:#1C8C87;color:#fff;padding:13px 26px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;margin:6px 0 16px;">Yes, sign me up</a>
+        <p style="margin:0;font-size:13px;color:#6b6b5e;">Didn't ask for this? Ignore it and you'll never hear from us again. Or <a href="${unsub}" style="color:#6b6b5e;">remove this address</a> now.</p>
+      </div>
+      <p style="text-align:center;font-size:12px;color:#9a9a8a;margin-top:16px;">Fully Sorted · fullysorted.com · ${esc(POSTAL_ADDRESS)}</p>
+    </div>`,
+  });
+}
+
+/** Fallback to Chris when a signup could not be stored. Keeps the address from being lost. */
+export async function notifyNewsletterFallback(d: { email: string; interests: string[]; zip: string | null; marques: string[]; source: string }) {
+  return sendEmail({
+    subject: `Newsletter signup (not stored, add by hand): ${d.email}`,
+    html: wantedShell("Newsletter signup the database missed", `
+      <p style="margin:0 0 8px;"><strong>${esc(d.email)}</strong></p>
+      <p style="margin:0 0 4px;">Wants: ${esc(d.interests.join(", ") || "cars, shops")}</p>
+      <p style="margin:0 0 4px;">ZIP: ${esc(d.zip || "none")}</p>
+      <p style="margin:0 0 4px;">Marques: ${esc(d.marques.join(", ") || "any")}</p>
+      <p style="margin:0;color:#6b6b5e;">Source: ${esc(d.source)}. Not yet confirmed. Ask before adding.</p>
     `),
   });
 }

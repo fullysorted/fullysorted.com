@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BrowseClient } from "./BrowseClient";
+import { SignupForm } from "@/components/newsletter/SignupForm";
 import type { Vehicle } from "@/lib/sample-data";
 
 export const metadata: Metadata = {
@@ -81,9 +82,23 @@ export default async function BrowsePage() {
   const realListings = await getRealListings();
 
   return (
-    <BrowseClient
-      initialListings={realListings}
-      hasRealListings={realListings.length > 0}
-    />
+    <>
+      <BrowseClient
+        initialListings={realListings}
+        hasRealListings={realListings.length > 0}
+      />
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-14">
+        <div className="rounded-3xl bg-white p-6 sm:p-8" style={{ border: "1px solid rgba(18,53,42,0.14)" }}>
+          <SignupForm
+            variant="band"
+            source="browse"
+            eyebrow="Not here yet?"
+            title="Hear when the right one is listed."
+            blurb="New cars for sale near you, or in the marques you care about. Add a ZIP to keep it local."
+            defaults={["cars"]}
+          />
+        </div>
+      </section>
+    </>
   );
 }

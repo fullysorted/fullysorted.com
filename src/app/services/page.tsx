@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SignupForm } from '@/components/newsletter/SignupForm';
 import ServicesDirectory from './ServicesDirectory';
 import { getPublishedModels } from '@/lib/data/models';
 import { toSearchModels } from '@/lib/search-intent';
@@ -98,6 +99,17 @@ export default async function ServicesPage() {
             ))}
           </div>
         </nav>
+
+        <div className="mt-12 rounded-3xl bg-white p-6 sm:p-8" style={{ border: '1px solid rgba(18,53,42,0.14)' }}>
+          <SignupForm
+            variant="band"
+            source="services"
+            eyebrow="New shops near you"
+            title="Know when a good one opens up nearby."
+            blurb="Specialists as they join in your area. Add your ZIP and we'll keep it local."
+            defaults={['shops']}
+          />
+        </div>
       </div>
     </div>
   );

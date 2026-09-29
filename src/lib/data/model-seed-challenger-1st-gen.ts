@@ -376,7 +376,7 @@ export const seedChallenger1stGen = {
     "rm-hf22-383",
     "conceptcarz-1971"
    ],
-   "conflictNote": "Wikipedia's production table and conceptcarz both give 76,935. Muscle Car Facts gives 83,032. Over-Drive Magazine's model-by-model breakdown sums to 85,441. RM Sotheby's Hershey 2022 catalog says 'more than 84,000'. The sources agree that 19,938 of them were R/Ts, but the total itself is not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "Wikipedia's production table and conceptcarz both give 76,935. Muscle Car Facts gives 83,032. Over-Drive Magazine's model-by-model breakdown sums to 85,441. RM Sotheby's Hershey 2022 catalog says 'more than 84,000'. The sources agree that 19,938 of them were R/Ts, but the total itself is not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",

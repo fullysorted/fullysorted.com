@@ -961,8 +961,8 @@ export default function SellForm() {
                         <input type="text" value={form.dealerName} onChange={(e) => updateField('dealerName', e.target.value)} placeholder="Symbolic International" className={inputClass} />
                       </div>
                       <div>
-                        <label className={labelClass}>Dealer licence number</label>
-                        <input type="text" value={form.dealerLicense} onChange={(e) => updateField('dealerLicense', e.target.value)} placeholder="State licence or bond number" className={inputClass} />
+                        <label className={labelClass}>Dealer license number</label>
+                        <input type="text" value={form.dealerLicense} onChange={(e) => updateField('dealerLicense', e.target.value)} placeholder="State license or bond number" className={inputClass} />
                       </div>
                     </div>
                     <div>

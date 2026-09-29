@@ -420,7 +420,7 @@ export const seedClassicMini = {
     "wikipedia-mini",
     "bmw-press-timeline"
    ],
-   "conflictNote": "AROnline sets the BMIHT breakdown published by Chris Rees (5,378,776) against the MG Rover breakdown published by Jon Pressnell (5,387,862), a difference of 9,086 cars that begins in 1977 and recurs every year afterwards, reaching 1,811 in one direction in 1977 and 2,590 in the other in 1987. Craig Watson, writing in The Mini Experience, calculates at least 6,302,000 on a wider boundary that includes overseas assembly. BMW and most press coverage use a round 5.3 million. The discrepancy between the two Longbridge-based tables is not resolved by any source consulted here, so productionTotal is left null."
+   "conflictNote": "AROnline sets the BMIHT breakdown published by Chris Rees (5,378,776) against the MG Rover breakdown published by Jon Pressnell (5,387,862), a difference of 9,086 cars that begins in 1977 and recurs every year afterwards, reaching 1,811 in one direction in 1977 and 2,590 in the other in 1987. Craig Watson, writing in The Mini Experience, calculates at least 6,302,000 on a wider boundary that includes overseas assembly. BMW and most press coverage use a round 5.3 million. The discrepancy between the two Longbridge-based tables is not resolved by any source consulted here, so no single total is given."
   },
   {
    "section": "production",
