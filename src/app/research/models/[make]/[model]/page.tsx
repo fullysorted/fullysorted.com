@@ -226,11 +226,20 @@ export default async function ModelPage({ params }: Props) {
               <ShieldCheck className="w-3 h-3" /> {conf.label}
             </span>
           </div>
-          <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-5xl leading-[1.1] mb-3" style={{ color: "#1a1a18" }}>
-            {m.model} {generation && <span style={{ color: "#9a9a8a" }}>({generation})</span>}
+          {/* Hero title is the model name alone. The generation sits underneath as a
+              smaller subtitle, never inline in parentheses: generation strings run
+              long ("Third generation, US market, 1979-1993 model years") and at hero
+              size they swamp the name. See MODEL-HISTORY-SPEC "Title and subtitle". */}
+          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-6xl leading-[1.05]" style={{ color: "#1a1a18" }}>
+            {m.model}
           </h1>
+          {generation && (
+            <p className="mt-3 text-lg sm:text-xl font-medium leading-snug" style={{ color: "#6b6b5e" }}>
+              {generation}
+            </p>
+          )}
           {m.production_total != null && (
-            <p className="text-sm" style={{ color: "#6b6b5e" }}>
+            <p className="mt-4 text-sm" style={{ color: "#6b6b5e" }}>
               <strong>{m.production_total.toLocaleString()}</strong> built · {(m.body_styles || []).join(" · ")}
             </p>
           )}

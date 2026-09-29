@@ -19,6 +19,7 @@ import { shareImageUrl, SITE_URL } from '@/lib/share';
 import { ShareButton } from '@/components/share/ShareButton';
 import { ProviderBanner } from '@/components/providers/ProviderBanner';
 import { ProviderMark } from '@/components/providers/ProviderMark';
+import { auth } from '@clerk/nextjs/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -142,6 +143,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProviderProfilePage({ params }: Props) {
   const { slug } = await params;
   const provider = await getProvider(slug);
+  // Contact details (phone, website, Instagram) are for signed-in members only.
+  // Everyone else reaches the shop through the inquiry form, which is the one
+  // contact we can count and the one the shop's details stay behind.
+  let signedIn = false;
+  try {
+    signedIn = Boolean((await auth()).userId);
+  } catch {
+    signedIn = false;
+  }
   if (!provider) notFound();
 
   const specialties = provider.specialties ?? [];
@@ -203,8 +213,8 @@ export default async function ProviderProfilePage({ params }: Props) {
   else if (jsonLdImages.length > 1) jsonLd.image = jsonLdImages;
   // The mark is a logo only when the shop said so; a portrait is not a logo.
   if (provider.logoUrl && provider.logoKind !== 'photo') jsonLd.logo = provider.logoUrl;
-  if (provider.phone) jsonLd.telephone = provider.phone;
-  if (provider.website) jsonLd.sameAs = [normalizeWebsite(provider.website)];
+  // telephone and sameAs are left out on purpose: contact details are gated
+  // behind sign-in, and the markup must not publish what the page withholds.
   // aggregateRating rides the same minimum-n gate as the visible badge. Thin
   // or self-supplied rating markup is exactly what Google's review-snippet
   // policy penalises, and a shop's own testimonials never reach this branch.
@@ -542,7 +552,21 @@ export default async function ProviderProfilePage({ params }: Props) {
 
             <ProviderInquiryForm slug={provider.slug} businessName={provider.businessName} />
 
-            {(provider.phone || provider.website || igHandle) && (
+            {!signedIn && (provider.phone || provider.website || igHandle) && (
+              <p className="mt-6 pt-5 text-xs" style={{ borderTop: '1px solid var(--border-light)', color: 'var(--text-secondary)' }}>
+                Phone and website are for members.{' '}
+                <Link href={`/sign-in?redirect_url=${encodeURIComponent(`/services/${provider.slug}`)}`} className="underline">
+                  Sign in
+                </Link>{' '}
+                or{' '}
+                <Link href={`/sign-up?redirect_url=${encodeURIComponent(`/services/${provider.slug}`)}`} className="underline">
+                  join free
+                </Link>
+                . The form above works without an account.
+              </p>
+            )}
+
+            {signedIn && (provider.phone || provider.website || igHandle) && (
               <div className="mt-6 pt-5 space-y-2.5" style={{ borderTop: '1px solid var(--border-light)' }}>
                 {provider.phone && (
                   <a

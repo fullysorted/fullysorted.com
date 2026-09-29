@@ -58,6 +58,7 @@ placeholder URL is a liability.
 | `slug` | `make/model` lowercase, unchanged from the existing file |
 | `make`, `model` | unchanged |
 | `generation`, `generationCode`, `trim` | fill or `null` — never invent a factory code |
+| `generation` display | renders as the **subtitle** under the hero title (the title is `model` alone). Keep it a short label, 40 chars or less, no wrapping parentheses, never a repeat of `model`. Good: `964`, `A80 (Mk4)`, `Third generation, US market`. Bad: `Third generation, US market, 1979-1993 model years` (years already show in the header). |
 | `yearStart`, `yearEnd` | model-year run of this generation |
 | `bodyStyles` | array of strings, specific ("2-door Berlinetta (fixed-roof coupe)") |
 | `engines` | array; displacement in cc, code, aspiration, output with rpm, per variant |

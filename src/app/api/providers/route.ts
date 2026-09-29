@@ -34,7 +34,7 @@ export async function GET() {
         slug: schema.serviceProviders.slug,
         category: schema.serviceProviders.category,
         location: schema.serviceProviders.location,
-        phone: schema.serviceProviders.phone, // business contact — intended for the public directory
+        phone: schema.serviceProviders.phone, // business contact, members only (stripped below for signed-out requests)
         description: schema.serviceProviders.description,
         specialties: schema.serviceProviders.specialties,
         yearsInBusiness: schema.serviceProviders.yearsInBusiness,
@@ -64,6 +64,20 @@ export async function GET() {
       })
       .from(schema.serviceProviders)
       .where(eq(schema.serviceProviders.status, 'active'));
+
+    // Contact details are for signed-in members only; everyone else gets the
+    // inquiry form. Must match the gate on /services/[slug].
+    let signedIn = false;
+    try {
+      signedIn = Boolean((await auth()).userId);
+    } catch {
+      signedIn = false;
+    }
+    if (!signedIn) {
+      return NextResponse.json({
+        providers: providers.map((p) => ({ ...p, phone: null, website: null, instagram: null })),
+      });
+    }
 
     return NextResponse.json({ providers });
   } catch (error) {

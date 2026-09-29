@@ -82,6 +82,13 @@ if ("heroPhoto" in o && o.heroPhoto != null) {
   if (!o.heroPhotoCredit) fails.push("heroPhotoCredit required when heroPhoto is set (Commons attribution)");
 }
 for (const k of ["generation", "generationCode", "trim"]) if (!(k in o)) fails.push(`${k} must be present (value or null)`);
+// generation renders as the hero subtitle under the model name (see spec "generation display")
+if (o.generation) {
+  const g = String(o.generation).trim();
+  if (/^\(.*\)$/.test(g)) fails.push(`generation is wrapped in parentheses; the subtitle adds none: ${g}`);
+  if (g.length > 40) warns.push(`generation is ${g.length} chars; it is the hero subtitle, keep it 40 or less: ${g}`);
+  if (o.model && g.toLowerCase() === String(o.model).trim().toLowerCase()) warns.push("generation repeats model; use null");
+}
 // DB column limits (VARCHAR) — an overflow 500s the whole seed run
 const lim = { make: 100, model: 200, generation: 100, generationCode: 50, trim: 200, slug: 300, overallConfidence: 20 };
 for (const [k, l] of Object.entries(lim)) if (o[k] && String(o[k]).length > l) fails.push(`${k} is ${String(o[k]).length} chars; DB column is VARCHAR(${l})`);
