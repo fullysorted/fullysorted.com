@@ -95,8 +95,9 @@ export default function PhotoUpload({
   // Right-click → save → find the download → upload is four steps too many on
   // a call, so a pasted image link is fetched server-side instead.
   async function handleLink() {
-    const u = link.trim();
-    if (!u) return;
+    const raw = link.trim();
+    if (!raw) return;
+    const u = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
     const fd = new FormData();
     fd.append("url", u);
     await send(fd);
@@ -147,7 +148,10 @@ export default function PhotoUpload({
           </label>
           <div className="flex items-center gap-2 mt-2">
             <input
-              type="url"
+              type="text"
+              inputMode="url"
+              autoCapitalize="none"
+              autoCorrect="off"
               value={link}
               onChange={(e) => setLink(e.target.value)}
               onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleLink(); } }}
