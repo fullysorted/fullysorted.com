@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Search, X } from "lucide-react";
+import { SendUsACar } from "@/components/register/SendUsACar";
 import { ModelCard, MAKE_PAGE_MIN, modelHref, yearsLabel, type ModelCardItem } from "@/components/research/ModelCard";
 
 export type DirectoryItem = ModelCardItem;
@@ -186,6 +187,7 @@ export function ModelsDirectory({ items }: { items: DirectoryItem[] }) {
       {!qq && (
         <section className="mt-16 pt-8" style={{ borderTop: `1px solid ${RULE}` }} aria-label="Every model history, A to Z">
           <h2 className="font-display text-xl sm:text-2xl mb-4" style={{ color: INK }}>Every model, A to Z</h2>
+          <SendUsACar />
           <ul className="columns-2 sm:columns-3 lg:columns-4 gap-x-8 text-[14px] leading-7">
             {az.map((m) => (
               <li key={m.id} className="break-inside-avoid">

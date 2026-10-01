@@ -93,6 +93,17 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true, id: subId, status: 'rejected' });
     }
 
+    // An open "send us a car" row (unlisted model, or no chassis) is a
+    // request, not a register record: approving it logs it and stops here.
+    if (sub.model_slug.startsWith('unlisted/') || !sub.chassis) {
+      await sql`
+        UPDATE registry_submissions
+        SET status = 'approved', admin_note = COALESCE(${note}, admin_note), reviewed_at = NOW()
+        WHERE id = ${subId}
+      `;
+      return NextResponse.json({ success: true, id: subId, status: 'approved', chassisId: null });
+    }
+
     // 1. Find or create the chassis row.
     const modelRows = (await sql`SELECT id FROM vehicle_models WHERE slug = ${sub.model_slug} LIMIT 1`) as { id: number }[];
     const modelId = modelRows[0]?.id ?? null;

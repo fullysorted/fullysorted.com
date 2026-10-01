@@ -6,7 +6,10 @@ import { getPublishedModelsWithMetaResult } from "@/lib/data/models";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ResearchNav } from "@/components/research/ResearchNav";
 import { ModelCard, MAKE_PAGE_MIN, type ModelCardItem } from "@/components/research/ModelCard";
+import { SendUsACar } from "@/components/register/SendUsACar";
 import { MarqueNotice } from "@/components/research/MarqueNotice";
+import { MarqueHistory } from "@/components/research/MarqueHistory";
+import { getMarqueHistory } from "@/lib/data/marque-histories";
 
 export const revalidate = 3600;
 
@@ -78,6 +81,7 @@ export default async function MakePage({ params }: Props) {
   const years = yearSpan(items);
   const first = items[0];
   const last = items[items.length - 1];
+  const marque = getMarqueHistory(canonicalSlug);
   const disputed = items.reduce((n, m) => n + m.disputed_count, 0);
   const sources = items.reduce((n, m) => n + m.source_count, 0);
 
@@ -87,7 +91,7 @@ export default async function MakePage({ params }: Props) {
     name: `${make} Model Histories`,
     url: `https://fullysorted.com/research/models/${canonicalSlug}`,
     isPartOf: { "@id": "https://fullysorted.com/#website" },
-    about: { "@type": "Organization", name: make },
+    about: { "@type": "Organization", name: make, ...(marque ? { description: marque.summary, ...(marque.founder ? { founder: { "@type": "Person", name: marque.founder } } : {}) } : {}) },
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: items.length,
@@ -142,13 +146,21 @@ export default async function MakePage({ params }: Props) {
         </div>
       </div>
 
+      {marque && <MarqueHistory m={marque} />}
+
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        {marque && (
+          <h2 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl mb-6" style={{ color: "#1a1a18" }}>
+            {items.length} {make} model {items.length === 1 ? "history" : "histories"}
+          </h2>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map((m) => (
             <ModelCard key={m.id} m={m} showMake={false} />
           ))}
         </div>
-        <MarqueNotice make={make} className="mt-12 max-w-2xl" />
+        <div className="mt-12"><SendUsACar make={make} /></div>
+        <MarqueNotice make={make} className="mt-4 max-w-2xl" />
       </div>
     </div>
   );
