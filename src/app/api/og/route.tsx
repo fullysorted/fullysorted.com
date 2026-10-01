@@ -29,6 +29,33 @@ const H = 630;
 
 type Font = { name: string; data: ArrayBuffer; weight: 400 | 700; style: 'normal' };
 
+/** The badge + wordmark lockup, 1325x256, read once and passed to Satori as a data URL. */
+const LOCKUP_RATIO = 1325 / 256;
+let lockupPromise: Promise<string | null> | null = null;
+function lockup(): Promise<string | null> {
+  if (lockupPromise) return lockupPromise;
+  lockupPromise = (async () => {
+    try {
+      const buf = await readFile(join(process.cwd(), 'public', 'fullysorted-lockup.svg'));
+      return `data:image/svg+xml;base64,${buf.toString('base64')}`;
+    } catch { /* fall through to the network copy */ }
+    try {
+      const res = await fetch(`${SITE_URL}/fullysorted-lockup.svg`, { cache: 'force-cache' });
+      if (res.ok) return `data:image/svg+xml;base64,${Buffer.from(await res.arrayBuffer()).toString('base64')}`;
+    } catch { /* leave it out */ }
+    return null;
+  })();
+  return lockupPromise;
+}
+
+/** The lockup at a given height, or the plain name if the file could not be read. */
+function Logo({ src, height }: { src: string | null; height: number }) {
+  if (!src) return <div style={{ fontFamily: BODY, fontWeight: 700, fontSize: Math.round(height * 0.6), color: INK }}>Fully Sorted</div>;
+  const width = Math.round(height * LOCKUP_RATIO);
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={src} alt="Fully Sorted" width={width} height={height} style={{ width, height }} />;
+}
+
 let fontsPromise: Promise<Font[]> | null = null;
 /** Read the fonts from /public once per instance. If that fails, fetch them from the site; if that fails, Satori's default face. */
 function fonts(): Promise<Font[]> {
@@ -67,7 +94,7 @@ function titleSize(t: string, wide: boolean): number {
   return n <= 22 ? 72 : n <= 36 ? 58 : n <= 60 ? 46 : 38;
 }
 
-function Card({ card, photo }: { card: ShareCard; photo: string | null }) {
+function Card({ card, photo, logo }: { card: ShareCard; photo: string | null; logo: string | null }) {
   const wide = !photo;
   const textW = wide ? W - 160 : 560;
   return (
@@ -85,8 +112,8 @@ function Card({ card, photo }: { card: ShareCard; photo: string | null }) {
         </div>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', width: textW }}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ fontFamily: DISPLAY, fontSize: 34, color: INK, letterSpacing: -0.5 }}>Fully Sorted</div>
-            <div style={{ fontFamily: MONO, fontSize: 16, letterSpacing: 2, color: MUTED, marginTop: 6 }}>FULLYSORTED.COM</div>
+            <Logo src={logo} height={44} />
+            <div style={{ fontFamily: MONO, fontSize: 16, letterSpacing: 2, color: MUTED, marginTop: 10 }}>FULLYSORTED.COM</div>
           </div>
           <div style={{ width: 56, height: 4, background: TEAL, borderRadius: 2, marginBottom: 12 }} />
         </div>
@@ -104,10 +131,10 @@ function Card({ card, photo }: { card: ShareCard; photo: string | null }) {
 }
 
 /** The card for a page we cannot load: the wordmark on white, never an error image in a chat thread. */
-function Fallback() {
+function Fallback({ logo }: { logo: string | null }) {
   return (
     <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', background: '#FFFFFF', fontFamily: BODY }}>
-      <div style={{ fontFamily: DISPLAY, fontSize: 84, color: INK, letterSpacing: -2 }}>Fully Sorted</div>
+      <Logo src={logo} height={110} />
       <div style={{ fontSize: 26, color: MUTED, marginTop: 16 }}>Know it. Fix it. Buy it. Sell it.</div>
       <div style={{ width: 72, height: 4, background: TEAL, borderRadius: 2, marginTop: 40 }} />
     </div>
@@ -145,12 +172,13 @@ export async function GET(req: NextRequest) {
     try { card = await loadShareCard(type, id); } catch (e) { console.error('[og] load failed:', e); }
   }
   const fontList = await fonts();
+  const logo = await lockup();
   const opts = { width: W, height: H, headers, fonts: fontList.length ? fontList : undefined };
 
   if (!card) {
-    return new ImageResponse(<Fallback />, { ...opts, headers: { 'Cache-Control': 'public, max-age=300, s-maxage=3600' } });
+    return new ImageResponse(<Fallback logo={logo} />, { ...opts, headers: { 'Cache-Control': 'public, max-age=300, s-maxage=3600' } });
   }
   // Satori needs decoded surface area; a data URL keeps the fetch under our control.
   const photo = await inlinePhoto(card.photo);
-  return new ImageResponse(<Card card={{ ...card, photo }} photo={photo} />, opts);
+  return new ImageResponse(<Card card={{ ...card, photo }} photo={photo} logo={logo} />, opts);
 }

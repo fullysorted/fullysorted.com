@@ -48,19 +48,11 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0">
+          <Link href="/" className="flex items-center shrink-0">
             <Image
-              src="/fs-badge.svg"
-              alt=""
-              width={40}
-              height={40}
-              priority
-              className="h-10 w-10"
-            />
-            <Image
-              src="/fullysorted-logo.svg"
+              src="/fullysorted-lockup.svg"
               alt="Fully Sorted"
-              width={178}
+              width={207}
               height={40}
               priority
               className="h-10 w-auto"

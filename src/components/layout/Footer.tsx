@@ -91,11 +91,13 @@ export function Footer() {
           {/* Brand Column */}
           <div className="col-span-2 lg:col-span-1">
             <div className="mb-4">
-              {/* Cream wordmark variant, footer is always dark */}
+              {/* Badge + cream wordmark, footer is always dark */}
               <img
-                src="/fullysorted-logo-cream.svg"
+                src="/fullysorted-lockup-cream.svg"
                 alt="Fully Sorted"
-                style={{ height: 28, width: "auto", maxWidth: 160 }}
+                width={166}
+                height={32}
+                style={{ height: 32, width: "auto" }}
               />
             </div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(245,239,230,0.62)" }}>
