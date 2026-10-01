@@ -50,6 +50,12 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
   const [duplicate, setDuplicate] = useState(false);
   const [linkSent, setLinkSent] = useState('');
 
+  const normalizeWebsite = (v: string) => {
+    const t = v.trim();
+    if (!t) return '';
+    return /^https?:\/\//i.test(t) ? t : `https://${t}`;
+  };
+
   const update = (field: string, value: string) => setForm((f) => ({ ...f, [field]: value }));
 
   const toggleWork = (key: WorkSettingKey) => {
@@ -85,6 +91,9 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...form,
+          // Typed as plain text so "yourshop.com" is accepted. A type="url"
+          // field silently blocked submit on phones when the scheme was missing.
+          website: normalizeWebsite(form.website),
           workSettings,
           serviceTypes: serviceTypes.filter((k) => k !== form.category),
           teamSize: form.teamSize || null,
@@ -336,7 +345,7 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
               </div>
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Website</label>
-                <input type="url" placeholder="https://" value={form.website} onChange={e => update('website', e.target.value)} className={INPUT} />
+                <input type="text" inputMode="url" autoCapitalize="none" autoCorrect="off" placeholder="yourshop.com" value={form.website} onChange={e => update('website', e.target.value)} className={INPUT} />
               </div>
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Instagram</label>
