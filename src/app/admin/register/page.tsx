@@ -15,7 +15,7 @@ type Submission = {
 const TABS = ["pending", "approved", "rejected"] as const;
 
 const KIND_LABEL: Record<string, string> = {
-  event: "Record", correction: "Correction", ownership: "Owner report",
+  event: "Record", correction: "Correction", ownership: "Owner report", new_car: "Car to add",
 };
 
 export default function RegisterReviewPage() {
@@ -109,10 +109,17 @@ export default function RegisterReviewPage() {
                     : { background: "rgba(176,141,63,0.14)", color: "#8a6d1f" }}>
                   {KIND_LABEL[s.kind] ?? s.kind}
                 </span>
+                {s.model_slug.startsWith("unlisted/") || !s.chassis ? (
+                  <span className="text-sm font-semibold text-stone-700">
+                    {s.make && s.model ? `${s.make} ${s.model}` : s.model_slug.replace(/^unlisted\//, "").replace(/-/g, " ")}
+                    {s.chassis ? <span className="font-mono"> {s.chassis}</span> : <span className="text-stone-400 font-normal"> (no chassis given)</span>}
+                  </span>
+                ) : (
                 <Link href={`/register/${s.model_slug}/${encodeURIComponent(s.chassis)}`} target="_blank"
                   className="text-sm font-semibold text-accent hover:underline inline-flex items-center gap-1">
                   {s.make && s.model ? `${s.make} ${s.model}` : s.model_slug} <span className="font-mono">{s.chassis}</span> <ExternalLink className="w-3 h-3" />
                 </Link>
+                )}
                 {s.vin && <span className="font-mono text-xs text-stone-500">VIN {s.vin}</span>}
                 {s.event_date && <span className="font-mono text-xs text-stone-500">{s.event_date}</span>}
                 <span className="ml-auto text-xs text-stone-400">

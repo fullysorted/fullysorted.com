@@ -14,7 +14,7 @@ import { getOrCreateUserByEmail } from '@/lib/identity';
  * /admin/register, and even then it is rendered as owner-reported forever.
  * Names and email addresses are stored for follow-up and never rendered.
  */
-const KINDS = ['event', 'correction', 'ownership'] as const;
+const KINDS = ['event', 'correction', 'ownership', 'new_car'] as const;
 const RELATIONS = ['owner', 'former_owner', 'dealer', 'historian', 'other'] as const;
 
 export async function POST(req: NextRequest) {
@@ -33,23 +33,34 @@ export async function POST(req: NextRequest) {
 
   const s = (v: unknown, max = 500) => (v == null ? null : String(v).trim().slice(0, max) || null);
 
-  const modelSlug = (s(body.modelSlug, 300) || '').toLowerCase();
-  if (!/^[a-z0-9-]+\/[a-z0-9-]+$/.test(modelSlug)) {
-    return NextResponse.json({ error: 'Missing model reference.' }, { status: 400 });
-  }
   const kindRaw = String(body.kind ?? '');
   if (!(KINDS as readonly string[]).includes(kindRaw)) {
     return NextResponse.json({ error: 'Choose what kind of submission this is.' }, { status: 400 });
   }
   const kind = kindRaw as (typeof KINDS)[number];
+
+  // 'new_car' comes from the open "send us a car" box on the hub and make
+  // pages: the car may not have a history yet, so it is filed under
+  // unlisted/<slug of what they typed> and the chassis is optional. Admin
+  // approval of an unlisted row only marks it; it never writes a public
+  // register entry against a model we have not researched.
+  const car = s(body.car, 200);
+  let modelSlug = (s(body.modelSlug, 300) || '').toLowerCase();
+  if (!modelSlug && kind === 'new_car' && car && car.length >= 3) {
+    const tail = car.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+    if (tail) modelSlug = `unlisted/${tail}`;
+  }
+  if (!/^[a-z0-9-]+\/[a-z0-9-]+$/.test(modelSlug)) {
+    return NextResponse.json({ error: kind === 'new_car' ? 'Tell us the car: year, make and model.' : 'Missing model reference.' }, { status: 400 });
+  }
   const relationRaw = String(body.submitterRelation ?? '');
   if (!(RELATIONS as readonly string[]).includes(relationRaw)) {
     return NextResponse.json({ error: 'Tell us your connection to the car.' }, { status: 400 });
   }
   const relation = relationRaw as (typeof RELATIONS)[number];
 
-  const chassis = normalizeChassis(s(body.chassis, 64));
-  if (!chassis || chassis.length > 64) {
+  const chassis = normalizeChassis(s(body.chassis, 64)) ?? (kind === 'new_car' ? '' : null);
+  if (chassis === null || chassis.length > 64 || (kind !== 'new_car' && !chassis)) {
     return NextResponse.json({ error: 'A chassis number is required.' }, { status: 400 });
   }
   const vinInput = s(body.vin, 64);
@@ -65,8 +76,9 @@ export async function POST(req: NextRequest) {
   if (sourceUrl && !/^https?:\/\//i.test(sourceUrl)) {
     return NextResponse.json({ error: 'A source link should start with http.' }, { status: 400 });
   }
-  const text = s(body.body, 4000);
-  if (!text || text.length < 20) {
+  const note = s(body.body, 4000);
+  const text = kind === 'new_car' ? [car && `Car: ${car}`, note].filter(Boolean).join('\n\n') : note;
+  if (!text || (kind !== 'new_car' && text.length < 20)) {
     return NextResponse.json({ error: 'Tell us a little more, at least a sentence or two.' }, { status: 400 });
   }
   if (text.length > 2000) {
@@ -107,7 +119,7 @@ export async function POST(req: NextRequest) {
   });
 
   if (!result.delivered) {
-    return undeliverableResponse(`Register submission: ${modelSlug} chassis ${chassis}`, {
+    return undeliverableResponse(`Register submission: ${modelSlug}${chassis ? ` chassis ${chassis}` : ''}`, {
       Model: modelSlug,
       Chassis: chassis,
       VIN: vin,
