@@ -15,6 +15,8 @@ import { marqueNissan } from "./nissan";
 import { marquePorsche } from "./porsche";
 import { marqueToyota } from "./toyota";
 import { marqueVolkswagen } from "./volkswagen";
+import { marqueLamborghini } from "./lamborghini";
+import { marqueDatsun } from "./datsun";
 
 export interface MarqueSource { ref: string; title: string; url?: string | null; publisher?: string | null; sourceType: string; reliability: string }
 export interface MarqueClaim { section: string; claimText: string; status: string; sourceRefs: string[]; conflictNote?: string | null }
@@ -27,7 +29,7 @@ export interface MarqueHistory {
 
 const ALL = [
   marqueBmw, marqueChevrolet, marqueDodge, marqueFerrari, marqueFord, marqueLancia,
-  marqueMazda, marqueMercedesBenz, marqueNissan, marquePorsche, marqueToyota, marqueVolkswagen,
+  marqueMazda, marqueMercedesBenz, marqueNissan, marquePorsche, marqueToyota, marqueVolkswagen, marqueLamborghini, marqueDatsun,
 ] as unknown as MarqueHistory[];
 
 const BY_SLUG = new Map(ALL.map((m) => [m.slug, m]));

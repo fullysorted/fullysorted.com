@@ -127,6 +127,17 @@ import { seedBelAir195557 } from '@/lib/data/model-seed-bel-air-1955-57';
 import { seedGrandWagoneer } from '@/lib/data/model-seed-grand-wagoneer';
 import { seedScout } from '@/lib/data/model-seed-scout';
 import { seedDiablo } from '@/lib/data/model-seed-diablo';
+import { seedC10SquareBody } from '@/lib/data/model-seed-c10-square-body';
+import { seedTransAm197081 } from '@/lib/data/model-seed-trans-am-1970-81';
+import { seedKarmannGhia } from '@/lib/data/model-seed-karmann-ghia';
+import { seed280z } from '@/lib/data/model-seed-280z';
+import { seedCorollaAe86 } from '@/lib/data/model-seed-corolla-ae86';
+import { seedIntegraTypeRDc2 } from '@/lib/data/model-seed-integra-type-r-dc2';
+import { seed190sl } from '@/lib/data/model-seed-190sl';
+import { seedE930Cs } from '@/lib/data/model-seed-e9-3-0-cs';
+import { seedModelA } from '@/lib/data/model-seed-model-a';
+import { seed442196472 } from '@/lib/data/model-seed-442-1964-72';
+import { seed124Spider } from '@/lib/data/model-seed-124-spider';
 import { seedViperGen12 } from '@/lib/data/model-seed-viper-gen-1-2';
 import { seedFordGt2005 } from '@/lib/data/model-seed-ford-gt-2005';
 import { seedVolvo240 } from '@/lib/data/model-seed-volvo-240';
@@ -144,7 +155,7 @@ const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, see
   seedLandCruiser80,
   seed250GtLusso, seed275Gtb, seed330Gtc, seed365Gtb4Daytona, seed512Bb, seed288Gto,
   seed348, seed456, seed550Maranello, seed360, seedF50, seedEnzo,
-  seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx, seedFlaminia, seedBelAir195557, seedGrandWagoneer, seedScout, seedDiablo];
+  seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx, seedFlaminia, seedBelAir195557, seedGrandWagoneer, seedScout, seedDiablo, seedC10SquareBody, seedTransAm197081, seedKarmannGhia, seed280z, seedCorollaAe86, seedIntegraTypeRDc2, seed190sl, seedE930Cs, seedModelA, seed442196472, seed124Spider];
 
 // Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
 function isAuthorized(request: NextRequest): boolean {
