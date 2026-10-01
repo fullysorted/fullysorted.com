@@ -150,33 +150,26 @@ export default function AboutPage() {
           </div>
           <div className="lg:col-span-7 text-base sm:text-lg leading-relaxed space-y-5 lg:pt-12" style={{ color: "#3a3a30" }}>
             <p>
-              Fully Sorted is from San Diego, Southern California. The phrase is
-              British: in the UK, <em>sorted</em> means handled, dealt with, nothing
-              left hanging.
+              Built by enthusiasts in California. &ldquo;Sorted&rdquo; is a British
+              term, but the problem it solves is the same everywhere.
             </p>
             <p>
-              It got here by way of La Jolla. Early in his career, Chris Peterson wrote
-              the ads for Symbolic Motors, and the race shop there was good enough that
-              &ldquo;fully sorted&rdquo; went on nearly every race car he sold. He wrote
-              it so often it burned into his brain, and when it came time to name this,
-              nothing else fit.
+              The collector car world has never had one place to find the people who
+              keep these cars running. Everyone knows a guy, and the good names get
+              passed around quietly, or held close like a bargaining chip. That leaves
+              a lot of great shops unseen, and a lot of owners guessing.
             </p>
             <p>
-              Car people took the word somewhere more specific. A <strong style={{ color: INK }}>sorted</strong>{" "}
-              car is one whose faults have been chased down and fixed properly rather
-              than bodged or ignored. It isn&apos;t necessarily restored and it certainly
-              isn&apos;t concours. It is just <em>right</em>, and you can get in and drive
-              it without thinking about it.
+              Fully Sorted is here to change that. It&apos;s one hub where anyone can
+              find the right specialist, and where every good shop gets a fair chance
+              to be found.
             </p>
             <p>
-              Getting there is the hard part, because a sorted car is rarely the work of
-              one person. It takes a good inspector before you buy, a mechanic who knows
-              the model, someone who will do the paint properly, a transporter who
-              understands what they are carrying, and somewhere dry to keep it between
-              drives.
+              We&apos;re a small team. We want to make owning a collector car more fun,
+              and help keep the hobby alive for the people who come next.
             </p>
             <p className="font-display text-xl sm:text-2xl font-semibold tracking-tight" style={{ color: INK }}>
-              That is the whole company, really<span style={{ color: GOLD }}>.</span>
+              That&apos;s the whole company, really<span style={{ color: GOLD }}>.</span>
             </p>
           </div>
         </div>
