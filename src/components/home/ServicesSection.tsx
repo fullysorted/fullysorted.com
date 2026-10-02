@@ -66,7 +66,7 @@ export function ServicesSection({ providers = [], total = 0 }: { providers?: Rec
           <div className="lg:col-span-5 lg:pt-9">
             <p className="text-base leading-relaxed" style={{ color: MUTED }}>
               {hasProviders
-                ? "The specialists who have just listed. Nobody pays to appear here, and reviews come only from owners who used them."
+                ? "The specialists who have just listed. Reviews come only from owners who used them."
                 : `${verbLine.charAt(0).toUpperCase() + verbLine.slice(1)}. In that order, usually.`}
             </p>
           </div>

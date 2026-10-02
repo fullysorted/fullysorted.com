@@ -214,8 +214,8 @@ export default function AboutPage() {
             <p>
               Owners leave a review after the work is done, and only after the work
               is done. A shop&apos;s place in the directory comes from that record and
-              nothing else. Nobody pays to appear higher, and no average is shown
-              until there are enough reviews to mean something.
+              nothing else. No average is shown until there are enough reviews to
+              mean something.
             </p>
             <p>
               We do not take a cut of the work. The job is between you and the

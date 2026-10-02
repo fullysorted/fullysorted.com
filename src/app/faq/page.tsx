@@ -70,10 +70,6 @@ const SECTIONS: FaqSection[] = [
         a: "Raise it with the specialist first. Most good shops fix their own mistakes, and the ones that don't are exactly what the public record is for. Then tell us, because a complaint is data: it goes on the directory record and it affects whether they stay listed. When fixed-price gigs open, there will be a formal revision and dispute path before funds are released. On quoted work there is not, because we never hold your money. Your recourse is the contract you have with them, and the review you leave.",
       },
       {
-        q: "Do specialists pay you to rank higher?",
-        a: "No. Nothing on the directory is for sale today: no promoted slots, no pay-to-rank, no sponsored results. If we ever do introduce paid placement, it will be labeled as such on the page itself, every time. The point of this site is that you can tell what you are looking at, and a directory you cannot trust the order of is worth nothing.",
-      },
-      {
         q: "Can a specialist delete a bad review?",
         a: "No. A provider can reply to any review, in public, and that is the only thing they can do to it. They cannot edit one, hide one, or take one down, and there is no button anywhere in their account that would. We step in only for the things that are not reviews (abuse, spam, or a review from someone who was never a customer), and when we remove something we record why. A review section a business can curate is an advertisement.",
       },
@@ -119,7 +115,7 @@ const SECTIONS: FaqSection[] = [
     items: [
       {
         q: "What does it cost to be listed?",
-        a: `The first ${FOUNDING_PROVIDER_THRESHOLD} specialists to join are founding members, and founding members lock in a free directory listing for life. We may one day offer paid tools to shops, but nobody will ever pay to appear in the directory ahead of anyone else, and a founding member's listing stays free whatever we add later. There are two ways to be on here: a directory profile, where owners find you and request quotes, and fixed-price gigs, where you package what you do at a set price and owners book it directly.`,
+        a: `The first ${FOUNDING_PROVIDER_THRESHOLD} specialists to join are founding members, and founding members lock in a free directory listing for life. We may one day offer paid tools to shops, and a founding member's listing stays free whatever we add later. There are two ways to be on here: a directory profile, where owners find you and request quotes, and fixed-price gigs, where you package what you do at a set price and owners book it directly.`,
         link: { href: "/services/apply", label: "Get listed" },
       },
       {

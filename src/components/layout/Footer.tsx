@@ -55,7 +55,6 @@ const footerLinks = {
 // completed payouts setup, which implied the whole site takes your money.
 const assurances = [
   { label: "256-bit SSL encrypted" },
-  { label: "No paid placement" },
   { label: "Flat listing fees" },
   { label: "$0 buyer's premium" },
 ];
