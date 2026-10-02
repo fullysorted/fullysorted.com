@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Camera, X, Loader2 } from "lucide-react";
-import { PARTS_KINDS, PARTS_CONDITIONS, PARTS_SHIPPING, PARTS_MAX_PHOTOS, type PartsKind } from "@/lib/parts-shared";
+import { PARTS_KINDS, PARTS_CONDITIONS, PARTS_SHIPPING, PARTS_MAX_PHOTOS, categoriesFor, partsCategory, type PartsKind } from "@/lib/parts-shared";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
@@ -28,10 +28,12 @@ function Label({ children, hint }: { children: React.ReactNode; hint?: string })
   );
 }
 
-export function PartsForm({ handle, models, presetModelSlug }: { handle: string | null; models: ModelOption[]; presetModelSlug?: string }) {
+export function PartsForm({ handle, models, presetModelSlug, presetKind, presetShelf }: { handle: string | null; models: ModelOption[]; presetModelSlug?: string; presetKind?: string; presetShelf?: string }) {
   const router = useRouter();
   const preset = models.find((m) => m.slug === presetModelSlug);
-  const [kind, setKind] = useState<PartsKind>("part");
+  const presetCat = partsCategory(presetShelf);
+  const [kind, setKind] = useState<PartsKind>(presetCat ? presetCat.kind : presetKind === "memorabilia" ? "memorabilia" : "part");
+  const [category, setCategory] = useState<string>(presetCat?.key ?? "");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [make, setMake] = useState(preset?.make ?? "");
@@ -102,12 +104,13 @@ export function PartsForm({ handle, models, presetModelSlug }: { handle: string 
     e.preventDefault();
     setError(null);
     if (!photos.length) { setError("Add at least one photo of the actual item."); return; }
+    if (!category) { setError("Pick a shelf so buyers can find it."); return; }
     setState("sending");
     try {
       const res = await fetch("/api/parts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kind, title, body, make, model, modelSlug, partNumber, condition, price, location, shipping, photos, handle: newHandle, agree, website }),
+        body: JSON.stringify({ kind, category, title, body, make, model, modelSlug, partNumber, condition, price, location, shipping, photos, handle: newHandle, agree, website }),
       });
       const d = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(d.error || "That did not save. Please try again.");
@@ -124,10 +127,23 @@ export function PartsForm({ handle, models, presetModelSlug }: { handle: string 
         <Label>What is it?</Label>
         <div className="grid grid-cols-2 gap-2">
           {PARTS_KINDS.map((k) => (
-            <button key={k.key} type="button" onClick={() => setKind(k.key)} aria-pressed={kind === k.key}
+            <button key={k.key} type="button" onClick={() => { if (k.key !== kind) setCategory(""); setKind(k.key); }} aria-pressed={kind === k.key}
               className="h-12 rounded-xl text-[15px] font-semibold"
               style={kind === k.key ? { background: INK, color: "#fff" } : { background: "#fff", color: INK, border: "1px solid rgba(18,53,42,0.2)" }}>
               {k.key === "part" ? "A part" : "Memorabilia"}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <Label>Which shelf?</Label>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {categoriesFor(kind).map((c) => (
+            <button key={c.key} type="button" onClick={() => setCategory(c.key)} aria-pressed={category === c.key}
+              className="min-h-11 px-3 py-2 rounded-xl text-[13px] font-semibold text-left leading-tight"
+              style={category === c.key ? { background: TEAL, color: "#fff" } : { background: "#fff", color: INK, border: "1px solid rgba(18,53,42,0.2)" }}>
+              {c.label}
             </button>
           ))}
         </div>

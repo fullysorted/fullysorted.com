@@ -18,11 +18,16 @@ import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
 // in the ResearchNav band on every research surface, provider entry points sit
 // on /services and in the footer, and Events lives in the footer until it
 // earns a bar slot back.
-type NavEntry = { href: string; label: string };
+//
+// Parts and Memorabilia joined the bar 2026-10-02, next to Browse Cars because
+// it is the other half of the marketplace. On narrow desktops it shortens to
+// "Parts" so the bar never wraps.
+type NavEntry = { href: string; label: string; short?: string };
 
 const navEntries: NavEntry[] = [
   { href: "/services", label: "Services" },
   { href: "/browse", label: "Browse Cars" },
+  { href: "/parts", label: "Parts and Memorabilia", short: "Parts" },
   { href: "/research/models", label: "Research" },
   { href: "/shop", label: "Shop" },
   { href: "/about", label: "About" },
@@ -65,9 +70,16 @@ export function Header() {
               <Link
                 key={entry.href}
                 href={entry.href}
-                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors"
+                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors whitespace-nowrap"
               >
-                {entry.label}
+                {entry.short ? (
+                  <>
+                    <span className="xl:hidden">{entry.short}</span>
+                    <span className="hidden xl:inline">{entry.label}</span>
+                  </>
+                ) : (
+                  entry.label
+                )}
               </Link>
             ))}
           </nav>

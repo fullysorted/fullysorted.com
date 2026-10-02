@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { resolveCurrentUser } from "@/lib/identity";
-import { getPartsPost } from "@/lib/parts";
-import { PARTS_KINDS, conditionLabel, priceLabel, shippingLabel } from "@/lib/parts-shared";
+import { getPartsPost, getRelatedParts } from "@/lib/parts";
+import { PARTS_KINDS, conditionLabel, partsCategory, priceLabel, shippingLabel } from "@/lib/parts-shared";
+import { tradeHref } from "@/lib/category-slugs";
+import { PartsCard } from "@/components/parts/PartsCard";
 import { shareImageUrl, SITE_URL } from "@/lib/share";
 import { ShareButton } from "@/components/share/ShareButton";
 import { PartsActions } from "./PartsActions";
@@ -53,6 +55,9 @@ export default async function PartsPostPage({ params, searchParams }: Props) {
   const kind = PARTS_KINDS.find((k) => k.key === post.kind)?.singular ?? post.kind;
   const open = post.status === "open";
   const sold = post.status === "sold";
+  const shelf = partsCategory(post.category);
+  const kindPlural = PARTS_KINDS.find((k) => k.key === post.kind)?.label ?? "Parts";
+  const related = open || sold ? await getRelatedParts(post) : [];
 
   const facts: [string, string][] = [];
   const car = [post.make, post.model].filter(Boolean).join(" ");
@@ -77,7 +82,12 @@ export default async function PartsPostPage({ params, searchParams }: Props) {
     <div className="min-h-screen" style={{ background: "var(--bg-primary)" }}>
       {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-        <Link href="/parts" className="text-sm font-semibold" style={{ color: TEAL }}>&larr; Parts and memorabilia</Link>
+        <nav aria-label="Breadcrumb" className="text-sm font-semibold flex flex-wrap gap-x-2" style={{ color: MUTED }}>
+          <Link href="/parts" style={{ color: TEAL }}>Parts and memorabilia</Link>
+          <span>/</span>
+          <Link href={`/parts?kind=${post.kind}#board`} style={{ color: TEAL }}>{kindPlural}</Link>
+          {shelf && (<><span>/</span><Link href={`/parts/category/${shelf.slug}`} style={{ color: TEAL }}>{shelf.label}</Link></>)}
+        </nav>
 
         {post.mine && post.status === "pending" && (
           <div className="mt-5 rounded-xl p-4 text-sm" style={{ background: "var(--bg-surface)", color: INK }}>
@@ -110,7 +120,7 @@ export default async function PartsPostPage({ params, searchParams }: Props) {
           </div>
 
           <div className="lg:sticky lg:top-24">
-            <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>{kind}{sold ? " · sold" : " for sale"}</p>
+            <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>{shelf?.label ?? kind}{sold ? " · sold" : " for sale"}</p>
             <h1 className="font-display tracking-tight text-2xl sm:text-3xl leading-tight mt-2" style={{ color: INK }}>{post.title}</h1>
             <p className="font-display text-3xl mt-3" style={{ color: sold ? MUTED : INK }}>{sold ? "Sold" : priceLabel(post.price)}</p>
             <p className="text-sm mt-2" style={{ color: MUTED }}>
@@ -139,6 +149,30 @@ export default async function PartsPostPage({ params, searchParams }: Props) {
             )}
           </div>
         </div>
+
+        {(related.length > 0 || shelf?.trade) && (
+          <div className="mt-16 pt-10" style={{ borderTop: `1px solid ${RULE}` }}>
+            {related.length > 0 && (
+              <>
+                <div className="flex items-baseline justify-between mb-5">
+                  <h2 className="font-display text-2xl" style={{ color: INK }}>More like this</h2>
+                  <Link href={shelf ? `/parts/category/${shelf.slug}` : `/parts?kind=${post.kind}#board`} className="text-sm font-semibold" style={{ color: TEAL }}>
+                    {shelf ? `All ${shelf.label.toLowerCase()}` : `All ${kindPlural.toLowerCase()}`}
+                  </Link>
+                </div>
+                <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {related.map((r) => <li key={r.id}><PartsCard p={r} /></li>)}
+                </ul>
+              </>
+            )}
+            {shelf?.trade && (
+              <p className="text-sm mt-8" style={{ color: MUTED }}>
+                Buying this for a car that needs it fitted?{" "}
+                <Link href={tradeHref(shelf.trade)} className="font-semibold underline underline-offset-4" style={{ color: TEAL }}>Find a pro who knows the car</Link>.
+              </p>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

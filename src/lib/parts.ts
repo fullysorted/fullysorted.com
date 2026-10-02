@@ -22,8 +22,8 @@
 import { neon } from '@neondatabase/serverless';
 import { isBlobImageUrl } from '@/lib/images';
 import {
-  PARTS_KINDS, PARTS_CONDITIONS, PARTS_SHIPPING, PARTS_DAYS, PARTS_MAX_LIVE, PARTS_MAX_PHOTOS,
-  type PartsKind, type PartsCondition, type PartsShipping, type PartsPost,
+  PARTS_KINDS, PARTS_CATEGORIES, PARTS_CONDITIONS, PARTS_SHIPPING, PARTS_DAYS, PARTS_MAX_LIVE, PARTS_MAX_PHOTOS,
+  type PartsKind, type PartsCategoryKey, type PartsCondition, type PartsShipping, type PartsPost,
 } from '@/lib/parts-shared';
 
 export { PARTS_DAYS, PARTS_MAX_LIVE, PARTS_MAX_PHOTOS, type PartsKind, type PartsPost };
@@ -76,6 +76,8 @@ export function ensurePartsTables(): Promise<void> {
         created_at TIMESTAMP NOT NULL DEFAULT NOW()
       )
     `;
+    // Added 2026-10-02 with the category shelves. Nullable: older listings have none.
+    await sql`ALTER TABLE parts_posts ADD COLUMN IF NOT EXISTS category VARCHAR(16)`;
     await sql`CREATE INDEX IF NOT EXISTS parts_posts_status_idx ON parts_posts (status, expires_at DESC)`;
     await sql`CREATE INDEX IF NOT EXISTS parts_posts_user_idx ON parts_posts (user_id)`;
     await sql`CREATE INDEX IF NOT EXISTS parts_posts_model_idx ON parts_posts (model_slug) WHERE model_slug IS NOT NULL`;
@@ -93,6 +95,7 @@ function toPost(r: Record<string, unknown>): PartsPost {
   return {
     id: Number(r.id),
     kind: r.kind as PartsKind,
+    category: PARTS_CATEGORIES.some((c) => c.key === r.category) ? (r.category as PartsCategoryKey) : null,
     title: String(r.title),
     body: String(r.body),
     make: (r.make as string) ?? null,
@@ -143,6 +146,28 @@ export async function getOpenPartsForModel(modelSlug: string, limit = 6): Promis
   }
 }
 
+/** Other live listings on the same shelf, for the "more like this" strip. Quiet on failure. */
+export async function getRelatedParts(post: { id: number; kind: PartsKind; category: PartsCategoryKey | null; make: string | null }, limit = 3): Promise<PartsPost[]> {
+  const sql = db();
+  if (!sql) return [];
+  try {
+    await ensurePartsTables();
+    // Same shelf first, then same make, then same kind. One query, ranked.
+    const rows = await sql`
+      SELECT p.*, u.handle FROM parts_posts p JOIN users u ON u.id = p.user_id
+      WHERE p.id <> ${post.id} AND p.status = 'open' AND p.expires_at > NOW() AND u.status <> 'suspended' AND p.kind = ${post.kind}
+      ORDER BY (COALESCE(p.category, '') = ${post.category ?? '-'}) DESC,
+               (LOWER(COALESCE(p.make, '')) = LOWER(${post.make ?? '-'})) DESC,
+               p.approved_at DESC
+      LIMIT ${limit}
+    `;
+    return rows.map(toPost);
+  } catch (e) {
+    console.error('[parts] related lookup failed:', e);
+    return [];
+  }
+}
+
 /** One listing. Open listings are public; sold ones stay readable; anything else is visible only to its owner. */
 export async function getPartsPost(id: number, viewerUserId: number | null): Promise<(PartsPost & { mine: boolean }) | null> {
   const sql = db();
@@ -171,7 +196,7 @@ const clean = (v: unknown, max: number): string | null => {
 const CONTACT = /([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})|(\+?\d[\d\s().-]{8,}\d)|(https?:\/\/|www\.)/i;
 
 export type PartsInput = {
-  kind: PartsKind; title: string; body: string; make: string | null; model: string | null; modelSlug: string | null;
+  kind: PartsKind; category: PartsCategoryKey | null; title: string; body: string; make: string | null; model: string | null; modelSlug: string | null;
   partNumber: string | null; condition: PartsCondition | null; price: number | null; location: string | null;
   shipping: PartsShipping | null; photos: string[];
 };
@@ -194,6 +219,13 @@ export function parsePartsInput(
 ): { ok: true; input: PartsInput } | { ok: false; reason: string } {
   const kind = PARTS_KINDS.find((k) => k.key === raw.kind)?.key;
   if (!kind) return { ok: false, reason: 'Choose what this is: a part or memorabilia.' };
+  // Optional on the wire so older clients still post; the form always sends one.
+  let category: PartsCategoryKey | null = null;
+  if (raw.category) {
+    const c = PARTS_CATEGORIES.find((x) => x.key === raw.category);
+    if (!c || c.kind !== kind) return { ok: false, reason: 'Pick a shelf that matches what this is.' };
+    category = c.key;
+  }
   const title = clean(raw.title, 140);
   const bodyText = String(raw.body ?? '').trim().slice(0, 3000);
   if (!title || title.length < 8) return { ok: false, reason: 'Give it a headline of at least a few words.' };
@@ -220,7 +252,7 @@ export function parsePartsInput(
   return {
     ok: true,
     input: {
-      kind, title, body: bodyText, photos, price, condition, shipping, modelSlug,
+      kind, category, title, body: bodyText, photos, price, condition, shipping, modelSlug,
       make: clean(raw.make, 60),
       model: clean(raw.model, 80),
       partNumber: clean(raw.partNumber, 60),

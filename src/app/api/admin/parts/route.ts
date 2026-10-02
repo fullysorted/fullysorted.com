@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
       FROM parts_posts
     `;
     const posts = await sql`
-      SELECT p.id, p.kind, p.title, p.body, p.make, p.model, p.model_slug, p.part_number, p.condition, p.price, p.location, p.shipping, p.photos,
+      SELECT p.id, p.kind, p.category, p.title, p.body, p.make, p.model, p.model_slug, p.part_number, p.condition, p.price, p.location, p.shipping, p.photos,
              p.status, p.admin_note, p.reply_count, p.created_at, p.approved_at, p.expires_at,
              (p.status = 'open' AND p.expires_at <= NOW()) AS expired,
              u.id AS user_id, u.handle, u.email, u.name

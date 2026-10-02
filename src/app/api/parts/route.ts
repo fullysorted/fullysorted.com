@@ -50,8 +50,8 @@ export async function POST(req: NextRequest) {
     }
     const i = parsed.input;
     const rows = await sql`
-      INSERT INTO parts_posts (user_id, kind, title, body, make, model, model_slug, part_number, condition, price, location, shipping, photos)
-      VALUES (${user.id}, ${i.kind}, ${i.title}, ${i.body}, ${i.make}, ${i.model}, ${i.modelSlug}, ${i.partNumber}, ${i.condition}, ${i.price}, ${i.location}, ${i.shipping}, ${JSON.stringify(i.photos)}::jsonb)
+      INSERT INTO parts_posts (user_id, kind, category, title, body, make, model, model_slug, part_number, condition, price, location, shipping, photos)
+      VALUES (${user.id}, ${i.kind}, ${i.category}, ${i.title}, ${i.body}, ${i.make}, ${i.model}, ${i.modelSlug}, ${i.partNumber}, ${i.condition}, ${i.price}, ${i.location}, ${i.shipping}, ${JSON.stringify(i.photos)}::jsonb)
       RETURNING id
     `;
     const id = Number(rows[0].id);

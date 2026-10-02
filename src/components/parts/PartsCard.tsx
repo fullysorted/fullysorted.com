@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PARTS_KINDS, conditionLabel, priceLabel, type PartsPost } from "@/lib/parts-shared";
+import { PARTS_KINDS, conditionLabel, partsCategory, priceLabel, type PartsPost } from "@/lib/parts-shared";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
@@ -8,7 +8,7 @@ const RULE = "rgba(18,53,42,0.14)";
 
 /** One listing. `compact` is the thumbnail row used in sidebars (model pages); the default is the board tile. */
 export function PartsCard({ p, compact = false }: { p: PartsPost; compact?: boolean }) {
-  const kind = PARTS_KINDS.find((k) => k.key === p.kind)?.singular ?? "Part";
+  const kind = partsCategory(p.category)?.label ?? PARTS_KINDS.find((k) => k.key === p.kind)?.singular ?? "Part";
   const sold = p.status === "sold";
   const facts = [conditionLabel(p.condition), [p.make, p.model].filter(Boolean).join(" "), p.location].filter(Boolean);
   const photo = p.photos[0] ?? null;

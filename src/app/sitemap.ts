@@ -9,6 +9,7 @@ import { PROVIDER_TRACKS } from "@/lib/data/providerTracks";
 import { isServiceCategory } from "@/lib/service-categories";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 import { CATEGORY_PAGES } from "@/lib/data/categoryPages";
+import { PARTS_CATEGORIES } from "@/lib/parts-shared";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://fullysorted.com";
@@ -20,6 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/sell`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/wanted`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/parts`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
+    ...PARTS_CATEGORIES.map((c) => ({ url: `${base}/parts/category/${c.slug}`, lastModified: now, changeFrequency: "daily" as const, priority: 0.6 })),
     ...(VALUE_GUIDE_PUBLIC
       ? [{ url: `${base}/value-guide`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 }]
       : []),

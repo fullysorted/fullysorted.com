@@ -7,7 +7,7 @@ import { RefreshCw, Check, X, Trash2, Package } from "lucide-react";
 
 type Summary = { pending: number; open: number; sold: number; replies: number };
 type Row = {
-  id: number; kind: string; title: string; body: string; make: string | null; model: string | null; model_slug: string | null;
+  id: number; kind: string; category?: string | null; title: string; body: string; make: string | null; model: string | null; model_slug: string | null;
   part_number: string | null; condition: string | null; price: number | null; location: string | null; shipping: string | null;
   photos: string[]; status: string; admin_note: string | null;
   reply_count: number; created_at: string; expires_at: string | null; expired: boolean;
@@ -97,7 +97,7 @@ export default function AdminPartsPage() {
           {posts.map((p) => (
             <li key={p.id} className="rounded-2xl border border-stone-200 bg-white p-4 sm:p-5">
               <p className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
-                {p.kind} · {p.expired ? "expired" : p.status} · {p.price == null ? "make an offer" : `$${p.price.toLocaleString()}`}
+                {p.kind}{p.category ? ` / ${p.category}` : ""} · {p.expired ? "expired" : p.status} · {p.price == null ? "make an offer" : `$${p.price.toLocaleString()}`}
               </p>
               {p.photos?.length > 0 && (
                 <div className="flex gap-2 mt-2 overflow-x-auto">

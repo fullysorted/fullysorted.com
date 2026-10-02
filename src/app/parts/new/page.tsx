@@ -15,11 +15,12 @@ const INK = "#12352A";
 const TEAL = "#1C8C87";
 const MUTED = "#6B7280";
 
-type Props = { searchParams: Promise<{ model?: string }> };
+type Props = { searchParams: Promise<{ model?: string; kind?: string; shelf?: string }> };
 
 export default async function NewPartsPage({ searchParams }: Props) {
   const user = await resolveCurrentUser();
-  const preset = (await searchParams).model ?? "";
+  const sp = await searchParams;
+  const preset = sp.model ?? "";
   // The model list is the one thing here that costs a query, and only signed-in
   // members see the form, so it is fetched only for them.
   let models: { slug: string; name: string; make: string; model: string }[] = [];
@@ -37,7 +38,7 @@ export default async function NewPartsPage({ searchParams }: Props) {
           Free. No fee when it sells. It gets a quick read before it goes up, and it stays up for 90 days.
         </p>
         {user ? (
-          <PartsForm handle={user.handle} models={models} presetModelSlug={preset} />
+          <PartsForm handle={user.handle} models={models} presetModelSlug={preset} presetKind={sp.kind} presetShelf={sp.shelf} />
         ) : (
           <div className="rounded-2xl p-6 sm:p-8" style={{ background: "var(--bg-surface)" }}>
             <p className="font-semibold" style={{ color: INK }}>Listing needs an account.</p>
