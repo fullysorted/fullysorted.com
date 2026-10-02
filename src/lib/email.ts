@@ -1060,3 +1060,36 @@ export async function notifyNewsletterFallback(d: { email: string; interests: st
     `),
   });
 }
+
+// ─── Owner check-in on a directory lead (2026-10-02) ─────────────────────────
+// One email, about a week after an owner contacted a shop. Four plain links to
+// /checkin/<token>; each lands on a page with one confirming click (a POST), so
+// mail scanners following links cannot answer for the owner. Sent only by
+// /api/cron/lead-checkins, and only while LEAD_CHECKINS_ENABLED is true.
+export async function sendLeadCheckinEmail(d: {
+  to: string;
+  ownerName: string;
+  businessName: string;
+  token: string;
+}) {
+  const base = `${"https://fullysorted.com"}/checkin/${encodeURIComponent(d.token)}`;
+  const first = (d.ownerName || "").trim().split(/\s+/)[0] || "there";
+  const link = (a: string, label: string) =>
+    `<p style="margin:0 0 10px;"><a href="${safeUrl(`${base}?a=${a}`)}" style="color:#1E6091;font-weight:600;">${label}</a></p>`;
+  return sendEmail({
+    to: d.to,
+    subject: `Did ${d.businessName} get back to you?`,
+    html: orderShell({
+      accent: "#1E6091",
+      heading: "Quick one about your inquiry",
+      bodyHtml: `<p>Hi ${esc(first)},</p>
+        <p>A little while ago you contacted <strong>${esc(d.businessName)}</strong> through Fully Sorted. How did it go? One click is plenty:</p>
+        ${link("booked", "They got back to me and the work is going ahead")}
+        ${link("talking", "We are still talking")}
+        ${link("not_going_ahead", "We spoke, but it is not going ahead")}
+        ${link("no_reply", "I never heard back")}
+        <p style="font-size:13px;color:#6a6a5e;margin-top:18px;">It tells us which shops look after people. Your answer is not shown publicly, and this is the only time we will ask about this inquiry.</p>`,
+      footerHtml: `Fully Sorted · fullysorted.com<br/>You're getting this because you sent an inquiry to ${esc(d.businessName)} through our directory. Questions? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a>.`,
+    }),
+  });
+}

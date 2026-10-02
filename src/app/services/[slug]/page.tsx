@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import ContactLink from '@/components/provider/ContactLink';
 import { categoryLabel } from '@/lib/service-categories';
 import { formatBusinessName, formatLocation } from '@/lib/provider-format';
 import { notFound } from 'next/navigation';
@@ -569,35 +570,39 @@ export default async function ProviderProfilePage({ params }: Props) {
             {signedIn && (provider.phone || provider.website || igHandle) && (
               <div className="mt-6 pt-5 space-y-2.5" style={{ borderTop: '1px solid var(--border-light)' }}>
                 {provider.phone && (
-                  <a
+                  <ContactLink
+                    providerId={provider.id}
+                    kind="phone"
                     href={`tel:${provider.phone}`}
                     className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-accent"
                     style={{ color: 'var(--text-primary)' }}
                   >
                     📞 {provider.phone}
-                  </a>
+                  </ContactLink>
                 )}
                 {provider.website && (
-                  <a
+                  <ContactLink
+                    providerId={provider.id}
+                    kind="website"
                     href={normalizeWebsite(provider.website)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    newTab
                     className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-accent"
                     style={{ color: 'var(--text-primary)' }}
                   >
                     🌐 {provider.website.replace(/^https?:\/\//i, '').replace(/\/$/, '')}
-                  </a>
+                  </ContactLink>
                 )}
                 {igHandle && (
-                  <a
+                  <ContactLink
+                    providerId={provider.id}
+                    kind="instagram"
                     href={`https://instagram.com/${igHandle}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    newTab
                     className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-accent"
                     style={{ color: 'var(--text-primary)' }}
                   >
                     @ {igHandle}
-                  </a>
+                  </ContactLink>
                 )}
               </div>
             )}

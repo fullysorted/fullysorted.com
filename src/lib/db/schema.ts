@@ -230,6 +230,16 @@ export const messages = pgTable('messages', {
   junk: boolean('junk').default(false),
   junkReason: varchar('junk_reason', { length: 120 }),
 
+  // ─── Owner check-in (2026-10-02) ──────────────────────────────────────
+  // The other side of the lead. About a week after a directory enquiry the
+  // owner gets one short email: did you hear back, did the work go ahead.
+  // Self-reported, one email per lead, never repeated. Gated by
+  // LEAD_CHECKINS_ENABLED. job_status: booked | talking | no_reply | not_going_ahead
+  ownerToken: varchar('owner_token', { length: 64 }),
+  ownerAskedAt: timestamp('owner_asked_at'),
+  ownerAnsweredAt: timestamp('owner_answered_at'),
+  jobStatus: varchar('job_status', { length: 30 }),
+
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });

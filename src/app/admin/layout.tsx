@@ -33,6 +33,7 @@ const nav = [
   { href: "/admin/listings", label: "Listings", icon: Car },
   { href: "/admin/providers", label: "Providers", icon: Wrench },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
+  { href: "/admin/leads", label: "Leads", icon: Zap },
   { href: "/admin/reviews", label: "Reviews", icon: Star },
   { href: "/admin/market", label: "Market Data", icon: BarChart3 },
   { href: "/admin/models", label: "Research", icon: BookOpen },

@@ -91,3 +91,13 @@ export const GIG_PAYMENTS_ENABLED: boolean = false;
  * is set in Vercel, then flip this.
  */
 export const AI_ASSIST_ENABLED: boolean = false;
+
+/**
+ * Owner check-in email on directory leads (2026-10-02).
+ *
+ * When on, the daily cron /api/cron/lead-checkins sends ONE short email to an
+ * owner 7 to 30 days after they contacted a shop: did you hear back, did the
+ * work go ahead. Answers feed /admin/leads. Off until Chris has read the email
+ * copy in sendLeadCheckinEmail (src/lib/email.ts). Flip to true to start.
+ */
+export const LEAD_CHECKINS_ENABLED: boolean = false;

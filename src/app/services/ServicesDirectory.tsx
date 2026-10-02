@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { MapPin, Star, Phone, Globe, Shield, Camera, Wrench, Truck, ClipboardCheck, Paintbrush, Hammer, Warehouse, Sparkles, AtSign, Loader2, ArrowRight, Store, Handshake, Armchair, FileText, Gavel } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import ContactLink from '@/components/provider/ContactLink';
 import { ProviderBanner } from '@/components/providers/ProviderBanner';
 import { ProviderMark } from '@/components/providers/ProviderMark';
 import { SERVICE_CATEGORIES, TRADE_CATEGORIES, SALES_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
@@ -16,7 +17,6 @@ import {
   WORK_SETTINGS,
   normalizeWorkSettings,
   workSettingLabels,
-  teamSizeLabel,
   type WorkSettingKey,
 } from '@/lib/work-settings';
 
@@ -87,176 +87,180 @@ interface Provider {
 // ─── Provider Card ────────────────────────────────────
 function ProviderCard({ provider }: { provider: Provider }) {
   const categoryLabel = CATEGORIES.find((c) => c.key === provider.category)?.label ?? provider.category;
+  const name = formatBusinessName(provider.businessName);
+  const rating = ratingDisplay(provider.rating, provider.reviewCount);
+  const work = workSettingLabels(provider.workSettings);
+  // 2026-10-02: compact card, built for a directory of hundreds rather than a
+  // dozen. Shorter banner, two-line description, at most three specialties,
+  // and one contact row. Everything else lives on the profile, which is where
+  // the card sends people anyway.
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      whileHover={{ y: -3 }}
-      className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)] transition-shadow"
+      exit={{ opacity: 0, y: -8 }}
+      whileHover={{ y: -2 }}
+      className="group bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-[0_18px_40px_-18px_rgba(26,26,24,0.35)] transition-shadow flex flex-col"
     >
       {/* Banner: the shop's own wide photo, cropped around the point they
-          tapped. The mark overlaps its bottom edge. Both fall back to
-          something deliberate (trade photo, drawn trade tile), so a card
-          never shows a hole. See lib/provider-images.ts. */}
+          tapped, with the mark overlapping its bottom edge. Both fall back to
+          something deliberate, so a card never shows a hole. */}
       <Link href={`/services/${provider.slug}`} className="block relative" tabIndex={-1} aria-hidden>
         <ProviderBanner
-          name={formatBusinessName(provider.businessName)}
+          name={name}
           avatarUrl={provider.avatarUrl}
           category={provider.category}
           focus={provider.bannerFocus}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="h-36"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="h-24"
         />
-        <div className="absolute left-5 -bottom-7">
+        <div className="absolute left-4 -bottom-5">
           <ProviderMark
-            name={formatBusinessName(provider.businessName)}
+            name={name}
             category={provider.category}
             logoUrl={provider.logoUrl}
             logoKind={provider.logoKind}
-            size={56}
+            size={40}
             ring
           />
         </div>
       </Link>
       <p
-        className="pl-[92px] pr-5 pt-2.5 text-[11px] uppercase"
+        className="pl-[68px] pr-4 pt-1.5 text-[10px] uppercase truncate"
         style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: '0.12em', color: '#1C8C87' }}
       >
         {categoryLabel}
       </p>
-      <div className="px-6 pb-6 pt-4">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-3">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-lg font-bold text-stone-900">
-                <Link
-                  href={`/services/${provider.slug}`}
-                  className="transition-colors hover:text-accent focus-visible:underline"
-                >
-                  {formatBusinessName(provider.businessName)}
-                </Link>
-              </h3>
-              {/* Earned by the review record, not by an admin flag. This was
-                  gated on `provider.verified` — a retired trust badge that
-                  /api/providers never even selected, so it never rendered.
-                  The threshold now lives in lib/reviews.ts so the card, the
-                  profile badge and the JSON-LD cannot drift apart. */}
-              {ratingDisplay(provider.rating, provider.reviewCount).topRated && (
-                <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-xs font-medium px-2 py-0.5 rounded-full">
-                  <Star className="w-3 h-3" aria-hidden /> Top-rated
-                </span>
-              )}
-              {provider.foundingProvider && (
-                <span
-                  className="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full"
-                  style={{ background: 'var(--accent-gold-light)', color: '#8A6E31' }}
-                >
-                  <Sparkles className="w-3 h-3" /> Founding
-                </span>
-              )}
-            </div>
-            <div className="flex items-center gap-3 text-sm text-stone-500">
+      <div className="px-4 pb-4 pt-3 flex flex-col flex-1">
+        <div className="flex items-start gap-2 mb-1">
+          <h3 className="text-base font-bold text-stone-900 leading-snug flex-1 min-w-0">
+            <Link href={`/services/${provider.slug}`} className="transition-colors hover:text-accent focus-visible:underline">
+              {name}
+            </Link>
+          </h3>
+          {/* Earned by the review record, not an admin flag. Threshold lives
+              in lib/reviews.ts so card, profile and JSON-LD agree. */}
+          {rating.topRated && (
+            <span className="shrink-0 inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[11px] font-medium px-1.5 py-0.5 rounded-full">
+              <Star className="w-3 h-3" aria-hidden /> Top-rated
+            </span>
+          )}
+          {provider.foundingProvider && (
+            <span
+              className="shrink-0 inline-flex items-center gap-1 text-[11px] font-medium px-1.5 py-0.5 rounded-full"
+              style={{ background: 'var(--accent-gold-light)', color: '#8A6E31' }}
+              title="Founding provider"
+            >
+              <Sparkles className="w-3 h-3" aria-hidden /> Founding
+            </span>
+          )}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-stone-500 mb-2">
+          <span className="flex items-center gap-1">
+            <MapPin className="w-3 h-3" /> {formatLocation(provider.location)}
+          </span>
+          {/* No average below the minimum-n threshold. */}
+          {rating.show && (
+            <>
+              <span className="text-stone-300">·</span>
               <span className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5" /> {formatLocation(provider.location)}
+                <Star className="w-3 h-3 fill-gold text-gold" />
+                {Number(provider.rating).toFixed(1)} ({provider.reviewCount})
               </span>
-              {/* No average below the minimum-n threshold — a single review is
-                  not a rating. Below it the card shows nothing and the profile
-                  shows the review itself. */}
-              {ratingDisplay(provider.rating, provider.reviewCount).show && (
-                <>
-                  <span className="text-stone-300">|</span>
-                  <span className="flex items-center gap-1">
-                    <Star className="w-3.5 h-3.5 fill-gold text-gold" />
-                    {Number(provider.rating).toFixed(1)} ({provider.reviewCount})
-                  </span>
-                </>
-              )}
-              <span className="text-stone-300">|</span>
+            </>
+          )}
+          {provider.priceRange && (
+            <>
+              <span className="text-stone-300">·</span>
               <span className="text-stone-600 font-medium">{provider.priceRange}</span>
-            </div>
-            {/* Where the work happens, and how big the outfit is — both the
-                provider's own answers. A row that has told us nothing renders
-                nothing here rather than being labelled by inference. */}
-            {(workSettingLabels(provider.workSettings).length > 0 || teamSizeLabel(provider.teamSize)) && (
-              <div className="flex flex-wrap items-center gap-2 mt-2">
-                {workSettingLabels(provider.workSettings).map((label) => (
-                  <span
-                    key={label}
-                    className="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full"
-                    style={{ background: 'var(--accent-light, #E8F0F8)', color: '#1E6091' }}
-                  >
-                    {label}
-                  </span>
-                ))}
-                {teamSizeLabel(provider.teamSize) && (
-                  <span className="text-xs text-stone-500">{teamSizeLabel(provider.teamSize)}</span>
-                )}
-              </div>
+            </>
+          )}
+        </div>
+
+        {/* Where the work happens: the provider's own answer, never inferred. */}
+        {work.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-2">
+            {work.map((label) => (
+              <span
+                key={label}
+                className="text-[11px] font-medium px-1.5 py-0.5 rounded-full"
+                style={{ background: 'var(--accent-light, #E8F0F8)', color: '#1E6091' }}
+              >
+                {label}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <p className="text-sm text-stone-600 line-clamp-2 mb-3">{provider.description}</p>
+
+        {provider.specialties.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-3">
+            {provider.specialties.slice(0, 3).map((spec) => (
+              <span key={spec} className="bg-stone-100 text-stone-600 text-[11px] font-medium px-2 py-0.5 rounded-full">
+                {spec}
+              </span>
+            ))}
+            {provider.specialties.length > 3 && (
+              <span className="text-[11px] text-stone-400 px-1 py-0.5">+{provider.specialties.length - 3}</span>
             )}
           </div>
-        </div>
+        )}
 
-        {/* Description */}
-        <p className="text-stone-600 mb-4">{provider.description}</p>
-
-        {/* Specialties */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {provider.specialties.map((spec) => (
-            <span
-              key={spec}
-              className="bg-stone-100 text-stone-600 text-xs font-medium px-2.5 py-1 rounded-full"
-            >
-              {spec}
-            </span>
-          ))}
-        </div>
-
-        {/* Contact Row — the profile comes first; phone, website and Instagram
-            are secondary, because sending someone straight off-site is the
-            one thing a directory should not do. */}
-        <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-stone-100">
+        {/* The profile comes first; phone and website are secondary, because
+            sending someone straight off-site is the one thing a directory
+            should not do. Taps are counted (ContactLink). */}
+        <div className="mt-auto flex items-center gap-3 pt-3 border-t border-stone-100">
           <Link
             href={`/services/${provider.slug}`}
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-accent transition-transform hover:translate-x-0.5"
+            className="inline-flex items-center gap-1 text-sm font-bold text-accent transition-transform hover:translate-x-0.5"
           >
-            View profile <ArrowRight className="w-4 h-4" aria-hidden />
+            View profile <ArrowRight className="w-3.5 h-3.5" aria-hidden />
           </Link>
+          <span className="flex-1" />
           {provider.phone && (
-            <a
+            <ContactLink
+              providerId={provider.id}
+              kind="phone"
               href={`tel:${provider.phone}`}
-              className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-accent transition-colors"
+              className="p-1.5 rounded-lg text-stone-500 hover:text-accent hover:bg-stone-50 transition-colors"
             >
-              <Phone className="w-4 h-4" /> {provider.phone}
-            </a>
+              <Phone className="w-4 h-4" aria-label={`Call ${name}`} />
+            </ContactLink>
           )}
           {provider.website && (
-            <a
+            <ContactLink
+              providerId={provider.id}
+              kind="website"
               href={provider.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-accent transition-colors"
+              newTab
+              className="p-1.5 rounded-lg text-stone-500 hover:text-accent hover:bg-stone-50 transition-colors"
             >
-              <Globe className="w-4 h-4" /> Website
-            </a>
+              <Globe className="w-4 h-4" aria-label={`${name} website`} />
+            </ContactLink>
           )}
           {provider.instagram && (
-            <a
+            <ContactLink
+              providerId={provider.id}
+              kind="instagram"
               href={`https://instagram.com/${provider.instagram.replace('@', '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-stone-600 hover:text-accent transition-colors"
+              newTab
+              className="p-1.5 rounded-lg text-stone-500 hover:text-accent hover:bg-stone-50 transition-colors"
             >
-              <AtSign className="w-4 h-4" /> {provider.instagram}
-            </a>
+              <AtSign className="w-4 h-4" aria-label={`${name} on Instagram`} />
+            </ContactLink>
           )}
         </div>
       </div>
     </motion.div>
   );
 }
+
+/** Cards per page in a filtered view, and per trade in the grouped "All" view. Multiples of 3 fill the desktop grid. */
+const RESULTS_PAGE = 24;
+const SECTION_PREVIEW = 6;
 
 // ─── The results grid ─────────────────────────────────
 //
@@ -276,20 +280,42 @@ function ResultsGrid({
   /** What the owner was looking for. When set, the empty state asks for it instead of just apologising. */
   request?: string;
 }) {
+  // With hundreds of shops a filtered view can be long. Show a page at a time.
+  const [limit, setLimit] = useState(RESULTS_PAGE);
+  // A new filter starts back at the first page (state reset during render,
+  // the React-recommended alternative to a setState effect).
+  const [seenCount, setSeenCount] = useState(providers.length);
+  if (seenCount !== providers.length) {
+    setSeenCount(providers.length);
+    setLimit(RESULTS_PAGE);
+  }
+  const visible = providers.slice(0, limit);
   return (
     <section className="mb-12">
       <p className="text-sm text-stone-500 mb-5">
         {count} {count === 1 ? 'specialist' : 'specialists'} listed
       </p>
       {providers.length > 0 ? (
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
-            {providers.map((provider) => (
+            {visible.map((provider) => (
               <ProviderCard key={provider.id} provider={provider} />
             ))}
           </AnimatePresence>
         </div>
-      ) : (
+      ) : null}
+      {providers.length > limit && (
+        <div className="mt-6 text-center">
+          <button
+            type="button"
+            onClick={() => setLimit((l) => l + RESULTS_PAGE)}
+            className="px-5 py-2.5 text-sm font-semibold rounded-xl border-2 border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors"
+          >
+            Show more ({providers.length - limit} left)
+          </button>
+        </div>
+      )}
+      {providers.length === 0 && (
         <div className="rounded-2xl border border-dashed border-stone-300 bg-white/60 px-6 py-10 text-center">
           <p className="text-sm text-stone-500 max-w-md mx-auto">{emptyLine}</p>
           {request !== undefined && emptyLine !== '' && <RequestForm need={request} />}
@@ -328,13 +354,24 @@ function CategorySection({
           Show only {label.toLowerCase()}
         </button>
       </div>
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {providers.map((provider) => (
+          {providers.slice(0, SECTION_PREVIEW).map((provider) => (
             <ProviderCard key={`${catKey}-${provider.id}`} provider={provider} />
           ))}
         </AnimatePresence>
       </div>
+      {/* At volume the "All" view is a preview per trade, not every shop in
+          the country. The full list is one tap away. */}
+      {providers.length > SECTION_PREVIEW && (
+        <button
+          type="button"
+          onClick={() => onOnly(catKey)}
+          className="mt-4 text-sm font-semibold text-accent underline underline-offset-4"
+        >
+          See all {providers.length} in {label.toLowerCase()}
+        </button>
+      )}
     </section>
   );
 }

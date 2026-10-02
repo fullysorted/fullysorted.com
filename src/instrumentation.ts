@@ -186,6 +186,12 @@ export async function register() {
     await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS junk_reason VARCHAR(120)`;
     await sql`CREATE UNIQUE INDEX IF NOT EXISTS messages_action_token_idx ON messages (action_token)`;
     await sql`CREATE INDEX IF NOT EXISTS messages_provider_idx ON messages (provider_id, created_at DESC)`;
+    // Owner check-in (2026-10-02). See schema.ts.
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS owner_token VARCHAR(64)`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS owner_asked_at TIMESTAMP`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS owner_answered_at TIMESTAMP`;
+    await sql`ALTER TABLE messages ADD COLUMN IF NOT EXISTS job_status VARCHAR(30)`;
+    await sql`CREATE UNIQUE INDEX IF NOT EXISTS messages_owner_token_idx ON messages (owner_token)`;
   } catch (err) {
     console.error(
       '[Fully Sorted] CRITICAL: could not ensure messages columns. ' +
