@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const noun = c.kind === "part" ? "parts" : c.kind === "art" ? "artwork" : "memorabilia";
   return {
     title: `Collector Car ${c.label} for Sale`,
-    description: `${c.blurb} Collector car ${noun} listed by Fully Sorted members. No fee on the sale.`,
+    description: `${c.blurb} Collector car ${noun} listed by Fully Sorted members.`,
     alternates: { canonical: `/parts/category/${c.slug}` },
   };
 }

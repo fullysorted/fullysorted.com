@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "The terms governing your use of the Fully Sorted services directory, marketplace and research hub: who can use it, what each side is responsible for, fees, content, and how disputes are handled.",
 };
 
-const LAST_UPDATED = "October 2, 2026";
+const LAST_UPDATED = "October 3, 2026";
 const CONTACT = "chris@fullysorted.com";
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
@@ -327,7 +327,7 @@ export default function TermsPage() {
             <H2 id="parts">7B. The parts, memorabilia and artwork board</H2>
             <P>
               The parts board lets members list a part, accessory, piece of literature, memorabilia or artwork for
-              sale. The first 100 listings on the board are free; after that a listing carries a one-time fee or is covered by a monthly seller plan, both shown before you pay. A seller plan renews each month until cancelled and ends at the close of the period already paid for. A per-listing fee is refunded if we decline the listing before it goes live. No fee is charged on a sale. Listings are reviewed before they
+              sale. The first 100 listings on the board are free; after that a listing carries a one-time fee or is covered by a monthly seller plan, both shown before you pay. A seller plan renews each month until cancelled and ends at the close of the period already paid for. A per-listing fee is refunded if we decline the listing before it goes live. Listings are reviewed before they
               appear and may be declined or removed at our discretion. A listing must be for an item the
               member owns and has the right to sell, must use photos of the actual item, must not include
               phone numbers, email addresses or links, and must state plainly whether an item is original,
@@ -371,7 +371,7 @@ export default function TermsPage() {
                 </>,
                 <>
                   <strong>Car listings</strong> carry a one-time, flat listing fee by tier, paid up
-                  front, with no commission and no buyer&apos;s premium when the car sells. The first{" "}
+                  front. The first{" "}
                   {FREE_LISTINGS_THRESHOLD} cars listed on the marketplace are free.
                 </>,
                 <>

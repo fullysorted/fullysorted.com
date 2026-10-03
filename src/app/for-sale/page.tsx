@@ -55,8 +55,7 @@ export default async function ForSalePage() {
             Cars, parts and the things that go with them.
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: MUTED }}>
-            Listed by owners, dealers, members and artists. Every car is marked private or dealer, and nothing
-            carries a fee on the sale.
+            Listed by owners, dealers, members and artists. Every car is marked private or dealer.
           </p>
           <ForSaleNav current="all" counts={counts} className="mt-8" />
         </div>

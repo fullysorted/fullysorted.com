@@ -648,8 +648,8 @@ Now:
 - **Pills** say what the listing carries rather than what it costs: chassis and
   VIN on the listing, full-resolution photos, direct buyer contact.
 - **One line about money**, stated plainly and then dropped: a flat listing fee
-  from $9.99, paid once, up front, no commission when it sells and no buyer's
-  premium.
+  from $9.99, paid once, up front. (Superseded 2026-10-03: no "no commission" or
+  "no buyer's premium" claims; see the fee rules in AGENTS.md.)
 - **The 4.5 to 5 percent comparison moved to the Publish step**, next to the tier
   cards, at the one moment a seller is actually weighing what to pay. It is a
   good argument. It was just in the wrong place, doing the opposite of its job.

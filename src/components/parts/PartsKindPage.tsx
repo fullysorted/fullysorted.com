@@ -30,7 +30,7 @@ const COPY: Record<PartsKind, {
   part: {
     eyebrow: "Parts",
     h1: "The shelf in the back of the garage.",
-    sub: "Spares, take-offs, wheels, trim and the odd thing nobody can name. Listed by members, with no fee on the sale. Ask the seller anything through the site.",
+    sub: "Spares, take-offs, wheels, trim and the odd thing nobody can name. Listed by members. Ask the seller anything through the site.",
     listHref: "/parts/new",
     listLabel: "List a part",
     noun: "parts",
@@ -44,7 +44,7 @@ const COPY: Record<PartsKind, {
   memorabilia: {
     eyebrow: "Memorabilia",
     h1: "The things that came with the car.",
-    sub: "Brochures, manuals, window stickers, signs, models and race gear. Listed by members, with no fee on the sale. Ask the seller anything through the site.",
+    sub: "Brochures, manuals, window stickers, signs, models and race gear. Listed by members. Ask the seller anything through the site.",
     listHref: "/parts/new?kind=memorabilia",
     listLabel: "List memorabilia",
     noun: "memorabilia",
@@ -58,7 +58,7 @@ const COPY: Record<PartsKind, {
   art: {
     eyebrow: "Artwork",
     h1: "For the wall of the garage.",
-    sub: "Original paintings, race posters, prints and photographs of the cars and the races. Listed by members and artists, with no fee on the sale. Ask the seller anything through the site.",
+    sub: "Original paintings, race posters, prints and photographs of the cars and the races. Listed by members and artists. Ask the seller anything through the site.",
     listHref: "/parts/new?kind=art",
     listLabel: "List artwork",
     noun: "artwork",
@@ -77,7 +77,7 @@ const STEPS = [
   { t: "List it with photos", d: "Photos of the actual item, a price or an open door to offers." },
   { t: "It gets a quick read", d: "Every listing is checked before it goes up. Your email is never shown." },
   { t: "Buyers write to you", d: "Questions and offers come to your inbox through the site. You take it from there." },
-  { t: "Mark it sold", d: "Listings stay up for 90 days, or until you close them. No fee on the sale." },
+  { t: "Mark it sold", d: "Listings stay up for 90 days, or until you close them." },
 ];
 
 /** The /parts and /memorabilia pages: one board per kind, linked to the rest of For Sale. */
@@ -128,7 +128,6 @@ export async function PartsKindPage({ kind }: { kind: PartsKind }) {
           <div className="flex flex-wrap gap-x-6 gap-y-1 mt-8 text-xs uppercase" style={{ fontFamily: MONO, letterSpacing: "0.1em", color: MUTED }}>
             {posts.length > 0 && <span>{posts.length} listed</span>}
             <span>{categoriesFor(kind).length} shelves</span>
-            <span>No fee on the sale</span>
           </div>
           <ForSaleNav
             current={NAV_KEY[kind]}

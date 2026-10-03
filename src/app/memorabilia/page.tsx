@@ -7,7 +7,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Automobilia and Car Memorabilia for Sale",
   description:
-    "Sales brochures, owner and workshop manuals, dealer signs, scale models and racing gear, listed by Fully Sorted members. No fee on the sale.",
+    "Sales brochures, owner and workshop manuals, dealer signs, scale models and racing gear, listed by Fully Sorted members.",
   alternates: { canonical: "/memorabilia" },
 };
 

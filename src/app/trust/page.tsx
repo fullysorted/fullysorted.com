@@ -45,7 +45,7 @@ const PILLARS = [
     id: "how-we-make-money",
     title: "How we make money",
     body:
-      "Live today: car sellers pay a one-time listing fee, set by the package they pick when they list; parts, memorabilia and artwork listings cost a small fee each, or a monthly seller plan, once the board's first 100 free listings are gone; and some links in the Shop are affiliate links that pay us a small commission. We take nothing out of a quote you agree directly with a specialist, and nothing out of a car sale beyond the listing fee. As the site grows we expect to add paid tools for shops, a fee on fixed-price gigs once they open, and partner offers from insurers, transporters and lenders. Anything new is posted here before it starts, and anything paid for on the site is labeled as paid. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
+      "Live today: car sellers pay a one-time listing fee, set by the package they pick when they list; parts, memorabilia and artwork listings cost a small fee each, or a monthly seller plan, once the board's first 100 free listings are gone; and some links in the Shop are affiliate links that pay us a small commission. As the site grows we expect to add paid tools for shops, a fee on fixed-price gigs once they open, and partner offers from insurers, transporters and lenders. Anything new is posted here before it starts and never applies to something already paid for, and anything paid for on the site is labeled as paid. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
   },
   {
     icon: HandCoins,

@@ -220,8 +220,8 @@ export default function AboutPage() {
             <p>
               On quoted work, the job is between you and the specialist, priced by
               them and paid to them. Browsing the directory is free, and so is being
-              listed in it. Selling a car is a one-time listing fee, paid up front,
-              with no commission when it sells. How we make money, and what may be
+              listed in it. Selling a car is a one-time listing fee, paid up front.
+              How we make money, and what may be
               added later, is written down on the{" "}
               <Link href="/trust#how-we-make-money" className="underline underline-offset-4 hover:opacity-80">trust page</Link>.
             </p>
