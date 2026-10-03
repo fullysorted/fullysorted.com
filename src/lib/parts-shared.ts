@@ -2,6 +2,8 @@
 export const PARTS_KINDS = [
   { key: 'part', label: 'Parts', singular: 'Part' },
   { key: 'memorabilia', label: 'Memorabilia', singular: 'Memorabilia' },
+  // Added 2026-10-02: artwork has its own page under For Sale (/artwork).
+  { key: 'art', label: 'Artwork', singular: 'Artwork' },
 ] as const;
 export type PartsKind = (typeof PARTS_KINDS)[number]['key'];
 
@@ -46,8 +48,9 @@ export const PARTS_CATEGORIES = [
   { key: 'signs', kind: 'memorabilia', slug: 'signs-and-automobilia', label: 'Signs and automobilia', short: 'Signs',
     blurb: 'Dealer signs, oil cans, pump globes, showroom displays.', trade: null,
     tips: ['Signs are reproduced constantly. Ask for the back, the edges and the mounting holes.', 'Porcelain should be heavy and layered. Ask the weight.'] },
-  { key: 'art', kind: 'memorabilia', slug: 'art-and-posters', label: 'Art and posters', short: 'Art',
-    blurb: 'Race posters, prints, period photographs, original art.', trade: null,
+  // 'art' moved from memorabilia to its own kind 2026-10-02. Key and slug kept.
+  { key: 'art', kind: 'art', slug: 'art-and-posters', label: 'Posters and prints', short: 'Posters',
+    blurb: 'Race and event posters, limited prints, lithographs.', trade: null,
     tips: ['Ask whether a poster is an original print run or a later reprint, and how the seller knows.', 'Ask for the size and a photo of the margins.'] },
   { key: 'models', kind: 'memorabilia', slug: 'models-and-toys', label: 'Models and toys', short: 'Models',
     blurb: 'Scale models, dealer promos, tin toys, slot cars.', trade: null,
@@ -58,6 +61,15 @@ export const PARTS_CATEGORIES = [
   { key: 'other_memo', kind: 'memorabilia', slug: 'other-collectibles', label: 'Other collectibles', short: 'Other',
     blurb: 'Keys, trophies, club badges, dash plaques and the unclassifiable.', trade: null,
     tips: ['Event plaques and trophies are best with the event named. Ask which one.'] },
+  { key: 'painting', kind: 'art', slug: 'original-art', label: 'Original art', short: 'Original',
+    blurb: 'Paintings, drawings, watercolors and sculpture.', trade: null,
+    tips: ['Ask who the artist is, when it was made, and how the seller came by it.', 'Ask for a photo of the back and of the signature, close up.'] },
+  { key: 'photo', kind: 'art', slug: 'photographs', label: 'Photographs', short: 'Photos',
+    blurb: 'Period race photography and signed fine-art prints.', trade: null,
+    tips: ['Ask whether it is a period print or a later one, and the edition size if it is numbered.'] },
+  { key: 'other_art', kind: 'art', slug: 'other-art', label: 'Other art', short: 'Other',
+    blurb: 'Cutaway drawings, design sketches, studio pieces and the unclassifiable.', trade: null,
+    tips: ['Design drawings and cutaways get reproduced. Ask for the paper, the size and where it came from.'] },
 ] as const;
 export type PartsCategory = (typeof PARTS_CATEGORIES)[number];
 export type PartsCategoryKey = PartsCategory['key'];
@@ -67,6 +79,29 @@ export const partsCategory = (key: string | null | undefined): PartsCategory | n
 export const partsCategoryBySlug = (slug: string): PartsCategory | null =>
   PARTS_CATEGORIES.find((c) => c.slug === slug) ?? null;
 export const categoriesFor = (kind: PartsKind): PartsCategory[] => PARTS_CATEGORIES.filter((c) => c.kind === kind);
+
+/** Each kind has its own page under For Sale: /parts, /memorabilia and /artwork. */
+export const kindHref = (kind: PartsKind) => (kind === 'memorabilia' ? '/memorabilia' : kind === 'art' ? '/artwork' : '/parts');
+
+// ─── Listing fees (2026-10-02) ───────────────────────────────────────────────
+// The first PARTS_FREE_LISTINGS listings on the board are free. After that a
+// listing costs a one-time fee, or a seller plan covers up to
+// PARTS_PLAN_MAX_LIVE live listings at once. Prices are shown only on the
+// posting form, never in page copy (Chris, 2026-09-28).
+export const PARTS_FREE_LISTINGS = 100;
+export const PARTS_ITEM_FEE_CENTS = 299;
+export const PARTS_PLAN_CENTS = 999;
+export const PARTS_PLAN_MAX_LIVE = 25;
+export const centsLabel = (c: number) => `$${(c / 100).toFixed(2)}`;
+
+/** What a member can do on the posting form right now. Computed server-side. */
+export type PartsAccess = {
+  mode: 'free' | 'plan' | 'pay';
+  freeLeft: number;
+  live: number;
+  maxLive: number;
+  plan: { status: string; periodEnd: string | null; cancelAtPeriodEnd: boolean } | null;
+};
 
 export const PARTS_CONDITIONS = [
   { key: 'new', label: 'New' },
@@ -87,7 +122,7 @@ export type PartsShipping = (typeof PARTS_SHIPPING)[number]['key'];
 
 /** Days a listing stays on the board before it drops off on its own. */
 export const PARTS_DAYS = 90;
-/** Live listings one member can have at once. Free, so the cap is the only brake. */
+/** Live listings one member can have at once without a seller plan. */
 export const PARTS_MAX_LIVE = 10;
 export const PARTS_MAX_PHOTOS = 6;
 

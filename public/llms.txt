@@ -28,7 +28,12 @@ Fully Sorted is a services hub first. Its directory lists independent specialist
 - [Services Directory](https://fullysorted.com/services): Specialists by trade and location, reviewed by owners
 - [Apply as a Provider](https://fullysorted.com/services/apply): One application for every kind of provider
 - [Provider Guide](https://fullysorted.com/services/guide): Practical business guide for independent specialists (entity, paperwork, tax, 1099s, insurance, getting paid)
-- [Browse Cars](https://fullysorted.com/browse): Live collector car listings, filterable by era, category, price and location
+- [For Sale](https://fullysorted.com/for-sale): Everything for sale on the site, in one place: cars, parts, project cars, memorabilia and artwork
+- [Cars for Sale](https://fullysorted.com/browse): Live collector car listings from private owners and dealers, filterable by category, year, price and location
+- [Parts](https://fullysorted.com/parts): Collector car parts listed by members, by shelf and by make; no fee on the sale
+- [Memorabilia](https://fullysorted.com/memorabilia): Brochures, manuals, signs, models and race gear listed by members
+- [Artwork](https://fullysorted.com/artwork): Original automotive paintings, race posters, prints and photographs listed by members and artists
+- [Projects](https://fullysorted.com/projects): Project cars and barn finds for sale, with the trades that finish them
 - [Sell a Car](https://fullysorted.com/sell): One-time listing fee, direct buyer messaging, no buyer's premium
 - [How It Works](https://fullysorted.com/how-it-works): For sellers, buyers and service providers
 - [Fees](https://fullysorted.com/pricing): What things cost

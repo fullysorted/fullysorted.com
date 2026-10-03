@@ -118,7 +118,7 @@ const TIER_ICONS: Record<ListingTier, React.ReactNode> = {
   premium: <Star className="w-6 h-6" />,
 };
 
-export default function SellForm() {
+export default function SellForm({ initialCategory = '' }: { initialCategory?: string } = {}) {
   const [step, setStep] = useState<Step>('vehicle');
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -162,7 +162,7 @@ export default function SellForm() {
     exteriorColor: '',
     interiorColor: '',
     bodyStyle: '',
-    category: '',
+    category: initialCategory,
     city: '',
     state: '',
     zipCode: '',

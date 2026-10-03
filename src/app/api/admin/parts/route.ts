@@ -37,14 +37,14 @@ export async function GET(req: NextRequest) {
     `;
     const posts = await sql`
       SELECT p.id, p.kind, p.category, p.title, p.body, p.make, p.model, p.model_slug, p.part_number, p.condition, p.price, p.location, p.shipping, p.photos,
-             p.status, p.admin_note, p.reply_count, p.created_at, p.approved_at, p.expires_at,
+             p.status, p.admin_note, p.reply_count, p.created_at, p.approved_at, p.expires_at, p.payment,
              (p.status = 'open' AND p.expires_at <= NOW()) AS expired,
              u.id AS user_id, u.handle, u.email, u.name
       FROM parts_posts p JOIN users u ON u.id = p.user_id
       WHERE CASE ${view}
         WHEN 'pending' THEN p.status = 'pending'
         WHEN 'open' THEN p.status = 'open' AND p.expires_at > NOW()
-        ELSE p.status NOT IN ('pending') AND NOT (p.status = 'open' AND p.expires_at > NOW())
+        ELSE p.status NOT IN ('pending', 'unpaid') AND NOT (p.status = 'open' AND p.expires_at > NOW())
       END
       ORDER BY p.created_at DESC LIMIT 200
     `;
@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
       const done = await sql`
         UPDATE parts_posts
         SET status = 'open', approved_at = NOW(), expires_at = NOW() + make_interval(days => ${PARTS_DAYS}::int), closed_at = NULL
-        WHERE id = ${rowId} AND (status <> 'open' OR expires_at <= NOW())
+        WHERE id = ${rowId} AND status <> 'unpaid' AND (status <> 'open' OR expires_at <= NOW())
         RETURNING id, title, user_id, (SELECT email FROM users WHERE users.id = parts_posts.user_id) AS email
       `;
       if (!done.length) return NextResponse.json({ error: 'Already live.' }, { status: 400 });
@@ -80,10 +80,23 @@ export async function POST(req: NextRequest) {
       const status = action === 'reject' ? 'rejected' : 'removed';
       const done = await sql`
         UPDATE parts_posts SET status = ${status}, admin_note = COALESCE(${adminNote}, admin_note), closed_at = NOW()
-        WHERE id = ${rowId} RETURNING id
+        WHERE id = ${rowId} RETURNING id, payment, stripe_payment_intent, approved_at
       `;
       if (!done.length) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-      return NextResponse.json({ ok: true });
+      // A per-item fee is refunded when the listing never went live (the
+      // trust page promises this). Plan listings have nothing to refund.
+      let refunded = false;
+      const d = done[0];
+      if (action === 'reject' && d.payment === 'paid' && d.stripe_payment_intent && !d.approved_at) {
+        try {
+          const { getStripe } = await import('@/lib/stripe');
+          await getStripe().refunds.create({ payment_intent: String(d.stripe_payment_intent) });
+          refunded = true;
+        } catch (e) {
+          console.error('[parts] refund failed for', rowId, e);
+        }
+      }
+      return NextResponse.json({ ok: true, refunded });
     }
     return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
   } catch (e) {

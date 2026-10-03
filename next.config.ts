@@ -34,6 +34,13 @@ const nextConfig: NextConfig = {
       // segment table frozen at Dec 2025) is retired until the news
       // aggregator replaces it. Temporary, so the URLs can come back.
       { source: "/research", destination: "/research/models", permanent: false },
+      // 2026-10-02: memorabilia has its own page under For Sale.
+      {
+        source: "/parts",
+        has: [{ type: "query", key: "kind", value: "memorabilia" }],
+        destination: "/memorabilia",
+        permanent: true,
+      },
       ...[
         "monday-market-movers-march-24",
         "what-would-chris-buy-march",

@@ -56,9 +56,19 @@ const ROWS: { label: string; head: string; body: ReactNode }[] = [
     ),
   },
   {
-    label: 'Parts, memorabilia and wanted ads',
+    label: 'Parts, memorabilia and artwork',
+    head: 'The first 100 are free.',
+    body: (
+      <>
+        After that, a small fee per listing, or a monthly seller plan that covers several at once. You see the prices
+        on the posting form, before you pay. No fee on the sale.
+      </>
+    ),
+  },
+  {
+    label: 'Wanted ads',
     head: 'Free to post.',
-    body: <>No fee on the sale. Finder&apos;s fees on wanted ads are between the two people involved.</>,
+    body: <>Finder&apos;s fees are between the two people involved.</>,
   },
   {
     label: 'Fixed-price gigs',

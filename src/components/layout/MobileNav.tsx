@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, PlusCircle, Wrench, LineChart, BookOpen } from "lucide-react";
+import { Home, Tag, PlusCircle, Wrench, LineChart, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 
@@ -10,7 +10,8 @@ import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/services", label: "Services", icon: Wrench },
-  { href: "/browse", label: "Browse", icon: Search },
+  // The For Sale section spans several pages; any of them lights this tab.
+  { href: "/for-sale", label: "For Sale", icon: Tag, also: ["/browse", "/listings", "/parts", "/memorabilia", "/projects", "/wanted"] },
   { href: "/sell", label: "Sell", icon: PlusCircle },
   // Five tabs either way — with the Value Guide hidden, the slot goes to the
   // model histories rather than leaving a gap in the bar.
@@ -35,7 +36,8 @@ export function MobileNav() {
       />
       <div className="flex items-center justify-around h-16 px-2">
         {navItems.map((item) => {
-          const isActive = pathname === item.href;
+          const also = "also" in item ? (item.also as string[]) : [];
+          const isActive = pathname === item.href || also.some((p) => pathname === p || pathname.startsWith(`${p}/`));
           const Icon = item.icon;
           return (
             <Link

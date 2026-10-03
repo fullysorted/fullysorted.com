@@ -8,7 +8,8 @@ import { ListingCard } from "@/components/listings/ListingCard";
 import type { Vehicle } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { LISTING_CATEGORIES } from "@/lib/listing-categories";
+import { LISTING_CATEGORIES, isProjectCategory } from "@/lib/listing-categories";
+import { ForSaleNav } from "@/components/marketplace/ForSaleNav";
 
 const categories: string[] = ["All", ...LISTING_CATEGORIES];
 
@@ -97,11 +98,11 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
                 className="text-[11px] uppercase"
                 style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em", color: "#1C8C87" }}
               >
-                Marketplace
+                For sale
               </span>
             </div>
             <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4" style={{ color: "#12352A" }}>
-              Browse cars
+              Cars
             </h1>
             <p className="text-base sm:text-lg mb-8 max-w-2xl leading-relaxed" style={{ color: "#6B7280" }}>
               {hasRealListings
@@ -155,6 +156,11 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               <span className="hidden sm:inline">Filters</span>
             </button>
           </motion.div>
+          <ForSaleNav
+            current="cars"
+            counts={{ cars: initialListings.length, projects: initialListings.filter((v) => isProjectCategory(v.category)).length }}
+            className="mt-6"
+          />
         </div>
       </div>
 

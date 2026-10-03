@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { FOR_SALE_HUB, FOR_SALE_SECTIONS, WANTED_LINK } from "@/lib/for-sale";
 import { cn } from "@/lib/utils";
 import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
 
@@ -19,19 +20,55 @@ import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
 // on /services and in the footer, and Events lives in the footer until it
 // earns a bar slot back.
 //
-// Parts and Memorabilia joined the bar 2026-10-02, next to Browse Cars because
-// it is the other half of the marketplace. On narrow desktops it shortens to
-// "Parts" so the bar never wraps.
-type NavEntry = { href: string; label: string; short?: string };
+// 2026-10-02: Browse Cars and Parts and Memorabilia merged into one "For
+// Sale" entry (Chris). It is the one menu with a dropdown, and only for
+// visitor destinations: Cars, Parts, Memorabilia, Projects, plus Wanted. The
+// word itself links to the /for-sale hub, so a tap on a touch screen still
+// lands somewhere useful and nothing is reachable only through the panel.
+type NavEntry = { href: string; label: string; short?: string; forSale?: boolean };
 
 const navEntries: NavEntry[] = [
   { href: "/services", label: "Services" },
-  { href: "/browse", label: "Browse Cars" },
-  { href: "/parts", label: "Parts and Memorabilia", short: "Parts" },
+  { href: FOR_SALE_HUB.href, label: FOR_SALE_HUB.label, forSale: true },
   { href: "/research/models", label: "Research" },
   { href: "/shop", label: "Shop" },
   { href: "/about", label: "About" },
 ];
+
+const NAV_LINK =
+  "px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors whitespace-nowrap";
+
+function ForSaleMenu() {
+  return (
+    <div className="relative group">
+      <Link href={FOR_SALE_HUB.href} className={`${NAV_LINK} inline-flex items-center gap-1`} aria-haspopup="true">
+        {FOR_SALE_HUB.label}
+        <ChevronDown className="w-3.5 h-3.5 opacity-60 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+      </Link>
+      {/* Opens on hover and on keyboard focus. pt-2 bridges the gap so the
+          pointer can travel from the word to the panel without it closing. */}
+      <div className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-50">
+        <div className="w-80 rounded-2xl bg-white p-2 shadow-[0_24px_48px_-16px_rgba(18,53,42,0.28)]" style={{ border: "1px solid rgba(18,53,42,0.14)" }}>
+          {FOR_SALE_SECTIONS.map((s) => (
+            <Link key={s.key} href={s.href} className="block rounded-xl px-3 py-2.5 hover:bg-surface transition-colors">
+              <span className="block text-sm font-semibold text-foreground">{s.label}</span>
+              <span className="block text-xs text-text-secondary mt-0.5 leading-snug">{s.blurb}</span>
+            </Link>
+          ))}
+          <div className="border-t border-border my-1.5 mx-3" />
+          <div className="flex items-center justify-between px-3 py-2">
+            <Link href={WANTED_LINK.href} className="text-sm font-semibold text-accent hover:underline underline-offset-4">
+              {WANTED_LINK.label} board
+            </Link>
+            <Link href={FOR_SALE_HUB.href} className="text-sm font-medium text-text-secondary hover:text-foreground">
+              Everything for sale
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -66,11 +103,13 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            {navEntries.map((entry) => (
+            {navEntries.map((entry) => entry.forSale ? (
+              <ForSaleMenu key={entry.href} />
+            ) : (
               <Link
                 key={entry.href}
                 href={entry.href}
-                className="px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground rounded-lg hover:bg-surface transition-colors whitespace-nowrap"
+                className={NAV_LINK}
               >
                 {entry.short ? (
                   <>
@@ -161,14 +200,29 @@ export function Header() {
       >
         <nav className="flex flex-col p-6 gap-2">
           {navEntries.map((entry) => (
-            <Link
-              key={entry.href}
-              href={entry.href}
-              onClick={close}
-              className="px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
-            >
-              {entry.label}
-            </Link>
+            <div key={entry.href}>
+              <Link
+                href={entry.href}
+                onClick={close}
+                className="block px-4 py-3 text-lg font-medium text-foreground rounded-xl hover:bg-surface transition-colors"
+              >
+                {entry.label}
+              </Link>
+              {entry.forSale && (
+                <div className="ml-4 pl-3 mb-1 border-l border-border flex flex-col">
+                  {[...FOR_SALE_SECTIONS, { key: "wanted", href: WANTED_LINK.href, label: WANTED_LINK.label }].map((s) => (
+                    <Link
+                      key={s.key}
+                      href={s.href}
+                      onClick={close}
+                      className="px-3 py-2 text-base text-text-secondary rounded-lg hover:bg-surface hover:text-foreground transition-colors"
+                    >
+                      {s.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
 
           <div className="border-t border-border my-4" />

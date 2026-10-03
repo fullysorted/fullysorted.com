@@ -62,7 +62,7 @@ const TOC: [string, string][] = [
   ["providers", "6. Providers and the directory"],
   ["inquiries", "7. Inquiries and messages"],
   ["wanted", "7A. The wanted board and finder's fees"],
-  ["parts", "7B. The parts and memorabilia board"],
+  ["parts", "7B. The parts, memorabilia and artwork board"],
   ["reviews", "8. Reviews"],
   ["fees", "9. Fees and payments"],
   ["content", "10. Your content and our license to it"],
@@ -324,10 +324,10 @@ export default function TermsPage() {
           </div>
 
           <div>
-            <H2 id="parts">7B. The parts and memorabilia board</H2>
+            <H2 id="parts">7B. The parts, memorabilia and artwork board</H2>
             <P>
-              The parts board lets members list a part, accessory, piece of literature or memorabilia for
-              sale. Listing is free and no fee is charged on a sale. Listings are reviewed before they
+              The parts board lets members list a part, accessory, piece of literature, memorabilia or artwork for
+              sale. The first 100 listings on the board are free; after that a listing carries a one-time fee or is covered by a monthly seller plan, both shown before you pay. A seller plan renews each month until cancelled and ends at the close of the period already paid for. A per-listing fee is refunded if we decline the listing before it goes live. No fee is charged on a sale. Listings are reviewed before they
               appear and may be declined or removed at our discretion. A listing must be for an item the
               member owns and has the right to sell, must use photos of the actual item, must not include
               phone numbers, email addresses or links, and must state plainly whether an item is original,

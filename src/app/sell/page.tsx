@@ -1,12 +1,16 @@
 import SellForm from './SellForm';
+import { LISTING_CATEGORIES } from '@/lib/listing-categories';
 
 export const metadata = {
   alternates: { canonical: "/sell" },
   title: 'Sell Your Collector Car',
-  description: 'List your collector car for one flat fee. First 100 listings free. Full-resolution photos and direct buyer messaging. Built by collectors, for collectors.',
+  description: 'List your collector car for one fee, paid once. The first 100 cars list free. Full-resolution photos and direct buyer messaging.',
 };
 
-export default function SellPage() {
+// ?category=Project (from /projects) arrives with the category already picked.
+export default async function SellPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+  const { category } = await searchParams;
+  const initialCategory = LISTING_CATEGORIES.find((c) => c.toLowerCase() === (category ?? '').toLowerCase()) ?? '';
   return (
     <main className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
       {/* Header, in the sitewide language: white, deep green type, teal eyebrow.
@@ -34,7 +38,7 @@ export default function SellPage() {
 
       {/* Form */}
       <section className="max-w-4xl mx-auto px-4 py-12">
-        <SellForm />
+        <SellForm initialCategory={initialCategory} />
       </section>
     </main>
   );

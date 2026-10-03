@@ -21,6 +21,8 @@ type BoardProps = {
   posts: PartsPost[];
   /** Category pages pin the shelf; the kind tabs and shelf chips are then hidden. */
   lockCategory?: PartsCategoryKey;
+  /** /parts and /memorabilia pin the kind; the kind tabs are hidden, shelf chips stay. */
+  lockKind?: PartsKind;
 };
 
 /**
@@ -52,9 +54,10 @@ function BoardWithQuery(props: BoardProps) {
 
 const norm = (s: string | null) => (s ?? "").trim().toLowerCase();
 
-function Board({ posts, lockCategory, initial }: BoardProps & { initial: Initial }) {
+function Board({ posts, lockCategory, lockKind, initial }: BoardProps & { initial: Initial }) {
   const locked = lockCategory ? partsCategory(lockCategory) : null;
-  const [kind, setKind] = useState<"all" | PartsKind>(locked ? locked.kind : initial.kind);
+  const pinnedKind: PartsKind | null = locked ? locked.kind : lockKind ?? null;
+  const [kind, setKind] = useState<"all" | PartsKind>(pinnedKind ?? initial.kind);
   const [shelf, setShelf] = useState<"all" | PartsCategoryKey>(locked ? locked.key : initial.shelf);
   const [make, setMake] = useState(norm(initial.make));
   const [condition, setCondition] = useState("");
@@ -97,9 +100,9 @@ function Board({ posts, lockCategory, initial }: BoardProps & { initial: Initial
     });
   }, [posts, kind, shelf, make, condition, shipsOnly, sort, q]);
 
-  const filtered = (!locked && (kind !== "all" || shelf !== "all")) || make || condition || shipsOnly || q.trim();
+  const filtered = (!locked && ((kind !== "all" && !lockKind) || shelf !== "all")) || make || condition || shipsOnly || q.trim();
   const reset = () => {
-    if (!locked) { setKind("all"); setShelf("all"); }
+    if (!locked) { setKind(pinnedKind ?? "all"); setShelf("all"); }
     setMake(""); setCondition(""); setShipsOnly(false); setQ("");
   };
 
@@ -113,7 +116,7 @@ function Board({ posts, lockCategory, initial }: BoardProps & { initial: Initial
     <div>
       {!locked && (
         <>
-          <div role="tablist" aria-label="Parts or memorabilia" className="flex flex-wrap items-center gap-2 mb-3">
+          {!lockKind && <div role="tablist" aria-label="Parts or memorabilia" className="flex flex-wrap items-center gap-2 mb-3">
             {[{ key: "all" as const, label: "Everything" }, ...PARTS_KINDS].map((k) => (
               <button key={k.key} role="tab" aria-selected={kind === k.key}
                 onClick={() => { setKind(k.key); setShelf("all"); }}
@@ -122,7 +125,7 @@ function Board({ posts, lockCategory, initial }: BoardProps & { initial: Initial
                 <span className="ml-1.5 tabular-nums opacity-60">{countFor(k.key)}</span>
               </button>
             ))}
-          </div>
+          </div>}
           {kind !== "all" && (
             <div className="flex gap-2 mb-4 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
               <button onClick={() => setShelf("all")} aria-pressed={shelf === "all"}
@@ -205,7 +208,7 @@ function Board({ posts, lockCategory, initial }: BoardProps & { initial: Initial
               : "Nothing fits that. Clear a filter, or list what you have."}
           </p>
           <div className="flex flex-wrap justify-center gap-3 mt-4">
-            <Link href={locked ? `/parts/new?shelf=${locked.key}` : "/parts/new"} className="inline-block px-5 py-3 rounded-full text-sm font-bold text-white" style={{ background: TEAL }}>
+            <Link href={locked ? `/parts/new?shelf=${locked.key}` : lockKind && lockKind !== "part" ? `/parts/new?kind=${lockKind}` : "/parts/new"} className="inline-block px-5 py-3 rounded-full text-sm font-bold text-white" style={{ background: TEAL }}>
               List one
             </Link>
             <Link href="/wanted/new" className="inline-block px-5 py-3 rounded-full text-sm font-semibold" style={{ color: INK, border: `1px solid ${INK}` }}>

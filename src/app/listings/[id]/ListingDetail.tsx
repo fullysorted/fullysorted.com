@@ -426,7 +426,7 @@ export function ListingDetail({ vehicle, history }: Props) {
               onMouseLeave={(e) => (e.currentTarget.style.color = "#6b6b5e")}
             >
               <ArrowLeft className="w-4 h-4" />
-              Browse
+              Cars for sale
             </Link>
             <div className="flex items-center gap-2">
               <ShareButton

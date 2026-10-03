@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 import { SignupForm } from "@/components/newsletter/SignupForm";
+import { FOR_SALE_SECTIONS } from "@/lib/for-sale";
 
 // Column order mirrors the site flow: Services → Marketplace → Research →
 // Company. Keep in sync with Header.tsx navEntries and the homepage sections.
@@ -11,14 +12,12 @@ const footerLinks = {
     { href: "/insurance", label: "Collector Car Insurance" },
     { href: "/services/apply", label: "List Your Services" },
   ],
-  Marketplace: [
-    // Labels match the header exactly — the same destination was called
-    // "Browse All Cars" here, "Browse Cars" in the header and "Browse" in the
-    // mobile bar, which reads as three different places.
-    { href: "/browse", label: "Browse Cars" },
-    { href: "/sell", label: "Sell a Car" },
+  // Labels match the header's For Sale menu exactly (lib/for-sale.ts).
+  "For Sale": [
+    { href: "/for-sale", label: "Everything for Sale" },
+    ...FOR_SALE_SECTIONS.map((s) => ({ href: s.href, label: s.label })),
     { href: "/wanted", label: "Wanted Board" },
-    { href: "/parts", label: "Parts and Memorabilia" },
+    { href: "/sell", label: "Sell a Car" },
     { href: "/pricing", label: "Fees" },
     { href: "/shop", label: "Shop" },
   ],

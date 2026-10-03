@@ -250,7 +250,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "How does Fully Sorted make money?",
-        a: "Live today: sellers pay a one-time listing fee, set by the package they pick when they list, and some links in the Shop are affiliate links that pay us a small commission. We take nothing out of a quote you agree directly with a specialist, and nothing out of a car sale beyond the listing fee. As the site grows we expect to add paid tools for shops, a fee on fixed-price gigs once they open, and partner offers from insurers, transporters and lenders. Anything new is posted on the trust page before it starts, and anything paid for on the site is labeled as paid. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
+        a: "Live today: car sellers pay a one-time listing fee, set by the package they pick when they list; parts, memorabilia and artwork listings cost a small fee each, or a monthly seller plan, once the board's first 100 free listings are gone; and some links in the Shop are affiliate links that pay us a small commission. We take nothing out of a quote you agree directly with a specialist, and nothing out of a car sale beyond the listing fee. As the site grows we expect to add paid tools for shops, a fee on fixed-price gigs once they open, and partner offers from insurers, transporters and lenders. Anything new is posted on the trust page before it starts, and anything paid for on the site is labeled as paid. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
       },
       {
         q: "You're brand new. Why should I trust you?",

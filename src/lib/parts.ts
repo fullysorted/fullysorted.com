@@ -1,10 +1,13 @@
 /**
- * The Parts board: members list a part or a piece of memorabilia for sale,
+ * The Parts board: members list a part, a piece of memorabilia or artwork for sale,
  * with photos and a price, and buyers write to them through the site.
  *
  * FOUR RULES, do not relax them:
- * 1. Free to list. No listing fee, no take rate, no featured slot. The only
- *    brake is the cap on live listings per member.
+ * 1. No take rate and no featured slot. Since 2026-10-02 the first
+ *    PARTS_FREE_LISTINGS listings on the board are free; after that a listing
+ *    is a one-time fee or is covered by a seller plan (see getPartsAccess and
+ *    the parts_* branches of the Stripe webhook). The cap on live listings per
+ *    member still applies, higher on a plan.
  * 2. Fully Sorted is the notice board and nothing else. It is not a party to
  *    any sale, holds no money, and makes no claim about authenticity or
  *    fitment. Every such claim on a listing is the seller's, and the copy
@@ -23,6 +26,7 @@ import { neon } from '@neondatabase/serverless';
 import { isBlobImageUrl } from '@/lib/images';
 import {
   PARTS_KINDS, PARTS_CATEGORIES, PARTS_CONDITIONS, PARTS_SHIPPING, PARTS_DAYS, PARTS_MAX_LIVE, PARTS_MAX_PHOTOS,
+  PARTS_FREE_LISTINGS, PARTS_PLAN_MAX_LIVE, type PartsAccess,
   type PartsKind, type PartsCategoryKey, type PartsCondition, type PartsShipping, type PartsPost,
 } from '@/lib/parts-shared';
 
@@ -78,6 +82,24 @@ export function ensurePartsTables(): Promise<void> {
     `;
     // Added 2026-10-02 with the category shelves. Nullable: older listings have none.
     await sql`ALTER TABLE parts_posts ADD COLUMN IF NOT EXISTS category VARCHAR(16)`;
+    // Added 2026-10-02 with listing fees. payment: free | plan | paid, null on
+    // older rows. A listing waiting on checkout has status 'unpaid' and is
+    // invisible everywhere until the webhook moves it to 'pending'.
+    await sql`ALTER TABLE parts_posts ADD COLUMN IF NOT EXISTS payment VARCHAR(8)`;
+    await sql`ALTER TABLE parts_posts ADD COLUMN IF NOT EXISTS stripe_payment_intent VARCHAR(80)`;
+    await sql`
+      CREATE TABLE IF NOT EXISTS seller_plans (
+        user_id INTEGER PRIMARY KEY REFERENCES users(id),
+        stripe_customer_id VARCHAR(80),
+        stripe_subscription_id VARCHAR(80) UNIQUE,
+        status VARCHAR(20) NOT NULL,
+        current_period_end TIMESTAMP,
+        cancel_at_period_end BOOLEAN NOT NULL DEFAULT FALSE,
+        updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+      )
+    `;
+    // Artwork became its own kind 2026-10-02; the 'art' shelf moved with it.
+    await sql`UPDATE parts_posts SET kind = 'art' WHERE category = 'art' AND kind = 'memorabilia'`;
     await sql`CREATE INDEX IF NOT EXISTS parts_posts_status_idx ON parts_posts (status, expires_at DESC)`;
     await sql`CREATE INDEX IF NOT EXISTS parts_posts_user_idx ON parts_posts (user_id)`;
     await sql`CREATE INDEX IF NOT EXISTS parts_posts_model_idx ON parts_posts (model_slug) WHERE model_slug IS NOT NULL`;
@@ -218,7 +240,7 @@ export function parsePartsInput(
   knownModelSlugs?: Set<string>,
 ): { ok: true; input: PartsInput } | { ok: false; reason: string } {
   const kind = PARTS_KINDS.find((k) => k.key === raw.kind)?.key;
-  if (!kind) return { ok: false, reason: 'Choose what this is: a part or memorabilia.' };
+  if (!kind) return { ok: false, reason: 'Choose what this is: a part, memorabilia or artwork.' };
   // Optional on the wire so older clients still post; the form always sends one.
   let category: PartsCategoryKey | null = null;
   if (raw.category) {
@@ -259,4 +281,49 @@ export function parsePartsInput(
       location: clean(raw.location, 120),
     },
   };
+}
+
+// ─── Listing fees ────────────────────────────────────────────────────────────
+
+/** A member's listings that count against their cap: waiting for review, or live. */
+export async function liveListingCount(userId: number): Promise<number> {
+  const sql = db();
+  if (!sql) return 0;
+  const r = await sql`
+    SELECT COUNT(*)::int AS n FROM parts_posts
+    WHERE user_id = ${userId} AND (status = 'pending' OR (status = 'open' AND expires_at > NOW()))
+  `;
+  return Number(r[0].n);
+}
+
+/**
+ * How this member may list right now: free (the board is still inside its
+ * first PARTS_FREE_LISTINGS), on their seller plan, or by paying for the item.
+ * A plan wins over the free allowance because its cap is higher.
+ */
+export async function getPartsAccess(userId: number): Promise<PartsAccess> {
+  const sql = db();
+  if (!sql) return { mode: 'free', freeLeft: PARTS_FREE_LISTINGS, live: 0, maxLive: PARTS_MAX_LIVE, plan: null };
+  await ensurePartsTables();
+  const [used, planRows, live] = await Promise.all([
+    sql`SELECT COUNT(*)::int AS n FROM parts_posts WHERE status NOT IN ('unpaid', 'rejected')`,
+    sql`SELECT status, current_period_end, cancel_at_period_end FROM seller_plans WHERE user_id = ${userId} LIMIT 1`,
+    liveListingCount(userId),
+  ]);
+  const freeLeft = Math.max(0, PARTS_FREE_LISTINGS - Number(used[0].n));
+  const p = planRows[0];
+  const plan = p
+    ? {
+        status: String(p.status),
+        periodEnd: p.current_period_end ? new Date(p.current_period_end as string).toISOString() : null,
+        cancelAtPeriodEnd: Boolean(p.cancel_at_period_end),
+      }
+    : null;
+  const planActive =
+    // past_due counts while Stripe retries the card, so a failed renewal does
+    // not push the member into buying a second plan.
+    !!plan && ['active', 'trialing', 'past_due'].includes(plan.status) &&
+    (plan.status === 'past_due' || !plan.periodEnd || new Date(plan.periodEnd) > new Date());
+  if (planActive) return { mode: 'plan', freeLeft, live, maxLive: PARTS_PLAN_MAX_LIVE, plan };
+  return { mode: freeLeft > 0 ? 'free' : 'pay', freeLeft, live, maxLive: PARTS_MAX_LIVE, plan };
 }

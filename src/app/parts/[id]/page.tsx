@@ -3,13 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { resolveCurrentUser } from "@/lib/identity";
 import { getPartsPost, getRelatedParts } from "@/lib/parts";
-import { PARTS_KINDS, conditionLabel, partsCategory, priceLabel, shippingLabel } from "@/lib/parts-shared";
+import { PARTS_KINDS, conditionLabel, kindHref, partsCategory, priceLabel, shippingLabel } from "@/lib/parts-shared";
 import { tradeHref } from "@/lib/category-slugs";
 import { PartsCard } from "@/components/parts/PartsCard";
 import { shareImageUrl, SITE_URL } from "@/lib/share";
 import { ShareButton } from "@/components/share/ShareButton";
 import { PartsActions } from "./PartsActions";
 import { PartsPhotos } from "./PartsPhotos";
+import { FinishPayment } from "./FinishPayment";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
@@ -17,7 +18,7 @@ const MUTED = "#6B7280";
 const RULE = "rgba(18,53,42,0.14)";
 const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 
-type Props = { params: Promise<{ id: string }>; searchParams: Promise<{ posted?: string }> };
+type Props = { params: Promise<{ id: string }>; searchParams: Promise<{ posted?: string; paid?: string }> };
 
 async function load(idRaw: string) {
   const id = Number(idRaw);
@@ -32,7 +33,7 @@ async function load(idRaw: string) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await load((await params).id);
-  if (!post) return { title: "Parts and memorabilia" };
+  if (!post) return { title: "Parts" };
   const title = `${post.title}${post.status === "sold" ? " (sold)" : ` for sale, ${priceLabel(post.price).toLowerCase()}`}`;
   const description = post.body.slice(0, 155);
   const image = shareImageUrl("part", post.id);
@@ -51,7 +52,9 @@ const day = (iso: string | null) => (iso ? new Date(iso).toLocaleDateString("en-
 export default async function PartsPostPage({ params, searchParams }: Props) {
   const post = await load((await params).id);
   if (!post) notFound();
-  const justPosted = (await searchParams).posted === "1";
+  const sp = await searchParams;
+  const justPosted = sp.posted === "1";
+  const backFromCheckout = sp.paid === "1";
   const kind = PARTS_KINDS.find((k) => k.key === post.kind)?.singular ?? post.kind;
   const open = post.status === "open";
   const sold = post.status === "sold";
@@ -83,9 +86,9 @@ export default async function PartsPostPage({ params, searchParams }: Props) {
       {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <nav aria-label="Breadcrumb" className="text-sm font-semibold flex flex-wrap gap-x-2" style={{ color: MUTED }}>
-          <Link href="/parts" style={{ color: TEAL }}>Parts and memorabilia</Link>
+          <Link href="/for-sale" style={{ color: TEAL }}>For sale</Link>
           <span>/</span>
-          <Link href={`/parts?kind=${post.kind}#board`} style={{ color: TEAL }}>{kindPlural}</Link>
+          <Link href={kindHref(post.kind)} style={{ color: TEAL }}>{kindPlural}</Link>
           {shelf && (<><span>/</span><Link href={`/parts/category/${shelf.slug}`} style={{ color: TEAL }}>{shelf.label}</Link></>)}
         </nav>
 
@@ -93,6 +96,15 @@ export default async function PartsPostPage({ params, searchParams }: Props) {
           <div className="mt-5 rounded-xl p-4 text-sm" style={{ background: "var(--bg-surface)", color: INK }}>
             {justPosted ? "Got it. " : ""}This listing is waiting for a quick read before it goes up. Only you can see it for now. You will get an email when it is live.
           </div>
+        )}
+        {post.mine && post.status === "unpaid" && (
+          backFromCheckout ? (
+            <div className="mt-5 rounded-xl p-4 text-sm" style={{ background: "var(--bg-surface)", color: INK }}>
+              Payment received. Stripe takes a moment to confirm it; refresh this page in a minute and the listing moves to its quick read.
+            </div>
+          ) : (
+            <FinishPayment id={post.id} />
+          )
         )}
         {post.mine && (post.status === "rejected" || post.status === "removed") && (
           <div className="mt-5 rounded-xl p-4 text-sm" style={{ background: "rgba(176,85,63,0.06)", color: "#9a3f2f" }}>
@@ -156,7 +168,7 @@ export default async function PartsPostPage({ params, searchParams }: Props) {
               <>
                 <div className="flex items-baseline justify-between mb-5">
                   <h2 className="font-display text-2xl" style={{ color: INK }}>More like this</h2>
-                  <Link href={shelf ? `/parts/category/${shelf.slug}` : `/parts?kind=${post.kind}#board`} className="text-sm font-semibold" style={{ color: TEAL }}>
+                  <Link href={shelf ? `/parts/category/${shelf.slug}` : `${kindHref(post.kind)}#board`} className="text-sm font-semibold" style={{ color: TEAL }}>
                     {shelf ? `All ${shelf.label.toLowerCase()}` : `All ${kindPlural.toLowerCase()}`}
                   </Link>
                 </div>

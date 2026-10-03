@@ -21,6 +21,37 @@ export async function POST(request: NextRequest) {
   }
 
   // ── Paid gig order: funds captured to platform, HELD until buyer accepts ──
+  // ── Parts, memorabilia and artwork listing fees (2026-10-02) ──────────────
+  // Handled first and returned early, so the car-listing branch below never
+  // sees these sessions.
+  {
+    const obj = event.data.object as { metadata?: Record<string, string> | null };
+    const kind = obj.metadata?.kind;
+    if (kind === 'parts_item' || kind === 'parts_plan') {
+      if (event.type === 'checkout.session.completed') {
+        try {
+          await handlePartsCheckout(stripe, event.data.object as unknown as PartsSession);
+        } catch (e) {
+          console.error('[parts] checkout webhook failed:', e);
+          // 500 so Stripe retries: the member has paid and the listing must move.
+          return NextResponse.json({ error: 'parts handler failed' }, { status: 500 });
+        }
+      } else if (
+        kind === 'parts_plan' &&
+        (event.type === 'customer.subscription.updated' || event.type === 'customer.subscription.deleted' || event.type === 'customer.subscription.created')
+      ) {
+        try {
+          const { syncSellerPlan } = await import('@/lib/parts-billing');
+          await syncSellerPlan(event.data.object as unknown as Parameters<typeof syncSellerPlan>[0]);
+        } catch (e) {
+          console.error('[parts] subscription webhook failed:', e);
+          return NextResponse.json({ error: 'plan sync failed' }, { status: 500 });
+        }
+      }
+      return NextResponse.json({ received: true });
+    }
+  }
+
   if (event.type === 'checkout.session.completed' && (event.data.object as { metadata?: Record<string, string> }).metadata?.kind === 'gig') {
     const session = event.data.object;
     const orderId = Number(session.metadata?.orderId || 0);
@@ -228,4 +259,74 @@ export async function POST(request: NextRequest) {
   }
 
   return NextResponse.json({ received: true });
+}
+
+// ─── Parts listing fees ─────────────────────────────────────────────────────
+
+type PartsSession = {
+  id: string;
+  mode: string;
+  payment_status?: string | null;
+  metadata?: Record<string, string> | null;
+  payment_intent?: string | { id: string } | null;
+  subscription?: string | { id: string } | null;
+};
+
+async function handlePartsCheckout(stripe: ReturnType<typeof getStripe>, session: PartsSession) {
+  if (!process.env.DATABASE_URL) return;
+  const { neon } = await import('@neondatabase/serverless');
+  const { ensurePartsTables } = await import('@/lib/parts');
+  const sql = neon(process.env.DATABASE_URL);
+  await ensurePartsTables();
+  const postId = Number(session.metadata?.postId || 0);
+  const userId = Number(session.metadata?.userId || 0);
+  // Card only, so this should not happen; if it does, nothing moves until paid.
+  if (session.payment_status === 'unpaid') return;
+
+  if (session.metadata?.kind === 'parts_plan') {
+    const subId = typeof session.subscription === 'string' ? session.subscription : session.subscription?.id;
+    if (!subId) return;
+    const { syncSellerPlan } = await import('@/lib/parts-billing');
+    const sub = await stripe.subscriptions.retrieve(subId);
+    await syncSellerPlan(sub as unknown as Parameters<typeof syncSellerPlan>[0], userId || undefined);
+    if (!['active', 'trialing'].includes(sub.status)) return; // the listing waits for a live plan
+  }
+
+  if (!postId) return;
+  const pi = typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id ?? null;
+  const payment = session.metadata?.kind === 'parts_plan' ? 'plan' : 'paid';
+  // Only an 'unpaid' row moves, so a retried event changes nothing twice.
+  const moved = await sql`
+    UPDATE parts_posts SET status = 'pending', payment = ${payment}, stripe_payment_intent = ${pi}
+    WHERE id = ${postId} AND status = 'unpaid'
+    RETURNING id, kind, title, body, price, photos, user_id
+  `;
+  if (!moved.length) {
+    // Nothing to move. A retried event for this same payment is fine; a second
+    // payment for a listing that is already paid or released gets its money back.
+    if (session.metadata?.kind === 'parts_item' && pi) {
+      const [row] = await sql`SELECT stripe_payment_intent FROM parts_posts WHERE id = ${postId} LIMIT 1`;
+      if (row?.stripe_payment_intent !== pi) {
+        try {
+          await stripe.refunds.create({ payment_intent: pi });
+          console.log(`[parts] refunded duplicate payment ${pi} for listing #${postId}`);
+        } catch (e) {
+          console.error('[parts] duplicate refund failed:', pi, e);
+        }
+      }
+    }
+    return;
+  }
+  try {
+    const r = moved[0];
+    const [u] = await sql`SELECT handle, email FROM users WHERE id = ${Number(r.user_id)} LIMIT 1`;
+    const photos = Array.isArray(r.photos) ? (r.photos as string[]) : [];
+    const { notifyPartsPost } = await import('@/lib/email');
+    await notifyPartsPost({
+      id: Number(r.id), kind: String(r.kind), title: String(r.title), body: String(r.body),
+      handle: String(u?.handle ?? ''), email: String(u?.email ?? ''), price: r.price == null ? null : Number(r.price), photo: photos[0] ?? null,
+    });
+  } catch (e) {
+    console.error('[parts] paid-listing notify failed:', e);
+  }
 }

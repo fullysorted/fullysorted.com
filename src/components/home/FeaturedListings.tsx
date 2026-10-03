@@ -42,7 +42,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
         >
           <div>
             <p className="text-[11px] uppercase mb-3" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>
-              The Marketplace
+              For sale
             </p>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: "#1a1a18" }}>
               When it&apos;s time to buy or sell
@@ -52,6 +52,12 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
               (the first 100 listings are free), no auction clock and no
               buyer&apos;s premium, whether you are an owner or a dealer.
             </p>
+            <p className="mt-2 text-sm" style={{ color: "#6b6b5e" }}>
+              Also for sale:{" "}
+              <Link href="/parts" className="font-semibold hover:underline underline-offset-4" style={{ color: TEAL }}>parts</Link>,{" "}
+              <Link href="/memorabilia" className="font-semibold hover:underline underline-offset-4" style={{ color: TEAL }}>memorabilia</Link> and{" "}
+              <Link href="/projects" className="font-semibold hover:underline underline-offset-4" style={{ color: TEAL }}>project cars</Link>.
+            </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <Link
@@ -59,7 +65,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white transition-colors hover:bg-[#16716D]"
               style={{ background: TEAL }}
             >
-              Browse Cars <ArrowRight className="w-4 h-4" />
+              See cars <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/sell"
@@ -100,7 +106,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
                 className="inline-flex items-center gap-1.5 text-sm font-semibold"
                 style={{ color: TEAL }}
               >
-                Browse All Listings
+                All cars for sale
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

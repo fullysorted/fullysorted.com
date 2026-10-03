@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PARTS_KINDS, categoriesFor, type PartsCategoryKey, type PartsKind } from "@/lib/parts-shared";
+import { PARTS_KINDS, categoriesFor, kindHref, type PartsCategoryKey, type PartsKind } from "@/lib/parts-shared";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
@@ -22,7 +22,7 @@ export function PartsShelves({
         <div key={k.key}>
           <div className="flex items-baseline justify-between pb-3" style={{ borderBottom: `2px solid ${INK}` }}>
             <h3 className="font-display text-xl" style={{ color: INK }}>{k.label}</h3>
-            <Link href={`/parts?kind=${k.key}#board`} className="text-sm font-semibold" style={{ color: TEAL }}>
+            <Link href={`${kindHref(k.key)}#board`} className="text-sm font-semibold" style={{ color: TEAL }}>
               All {k.label.toLowerCase()}
             </Link>
           </div>

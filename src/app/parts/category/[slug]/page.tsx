@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getOpenPartsPosts } from "@/lib/parts";
-import { PARTS_CATEGORIES, PARTS_KINDS, partsCategoryBySlug, type PartsPost, type PartsCategoryKey } from "@/lib/parts-shared";
+import { PARTS_CATEGORIES, PARTS_KINDS, kindHref, partsCategoryBySlug, type PartsPost, type PartsCategoryKey } from "@/lib/parts-shared";
 import { tradeHref } from "@/lib/category-slugs";
 import { PartsBoard } from "@/components/parts/PartsBoard";
 import { PartsShelves } from "@/components/parts/PartsShelves";
@@ -30,11 +30,11 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = partsCategoryBySlug((await params).slug);
-  if (!c) return { title: "Parts and memorabilia" };
-  const noun = c.kind === "part" ? "parts" : "memorabilia";
+  if (!c) return { title: "Parts" };
+  const noun = c.kind === "part" ? "parts" : c.kind === "art" ? "artwork" : "memorabilia";
   return {
     title: `Collector Car ${c.label} for Sale`,
-    description: `${c.blurb} Collector car ${noun} listed by Fully Sorted members. Free to list, no fee on the sale.`,
+    description: `${c.blurb} Collector car ${noun} listed by Fully Sorted members. No fee on the sale.`,
     alternates: { canonical: `/parts/category/${c.slug}` },
   };
 }
@@ -61,9 +61,9 @@ export default async function PartsShelfPage({ params }: Props) {
       <div style={{ borderBottom: `1px solid ${RULE}` }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
           <nav aria-label="Breadcrumb" className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: MUTED }}>
-            <Link href="/parts" className="hover:underline" style={{ color: TEAL }}>Parts and memorabilia</Link>
+            <Link href="/for-sale" className="hover:underline" style={{ color: TEAL }}>For sale</Link>
             <span className="mx-2">/</span>
-            <Link href={`/parts?kind=${c.kind}#board`} className="hover:underline" style={{ color: TEAL }}>{kindLabel}</Link>
+            <Link href={kindHref(c.kind)} className="hover:underline" style={{ color: TEAL }}>{kindLabel}</Link>
           </nav>
           <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4" style={{ color: INK }}>
             {c.label}

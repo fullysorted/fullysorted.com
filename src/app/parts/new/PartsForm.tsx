@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Camera, X, Loader2 } from "lucide-react";
-import { PARTS_KINDS, PARTS_CONDITIONS, PARTS_SHIPPING, PARTS_MAX_PHOTOS, categoriesFor, partsCategory, type PartsKind } from "@/lib/parts-shared";
+import { PARTS_KINDS, PARTS_CONDITIONS, PARTS_SHIPPING, PARTS_MAX_PHOTOS, PARTS_ITEM_FEE_CENTS, PARTS_PLAN_CENTS, PARTS_PLAN_MAX_LIVE, centsLabel, categoriesFor, partsCategory, type PartsKind, type PartsAccess } from "@/lib/parts-shared";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
@@ -15,6 +15,7 @@ const field =
 const TITLE_HINT: Record<PartsKind, string> = {
   part: "Weber 40 IDF pair, rebuilt, off an Alfa 1750",
   memorabilia: "1973 Porsche dealer showroom sign, double-sided",
+  art: "1970 Le Mans official race poster, original printing",
 };
 
 type ModelOption = { slug: string; name: string; make: string; model: string };
@@ -28,11 +29,13 @@ function Label({ children, hint }: { children: React.ReactNode; hint?: string })
   );
 }
 
-export function PartsForm({ handle, models, presetModelSlug, presetKind, presetShelf }: { handle: string | null; models: ModelOption[]; presetModelSlug?: string; presetKind?: string; presetShelf?: string }) {
+export function PartsForm({ handle, models, presetModelSlug, presetKind, presetShelf, access }: { handle: string | null; models: ModelOption[]; presetModelSlug?: string; presetKind?: string; presetShelf?: string; access: PartsAccess }) {
   const router = useRouter();
   const preset = models.find((m) => m.slug === presetModelSlug);
   const presetCat = partsCategory(presetShelf);
-  const [kind, setKind] = useState<PartsKind>(presetCat ? presetCat.kind : presetKind === "memorabilia" ? "memorabilia" : "part");
+  const [kind, setKind] = useState<PartsKind>(presetCat ? presetCat.kind : PARTS_KINDS.some((k) => k.key === presetKind) ? (presetKind as PartsKind) : "part");
+  // Only asked when the free allowance is gone and there is no plan.
+  const [pay, setPay] = useState<"item" | "plan">("item");
   const [category, setCategory] = useState<string>(presetCat?.key ?? "");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -110,10 +113,17 @@ export function PartsForm({ handle, models, presetModelSlug, presetKind, presetS
       const res = await fetch("/api/parts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kind, category, title, body, make, model, modelSlug, partNumber, condition, price, location, shipping, photos, handle: newHandle, agree, website }),
+        body: JSON.stringify({ kind, category, title, body, make, model, modelSlug, partNumber, condition, price, location, shipping, photos, handle: newHandle, agree, website, ...(access.mode === "pay" ? { pay } : {}) }),
       });
       const d = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(d.error || "That did not save. Please try again.");
+      if (!res.ok) {
+        // Saved but checkout did not start: the listing page has a pay button.
+        if (d.id) { router.push(`/parts/${d.id}?unpaid=1`); return; }
+        // The free listings ran out while the form was open: reload to show the payment choice.
+        if (d.code === "pay") { router.refresh(); setError("The free listings just ran out. Choose how to pay below."); setState("idle"); return; }
+        throw new Error(d.error || "That did not save. Please try again.");
+      }
+      if (d.checkoutUrl) { window.location.href = d.checkoutUrl; return; }
       router.push(`/parts/${d.id}?posted=1`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "That did not save. Please try again.");
@@ -130,7 +140,7 @@ export function PartsForm({ handle, models, presetModelSlug, presetKind, presetS
             <button key={k.key} type="button" onClick={() => { if (k.key !== kind) setCategory(""); setKind(k.key); }} aria-pressed={kind === k.key}
               className="h-12 rounded-xl text-[15px] font-semibold"
               style={kind === k.key ? { background: INK, color: "#fff" } : { background: "#fff", color: INK, border: "1px solid rgba(18,53,42,0.2)" }}>
-              {k.key === "part" ? "A part" : "Memorabilia"}
+              {k.key === "part" ? "A part" : k.key === "art" ? "Artwork" : "Memorabilia"}
             </button>
           ))}
         </div>
@@ -259,10 +269,36 @@ export function PartsForm({ handle, models, presetModelSlug, presetKind, presetS
         </span>
       </label>
 
+      {access.mode === "pay" ? (
+        <fieldset className="space-y-3">
+          <legend className="text-sm font-semibold mb-2" style={{ color: INK }}>How to pay for it</legend>
+          {([
+            { key: "item" as const, head: `This listing, ${centsLabel(PARTS_ITEM_FEE_CENTS)}`, sub: "Paid once. Up for 90 days." },
+            { key: "plan" as const, head: `Seller plan, ${centsLabel(PARTS_PLAN_CENTS)} a month`, sub: `Up to ${PARTS_PLAN_MAX_LIVE} listings up at once across parts, memorabilia and artwork. Cancel any time.` },
+          ]).map((o) => (
+            <label key={o.key} className="flex items-start gap-3 rounded-2xl p-4 cursor-pointer bg-white"
+              style={{ border: `1.5px solid ${pay === o.key ? TEAL : "rgba(18,53,42,0.14)"}` }}>
+              <input type="radio" name="pay" checked={pay === o.key} onChange={() => setPay(o.key)} className="mt-1 accent-[#1C8C87]" />
+              <span>
+                <span className="block font-semibold" style={{ color: INK }}>{o.head}</span>
+                <span className="block text-sm mt-0.5" style={{ color: MUTED }}>{o.sub}</span>
+              </span>
+            </label>
+          ))}
+          <p className="text-xs" style={{ color: MUTED }}>Paid through Stripe. If the listing does not pass the quick read, a per-item fee is refunded.</p>
+        </fieldset>
+      ) : (
+        <p className="text-sm" style={{ color: MUTED }}>
+          {access.mode === "plan"
+            ? `Covered by your seller plan: ${access.live} of ${access.maxLive} listings up.`
+            : "Free: this is one of the first listings on the board."}
+        </p>
+      )}
+
       {error && <p className="text-sm font-medium" style={{ color: "#9a3f2f" }}>{error}</p>}
 
       <button type="submit" disabled={state === "sending" || uploading > 0} className="w-full sm:w-auto h-12 px-8 rounded-full text-[15px] font-bold text-white disabled:opacity-60" style={{ background: TEAL }}>
-        {state === "sending" ? "Sending..." : "Send it for a quick read"}
+        {state === "sending" ? "Sending..." : access.mode === "pay" ? "Continue to payment" : "Send it for a quick read"}
       </button>
       {handle && <p className="text-xs" style={{ color: MUTED }}>Listing as @{handle}</p>}
     </form>
