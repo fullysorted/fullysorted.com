@@ -54,17 +54,17 @@ export default async function ServicesPage() {
             {/* Provider entry point. This used to live in a nav dropdown next
                 to the visitor links; it belongs here, quietly, on the page
                 shops arrive at. */}
-            <p className="mt-6 text-sm" style={{ color: MUTED }}>
-              Run a shop?{' '}
-              <Link href="/services/apply" className="font-semibold underline underline-offset-4" style={{ color: INK }}>
-                List your services
+            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+              <Link href="/services/apply" className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-bold text-white" style={{ background: TEAL }}>
+                List your shop or service
               </Link>
-              {' '}or read the{' '}
-              <Link href="/services/guide" className="font-semibold underline underline-offset-4" style={{ color: INK }}>
-                provider playbook
-              </Link>
-              .
-            </p>
+              <span className="text-sm" style={{ color: MUTED }}>
+                Free for the first 500.{' '}
+                <Link href="/services/guide" className="font-semibold underline underline-offset-4" style={{ color: INK }}>
+                  Read the provider playbook
+                </Link>
+              </span>
+            </div>
           </div>
 
           <div className="hidden lg:block lg:col-span-5">
