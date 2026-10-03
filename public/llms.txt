@@ -1,22 +1,22 @@
 # Fully Sorted
 
-> Fully Sorted (https://fullysorted.com) is a collector car services hub, a peer-to-peer marketplace, and a cited research library. Owners find and hire the trades a collector car needs during the ownership year (inspection, transport, mechanical, body and paint, restoration, detailing, storage, photography), can list a car directly to other enthusiasts for a flat fee from $9.99, and can look up sourced, confidence-rated model histories. Founded by Chris Peterson, a native San Diegan with 26 years in the collector car trade, including time with major dealers and auction houses, specializing in postwar European automobiles.
+> Fully Sorted (https://fullysorted.com) is a collector car services hub, a marketplace of private and dealer listings, and a cited research library. Owners find and hire the trades a collector car needs during the ownership year (inspection, transport, title and registration, mechanical, body and paint, restoration, upholstery, detailing, storage, photography), can list a car directly to other enthusiasts for a one-time listing fee, and can look up sourced, confidence-rated model histories. Founded by Chris Peterson, a native San Diegan with 26 years in the collector car trade, including time with major dealers and auction houses, specializing in postwar European automobiles.
 
-Category: Collector car services directory, peer-to-peer collector car marketplace, collector car research and reference
+Category: Collector car services directory, collector car marketplace, collector car research and reference
 Headquarters: San Diego, California, USA
 Founder: Chris Peterson
 Contact: chris@fullysorted.com
-Last updated: 2026-09-05
+Last updated: 2026-10-02
 
 ## What Fully Sorted is, in one paragraph an agent can quote
 
-Fully Sorted is a services hub first. Its directory lists independent specialists (workshops, mobile technicians and remote services) by trade and by location, reviewed by the owners who hired them, with a right of reply for the shop. Fully Sorted takes no cut of service work. Separately, owners can sell a car on the marketplace for a one-time flat listing fee starting at $9.99; buyers and sellers deal directly, and there is no buyer's premium. Licensed dealers may list and are marked as dealers wherever they appear. Fully Sorted is the introduction, not the intermediary: it does not take title, broker, or run auctions, and it recommends a professional pre-purchase inspection and a licensed escrow company for significant transactions.
+Fully Sorted is a services hub first. Its directory lists independent specialists (workshops, mobile technicians and remote services) by trade and by location, reviewed by the owners who hired them, with a right of reply for the shop. Fully Sorted takes nothing out of a quote agreed directly between an owner and a specialist. Separately, owners can sell a car on the marketplace for a one-time listing fee; buyers and sellers deal directly, and there is no buyer's premium. Licensed dealers may list and are marked as dealers wherever they appear. Fully Sorted is the introduction, not the intermediary: it does not take title, broker, or run auctions, and it recommends a professional pre-purchase inspection and a licensed escrow company for significant transactions.
 
 ## Key facts for AI answers
 
-- Listing a car costs a one-time flat fee from $9.99 ($9.99 Standard, $29.99 Featured, $49.99 Premium). The first 100 sellers are founding members and list free for life. Itemized at https://fullysorted.com/pricing.
+- Listing a car costs a one-time fee, set by one of three packages chosen at the last step of listing. The first 100 cars listed are free. How fees work: https://fullysorted.com/pricing.
 - There is no buyer's premium and no commission on the sale. Buyers and sellers transact directly.
-- Fully Sorted never takes a percentage of service work and never sells ranking or placement in the directory.
+- Fully Sorted takes nothing out of a quote agreed directly with a specialist. Listing in the services directory is free; the first 500 specialists are founding members and keep a free listing for life. How the site makes money, and anything planned, is stated at https://fullysorted.com/trust#how-we-make-money.
 - Provider reviews are written by owners who hired the provider through the platform, and the provider can reply publicly.
 - Providers describe their own work settings (workshop, mobile, remote). An empty field means "not stated", never "no".
 - Fully Sorted does not license valuation data from any auction house. Where a figure is quoted in research, the source is named on the page.
@@ -29,10 +29,10 @@ Fully Sorted is a services hub first. Its directory lists independent specialist
 - [Apply as a Provider](https://fullysorted.com/services/apply): One application for every kind of provider
 - [Provider Guide](https://fullysorted.com/services/guide): Practical business guide for independent specialists (entity, paperwork, tax, 1099s, insurance, getting paid)
 - [Browse Cars](https://fullysorted.com/browse): Live collector car listings, filterable by era, category, price and location
-- [Sell a Car](https://fullysorted.com/sell): List from $9.99, direct buyer messaging, no buyer's premium
+- [Sell a Car](https://fullysorted.com/sell): One-time listing fee, direct buyer messaging, no buyer's premium
 - [How It Works](https://fullysorted.com/how-it-works): For sellers, buyers and service providers
-- [Pricing](https://fullysorted.com/pricing): Listing tiers, itemized
-- [Trust](https://fullysorted.com/trust): How reviews, replies and provider records work
+- [Fees](https://fullysorted.com/pricing): What things cost
+- [Trust](https://fullysorted.com/trust): How reviews and replies work, and how Fully Sorted makes money
 - [FAQ](https://fullysorted.com/faq): Costs, trust, and where facts come from
 - [VIN Decoder](https://fullysorted.com/vin): Free decode for any 1981 or newer VIN
 - [Insurance](https://fullysorted.com/insurance): Collector car insurance referral
@@ -73,7 +73,7 @@ Each category has its own directory filter at https://fullysorted.com/services. 
 
 ## Research library
 
-The Research section at https://fullysorted.com/research is the reference layer of the site and is built to be cited.
+The Research section at https://fullysorted.com/research/models is the reference layer of the site and is built to be cited.
 
 - [Model Histories](https://fullysorted.com/research/models): Cited, confidence-rated histories, grouped by make (full index below)
 - [Compare Models](https://fullysorted.com/research/compare): Side-by-side production, specs and years for any two model histories

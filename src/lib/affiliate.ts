@@ -9,7 +9,7 @@
 export const AMAZON_TAG = (process.env.NEXT_PUBLIC_AMAZON_TAG || "").trim();
 
 export const AFFILIATE_DISCLOSURE =
-  "Some links here are affiliate links: Fully Sorted may earn a small commission on qualifying purchases, at no extra cost to you. We only list gear we'd genuinely put in our own garage.";
+  "Some links here are affiliate links: Fully Sorted may earn a small commission on qualifying purchases, at no extra cost to you. Everything on it is gear we'd put in our own garage.";
 
 const AMAZON = "https://www.amazon.com";
 

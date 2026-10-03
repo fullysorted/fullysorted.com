@@ -10,8 +10,10 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Car Specialist Gigs",
   description:
-    "Fixed-price gigs from owner-reviewed collector-car specialists are on their way: inspections, detailing, transport, photography and more. Are you a specialist? List one in five minutes.",
+    "Fixed-price gigs for collector car work are not open yet. Until they are, find a specialist in the Fully Sorted directory and ask for a quote.",
   alternates: { canonical: "/gigs" },
+  // Not open yet: kept out of the index and the sitemap until it is.
+  robots: { index: false, follow: true },
 };
 
 export default async function GigsPage() {
@@ -58,12 +60,12 @@ export default async function GigsPage() {
             Hire a car specialist
           </h1>
           <p className="text-base sm:text-lg leading-relaxed max-w-2xl" style={{ color: "rgba(255,255,255,0.88)" }}>
-            Fixed-price gigs from top-rated pros: inspections, detailing, transport, photography, and more.
-            See exactly what you get and what it costs, before you book.
+            Fixed-price gigs are not open yet. When they are, you will see what is included and
+            what it costs before you book. Until then, the directory is where to find someone.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Link href="/services/apply" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold bg-white text-accent shadow-sm hover:-translate-y-0.5 hover:shadow-lg transition-all">
-              <Sparkles className="w-4 h-4" style={{ color: "#B08D3F" }} /> Offer your own gig <ArrowRight className="w-4 h-4" />
+            <Link href="/services" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold bg-white text-accent shadow-sm hover:-translate-y-0.5 hover:shadow-lg transition-all">
+              Find a specialist <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/services/guide" className="inline-flex items-center gap-1.5 rounded-xl px-4 h-11 text-sm font-bold border border-white/40 text-white hover:bg-white/10 transition-all">
               How to get booked
@@ -76,10 +78,10 @@ export default async function GigsPage() {
         {gigs.length === 0 ? (
           <div className="rounded-2xl bg-white px-6 py-16 text-center" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
             <Sparkles className="w-8 h-8 mx-auto mb-4" style={{ color: "#cfcabb" }} />
-            <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>The first gigs are on their way</p>
+            <p className="font-bold mb-1" style={{ color: "#1a1a18" }}>Not open yet</p>
             <p className="text-sm max-w-md mx-auto" style={{ color: "#9a9a8a" }}>
-              Specialists are setting up their gigs now. Are you a pro?{" "}
-              <Link href="/services/apply" className="underline text-accent hover:text-accent-hover">List one in five minutes.</Link>
+              Until gigs open, find a specialist and ask for a quote.{" "}
+              <Link href="/services" className="underline text-accent hover:text-accent-hover">Browse the directory.</Link>
             </p>
           </div>
         ) : (

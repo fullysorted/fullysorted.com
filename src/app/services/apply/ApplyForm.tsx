@@ -61,7 +61,7 @@ const HELP: Record<StepKey, Help[]> = {
   basics: [
     {
       q: 'What does it cost?',
-      a: `The first ${FOUNDING_PROVIDER_THRESHOLD} providers are founding members. The listing is free now and stays free for life.`,
+      a: `The listing is free. The first ${FOUNDING_PROVIDER_THRESHOLD} providers are founding members, and a founding member's listing stays free for life.`,
     },
     {
       q: 'I do more than one kind of work.',
@@ -458,9 +458,9 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
       {step === 0 && (
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {[
-            { Icon: Shield, color: 'text-accent', title: 'Free for life for founding providers', body: `The first ${FOUNDING_PROVIDER_THRESHOLD} specialists to join are founding members. Your directory listing is free now and stays free for life, whatever we add later.` },
-            { Icon: Star, color: 'text-blue', title: 'In front of serious collectors', body: 'The people searching this directory are actively buying and maintaining collector cars.' },
-            { Icon: Sparkles, color: 'text-gold', title: 'Inquiries come straight to you', body: 'An owner who picks you emails you, and the conversation stays between the two of you.' },
+            { Icon: Shield, color: 'text-accent', title: 'A free listing for life', body: `The first ${FOUNDING_PROVIDER_THRESHOLD} specialists to join are founding members. Your directory listing is free now and stays free for life, whatever paid tools we add later.` },
+            { Icon: Star, color: 'text-blue', title: 'Your work, under your name', body: 'One profile with your photos, your specialties and the reviews owners leave after the job. You can answer any review in public.' },
+            { Icon: Sparkles, color: 'text-gold', title: 'Inquiries come straight to you', body: 'An owner who picks you writes to you with the car and the job described. We keep a copy so nothing gets lost, and never pass it to anyone else.' },
           ].map(({ Icon, color, title, body }, i) => (
             <motion.div
               key={title}

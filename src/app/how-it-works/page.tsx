@@ -26,7 +26,7 @@ import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "Fully Sorted is a collector car services hub with a peer-to-peer marketplace and a research center. Here's exactly how hiring a specialist, buying and selling, and researching a car's value work.",
+    "Fully Sorted is a collector car services hub with a marketplace and a research center. How hiring a specialist, buying and selling, and researching a car work.",
   alternates: { canonical: "/how-it-works" },
 };
 
@@ -35,22 +35,22 @@ const HIRE_STEPS = [
   {
     icon: Search,
     title: "Tell us what the car needs",
-    body: "Search by what you need (pre-purchase inspection, ceramic coating, enclosed transport, a marque specialist), or check back for fixed-price gigs with upfront pricing once they open.",
+    body: "Search by what you need: a pre-purchase inspection, ceramic coating, enclosed transport, a marque specialist.",
   },
   {
     icon: Star,
     title: "Read the owner record",
-    body: "Every provider profile carries reviews and comments from the owners who actually hired them, plus an engagement level earned through real work on the platform.",
+    body: "Every provider profile carries reviews from the owners who hired them. A shop can answer a review but never remove one.",
   },
   {
     icon: MessageSquare,
-    title: "Request a quote or book a gig",
-    body: "Message a shop or specialist directly for custom work, or book a fixed-price gig when you already know what you need. You talk to the person doing the work.",
+    title: "Ask for a quote",
+    body: "Send a shop or specialist a short brief about the car and the job. You talk to the person doing the work.",
   },
   {
     icon: CheckCircle2,
     title: "Leave your own review",
-    body: "When the job's done, your review becomes part of the record the next owner reads. That's how the directory gets better: collectively, in the open.",
+    body: "When the job's done, your review becomes part of the record the next owner reads.",
   },
 ];
 
@@ -58,22 +58,22 @@ const SELLER_STEPS = [
   {
     icon: Upload,
     title: "List your car",
-    body: "Upload photos, fill in the basics (year, make, model, mileage, VIN), and tell the story of your car. It takes about 10 minutes.",
+    body: "Year, make, model and a price are enough to publish. Photos, numbers and the story make it better.",
   },
   {
     icon: Sparkles,
     title: "You write the listing",
-    body: "You write the description; we give you a structure that works and examples of what collectors actually read. Review, edit, and publish whenever you're ready.",
+    body: "Your words, your photos. A VIN or chassis number fills in what it can, and nothing is required beyond the basics.",
   },
   {
     icon: Eye,
     title: "Real buyers see it",
-    body: "Your listing goes live on the Fully Sorted marketplace, the daily browse feed, and is indexed for search. What you pay is what you saw before you clicked.",
+    body: "Your listing goes live on the marketplace and is indexed for search. What you pay is what you saw before you clicked.",
   },
   {
     icon: Handshake,
     title: "You own the deal",
-    body: "Buyers message and make offers directly. You decide who to respond to and how to structure the sale, and you close it on your own terms.",
+    body: "Buyers message you directly. You decide who to answer and how to structure the sale, and you close it on your own terms.",
   },
 ];
 
@@ -81,19 +81,19 @@ const BUYER_STEPS = [
   {
     icon: Search,
     title: "Browse honest listings",
-    body: "Filter by era, category, price, and location. Every listing shows real photos, VIN, mileage, and, where available, comparable recent sale prices.",
+    body: "Every listing says whether a private owner or a dealer is selling, and links to the model history where there is one.",
   },
   {
     icon: CheckCircle2,
     title: "Check the comps",
     body: VALUE_GUIDE_PUBLIC
       ? "Our Value Guide pulls real auction data so you know what a car actually trades for, not what someone hopes to get."
-      : "Work from real sold prices, not ask prices. Our model histories carry a market snapshot wherever we have enough recorded sales to say something honest.",
+      : "Our model histories carry market notes, sourced and dated, wherever there is enough published data to say something honest.",
   },
   {
     icon: MessageSquare,
     title: "Message the seller",
-    body: "Ask questions, request more photos, set up an inspection. All communication happens directly between you and the owner.",
+    body: "Ask questions, request more photos, set up an inspection. You deal with the seller directly.",
   },
   {
     icon: Handshake,
@@ -120,8 +120,8 @@ const PROVIDER_STEPS = [
   },
   {
     icon: DollarSign,
-    title: "Get found by owners who care",
-    body: "Collectors searching for detailers, inspectors, mechanics, restorers, and transporters find you, ranked by the work you've done and the owners who vouch for it.",
+    title: "Get found",
+    body: "Owners searching for your trade find your profile, your photos and what other owners said about the work.",
   },
 ];
 
@@ -247,7 +247,7 @@ export default function HowItWorksPage() {
             directory of the people who do the work. Alongside it sits a
             marketplace with flat listing fees, where every car says whether a
             private owner or a dealer is selling it, and a
-            research center built on real sold prices.
+            research hub of cited model histories.
           </p>
 
           {/* Photo moment */}
@@ -262,7 +262,7 @@ export default function HowItWorksPage() {
             />
             <div className="absolute inset-0" aria-hidden="true" style={{ background: "linear-gradient(rgba(15,32,50,0.1), rgba(15,32,50,0.65))" }} />
             <p className="absolute bottom-4 left-5 right-5 text-sm sm:text-base font-semibold text-white text-left">
-              Know before the wire goes: real comps, owner-reviewed specialists, and a deal you own end to end.
+              Know the car before the wire goes, and know who is working on it.
             </p>
           </div>
         </div>
@@ -325,7 +325,7 @@ export default function HowItWorksPage() {
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Joining the Fully Sorted directory</h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              Detailers, inspectors, mechanics, restorers, transporters, body and paint shops, storage facilities, and photographers: the skilled specialists who make collector car ownership possible.
+              One application, whatever the size of the operation, from a shop with six lifts to one person and a van.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -437,20 +437,20 @@ export default function HowItWorksPage() {
             className="text-xs font-bold uppercase tracking-widest mb-2"
             style={{ color: "#1E6091" }}
           >
-            Simple Pricing
+            Selling a car
           </p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground mb-3">
-            One-time listing fee. Straightforward pricing.
+            One fee, paid once.
           </h2>
           <p className="text-base text-text-secondary">
-            Three packages, all one-time and paid up front. You pick one when you list. The first 100 sellers list free as founding members.
+            Three packages, all paid once, up front. You see them when you list. The first 100 cars list free.
           </p>
           <div className="mt-8">
             <Link
               href="/pricing"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-foreground border-2 border-foreground rounded-xl hover:bg-foreground hover:text-white transition-colors"
             >
-              See Pricing Details <ArrowRight className="w-4 h-4" />
+              How fees work <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

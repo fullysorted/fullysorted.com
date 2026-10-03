@@ -26,7 +26,7 @@ const PILLARS = [
     icon: Star,
     title: "Rated by real owners",
     body:
-      "Our services directory runs on the open record. Providers earn their reputation through reviews from the actual owners who hired them and through engagement levels earned by real activity on the platform. You always see the open review record before you book.",
+      "Our services directory runs on the open record. Providers earn their reputation through reviews from the owners who hired them, and a shop can answer a review but never remove one. You always see the review record before you get in touch.",
   },
   {
     icon: RefreshCw,
@@ -38,13 +38,14 @@ const PILLARS = [
     icon: Search,
     title: "Fraud protection",
     body:
-      "We use automated checks and human review to watch for suspicious listings and activity. For any vehicle purchase, we strongly recommend a professional pre-purchase inspection and a licensed escrow company for significant transactions. Fully Sorted is the introduction, not a party to the sale.",
+      "We watch for suspicious listings and activity, and a person reads every report. For any vehicle purchase, we strongly recommend a professional pre-purchase inspection and a licensed escrow company for significant transactions. Fully Sorted is the introduction, not a party to the sale.",
   },
   {
     icon: Wallet,
+    id: "how-we-make-money",
     title: "How we make money",
     body:
-      "Two ways, one live today and one planned. Sellers pay a one-time listing fee, set by the package they pick when they list. When fixed-price gigs open, providers will pay a 10% platform fee on gigs booked through the site. That is the entire list: the listing fee is the only charge on a car sale however much it sells for, there is no buyer's premium, we take nothing out of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
+      "Live today: sellers pay a one-time listing fee, set by the package they pick when they list, and some links in the Shop are affiliate links that pay us a small commission. We take nothing out of a quote you agree directly with a specialist, and nothing out of a car sale beyond the listing fee. As the site grows we expect to add paid tools for shops, a fee on fixed-price gigs once they open, and partner offers from insurers, transporters and lenders. Anything new is posted here before it starts, and anything paid for on the site is labeled as paid. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
   },
   {
     icon: HandCoins,
@@ -94,10 +95,10 @@ export default function TrustPage() {
             Trust &amp; Safety
           </p>
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-4" style={{ color: "#1a1a18" }}>
-            Built to be safe, sound, and fully sorted
+            What we check, what we don&apos;t, and how we get paid
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "#5a5a52" }}>
-            Buying, selling, and hiring around collector cars involves real money and real trust. Here&apos;s exactly how we protect every side of a transaction, and what you should do on your end, too.
+            Real money changes hands around these cars. Here is what we do, where our part ends, and what to do on your end.
           </p>
         </div>
       </section>
@@ -110,7 +111,8 @@ export default function TrustPage() {
             return (
               <div
                 key={p.title}
-                className="rounded-2xl p-6 sm:p-7"
+                id={"id" in p ? p.id : undefined}
+                className="rounded-2xl p-6 sm:p-7 scroll-mt-24"
                 style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)" }}
               >
                 <div
@@ -165,7 +167,7 @@ export default function TrustPage() {
 
         <p className="flex items-start gap-2 text-xs mt-6 leading-relaxed" style={{ color: "#9a9a8a" }}>
           <Eye size={14} className="mt-0.5 shrink-0" />
-          Fully Sorted is a neutral platform that connects owners, buyers, and independent service providers. We are not a party to transactions between users and do not act as an auction house, broker, or appraiser. Value Guide figures are informational estimates, not formal appraisals.
+          Fully Sorted is a neutral platform that connects owners, buyers, and independent service providers. We are not a party to transactions between users and do not act as an auction house, broker, or appraiser. Market figures on the site are informational, not formal appraisals.
         </p>
       </section>
     </main>

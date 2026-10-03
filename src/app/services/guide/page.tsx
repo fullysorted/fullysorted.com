@@ -44,20 +44,20 @@ export const metadata: Metadata = {
 ———————————————————————————————————————————————— */
 const PATHS = [
   {
-    icon: Layers,
-    tag: "Fixed-price gig",
-    title: "Book-me-now gigs",
-    body:
-      "Package a service at an upfront price: a paint-correction detail, a pre-purchase inspection, an enclosed transport lane. When fixed-price gigs open, buyers will see the price, pick a tier, and book in a couple of clicks. Best for repeatable, well-scoped work you can quote without a conversation.",
-    cta: { href: "/services/apply", label: "Get ready for launch" },
-  },
-  {
     icon: Building2,
-    tag: "Directory business",
+    tag: "Directory listing",
     title: "Get-a-quote listing",
     body:
-      "List your shop or business in the specialist directory. Owners find you by marque, service, and location, then send an inquiry for a custom quote. Best for bespoke, high-value work (an engine rebuild, collection management, a complex multi-car move) that needs a conversation before a number.",
+      "Live today. List your shop or business in the specialist directory. Owners find you by marque, service and location, then send an inquiry for a quote. Best for bespoke, high-value work (an engine rebuild, collection management, a complex multi-car move) that needs a conversation before a number.",
     cta: { href: "/services/apply", label: "Get listed" },
+  },
+  {
+    icon: Layers,
+    tag: "Fixed-price gig, not open yet",
+    title: "Book-me-now gigs",
+    body:
+      "Coming later. Package a service at an upfront price: a paint-correction detail, a pre-purchase inspection, an enclosed transport lane. When gigs open, owners will see the price, pick a tier and book. Best for repeatable, well-scoped work you can quote without a conversation.",
+    cta: { href: "/services/apply", label: "Get listed meanwhile" },
   },
 ];
 
@@ -171,7 +171,7 @@ const PROVIDER_STEPS: Step[] = [
       "Portfolio populated with real work",
       "At least one listing with tiered pricing and requirements",
     ],
-    tip: "Complete profiles get approved faster and rank higher. Finish everything before you submit: a half-built profile reads as a half-serious business.",
+    tip: "Complete profiles get approved faster and read better to owners. Finish everything before you submit: a half-built profile reads as a half-serious business.",
   },
   {
     icon: TrendingUp,
@@ -263,8 +263,8 @@ const FAQS = [
     a: "Name your specialism precisely: the marques, eras, and services you are the expert in, in your title, tagline, and tags. Specific beats generic: 'air-cooled Porsche paint correction' gets found where 'car detailing' disappears.",
   },
   {
-    q: "How do I earn a higher ranking and more leads?",
-    a: "Respond quickly, deliver on time, and collect verified reviews. Give us the names of clients who were happy and we email them a one-time review link. At three verified reviews a star rating starts showing on your profile and on your directory card, and at 4.5 and above you pick up the Top-rated badge. Nothing about ranking is for sale.",
+    q: "How do I get more leads?",
+    a: "Respond quickly, deliver on time, and collect verified reviews. Give us the names of clients who were happy and we email them a one-time review link. At three verified reviews a star rating starts showing on your profile and on your directory card, and at 4.5 and above you pick up the Top-rated badge.",
   },
   {
     q: "What information should I ask buyers for before starting?",
@@ -442,10 +442,10 @@ export default function ProviderGuidePage() {
             <span className="text-white text-xs font-bold uppercase tracking-widest">The Provider Playbook</span>
           </div>
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-4">
-            Turn your craft into a <span style={{ color: "#D9C08A" }}>fully booked</span> business.
+            Get found by the owners who <span style={{ color: "#D9C08A" }}>need your work</span>.
           </h1>
           <p className="text-lg text-stone-200 max-w-2xl mx-auto">
-            Everything a collector-car specialist needs to build a profile owners trust, price work that sells, and turn first jobs into a steady stream of bookings.
+            How to build a profile owners trust, price the work, and turn first jobs into repeat ones.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
@@ -472,10 +472,10 @@ export default function ProviderGuidePage() {
               Start here
             </p>
             <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-              Two ways to sell your services
+              How owners will find you
             </h2>
             <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              Pick the model that fits the work. Once fixed-price gigs open, many specialists will run both: productized gigs for repeatable jobs, a directory listing for bespoke projects.
+              Start with a directory listing; it is live today. Fixed-price gigs come later, for repeatable jobs, and many specialists will run both.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

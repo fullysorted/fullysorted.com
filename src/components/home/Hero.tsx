@@ -99,8 +99,7 @@ function FeaturedCard({ m }: { m: FeaturedModel }) {
       <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 mt-2.5 text-[12px]" style={{ fontFamily: MONO }}>
         {years && (<><dt><Label>Years</Label></dt><dd>{years}</dd></>)}
         {m.generationCode && (<><dt><Label>Code</Label></dt><dd>{m.generationCode}</dd></>)}
-        <dt><Label>Built</Label></dt>
-        <dd>{built ?? <span style={{ color: MUTED }}>see history</span>}</dd>
+        {built && (<><dt><Label>Built</Label></dt><dd>{built}</dd></>)}
       </dl>
       <Link
         href={`/research/models/${m.slug}`}

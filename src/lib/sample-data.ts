@@ -11,8 +11,8 @@ export interface Vehicle {
   engine: string;
   exteriorColor: string;
   interiorColor: string;
-  condition: "Excellent" | "Good" | "Fair" | "Project";
-  originality: "Original" | "Restored" | "Modified";
+  condition: "Excellent" | "Good" | "Fair" | "Project" | ""; // "" = not recorded
+  originality: "Original" | "Restored" | "Modified" | ""; // "" = not recorded
   location: string;
   category: string;
   photoCount: number;

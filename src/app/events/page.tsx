@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Fragment } from "react";
 import { Calendar, MapPin, ArrowRight, Flag } from "lucide-react";
 import { events } from "@/lib/events";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -24,11 +25,25 @@ export const metadata: Metadata = {
   },
 };
 
+// Re-render daily so an event moves to "Past" the day after it ends.
+export const revalidate = 86400;
+
 export default function EventsPage() {
   // Sort by start date ascending
   const sorted = [...events].sort((a, b) =>
     a.startDate.localeCompare(b.startDate)
   );
+  // Today in Pacific time, as YYYY-MM-DD, to split upcoming from past.
+  const today = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Los_Angeles",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+  const upcoming = sorted.filter((e) => (e.endDate ?? e.startDate) >= today);
+  const past = sorted
+    .filter((e) => (e.endDate ?? e.startDate) < today)
+    .reverse();
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -92,10 +107,9 @@ export default function EventsPage() {
             </span>
           </h1>
           <p className="text-lg sm:text-xl leading-relaxed max-w-3xl text-white/85">
-            Concours, auctions, tours, and cars-and-coffee meets that
-            actually move the needle. Every event on this list is one
-            we&apos;ve been to, are going to, or are directly involved
-            with, chosen because they are worth the drive, not because anyone asked.
+            Concours, auctions, tours and cars-and-coffee meets worth the
+            drive. Every event on this list is one we&apos;ve been to, are
+            going to, or are directly involved with.
           </p>
         </div>
         <div
@@ -160,12 +174,35 @@ export default function EventsPage() {
         </Link>
 
         <div className="space-y-6">
-          {sorted.map((event) => (
+          {upcoming.length === 0 && (
+            <div
+              className="rounded-2xl bg-white p-6 sm:p-8"
+              style={{ border: "1px solid rgba(0,0,0,0.10)" }}
+            >
+              <p className="font-display font-semibold tracking-tight text-xl" style={{ color: "#1a1a18" }}>
+                Next season&apos;s dates go up as they are announced.
+              </p>
+              <p className="text-sm sm:text-base leading-relaxed mt-2" style={{ color: "#6b6b5e" }}>
+                Know of one that belongs here? Send it in below.
+              </p>
+            </div>
+          )}
+          {[...upcoming, ...past].map((event, i) => {
+            const isPast = i >= upcoming.length;
+            return (
+            <Fragment key={event.slug}>
+            {i === upcoming.length && past.length > 0 && (
+              <h2
+                className="pt-6 text-xs font-bold uppercase tracking-widest"
+                style={{ color: "#6b6b5e" }}
+              >
+                Past events
+              </h2>
+            )}
             <Link
-              key={event.slug}
               href={`/events/${event.slug}`}
               className="group block rounded-2xl overflow-hidden bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
-              style={{ border: "1px solid rgba(0,0,0,0.10)" }}
+              style={{ border: "1px solid rgba(0,0,0,0.10)", opacity: isPast ? 0.72 : 1 }}
             >
               <div className="grid md:grid-cols-[1fr_2fr] gap-0">
                 {/* Date block */}
@@ -181,6 +218,7 @@ export default function EventsPage() {
                     className="text-xs font-bold uppercase tracking-widest mb-2 text-accent"
                   >
                     {event.category}
+                    {isPast ? " · Past" : ""}
                   </span>
                   <p
                     className="text-2xl sm:text-3xl font-black leading-tight mb-1"
@@ -220,7 +258,9 @@ export default function EventsPage() {
                 </div>
               </div>
             </Link>
-          ))}
+            </Fragment>
+            );
+          })}
         </div>
 
         {/* Submit CTA */}

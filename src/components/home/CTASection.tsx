@@ -42,10 +42,10 @@ export function CTASection() {
               Let&apos;s get it sorted<span style={{ color: "#F2B27A" }}>.</span>
             </h2>
             <p className="text-white/80 mt-4 text-lg leading-relaxed max-w-xl">
-              Whatever your car needs, from an inspection before the wire goes to a
-              proper detail or a trusted shop, the right specialist is one
-              search away. And when it&apos;s time to sell, the first 100
-              car listings are free.
+              An inspection before the wire goes, a proper detail, a shop that
+              knows the car. Search by the job, read what other owners said, and
+              send a brief. When it&apos;s time to sell, the first 100 cars list
+              free.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link

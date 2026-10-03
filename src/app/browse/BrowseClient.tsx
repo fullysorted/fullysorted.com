@@ -8,17 +8,9 @@ import { ListingCard } from "@/components/listings/ListingCard";
 import type { Vehicle } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { LISTING_CATEGORIES } from "@/lib/listing-categories";
 
-const categories = [
-  "All",
-  "Muscle",
-  "European",
-  "JDM",
-  "Vintage",
-  "Modern Classic",
-  "Track / Race",
-  "Barn Finds",
-];
+const categories: string[] = ["All", ...LISTING_CATEGORIES];
 
 interface BrowseClientProps {
   initialListings: Vehicle[];
@@ -82,7 +74,7 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
     if (!isNaN(priceMax) && v.price > priceMax) return false;
     if (filters.transmission !== "Any" &&
         !(v.transmission ?? "").toLowerCase().includes(filters.transmission.toLowerCase())) return false;
-    if (filters.condition !== "Any" && v.condition !== filters.condition) return false;
+  // Condition filter removed 2026-10-02: no listing records a condition.
     if (filters.location !== "Anywhere" && stateOf(v.location) !== filters.location) return false;
     if (filters.seller === "Private" && v.sellerType === "dealer") return false;
     if (filters.seller === "Dealer" && v.sellerType !== "dealer") return false;
@@ -169,7 +161,10 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Category Tabs */}
         <div className="flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
-          {categories.map((cat) => (
+          {/* A category with no cars in it is not offered as a filter. */}
+          {categories
+            .filter((cat) => cat === "All" || cat === activeCategory || initialListings.some((v) => v.category === cat))
+            .map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
@@ -235,19 +230,6 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
             </div>
             <div>
               <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider block mb-1.5">
-                Condition
-              </label>
-              <select value={filters.condition} onChange={(e) => setFilter("condition", e.target.value)}
-                className="w-full h-9 px-3 text-sm border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent bg-white">
-                <option>Any</option>
-                <option>Excellent</option>
-                <option>Good</option>
-                <option>Fair</option>
-                <option>Project</option>
-              </select>
-            </div>
-            <div>
-              <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider block mb-1.5">
                 Location
               </label>
               <select value={filters.location} onChange={(e) => setFilter("location", e.target.value)}
@@ -307,8 +289,8 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               No listings yet
             </h2>
             <p className="text-stone-400 max-w-sm mx-auto mb-8">
-              Be the first to list your collector car on Fully Sorted. One flat
-              listing fee, serious buyers only.
+              Be the first to list your collector car on Fully Sorted. One
+              fee, paid once, and the first 100 cars list free.
             </p>
             <Link
               href="/sell"

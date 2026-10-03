@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "The terms governing your use of the Fully Sorted services directory, marketplace and research hub: who can use it, what each side is responsible for, fees, content, and how disputes are handled.",
 };
 
-const LAST_UPDATED = "September 23, 2026";
+const LAST_UPDATED = "October 2, 2026";
 const CONTACT = "chris@fullysorted.com";
 
 function H2({ id, children }: { id: string; children: React.ReactNode }) {
@@ -259,8 +259,7 @@ export default function TermsPage() {
                   accepted into the directory are founding members. A founding member&apos;s
                   directory listing is free and remains free for as long as the provider stays in
                   good standing under these Terms, regardless of any fees we may introduce for
-                  later joiners or for optional tools. No provider, founding or otherwise, can pay
-                  to rank higher in the directory.
+                  later joiners or for optional tools.
                 </>,
                 <>
                   <strong>Draft profiles.</strong> We may create a draft profile for a business

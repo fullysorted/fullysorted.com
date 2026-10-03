@@ -518,6 +518,11 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
   const filtered = activeCategory === 'all' ? pool : pool.filter((p) => inCategory(p, activeCategory));
   const countFor = (key: string) => (key === 'all' ? pool.length : pool.filter((p) => inCategory(p, key)).length);
   const showCounts = !loading && !loadFailed;
+  // A trade with nobody in it is hidden rather than shown with a 0. Counted
+  // against every provider, not the filtered pool, so chips do not vanish
+  // while someone types. Hidden only once the list has loaded.
+  const hasAny = (key: string) =>
+    key === 'all' || !showCounts || activeCategory === key || providers.some((p) => inCategory(p, key));
   const tradeSections = TRADE_CHIPS.filter((c) => c.key !== 'all')
     .map((c) => ({ ...c, list: pool.filter((p) => inCategory(p, c.key)) }))
     .filter((c) => c.list.length > 0);
@@ -567,7 +572,7 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
 
       {/* Category Filter: the trades, then buying and selling */}
       <div className="flex flex-wrap gap-2 mb-3">
-        {TRADE_CHIPS.map((cat) => (
+        {TRADE_CHIPS.filter((cat) => hasAny(cat.key)).map((cat) => (
           <button
             key={cat.key}
             onClick={() => setActiveCategory(cat.key)}
@@ -591,7 +596,7 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
         <span className="text-xs font-semibold uppercase tracking-widest text-stone-400 mr-1">
           Buying and selling
         </span>
-        {SALES_CHIPS.map((cat) => (
+        {SALES_CHIPS.filter((cat) => hasAny(cat.key)).map((cat) => (
           <button
             key={cat.key}
             onClick={() => setActiveCategory(cat.key)}
@@ -689,9 +694,7 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
         ) : (
           <>
             <p className="text-sm text-stone-500 mb-8">
-              {pool.length} {pool.length === 1 ? 'specialist' : 'specialists'} across{' '}
-              {tradeSections.length + salesSections.length}{' '}
-              {tradeSections.length + salesSections.length === 1 ? 'category' : 'categories'}
+              {pool.length} {pool.length === 1 ? 'specialist' : 'specialists'}
             </p>
             {tradeSections.map((c) => (
               <CategorySection key={c.key} catKey={c.key} label={c.label} icon={c.icon} providers={c.list} onOnly={pickCategory} />

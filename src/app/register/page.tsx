@@ -48,7 +48,7 @@ export default async function RegisterIndexPage() {
 
       <div style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <Link href="/research" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8" style={{ color: "#6b6b5e" }}>
+          <Link href="/research/models" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8" style={{ color: "#6b6b5e" }}>
             <ArrowLeft className="w-4 h-4" /> Research
           </Link>
           <p className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#6b6b5e" }}>Register</p>

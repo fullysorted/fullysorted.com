@@ -57,7 +57,7 @@ export const LISTING_TIERS: Record<ListingTier, TierConfig> = {
       'Priority browse placement',
       'Active for 60 days',
     ],
-    badge: 'Most Popular',
+
     highlight: true,
   },
   premium: {

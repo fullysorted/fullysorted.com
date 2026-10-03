@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
   title: "Contact",
   description:
-    "Get in touch with the Fully Sorted team. Questions about listings, valuations, or just want to talk cars, we're here.",
+    "Get in touch with Fully Sorted: a question about a listing, a shop in the directory, or the site itself.",
 };
 
 export default function ContactPage() {
@@ -33,8 +33,8 @@ export default function ContactPage() {
             <span style={{ color: "#1E6091" }}>ourselves.</span>
           </h1>
           <p className="text-lg max-w-2xl" style={{ color: "#6b6b5e" }}>
-            Whether you have a question about a listing, need help with a
-            valuation, or just want to talk cars, we&apos;d like to hear from you.
+            A question about a listing, a shop in the directory, or the site
+            itself. Or just to talk cars.
           </p>
         </div>
       </section>
@@ -80,7 +80,7 @@ export default function ContactPage() {
                   {
                     icon: Clock,
                     label: "Response Time",
-                    value: "Usually within a few hours.",
+                    value: "Within one business day.",
                     href: null,
                   },
                 ].map(({ icon: Icon, label, value, href }) => (

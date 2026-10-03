@@ -230,7 +230,7 @@ export default function WhereToBuyPage() {
         <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <Link
-            href="/research"
+            href="/research/models"
             className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 text-stone-300 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Research

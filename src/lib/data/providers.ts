@@ -85,3 +85,33 @@ export async function getRecentProviders(limit = 4): Promise<{ providers: Recent
     return { providers: [], total: 0 };
   }
 }
+
+// Every active provider, public fields only (no phone or website: those are
+// for members). Feeds the server-rendered fallback on /services so the main
+// directory page carries shop names and profile links in its HTML. The
+// interactive directory is client-only (it reads search params), so without
+// this the page a crawler or AI agent fetched listed no shops at all.
+export interface DirectoryProvider {
+  slug: string;
+  business_name: string;
+  category: string | null;
+  location: string | null;
+}
+
+export async function getDirectoryProviders(): Promise<DirectoryProvider[]> {
+  if (!process.env.DATABASE_URL) return [];
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+    const rows = (await sql`
+      SELECT slug, business_name, category, location
+      FROM service_providers
+      WHERE status = 'active' AND slug IS NOT NULL AND slug <> ''
+      ORDER BY business_name ASC
+      LIMIT 2000
+    `) as DirectoryProvider[];
+    return rows;
+  } catch {
+    return [];
+  }
+}

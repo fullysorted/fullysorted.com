@@ -7,7 +7,6 @@ import { SignupForm } from "@/components/newsletter/SignupForm";
 const footerLinks = {
   Services: [
     { href: "/services", label: "Services Directory" },
-    { href: "/gigs", label: "Fixed-price Gigs" },
     { href: "/services/guide", label: "Provider Playbook" },
     { href: "/insurance", label: "Collector Car Insurance" },
     { href: "/services/apply", label: "List Your Services" },
@@ -17,12 +16,10 @@ const footerLinks = {
     // "Browse All Cars" here, "Browse Cars" in the header and "Browse" in the
     // mobile bar, which reads as three different places.
     { href: "/browse", label: "Browse Cars" },
-    { href: "/browse?category=muscle", label: "Muscle Cars" },
-    { href: "/browse?category=european", label: "European" },
     { href: "/sell", label: "Sell a Car" },
     { href: "/wanted", label: "Wanted Board" },
     { href: "/parts", label: "Parts and Memorabilia" },
-    { href: "/pricing", label: "Listing Pricing" },
+    { href: "/pricing", label: "Fees" },
     { href: "/shop", label: "Shop" },
   ],
   Research: [
@@ -34,7 +31,6 @@ const footerLinks = {
       : [{ href: "/submit-sale", label: "Report a Sale" }]),
     { href: "/research/compare", label: "Compare Models" },
     { href: "/vin", label: "VIN Decoder" },
-    { href: "/research", label: "Market Analysis" },
   ],
   Company: [
     { href: "/about", label: "About" },
@@ -53,10 +49,12 @@ const footerLinks = {
 // "Secure payments by Stripe" was removed: it appeared on every page while
 // card payment only applies to fixed-price gigs from providers who have
 // completed payouts setup, which implied the whole site takes your money.
+// 2026-10-02: the badge row (SSL, flat fees, $0 buyer's premium) read as
+// generic e-commerce chrome, and "buyer's premium" is auction vocabulary.
+// Two plain facts instead, both true on every page.
 const assurances = [
-  { label: "256-bit SSL encrypted" },
-  { label: "Flat listing fees" },
-  { label: "$0 buyer's premium" },
+  { label: "Private sellers and dealers, marked as which" },
+  { label: "Shops can answer a review, never remove one" },
 ];
 
 const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
@@ -101,14 +99,11 @@ export function Footer() {
             </div>
             <p className="text-sm leading-relaxed mb-3" style={{ color: "rgba(245,239,230,0.62)" }}>
               The collector car services network, marketplace and research hub.
-              Built by enthusiasts, for enthusiasts.
+              Know it. Fix it. Buy it. Sell it.
             </p>
             <div className="mt-4 space-y-1">
               <p className="text-xs" style={{ color: "rgba(245,239,230,0.42)" }}>
                 San Diego, CA
-              </p>
-              <p className="text-xs" style={{ color: "rgba(245,239,230,0.42)" }}>
-                (619) 823-2132
               </p>
             </div>
           </div>

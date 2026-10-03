@@ -38,8 +38,11 @@ function dbListingToVehicle(listing: any): Vehicle {
     engine: listing.engine ?? 'Unknown',
     exteriorColor: listing.exteriorColor ?? 'Unknown',
     interiorColor: listing.interiorColor ?? 'Unknown',
-    condition: 'Good',
-    originality: 'Original',
+    // No columns hold these. They were hardcoded to 'Good' and 'Original' on
+    // every listing, so a repainted car read "Original". Left empty, and the
+    // spec table hides empty rows (2026-10-02).
+    condition: '',
+    originality: '',
     location,
     category: listing.category ?? 'Other',
     photoCount: photos.length || 1,
@@ -104,7 +107,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${vehicle.title} for sale`,
     alternates: { canonical: `/listings/${id}` },
-    description: `${vehicle.title}: ${vehicle.condition} condition, ${vehicle.mileage.toLocaleString()} miles, ${vehicle.transmission}. ${vehicle.location}.`,
+    description: `${vehicle.title}: ${[
+      vehicle.mileage ? `${vehicle.mileage.toLocaleString()} miles` : null,
+      vehicle.transmission !== 'Unknown' ? vehicle.transmission : null,
+      vehicle.location || null,
+    ].filter(Boolean).join(', ')}.`,
     openGraph: {
       title: `${vehicle.title} for sale`,
       url: `https://fullysorted.com/listings/${id}`,
@@ -143,8 +150,8 @@ export default async function ListingPage({ params }: Props) {
       value: vehicle.mileage.toString(),
       unitCode: "SMI",
     },
-    vehicleEngine: { "@type": "EngineSpecification", name: vehicle.engine },
-    vehicleTransmission: vehicle.transmission,
+    ...(vehicle.engine !== 'Unknown' ? { vehicleEngine: { "@type": "EngineSpecification", name: vehicle.engine } } : {}),
+    ...(vehicle.transmission !== 'Unknown' ? { vehicleTransmission: vehicle.transmission } : {}),
     color: vehicle.exteriorColor,
     vehicleInteriorColor: vehicle.interiorColor,
     brand: { "@type": "Brand", name: vehicle.make },

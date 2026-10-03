@@ -6,7 +6,8 @@ import ServicesDirectory from './ServicesDirectory';
 import { getPublishedModels } from '@/lib/data/models';
 import { toSearchModels } from '@/lib/search-intent';
 import { CATEGORY_PAGES } from '@/lib/data/categoryPages';
-import { isServiceCategory } from '@/lib/service-categories';
+import { isServiceCategory, ALL_CATEGORIES } from '@/lib/service-categories';
+import { getDirectoryProviders, type DirectoryProvider } from '@/lib/data/providers';
 
 export const metadata = {
   alternates: { canonical: "/services" },
@@ -20,12 +21,14 @@ const CREAM = '#FFFFFF';
 const MUTED = '#6B7280';
 const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 
-// One cached read an hour feeds the search suggestions and the "read the
-// history" link. The directory itself still loads from /api/providers.
+// One cached read an hour feeds the search suggestions, the "read the
+// history" link and the server-rendered fallback list below. The interactive
+// directory still loads from /api/providers once the page hydrates.
 export const revalidate = 3600;
 
 export default async function ServicesPage() {
-  const searchModels = toSearchModels(await getPublishedModels());
+  const [models, directory] = await Promise.all([getPublishedModels(), getDirectoryProviders()]);
+  const searchModels = toSearchModels(models);
   return (
     <div style={{ background: 'var(--bg-primary)' }} className="min-h-screen">
       {/* Header, in the sitewide language: white, deep green type, teal eyebrow, framed photo */}
@@ -45,7 +48,7 @@ export default async function ServicesPage() {
             </p>
 
             <p className="mt-6 text-sm sm:text-base font-semibold max-w-2xl" style={{ color: INK }}>
-              Find it. Fix it. Drive it.
+              Know it. Fix it. Buy it. Sell it.
             </p>
 
             {/* Provider entry point. This used to live in a nav dropdown next
@@ -82,7 +85,7 @@ export default async function ServicesPage() {
       {/* Directory */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         {/* Suspense boundary required: ServicesDirectory reads URL search params */}
-        <Suspense fallback={null}>
+        <Suspense fallback={<DirectoryFallback providers={directory} />}>
           <ServicesDirectory models={searchModels} />
         </Suspense>
 
@@ -112,5 +115,42 @@ export default async function ServicesPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// What the page carries before the interactive directory hydrates, and all a
+// crawler without JavaScript sees: every active shop, linked to its profile.
+function DirectoryFallback({ providers }: { providers: DirectoryProvider[] }) {
+  if (providers.length === 0) return null;
+  const label = (key: string | null) => ALL_CATEGORIES.find((c) => c.key === key)?.label ?? '';
+  return (
+    <section aria-label="Specialists in the directory">
+      <p className="text-sm mb-6" style={{ color: MUTED }}>
+        {providers.length} {providers.length === 1 ? 'specialist' : 'specialists'}
+      </p>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {providers.map((p) => (
+          <li key={p.slug}>
+            <Link
+              href={`/services/${p.slug}`}
+              className="block rounded-2xl bg-white p-5 h-full"
+              style={{ border: '1px solid rgba(18,53,42,0.14)' }}
+            >
+              <span className="block text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: '0.12em', color: TEAL }}>
+                {label(p.category)}
+              </span>
+              <span className="block font-display text-lg mt-1" style={{ color: INK }}>
+                {p.business_name}
+              </span>
+              {p.location && (
+                <span className="block text-sm mt-0.5" style={{ color: MUTED }}>
+                  {p.location}
+                </span>
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

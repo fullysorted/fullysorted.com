@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Database } from "lucide-react";
+import { ArrowRight, Database } from "lucide-react";
 import { getPublishedModelsWithMetaResult } from "@/lib/data/models";
 import { ModelsDirectory } from "./ModelsDirectory";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -55,9 +55,7 @@ export default async function ModelsIndexPage() {
       {/* Header, in the homepage's language (2026-09-16) */}
       <div style={{ background: "var(--bg-primary)", borderBottom: "1px solid rgba(18,53,42,0.14)" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <Link href="/research" className="inline-flex items-center gap-1.5 text-sm font-medium mb-8" style={{ color: "#6B7280" }}>
-            <ArrowLeft className="w-4 h-4" /> Research
-          </Link>
+          
           <p className="text-[11px] uppercase" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em", color: "#1C8C87" }}>
             Model histories
           </p>

@@ -152,7 +152,7 @@ export function TradeGridType() {
               className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold transition-transform group-hover:translate-x-0.5"
               style={{ color: BLUE }}
             >
-              Find one near you <ArrowRight className="w-4 h-4" />
+              Find one <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
         </li>

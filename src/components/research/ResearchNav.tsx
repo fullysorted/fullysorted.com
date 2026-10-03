@@ -4,7 +4,6 @@ import {
   BarChart3,
   GitCompare,
   ScanLine,
-  Newspaper,
   ClipboardCheck,
   Gavel,
   Ship,
@@ -109,14 +108,6 @@ const ITEMS: Item[] = [
     icon: <ScanLine className="w-4 h-4" />,
   },
   {
-    key: "market",
-    href: "/research",
-    label: "Market Analysis",
-    blurb: "Segment prices and written analysis",
-    group: "market",
-    icon: <Newspaper className="w-4 h-4" />,
-  },
-  {
     key: "marketplaces",
     href: "/research/where-to-buy",
     label: "Where to Buy",
@@ -170,8 +161,8 @@ export function ResearchNav({ active }: { active: ResearchSection }) {
           )}
         </div>
         <p className="mt-1.5 mb-4 text-sm max-w-3xl" style={{ color: "#6b6b5e" }}>
-          Know the car before anyone asks you for money: what it is, what it&apos;s
-          worth, and what the market is doing.
+          Know the car before anyone asks you for money: what it is, what was built,
+          and what goes wrong.
         </p>
 
         <ul className="flex gap-1 overflow-x-auto -mx-1 px-1">

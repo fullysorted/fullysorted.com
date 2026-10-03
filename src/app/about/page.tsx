@@ -160,9 +160,8 @@ export default function AboutPage() {
               a lot of great shops unseen, and a lot of owners guessing.
             </p>
             <p>
-              Fully Sorted is here to change that. It&apos;s one hub where anyone can
-              find the right specialist, and where every good shop gets a fair chance
-              to be found.
+              Fully Sorted is one hub where anyone can find the right specialist, and
+              where every good shop gets a fair chance to be found.
             </p>
             <p>
               We&apos;re a small team. We want to make owning a collector car more fun,
@@ -189,8 +188,9 @@ export default function AboutPage() {
               <p>
                 The trades, in the order a car usually meets them. {verbLine.charAt(0).toUpperCase() + verbLine.slice(1)}.
                 Buy it, get it home, make it legal, keep it right, keep it clean, put it
-                away, and one day sell it well. Every specialist on the platform is listed under one
-                of these, so you search for the job, not the jargon.
+                away, and one day sell it well. Every specialist is filed under the job they do, so you
+                search for the job, not the jargon. Dealers and consignment houses sit apart,
+                under buying and selling.
               </p>
             </div>
           </div>
@@ -207,22 +207,23 @@ export default function AboutPage() {
           <div className="lg:col-span-4">
             <Eyebrow>How it works</Eyebrow>
             <h2 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight leading-[1.1] mt-4" style={{ color: INK }}>
-              The review record is the ranking
+              Reviews come after the work
             </h2>
           </div>
           <div className="lg:col-span-7 lg:col-start-6 text-base sm:text-lg leading-relaxed space-y-5" style={{ color: "#3a3a30" }}>
             <p>
               Owners leave a review after the work is done, and only after the work
-              is done. A shop&apos;s place in the directory comes from that record and
-              nothing else. No average is shown until there are enough reviews to
-              mean something.
+              is done. A shop can answer a review in public but can never take one
+              down. No average is shown until there are enough reviews to mean
+              something.
             </p>
             <p>
-              We do not take a cut of the work. The job is between you and the
-              specialist, priced by them, paid to them. Browsing the directory is
-              free and being listed in it is free. Selling a car in the marketplace
-              is a flat, one-time listing fee, stated up front, with no commission
-              and no buyer&apos;s premium when it sells.
+              On quoted work, the job is between you and the specialist, priced by
+              them and paid to them. Browsing the directory is free, and so is being
+              listed in it. Selling a car is a one-time listing fee, paid up front,
+              with no commission when it sells. How we make money, and what may be
+              added later, is written down on the{" "}
+              <Link href="/trust#how-we-make-money" className="underline underline-offset-4 hover:opacity-80">trust page</Link>.
             </p>
           </div>
         </div>
@@ -231,7 +232,7 @@ export default function AboutPage() {
           {[
             { t: "For owners", d: "Search by the job. Read what other owners said. Send a brief. Review the work afterwards." },
             { t: "For specialists", d: "One application, one profile, your reviews under your name. Leads arrive with the job already described." },
-            { t: "For buyers and sellers", d: "A marketplace where every listing says whether an owner or a dealer is selling. No auction clock, no buyer's premium, and a research hub of model histories and market data." },
+            { t: "For buyers and sellers", d: "A marketplace where every listing says whether an owner or a dealer is selling. No auction clock, and model histories to check the car against." },
           ].map((x) => (
             <div key={x.t} className="rounded-xl p-6" style={{ background: PAPER, border: `1px solid ${RULE}`, borderTop: `3px solid ${INK}` }}>
               <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: BLUE }}>{x.t}</h3>
@@ -271,8 +272,7 @@ export default function AboutPage() {
                 the road. One that keeps those specialists busy keeps the knowledge alive.
               </p>
               <p>
-                There has never been a real network for the collector car hobby, a way
-                for owners to find good help. We are out to change that. Nobody can vet
+                Nobody can vet
                 every shop, so we don&apos;t pretend to. We are counting on owners to lift
                 up the shops they trust, and every honest review makes the next
                 owner&apos;s search a little easier.

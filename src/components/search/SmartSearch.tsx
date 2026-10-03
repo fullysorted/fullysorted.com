@@ -17,7 +17,7 @@ const INK = "#12352A";
 const TEAL = "#1C8C87";
 const MUTED = "#6B7280";
 
-const EXAMPLES = ["Pre-purchase inspection", "Porsche 911 service", "Enclosed transport", "Paint correction"];
+const EXAMPLES = ["Pre-purchase inspection", "Porsche 911 service", "Climate-controlled storage", "Paint correction"];
 
 const KIND_LABEL: Record<Suggestion["kind"], string> = {
   trade: "Specialists",

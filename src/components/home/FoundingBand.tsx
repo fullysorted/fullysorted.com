@@ -24,7 +24,7 @@ export function FoundingBand() {
           Founding 500
         </span>
         <span className="text-sm" style={{ color: "rgba(245,239,230,0.85)" }}>
-          Shops and specialists are joining now. Founding members list free.
+          The first 500 specialists to join keep a free listing for life.
         </span>
         <Link
           href="/services/apply"

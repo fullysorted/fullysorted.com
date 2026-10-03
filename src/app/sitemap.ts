@@ -1,5 +1,4 @@
 import { MetadataRoute } from "next";
-import { articles } from "@/lib/articles";
 import { events } from "@/lib/events";
 import { getPublishedModels } from "@/lib/data/models";
 import { getActiveGigs } from "@/lib/data/gigs";
@@ -25,7 +24,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...(VALUE_GUIDE_PUBLIC
       ? [{ url: `${base}/value-guide`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 }]
       : []),
-    { url: `${base}/research`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/research/models`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     // The research hub's four newer surfaces. These are the pages built to be
     // found — reference material with no equivalent elsewhere on the site.
@@ -36,7 +34,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Was absent despite carrying its own metadata and canonical.
     { url: `${base}/research/compare`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/register`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${base}/gigs`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${base}/vin`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/events`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/events/f1`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
@@ -82,12 +79,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }));
 
-  const articlePages: MetadataRoute.Sitemap = articles.map((a) => ({
-    url: `${base}/research/${a.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
 
   const eventPages: MetadataRoute.Sitemap = events.map((e) => ({
     url: `${base}/events/${e.slug}`,
@@ -194,5 +185,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     gigPages = [];
   }
 
-  return [...staticPages, ...categoryPages, ...trackPages, ...articlePages, ...eventPages, ...modelPages, ...registerPages, ...providerPages, ...gigPages, ...listingPages];
+  return [...staticPages, ...categoryPages, ...trackPages, ...eventPages, ...modelPages, ...registerPages, ...providerPages, ...gigPages, ...listingPages];
 }

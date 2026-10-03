@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import { LISTING_CATEGORIES } from '@/lib/listing-categories';
 import { AI_ASSIST_ENABLED } from '@/lib/features';
 import { motion } from 'framer-motion';
 import { trackMetaEvent } from '@/components/analytics/MetaPixel';
@@ -13,7 +14,7 @@ import PhotoUploader from '@/components/upload/PhotoUploader';
 import { LISTING_TIERS, type ListingTier, getMaxPhotos } from '@/lib/listing-tiers';
 import { SELLER_TYPES, DEALER_ATTESTATION, type SellerType } from '@/lib/dealer';
 
-const CATEGORIES = ['Muscle', 'European', 'JDM', 'Vintage', 'Modern Classic', 'Barn Find', 'Truck / SUV', 'Other'];
+const CATEGORIES: readonly string[] = LISTING_CATEGORIES;
 const TRANSMISSIONS = ['Manual', 'Automatic'];
 const DRIVETRAINS = ['RWD', 'FWD', 'AWD', '4WD'];
 const BODY_STYLES = ['Coupe', 'Sedan', 'Convertible', 'Wagon', 'Hatchback', 'Truck', 'SUV', 'Van', 'Roadster', 'Targa'];

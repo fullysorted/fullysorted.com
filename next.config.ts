@@ -30,6 +30,21 @@ const nextConfig: NextConfig = {
         destination: "/research/models/lancia/delta-hf-integrale",
         permanent: true,
       },
+      // 2026-10-02: the March 2026 market desk (first-person stories and a
+      // segment table frozen at Dec 2025) is retired until the news
+      // aggregator replaces it. Temporary, so the URLs can come back.
+      { source: "/research", destination: "/research/models", permanent: false },
+      ...[
+        "monday-market-movers-march-24",
+        "what-would-chris-buy-march",
+        "sorted-or-not-e-type",
+        "jdm-market-2026",
+        "san-diego-spring-events",
+      ].map((slug) => ({
+        source: `/research/${slug}`,
+        destination: "/research/models",
+        permanent: false,
+      })),
     ];
   },
   async rewrites() {

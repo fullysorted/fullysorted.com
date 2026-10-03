@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, Wrench, Car, LineChart, ShieldCheck, HelpCircle } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { LISTING_TIERS, FREE_LISTINGS_THRESHOLD, FOUNDING_PROVIDER_THRESHOLD } from "@/lib/listing-tiers";
+import { FREE_LISTINGS_THRESHOLD, FOUNDING_PROVIDER_THRESHOLD } from "@/lib/listing-tiers";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -39,9 +39,6 @@ interface FaqSection {
   items: Faq[];
 }
 
-const std = (LISTING_TIERS.standard.price / 100).toFixed(2);
-const feat = (LISTING_TIERS.featured.price / 100).toFixed(2);
-const prem = (LISTING_TIERS.premium.price / 100).toFixed(2);
 
 const SECTIONS: FaqSection[] = [
   {
@@ -53,7 +50,7 @@ const SECTIONS: FaqSection[] = [
     items: [
       {
         q: "What does it cost to find and hire someone?",
-        a: "Browsing the directory and requesting a quote is free, and always will be. Fixed-price gigs show the provider's price before you book, so nothing is added to a quote you have already been given. For quoted work you agree the price directly with the specialist.",
+        a: "Browsing the directory and requesting a quote is free, and always will be. For quoted work you agree the price directly with the specialist, and we add nothing on top.",
         link: { href: "/pricing", label: "See full pricing" },
       },
       {
@@ -97,7 +94,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "Do you take a cut of what I pay the specialist?",
-        a: "Not on quoted work: you pay them directly and we are not in the middle. When fixed-price gigs open, the provider will pay a platform fee out of the booking (see how Fully Sorted makes money, below, for the number). Either way the price you are quoted is the price you pay; we never add anything on top of it.",
+        a: "Not on quoted work: you pay them directly and we are not in the middle. Fixed-price gigs are not open yet; when they are, any fee is posted on the trust page before the first one is booked. Either way the price you are quoted is the price you pay; we never add anything on top of it.",
       },
       {
         q: "The trade I need isn't listed. Can you find someone?",
@@ -115,7 +112,7 @@ const SECTIONS: FaqSection[] = [
     items: [
       {
         q: "What does it cost to be listed?",
-        a: `The first ${FOUNDING_PROVIDER_THRESHOLD} specialists to join are founding members, and founding members lock in a free directory listing for life. We may one day offer paid tools to shops, and a founding member's listing stays free whatever we add later. There are two ways to be on here: a directory profile, where owners find you and request quotes, and fixed-price gigs, where you package what you do at a set price and owners book it directly.`,
+        a: `The first ${FOUNDING_PROVIDER_THRESHOLD} specialists to join are founding members, and a founding member's directory listing stays free for life. We may one day offer paid tools to shops; the listing itself stays free for founding members whatever we add later. Owners find your profile, read what other owners said, and send you an inquiry with the job described.`,
         link: { href: "/services/apply", label: "Get listed" },
       },
       {
@@ -140,18 +137,18 @@ const SECTIONS: FaqSection[] = [
   {
     key: "marketplace",
     title: "Buying and selling",
-    blurb: "The peer-to-peer marketplace.",
+    blurb: "The marketplace: private sellers and dealers, marked as which.",
     icon: Car,
     tint: "#B08D3F",
     items: [
       {
         q: "What does it cost to list a car?",
-        a: `Three tiers, all charged once, up front: Standard $${std}, Featured $${feat}, and Premium $${prem}. The first ${FREE_LISTINGS_THRESHOLD} cars listed on the platform are free while we are getting started. There is no buyer's premium and no auction clock.`,
+        a: `Three packages, all charged once, up front. You see them, with prices, at the last step of listing. The first ${FREE_LISTINGS_THRESHOLD} cars listed on the platform are free while we are getting started. There is no auction clock and no commission on the sale.`,
         link: { href: "/pricing", label: "Compare the tiers" },
       },
       {
         q: "How is this different from an auction site?",
-        a: `There is no clock and no bidding. You set an asking price, the listing stays up until the car sells or you take it down, and buyers contact you directly. The cost is one flat fee paid up front, from $${std}, with no buyer's premium and no percentage of the sale.`,
+        a: `There is no clock and no bidding. You set an asking price, the listing runs for the term of the package you pick (the top package stays up until the car sells), and buyers contact you directly. The cost is one fee paid up front, with no buyer's premium and no percentage of the sale.`,
       },
       {
         q: "Do dealers list here too?",
@@ -253,7 +250,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "How does Fully Sorted make money?",
-        a: "Two ways, one live today and one planned. Sellers pay a one-time listing fee, set by the package they pick when they list. When fixed-price gigs open, providers will pay a 10% platform fee on gigs booked through the site. That is the whole list: the listing fee is the only charge on a car sale however much it sells for, there is no buyer's premium, we take nothing out of a quote you agree directly with a specialist, and nothing in the directory is sold to advertisers. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
+        a: "Live today: sellers pay a one-time listing fee, set by the package they pick when they list, and some links in the Shop are affiliate links that pay us a small commission. We take nothing out of a quote you agree directly with a specialist, and nothing out of a car sale beyond the listing fee. As the site grows we expect to add paid tools for shops, a fee on fixed-price gigs once they open, and partner offers from insurers, transporters and lenders. Anything new is posted on the trust page before it starts, and anything paid for on the site is labeled as paid. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
       },
       {
         q: "You're brand new. Why should I trust you?",

@@ -62,7 +62,7 @@ export const events: FSEvent[] = [
     tagline: "World-class cars, world-class experience.",
     beneficiary: "La Jolla Historical Society",
     excerpt:
-      "The 20th annual La Jolla Concours d'Elegance, three days on the cliffs above La Jolla Cove featuring over 150 exquisite, timeless automobiles, plus a Friday VIP soirée and Saturday's Porsches & Power on Prospect.",
+      "The 20th annual La Jolla Concours d'Elegance, three days on the cliffs above La Jolla Cove featuring more than 150 cars, plus a Friday VIP soirée and Saturday's Porsches & Power on Prospect.",
     body: `## A 20-year tradition on the Pacific
 
 The 20th annual La Jolla Concours d'Elegance returns April 24–26, 2026 to its home on the lawn at Ellen Browning Scripps Park, directly above La Jolla Cove. Over the course of three days, the event brings together world-class automobiles, the people who own them, and one of the most beautiful natural settings on the West Coast.
@@ -71,7 +71,7 @@ What started in January 2004 as a winter showcase for downtown La Jolla, dreamed
 
 ## Sunday: The Concours
 
-The main concours runs **Sunday, April 26 from 9:00 AM to 4:00 PM** at La Jolla Cove. The field features over 150 exquisite, timeless automobiles (pre-war classics, post-war European exotics, American muscle, sports racing cars, and modern collectibles) judged by class on the lawn at Scripps Park, with the Pacific as the backdrop.
+The main concours runs **Sunday, April 26 from 9:00 AM to 4:00 PM** at La Jolla Cove. The field features more than 150 cars (pre-war classics, post-war European exotics, American muscle, sports racing cars, and modern collectibles) judged by class on the lawn at Scripps Park, with the Pacific as the backdrop.
 
 It's smaller and more curated than the big national concours. That's the point. You can walk the entire field, talk to every owner, and see every car the way it was meant to be seen.
 
@@ -129,7 +129,7 @@ If you've never been to this event before, this is the year. Twenty years in, wo
         name: "La Jolla Concours d'Elegance",
         time: "9:00 AM – 4:00 PM",
         description:
-          "The main event: over 150 exquisite, timeless automobiles judged by class on the lawn at Ellen Browning Scripps Park.",
+          "The main event: more than 150 cars judged by class on the lawn at Ellen Browning Scripps Park.",
       },
     ],
     tickets: [
@@ -304,7 +304,7 @@ Book your hotel in January. Seriously. By April everything within an hour is gon
     category: "Concours",
     tagline: "The European Pebble Beach. Lake Como, since 1929.",
     excerpt:
-      "The most beautiful concours in the world. A weekend on the shores of Lake Como hosted by the Villa d'Este Hotel and the BMW Group, with a private Saturday at Villa d'Este and a public Sunday at Villa Erba.",
+      "A weekend on the shores of Lake Como hosted by the Villa d'Este Hotel and the BMW Group, with a private Saturday at Villa d'Este and a public Sunday at Villa Erba.",
     body: `## The most beautiful setting in the car world
 
 The Concorso d'Eleganza Villa d'Este has been held on the shores of Lake Como since 1929. There is no contest about the venue: a 16th-century villa hotel built into the hillside above the lake, with the cars displayed on the hotel's private gardens and the Alps framing the view across the water. Pebble Beach is the most important concours in the world; Villa d'Este is the most beautiful.

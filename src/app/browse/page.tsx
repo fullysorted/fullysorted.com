@@ -6,7 +6,7 @@ import type { Vehicle } from "@/lib/sample-data";
 export const metadata: Metadata = {
   alternates: { canonical: "/browse" },
   title: "Browse Collector Cars",
-  description: "Browse collector cars for sale: Muscle, European, JDM, Vintage, Modern Classic, and more. Direct from owners. Peer-to-peer.",
+  description: "Collector cars for sale from private owners and dealers, every listing marked as which, with the model history one click away.",
 };
 
 async function getRealListings(): Promise<Vehicle[]> {
@@ -44,8 +44,8 @@ async function getRealListings(): Promise<Vehicle[]> {
         engine: listing.engine ?? 'Unknown',
         exteriorColor: listing.exteriorColor ?? 'Unknown',
         interiorColor: listing.interiorColor ?? 'Unknown',
-        condition: 'Good',
-        originality: 'Original',
+        condition: '',
+        originality: '',
         location,
         category: listing.category ?? 'Other',
         photoCount: photos.length || 1,

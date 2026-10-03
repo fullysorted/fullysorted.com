@@ -479,10 +479,12 @@ export function ListingDetail({ vehicle, history }: Props) {
                   <Gauge className="w-4 h-4" />
                   {formatMileage(vehicle.mileage)} miles
                 </span>
-                <span className="flex items-center gap-1">
-                  <Cog className="w-4 h-4" />
-                  {vehicle.transmission}
-                </span>
+                {vehicle.transmission && vehicle.transmission !== "Unknown" && (
+                  <span className="flex items-center gap-1">
+                    <Cog className="w-4 h-4" />
+                    {vehicle.transmission}
+                  </span>
+                )}
                 <span className="flex items-center gap-1">
                   <Store className="w-4 h-4" />
                   {vehicle.sellerType === "dealer" ? `Dealer${vehicle.dealerName ? `: ${vehicle.dealerName}` : ""}` : "Private seller"}
@@ -593,7 +595,10 @@ export function ListingDetail({ vehicle, history }: Props) {
                     { label: "Interior", value: vehicle.interiorColor },
                     { label: "Condition", value: vehicle.condition },
                     { label: "Originality", value: vehicle.originality },
-                  ].map((spec, i) => (
+                  ]
+                    // An unknown or empty field says nothing, so it shows nothing.
+                    .filter((spec) => spec.value !== "" && spec.value !== "Unknown" && spec.value != null)
+                    .map((spec, i) => (
                     <div
                       key={spec.label}
                       className={cn(

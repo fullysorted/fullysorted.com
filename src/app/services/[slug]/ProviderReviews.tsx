@@ -136,10 +136,10 @@ export default function ProviderReviews({
           style={{ background: 'var(--bg-surface)', border: '1px dashed var(--border-light)' }}
         >
           <p className="text-sm font-medium mb-1" style={{ color: 'var(--text-primary)' }}>
-            No verified reviews yet.
+            No reviews here yet.
           </p>
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            A verified review comes from a client we email directly after work is finished. {businessName} has not
+            Reviews here come from clients we email directly after the work is finished. {businessName} has not
             collected any here yet, which is worth knowing, and worth nothing more than that.
           </p>
         </div>

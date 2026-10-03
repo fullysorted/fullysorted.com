@@ -199,7 +199,7 @@ export default function ProviderDashboard() {
           <h1 className="text-3xl font-display font-semibold tracking-tight text-foreground mb-4">Become a Service Provider</h1>
           <p className="text-text-secondary mb-8 max-w-md mx-auto">
             This account isn&apos;t attached to a listing yet. Apply to join the Fully Sorted Services Directory and get
-            in front of serious collector car owners.
+            found by collector car owners.
           </p>
           <Link
             href="/services/apply"

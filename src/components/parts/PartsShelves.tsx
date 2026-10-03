@@ -42,7 +42,7 @@ export function PartsShelves({
                       <span className="block text-sm mt-0.5 leading-snug" style={{ color: MUTED }}>{c.blurb}</span>
                     </span>
                     <span className="text-sm tabular-nums shrink-0" style={{ fontFamily: MONO, color: n ? INK : MUTED }}>
-                      {n ? n : "be first"}
+                      {n ? n : ""}
                     </span>
                   </Link>
                 </li>
