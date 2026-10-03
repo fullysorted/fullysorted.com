@@ -133,69 +133,68 @@ const ITEMS: Item[] = [
   },
 ];
 
-export function ResearchNav({ active }: { active: ResearchSection }) {
-  // With VALUE_GUIDE_PUBLIC off, `active="value"` refers to an entry that isn't
-  // in ITEMS. Falling back to the blurb-less state used to render a nav with no
-  // active tab and no description at all, so fall back to a sensible default
-  // rather than silently rendering a headless band.
-  const current = ITEMS.find((i) => i.key === active) ?? ITEMS[0];
-
+export function ResearchNav({
+  active,
+  title,
+  subtitle,
+}: {
+  active: ResearchSection;
+  /** Optional page title, rendered above the tabs and aligned with them. */
+  title?: string;
+  subtitle?: string;
+}) {
   return (
-    <nav
-      aria-label="Research sections"
-      className="border-b border-border"
-      style={{ background: "#ffffff" }}
-    >
+    <div className="border-b border-border" style={{ background: "#ffffff" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="pt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span
-            className="text-xs font-bold uppercase tracking-widest"
-            style={{ color: "#1E6091" }}
-          >
-            Research
-          </span>
-          {current && (
-            <span className="text-xs" style={{ color: "#9a9a8a" }}>
-              {current.blurb}
-            </span>
-          )}
-        </div>
-        <p className="mt-1.5 mb-4 text-sm max-w-3xl" style={{ color: "#6b6b5e" }}>
-          Know the car before anyone asks you for money: what it is, what was built,
-          and what goes wrong.
-        </p>
+        {title && (
+          <header className="pt-10 sm:pt-14 pb-6 sm:pb-8">
+            <h1
+              className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05]"
+              style={{ color: "#12352A" }}
+            >
+              {title}
+            </h1>
+            {subtitle && (
+              <p className="mt-3 text-base sm:text-lg max-w-2xl" style={{ color: "#6B7280" }}>
+                {subtitle}
+              </p>
+            )}
+          </header>
+        )}
 
-        <ul className="flex gap-1 overflow-x-auto -mx-1 px-1">
-          {ITEMS.map((it, i) => {
-            const isActive = it.key === active;
-            const startsMarketGroup =
-              it.group === "market" && ITEMS[i - 1]?.group === "car";
-            return (
-              <li key={it.key} className="shrink-0 flex items-stretch">
-                {startsMarketGroup && (
-                  <span
-                    aria-hidden="true"
-                    className="self-center mx-2 h-5 w-px shrink-0"
-                    style={{ background: "#e5e5dc" }}
-                  />
-                )}
-                <Link
-                  href={it.href}
-                  aria-current={isActive ? "page" : undefined}
-                  className="flex items-center gap-2 px-3.5 py-3 text-sm font-semibold transition-colors hover:text-foreground"
-                  style={{
-                    color: isActive ? "#1E6091" : "#6b6b5e",
-                    borderBottom: isActive ? "2px solid #1E6091" : "2px solid transparent",
-                  }}
-                >
-                  <span style={{ color: isActive ? "#1E6091" : "#9a9a8a" }}>{it.icon}</span>
-                  {it.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <nav aria-label="Research sections">
+          <ul className={`flex gap-1 overflow-x-auto -mx-1 px-1${title ? "" : " pt-2"}`}>
+            {ITEMS.map((it, i) => {
+              const isActive = it.key === active;
+              const startsMarketGroup =
+                it.group === "market" && ITEMS[i - 1]?.group === "car";
+              return (
+                <li key={it.key} className="shrink-0 flex items-stretch">
+                  {startsMarketGroup && (
+                    <span
+                      aria-hidden="true"
+                      className="self-center mx-2 h-5 w-px shrink-0"
+                      style={{ background: "#e5e5dc" }}
+                    />
+                  )}
+                  <Link
+                    href={it.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className="flex items-center gap-2 px-3.5 py-3 text-sm font-semibold transition-colors hover:text-foreground"
+                    style={{
+                      color: isActive ? "#1E6091" : "#6b6b5e",
+                      borderBottom: isActive ? "2px solid #1E6091" : "2px solid transparent",
+                    }}
+                  >
+                    <span style={{ color: isActive ? "#1E6091" : "#9a9a8a" }}>{it.icon}</span>
+                    {it.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       </div>
-    </nav>
+    </div>
   );
 }

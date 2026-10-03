@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Database } from "lucide-react";
+import { Database } from "lucide-react";
 import { getPublishedModelsWithMetaResult } from "@/lib/data/models";
 import { ModelsDirectory } from "./ModelsDirectory";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -49,32 +48,11 @@ export default async function ModelsIndexPage() {
 
   return (
     <div style={{ background: "var(--bg-primary)" }} className="min-h-screen">
-      <ResearchNav active="models" />
+      <ResearchNav active="models" title="Research Hub" subtitle="Know the car before you buy it." />
       <JsonLd data={itemListSchema} />
 
-      {/* Header, in the homepage's language (2026-09-16) */}
-      <div style={{ background: "var(--bg-primary)", borderBottom: "1px solid rgba(18,53,42,0.14)" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          
-          <p className="text-[11px] uppercase" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em", color: "#1C8C87" }}>
-            Model histories
-          </p>
-          <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4" style={{ color: "#12352A" }}>
-            Know the car before you buy it.
-          </h1>
-          <p className="text-base sm:text-lg leading-relaxed max-w-2xl" style={{ color: "#6B7280" }}>
-            One page per model: production numbers, specs, what to look for, common problems and market
-            context. Every non-obvious fact is cross-checked and cited. Where the sources disagree, we say so
-            instead of picking a number.
-          </p>
-          <Link href="/research/compare" className="inline-flex items-center gap-1.5 text-sm font-bold mt-5 hover:underline underline-offset-4" style={{ color: "#1C8C87" }}>
-            Compare two models head to head <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </div>
-
       {/* Directory */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-12 sm:pb-16">
         {items.length === 0 && !modelsOk ? (
           <div className="rounded-2xl bg-white px-6 py-16 text-center" style={{ border: "1px solid rgba(0,0,0,0.07)" }}>
             <Database className="w-8 h-8 mx-auto mb-4" style={{ color: "#cfcabb" }} />
