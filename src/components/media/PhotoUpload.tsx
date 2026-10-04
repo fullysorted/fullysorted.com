@@ -128,7 +128,7 @@ export default function PhotoUpload({
             <ImageIcon className="w-6 h-6" style={{ color: invalid ? "#dc2626" : "#9a9a8a" }} />
           </div>
         )}
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <label
             className={`inline-flex items-center gap-1.5 px-3 h-9 text-xs font-semibold rounded-lg border cursor-pointer transition-colors ${
               uploading
