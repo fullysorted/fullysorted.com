@@ -57,7 +57,7 @@ Purpose: bring every page in line with the new RACING GREEN heritage design lang
 ## Tone guardrails
 - Enthusiast-literate, no fluff ("Know before the wire goes", "Wrenches you can trust").
 - NEVER mention any concours co-chairman/vice-chairman title in site copy.
-- Zero-commission marketplace is second billing — present but not leading.
+- Fees are stated plainly where they apply, never sold as "zero commission" or "no fee on the sale". See the fee rules in AGENTS.md.
 
 ## Pass rules for agents
 1. Do NOT restructure layouts or change information architecture, routes, data fetching, props, handlers, or business logic. Visual upgrade only (photos may replace decorative/icon-only panels — that's visual, not structural).

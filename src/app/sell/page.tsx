@@ -31,7 +31,7 @@ export default async function SellPage({ searchParams }: { searchParams: Promise
           </p>
           <p className="mt-5 text-sm max-w-2xl" style={{ color: '#6B7280' }}>
             A <strong style={{ color: '#12352A' }}>flat listing fee</strong>, paid once,
-            up front. No commission when it sells, and no buyer&rsquo;s premium.
+            up front, and shown before you pay.
           </p>
         </div>
       </section>

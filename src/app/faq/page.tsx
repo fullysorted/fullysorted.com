@@ -143,12 +143,12 @@ const SECTIONS: FaqSection[] = [
     items: [
       {
         q: "What does it cost to list a car?",
-        a: `Three packages, all charged once, up front. You see them, with prices, at the last step of listing. The first ${FREE_LISTINGS_THRESHOLD} cars listed on the platform are free while we are getting started. There is no auction clock and no commission on the sale.`,
+        a: `Three packages, all charged once, up front. You see them, with prices, at the last step of listing. The first ${FREE_LISTINGS_THRESHOLD} cars listed on the platform are free while we are getting started. There is no auction clock.`,
         link: { href: "/pricing", label: "Compare the tiers" },
       },
       {
         q: "How is this different from an auction site?",
-        a: `There is no clock and no bidding. You set an asking price, the listing runs for the term of the package you pick (the top package stays up until the car sells), and buyers contact you directly. The cost is one fee paid up front, with no buyer's premium and no percentage of the sale.`,
+        a: `There is no clock and no bidding. You set an asking price, the listing runs for the term of the package you pick (the top package stays up until the car sells), and buyers contact you directly. The cost is one fee, paid up front and shown before you pay.`,
       },
       {
         q: "Do dealers list here too?",
@@ -250,7 +250,7 @@ const SECTIONS: FaqSection[] = [
       },
       {
         q: "How does Fully Sorted make money?",
-        a: "Live today: car sellers pay a one-time listing fee, set by the package they pick when they list; parts, memorabilia and artwork listings cost a small fee each, or a monthly seller plan, once the board's first 100 free listings are gone; and some links in the Shop are affiliate links that pay us a small commission. We take nothing out of a quote you agree directly with a specialist, and nothing out of a car sale beyond the listing fee. As the site grows we expect to add paid tools for shops, a fee on fixed-price gigs once they open, and partner offers from insurers, transporters and lenders. Anything new is posted on the trust page before it starts, and anything paid for on the site is labeled as paid. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
+        a: "Live today: car sellers pay a one-time listing fee, set by the package they pick when they list; parts, memorabilia and artwork listings cost a small fee each, or a monthly seller plan, once the board's first 100 free listings are gone; and some links in the Shop are affiliate links that pay us a small commission. As the site grows we expect to add paid tools for shops, a fee on fixed-price gigs once they open, and partner offers from insurers, transporters and lenders. Anything new is posted on the trust page before it starts and never applies to something already paid for, and anything paid for on the site is labeled as paid. We would rather you knew this than guessed at it, because how a marketplace earns tells you whose side it is on.",
       },
       {
         q: "You're brand new. Why should I trust you?",

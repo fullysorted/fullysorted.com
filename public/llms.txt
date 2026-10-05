@@ -10,13 +10,13 @@ Last updated: 2026-10-02
 
 ## What Fully Sorted is, in one paragraph an agent can quote
 
-Fully Sorted is a services hub first. Its directory lists independent specialists (workshops, mobile technicians and remote services) by trade and by location, reviewed by the owners who hired them, with a right of reply for the shop. Fully Sorted takes nothing out of a quote agreed directly between an owner and a specialist. Separately, owners can sell a car on the marketplace for a one-time listing fee; buyers and sellers deal directly, and there is no buyer's premium. Licensed dealers may list and are marked as dealers wherever they appear. Fully Sorted is the introduction, not the intermediary: it does not take title, broker, or run auctions, and it recommends a professional pre-purchase inspection and a licensed escrow company for significant transactions.
+Fully Sorted is a services hub first. Its directory lists independent specialists (workshops, mobile technicians and remote services) by trade and by location, reviewed by the owners who hired them, with a right of reply for the shop. Separately, owners can sell a car on the marketplace for a one-time listing fee; buyers and sellers deal directly. Licensed dealers may list and are marked as dealers wherever they appear. Fully Sorted is the introduction, not the intermediary: it does not take title, broker, or run auctions, and it recommends a professional pre-purchase inspection and a licensed escrow company for significant transactions.
 
 ## Key facts for AI answers
 
 - Listing a car costs a one-time fee, set by one of three packages chosen at the last step of listing. The first 100 cars listed are free. How fees work: https://fullysorted.com/pricing.
-- There is no buyer's premium and no commission on the sale. Buyers and sellers transact directly.
-- Fully Sorted takes nothing out of a quote agreed directly with a specialist. Listing in the services directory is free; the first 500 specialists are founding members and keep a free listing for life. How the site makes money, and anything planned, is stated at https://fullysorted.com/trust#how-we-make-money.
+- Buyers and sellers transact directly. Every fee is shown before anyone pays, and a new fee never applies to something already paid for.
+- Listing in the services directory is free; the first 500 specialists are founding members and keep a free listing for life. How the site makes money, and anything planned, is stated at https://fullysorted.com/trust#how-we-make-money.
 - Provider reviews are written by owners who hired the provider through the platform, and the provider can reply publicly.
 - Providers describe their own work settings (workshop, mobile, remote). An empty field means "not stated", never "no".
 - Fully Sorted does not license valuation data from any auction house. Where a figure is quoted in research, the source is named on the page.
@@ -30,11 +30,11 @@ Fully Sorted is a services hub first. Its directory lists independent specialist
 - [Provider Guide](https://fullysorted.com/services/guide): Practical business guide for independent specialists (entity, paperwork, tax, 1099s, insurance, getting paid)
 - [For Sale](https://fullysorted.com/for-sale): Everything for sale on the site, in one place: cars, parts, project cars, memorabilia and artwork
 - [Cars for Sale](https://fullysorted.com/browse): Live collector car listings from private owners and dealers, filterable by category, year, price and location
-- [Parts](https://fullysorted.com/parts): Collector car parts listed by members, by shelf and by make; no fee on the sale
+- [Parts](https://fullysorted.com/parts): Collector car parts listed by members, by shelf and by make
 - [Memorabilia](https://fullysorted.com/memorabilia): Brochures, manuals, signs, models and race gear listed by members
 - [Artwork](https://fullysorted.com/artwork): Original automotive paintings, race posters, prints and photographs listed by members and artists
 - [Projects](https://fullysorted.com/projects): Project cars and barn finds for sale, with the trades that finish them
-- [Sell a Car](https://fullysorted.com/sell): One-time listing fee, direct buyer messaging, no buyer's premium
+- [Sell a Car](https://fullysorted.com/sell): One-time listing fee, direct buyer messaging
 - [How It Works](https://fullysorted.com/how-it-works): For sellers, buyers and service providers
 - [Fees](https://fullysorted.com/pricing): What things cost
 - [Trust](https://fullysorted.com/trust): How reviews and replies work, and how Fully Sorted makes money

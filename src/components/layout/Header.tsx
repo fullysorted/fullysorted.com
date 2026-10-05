@@ -44,7 +44,7 @@ const NAV_LINK =
 const LIST_ITEMS = [
   { href: "/services/apply", label: "Your shop or service", blurb: "Get your business in the directory. Free for the first 500." },
   { href: "/sell", label: "A car", blurb: "Private sellers and dealers, one fee, paid once." },
-  { href: "/parts/new", label: "A part, memorabilia or artwork", blurb: "Up for 90 days. No fee on the sale." },
+  { href: "/parts/new", label: "A part, memorabilia or artwork", blurb: "Up for 90 days." },
 ];
 
 function ListMenu() {

@@ -9,7 +9,7 @@ import { PlanPanel } from "./PlanPanel";
 
 export const metadata: Metadata = {
   title: "List a Part, Memorabilia or Artwork",
-  description: "List a collector car part, memorabilia or artwork for sale on Fully Sorted. No fee on the sale.",
+  description: "List a collector car part, memorabilia or artwork for sale on Fully Sorted.",
   alternates: { canonical: "/parts/new" },
   robots: { index: false },
 };
@@ -46,7 +46,7 @@ export default async function NewPartsPage({ searchParams }: Props) {
         <Link href={kindHref(kind)} className="text-sm font-semibold" style={{ color: TEAL }}>&larr; {backLabel}</Link>
         <h1 className="font-display tracking-tight text-3xl sm:text-4xl mt-3 mb-2" style={{ color: INK }}>{heading}</h1>
         <p className="text-base leading-relaxed mb-8" style={{ color: MUTED }}>
-          No fee when it sells. It gets a quick read before it goes up, and it stays up for 90 days. The first{" "}
+          It gets a quick read before it goes up, and it stays up for 90 days. The first{" "}
           {PARTS_FREE_LISTINGS} listings on the board are free; after that it is a small fee per listing, or a monthly
           seller plan.
         </p>

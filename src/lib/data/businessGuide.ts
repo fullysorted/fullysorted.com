@@ -338,7 +338,7 @@ export const BUSINESS_GUIDE: GuideChapter[] = [
       {
         heading: "What it costs",
         body: [
-          "A directory listing is free during the founding period, and the founding cohort keeps that. Work you quote and invoice directly is yours in full today: Fully Sorted takes no cut of it, and nothing is taken out of what an owner has to spend on the job.",
+          "A directory listing is free during the founding period, and the founding cohort keeps that. Work you quote and invoice directly is paid to you by the owner; it does not pass through Fully Sorted.",
           "Once fixed-price gigs open there will be a platform fee on gigs booked through the site, posted before the first booking, still with nothing taken out of what an owner has to spend. Paid tools for shops may come later; a founding member's listing stays free either way. Card payment for those bookings is a separate step that comes later still: until a provider is switched on for payouts, a booking arrives as an inquiry and you invoice the owner directly. When card payments do switch on, the processing fee is the honest cost of taking a card, and it will be stated plainly rather than buried.",
         ],
       },

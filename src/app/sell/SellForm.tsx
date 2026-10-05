@@ -535,9 +535,7 @@ export default function SellForm({ initialCategory = '' }: { initialCategory?: s
                 one moment a seller is actually weighing what to pay. */}
             <p className="text-text-secondary">Pick the plan that fits your car. You can change your mind up until you pay.</p>
             <p className="text-sm text-text-secondary mt-3 max-w-xl">
-              For comparison: most collector-car listing sites take a 4.5 to 5 percent
-              success fee when your car sells, which on a $50,000 sale is over $2,250.
-              Ours is a flat fee, paid once, and nothing more when it sells.
+              The price on the package you pick is the whole cost of this listing.
             </p>
           </div>
 

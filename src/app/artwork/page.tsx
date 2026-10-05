@@ -7,7 +7,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Automotive Art for Sale: Paintings, Posters and Prints",
   description:
-    "Original automotive paintings, race and event posters, limited prints and period photographs, listed by Fully Sorted members and artists. No fee on the sale.",
+    "Original automotive paintings, race and event posters, limited prints and period photographs, listed by Fully Sorted members and artists.",
   alternates: { canonical: "/artwork" },
 };
 

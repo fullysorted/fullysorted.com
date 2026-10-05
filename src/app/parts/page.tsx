@@ -7,7 +7,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Collector Car Parts for Sale",
   description:
-    "Engine and drivetrain, suspension and brakes, body and trim, interior, wheels and electrical parts for collector cars, listed by Fully Sorted members. No fee on the sale.",
+    "Engine and drivetrain, suspension and brakes, body and trim, interior, wheels and electrical parts for collector cars, listed by Fully Sorted members.",
   alternates: { canonical: "/parts" },
 };
 

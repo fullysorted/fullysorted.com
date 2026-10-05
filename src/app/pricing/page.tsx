@@ -24,8 +24,8 @@ const ROWS: { label: string; head: string; body: ReactNode }[] = [
     head: 'Free to search, free to ask.',
     body: (
       <>
-        You pay the specialist, at the price you agree with them. We take nothing out of a
-        quote, and no account is needed to send one.
+        You pay the specialist, at the price you agree with them. No account is needed to
+        send a request.
       </>
     ),
   },
@@ -45,7 +45,7 @@ const ROWS: { label: string; head: string; body: ReactNode }[] = [
     body: (
       <>
         Three packages, from a basic listing to one that stays up until the car sells. You see
-        them, with prices, when you list. No commission when it sells. The first{' '}
+        them, with prices, when you list. The first{' '}
         {FREE_LISTINGS_THRESHOLD} cars list free. Dealers and consignment houses pay the same as
         everyone, and every dealer listing is marked as one. Listing several cars?{' '}
         <Link href="/contact" className="font-semibold underline underline-offset-4" style={{ color: INK }}>
@@ -61,7 +61,7 @@ const ROWS: { label: string; head: string; body: ReactNode }[] = [
     body: (
       <>
         After that, a small fee per listing, or a monthly seller plan that covers several at once. You see the prices
-        on the posting form, before you pay. No fee on the sale.
+        on the posting form, before you pay.
       </>
     ),
   },
