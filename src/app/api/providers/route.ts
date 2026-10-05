@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { normalizeExtraCategories } from '@/lib/service-categories';
 import { auth } from '@clerk/nextjs/server';
 import { getDb, schema } from '@/lib/db';
-import { eq, sql } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { rateLimit } from '@/lib/rate-limit';
 import { isMuse } from '@/lib/muse-auth';
 import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
@@ -19,13 +19,55 @@ const cap = (v: unknown, n: number): string | null => {
 };
 
 // ─── GET /api/providers ─────────────────────────────────
-// Returns all active service providers for the directory.
+// Returns active service providers for the directory.
+//
+// Query params (all optional, 2026-10-05):
+//   q=        server-side search on name, location, description, specialties
+//   category= headline category OR one of the extra service_types
+//   limit=    hard cap; default 500, max 500. With q, default 20.
+//   fields=card  the slim shape the directory card and the claim search
+//             actually render. The default (full) shape stays for callers
+//             that predate this and for the Muse connector.
+//
+// The directory still filters client-side today, but at 500 shops a full
+// payload on every visit is a megabyte on a phone; the slim shape is about
+// half the bytes and the cap means it can never grow without bound.
+//
 // SECURITY: select an explicit PUBLIC column set only. Never expose
 // claim_token (grants listing takeover/deletion), clerk_user_id,
 // email, phone, stripe_connect_id, or outreach_status on this public route.
-export async function GET() {
+const MAX_ROWS = 500;
+
+export async function GET(request: NextRequest) {
   try {
     const db = getDb();
+    const sp = request.nextUrl.searchParams;
+    const q = (sp.get('q') || '').trim().slice(0, 80);
+    const category = (sp.get('category') || '').trim().slice(0, 40);
+    const slim = sp.get('fields') === 'card';
+    const askedLimit = Number(sp.get('limit'));
+    const limit = Math.min(
+      MAX_ROWS,
+      Number.isInteger(askedLimit) && askedLimit > 0 ? askedLimit : q ? 20 : MAX_ROWS,
+    );
+
+    const conditions = [eq(schema.serviceProviders.status, 'active')];
+    if (q) {
+      const like = `%${q.replace(/[%_\\]/g, '\\$&')}%`;
+      conditions.push(sql`(
+        ${schema.serviceProviders.businessName} ILIKE ${like}
+        OR ${schema.serviceProviders.location} ILIKE ${like}
+        OR ${schema.serviceProviders.description} ILIKE ${like}
+        OR ${schema.serviceProviders.specialties}::text ILIKE ${like}
+      )`);
+    }
+    if (category) {
+      conditions.push(sql`(
+        ${schema.serviceProviders.category} = ${category}
+        OR COALESCE(${schema.serviceProviders.serviceTypes}, '[]'::jsonb) ? ${category}::text
+      )`);
+    }
+
     const providers = await db
       .select({
         id: schema.serviceProviders.id,
@@ -63,7 +105,8 @@ export async function GET() {
         createdAt: schema.serviceProviders.createdAt,
       })
       .from(schema.serviceProviders)
-      .where(eq(schema.serviceProviders.status, 'active'));
+      .where(and(...conditions))
+      .limit(limit);
 
     // Contact details are for signed-in members only; everyone else gets the
     // inquiry form. Must match the gate on /services/[slug].
@@ -73,13 +116,27 @@ export async function GET() {
     } catch {
       signedIn = false;
     }
-    if (!signedIn) {
-      return NextResponse.json({
-        providers: providers.map((p) => ({ ...p, phone: null, website: null, instagram: null })),
-      });
-    }
 
-    return NextResponse.json({ providers });
+    const rows = providers.map((p) => {
+      const base = signedIn ? p : { ...p, phone: null, website: null, instagram: null };
+      if (!slim) return base;
+      // The card shape: what ProviderCard, the homepage strip and the claim
+      // search render, and nothing else. Description is clamped to two lines
+      // on screen, so 240 characters is already more than shows.
+      const {
+        id, businessName, slug, category, location, rating, reviewCount, foundingProvider,
+        workSettings, serviceTypes, specialties, priceRange, avatarUrl, logoUrl, logoKind,
+        bannerFocus, phone, website, instagram,
+      } = base;
+      return {
+        id, businessName, slug, category, location, rating, reviewCount, foundingProvider,
+        workSettings, serviceTypes, specialties, priceRange, avatarUrl, logoUrl, logoKind,
+        bannerFocus, phone, website, instagram,
+        description: (base.description || '').slice(0, 240),
+      };
+    });
+
+    return NextResponse.json({ providers: rows, truncated: providers.length >= limit });
   } catch (error) {
     console.error('Fetch providers error:', error);
     // NOT an empty array. Returning [] made a database outage indistinguishable

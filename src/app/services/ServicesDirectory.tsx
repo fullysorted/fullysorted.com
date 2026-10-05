@@ -479,7 +479,7 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
 
   // Fetch providers from API
   useEffect(() => {
-    fetch('/api/providers')
+    fetch('/api/providers?fields=card')
       .then(async (res) => {
         const data = await res.json().catch(() => ({}));
         if (!res.ok || data.error) throw new Error(data.error || 'Request failed');

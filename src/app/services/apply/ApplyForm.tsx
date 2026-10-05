@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { ArrowRight, CheckCircle, Search } from 'lucide-react';
 import Link from 'next/link';
@@ -56,32 +56,32 @@ function normalizeWebsite(v: string) {
 // ─── "Already listed?" ────────────────────────────────────
 function ClaimSearch() {
   const [q, setQ] = useState('');
-  const [all, setAll] = useState<Listed[] | null>(null);
+  const [hits, setHits] = useState<Listed[]>([]);
+  const [searched, setSearched] = useState(false);
   const [failed, setFailed] = useState(false);
   const [picked, setPicked] = useState<Listed | null>(null);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState('');
-  const loading = useRef(false);
 
-  // One fetch, on the first keystroke. The directory is small enough to
-  // filter on the client, and this is the same list /services renders.
+  // Server-side search, debounced. The API does the matching and caps the
+  // answer at six, so this costs the same at 22 shops as at 2,000.
   useEffect(() => {
-    if (q.trim().length < 2 || all || loading.current) return;
-    loading.current = true;
-    fetch('/api/providers')
-      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-      .then((rows: Listed[]) => setAll(Array.isArray(rows) ? rows : []))
-      .catch(() => setFailed(true))
-      .finally(() => { loading.current = false; });
-  }, [q, all]);
-
-  const hits = useMemo(() => {
-    const t = q.trim().toLowerCase();
-    if (t.length < 2 || !all) return [];
-    return all
-      .filter((p) => p.businessName.toLowerCase().includes(t) || (p.location || '').toLowerCase().includes(t))
-      .slice(0, 6);
-  }, [q, all]);
+    const t = q.trim();
+    if (t.length < 2) { setHits([]); setSearched(false); return; }
+    const ctrl = new AbortController();
+    const timer = window.setTimeout(() => {
+      fetch(`/api/providers?fields=card&limit=6&q=${encodeURIComponent(t)}`, { signal: ctrl.signal })
+        .then(async (r) => {
+          const d = await r.json().catch(() => ({}));
+          if (!r.ok || d.error) throw new Error('failed');
+          setHits(Array.isArray(d.providers) ? d.providers : []);
+          setSearched(true);
+          setFailed(false);
+        })
+        .catch((e) => { if (e?.name !== 'AbortError') setFailed(true); });
+    }, 250);
+    return () => { window.clearTimeout(timer); ctrl.abort(); };
+  }, [q]);
 
   const label = (key: string) => CATEGORY_OPTIONS.find((c) => c.value === key)?.label ?? key;
 
@@ -137,7 +137,7 @@ function ClaimSearch() {
         </p>
       )}
 
-      {q.trim().length >= 2 && all && hits.length === 0 && !picked && (
+      {searched && hits.length === 0 && !picked && (
         <p className="text-sm text-text-secondary mt-3">Nothing by that name yet. Add it below and it is yours from the start.</p>
       )}
 
