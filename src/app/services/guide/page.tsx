@@ -1,687 +1,182 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import {
-  ArrowRight,
-  Route,
-  ShieldCheck,
-  UserCircle,
-  Images,
-  ListChecks,
-  Layers,
-  ClipboardList,
-  BadgeCheck,
-  TrendingUp,
-  Search,
-  PencilLine,
-  MessageSquare,
-  CreditCard,
-  Star,
-  Sparkles,
-  Wrench,
-  Building2,
-  User,
-  ClipboardCheck,
-  Truck,
-  Camera,
-  Hammer,
-  PaintBucket,
-  Warehouse,
-} from "lucide-react";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { PROVIDER_TRACKS } from "@/lib/data/providerTracks";
-import { isServiceCategory } from "@/lib/service-categories";
+import { ArrowRight } from "lucide-react";
+import { FOUNDING_PROVIDER_THRESHOLD } from "@/lib/listing-tiers";
+import { MIN_REVIEWS_FOR_AVG } from "@/lib/reviews";
 
 export const metadata: Metadata = {
-  title: "The Provider Playbook: How to Get Booked on Fully Sorted",
+  title: "The Provider Playbook: How the Directory Works for Shops",
   description:
-    "A step-by-step onboarding guide for collector-car specialists: build a profile that wins trust, price your services in tiers, and grow your bookings. Plus a buyer's guide to hiring the right pro.",
+    "How collector car shops get found on Fully Sorted: claim or add a profile, the one photo that matters, how reviews work, and what it costs.",
   alternates: { canonical: "/services/guide" },
 };
 
-/* ————————————————————————————————————————————————
-   The two ways to sell your services
-———————————————————————————————————————————————— */
-const PATHS = [
+/**
+ * 2026-10-05: rewritten from scratch. The old playbook was a nine-step Fiverr
+ * walkthrough (choose your path, add credentials, create a listing, set three
+ * pricing tiers, pass review) that described a product this is not: gigs are
+ * flagged off, there are no tiers, nothing is gated on credentials, and since
+ * the claim model the shop usually does not fill in a form at all. The eight
+ * per-trade guides were built on the same model and now redirect here.
+ *
+ * This is one short page in the sitewide white hero, saying only what is true
+ * today. "Running the business" (tax, insurance, W-9s) survives as its own
+ * page because it is useful whatever the product does.
+ */
+
+const INK = "#12352A";
+const TEAL = "#1C8C87";
+const MUTED = "#6B7280";
+const RULE = "rgba(18,53,42,0.14)";
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
+
+type Section = { n: string; title: string; body: React.ReactNode };
+
+const SECTIONS: Section[] = [
   {
-    icon: Building2,
-    tag: "Directory listing",
-    title: "Get-a-quote listing",
-    body:
-      "Live today. List your shop or business in the specialist directory. Owners find you by marque, service and location, then send an inquiry for a quote. Best for bespoke, high-value work (an engine rebuild, collection management, a complex multi-car move) that needs a conversation before a number.",
-    cta: { href: "/services/apply", label: "Get listed" },
+    n: "01",
+    title: "How owners find you",
+    body: (
+      <>
+        <p>
+          Owners search the directory by trade, marque and place. Your profile is one page: your photo, what you do, where you are, and the reviews owners have left. There is no feed to keep up with and nothing to post.
+        </p>
+        <p>
+          An owner who picks you writes to you through the profile. The message lands in your inbox with the car and the job described, and we keep a copy so nothing gets lost. Your phone number and website show to signed-in members; everyone else reaches you through that form.
+        </p>
+      </>
+    ),
   },
   {
-    icon: Layers,
-    tag: "Fixed-price gig, not open yet",
-    title: "Book-me-now gigs",
-    body:
-      "Coming later. Package a service at an upfront price: a paint-correction detail, a pre-purchase inspection, an enclosed transport lane. When gigs open, owners will see the price, pick a tier and book. Best for repeatable, well-scoped work you can quote without a conversation.",
-    cta: { href: "/services/apply", label: "Get listed meanwhile" },
+    n: "02",
+    title: "Claim it, or add it",
+    body: (
+      <>
+        <p>
+          We build profiles for shops we know, so yours may already be here. Search for it on the{" "}
+          <Link href="/services/apply" className="font-semibold underline underline-offset-4" style={{ color: INK }}>apply page</Link>{" "}
+          and send yourself the login link. It goes to the email address on the listing, and only there.
+        </p>
+        <p>
+          Not here yet? Add it. Seven fields: the business name, your name, your main trade, where you are, an email, a sentence or two about the work, and one photo. A person reads it, then it goes live, usually within a few days.
+        </p>
+        <p>
+          Everything else is done from your dashboard once you are in: other trades you cover, where the work happens (your shop, their driveway, remote), specialties, phone, website, Instagram, a logo or a portrait. None of it is required and none of it is held against you if it is blank.
+        </p>
+      </>
+    ),
+  },
+  {
+    n: "03",
+    title: "The one photo that matters",
+    body: (
+      <>
+        <p>
+          A main photo is the only thing on the profile we insist on. It is the first thing an owner sees, on the card and at the top of your page. Your work or your space, in decent light: a finished car, the shop floor, you mid-job. A real garage reads as a business. A flyer reads as an ad.
+        </p>
+        <p>
+          You can set where the crop sits so the car, not the ceiling, is what shows. A second image, your logo or a portrait, is optional and goes in the small square.
+        </p>
+      </>
+    ),
+  },
+  {
+    n: "04",
+    title: "How reviews work",
+    body: (
+      <>
+        <p>
+          We ask, not you. Give us the names of owners you have done work for and we email each one a single-use link. Their review lands on your profile with a reply box underneath it. You can answer in public. You cannot remove it, which is exactly why the next owner reading it will believe it.
+        </p>
+        <p>
+          No star rating appears until you have {MIN_REVIEWS_FOR_AVG} reviews, so one early review does not define you either way. We do not hand out badges, and nobody checks your licenses for you. Your standing here is built from owners who hired you, and nothing else.
+        </p>
+      </>
+    ),
+  },
+  {
+    n: "05",
+    title: "What it costs",
+    body: (
+      <>
+        <p>
+          The directory listing is free for the first {FOUNDING_PROVIDER_THRESHOLD} shops, and it stays free for them whatever we add later. Owners contact you directly and you bill them the way you already do.
+        </p>
+        <p>
+          Paid tools for shops will come (an inbox, a job record for each car). When they do, the price is posted on{" "}
+          <Link href="/pricing" className="font-semibold underline underline-offset-4" style={{ color: INK }}>the pricing page</Link>{" "}
+          before it starts, and nothing is charged for something you already have.
+        </p>
+      </>
+    ),
   },
 ];
 
-/* ————————————————————————————————————————————————
-   Provider playbook — 9 deep steps
-———————————————————————————————————————————————— */
-type Step = {
-  icon: React.ElementType;
-  title: string;
-  body: string;
-  checklist?: string[];
-  tip?: string;
-};
-
-const PROVIDER_STEPS: Step[] = [
-  {
-    icon: Route,
-    title: "Choose your path",
-    body:
-      "Decide how you want to sell before you build anything. A directory listing wins bespoke, high-ticket jobs today. Once fixed-price gigs open, they will win fast, repeatable bookings on top of that. Plenty of pros will run both: a set of productized gigs for bread-and-butter work, plus a directory profile for full projects.",
-    checklist: [
-      "Repeatable and easy to price up front → fixed-price gig, once gigs open",
-      "Bespoke, high-value, needs a scoping call → directory business",
-      "A mix of both → claim a directory listing now and add gigs when they launch",
-    ],
-    tip: "Not sure? Start with a directory listing: it is live today, and reviews are what unlock everything else. Have a clean fixed-price gig ready to switch on the moment gigs open.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Create your account & add your credentials",
-    body:
-      "Sign up, then confirm your email and phone. That part is account security, not a rating. Add your business credentials: licenses, insurance, workshop accreditations. Owners can see what you have listed and decide for themselves. We do not hand out a stamp of approval; your standing here is built from reviews by the owners who actually hired you.",
-    checklist: [
-      "Confirm your email and phone",
-      "Add business license / registration number",
-      "Add your insurance details and any workshop accreditations, so owners can see them",
-    ],
-    tip: "A profile that shows license and insurance details converts far better than an anonymous one. Collectors are handing over six-figure cars: show them what you carry.",
-  },
-  {
-    icon: UserCircle,
-    title: "Build a profile that wins trust",
-    body:
-      "Your profile is your storefront. Lead with a sharp, specific tagline, a professional photo or clean logo, and a bio that makes your specialism obvious in the first line. Collectors hire experts, not generalists, so say exactly which marques, eras, and services you are the specialist in.",
-    checklist: [
-      "Professional headshot or high-resolution logo",
-      "One-line tagline naming your specialism (e.g. 'Air-cooled Porsche paint correction, Los Angeles')",
-      "Bio: years of experience, marque expertise, notable work, service area",
-      "Certifications, insurance, and languages spoken",
-    ],
-    tip: "Name your marques. 'Classic car detailing' is invisible; 'Ferrari and Lamborghini concours detailing' is a search magnet and a credibility signal at once.",
-  },
-  {
-    icon: Images,
-    title: "Add your portfolio: this is non-negotiable",
-    body:
-      "Nothing sells specialist work like proof of specialist work. Upload high-resolution before/after photos and, wherever you can, short video of completed cars. This is the single most powerful thing on your profile. Treat a thin portfolio as an unfinished profile.",
-    checklist: [
-      "Before/after pairs for your best jobs",
-      "Detail shots: paint, panel gaps, engine bay, interior, badges",
-      "Short video walkarounds where possible",
-      "Only your own work, only your own photos",
-    ],
-    tip: "Ten strong, well-lit before/afters beat fifty phone snaps. Curate for quality: buyers judge your standards by the worst photo you post.",
-  },
-  {
-    icon: ListChecks,
-    title: "Create your first listing",
-    body:
-      "Give the service a clear, descriptive title, put it in the right category, and tag it with the keywords owners actually search: marque, service, location. A precise title and correct category are how buyers and search engines find you.",
-    checklist: [
-      "Descriptive title ('Multi-stage paint correction & ceramic coating')",
-      "Correct category: photography, inspection, detailing, restoration, body and paint, storage, transport, mechanical",
-      "Tags/keywords: marques, services, city/region",
-    ],
-    tip: "Write the title a buyer would type into search, not the one that sounds clever. Clarity outranks cleverness every time.",
-  },
-  {
-    icon: Layers,
-    title: "Set your scope & pricing",
-    body:
-      "For fixed-price gigs, offer up to three tiers so buyers can self-select by budget and ambition (for example Standard, Enhanced, and Concours), each with a price, a turnaround time, and what is included. Add optional extras for the upsells. For a directory business, publish a clear service list and explain how your quote and lead process works.",
-    checklist: [
-      "Three tiers, each with price, turnaround, and revisions",
-      "Concrete deliverables per tier: no vague 'premium service'",
-      "Add-ons for common upsells (paint sealant, extra detail time, expedited slot)",
-      "Directory listings: publish a service menu and typical price ranges",
-    ],
-    tip: "Anchor with three tiers. Most buyers pick the middle, so make the middle tier the one you most want to sell, and let Concours make it look reasonable.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Set your client requirements",
-    body:
-      "Tell buyers exactly what you need from them before you can start, so jobs land ready to go instead of stalling in back-and-forth. The more precisely you ask, the cleaner every booking arrives.",
-    checklist: [
-      "Vehicle year, make, model, and VIN/chassis",
-      "Location or collection/drop-off details",
-      "Current condition and any known issues",
-      "Photos of the car and the specific areas of concern",
-    ],
-    tip: "A good requirements list is a filter. It weeds out mismatched jobs before they become refunds and protects your review score.",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Publish & pass review",
-    body:
-      "Before your listing goes live, it gets a quick quality check for completeness and professionalism. A complete profile, a real portfolio, and clear pricing sail through. Once approved, you are live and discoverable.",
-    checklist: [
-      "Profile complete, with contact details confirmed",
-      "Portfolio populated with real work",
-      "At least one listing with tiered pricing and requirements",
-    ],
-    tip: "Complete profiles get approved faster and read better to owners. Finish everything before you submit: a half-built profile reads as a half-serious business.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Grow: reviews and response time",
-    body:
-      "Once you are live, momentum compounds. Reply fast, deliver on time, and give us the names of clients who were happy: we email them a one-time link and their review lands on your profile with your reply box under it. You never see the link and you cannot pull the review, which is exactly why it is worth something to the next owner reading it.",
-    checklist: [
-      "Reply to inquiries within hours, not days",
-      "Deliver on or ahead of the promised turnaround",
-      "Hand us the names of satisfied owners: we do the asking",
-      "Refine your tiers and add-ons as you learn what sells",
-    ],
-    tip: "Your first three reviews are the hardest and the most valuable: three is where a star rating starts appearing on your profile and in the directory. Overdeliver on the early jobs: you are not just doing the work, you are buying your reputation.",
-  },
-];
-
-/* ————————————————————————————————————————————————
-   Buyer's guide — 8 steps
-———————————————————————————————————————————————— */
-const BUYER_STEPS: Step[] = [
-  {
-    icon: Sparkles,
-    title: "Two ways to hire",
-    body:
-      "Contact an owner-reviewed business for a custom quote, whether the job is well-defined (a detail, an inspection, a transport run) or bespoke (an engine rebuild, a long-term storage plan, a multi-car move). Once fixed-price gigs open, well-defined jobs will also be bookable instantly at a fixed price. For now, it is custom and quoted either way.",
-  },
-  {
-    icon: UserCircle,
-    title: "Get started",
-    body:
-      "Creating an account takes a minute, and you never need to pay to browse. Save and shortlist the specialists that catch your eye so you can compare them side by side before you commit.",
-  },
-  {
-    icon: Search,
-    title: "Find the right specialist",
-    body:
-      "Filter by category, marque, and location, then read the profile properly. Look past the star average to the number of reviews behind it (we do not show an average below three verified reviews at all), and note which quotes are verified clients and which the shop supplied itself. Study the portfolio for cars like yours before you reach out.",
-  },
-  {
-    icon: PencilLine,
-    title: "Write a good brief",
-    body:
-      "A specialist can only deliver what you describe. Be specific: the vehicle and its condition, the exact outcome you want, your timeline and budget, and your must-haves and must-avoids. A precise brief gets a precise quote, and a better result.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Message before you book",
-    body:
-      "For higher-value or bespoke jobs, message first. Confirm scope, timeline, and that the specialist is genuinely the right fit for your car before you commit a deposit or a booking.",
-  },
-  {
-    icon: CreditCard,
-    title: "Place an order or request a quote",
-    body:
-      "Send your brief to the business as a lead and they will come back with a custom quote, well-defined job or bespoke. Once fixed-price gigs open, you will be able to pick a tier for a well-defined job instead and see a transparent total including fees before you confirm.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Trust & protection",
-    body:
-      "Reviews come from clients we email directly after the work is done, and a shop can reply to one but can never remove it. The directory is young, so many profiles have no verified reviews yet. That is shown plainly rather than papered over. Revisions and dispute handling are there to protect you if a job does not land the way it should.",
-  },
-  {
-    icon: Star,
-    title: "After the job",
-    body:
-      "If the shop invites you to review them, do it honestly, good or bad. It is the only thing on this site that a business cannot buy, and it is how the next owner decides. Re-book the specialists you trust, and reach out any time you need a hand.",
-  },
-];
-
-/* ————————————————————————————————————————————————
-   Provider FAQ
-———————————————————————————————————————————————— */
-const FAQS = [
-  {
-    q: "Do I need a registered business to list?",
-    a: "You can list as an independent specialist, ready to offer fixed-price gigs once they open, or as a registered business in the directory today. Either way, a complete profile (real credentials, clear pricing, honest scope) is what wins the first booking. After that it is the reviews from owners who hired you that do the work.",
-  },
-  {
-    q: "How should I price my services?",
-    a: "Once fixed-price gigs open, offer up to three tiers (for example Standard, Enhanced, and Concours), each with a clear price, turnaround, and list of what is included, plus optional add-ons for upsells. Most buyers choose the middle tier, so make it the one you most want to sell. For bespoke work, list your services in the directory today and quote each job individually.",
-  },
-  {
-    q: "Why does my portfolio matter so much?",
-    a: "It is the single most powerful thing on your profile. Collectors are trusting you with valuable, often irreplaceable cars, and high-resolution before/after photos and video of your completed work are the proof that you can be trusted with theirs. Treat a thin portfolio as an unfinished profile.",
-  },
-  {
-    q: "How do I get found by the right owners?",
-    a: "Name your specialism precisely: the marques, eras, and services you are the expert in, in your title, tagline, and tags. Specific beats generic: 'air-cooled Porsche paint correction' gets found where 'car detailing' disappears.",
-  },
-  {
-    q: "How do I get more leads?",
-    a: "Respond quickly, deliver on time, and collect verified reviews. Give us the names of clients who were happy and we email them a one-time review link. At three verified reviews a star rating starts showing on your profile and on your directory card, and at 4.5 and above you pick up the Top-rated badge.",
-  },
-  {
-    q: "What information should I ask buyers for before starting?",
-    a: "Set clear client requirements: the vehicle's year, make, model and VIN/chassis, its location, its current condition and any known issues, and photos of the areas of concern. A precise requirements list keeps jobs from stalling and protects your review score.",
-  },
-];
-
-/* ————————————————————————————————————————————————
-   Structured data (AI-native / GEO)
-———————————————————————————————————————————————— */
-const howToSchema = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "@id": "https://fullysorted.com/services/guide#howto",
-  name: "How to become a collector-car service provider on Fully Sorted",
-  description:
-    "A step-by-step onboarding guide for collector-car specialists to build a trusted profile, price services in tiers, and grow bookings on Fully Sorted.",
-  step: PROVIDER_STEPS.map((s, i) => ({
-    "@type": "HowToStep",
-    position: i + 1,
-    name: s.title,
-    text: s.body,
-    ...(s.checklist
-      ? {
-          itemListElement: s.checklist.map((c, j) => ({
-            "@type": "HowToDirection",
-            position: j + 1,
-            text: c,
-          })),
-        }
-      : {}),
-  })),
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": "https://fullysorted.com/services/guide#faq",
-  mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://fullysorted.com" },
-    { "@type": "ListItem", position: 2, name: "Services", item: "https://fullysorted.com/services" },
-    { "@type": "ListItem", position: 3, name: "Provider Guide", item: "https://fullysorted.com/services/guide" },
-  ],
-};
-
-/* ————————————————————————————————————————————————
-   Presentation
-———————————————————————————————————————————————— */
-function StepRow({ step, index }: { step: Step; index: number }) {
-  const Icon = step.icon;
-  const tone = ["#1E6091", "#B08D3F", "#1E6091"][index % 3];
+export default function ProviderPlaybookPage() {
   return (
-    <div className="relative bg-white border border-border rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:shadow-lg">
-      <div className="flex items-start gap-5">
-        <div className="flex flex-col items-center gap-2 shrink-0">
-          <div
-            className="w-11 h-11 rounded-xl flex items-center justify-center"
-            style={{ backgroundColor: `${tone}14` }}
-          >
-            <Icon className="w-5 h-5" style={{ color: tone }} />
-          </div>
-          <span
-            className="text-xs font-bold tabular-nums"
-            style={{ color: tone }}
-          >
-            {String(index + 1).padStart(2, "0")}
-          </span>
-        </div>
-        <div className="min-w-0">
-          <h3 className="text-lg font-bold text-foreground mb-1.5">{step.title}</h3>
-          <p className="text-sm text-text-secondary leading-relaxed">{step.body}</p>
-
-          {step.checklist && (
-            <ul className="mt-4 space-y-2">
-              {step.checklist.map((c, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-sm text-foreground">
-                  <span
-                    className="mt-1.5 w-1.5 h-1.5 rounded-sm shrink-0"
-                    style={{ backgroundColor: tone }}
-                    aria-hidden="true"
-                  />
-                  <span className="leading-relaxed">{c}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {step.tip && (
-            <div
-              className="mt-4 rounded-xl px-4 py-3 text-sm leading-relaxed"
-              style={{ backgroundColor: "rgba(176,141,63,0.08)", border: "1px solid rgba(176,141,63,0.25)" }}
-            >
-              <span className="font-bold" style={{ color: "#8a6d2f" }}>
-                Pro tip ·{" "}
-              </span>
-              <span className="text-foreground">{step.tip}</span>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BuyerCard({ step, index }: { step: Step; index: number }) {
-  const Icon = step.icon;
-  const tone = ["#1E6091", "#1E6091", "#B08D3F"][index % 3];
-  return (
-    <div className="bg-white border border-border rounded-2xl p-6 relative transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
-      <div
-        className="absolute -top-3 -left-3 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-        style={{ backgroundColor: "#1E6091" }}
-      >
-        {index + 1}
-      </div>
-      <div
-        className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-        style={{ backgroundColor: `${tone}14` }}
-      >
-        <Icon className="w-5 h-5" style={{ color: tone }} />
-      </div>
-      <h3 className="text-base font-bold text-foreground mb-1.5">{step.title}</h3>
-      <p className="text-sm text-text-secondary leading-relaxed">{step.body}</p>
-    </div>
-  );
-}
-
-const TRACK_ICONS: Record<string, React.ElementType> = {
-  Sparkles,
-  ClipboardCheck,
-  Truck,
-  Camera,
-  Wrench,
-  Hammer,
-  PaintBucket,
-  Warehouse,
-};
-
-export default function ProviderGuidePage() {
-  return (
-    <div style={{ backgroundColor: "#f5f4f0" }} className="min-h-screen">
-      <JsonLd data={[howToSchema, faqSchema, breadcrumbSchema]} />
-
-      {/* Hero */}
-      <section className="relative overflow-hidden text-white">
-        <Image
-          src="/images/archive/porsche-904-engine-detail.jpg"
-          alt="Porsche 904 with its engine exposed, mid-service"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(rgba(15,32,50,0.68), rgba(15,32,50,0.86))" }}
-          aria-hidden="true"
-        />
-        <div
-          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }}
-        />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-20 text-center">
-          <div className="inline-flex items-center gap-2.5 border border-white/30 bg-white/10 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-white text-xs font-bold uppercase tracking-widest">The Provider Playbook</span>
-          </div>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-4">
-            Get found by the owners who <span style={{ color: "#D9C08A" }}>need your work</span>.
-          </h1>
-          <p className="text-lg text-stone-200 max-w-2xl mx-auto">
-            How to build a profile owners trust, price the work, and turn first jobs into repeat ones.
+    <div className="min-h-screen" style={{ background: "var(--bg-primary)" }}>
+      <div style={{ background: "#FFFFFF", borderBottom: `1px solid ${RULE}` }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>
+            The provider playbook
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4 max-w-[18ch]" style={{ color: INK }}>
+            How the directory works for shops.
+          </h1>
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: MUTED }}>
+            Five minutes. What a shop needs to know before it is listed, and nothing it does not.
+          </p>
+          <div className="flex flex-wrap items-center gap-3 mt-7">
             <Link
               href="/services/apply"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[15px] font-bold text-white"
+              style={{ background: TEAL }}
             >
-              Get listed <ArrowRight className="w-4 h-4" />
+              Claim or add your shop <ArrowRight className="w-4 h-4" />
             </Link>
-            <a
-              href="#playbook"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl border border-white/40 hover:bg-white/10 transition-colors"
-            >
-              Read the playbook
-            </a>
+            <Link href="/services" className="text-[15px] font-semibold underline underline-offset-4 px-2" style={{ color: TEAL }}>
+              See the directory
+            </Link>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Two paths */}
-      <section className="py-16 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-10 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#1E6091" }}>
-              Start here
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-              How owners will find you
-            </h2>
-            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              Start with a directory listing; it is live today. Fixed-price gigs come later, for repeatable jobs, and many specialists will run both.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {PATHS.map((p) => {
-              const Icon = p.icon;
-              return (
-                <div key={p.title} className="bg-white border border-border rounded-2xl p-7 flex flex-col">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: "rgba(30,96,145,0.09)" }}
-                    >
-                      <Icon className="w-5 h-5" style={{ color: "#1E6091" }} />
-                    </div>
-                    <span
-                      className="text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
-                      style={{ color: "#8a6d2f", backgroundColor: "rgba(176,141,63,0.12)" }}
-                    >
-                      {p.tag}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{p.title}</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed flex-1">{p.body}</p>
-                  <Link
-                    href={p.cta.href}
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold"
-                    style={{ color: "#1E6091" }}
-                  >
-                    {p.cta.label} <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Tailored tracks by trade */}
-      <section className="pb-4 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-8 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#1E6091" }}>
-              Tailored by trade
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-              Guides built for your specialism
-            </h2>
-            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              A detailer, an inspector, and a photographer need different gigs, pricing, and portfolios. Pick your trade for a guide tuned to exactly what wins bookings in it.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {PROVIDER_TRACKS.filter((t) => isServiceCategory(t.slug)).map((t) => {
-              const TIcon = TRACK_ICONS[t.icon] ?? Wrench;
-              return (
-                <Link
-                  key={t.slug}
-                  href={`/services/guide/${t.slug}`}
-                  className="group bg-white border border-border rounded-2xl p-5 flex items-start gap-4 hover:border-accent hover:-translate-y-0.5 hover:shadow-lg transition-all"
-                >
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: "rgba(30,96,145,0.09)" }}>
-                    <TIcon className="w-5 h-5" style={{ color: "#1E6091" }} />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-base font-bold text-foreground mb-0.5 flex items-center gap-1.5">
-                      {t.label}
-                      <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" style={{ color: "#1E6091" }} />
-                    </h3>
-                    <p className="text-xs text-text-secondary leading-relaxed">{t.hiredFor}</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Running the business — the layer underneath every trade */}
-      <section className="pb-16 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
-          <Link
-            href="/services/guide/business"
-            className="group block rounded-2xl p-6 sm:p-8 transition-all hover:-translate-y-0.5 hover:shadow-lg"
-            style={{ background: "rgba(30,96,145,0.06)", border: "1px solid rgba(30,96,145,0.20)" }}
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center gap-5">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
-                style={{ backgroundColor: "rgba(30,96,145,0.12)" }}
-              >
-                <Building2 className="w-6 h-6" style={{ color: "#1E6091" }} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#1E6091" }}>
-                  The part that isn&rsquo;t the craft
-                </p>
-                <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground mb-1.5">
-                  Running the business
-                </h2>
-                <p className="text-sm text-text-secondary max-w-2xl">
-                  Sole proprietor or LLC. What self-employment tax actually costs and when it is due.
-                  Why everyone wants a W-9. Which insurance covers a customer&rsquo;s car, and which
-                  one you probably have instead. Written for people who fix cars, not accountants.
-                </p>
-              </div>
-              <span
-                className="inline-flex items-center gap-1.5 text-sm font-bold shrink-0"
-                style={{ color: "#1E6091" }}
-              >
-                Read it <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+        <ol className="grid gap-10">
+          {SECTIONS.map((s) => (
+            <li key={s.n} className="grid sm:grid-cols-[3.5rem_1fr] gap-x-6 gap-y-2">
+              <span className="text-sm tabular-nums pt-1.5" style={{ fontFamily: MONO, letterSpacing: "0.08em", color: TEAL }}>
+                {s.n}
               </span>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      {/* Provider playbook */}
-      <section id="playbook" className="py-16 px-4 sm:px-6 bg-white border-y border-border scroll-mt-20">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-10 text-center">
-            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#1E6091" }}>
-              <Wrench className="w-3.5 h-3.5" /> For Providers
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-              The nine-step playbook
-            </h2>
-            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              From empty profile to first booking. Work through it in order: each step builds the trust that makes the next one pay off.
-            </p>
-          </div>
-          <div className="space-y-4">
-            {PROVIDER_STEPS.map((s, i) => (
-              <StepRow key={i} step={s} index={i} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/services/apply"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              Start your profile <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Buyer's guide */}
-      <section className="py-16 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-10 text-center">
-            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#1E6091" }}>
-              <User className="w-3.5 h-3.5" /> For Owners Hiring a Pro
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-              How to hire the right specialist
-            </h2>
-            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              A short guide to finding, briefing, and booking a collector-car pro you can trust with your car.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {BUYER_STEPS.map((s, i) => (
-              <BuyerCard key={i} step={s} index={i} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              Find a specialist <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-16 px-4 sm:px-6 bg-white border-t border-border">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-10 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#1E6091" }}>
-              Provider FAQ
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-              Questions specialists ask
-            </h2>
-          </div>
-          <div className="space-y-4">
-            {FAQS.map((f, i) => (
-              <div key={i} className="border border-border rounded-2xl p-6" style={{ backgroundColor: "#faf9f7" }}>
-                <h3 className="text-base font-bold text-foreground mb-2">{f.q}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{f.a}</p>
+              <div>
+                <h2 className="font-display text-2xl tracking-tight mb-3" style={{ color: INK }}>{s.title}</h2>
+                <div className="grid gap-3 text-[15px] leading-relaxed" style={{ color: "#3f3f3a" }}>{s.body}</div>
               </div>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <p className="text-sm text-text-secondary mb-4">Ready to turn your craft into bookings?</p>
-            <Link
-              href="/services/apply"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              Get listed on Fully Sorted <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
+            </li>
+          ))}
+        </ol>
+
+        {/* The part that is not the craft. Useful whatever the product does. */}
+        <Link
+          href="/services/guide/business"
+          className="group mt-14 block rounded-2xl bg-white p-6 sm:p-7 transition-colors hover:bg-[#F4F6F5]"
+          style={{ border: `1px solid ${RULE}` }}
+        >
+          <p className="text-[11px] uppercase mb-2" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>
+            The part that is not the craft
+          </p>
+          <h2 className="font-display text-2xl tracking-tight mb-2 group-hover:underline underline-offset-4" style={{ color: INK }}>
+            Running the business
+          </h2>
+          <p className="text-[15px] leading-relaxed" style={{ color: MUTED }}>
+            Sole proprietor or LLC. What self-employment tax actually costs and when it is due. Why everyone wants a W-9. Which insurance covers a customer&apos;s car, and which one you probably have instead. Written for people who fix cars, not accountants.
+          </p>
+        </Link>
+
+        <p className="mt-10 text-sm" style={{ color: MUTED }}>
+          Something this page did not answer? Email chris@fullysorted.com and a person will.
+        </p>
+      </div>
     </div>
   );
 }

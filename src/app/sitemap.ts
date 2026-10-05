@@ -4,7 +4,6 @@ import { getPublishedModels } from "@/lib/data/models";
 import { getActiveGigs } from "@/lib/data/gigs";
 import { getPublicProviderSlugs } from "@/lib/data/providers";
 import { getRegisterModels, getAllPublishedChassisPaths } from "@/lib/data/register";
-import { PROVIDER_TRACKS } from "@/lib/data/providerTracks";
 import { isServiceCategory } from "@/lib/service-categories";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
 import { CATEGORY_PAGES } from "@/lib/data/categoryPages";
@@ -64,14 +63,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const trackPages: MetadataRoute.Sitemap = PROVIDER_TRACKS
-    .filter((t) => isServiceCategory(t.slug))
-    .map((t) => ({
-      url: `${base}/services/guide/${t.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    }));
+  // Per-trade provider guides retired 2026-10-05; they 308 to /services/guide.
+  const trackPages: MetadataRoute.Sitemap = [];
 
   // Owner-facing trade landing pages: the indexable front door to the directory.
   const categoryPages: MetadataRoute.Sitemap = CATEGORY_PAGES

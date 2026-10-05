@@ -16,6 +16,8 @@ const SITE = 'https://fullysorted.com';
 //
 //   • the public dashboard empty state, which passes an email
 //   • the /team console, which passes a providerId during an onboarding call
+//   • /services/apply "find your shop and claim it" (2026-10-05), which passes
+//     the providerId of a listing picked from the public directory
 //
 // The public path NEVER reveals whether an address is listed. A shop's presence
 // in the directory is public, but which address we hold for it is not, and an
@@ -43,7 +45,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
   }
 
-  const providerId = team && body.providerId ? Number(body.providerId) : undefined;
+  // A providerId is fine from the public too: the row's id is already public
+  // on /services, and the link still only goes to the address stored on it.
+  const rawId = Number(body.providerId);
+  const providerId = Number.isInteger(rawId) && rawId > 0 ? rawId : undefined;
   const email = String(body.email ?? '').trim();
 
   if (!providerId && !isEmailAddress(email)) {
