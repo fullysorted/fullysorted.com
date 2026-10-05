@@ -43,13 +43,12 @@ export default async function ProjectsPage() {
     <div className="min-h-screen" style={{ background: "var(--bg-primary)" }}>
       <div style={{ background: "#FFFFFF", borderBottom: `1px solid ${RULE}` }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>Projects</p>
-          <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4 max-w-[18ch]" style={{ color: INK }}>
+          <ForSaleNav current="projects" counts={{ cars: all.length, projects: projects.length }} />
+          <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-6 mb-4 max-w-[18ch]" style={{ color: INK }}>
             Unfinished business.
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: MUTED }}>
             Project cars and barn finds, sold as they sit, for someone with the time, the space and the right shop.
-            Private sellers and dealers, marked as which.
           </p>
           <div className="flex flex-wrap items-center gap-3 mt-7">
             <Link href="/sell?category=Project" className="inline-block px-6 py-3 rounded-full text-[15px] font-bold text-white" style={{ background: TEAL }}>
@@ -59,7 +58,6 @@ export default async function ProjectsPage() {
               All cars for sale
             </Link>
           </div>
-          <ForSaleNav current="projects" counts={{ cars: all.length, projects: projects.length }} className="mt-8" />
         </div>
       </div>
 

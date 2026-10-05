@@ -10,6 +10,9 @@ const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
  * The tab row that ties the For Sale pages together: every page in the
  * section shows the others, with live counts where the page has them, and
  * the Wanted board at the end for whoever did not find it.
+ *
+ * 2026-10-05: it sits at the TOP of each For Sale header and doubles as the
+ * section eyebrow, so no page prints "For sale" twice.
  */
 export function ForSaleNav({
   current,
@@ -21,7 +24,7 @@ export function ForSaleNav({
   className?: string;
 }) {
   const pill = (on: boolean) =>
-    `inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors ${on ? 'text-white' : 'bg-white hover:bg-[#F4F6F5]'}`;
+    `inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap transition-colors ${on ? 'text-white' : 'bg-white hover:bg-[#F4F6F5]'}`;
   const pillStyle = (on: boolean) => (on ? { background: INK } : { color: INK, border: `1px solid ${RULE}` });
   return (
     <nav aria-label="For sale" className={`flex items-center gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap ${className}`}>

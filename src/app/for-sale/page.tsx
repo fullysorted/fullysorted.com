@@ -50,14 +50,13 @@ export default async function ForSalePage() {
     <div className="min-h-screen" style={{ background: "var(--bg-primary)" }}>
       <div style={{ background: "#FFFFFF", borderBottom: `1px solid ${RULE}` }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>For sale</p>
-          <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4 max-w-[20ch]" style={{ color: INK }}>
+          <ForSaleNav current="all" counts={counts} />
+          <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-6 mb-4 max-w-[20ch]" style={{ color: INK }}>
             Cars, parts and the things that go with them.
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: MUTED }}>
-            Listed by owners, dealers, members and artists. Every car is marked private or dealer.
+            Listed by owners, dealers, members and artists.
           </p>
-          <ForSaleNav current="all" counts={counts} className="mt-8" />
         </div>
       </div>
 

@@ -93,22 +93,26 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: "easeOut" }}
           >
-            <div className="mb-3 flex items-center gap-2.5">
-              <span
-                className="text-[11px] uppercase"
-                style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em", color: "#1C8C87" }}
-              >
-                For sale
-              </span>
-            </div>
-            <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4" style={{ color: "#12352A" }}>
+            {/* The section tabs are the eyebrow. The count rides on the
+                title; the private/dealer distinction is on each card, so it
+                is not announced here. */}
+            <ForSaleNav
+              current="cars"
+              counts={{ cars: initialListings.length, projects: initialListings.filter((v) => isProjectCategory(v.category)).length }}
+            />
+            <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-6 mb-6 flex items-baseline gap-3" style={{ color: "#12352A" }}>
               Cars
+              {hasRealListings && (
+                <span className="text-xl sm:text-2xl font-sans font-medium tabular-nums" style={{ color: "#9a9a8a" }}>
+                  {initialListings.length}
+                </span>
+              )}
             </h1>
-            <p className="text-base sm:text-lg mb-8 max-w-2xl leading-relaxed" style={{ color: "#6B7280" }}>
-              {hasRealListings
-                ? `${initialListings.length} ${initialListings.length === 1 ? "car" : "cars"} listed. Private sellers and dealers, marked as which.`
-                : "Nothing listed yet. Yours could be first."}
-            </p>
+            {!hasRealListings && (
+              <p className="text-base sm:text-lg mb-6 max-w-2xl leading-relaxed" style={{ color: "#6B7280" }}>
+                Nothing listed yet. Yours could be first.
+              </p>
+            )}
           </motion.div>
 
           {/* Search Bar */}
@@ -156,11 +160,6 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
               <span className="hidden sm:inline">Filters</span>
             </button>
           </motion.div>
-          <ForSaleNav
-            current="cars"
-            counts={{ cars: initialListings.length, projects: initialListings.filter((v) => isProjectCategory(v.category)).length }}
-            className="mt-6"
-          />
         </div>
       </div>
 
