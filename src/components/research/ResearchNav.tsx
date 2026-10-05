@@ -162,8 +162,16 @@ export function ResearchNav({
           </header>
         )}
 
-        <nav aria-label="Research sections">
-          <ul className={`flex gap-1 overflow-x-auto -mx-1 px-1${title ? "" : " pt-2"}`}>
+        {/* The strip scrolls sideways on a phone. The right-edge fade is the
+            cue that there is more; without it the last visible tab looks like
+            the last tab. */}
+        <nav aria-label="Research sections" className="relative">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:hidden"
+            style={{ background: "linear-gradient(to right, rgba(255,255,255,0), #ffffff 85%)" }}
+          />
+          <ul className={`flex gap-1 overflow-x-auto -mx-1 px-1 pr-10 sm:pr-1${title ? "" : " pt-2"}`}>
             {ITEMS.map((it, i) => {
               const isActive = it.key === active;
               const startsMarketGroup =

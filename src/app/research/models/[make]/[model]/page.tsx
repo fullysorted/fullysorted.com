@@ -77,11 +77,15 @@ const CONFIDENCE_STYLE: Record<string, { bg: string; fg: string; label: string }
   low: { bg: "rgba(220,38,38,0.10)", fg: "#a33224", label: "Thin / uncertain" },
 };
 
+function sectionId(title: string): string {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
 function Section({
   icon: Icon, title, children,
 }: { icon: React.ComponentType<{ className?: string }>; title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-10">
+    <section className="mt-10 scroll-mt-32" id={sectionId(title)}>
       <div className="flex items-center gap-2 mb-3">
         <Icon className="w-4 h-4" />
         <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: "#6b6b5e" }}>{title}</h2>
@@ -265,6 +269,39 @@ export default async function ModelPage({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Main */}
           <div className="lg:col-span-2">
+            {/* Jump strip. A history runs to several thousand words, and on a
+                phone that is a dozen screens with no way to skip to the part
+                being asked about. Sticks under the header on small screens. */}
+            {(() => {
+              const jumps: [string, string][] = [];
+              if (m.history) jumps.push(["History", "history"]);
+              if (m.common_problems) jumps.push(["Problems", "common-problems"]);
+              if (m.what_to_look_for) jumps.push(["What to look for", "what-to-look-for"]);
+              if (m.market_notes) jumps.push(["Market", "market-notes"]);
+              if (m.sources && m.sources.length > 0) jumps.push(["Sources", "sources"]);
+              if (jumps.length < 3) return null;
+              return (
+                <nav
+                  aria-label="On this page"
+                  className="sticky top-16 z-20 -mx-4 px-4 sm:static sm:mx-0 sm:px-0 mb-6"
+                  style={{ background: "#ffffff" }}
+                >
+                  <ul className="flex gap-2 overflow-x-auto py-2 text-sm">
+                    {jumps.map(([label, id]) => (
+                      <li key={id} className="shrink-0">
+                        <a
+                          href={`#${id}`}
+                          className="inline-block rounded-full px-3 py-1 font-medium transition-colors hover:bg-[#E6F3F2]"
+                          style={{ border: "1px solid rgba(18,53,42,0.14)", color: "#12352A" }}
+                        >
+                          {label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              );
+            })()}
             {m.summary && <div className="article-body" dangerouslySetInnerHTML={{ __html: renderMarkdown(m.summary) }} />}
 
             {m.production_total != null && m.production_total > 0 && (

@@ -237,7 +237,9 @@ export function Hero({ featured, searchModels = [] }: { featured: FeaturedModel 
                   Cars for sale &rarr;
                 </Link>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {/* Three categories, so three across even on a phone: a
+                  two-column grid leaves one orphan. */}
+              <div className="grid grid-cols-3 lg:grid-cols-5 gap-3">
                 {SALES_CATEGORIES.map((c) => (
                   <Link
                     key={c.key}

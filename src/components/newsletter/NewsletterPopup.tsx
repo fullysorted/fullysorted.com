@@ -115,6 +115,9 @@ export function NewsletterPopup() {
     if (open || shownRef.current) return;
     if (consent === "none" || consent === "unknown") return; // cookie question first
     if (BLOCKED.some((p) => pathname === p || pathname.startsWith(p + "/"))) return;
+    // Provider profiles are lead pages: the inquiry form is the whole point.
+    // The directory (/services) and its category pages still qualify.
+    if (/^\/services\/(?!category\/)[^/]+$/.test(pathname)) return;
     if (ss(NL_SESSION_SHOWN) || snoozed()) return;
     if (Number(ss(NL_SESSION_VIEWS) || "0") < 2) return;
 

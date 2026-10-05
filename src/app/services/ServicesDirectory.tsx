@@ -10,6 +10,7 @@ import ContactLink from '@/components/provider/ContactLink';
 import { ProviderBanner } from '@/components/providers/ProviderBanner';
 import { ProviderMark } from '@/components/providers/ProviderMark';
 import { SERVICE_CATEGORIES, TRADE_CATEGORIES, SALES_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
+import { priceRangeTitle, PRICE_RANGE_KEY } from '@/lib/price-range';
 import { ratingDisplay } from '@/lib/reviews';
 import { SmartSearch } from '@/components/search/SmartSearch';
 import { parseSearchIntent, scoreProvider, type SearchModel } from '@/lib/search-intent';
@@ -85,8 +86,15 @@ interface Provider {
 }
 
 // ─── Provider Card ────────────────────────────────────
-function ProviderCard({ provider }: { provider: Provider }) {
-  const categoryLabel = CATEGORIES.find((c) => c.key === provider.category)?.label ?? provider.category;
+function ProviderCard({ provider, section }: { provider: Provider; section?: string }) {
+  const homeLabel = CATEGORIES.find((c) => c.key === provider.category)?.label ?? provider.category;
+  // In the grouped view a shop can sit under a trade that is not its headline
+  // one (a consignment house that also inspects). Say so on the card, or the
+  // section heading and the card label contradict each other.
+  const sectionLabel = section && section !== provider.category
+    ? CATEGORIES.find((c) => c.key === section)?.label
+    : undefined;
+  const categoryLabel = sectionLabel ? `${homeLabel} · also ${sectionLabel.toLowerCase()}` : homeLabel;
   const name = formatBusinessName(provider.businessName);
   const rating = ratingDisplay(provider.rating, provider.reviewCount);
   const work = workSettingLabels(provider.workSettings);
@@ -174,7 +182,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
           {provider.priceRange && (
             <>
               <span className="text-stone-300">·</span>
-              <span className="text-stone-600 font-medium">{provider.priceRange}</span>
+              <span className="text-stone-600 font-medium" title={priceRangeTitle(provider.priceRange)}>{provider.priceRange}</span>
             </>
           )}
         </div>
@@ -261,6 +269,7 @@ function ProviderCard({ provider }: { provider: Provider }) {
 /** Cards per page in a filtered view, and per trade in the grouped "All" view. Multiples of 3 fill the desktop grid. */
 const RESULTS_PAGE = 24;
 const SECTION_PREVIEW = 6;
+const MOBILE_PREVIEW = 3;
 
 // ─── The results grid ─────────────────────────────────
 //
@@ -354,20 +363,22 @@ function CategorySection({
           Show only {label.toLowerCase()}
         </button>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* One column on a phone, so the preview is three cards there and six
+          on wider screens; the hidden three cost nothing to render. */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 [&>*:nth-child(n+4)]:hidden sm:[&>*:nth-child(n+4)]:flex">
         <AnimatePresence mode="popLayout">
           {providers.slice(0, SECTION_PREVIEW).map((provider) => (
-            <ProviderCard key={`${catKey}-${provider.id}`} provider={provider} />
+            <ProviderCard key={`${catKey}-${provider.id}`} provider={provider} section={catKey} />
           ))}
         </AnimatePresence>
       </div>
       {/* At volume the "All" view is a preview per trade, not every shop in
           the country. The full list is one tap away. */}
-      {providers.length > SECTION_PREVIEW && (
+      {providers.length > MOBILE_PREVIEW && (
         <button
           type="button"
           onClick={() => onOnly(catKey)}
-          className="mt-4 text-sm font-semibold text-accent underline underline-offset-4"
+          className={`mt-4 text-sm font-semibold text-accent underline underline-offset-4 ${providers.length > SECTION_PREVIEW ? '' : 'sm:hidden'}`}
         >
           See all {providers.length} in {label.toLowerCase()}
         </button>
@@ -695,6 +706,8 @@ export default function ServicesDirectory({ models = [] }: { models?: SearchMode
           <>
             <p className="text-sm text-stone-500 mb-8">
               {pool.length} {pool.length === 1 ? 'specialist' : 'specialists'}
+              <span className="hidden sm:inline text-stone-300"> &middot; </span>
+              <span className="block sm:inline text-xs text-stone-400 mt-1 sm:mt-0">{PRICE_RANGE_KEY}</span>
             </p>
             {tradeSections.map((c) => (
               <CategorySection key={c.key} catKey={c.key} label={c.label} icon={c.icon} providers={c.list} onOnly={pickCategory} />

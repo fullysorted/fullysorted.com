@@ -1,3 +1,4 @@
+import { priceRangeTitle } from '@/lib/price-range';
 import type { Metadata } from 'next';
 import ContactLink from '@/components/provider/ContactLink';
 import { categoryLabel } from '@/lib/service-categories';
@@ -339,6 +340,7 @@ export default async function ProviderProfilePage({ params }: Props) {
                   <span
                     className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
                     style={{ background: '#F3F4F6', color: 'var(--text-primary)' }}
+                    title={priceRangeTitle(provider.priceRange)}
                   >
                     {provider.priceRange}
                   </span>
@@ -496,8 +498,11 @@ export default async function ProviderProfilePage({ params }: Props) {
                   <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: 'var(--text-tertiary)' }}>
                     Price range
                   </p>
-                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }} title={priceRangeTitle(provider.priceRange)}>
                     {provider.priceRange}
+                  </p>
+                  <p className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+                    Their own read, $ to $$$$. Not a quote.
                   </p>
                 </div>
               )}

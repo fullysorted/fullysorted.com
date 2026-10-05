@@ -33,7 +33,10 @@ export function normalizeFocus(v: unknown): string | null {
   return `${x}% ${y}%`;
 }
 
-export const DEFAULT_FOCUS = '50% 50%';
+// Biased toward the top third: most shop photos that are taller than wide are
+// a person or a storefront, and a dead-center crop of either takes the head
+// off. A shop that tapped its own focus point overrides this.
+export const DEFAULT_FOCUS = '50% 35%';
 
 /** Optional mark URL: '' or null clears it, anything we do not host is refused. */
 export function normalizeLogoUrl(v: unknown): { ok: true; value: string | null } | { ok: false } {

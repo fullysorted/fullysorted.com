@@ -74,8 +74,10 @@ export function ServicesSection({ providers = [], total = 0 }: { providers?: Rec
 
         {/* The ownership year, as a timeline: verb rail then photo cards.
             Swapped in from /about on 2026-09-14. */}
+        {/* Four across on desktop; three on a phone, where each card is a
+            full screen (the nth-child rule below). */}
         {hasProviders ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 [&>*:nth-child(n+4)]:hidden sm:[&>*:nth-child(n+4)]:block">
             {providers.map((p) => (
               <Link
                 key={p.slug}

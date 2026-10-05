@@ -69,8 +69,9 @@ export function ProviderMark({
       <TradeIcon
         k={(category ?? 'mechanical') as ServiceCategoryKey}
         color="#F5EFE6"
-        className="absolute opacity-[0.14]"
+        className="absolute opacity-[0.08]"
         // Oversized and pushed off the corner so it reads as texture, not a badge.
+        // Faint enough that it never reads as a stray icon behind the initials.
         style={{ width: size * 0.78, height: size * 0.78, right: -size * 0.14, bottom: -size * 0.14 }}
       />
       <span

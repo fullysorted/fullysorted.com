@@ -69,7 +69,10 @@ export function ResearchPicks({ picks, total }: { picks: ResearchPick[]; total: 
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Six picks fill two desktop rows. On a phone that is six screens of
+            scrolling, so the last three are hidden there; "All model
+            histories" above is the way in. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 [&>*:nth-child(n+4)]:hidden sm:[&>*:nth-child(n+4)]:flex">
           {picks.map((p) => {
             const y = years(p);
             const blurb = clip(p.summary);
