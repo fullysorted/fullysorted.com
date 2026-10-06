@@ -561,7 +561,7 @@ export default function ImportingPage() {
             >
               <Gavel className="w-4 h-4 mb-2" style={{ color: ACCENT }} aria-hidden="true" />
               <p className="text-sm font-bold mb-1" style={{ color: "#1a1a18" }}>
-                Where to buy
+                What auction houses charge
               </p>
               <p className="text-sm leading-relaxed" style={{ color: MUTED }}>
                 The auction houses and marketplaces, including the overseas ones a car has

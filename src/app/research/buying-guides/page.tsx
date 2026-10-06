@@ -19,7 +19,7 @@ import { PageHero } from "@/components/layout/PageHero";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Collector Car Buying Guides",
+  title: "Pre-Purchase Checklist for Collector Cars",
   description:
     "A pre-purchase checklist for collector cars: title and lien status, chassis numbers, rust, cold start, independent inspection and how the money moves.",
   alternates: { canonical: "/research/buying-guides" },
@@ -184,6 +184,11 @@ const STAGES: ChecklistStage[] = [
           "Know the one or two failures that are worth more than the car's margin before you travel.",
           "Know which parts are unobtainable rather than merely expensive. Availability sets the real repair cost.",
         ],
+        link: {
+          lead: "Model by model:",
+          href: "/research/models",
+          label: "Find the model history",
+        },
       },
     ],
   },

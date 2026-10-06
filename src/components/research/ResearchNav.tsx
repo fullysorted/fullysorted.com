@@ -74,7 +74,7 @@ const ITEMS: Item[] = [
   {
     key: "guides",
     href: "/research/buying-guides",
-    label: "Buying Guides",
+    label: "Pre-purchase Checklist",
     blurb: "What to check before you hand over money",
     group: "car",
     icon: <ClipboardCheck className="w-4 h-4" />,
@@ -110,8 +110,8 @@ const ITEMS: Item[] = [
   {
     key: "marketplaces",
     href: "/research/where-to-buy",
-    label: "Where to Buy",
-    blurb: "Every auction house and marketplace, and what each one charges",
+    label: "Auction Fees",
+    blurb: "What every auction house and marketplace charges, from their own terms",
     group: "market",
     icon: <Gavel className="w-4 h-4" />,
   },

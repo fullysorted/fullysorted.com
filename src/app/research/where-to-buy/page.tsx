@@ -23,7 +23,7 @@ import { PageHero } from "@/components/layout/PageHero";
 const PAGE_URL = "https://fullysorted.com/research/where-to-buy";
 
 export const metadata: Metadata = {
-  title: "Where to Buy a Collector Car",
+  title: "What Collector Car Auction Houses Charge",
   description:
     "Buyer's premiums, seller costs and reserve rules at every major collector car auction house and marketplace. Fees retrieved " +
     `${MARKETPLACE_DATA_RETRIEVED} from each venue's own terms.`,
@@ -213,14 +213,14 @@ export default function WhereToBuyPage() {
 
       {/* Header */}
       <PageHero
-        eyebrow="Marketplaces"
+        eyebrow="Auction fees"
         width="5xl"
         back={{ href: "/research/models", label: "Research" }}
-        title={<>Where to buy a collector car</>}
-        sub={<>A reference table of {MARKETPLACES.length}{' '}major collector car auction houses and
-            marketplaces, and what each one charges. Every figure below was taken from the venue&apos;s own
-            published terms on {MARKETPLACE_DATA_RETRIEVED} and links back to the page it came from.
-            Where a venue publishes no number, that is what this page says.</>}
+        title={<>What auction houses charge</>}
+        sub={<>The buyer&apos;s premium, the seller&apos;s cut and the reserve rules at {MARKETPLACES.length}{' '}major
+            collector car venues, taken from each one&apos;s own published terms on {MARKETPLACE_DATA_RETRIEVED} and
+            linked back to the page it came from. Where a venue publishes no number, that is what this page says.
+            Fully Sorted is in the table too, so the comparison is fair.</>}
       />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
@@ -409,6 +409,28 @@ export default function WhereToBuyPage() {
                 </tr>
               </thead>
               <tbody>
+                {/* Our own row, first, so nobody has to go looking for it. The
+                    listing fee is itemized on /pricing, never here. */}
+                <tr style={{ background: "#F4F6F5" }}>
+                  <th scope="row" className="text-left align-top px-4 py-3.5 font-semibold">
+                    <Link href="/browse" className="hover:underline" style={{ color: "#12352A" }}>
+                      Fully Sorted
+                    </Link>
+                  </th>
+                  <td className="align-top px-4 py-3.5">
+                    <KindBadge kind="classifieds" />
+                  </td>
+                  <td className="align-top px-4 py-3.5" style={{ minWidth: "14rem", color: "#3f3f3a" }}>
+                    The price the seller lists. There is no bid-plus-premium arithmetic to do.
+                  </td>
+                  <td className="align-top px-4 py-3.5" style={{ minWidth: "14rem", color: "#3f3f3a" }}>
+                    A flat listing fee, paid up front and shown before you pay.{' '}
+                    <Link href="/pricing" className="underline underline-offset-2" style={{ color: "#12352A" }}>Itemized here.</Link>
+                  </td>
+                  <td className="align-top px-4 py-3.5" style={{ color: "#6b6b5e", minWidth: "16rem" }}>
+                    Not an auction. Asking price, and the buyer deals with the seller directly.
+                  </td>
+                </tr>
                 {MARKETPLACES.map((m) => (
                   <tr key={m.slug} style={{ borderTop: "1px solid #f0efe8" }}>
                     <th scope="row" className="text-left align-top px-4 py-3.5 font-semibold">
@@ -661,6 +683,28 @@ export default function WhereToBuyPage() {
             Terms change without notice and vary by sale, category and country; confirm the current
             figure with the venue before bidding or consigning.
           </p>
+        </section>
+
+        {/* The point of the comparison. */}
+        <section className="mt-12 rounded-2xl p-6 sm:p-8" style={{ background: "#12352A" }}>
+          <p className="text-[11px] uppercase mb-3" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: "0.12em", color: "#F2B27A" }}>
+            The other way
+          </p>
+          <h2 className="font-display text-2xl sm:text-3xl tracking-tight mb-3" style={{ color: "#F5EFE6" }}>
+            Buy the car at the price on the listing.
+          </h2>
+          <p className="text-[15px] leading-relaxed max-w-2xl mb-6" style={{ color: "rgba(245,239,230,0.8)" }}>
+            Cars on Fully Sorted are listed by their owners and dealers at an asking price, each one linked to the model&apos;s
+            history, with the seller a message away. Selling one costs a flat fee you see before you pay.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/browse" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold" style={{ background: "#F5EFE6", color: "#12352A" }}>
+              Cars for sale <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="/sell" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold" style={{ color: "#F5EFE6", border: "1px solid rgba(245,239,230,0.35)" }}>
+              Sell a car
+            </Link>
+          </div>
         </section>
       </div>
     </div>
