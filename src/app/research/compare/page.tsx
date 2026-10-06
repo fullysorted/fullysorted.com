@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, GitCompareArrows, ShieldCheck } from "lucide-react";
+import { ArrowRight, GitCompareArrows, ShieldCheck } from "lucide-react";
 import { getPublishedModelsResult, getPublishedModelBySlug, getModelMarketSnapshot, modelDisplayName, parseModelSlug, displayGeneration } from "@/lib/data/models";
 import { CompareSelector } from "./CompareSelector";
 import { ResearchNav } from "@/components/research/ResearchNav";
+import { PageHero } from "@/components/layout/PageHero";
 
 export const revalidate = 3600;
 
@@ -77,20 +78,13 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
       <ResearchNav active="compare" />
       {/* Hero */}
-      <div className="relative overflow-hidden text-white" style={{ background: "linear-gradient(160deg, #10233b 0%, #0b1a2e 60%, #0a1626 100%)" }}>
-        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }} />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-14">
-          <Link href="/research/models" className="inline-flex items-center gap-1.5 text-sm text-white/70 hover:text-white transition-colors mb-6">
-            <ArrowLeft className="w-4 h-4" /> Model Histories
-          </Link>
-          <div className="flex items-center gap-2 mb-2">
-            <GitCompareArrows className="w-5 h-5" style={{ color: "#D9C08A" }} />
-            <span className="text-xs font-bold uppercase tracking-widest text-white/70">Head to Head</span>
-          </div>
-          <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl mb-3">Compare collector cars</h1>
-          <p className="text-stone-300 max-w-2xl">Two models, side by side: rarity, market value, specs, and how much we&rsquo;d trust each figure. Cited and honest.</p>
-        </div>
-      </div>
+      <PageHero
+        eyebrow="Head to Head"
+        width="4xl"
+        back={{ href: "/research/models", label: "Model Histories" }}
+        title={<>Compare collector cars</>}
+        sub={<>Two models, side by side: rarity, market value, specs, and how much we&rsquo;d trust each figure. Cited and honest.</>}
+      />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* With no options the selects were empty and the panel below still read

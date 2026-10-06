@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowLeft,
   ArrowRight,
   BookOpen,
   CalendarClock,
@@ -12,7 +11,6 @@ import {
   ListChecks,
   Scale,
   ScrollText,
-  Ship,
   Wind,
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -25,6 +23,7 @@ import {
   IMPORT_DISCLAIMER,
   IMPORT_DISCLAIMER_SHORT,
 } from "@/lib/data/importing";
+import { PageHero } from "@/components/layout/PageHero";
 
 export const revalidate = 86400;
 
@@ -140,47 +139,17 @@ export default function ImportingPage() {
       <JsonLd data={[articleSchema, breadcrumbSchema]} />
 
       {/* Header */}
-      <div className="relative overflow-hidden text-white">
-        <div
-          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(1100px 600px at 80% -10%, rgba(30,96,145,0.38) 0%, rgba(14,33,54,0) 60%), linear-gradient(160deg, #10233b 0%, #0b1a2e 55%, #0a1626 100%)",
-          }}
-        />
-        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <Link
-            href="/research/models"
-            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 text-stone-300 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> Research
-          </Link>
-          <div className="flex items-center gap-2.5">
-            <Ship className="w-4 h-4 text-stone-200" aria-hidden="true" />
-            <span className="text-xs font-bold uppercase tracking-widest text-stone-200">
-              Import Law
-            </span>
-          </div>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4">
-            Importing a car into the US
-          </h1>
-          <p className="text-base sm:text-lg leading-relaxed max-w-2xl text-stone-200">
-            The 25-year rule and everything around it: the two federal agencies that set
+      <PageHero
+        eyebrow="Import Law"
+        width="5xl"
+        back={{ href: "/research/models", label: "Research" }}
+        title={<>Importing a car into the US</>}
+        sub={<>The 25-year rule and everything around it: the two federal agencies that set
             two different age thresholds, the forms filed at the border, duty rates, the
             narrow routes for cars that are not old enough yet, and the state step that no
             federal exemption covers. Cited throughout to the statutes, regulations and
-            agency forms in the source list.
-          </p>
-        </div>
-      </div>
+            agency forms in the source list.</>}
+      />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         {/* Disclaimer — top */}

@@ -11,13 +11,13 @@ import {
   Clock,
   Flame,
   Eye,
-  BookOpen,
 } from "lucide-react";
 import { cn, formatPrice } from "@/lib/utils";
 import { articles } from "@/lib/articles";
 import { ResearchNav } from "@/components/research/ResearchNav";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
+import { PageHero } from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "Collector Car Market Analysis",
@@ -226,63 +226,31 @@ export default async function ResearchPage() {
       <ResearchNav active="market" />
 
       {/* ─── Photo Hero — vintage garage under racing-green overlay ── */}
-      <div className="relative overflow-hidden text-white">
-        <div
-          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "radial-gradient(1100px 600px at 80% -10%, rgba(30,96,145,0.38) 0%, rgba(14,33,54,0) 60%), linear-gradient(160deg, #10233b 0%, #0b1a2e 55%, #0a1626 100%)" }}
-        />
-        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
-        <div className="absolute inset-0 speed-lines opacity-[0.03] pointer-events-none" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <div className="inline-flex items-center gap-2.5 bg-white/10 border border-white/25 rounded-full px-4 py-1.5 mb-5">
-            <span className="flex gap-1" aria-hidden="true">
-              {["#1E6091", "#1E6091", "#B08D3F"].map((c) => (
-                <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
-              ))}
-            </span>
-            <span className="text-stone-200 text-xs font-bold tracking-widest uppercase">
-              Research Desk
-            </span>
+      <PageHero
+        eyebrow="Research Desk"
+        width="7xl"
+        title={<>Market Research</>}
+        sub={<>
+          Analysis of the collector car market: auction results, price trends, and
+          where the smart money is going. From the Fully Sorted Research Desk.
+        </>}
+      >
+        {/* Only honest, data-backed values. With no segments there is nothing
+            to show, so the row goes rather than leaving a headless band. */}
+        {segments.length > 0 && (
+          <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(18,53,42,0.14)" }}>
+            {[
+              { value: `${segments.length}`, label: "Segments Tracked" },
+              { value: "Real", label: "Auction Data" },
+            ].map((s) => (
+              <div key={s.label}>
+                <div className="text-2xl font-bold" style={{ color: "#12352A" }}>{s.value}</div>
+                <div className="text-xs uppercase tracking-widest mt-0.5" style={{ color: "#6B7280" }}>{s.label}</div>
+              </div>
+            ))}
           </div>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-4">
-            Market Research
-          </h1>
-          <p className="text-base sm:text-lg max-w-2xl leading-relaxed text-stone-200">
-            Analysis of the collector car market: auction results, price trends, and
-            where the smart money is going. From the Fully Sorted Research Desk.
-          </p>
-
-          {/* Quick stats row — only honest, data-backed values.
-              "Written / By Chris" used to sit here as a third tile. It was not a
-              statistic, and the hub aggregates desk output rather than one
-              person's articles, so it was removed. With no segments there is
-              nothing honest to show, so the whole row goes rather than leaving a
-              headless bordered band. */}
-          {segments.length > 0 && (
-            <div className="flex flex-wrap gap-8 mt-8 pt-8" style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}>
-              {[
-                { value: `${segments.length}`, label: "Segments Tracked" },
-                // Only claim auction data when segments are actually
-                // rendering below. With none, this asserted a dataset the
-                // page was not showing.
-                { value: "Real", label: "Auction Data" },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className="text-2xl font-bold text-white">{s.value}</div>
-                  <div className="text-xs uppercase tracking-widest mt-0.5 text-stone-300">
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+        )}
+      </PageHero>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

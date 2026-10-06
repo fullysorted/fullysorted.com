@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowUp, AlertTriangle, Library } from "lucide-react";
+import { ArrowUp, AlertTriangle, Library } from "lucide-react";
 import {
   GLOSSARY,
   GLOSSARY_CATEGORIES,
@@ -11,6 +11,7 @@ import {
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ResearchNav } from "@/components/research/ResearchNav";
 import { GlossaryQuickFind } from "./GlossaryQuickFind";
+import { PageHero } from "@/components/layout/PageHero";
 
 const PAGE_URL = "https://fullysorted.com/research/glossary";
 const TERM_SET_ID = `${PAGE_URL}#termset`;
@@ -213,58 +214,23 @@ export default function GlossaryPage() {
       <JsonLd data={breadcrumbSchema} />
 
       {/* Header */}
-      <div className="relative overflow-hidden text-white">
-        <div
-          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(1100px 600px at 80% -10%, rgba(30,96,145,0.38) 0%, rgba(14,33,54,0) 60%), linear-gradient(160deg, #10233b 0%, #0b1a2e 55%, #0a1626 100%)",
-          }}
-        />
-        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <Link
-            href="/research/models"
-            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 text-stone-300 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> Research
-          </Link>
-          <div className="flex items-center gap-2.5">
-            <span className="flex gap-1" aria-hidden="true">
-              {["#1E6091", "#1E6091", "#B08D3F"].map((c, i) => (
-                <span
-                  key={`${c}-${i}`}
-                  className="w-2 h-2 rounded-sm"
-                  style={{ background: c }}
-                />
-              ))}
-            </span>
-            <span className="text-xs font-bold uppercase tracking-widest text-stone-200">
-              Reference
-            </span>
-          </div>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4">
-            The collector car glossary
-          </h1>
-          <p className="text-base sm:text-lg leading-relaxed max-w-2xl text-stone-200">
-            Listing copy, auction catalogs, inspection reports and title
-            paperwork each carry a vocabulary of their own, and a good deal of it
-            is load-bearing. Here are {GLOSSARY.length} of those words: what each
-            one means, where the meaning came from, and how it gets stretched.
-          </p>
-          <p className="mt-5 flex items-center gap-2 text-sm text-stone-300">
-            <Library className="w-4 h-4" aria-hidden />
-            {GLOSSARY.length} terms in {GLOSSARY_CATEGORIES.length} groups
-          </p>
-        </div>
-      </div>
+      <PageHero
+        eyebrow="Reference"
+        width="5xl"
+        back={{ href: "/research/models", label: "Research" }}
+        title={<>The collector car glossary</>}
+        sub={<>
+          Listing copy, auction catalogs, inspection reports and title
+          paperwork each carry a vocabulary of their own, and a good deal of it
+          is load-bearing. Here are {GLOSSARY.length} of those words: what each
+          one means, where the meaning came from, and how it gets stretched.
+        </>}
+      >
+        <p className="mt-5 flex items-center gap-2 text-sm" style={{ color: "#6B7280" }}>
+          <Library className="w-4 h-4" aria-hidden />
+          {GLOSSARY.length} terms in {GLOSSARY_CATEGORIES.length} groups
+        </p>
+      </PageHero>
 
       {/* Orientation + quick find */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 sm:pt-12 pb-8">

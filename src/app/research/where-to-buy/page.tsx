@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowLeft,
   ArrowRight,
   Calculator,
   ExternalLink,
@@ -19,6 +18,7 @@ import {
 } from "@/lib/data/marketplaces";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ResearchNav } from "@/components/research/ResearchNav";
+import { PageHero } from "@/components/layout/PageHero";
 
 const PAGE_URL = "https://fullysorted.com/research/where-to-buy";
 
@@ -212,50 +212,16 @@ export default function WhereToBuyPage() {
       <JsonLd data={breadcrumbSchema} />
 
       {/* Header */}
-      <div className="relative overflow-hidden text-white">
-        <div
-          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(1100px 600px at 80% -10%, rgba(30,96,145,0.38) 0%, rgba(14,33,54,0) 60%), linear-gradient(160deg, #10233b 0%, #0b1a2e 55%, #0a1626 100%)",
-          }}
-        />
-        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <Link
-            href="/research/models"
-            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 text-stone-300 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> Research
-          </Link>
-          <div className="flex items-center gap-2.5">
-            <span className="flex gap-1" aria-hidden="true">
-              {["#1E6091", "#1E6091", "#B08D3F"].map((c) => (
-                <span key={c} className="w-2 h-2 rounded-sm" style={{ background: c }} />
-              ))}
-            </span>
-            <span className="text-xs font-bold uppercase tracking-widest text-stone-200">
-              Marketplaces
-            </span>
-          </div>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4">
-            Where to buy a collector car
-          </h1>
-          <p className="text-base sm:text-lg leading-relaxed max-w-2xl text-stone-200">
-            A reference table of {MARKETPLACES.length}{' '}major collector car auction houses and
+      <PageHero
+        eyebrow="Marketplaces"
+        width="5xl"
+        back={{ href: "/research/models", label: "Research" }}
+        title={<>Where to buy a collector car</>}
+        sub={<>A reference table of {MARKETPLACES.length}{' '}major collector car auction houses and
             marketplaces, and what each one charges. Every figure below was taken from the venue&apos;s own
             published terms on {MARKETPLACE_DATA_RETRIEVED} and links back to the page it came from.
-            Where a venue publishes no number, that is what this page says.
-          </p>
-        </div>
-      </div>
+            Where a venue publishes no number, that is what this page says.</>}
+      />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         {/* ── The mechanic buyers misread ───────────────────────────────── */}

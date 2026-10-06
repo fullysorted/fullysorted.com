@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowLeft,
   ArrowRight,
   BookOpen,
   ClipboardCheck,
@@ -15,6 +14,7 @@ import {
 import { getPublishedModelsWithMeta } from "@/lib/data/models";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ResearchNav } from "@/components/research/ResearchNav";
+import { PageHero } from "@/components/layout/PageHero";
 
 export const revalidate = 3600;
 
@@ -334,49 +334,15 @@ export default async function BuyingGuidesPage() {
       <JsonLd data={breadcrumbSchema} />
 
       {/* Header */}
-      <div className="relative overflow-hidden text-white">
-        <div
-          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(1100px 600px at 80% -10%, rgba(30,96,145,0.38) 0%, rgba(14,33,54,0) 60%), linear-gradient(160deg, #10233b 0%, #0b1a2e 55%, #0a1626 100%)",
-          }}
-        />
-        <div className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none" />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <Link
-            href="/research/models"
-            className="inline-flex items-center gap-1.5 text-sm font-medium mb-8 text-stone-300 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> Research
-          </Link>
-          <div className="flex items-center gap-2.5">
-            <span className="flex gap-1" aria-hidden="true">
-              {["#1E6091", "#1E6091", "#B08D3F"].map((c, i) => (
-                <span key={i} className="w-2 h-2 rounded-sm" style={{ background: c }} />
-              ))}
-            </span>
-            <span className="text-xs font-bold uppercase tracking-widest text-stone-200">
-              Pre-purchase checklist
-            </span>
-          </div>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-3 mb-4">
-            What to check before you hand over money
-          </h1>
-          <p className="text-base sm:text-lg leading-relaxed max-w-2xl text-stone-200">
-            A collector car is bought on its paperwork, its structure and its numbers, in that
+      <PageHero
+        eyebrow="Pre-purchase checklist"
+        width="5xl"
+        back={{ href: "/research/models", label: "Research" }}
+        title={<>What to check before you hand over money</>}
+        sub={<>A collector car is bought on its paperwork, its structure and its numbers, in that
             order. The checklist below applies to any car of any age; the model histories then
-            cover the faults specific to the one you are looking at.
-          </p>
-        </div>
-      </div>
+            cover the faults specific to the one you are looking at.</>}
+      />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         {/* Stage index */}

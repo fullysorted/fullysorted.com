@@ -25,6 +25,7 @@ import {
   totalMinutes,
   type GuideCallout,
 } from "@/lib/data/businessGuide";
+import { PageHero } from "@/components/layout/PageHero";
 
 export const revalidate = 86400;
 
@@ -111,42 +112,29 @@ export default function BusinessGuidePage() {
       <JsonLd data={guideSchema} />
 
       {/* Hero */}
-      <section className="relative overflow-hidden text-white">
-        <div
-          className="absolute top-0 left-0 right-0 h-px z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, transparent 0%, #1E6091 35%, #B08D3F 65%, transparent 100%)" }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(160deg, #10233b 0%, #0b1a2e 60%, #0a1626 100%)" }}
-        />
-        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-          <div className="inline-flex items-center gap-2.5 border border-white/30 bg-white/10 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-white text-xs font-bold uppercase tracking-widest">Running the Business</span>
-          </div>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-4">
-            The part of the job that
-            <br />
-            <span style={{ color: "#D9C08A" }}>isn&rsquo;t the craft.</span>
-          </h1>
-          <p className="text-lg text-stone-200 max-w-2xl">
-            You already know how to correct paint, read a chassis, or move a car without marking it.
-            This is the other half: what you are, what you owe, what covers you when something goes
-            wrong, and how the money actually reaches you.
-          </p>
-          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-300">
-            <span className="inline-flex items-center gap-1.5">
-              <Clock className="w-4 h-4" /> {mins} minutes end to end
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <FileText className="w-4 h-4" /> {BUSINESS_GUIDE.length} chapters
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Calculator className="w-4 h-4" /> Figures current for {TAX_YEAR}
-            </span>
-          </div>
+      <PageHero
+        eyebrow="Running the business"
+        width="3xl"
+        back={{ href: "/services/guide", label: "Provider playbook" }}
+        title={<>The part of the job that isn&rsquo;t the craft.</>}
+        sub={<>
+          You already know how to correct paint, read a chassis, or move a car without marking it.
+          This is the other half: what you are, what you owe, what covers you when something goes
+          wrong, and how the money actually reaches you.
+        </>}
+      >
+        <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm" style={{ color: "#6B7280" }}>
+          <span className="inline-flex items-center gap-1.5">
+            <Clock className="w-4 h-4" /> {mins} minutes end to end
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <FileText className="w-4 h-4" /> {BUSINESS_GUIDE.length} chapters
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <Calculator className="w-4 h-4" /> Figures current for {TAX_YEAR}
+          </span>
         </div>
-      </section>
+      </PageHero>
 
       {/* Disclaimer — first thing, not buried */}
       <section className="px-4 sm:px-6 pt-8">
