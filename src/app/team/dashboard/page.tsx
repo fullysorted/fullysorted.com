@@ -62,9 +62,19 @@ const STAGES: Array<{ key: string; label: string; color: string; bg: string }> =
   // Declined is a real stage now, not a delete. It is excluded from the "all"
   // board so it never clutters the working list, but it is one click away.
   { key: "declined", label: "Declined", color: "#b91c1c", bg: "#fee2e2" },
+  // Not a pipeline stage: everything the public directory is showing right
+  // now, whichever door it came in through. The original shops applied on the
+  // public form and have no pipeline stage at all, so this is the only tab
+  // where they show up.
+  { key: "live", label: "Live in directory", color: "#15803d", bg: "#dcfce7" },
 ];
 
-function stageInfo(s: string | null) {
+const LIVE_BADGE = { key: "live", label: "Live", color: "#15803d", bg: "#dcfce7" };
+
+// A row's badge. Pipeline rows wear their stage; a live row with no stage
+// (public-form applicant) wears "Live" rather than a question mark.
+function stageInfo(s: string | null, status?: string) {
+  if (!s && status === "active") return LIVE_BADGE;
   return STAGES.find((x) => x.key === s) || { key: s || "?", label: s || "—", color: "#6b7280", bg: "#f3f4f6" };
 }
 
@@ -560,8 +570,8 @@ export default function TeamDashboard() {
     router.push("/team");
   }
 
-  const totalCount = Object.values(counts).reduce((a, b) => a + b, 0);
-  const liveCount = (counts["claimed"] || 0) + (counts["list_only"] || 0);
+  const totalCount = Object.entries(counts).reduce((a, [k, v]) => (k === "live" ? a : a + v), 0);
+  const liveCount = counts["live"] || 0;
 
   const inputCls =
     "w-full h-10 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent";
@@ -594,7 +604,7 @@ export default function TeamDashboard() {
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-6">
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {STAGES.map((s) => (
             <button
               key={s.key}
@@ -821,8 +831,10 @@ export default function TeamDashboard() {
           ) : (
             <ul className="divide-y divide-border">
               {providers.map((p) => {
-                const s = stageInfo(p.outreach_status);
+                const s = stageInfo(p.outreach_status, p.status);
                 const expanded = expandedId === p.id;
+                const inPipeline = !!p.outreach_status;
+                const isLive = p.status === "active";
                 const canInvite = !!p.claim_token && !["claimed", "list_only"].includes(p.outreach_status || "");
                 const invited = p.outreach_status === "sent";
                 return (
@@ -889,7 +901,7 @@ export default function TeamDashboard() {
                             {copiedId === p.id ? "Copied" : "Copy link"}
                           </button>
                         )}
-                        {["claimed", "list_only"].includes(p.outreach_status || "") && (
+                        {(isLive || ["claimed", "list_only"].includes(p.outreach_status || "")) && (
                           <a
                             href={`/services/${p.slug}`}
                             target="_blank"
@@ -967,11 +979,45 @@ export default function TeamDashboard() {
                             Edit this provider
                           </p>
                           {p.owner_linked ? (
-                            <p className="text-[11px] text-text-tertiary leading-relaxed">
+                            <>
+                            <p className="text-[11px] text-text-tertiary mb-2 leading-relaxed">
                               {p.business_name} has its own login and writes its own profile now.
-                              Editing it here would paint over the owner&rsquo;s words with no way
-                              back, so it&rsquo;s locked. Ask them to change it, or ask Chris.
+                              The text is locked so nobody paints over the owner&rsquo;s words. The
+                              photo, crop and logo can still be tidied here.
                             </p>
+                            <div className="mb-3">
+                              <ProviderImagesFields
+                                value={{
+                                  avatarUrl: edit.avatarUrl,
+                                  bannerFocus: edit.bannerFocus,
+                                  logoUrl: edit.logoUrl,
+                                  logoKind: edit.logoKind === "photo" ? "photo" : "logo",
+                                }}
+                                onChange={(patch) => setEdit((prev) => ({ ...prev, ...patch }))}
+                                name={p.business_name}
+                                category={p.category}
+                                audience="rep"
+                              />
+                            </div>
+                            <div className="mb-3 max-w-xs">
+                              <label className="text-[11px] font-medium text-text-tertiary block mb-1">
+                                Your name (recorded against this edit)
+                              </label>
+                              <input
+                                className="w-full h-9 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30"
+                                value={addedBy}
+                                onChange={(e) => setAddedBy(e.target.value)}
+                              />
+                            </div>
+                            <button
+                              onClick={() => saveDetails(p)}
+                              disabled={busyId === p.id}
+                              className="inline-flex items-center gap-1.5 px-3 h-8 text-xs font-semibold text-white rounded-lg disabled:opacity-60"
+                              style={{ backgroundColor: "#1E6091" }}
+                            >
+                              <Check className="w-3 h-3" /> Save images
+                            </button>
+                            </>
                           ) : p.outreach_status === "declined" ? (
                             <p className="text-[11px] text-text-tertiary leading-relaxed">
                               This shop asked to be removed, so its details are frozen. If that was
@@ -1322,6 +1368,7 @@ export default function TeamDashboard() {
                             )}
                           </div>
                         )}
+                        {inPipeline && (
                         <div className="pt-2 border-t border-border">
                           {p.outreach_status === "declined" ? (
                             <button
@@ -1342,6 +1389,7 @@ export default function TeamDashboard() {
                             </button>
                           )}
                         </div>
+                        )}
                       </div>
                     )}
                   </li>
