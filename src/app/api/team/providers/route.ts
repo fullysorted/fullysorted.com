@@ -74,7 +74,7 @@ async function ensureColumns(sql: Awaited<ReturnType<typeof getSql>>) {
 // provider photo must be one we host.
 const isValidImageUrl = (u: string): boolean => isBlobImageUrl(u);
 
-// GET /api/team/providers?stage=all|staged|sent|claimed|list_only&q=...
+// GET /api/team/providers?stage=all|staged|sent|claimed|list_only|declined|live&q=...
 // The rep's pipeline view: staged providers + outreach status. Scoped columns
 // only — no clerk ids, no stripe fields.
 export async function GET(request: NextRequest) {
@@ -89,75 +89,58 @@ export async function GET(request: NextRequest) {
   const q = searchParams.get('q') || '';
   const limit = Math.min(parseInt(searchParams.get('limit') || '200'), 500);
 
-  const stageFilter = ['staged', 'sent', 'claimed', 'list_only', 'declined'].includes(stage) ? stage : null;
+  const stageFilter = ['staged', 'sent', 'claimed', 'list_only', 'declined', 'live'].includes(stage) ? stage : null;
   const term = q ? `%${q}%` : null;
 
-  let rows;
-  if (stageFilter && term) {
-    rows = await sql`
-      SELECT id, business_name, owner_name, email, phone, category, location, website,
-             instagram, description, specialties, years_in_business,
-             status, outreach_status, outreach_sent_at, outreach_responded_at,
-             outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
-             outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
-             outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles, service_types,
-             logo_url, logo_kind, banner_focus
-      FROM service_providers
-      WHERE outreach_status = ${stageFilter}
-        AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
-      ORDER BY created_at DESC LIMIT ${limit}
-    `;
-  } else if (stageFilter) {
-    rows = await sql`
-      SELECT id, business_name, owner_name, email, phone, category, location, website,
-             instagram, description, specialties, years_in_business,
-             status, outreach_status, outreach_sent_at, outreach_responded_at,
-             outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
-             outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
-             outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles, service_types,
-             logo_url, logo_kind, banner_focus
-      FROM service_providers
-      WHERE outreach_status = ${stageFilter}
-      ORDER BY created_at DESC LIMIT ${limit}
-    `;
-  } else if (term) {
-    rows = await sql`
-      SELECT id, business_name, owner_name, email, phone, category, location, website,
-             instagram, description, specialties, years_in_business,
-             status, outreach_status, outreach_sent_at, outreach_responded_at,
-             outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
-             outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
-             outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles, service_types,
-             logo_url, logo_kind, banner_focus
-      FROM service_providers
-      WHERE outreach_status IS NOT NULL AND outreach_status <> 'declined'
-        AND (business_name ILIKE ${term} OR owner_name ILIKE ${term} OR email ILIKE ${term} OR location ILIKE ${term})
-      ORDER BY created_at DESC LIMIT ${limit}
-    `;
-  } else {
-    rows = await sql`
-      SELECT id, business_name, owner_name, email, phone, category, location, website,
-             instagram, description, specialties, years_in_business,
-             status, outreach_status, outreach_sent_at, outreach_responded_at,
-             outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
-             outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
-             outreach_last_edited_by, outreach_last_edited_at,
-             work_settings, team_size, service_radius_miles, service_types,
-             logo_url, logo_kind, banner_focus
-      FROM service_providers
-      WHERE outreach_status IS NOT NULL AND outreach_status <> 'declined'
-      ORDER BY created_at DESC LIMIT ${limit}
-    `;
+  // Which rows a tab shows. The pipeline tabs filter on outreach_status. The
+  // Live tab is different: it is every provider the public directory is
+  // showing right now, whichever door it came in through. The three original
+  // shops applied on the public form and never had an outreach_status at all,
+  // which made them invisible here even though they are the ones whose photos
+  // and logos most need tidying. The default board includes them too.
+  const where =
+    stageFilter === 'live'
+      ? `status = 'active'`
+      : stageFilter
+        ? `outreach_status = $1`
+        : `((outreach_status IS NOT NULL AND outreach_status <> 'declined') OR status = 'active')`;
+  const params: unknown[] = [];
+  if (stageFilter && stageFilter !== 'live') params.push(stageFilter);
+  let search = '';
+  if (term) {
+    const n = params.length + 1;
+    search = ` AND (business_name ILIKE $${n} OR owner_name ILIKE $${n} OR email ILIKE $${n} OR location ILIKE $${n})`;
+    params.push(term);
   }
+  params.push(limit);
 
+  const rows = await sql.query(
+    `SELECT id, business_name, owner_name, email, phone, category, location, website,
+            instagram, description, specialties, years_in_business,
+            status, outreach_status, outreach_sent_at, outreach_responded_at,
+            outreach_notes, outreach_added_by, claim_token, slug, created_at, avatar_url,
+            outreach_opted_out_at, clerk_user_id IS NOT NULL AS owner_linked,
+            outreach_last_edited_by, outreach_last_edited_at,
+            work_settings, team_size, service_radius_miles, service_types,
+            logo_url, logo_kind, banner_focus
+     FROM service_providers
+     WHERE ${where}${search}
+     ORDER BY (status = 'active') DESC, created_at DESC
+     LIMIT $${params.length}`,
+    params,
+  );
+
+  // Stage counts, plus one row for the Live tab (keyed 'live' so the
+  // dashboard can read it like any other stage).
   const counts = await sql`
     SELECT outreach_status, COUNT(*)::int AS count
     FROM service_providers
     WHERE outreach_status IS NOT NULL
     GROUP BY outreach_status
+    UNION ALL
+    SELECT 'live' AS outreach_status, COUNT(*)::int AS count
+    FROM service_providers
+    WHERE status = 'active'
   `;
 
   return NextResponse.json({ providers: rows, counts });
@@ -394,8 +377,12 @@ export async function PATCH(request: NextRequest) {
   const provider = rows[0];
   if (!provider) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
-  // Rep can only touch providers that are in the outreach pipeline.
-  if (!provider.outreach_status) {
+  // Opt-out and its undo are outreach-pipeline bookkeeping (prev_status,
+  // suppression reason "during onboarding call"). A live provider that applied
+  // on the public form has no pipeline stage to park or restore, so those two
+  // actions stay pipeline-only. Everything else -- notes, profile fields,
+  // images -- works on any row the console can see.
+  if ((body.action === 'opt_out' || body.action === 'undo_opt_out') && !provider.outreach_status) {
     return NextResponse.json({ error: 'Not an outreach-pipeline provider' }, { status: 403 });
   }
 
@@ -564,6 +551,12 @@ export async function PATCH(request: NextRequest) {
     'logoUrl', 'logoKind', 'bannerFocus',
   ];
   const touched = EDITABLE_KEYS.filter((k) => body[k] !== undefined);
+  // The one carve-out from the linked-owner freeze below. Pictures are not
+  // the owner's words: a crooked crop or a missing logo is the kind of thing
+  // we tidy on their behalf, and the previous image is still in Blob if it
+  // ever needs putting back. Text stays locked.
+  const IMAGE_KEYS = ['avatarUrl', 'logoUrl', 'logoKind', 'bannerFocus'];
+  const touchedText = touched.filter((k) => !IMAGE_KEYS.includes(k));
 
   // Two records this console must never quietly rewrite.
   //
@@ -576,11 +569,11 @@ export async function PATCH(request: NextRequest) {
   //
   // Call notes stay editable in both cases — that is the rep's own record.
   if (touched.length > 0) {
-    if (provider.clerk_user_id) {
+    if (provider.clerk_user_id && touchedText.length > 0) {
       return NextResponse.json(
         {
           error:
-            'This shop manages its own listing now — editing it here would overwrite what the owner wrote, with no way back. Ask them to change it, or ask Chris.',
+            'This shop manages its own listing now — editing its text here would overwrite what the owner wrote, with no way back. Photos and the logo can still be adjusted; ask them or Chris for the rest.',
         },
         { status: 403 },
       );
