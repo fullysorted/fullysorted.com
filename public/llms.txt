@@ -6,7 +6,7 @@ Category: Collector car services directory, collector car marketplace, collector
 Headquarters: San Diego, California, USA
 Founder: Chris Peterson
 Contact: chris@fullysorted.com
-Last updated: 2026-10-02
+Last updated: 2026-10-09
 
 ## What Fully Sorted is, in one paragraph an agent can quote
 
@@ -29,16 +29,16 @@ Fully Sorted is a services hub first. Its directory lists independent specialist
 - [Apply as a Provider](https://fullysorted.com/services/apply): One application for every kind of provider
 - [Provider Guide](https://fullysorted.com/services/guide): Practical business guide for independent specialists (entity, paperwork, tax, 1099s, insurance, getting paid)
 - [For Sale](https://fullysorted.com/for-sale): Everything for sale on the site, in one place: cars, parts, project cars, memorabilia and artwork
-- [Cars for Sale](https://fullysorted.com/browse): Live collector car listings from private owners and dealers, filterable by category, year, price and location
+- [Cars for Sale](https://fullysorted.com/cars): Live collector car listings from private owners and dealers, filterable by category, year, price and location
 - [Parts](https://fullysorted.com/parts): Collector car parts listed by members, by shelf and by make
 - [Memorabilia](https://fullysorted.com/memorabilia): Brochures, manuals, signs, models and race gear listed by members
 - [Artwork](https://fullysorted.com/artwork): Original automotive paintings, race posters, prints and photographs listed by members and artists
 - [Projects](https://fullysorted.com/projects): Project cars and barn finds for sale, with the trades that finish them
 - [Sell a Car](https://fullysorted.com/sell): One-time listing fee, direct buyer messaging
-- [How It Works](https://fullysorted.com/how-it-works): For sellers, buyers and service providers
+- [How It Works](https://fullysorted.com/how-it-works): A walkthrough for owners, shops, sellers and buyers, with the real cards and forms shown at each step
 - [Fees](https://fullysorted.com/pricing): What things cost
 - [Trust](https://fullysorted.com/trust): How reviews and replies work, and how Fully Sorted makes money
-- [FAQ](https://fullysorted.com/faq): Costs, trust, and where facts come from
+- [FAQ](https://fullysorted.com/faq): Costs, reviews, dealers, scams, and how the site makes money
 - [VIN Decoder](https://fullysorted.com/vin): Free decode for any 1981 or newer VIN
 - [Insurance](https://fullysorted.com/insurance): Collector car insurance referral
 - [Events](https://fullysorted.com/events): Curated concours, auctions, tours and meets
@@ -83,7 +83,6 @@ The Research section at https://fullysorted.com/research/models is the reference
 - [Model Histories](https://fullysorted.com/research/models): Cited, confidence-rated histories, grouped by make (full index below)
 - [Compare Models](https://fullysorted.com/research/compare): Side-by-side production, specs and years for any two model histories
 - [Buying Guides](https://fullysorted.com/research/buying-guides): Stage-by-stage pre-purchase checklist plus per-model things to check
-- [Where to Buy](https://fullysorted.com/research/where-to-buy): Buyer's fees, seller costs and reserve mechanics for the major auction houses and online marketplaces, each figure taken from the venue's own published terms with retrieval date and link. Where a venue publishes no figure, the page says so rather than estimating. Note that on several venues the buyer's fee is charged on top of the advertised "sold for" price.
 - [Importing](https://fullysorted.com/research/importing): US import law from primary sources (US Code, CFR, NHTSA, CBP, EPA). Distinguishes the NHTSA 25-year FMVSS exemption from the separate EPA 21-year emissions exemption, which are routinely conflated.
 - [Glossary](https://fullysorted.com/research/glossary): The vocabulary of listings, auction catalogs and inspection reports, with a note on how each term gets misused
 - [Chassis Register](https://fullysorted.com/register): Per-chassis records by make and model. Early and growing.

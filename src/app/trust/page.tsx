@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Lock, CreditCard, Star, RefreshCw, Clock, Search, Eye, Wallet, HandCoins } from "lucide-react";
+import { ShieldCheck, Star, Clock, Search, Wallet, HandCoins } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Trust & Safety",
@@ -11,53 +11,35 @@ export const metadata: Metadata = {
 
 const PILLARS = [
   {
-    icon: CreditCard,
-    title: "Secure payments, powered by Stripe",
-    body:
-      "This will apply to fixed-price service gigs, and only to those, once they open. Card payments will be processed by Stripe, a PCI-DSS Level 1 provider; card details will go straight to Stripe and will never be stored on our servers. Once a provider has card payment switched on, your payment will be held and only released once the work is delivered. A car sale is different and always will be: the money never passes through Fully Sorted at all. See below.",
-  },
-  {
-    icon: Lock,
-    title: "Your data is encrypted",
-    body:
-      "The entire site runs over 256-bit SSL/TLS encryption. Accounts are managed through Clerk, a dedicated authentication provider, so your login credentials are protected by industry-standard security. We collect only what we need to run the platform and never sell your personal information.",
-  },
-  {
     icon: Star,
     title: "Rated by real owners",
     body:
-      "Our services directory runs on the open record. Providers earn their reputation through reviews from the owners who hired them, and a shop can answer a review but never remove one. You always see the review record before you get in touch.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Clear refunds & dispute handling",
-    body:
-      "When fixed-price gigs open, held funds will stay paused until a problem is resolved, and refunds will go back to your original payment method. On quoted work we never hold your money, so your recourse is the agreement you made with the specialist, plus the review you leave, which we do act on. Listing fees are refundable if we remove your listing before it goes live, or if you tell us within 48 hours of a duplicate or mistaken charge; policy details below.",
+      "Providers earn their reputation through reviews from the owners who hired them. A shop can answer a review but never remove one, and we show no average until a shop has three. You always see the record before you get in touch.",
   },
   {
     icon: Search,
     title: "Fraud protection",
     body:
-      "We watch for suspicious listings and activity, and a person reads every report. For any vehicle purchase, we strongly recommend a professional pre-purchase inspection and a licensed escrow company for significant transactions. Fully Sorted is the introduction, not a party to the sale.",
+      "A person reads every listing before it goes live and every report after. For any vehicle purchase, get a professional pre-purchase inspection and use a licensed escrow company for significant sums. Fully Sorted is the introduction, not a party to the sale.",
   },
   {
     icon: Wallet,
     id: "how-we-make-money",
     title: "How we make money",
     body:
-      "Live today: car sellers pay a one-time listing fee, set by the package they pick when they list; parts, memorabilia and artwork listings cost a small fee each, or a monthly seller plan, once the board's first 100 free listings are gone; and some links in the Shop are affiliate links that pay us a small commission. As the site grows we expect to add paid tools for shops, a fee on fixed-price gigs once they open, and partner offers from insurers, transporters and lenders. Anything new is posted here before it starts and never applies to something already paid for, and anything paid for on the site is labeled as paid. How a marketplace earns tells you whose side it is on, so we would rather you read it here than work it out later.",
+      "Car sellers pay a one-time listing fee. Parts, memorabilia and artwork listings cost a small fee each once the board's first 100 free listings are gone. Some links in the Shop are affiliate links. That is it today. Anything new is posted here before it starts and never applies to something already paid for. Shops never pay for position.",
   },
   {
     icon: HandCoins,
     title: "Where our responsibility ends",
     body:
-      "Being straight about this is part of being trustworthy. On a car sale we are the introduction, not a party to it: we do not hold the money, inspect the car, or guarantee either side. On service work, the contract is between you and the specialist; ask for their certificate of insurance, and specifically for garage-keepers cover, before anyone takes your keys. What we do own is who we let list, what the public record says about them, and acting on it when someone lets an owner down.",
+      "On a car sale we do not hold the money, inspect the car, or guarantee either side. On service work, the contract is between you and the specialist; ask for their certificate of insurance, and specifically for garage-keepers cover, before anyone takes your keys. What we do own is who we let list, what the public record says about them, and acting on it when someone lets an owner down.",
   },
   {
     icon: Clock,
     title: "We respond",
     body:
-      "Real people read every message. We aim to respond to support and trust-and-safety reports within one business day, and provider applications are reviewed within 3–5 business days.",
+      "Real people read every message. Support and trust reports get a reply within one business day; provider applications are read within a few days.",
   },
 ];
 
@@ -65,22 +47,17 @@ const POLICIES = [
   {
     heading: "Listing fee refunds",
     body:
-      "Listing fees are one-time, up-front charges. If your listing is removed by us for a policy reason before it goes live, or you contact us within 48 hours of a duplicate or mistaken charge, we'll make it right. Reach out any time at chris@fullysorted.com.",
-  },
-  {
-    heading: "Service payment protection",
-    body:
-      "When fixed-price gigs open, funds for a booked gig will be held after payment and only released to the provider when you accept the completed work. If you report a problem, auto-release will pause while we help both sides resolve it. If the work isn't delivered, you'll be refunded.",
+      "Listing fees are one-time, up-front charges. If we remove your listing for a policy reason before it goes live, or you contact us within 48 hours of a duplicate or mistaken charge, we make it right. Write to chris@fullysorted.com.",
   },
   {
     heading: "Your privacy",
     body:
-      "We don't sell your personal information. We share data only with the processors that run the platform (payments, authentication, email, hosting, analytics) and as required by law. You can request access to or deletion of your data, and California residents have additional rights under the CCPA/CPRA.",
+      "We don't sell your personal information. We share data only with the processors that run the site (payments, authentication, email, hosting, analytics) and as required by law. You can ask for access to or deletion of your data, and California residents have additional rights under the CCPA/CPRA.",
   },
   {
     heading: "Vehicle transactions",
     body:
-      "Listings are owner-provided. Fully Sorted does not take title to, inspect, or guarantee any vehicle. Always inspect a car in person or hire a professional inspector, and verify a provider's licensing and insurance before hiring.",
+      "Listings are owner-provided. Fully Sorted does not take title to, inspect, or guarantee any vehicle. Inspect a car in person or hire a professional inspector, and check a provider's licensing and insurance before hiring.",
   },
 ];
 
@@ -97,9 +74,6 @@ export default function TrustPage() {
           <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-4" style={{ color: "#1a1a18" }}>
             What we check, what we don&apos;t, and how we get paid
           </h1>
-          <p className="text-lg leading-relaxed" style={{ color: "#5a5a52" }}>
-            Real money changes hands around these cars. Here is what we do, where our part ends, and what to do on your end.
-          </p>
         </div>
       </section>
 
@@ -165,10 +139,6 @@ export default function TrustPage() {
           </div>
         </div>
 
-        <p className="flex items-start gap-2 text-xs mt-6 leading-relaxed" style={{ color: "#9a9a8a" }}>
-          <Eye size={14} className="mt-0.5 shrink-0" />
-          Fully Sorted is a neutral platform that connects owners, buyers, and independent service providers. We are not a party to transactions between users and do not act as an auction house, broker, or appraiser. Market figures on the site are informational, not formal appraisals.
-        </p>
       </section>
     </main>
   );

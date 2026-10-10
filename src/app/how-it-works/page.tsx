@@ -1,495 +1,270 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import {
-  ArrowRight,
-  ClipboardList,
-  BarChart3,
-  BookOpen,
-  Star,
-  Upload,
-  Sparkles,
-  Eye,
-  Handshake,
-  DollarSign,
-  Wrench,
-  ShieldCheck,
-  Search,
-  CheckCircle2,
-  Camera,
-  MessageSquare,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { OwnershipYearRail, TradeGridPhoto } from "@/components/services/TradeGrid";
-import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
+import { TradeGridType } from "@/components/services/TradeGrid";
+import { ListingCard } from "@/components/listings/ListingCard";
+import { ModelCard } from "@/components/research/ModelCard";
+import { StepReveal } from "@/components/how-it-works/StepReveal";
+import { BriefMock, ReviewMock, ClaimMock, SellMock, PackageMock, ProviderCards, WantedMock } from "@/components/how-it-works/Mocks";
+import { getRecentProviders } from "@/lib/data/providers";
+import { getActiveVehicles } from "@/lib/data/listings";
+import { getPublishedModelsWithMetaResult } from "@/lib/data/models";
+import { tradeHref } from "@/lib/category-slugs";
+import { FREE_LISTINGS_THRESHOLD } from "@/lib/listing-tiers";
 
 export const metadata: Metadata = {
   title: "How It Works",
   description:
-    "Fully Sorted is a collector car services hub with a marketplace and a research center. How hiring a specialist, buying and selling, and researching a car work.",
+    "How Fully Sorted works for owners, shops, sellers and buyers: find a specialist, read the owner record, send a brief, list a car, read the model history.",
   alternates: { canonical: "/how-it-works" },
 };
 
-// 1. SERVICES — the hub is the front door and the lead product.
-const HIRE_STEPS = [
-  {
-    icon: Search,
-    title: "Tell us what the car needs",
-    body: "Search by what you need: a pre-purchase inspection, ceramic coating, enclosed transport, a marque specialist.",
-  },
-  {
-    icon: Star,
-    title: "Read the owner record",
-    body: "Every provider profile carries reviews from the owners who hired them. A shop can answer a review but never remove one.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Ask for a quote",
-    body: "Send a shop or specialist a short brief about the car and the job. You talk to the person doing the work.",
-  },
-  {
-    icon: CheckCircle2,
-    title: "Leave your own review",
-    body: "When the job's done, your review becomes part of the record the next owner reads.",
-  },
+export const revalidate = 300;
+
+const INK = "#12352A";
+const TEAL = "#1C8C87";
+const MUTED = "#6B7280";
+const RULE = "rgba(18,53,42,0.14)";
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
+
+/**
+ * 2026-10-09: rebuilt as a walkthrough. Four audiences, a few steps each, and
+ * every step shows the real piece of the site it describes (or a faithful
+ * mock of one), so the page is a demo rather than a description. The old
+ * page restated /about, /pricing and the FAQ and described two features that
+ * are flagged off; none of that survives here.
+ */
+
+const SECTIONS = [
+  { id: "owners", label: "Owners" },
+  { id: "shops", label: "Shops" },
+  { id: "selling", label: "Selling a car" },
+  { id: "buying", label: "Buying a car" },
 ];
 
-const SELLER_STEPS = [
-  {
-    icon: Upload,
-    title: "List your car",
-    body: "Year, make, model and a price are enough to publish. Photos, numbers and the story make it better.",
-  },
-  {
-    icon: Sparkles,
-    title: "You write the listing",
-    body: "Your words, your photos. A VIN or chassis number fills in what it can, and nothing is required beyond the basics.",
-  },
-  {
-    icon: Eye,
-    title: "Real buyers see it",
-    body: "Your listing goes live on the marketplace and is indexed for search. What you pay is what you saw before you clicked.",
-  },
-  {
-    icon: Handshake,
-    title: "You own the deal",
-    body: "Buyers message you directly. You decide who to answer and how to structure the sale, and you close it on your own terms.",
-  },
-];
-
-const BUYER_STEPS = [
-  {
-    icon: Search,
-    title: "Browse honest listings",
-    body: "Every listing says whether a private owner or a dealer is selling, and links to the model history where there is one.",
-  },
-  {
-    icon: CheckCircle2,
-    title: "Check the comps",
-    body: VALUE_GUIDE_PUBLIC
-      ? "Our Value Guide pulls real auction data so you know what a car actually trades for, not what someone hopes to get."
-      : "Our model histories carry market notes, sourced and dated, wherever there is enough published data to say something honest.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Message the seller",
-    body: "Ask questions, request more photos, set up an inspection. You deal with the seller directly.",
-  },
-  {
-    icon: Handshake,
-    title: "Close the deal your way",
-    body: "Bank transfer, escrow service, cashier's check: whatever you agree on. Fully Sorted is the introduction; you run the transaction.",
-  },
-];
-
-const PROVIDER_STEPS = [
-  {
-    icon: Wrench,
-    title: "Apply to be listed",
-    body: "Tell us about your shop or practice, specialties, and the kind of work you do best. Applications are reviewed by a human: no bots, no algorithms.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Get your profile live",
-    body: "Once approved, your profile goes live and your reputation is built in the open, by the owners you work for.",
-  },
-  {
-    icon: Camera,
-    title: "Build your profile",
-    body: "Photos of your work, your specialties, your pricing tier. The profile is yours to keep current.",
-  },
-  {
-    icon: DollarSign,
-    title: "Get found",
-    body: "Owners searching for your trade find your profile, your photos and what other owners said about the work.",
-  },
-];
-
-// 3. RESEARCH — the data layer behind both.
-const RESEARCH_STEPS = [
-  ...(VALUE_GUIDE_PUBLIC
-    ? [
-        {
-          icon: BarChart3,
-          title: "Check the Value Guide",
-          body: "Real sold-price comps from auction results and reported private sales, so you know what a car actually trades for, not what someone hopes to get.",
-        },
-      ]
-    : []),
-  {
-    icon: BookOpen,
-    title: "Read the model histories",
-    body: "History, specs, production numbers and known trouble spots, model by model, with sources cited so you can check the work yourself.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Decode a VIN, compare two cars",
-    body: "Decode any 1981-or-newer VIN for factory specs and open recalls, or put two models head to head on rarity, value and running costs.",
-  },
-];
-
-function StepCard({
-  icon: Icon,
-  title,
-  body,
-  index,
-}: {
-  icon: React.ElementType;
-  title: string;
-  body: string;
-  index: number;
-}) {
-  const tone = ["#1E6091", "#1E6091", "#B08D3F"][index % 3];
+function SectionHead({ id, eyebrow, title }: { id: string; eyebrow: string; title: string }) {
   return (
-    <div className="bg-white border border-border rounded-2xl p-6 relative transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
-      <div
-        className="absolute -top-3 -left-3 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-        style={{ backgroundColor: "#1E6091" }}
-      >
-        {index + 1}
-      </div>
-      <div
-        className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-        style={{ backgroundColor: `${tone}14` }}
-      >
-        <Icon className="w-5 h-5" style={{ color: tone }} />
-      </div>
-      <h3 className="text-base font-bold text-foreground mb-1.5">{title}</h3>
-      <p className="text-sm text-text-secondary leading-relaxed">{body}</p>
+    <div id={id} className="scroll-mt-24 mb-10 sm:mb-14">
+      <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>{eyebrow}</p>
+      <h2 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight leading-[1.1] mt-2" style={{ color: INK }}>{title}</h2>
     </div>
   );
 }
 
-const howToHireSchema = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "@id": "https://fullysorted.com/how-it-works#howto-hire",
-  name: "How to hire a collector car specialist on Fully Sorted",
-  description:
-    "Step-by-step guide to finding and booking an owner-reviewed specialist for your collector car: inspection, transport, mechanical work, body work and paint, restoration, detailing, storage and photography.",
-  totalTime: "PT10M",
-  step: HIRE_STEPS.map((s, i) => ({
-    "@type": "HowToStep",
-    position: i + 1,
-    name: s.title,
-    text: s.body,
-  })),
-};
-
-const howToSchema = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "@id": "https://fullysorted.com/how-it-works#howto-sell",
-  name: "How to sell a collector car on Fully Sorted",
-  description:
-    "Step-by-step guide to listing a collector car for sale on Fully Sorted. Flat listing fee, direct buyer contact.",
-  totalTime: "PT15M",
-  step: SELLER_STEPS.map((s, i) => ({
-    "@type": "HowToStep",
-    position: i + 1,
-    name: s.title,
-    text: s.body,
-  })),
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://fullysorted.com" },
-    { "@type": "ListItem", position: 2, name: "How It Works", item: "https://fullysorted.com/how-it-works" },
-  ],
-};
-
-export default function HowItWorksPage() {
+function Cta({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <div style={{ backgroundColor: "#f5f4f0" }} className="min-h-screen">
-      <JsonLd data={[howToHireSchema, howToSchema, breadcrumbSchema]} />
-      {/* Hero */}
-      <section className="pt-20 pb-16 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-4 px-3 py-1 rounded-full"
-            style={{ color: "#1E6091", backgroundColor: "rgba(30,96,145,0.07)", border: "1px solid rgba(30,96,145,0.28)" }}
-          >
-            <span className="inline-flex gap-1" aria-hidden="true">
-              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#1E6091" }} />
-              <span className="w-1.5 h-1.5" style={{ background: "#B08D3F" }} />
-            </span>
-            How Fully Sorted Works
-          </p>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl text-foreground leading-[1.08] mb-4">
-            Find the specialists who keep your car running, then buy, sell and research it in one place.
+    <Link href={href} className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl text-white hover:opacity-90 transition-opacity" style={{ background: INK }}>
+      {children} <ArrowRight className="w-4 h-4" aria-hidden />
+    </Link>
+  );
+}
+
+export default async function HowItWorksPage() {
+  const [{ providers }, vehicles, modelsResult] = await Promise.all([
+    getRecentProviders(3),
+    getActiveVehicles().catch(() => []),
+    getPublishedModelsWithMetaResult(),
+  ]);
+  const vehicle = vehicles[0] ?? null;
+  const modelRow = modelsResult.rows.find((m) => m.hero_photo) ?? modelsResult.rows[0] ?? null;
+  const model = modelRow
+    ? {
+        id: modelRow.id, slug: modelRow.slug, make: modelRow.make, model: modelRow.model, generation: modelRow.generation,
+        year_start: modelRow.year_start, year_end: modelRow.year_end, production_total: modelRow.production_total,
+        summary: modelRow.summary, overall_confidence: modelRow.overall_confidence,
+        source_count: modelRow.source_count, claim_count: modelRow.claim_count, disputed_count: modelRow.disputed_count,
+        hero_photo: modelRow.hero_photo ?? null,
+      }
+    : null;
+
+  const howTo = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to find and hire a collector car specialist on Fully Sorted",
+    step: [
+      { "@type": "HowToStep", name: "Search by the job", text: "Pick the trade the car needs: inspection, transport, mechanical, body and paint, restoration, upholstery, detailing, storage, title and registration, photography." },
+      { "@type": "HowToStep", name: "Read the owner record", text: "Every profile carries reviews from owners who used the shop. A shop can answer a review but never remove one." },
+      { "@type": "HowToStep", name: "Send a brief", text: "Describe the car and the job once. The shop gets it by email and replies to you directly." },
+      { "@type": "HowToStep", name: "Review the work", text: "When the job is done, your review becomes part of the record the next owner reads." },
+    ],
+  };
+
+  return (
+    <div style={{ background: "#faf9f7" }} className="min-h-screen">
+      <JsonLd data={[howTo]} />
+
+      {/* Header, in the sitewide language */}
+      <section style={{ background: "#FFFFFF", borderBottom: `1px solid ${RULE}` }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <p className="text-[11px] uppercase mb-3" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>How it works</p>
+          <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05]" style={{ color: INK }}>
+            The record is the product.
           </h1>
-          <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-            Fully Sorted is a collector car services hub first: an owner-reviewed
-            directory of the people who do the work. Alongside it sits a
-            marketplace with flat listing fees, where every car says whether a
-            private owner or a dealer is selling it, and a
-            research hub of cited model histories.
+          <p className="mt-4 text-base sm:text-lg max-w-2xl leading-relaxed" style={{ color: MUTED }}>
+            Who worked on a car, what they did, and what the owner said afterwards. Everything on the site either adds to that record or reads from it.
           </p>
+          <nav aria-label="Sections" className="flex flex-wrap gap-2 mt-8">
+            {SECTIONS.map((s) => (
+              <a key={s.id} href={`#${s.id}`} className="px-3.5 py-1.5 text-xs font-bold rounded-full bg-white hover:bg-[#F4F6F5] transition-colors" style={{ border: `1px solid ${RULE}`, color: INK }}>
+                {s.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </section>
 
-          {/* Photo moment */}
-          <div className="relative mt-10 rounded-2xl overflow-hidden shadow-[0_24px_60px_-20px_rgba(26,26,24,0.35)]">
-            <Image
-              src="/images/archive/auction-preview.jpg"
-              alt="A competition Ferrari on the block at a major auction preview"
-              width={1600}
-              height={640}
-              className="w-full h-56 sm:h-72 object-cover"
-              preload
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 space-y-24 sm:space-y-32">
+
+        {/* Owners */}
+        <section>
+          <SectionHead id="owners" eyebrow="For owners" title="Find the person who knows your car." />
+          <ol className="space-y-14 sm:space-y-20">
+            <StepReveal
+              n={1}
+              title="Search by the job."
+              body="Ten trades, in the order a car usually needs them across a year. Pick one, then narrow by marque, by city, or by whether the shop comes to you."
+              demo={<TradeGridType />}
+              caption="Live: the ten trades in the directory."
             />
-            <div className="absolute inset-0" aria-hidden="true" style={{ background: "linear-gradient(rgba(15,32,50,0.1), rgba(15,32,50,0.65))" }} />
-            <p className="absolute bottom-4 left-5 right-5 text-sm sm:text-base font-semibold text-white text-left">
-              Know the car before the wire goes, and know who is working on it.
-            </p>
-          </div>
-        </div>
-      </section>
+            <StepReveal
+              n={2}
+              title="Read the owner record."
+              body="Every profile carries reviews from the owners who used the shop. No average is shown until there are three. A shop can answer a review but never remove one."
+              demo={providers.length > 0 ? <ProviderCards providers={providers} /> : <ReviewMock />}
+              caption={providers.length > 0 ? "Live: the newest shops in the directory." : undefined}
+              flip
+            />
+            <StepReveal
+              n={3}
+              title="Send a brief."
+              body="Describe the car and the job once. The shop gets it by email with everything it needs to quote, and replies to you directly. You talk to the person doing the work."
+              demo={<BriefMock />}
+              caption="What the shop receives."
+            />
+            <StepReveal
+              n={4}
+              title="Review the work."
+              body="When the job is done, your review goes on the shop's record for the next owner to read. That is the whole mechanism, and it is why the record is worth something."
+              demo={<ReviewMock />}
+              flip
+            />
+          </ol>
+          <div className="mt-12"><Cta href="/services">Find a Pro</Cta></div>
+        </section>
 
-      {/* 1. SERVICES — hiring a pro. The hub is the front door. */}
-      <section className="py-16 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-10 text-center">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-2"
-              style={{ color: "#1E6091" }}
-            >
-              For Owners
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Getting work done on your car</h2>
-            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              Inspection, transport, mechanical, body and paint, restoration,
-              detailing, storage, and photography: the specialists collectors
-              actually use, rated by the owners who hired them.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {HIRE_STEPS.map((s, i) => (
-              <StepCard key={i} index={i} {...s} />
-            ))}
-          </div>
+        {/* Shops */}
+        <section>
+          <SectionHead id="shops" eyebrow="For shops and specialists" title="Your page may already be built." />
+          <ol className="space-y-14 sm:space-y-20">
+            <StepReveal
+              n={1}
+              title="Approve the draft, or fix it first."
+              body="For many shops we build a profile from public information and email the owner a link. It is not live until you approve it. If you never answer, it stays unpublished. If you want it down, it comes down the same day."
+              demo={<ClaimMock />}
+            />
+            <StepReveal
+              n={2}
+              title="Enquiries arrive with the job described."
+              body="An owner fills in the car, where it is and what it needs. You get an email, you quote, you invoice them yourself. Fully Sorted is never in the middle of the money."
+              demo={<BriefMock />}
+              flip
+            />
+            <StepReveal
+              n={3}
+              title="Answer every review in public."
+              body="You can reply to any review. You cannot edit, hide or remove one, and nobody can pay to rank above you. Listing is free; founding members stay free for life."
+              demo={<ReviewMock />}
+            />
+          </ol>
+          <div className="mt-12"><Cta href="/services/apply">Get listed</Cta></div>
+        </section>
 
-          {/* The ownership year: every trade in the order a car meets them.
-              Moved here from the homepage on 2026-09-28. */}
-          <div className="mt-14">
-            <p className="text-xs font-bold uppercase tracking-widest mb-2 text-center" style={{ color: "#1E6091" }}>
-              The whole ownership year
-            </p>
-            <h3 className="font-display text-2xl font-semibold tracking-tight text-foreground text-center mb-8">
-              Everything the car needs, in the order it usually needs it
-            </h3>
-            <OwnershipYearRail />
-            <TradeGridPhoto />
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              Find a Pro <ArrowRight className="w-4 h-4" />
+        {/* Selling */}
+        <section>
+          <SectionHead id="selling" eyebrow="Selling a car" title="One fee, paid once. No clock." />
+          <ol className="space-y-14 sm:space-y-20">
+            <StepReveal
+              n={1}
+              title="Four fields and the photos."
+              body="Year, make, model, asking price, then the pictures. The description comes after, and a line on what needs attention is encouraged. Buyers trust a listing that admits something."
+              demo={<SellMock />}
+            />
+            <StepReveal
+              n={2}
+              title="Pick a package."
+              body={`Three packages, prices shown at this step and paid once, up front. The first ${FREE_LISTINGS_THRESHOLD} cars on the site list free. No auction, no bidding, no buyer's premium.`}
+              demo={<PackageMock />}
+              flip
+            />
+            <StepReveal
+              n={3}
+              title="Buyers come to you."
+              body="Your card shows the car, the city and the price, and whether a private owner or a dealer is selling. Buyers write through the site; you decide when to share a number. Mark it sold when it sells and nothing more is owed."
+              demo={vehicle ? <div className="max-w-sm"><ListingCard vehicle={vehicle} /></div> : <SellMock />}
+              caption={vehicle ? "Live: a car listed on the site right now." : undefined}
+            />
+          </ol>
+          <div className="mt-12"><Cta href="/sell">Sell a Car</Cta></div>
+        </section>
+
+        {/* Buying */}
+        <section>
+          <SectionHead id="buying" eyebrow="Buying a car" title="Know the car before the wire goes." />
+          <ol className="space-y-14 sm:space-y-20">
+            <StepReveal
+              n={1}
+              title="Read the model history."
+              body="What was built, what changed year to year, what goes wrong and what it costs to put right. Cited, with disputed figures flagged rather than smoothed over."
+              demo={model ? <div className="max-w-sm"><ModelCard m={model} /></div> : <WantedMock />}
+              caption={model ? "Live: one of the published model histories." : undefined}
+            />
+            <StepReveal
+              n={2}
+              title="Get it inspected where it sits."
+              body="Find an inspector near the car, not near you, and have the report before you send money. Then find enclosed transport to bring it home, quoted door to door."
+              demo={
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <Link href={tradeHref("inspection")} className="rounded-xl bg-white p-4 hover:shadow-md transition-shadow" style={{ border: `1px solid ${RULE}` }}>
+                    <p className="font-semibold" style={{ color: INK }}>Find an inspector</p>
+                    <p className="mt-1 text-sm" style={{ color: MUTED }}>Search by the car&apos;s city.</p>
+                  </Link>
+                  <Link href={tradeHref("transport")} className="rounded-xl bg-white p-4 hover:shadow-md transition-shadow" style={{ border: `1px solid ${RULE}` }}>
+                    <p className="font-semibold" style={{ color: INK }}>Find transport</p>
+                    <p className="mt-1 text-sm" style={{ color: MUTED }}>Enclosed, door to door.</p>
+                  </Link>
+                </div>
+              }
+              flip
+            />
+            <StepReveal
+              n={3}
+              title="Not listed yet? Post what you want."
+              body="The Wanted board is where buyers describe the car they are after. Sellers and shops who have one write to you. Add a finder's fee if you want more people looking."
+              demo={<WantedMock />}
+            />
+          </ol>
+          <div className="mt-12 flex flex-wrap gap-3">
+            <Cta href="/cars">Cars for sale</Cta>
+            <Link href="/wanted/new" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl bg-white hover:bg-[#F4F6F5] transition-colors" style={{ border: `1px solid ${RULE}`, color: INK }}>
+              Post a wanted ad
             </Link>
           </div>
-        </div>
-      </section>
-      {/* 1b. SERVICES — the supply side. */}
-      <section className="py-16 px-4 sm:px-6 bg-white border-y border-border">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-10 text-center">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-2"
-              style={{ color: "#1E6091" }}
-            >
-              For Service Providers
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Joining the Fully Sorted directory</h2>
-            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              One application, whatever the size of the operation, from a shop with six lifts to one person and a van.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {PROVIDER_STEPS.map((s, i) => (
-              <StepCard key={i} index={i} {...s} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/services/apply"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              Apply to be listed <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* 2. MARKETPLACE — selling. */}
-      <section className="py-16 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-10 text-center">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-2"
-              style={{ color: "#1E6091" }}
-            >
-              For Sellers
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Selling a car on Fully Sorted</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {SELLER_STEPS.map((s, i) => (
-              <StepCard key={i} index={i} {...s} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/sell"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              List Your Car <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* 2b. MARKETPLACE — buying. */}
-      <section className="py-16 px-4 sm:px-6 bg-white border-y border-border">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-10 text-center">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-2"
-              style={{ color: "#1E6091" }}
-            >
-              For Buyers
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Finding your next car</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {BUYER_STEPS.map((s, i) => (
-              <StepCard key={i} index={i} {...s} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/cars"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              Browse Listings <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* 3. RESEARCH — the data layer under both. */}
-      <section className="py-16 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-10 text-center">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-2"
-              style={{ color: "#1E6091" }}
-            >
-              {VALUE_GUIDE_PUBLIC ? <>Research &amp; Value Guide</> : <>Research</>}
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-              {VALUE_GUIDE_PUBLIC ? "Knowing what a car is really worth" : "Knowing the car before you buy it"}
-            </h2>
-            <p className="text-sm text-text-secondary mt-2 max-w-2xl mx-auto">
-              The same data sits under every listing and every quote, so nobody
-              in the transaction is guessing.
-            </p>
-          </div>
-          <div className={`grid grid-cols-1 gap-5 ${RESEARCH_STEPS.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
-            {RESEARCH_STEPS.map((s, i) => (
-              <StepCard key={i} index={i} {...s} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link
-              href={VALUE_GUIDE_PUBLIC ? "/value-guide" : "/research/models"}
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-            >
-              {VALUE_GUIDE_PUBLIC ? "Open the Value Guide" : "Browse the model histories"} <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* Pricing summary */}
-      <section className="py-16 px-4 sm:px-6 bg-white border-y border-border">
-        <div className="max-w-3xl mx-auto text-center">
-          <p
-            className="text-xs font-bold uppercase tracking-widest mb-2"
-            style={{ color: "#1E6091" }}
-          >
-            Selling a car
+        </section>
+
+        {/* Where it ends */}
+        <section className="rounded-2xl bg-white p-8 sm:p-10" style={{ border: `1px solid ${RULE}` }}>
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: INK }}>What we do not do.</h2>
+          <p className="mt-3 text-base leading-relaxed max-w-2xl" style={{ color: MUTED }}>
+            We do not hold the money, inspect the car, or guarantee either side. Shops never pay for position. How we make money is written down on the trust page before it starts.
           </p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground mb-3">
-            One fee, paid once.
-          </h2>
-          <p className="text-base text-text-secondary">
-            Three packages, all paid once, up front. You see them when you list. The first 100 cars list free.
-          </p>
-          <div className="mt-8">
-            <Link
-              href="/pricing"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-foreground border-2 border-foreground rounded-xl hover:bg-foreground hover:text-white transition-colors"
-            >
-              How fees work <ArrowRight className="w-4 h-4" />
-            </Link>
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <Link href="/trust" className="font-semibold underline underline-offset-4" style={{ color: TEAL }}>Trust and safety</Link>
+            <Link href="/pricing" className="font-semibold underline underline-offset-4" style={{ color: TEAL }}>How fees work</Link>
+            <Link href="/faq" className="font-semibold underline underline-offset-4" style={{ color: TEAL }}>FAQ</Link>
           </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-16 px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-10 text-center">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-2"
-              style={{ color: "#1E6091" }}
-            >
-              Frequently Asked
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Questions worth answering up front</h2>
-          </div>
-          <div className="bg-white border border-border rounded-2xl p-8 text-center">
-            <p className="text-sm text-text-secondary leading-relaxed max-w-xl mx-auto">
-              What things cost, how trust works, where our valuation numbers come from,
-              and what we deliberately don&apos;t do: answered in full, in one place.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
-              <Link
-                href="/faq"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
-              >
-                Read the FAQ <ArrowRight className="w-4 h-4" aria-hidden />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-xl border border-border text-foreground hover:bg-stone-50 transition-colors"
-              >
-                Ask us directly
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

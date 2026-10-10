@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { BrowseClient } from "./BrowseClient";
-import { SignupForm } from "@/components/newsletter/SignupForm";
 import { getActiveVehicles } from "@/lib/data/listings";
 import Link from "next/link";
 import { tradeHref } from "@/lib/category-slugs";
@@ -81,18 +80,6 @@ export default async function CarsPage() {
           current="cars"
           counts={{ cars: realListings.length, projects: realListings.filter((v) => isProjectCategory(v.category)).length }}
         />
-      </section>
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-14">
-        <div className="rounded-3xl bg-white p-6 sm:p-8" style={{ border: "1px solid rgba(18,53,42,0.14)" }}>
-          <SignupForm
-            variant="band"
-            source="browse"
-            eyebrow="Not here yet?"
-            title="Hear when the right one is listed."
-            blurb="New cars for sale near you, or in the marques you care about. Add a ZIP to keep it local."
-            defaults={["cars"]}
-          />
-        </div>
       </section>
     </>
   );

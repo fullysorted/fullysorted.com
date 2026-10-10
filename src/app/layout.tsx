@@ -6,7 +6,6 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { CookieBanner } from "@/components/layout/CookieBanner";
-import { NewsletterPopup } from "@/components/newsletter/NewsletterPopup";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { JsonLd, organizationSchema, websiteSchema } from "@/components/seo/JsonLd";
@@ -125,7 +124,6 @@ export default function RootLayout({
           <Footer />
           <MobileNav />
           <CookieBanner />
-          <NewsletterPopup />
           <Analytics />
         </body>
       </html>

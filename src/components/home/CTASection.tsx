@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
-import { ArrowRight } from "lucide-react";
 
 /**
  * Closing band. One photograph from the founder's archive under a navy wash,
@@ -41,12 +40,6 @@ export function CTASection() {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-[1.08]">
               Let&apos;s get it sorted<span style={{ color: "#F2B27A" }}>.</span>
             </h2>
-            <p className="text-white/80 mt-4 text-lg leading-relaxed max-w-xl">
-              An inspection before the wire goes, a proper detail, a shop that
-              knows the car. Search by the job, read what other owners said, and
-              send a brief. When it&apos;s time to sell, the first 100 cars list
-              free.
-            </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link
                 href="/services"
@@ -62,13 +55,6 @@ export function CTASection() {
                 List your car
               </Link>
             </div>
-            <Link
-              href="/services/apply"
-              className="group inline-flex items-center gap-1.5 mt-6 text-sm font-semibold text-white/85 hover:text-white transition-colors"
-            >
-              Work on cars? Get listed free
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
           </div>
         </motion.div>
       </div>

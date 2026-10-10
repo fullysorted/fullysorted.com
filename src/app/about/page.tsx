@@ -163,13 +163,6 @@ export default function AboutPage() {
               Fully Sorted is one hub where anyone can find the right specialist, and
               where every good shop gets a fair chance to be found.
             </p>
-            <p>
-              We&apos;re a small team. We want to make owning a collector car more fun,
-              and help keep the hobby alive for the people who come next.
-            </p>
-            <p className="font-display text-xl sm:text-2xl font-semibold tracking-tight" style={{ color: INK }}>
-              That&apos;s the whole company, really<span style={{ color: GOLD }}>.</span>
-            </p>
           </div>
         </div>
       </section>
@@ -228,18 +221,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12">
-          {[
-            { t: "For owners", d: "Search by the job. Read what other owners said. Send a brief. Review the work afterwards." },
-            { t: "For specialists", d: "One application, one profile, your reviews under your name. Leads arrive with the job already described." },
-            { t: "For buyers and sellers", d: "A marketplace where every listing says whether an owner or a dealer is selling. No auction clock, and model histories to check the car against." },
-          ].map((x) => (
-            <div key={x.t} className="rounded-xl p-6" style={{ background: PAPER, border: `1px solid ${RULE}`, borderTop: `3px solid ${INK}` }}>
-              <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: BLUE }}>{x.t}</h3>
-              <p className="mt-3 text-[15px] leading-relaxed" style={{ color: "#3a3a30" }}>{x.d}</p>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* Why */}
@@ -278,10 +259,8 @@ export default function AboutPage() {
                 owner&apos;s search a little easier.
               </p>
               <p>
-                We want this to be useful, a tool anyone can use. The research hub grows
-                every day. If you have a suggestion, spot something we got wrong, or want
-                to help build it (and so help everyone else),{" "}
-                <Link href="/contact" className="underline underline-offset-4 hover:opacity-80" style={{ color: "#ffffff" }}>get in touch</Link>.
+                Spot something wrong, or know a shop that should be here?{" "}
+                <Link href="/contact" className="underline underline-offset-4 hover:opacity-80" style={{ color: "#ffffff" }}>Get in touch</Link>.
               </p>
               <blockquote
                 className="font-display text-2xl sm:text-3xl italic leading-snug pl-6 mt-10"
