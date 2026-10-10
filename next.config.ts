@@ -34,6 +34,9 @@ const nextConfig: NextConfig = {
       // segment table frozen at Dec 2025) is retired until the news
       // aggregator replaces it. Temporary, so the URLs can come back.
       { source: "/research", destination: "/research/models", permanent: false },
+      // 2026-10-09: cars for sale moved from /browse to /cars. The old slug was
+      // indexed and linked from research pages; query strings carry over.
+      { source: "/browse", destination: "/cars", permanent: true },
       // 2026-10-02: memorabilia has its own page under For Sale.
       {
         source: "/parts",

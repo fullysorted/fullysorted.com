@@ -419,7 +419,7 @@ export function ListingDetail({ vehicle, history }: Props) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <Link
-              href="/browse"
+              href="/cars"
               className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
               style={{ color: "#6b6b5e" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#1a1a18")}

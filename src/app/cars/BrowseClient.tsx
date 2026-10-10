@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Search, SlidersHorizontal, X, Car } from "lucide-react";
@@ -8,15 +8,25 @@ import { ListingCard } from "@/components/listings/ListingCard";
 import type { Vehicle } from "@/lib/sample-data";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { LISTING_CATEGORIES, isProjectCategory } from "@/lib/listing-categories";
-import { ForSaleNav } from "@/components/marketplace/ForSaleNav";
+import { LISTING_CATEGORIES } from "@/lib/listing-categories";
 
 const categories: string[] = ["All", ...LISTING_CATEGORIES];
 
 interface BrowseClientProps {
   initialListings: Vehicle[];
   hasRealListings?: boolean;
+  /** Server-rendered block shown between the header and the grid (Before you buy). */
+  topSlot?: ReactNode;
 }
+
+type SortKey = "newest" | "price-asc" | "price-desc" | "year-asc" | "year-desc";
+const SORT_OPTIONS: { key: SortKey; label: string }[] = [
+  { key: "newest", label: "Newest" },
+  { key: "price-asc", label: "Price, low to high" },
+  { key: "price-desc", label: "Price, high to low" },
+  { key: "year-asc", label: "Year, oldest first" },
+  { key: "year-desc", label: "Year, newest first" },
+];
 
 /** "San Diego, CA" -> "CA". Returns "" when the location has no state suffix. */
 function stateOf(loc?: string | null): string {
@@ -29,7 +39,7 @@ const EMPTY_FILTERS = {
   transmission: "Any", condition: "Any", location: "Anywhere", seller: "Any",
 };
 
-export function BrowseClient({ initialListings, hasRealListings = false }: BrowseClientProps) {
+export function BrowseClient({ initialListings, hasRealListings = false, topSlot }: BrowseClientProps) {
   // Seed from the URL so /browse?category=muscle and /browse?q=mustang actually
   // land pre-filtered — the footer and every research model page link that way.
   const searchParams = useSearchParams();
@@ -40,6 +50,7 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") ?? "");
   const [showFilters, setShowFilters] = useState(false);
+  const [sort, setSort] = useState<SortKey>("newest");
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const setFilter = (k: keyof typeof EMPTY_FILTERS, v: string) =>
     setFilters((f) => ({ ...f, [k]: v }));
@@ -81,7 +92,15 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
     if (filters.seller === "Dealer" && v.sellerType !== "dealer") return false;
 
     return matchesCategory && matchesSearch;
-  }), [initialListings, activeCategory, searchQuery, filters]);
+  }).sort((a, b) => {
+    switch (sort) {
+      case "price-asc": return a.price - b.price;
+      case "price-desc": return b.price - a.price;
+      case "year-asc": return a.year - b.year;
+      case "year-desc": return b.year - a.year;
+      default: return (b.listedAt ?? "").localeCompare(a.listedAt ?? "");
+    }
+  }), [initialListings, activeCategory, searchQuery, filters, sort]);
 
   return (
     <div style={{ background: "#faf9f7" }} className="min-h-screen">
@@ -93,26 +112,21 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: "easeOut" }}
           >
-            {/* The section tabs are the eyebrow. The count rides on the
-                title; the private/dealer distinction is on each card, so it
-                is not announced here. */}
-            <ForSaleNav
-              current="cars"
-              counts={{ cars: initialListings.length, projects: initialListings.filter((v) => isProjectCategory(v.category)).length }}
-            />
-            <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mt-6 mb-6 flex items-baseline gap-3" style={{ color: "#12352A" }}>
-              Cars
-              {hasRealListings && (
-                <span className="text-xl sm:text-2xl font-sans font-medium tabular-nums" style={{ color: "#9a9a8a" }}>
-                  {initialListings.length}
-                </span>
-              )}
+            {/* 2026-10-09: cars get a plain heading of their own. The count
+                is a separate line, never inside the h1 (it used to render as
+                "Cars2" to crawlers). The rest of the For Sale section is
+                linked below the grid. */}
+            <p className="text-[11px] uppercase mb-3" style={{ fontFamily: "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace", letterSpacing: '0.12em', color: "#1C8C87" }}>
+              For sale
+            </p>
+            <h1 className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05] mb-3" style={{ color: "#12352A" }}>
+              Collector cars for sale
             </h1>
-            {!hasRealListings && (
-              <p className="text-base sm:text-lg mb-6 max-w-2xl leading-relaxed" style={{ color: "#6B7280" }}>
-                Nothing listed yet. Yours could be first.
-              </p>
-            )}
+            <p className="text-base sm:text-lg mb-6 tabular-nums" style={{ color: "#6B7280" }}>
+              {hasRealListings
+                ? `${initialListings.length} ${initialListings.length === 1 ? "car" : "cars"}`
+                : "Nothing listed yet. Yours could be first."}
+            </p>
           </motion.div>
 
           {/* Search Bar */}
@@ -162,6 +176,8 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
           </motion.div>
         </div>
       </div>
+
+      {topSlot}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Category Tabs */}
@@ -271,10 +287,25 @@ export function BrowseClient({ initialListings, hasRealListings = false }: Brows
         {/* Results */}
         {filtered.length > 0 ? (
           <>
-            <p className="text-sm text-stone-400 mb-4">
-              {filtered.length} {filtered.length === 1 ? "result" : "results"}
-              {activeCategory !== "All" && ` in ${activeCategory}`}
-            </p>
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <p className="text-sm text-stone-400">
+                {filtered.length} {filtered.length === 1 ? "result" : "results"}
+                {activeCategory !== "All" && ` in ${activeCategory}`}
+              </p>
+              <label className="flex items-center gap-2 text-sm text-stone-500">
+                <span className="hidden sm:inline">Sort</span>
+                <select
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value as SortKey)}
+                  aria-label="Sort listings"
+                  className="h-9 px-3 text-sm border border-stone-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/25 focus:border-accent"
+                >
+                  {SORT_OPTIONS.map((o) => (
+                    <option key={o.key} value={o.key}>{o.label}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {filtered.map((vehicle, i) => (
                 <ListingCard key={vehicle.id} vehicle={vehicle} index={i} />

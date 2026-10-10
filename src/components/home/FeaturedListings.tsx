@@ -61,7 +61,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <Link
-              href="/browse"
+              href="/cars"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white transition-colors hover:bg-[#16716D]"
               style={{ background: TEAL }}
             >
@@ -102,7 +102,7 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
             {/* Mobile "Browse All" link */}
             <div className="sm:hidden mt-6 text-center">
               <Link
-                href="/browse"
+                href="/cars"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold"
                 style={{ color: TEAL }}
               >

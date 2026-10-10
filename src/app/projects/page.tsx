@@ -54,7 +54,7 @@ export default async function ProjectsPage() {
             <Link href="/sell?category=Project" className="inline-block px-6 py-3 rounded-full text-[15px] font-bold text-white" style={{ background: TEAL }}>
               Sell a project
             </Link>
-            <Link href="/browse" className="text-[15px] font-semibold underline underline-offset-4 px-2" style={{ color: TEAL }}>
+            <Link href="/cars" className="text-[15px] font-semibold underline underline-offset-4 px-2" style={{ color: TEAL }}>
               All cars for sale
             </Link>
           </div>

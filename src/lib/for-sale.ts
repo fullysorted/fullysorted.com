@@ -15,9 +15,9 @@ export const FOR_SALE_SECTIONS: {
 }[] = [
   {
     key: 'cars',
-    href: '/browse',
+    href: '/cars',
     label: 'Cars',
-    blurb: 'Collector cars from private owners and dealers, marked as which.',
+    blurb: 'Collector cars from private owners and dealers. Dealer stock is marked.',
     sellHref: '/sell',
     sellLabel: 'Sell a car',
   },

@@ -139,7 +139,7 @@ export default async function MakePage({ params }: Props) {
             <Link href={`/services?q=${encodeURIComponent(make)}`} className="inline-flex items-center gap-1.5 hover:opacity-70 transition-opacity" style={{ color: "#1E6091" }}>
               Specialists who work on {make} <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link href={`/browse?q=${encodeURIComponent(make)}`} className="inline-flex items-center gap-1.5 hover:opacity-70 transition-opacity" style={{ color: "#1E6091" }}>
+            <Link href={`/cars?q=${encodeURIComponent(make)}`} className="inline-flex items-center gap-1.5 hover:opacity-70 transition-opacity" style={{ color: "#1E6091" }}>
               {make} for sale <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

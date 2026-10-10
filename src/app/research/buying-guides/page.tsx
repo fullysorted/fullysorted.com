@@ -573,7 +573,7 @@ export default async function BuyingGuidesPage() {
                   "The 25-year rule, the agencies involved, and the duty and compliance costs that sit on top of a foreign purchase.",
               },
               {
-                href: "/browse",
+                href: "/cars",
                 label: "Cars for sale",
                 icon: <Store className="w-4 h-4" />,
                 blurb: "Work the checklist against a car that is actually on the market.",

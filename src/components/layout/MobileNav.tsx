@@ -11,7 +11,7 @@ const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/services", label: "Services", icon: Wrench },
   // The For Sale section spans several pages; any of them lights this tab.
-  { href: "/for-sale", label: "For Sale", icon: Tag, also: ["/browse", "/listings", "/parts", "/memorabilia", "/projects", "/wanted"] },
+  { href: "/for-sale", label: "For Sale", icon: Tag, also: ["/cars", "/listings", "/parts", "/memorabilia", "/projects", "/wanted"] },
   { href: "/sell", label: "Sell", icon: PlusCircle },
   // Five tabs either way — with the Value Guide hidden, the slot goes to the
   // model histories rather than leaving a gap in the bar.

@@ -51,7 +51,7 @@ const COPY: Record<PartsKind, {
     asides: [
       { t: "Cannot find it?", d: "Post the brochure, the sign or the model you are after on the Wanted board.", href: "/wanted/new", cta: "Post a wanted ad" },
       { t: "Know the car behind it?", d: "Cited model histories: what was built, when, and what the brochure left out.", href: "/research/models", cta: "Read the histories" },
-      { t: "Want the car itself?", d: "Collector cars for sale from private owners and dealers.", href: "/browse", cta: "See cars for sale" },
+      { t: "Want the car itself?", d: "Collector cars for sale from private owners and dealers.", href: "/cars", cta: "See cars for sale" },
     ],
     smallPrint: "Fully Sorted is the notice board. Every word about age and authenticity is the seller's, not ours, and we are not a party to the sale. Memorabilia attracts reproductions, so ask for the back of the sign as well as the front, and pay in a way you can dispute.",
   },

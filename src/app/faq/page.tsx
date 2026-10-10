@@ -137,7 +137,7 @@ const SECTIONS: FaqSection[] = [
   {
     key: "marketplace",
     title: "Buying and selling",
-    blurb: "The marketplace: private sellers and dealers, marked as which.",
+    blurb: "The marketplace: private sellers and dealers.",
     icon: Car,
     tint: "#B08D3F",
     items: [
@@ -189,7 +189,7 @@ const SECTIONS: FaqSection[] = [
       {
         q: "What kinds of cars belong here?",
         a: "Anything with collector interest: muscle, European classics, JDM, pre-war, modern classics, barn finds and honest project cars. Condition is not the bar. A car with a story and a straight description belongs here more than a perfect car with a vague one.",
-        link: { href: "/browse", label: "Browse what's listed" },
+        link: { href: "/cars", label: "Browse what's listed" },
       },
     ],
   },

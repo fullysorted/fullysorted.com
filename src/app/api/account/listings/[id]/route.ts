@@ -105,7 +105,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 
   try {
     revalidatePath('/');
-    revalidatePath('/browse');
+    revalidatePath('/cars');
     revalidatePath(`/listings/${owned.slug}`);
   } catch (e) {
     console.error('[account/listings] revalidate failed', e);

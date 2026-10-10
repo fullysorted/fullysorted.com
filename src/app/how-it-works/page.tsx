@@ -389,7 +389,7 @@ export default function HowItWorksPage() {
           </div>
           <div className="mt-10 text-center">
             <Link
-              href="/browse"
+              href="/cars"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-xl bg-accent hover:bg-accent-hover transition-colors"
             >
               Browse Listings <ArrowRight className="w-4 h-4" />

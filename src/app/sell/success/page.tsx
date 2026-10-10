@@ -67,7 +67,7 @@ function SuccessInner() {
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/browse"
+              href="/cars"
               className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl transition-colors"
             >
               Browse Listings <ArrowRight className="w-4 h-4" />

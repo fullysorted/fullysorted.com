@@ -233,7 +233,7 @@ export function Hero({ featured, searchModels = [] }: { featured: FeaturedModel 
                 <h3 className="font-display text-xl" style={{ color: INK }}>
                   Buying and selling
                 </h3>
-                <Link href="/browse" className="text-sm font-bold whitespace-nowrap hover:underline underline-offset-4" style={{ color: TEAL }}>
+                <Link href="/cars" className="text-sm font-bold whitespace-nowrap hover:underline underline-offset-4" style={{ color: TEAL }}>
                   Cars for sale &rarr;
                 </Link>
               </div>

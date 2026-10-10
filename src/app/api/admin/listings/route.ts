@@ -130,7 +130,7 @@ export async function PATCH(request: NextRequest) {
   // sit off the homepage until the cache happened to turn over.
   try {
     revalidatePath('/');
-    revalidatePath('/browse');
+    revalidatePath('/cars');
     if (result[0].slug) revalidatePath(`/listings/${result[0].slug}`);
   } catch (e) {
     console.error('[admin/listings] revalidate failed', e);

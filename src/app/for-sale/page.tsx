@@ -89,7 +89,7 @@ export default async function ForSalePage() {
           <section aria-labelledby="latest-cars" className="mb-16">
             <div className="flex items-baseline justify-between mb-6">
               <h2 id="latest-cars" className="font-display text-2xl sm:text-3xl" style={{ color: INK }}>Latest cars</h2>
-              <Link href="/browse" className="text-sm font-semibold" style={{ color: TEAL }}>All cars</Link>
+              <Link href="/cars" className="text-sm font-semibold" style={{ color: TEAL }}>All cars</Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {cars.slice(0, 3).map((v, i) => (

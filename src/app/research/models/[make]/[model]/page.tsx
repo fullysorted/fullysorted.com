@@ -623,7 +623,7 @@ export default async function ModelPage({ params }: Props) {
                     );
                   })}
                 </div>
-                <Link href={`/browse?q=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold mt-3.5" style={{ color: "#1E6091" }}>
+                <Link href={`/cars?q=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold mt-3.5" style={{ color: "#1E6091" }}>
                   See all for sale <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
@@ -655,7 +655,7 @@ export default async function ModelPage({ params }: Props) {
               <p className="font-bold text-sm mb-1" style={{ color: "#1a1a18" }}>Shopping for one?</p>
               <p className="text-xs mb-3" style={{ color: "#6b6b5e" }}>Browse {m.make} listings, or decode a VIN before you buy.</p>
               <div className="flex flex-col gap-2">
-                <Link href={`/browse?q=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
+                <Link href={`/cars?q=${encodeURIComponent(m.model)}`} className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>
                   Browse listings <ArrowRight className="w-3 h-3" />
                 </Link>
                 <Link href="/vin" className="inline-flex items-center gap-1.5 text-xs font-bold" style={{ color: "#1E6091" }}>

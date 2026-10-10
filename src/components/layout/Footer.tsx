@@ -52,7 +52,7 @@ const footerLinks = {
 // generic e-commerce chrome, and "buyer's premium" is auction vocabulary.
 // Two plain facts instead, both true on every page.
 const assurances = [
-  { label: "Private sellers and dealers, marked as which" },
+  { label: "Private sellers and dealers" },
   { label: "Shops can answer a review, never remove one" },
 ];
 

@@ -31,7 +31,7 @@ const STATUS: Record<string, { label: string; bg: string; fg: string; icon: Reac
 };
 
 const QUICK_ACTIONS = [
-  { href: "/browse", label: "Browse cars", icon: Car },
+  { href: "/cars", label: "Browse cars", icon: Car },
   VALUE_GUIDE_PUBLIC
     ? { href: "/value-guide", label: "Value a car", icon: BarChart3 }
     : { href: "/research/models", label: "Model histories", icon: BarChart3 },

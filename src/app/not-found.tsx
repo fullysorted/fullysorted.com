@@ -20,7 +20,7 @@ export default function NotFound() {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
-            href="/browse"
+            href="/cars"
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold rounded-xl text-white bg-accent hover:bg-accent-hover transition-colors"
           >
             <Search className="w-4 h-4" />

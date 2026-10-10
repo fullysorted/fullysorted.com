@@ -413,7 +413,7 @@ export default function WhereToBuyPage() {
                     listing fee is itemized on /pricing, never here. */}
                 <tr style={{ background: "#F4F6F5" }}>
                   <th scope="row" className="text-left align-top px-4 py-3.5 font-semibold">
-                    <Link href="/browse" className="hover:underline" style={{ color: "#12352A" }}>
+                    <Link href="/cars" className="hover:underline" style={{ color: "#12352A" }}>
                       Fully Sorted
                     </Link>
                   </th>
@@ -655,9 +655,9 @@ export default function WhereToBuyPage() {
                 blurb: "Production numbers, specs and market context for the car before the venue.",
               },
               {
-                href: "/browse",
+                href: "/cars",
                 title: "Browse cars for sale",
-                blurb: "Private and dealer listings on this site, each marked as which, with the flat listing fee stated up front.",
+                blurb: "Private and dealer listings on this site, with the flat listing fee stated up front.",
               },
             ].map((c) => (
               <Link
@@ -698,7 +698,7 @@ export default function WhereToBuyPage() {
             history, with the seller a message away. Selling one costs a flat fee you see before you pay.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/browse" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold" style={{ background: "#F5EFE6", color: "#12352A" }}>
+            <Link href="/cars" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold" style={{ background: "#F5EFE6", color: "#12352A" }}>
               Cars for sale <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/sell" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold" style={{ color: "#F5EFE6", border: "1px solid rgba(245,239,230,0.35)" }}>

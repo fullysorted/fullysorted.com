@@ -73,7 +73,7 @@ function pitchFor(path: string): Pitch {
       defaults: ["shops"], source: "popup",
     };
   }
-  if (path.startsWith("/browse") || path.startsWith("/listings") || path.startsWith("/parts") || path.startsWith("/wanted")) {
+  if (path.startsWith("/cars") || path.startsWith("/listings") || path.startsWith("/parts") || path.startsWith("/wanted")) {
     return {
       eyebrow: "New cars, first",
       title: "See new listings before everyone else.",
