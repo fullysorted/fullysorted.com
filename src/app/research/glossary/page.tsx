@@ -48,7 +48,7 @@ const CATEGORY_LINK: Partial<
 > = {
   condition: { href: "/research/models", label: "Model histories" },
   provenance: { href: "/research/models", label: "Model histories" },
-  market: { href: "/research/where-to-buy", label: "Auction fees" },
+  market: { href: "/research/models", label: "Model histories" },
   process: { href: "/services", label: "Find a specialist" },
   paperwork: { href: "/research/importing", label: "Importing" },
   import: { href: "/research/importing", label: "Importing" },
@@ -248,12 +248,7 @@ export default function GlossaryPage() {
             <Link href="/research/models" className="font-semibold underline" style={{ color: "#1E6091" }}>
               model histories
             </Link>
-            . Auction mechanics (who charges what, and at which point in the sale)
-            are set out under{" "}
-            <Link href="/research/where-to-buy" className="font-semibold underline" style={{ color: "#1E6091" }}>
-              auction fees
-            </Link>
-            , and the agencies behind the import vocabulary are covered in the{" "}
+            . The agencies behind the import vocabulary are covered in the{" "}
             <Link href="/research/importing" className="font-semibold underline" style={{ color: "#1E6091" }}>
               importing guide
             </Link>

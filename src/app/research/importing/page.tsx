@@ -5,7 +5,6 @@ import {
   BookOpen,
   CalendarClock,
   ExternalLink,
-  Gavel,
   Landmark,
   Library,
   ListChecks,
@@ -546,26 +545,6 @@ export default function ImportingPage() {
               <p className="text-sm leading-relaxed" style={{ color: MUTED }}>
                 HS-7, 3520-1, Show or Display, RI, OP year: what the import terms in a
                 listing actually mean.
-              </p>
-              <span
-                className="inline-flex items-center gap-1 text-sm font-semibold mt-2"
-                style={{ color: ACCENT }}
-              >
-                Open <ArrowRight className="w-3.5 h-3.5" />
-              </span>
-            </Link>
-            <Link
-              href="/research/where-to-buy"
-              className="rounded-2xl p-5 block"
-              style={{ background: "#fff", border: `1px solid ${HAIRLINE}` }}
-            >
-              <Gavel className="w-4 h-4 mb-2" style={{ color: ACCENT }} aria-hidden="true" />
-              <p className="text-sm font-bold mb-1" style={{ color: "#1a1a18" }}>
-                What auction houses charge
-              </p>
-              <p className="text-sm leading-relaxed" style={{ color: MUTED }}>
-                The auction houses and marketplaces, including the overseas ones a car has
-                to be bought through before any of this applies.
               </p>
               <span
                 className="inline-flex items-center gap-1 text-sm font-semibold mt-2"

@@ -5,7 +5,6 @@ import {
   GitCompare,
   ScanLine,
   ClipboardCheck,
-  Gavel,
   Ship,
   Library,
   Hash,
@@ -41,7 +40,6 @@ export type ResearchSection =
   | "compare"
   | "vin"
   | "market"
-  | "marketplaces"
   | "importing"
   | "glossary";
 
@@ -106,14 +104,6 @@ const ITEMS: Item[] = [
     blurb: "Decode any 1981-or-newer VIN, free",
     group: "car",
     icon: <ScanLine className="w-4 h-4" />,
-  },
-  {
-    key: "marketplaces",
-    href: "/research/where-to-buy",
-    label: "Auction Fees",
-    blurb: "What every auction house and marketplace charges, from their own terms",
-    group: "market",
-    icon: <Gavel className="w-4 h-4" />,
   },
   {
     key: "importing",

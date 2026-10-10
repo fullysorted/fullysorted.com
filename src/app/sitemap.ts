@@ -31,7 +31,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // The research hub's four newer surfaces. These are the pages built to be
     // found — reference material with no equivalent elsewhere on the site.
     { url: `${base}/research/buying-guides`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${base}/research/where-to-buy`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/research/importing`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/research/glossary`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     // Was absent despite carrying its own metadata and canonical.

@@ -34,6 +34,10 @@ const nextConfig: NextConfig = {
       // segment table frozen at Dec 2025) is retired until the news
       // aggregator replaces it. Temporary, so the URLs can come back.
       { source: "/research", destination: "/research/models", permanent: false },
+      // 2026-10-09: the auction fee table (every house's buyer premium and
+      // seller cut, with a worked example) is retired. Temporary, so the URL
+      // can come back in another form.
+      { source: "/research/where-to-buy", destination: "/research/models", permanent: false },
       // 2026-10-09: cars for sale moved from /browse to /cars. The old slug was
       // indexed and linked from research pages; query strings carry over.
       { source: "/browse", destination: "/cars", permanent: true },
