@@ -1,300 +1,203 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Fragment } from "react";
-import { Calendar, MapPin, ArrowRight, Flag } from "lucide-react";
-import { events } from "@/lib/events";
-import { JsonLd } from "@/components/seo/JsonLd";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { PageHero } from '@/components/layout/PageHero';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { ConcoursMap } from '@/components/events/ConcoursMap';
+import { CALENDAR_MONTHS, CONCOURS, concoursDateLabel, concoursMonthKey, isNorthAmerican, type Concours } from '@/lib/data/concours';
+import { events as featureEvents } from '@/lib/events';
+
+const INK = '#12352A';
+const TEAL = '#1C8C87';
+const MUTED = '#6B7280';
+const RULE = 'rgba(18,53,42,0.14)';
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
+const SITE = 'https://fullysorted.com';
 
 export const metadata: Metadata = {
-  title: "Collector Car Events",
+  title: 'Concours d\'Elegance Calendar 2026 to 2027',
   description:
-    "Concours, auctions, tours and cars-and-coffee meets worth your weekend: the collector car events we actually turn up to. Lightly curated.",
-  alternates: { canonical: "/events" },
+    'Every judged concours d\'elegance in the United States and Canada on one map, plus the international calendar by country. Dates from the organizers, nothing guessed.',
+  alternates: { canonical: '/events' },
   openGraph: {
-    type: "website",
-    title: "Collector Car Events",
-    description:
-      "The collector car events we actually turn up to. Lightly curated.",
-    url: "https://fullysorted.com/events",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Collector Car Events",
-    description:
-      "The collector car events we actually turn up to. Lightly curated.",
+    type: 'website',
+    title: 'Concours d\'Elegance Calendar 2026 to 2027',
+    description: 'Every judged concours in the US and Canada on one map, plus the international calendar by country.',
+    url: `${SITE}/events`,
   },
 };
 
-// Re-render daily so an event moves to "Past" the day after it ends.
+// Re-render daily so a past event drops off the top.
 export const revalidate = 86400;
 
+function todayPacific(): string {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+}
+
 export default function EventsPage() {
-  // Sort by start date ascending
-  const sorted = [...events].sort((a, b) =>
-    a.startDate.localeCompare(b.startDate)
-  );
-  // Today in Pacific time, as YYYY-MM-DD, to split upcoming from past.
-  const today = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "America/Los_Angeles",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date());
-  const upcoming = sorted.filter((e) => (e.endDate ?? e.startDate) >= today);
-  const past = sorted
-    .filter((e) => (e.endDate ?? e.startDate) < today)
-    .reverse();
+  const today = todayPacific();
+  const live = CONCOURS.filter((c) => !c.startDate || (c.endDate ?? c.startDate) >= today);
+  const northAmerica = live.filter(isNorthAmerican);
+  const international = live.filter((c) => !isNorthAmerican(c));
+  const dated = northAmerica.filter((c) => c.startDate).length;
 
-  const itemListSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Fully Sorted: Collector Car Events",
-    itemListElement: sorted.map((e, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      url: `https://fullysorted.com/events/${e.slug}`,
-      name: e.title,
-    })),
+  // By month, dated rows first inside each month, then the "usually" rows.
+  const byMonth = new Map<string, Concours[]>();
+  for (const m of CALENDAR_MONTHS) byMonth.set(m, []);
+  const undated: Concours[] = [];
+  for (const c of northAmerica) {
+    const key = concoursMonthKey(c);
+    const month = c.startDate ? key : CALENDAR_MONTHS.find((m) => m.startsWith(key)) ?? '';
+    if (month && byMonth.has(month)) byMonth.get(month)!.push(c);
+    else undated.push(c);
+  }
+  for (const list of byMonth.values()) list.sort((a, b) => (a.startDate ?? '9').localeCompare(b.startDate ?? '9'));
+
+  const byCountry = new Map<string, Concours[]>();
+  for (const c of international) byCountry.set(c.country, [...(byCountry.get(c.country) ?? []), c]);
+  const countries = [...byCountry.keys()].sort();
+
+  const itemList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Concours d\'Elegance Calendar 2026 to 2027',
+    itemListElement: live.map((c, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE}/events/concours/${c.slug}`, name: c.name })),
   };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://fullysorted.com",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Events",
-        item: "https://fullysorted.com/events",
-      },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE },
+      { '@type': 'ListItem', position: 2, name: 'Events', item: `${SITE}/events` },
     ],
   };
 
   return (
-    <main className="min-h-screen" style={{ background: "#faf9f7" }}>
-      <JsonLd data={[itemListSchema, breadcrumbSchema]} />
+    <main className="min-h-screen" style={{ background: '#FAFBFA' }}>
+      <JsonLd data={[itemList, breadcrumb]} />
 
-      {/* Hero */}
-      <section
-        className="relative overflow-hidden"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(15,32,50,0.58), rgba(15,32,50,0.78)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          borderBottom: "1px solid rgba(0,0,0,0.07)",
-        }}
+      <PageHero
+        eyebrow="Events"
+        title="The concours calendar."
+        sub="Judged concours d'elegance only. No auctions, no cars and coffee. Dates come from each organizer's own site; where the next edition is not announced, the page says which month it usually runs."
+        width="6xl"
       >
-        <div
-          className="absolute inset-0 film-grain opacity-[0.05] pointer-events-none"
-          aria-hidden="true"
-        />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
-          <p className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2 text-white/90">
-            Events
-          </p>
-          <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl leading-[1.08] mb-6 text-white">
-            The events worth your weekend.
-            <br />
-            <span style={{ color: "#D9BC7A" }}>
-              Lightly curated.
-            </span>
-          </h1>
-          <p className="text-lg sm:text-xl leading-relaxed max-w-3xl text-white/85">
-            Concours, auctions, tours and cars-and-coffee meets worth the
-            drive. Every event on this list is one we&apos;ve been to, are
-            going to, or are directly involved with.
-          </p>
-        </div>
-        <div
-          className="absolute bottom-0 left-0 right-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, #1E6091 35%, #B08D3F 65%, transparent)",
-          }}
-          aria-hidden="true"
-        />
+        <p className="text-sm mt-5" style={{ fontFamily: MONO, color: MUTED }}>
+          {northAmerica.length} in the US and Canada, {dated} with dates · {international.length} international
+        </p>
+      </PageHero>
+
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+        <ConcoursMap items={northAmerica} />
       </section>
 
-      {/* Events list */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        {/* Live F1 calendar feature */}
-        <Link
-          href="/events/f1"
-          className="group shine block rounded-2xl overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-          style={{ background: "#1a1a18", border: "1px solid #1a1a18" }}
-        >
-          <div className="grid md:grid-cols-[1fr_2fr] gap-0">
-            <div
-              className="p-6 sm:p-8 flex flex-col justify-center"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, rgba(15,32,50,0.7), rgba(30,96,145,0.55)), url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=80')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                borderRight: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              <span
-                className="text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5"
-                style={{ color: "#6ab04c" }}
-              >
-                <Flag className="w-3.5 h-3.5" />
-                Live · Updated daily
-              </span>
-              <p className="text-2xl sm:text-3xl font-black leading-tight mb-1 text-white">
-                2026 Season
-              </p>
-              <p className="text-sm text-white/60">24 rounds · 5 continents</p>
-            </div>
-            <div className="p-6 sm:p-8">
-              <h2 className="font-display font-semibold tracking-tight text-xl sm:text-2xl mb-2 leading-snug text-white">
-                Formula 1 World Championship
-              </h2>
-              <p className="text-sm sm:text-base leading-relaxed mb-4 text-white/70">
-                The complete 2026 F1 calendar with live status: every round,
-                every circuit, every date. Pulled from the official feed and
-                refreshed daily.
-              </p>
-              <div
-                className="inline-flex items-center gap-1.5 text-sm font-semibold"
-                style={{ color: "#D9BC7A" }}
-              >
-                Open the live calendar
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </div>
-            </div>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+        <div className="grid md:grid-cols-[1fr_1fr] gap-4">
+          <Link href="/events/california" className="group rounded-xl p-5 bg-white transition-shadow hover:shadow-md" style={{ border: `1px solid ${RULE}` }}>
+            <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: '0.12em', color: TEAL }}>Field guide</p>
+            <p className="font-display text-xl mt-2" style={{ color: INK }}>California, south and north</p>
+            <p className="text-sm mt-1" style={{ color: MUTED }}>Every judged concours in the state, which ones are gone, and what each is known for.</p>
+            <span className="inline-flex items-center gap-1 text-sm font-semibold mt-3" style={{ color: TEAL }}>
+              Read the guide <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" aria-hidden />
+            </span>
+          </Link>
+          <div className="rounded-xl p-5 bg-white" style={{ border: `1px solid ${RULE}` }}>
+            <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: '0.12em', color: TEAL }}>Showing a car</p>
+            <p className="font-display text-xl mt-2" style={{ color: INK }}>Four weeks is the number.</p>
+            <p className="text-sm mt-1" style={{ color: MUTED }}>
+              Detailing books up, enclosed transport needs lead time, and a pre-event inspection catches what the judges will. Each event page links the three trades with the city already set.
+            </p>
           </div>
-        </Link>
+        </div>
+      </section>
 
-        <div className="space-y-6">
-          {upcoming.length === 0 && (
-            <div
-              className="rounded-2xl bg-white p-6 sm:p-8"
-              style={{ border: "1px solid rgba(0,0,0,0.10)" }}
-            >
-              <p className="font-display font-semibold tracking-tight text-xl" style={{ color: "#1a1a18" }}>
-                Next season&apos;s dates go up as they are announced.
-              </p>
-              <p className="text-sm sm:text-base leading-relaxed mt-2" style={{ color: "#6b6b5e" }}>
-                Know of one that belongs here? Send it in below.
-              </p>
-            </div>
-          )}
-          {[...upcoming, ...past].map((event, i) => {
-            const isPast = i >= upcoming.length;
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+        <h2 className="font-display text-2xl sm:text-3xl mb-6" style={{ color: INK }}>United States and Canada, by month</h2>
+        <div className="space-y-8">
+          {CALENDAR_MONTHS.map((m) => {
+            const list = byMonth.get(m) ?? [];
+            if (list.length === 0) return null;
             return (
-            <Fragment key={event.slug}>
-            {i === upcoming.length && past.length > 0 && (
-              <h2
-                className="pt-6 text-xs font-bold uppercase tracking-widest"
-                style={{ color: "#6b6b5e" }}
-              >
-                Past events
-              </h2>
-            )}
-            <Link
-              href={`/events/${event.slug}`}
-              className="group block rounded-2xl overflow-hidden bg-white hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
-              style={{ border: "1px solid rgba(0,0,0,0.10)", opacity: isPast ? 0.72 : 1 }}
-            >
-              <div className="grid md:grid-cols-[1fr_2fr] gap-0">
-                {/* Date block */}
-                <div
-                  className="p-6 sm:p-8 flex flex-col justify-center"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(30,96,145,0.07), rgba(30,96,145,0.02))",
-                    borderRight: "1px solid rgba(0,0,0,0.05)",
-                  }}
-                >
-                  <span
-                    className="text-xs font-bold uppercase tracking-widest mb-2 text-accent"
-                  >
-                    {event.category}
-                    {isPast ? " · Past" : ""}
-                  </span>
-                  <p
-                    className="text-2xl sm:text-3xl font-black leading-tight mb-1"
-                    style={{ color: "#1a1a18" }}
-                  >
-                    {event.dateLabel}
-                  </p>
-                  <p
-                    className="text-sm flex items-center gap-1.5"
-                    style={{ color: "#6b6b5e" }}
-                  >
-                    <MapPin className="w-3.5 h-3.5" />
-                    {event.city}, {event.region}
-                  </p>
-                </div>
-
-                {/* Body */}
-                <div className="p-6 sm:p-8">
-                  <h2
-                    className="font-display font-semibold tracking-tight text-xl sm:text-2xl mb-2 leading-snug group-hover:text-accent transition-colors"
-                    style={{ color: "#1a1a18" }}
-                  >
-                    {event.title}
-                  </h2>
-                  <p
-                    className="text-sm sm:text-base leading-relaxed mb-4"
-                    style={{ color: "#6b6b5e" }}
-                  >
-                    {event.excerpt}
-                  </p>
-                  <div
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
-                  >
-                    Full event details
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                </div>
+              <div key={m}>
+                <h3 className="text-[11px] uppercase mb-3" style={{ fontFamily: MONO, letterSpacing: '0.12em', color: TEAL }}>{m}</h3>
+                <ul className="divide-y rounded-xl bg-white" style={{ border: `1px solid ${RULE}`, borderColor: RULE }}>
+                  {list.map((c) => <Row key={c.slug} c={c} />)}
+                </ul>
               </div>
-            </Link>
-            </Fragment>
             );
           })}
+          {undated.length > 0 && (
+            <div>
+              <h3 className="text-[11px] uppercase mb-3" style={{ fontFamily: MONO, letterSpacing: '0.12em', color: TEAL }}>Month not yet known</h3>
+              <ul className="divide-y rounded-xl bg-white" style={{ border: `1px solid ${RULE}`, borderColor: RULE }}>
+                {undated.map((c) => <Row key={c.slug} c={c} />)}
+              </ul>
+            </div>
+          )}
         </div>
+      </section>
 
-        {/* Submit CTA */}
-        <div
-          className="mt-12 rounded-2xl p-8 text-center"
-          style={{
-            background: "#fff",
-            border: "1px solid rgba(0,0,0,0.07)",
-          }}
-        >
-          <Calendar
-            className="w-8 h-8 mx-auto mb-3 text-accent"
-          />
-          <h3
-            className="text-xl font-bold mb-2"
-            style={{ color: "#1a1a18" }}
-          >
-            Running an event collectors should know about?
-          </h3>
-          <p
-            className="text-sm mb-4 max-w-xl mx-auto"
-            style={{ color: "#6b6b5e" }}
-          >
-            Send us the details. If it&apos;s the kind of event we&apos;d
-            tell a friend about, it goes on this page. Free to submit.
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+        <h2 className="font-display text-2xl sm:text-3xl mb-2" style={{ color: INK }}>International, by country</h2>
+        <p className="text-sm mb-6 max-w-2xl" style={{ color: MUTED }}>
+          The European season runs May to October. Several of these have not posted a 2027 date, and two (Monaco, Chantilly) may not run at all; the notes say so.
+        </p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {countries.map((country) => (
+            <div key={country}>
+              <h3 className="text-[11px] uppercase mb-3" style={{ fontFamily: MONO, letterSpacing: '0.12em', color: TEAL }}>{country}</h3>
+              <ul className="divide-y rounded-xl bg-white" style={{ border: `1px solid ${RULE}`, borderColor: RULE }}>
+                {byCountry.get(country)!.map((c) => <Row key={c.slug} c={c} />)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+        <div className="rounded-xl p-5 sm:p-6 bg-white" style={{ border: `1px solid ${RULE}` }}>
+          <h2 className="font-display text-xl mb-1" style={{ color: INK }}>Missing one, or have a date we do not?</h2>
+          <p className="text-sm max-w-2xl" style={{ color: MUTED }}>
+            Organizers and entrants: send the event name, the dates and a link to the official page. Judged concours only. There is no fee and no way to pay for a better spot.
           </p>
-          <a
-            href="mailto:chris@fullysorted.com?subject=Event submission"
-            className="inline-flex items-center gap-1.5 text-sm font-bold px-5 py-2.5 rounded-lg text-white bg-accent hover:bg-accent-hover transition-colors"
-          >
-            Submit an event
+          <a href="mailto:hello@fullysorted.com?subject=Concours calendar" className="inline-flex items-center gap-1.5 text-sm font-semibold mt-3 underline underline-offset-4" style={{ color: TEAL }}>
+            hello@fullysorted.com
           </a>
+          <p className="text-xs mt-5" style={{ color: MUTED }}>
+            Also on this site:{' '}
+            <Link href="/events/f1" className="underline underline-offset-4">the Formula 1 calendar</Link>
+            {featureEvents.length > 0 && (
+              <>
+                {' '}and our write-ups of{' '}
+                {featureEvents.map((e, i) => (
+                  <span key={e.slug}>
+                    {i > 0 && ', '}
+                    <Link href={`/events/${e.slug}`} className="underline underline-offset-4">{e.shortName}</Link>
+                  </span>
+                ))}
+                .
+              </>
+            )}
+          </p>
         </div>
       </section>
     </main>
+  );
+}
+
+function Row({ c }: { c: Concours }) {
+  return (
+    <li className="flex flex-col sm:flex-row sm:items-baseline gap-x-4 gap-y-1 px-4 py-3">
+      <Link href={`/events/concours/${c.slug}`} className="font-semibold hover:underline underline-offset-4 min-w-0" style={{ color: INK }}>
+        {c.name}
+      </Link>
+      <span className="text-sm" style={{ color: MUTED }}>
+        {c.city}{c.state ? `, ${c.state}` : ''}
+      </span>
+      <span className="text-sm sm:ml-auto sm:text-right whitespace-nowrap tabular-nums" style={{ color: c.startDate ? INK : MUTED }}>
+        {concoursDateLabel(c)}
+        {c.dateConfidence === 'estimated' && <span style={{ color: MUTED }}> (est.)</span>}
+      </span>
+    </li>
   );
 }

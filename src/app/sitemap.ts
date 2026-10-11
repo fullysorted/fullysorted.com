@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { events } from "@/lib/events";
+import { CONCOURS } from "@/lib/data/concours";
 import { getPublishedModels } from "@/lib/data/models";
 import { getActiveGigs } from "@/lib/data/gigs";
 import { getPublicProviderSlugs } from "@/lib/data/providers";
@@ -82,6 +83,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
+  const concoursPages: MetadataRoute.Sitemap = [
+    { url: `${base}/events/california`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 },
+    ...CONCOURS.map((c) => ({
+      url: `${base}/events/concours/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
 
   // Published model-history pages (empty at build with no DB — safe).
   let modelPages: MetadataRoute.Sitemap = [];
@@ -181,5 +191,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     gigPages = [];
   }
 
-  return [...staticPages, ...categoryPages, ...trackPages, ...eventPages, ...modelPages, ...registerPages, ...providerPages, ...gigPages, ...listingPages];
+  return [...staticPages, ...categoryPages, ...trackPages, ...eventPages, ...concoursPages, ...modelPages, ...registerPages, ...providerPages, ...gigPages, ...listingPages];
 }
