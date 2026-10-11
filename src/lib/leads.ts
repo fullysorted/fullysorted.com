@@ -7,6 +7,8 @@
  * business's inbox, which is not logic to leave untested inside a handler.
  */
 
+import { isPlaceholderEmail } from '@/lib/claim-state';
+
 type Sql = (strings: TemplateStringsArray, ...values: unknown[]) => Promise<Record<string, unknown>[]>;
 
 /**
@@ -67,6 +69,10 @@ export async function resolveRelay(sql: Sql, listingSlug: string | null | undefi
 
   const email = typeof p.email === 'string' ? p.email.trim() : '';
   if (!isEmailAddress(email)) return null;
+  // A seeded profile carries our own outreach+ address. Relaying to it would
+  // tell the owner "sent to the shop" when it went nowhere near the shop.
+  // Returning null sends the lead to Chris, and the form says so.
+  if (isPlaceholderEmail(email)) return null;
 
   const [suppressed] = await sql`
     SELECT 1 FROM outreach_suppression WHERE LOWER(email) = ${email.toLowerCase()} LIMIT 1

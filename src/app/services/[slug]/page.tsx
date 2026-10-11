@@ -22,6 +22,7 @@ import { ShareButton } from '@/components/share/ShareButton';
 import { ProviderBanner } from '@/components/providers/ProviderBanner';
 import { ProviderMark } from '@/components/providers/ProviderMark';
 import { auth } from '@clerk/nextjs/server';
+import { isUnclaimed, isPlaceholderOwner } from '@/lib/claim-state';
 
 export const dynamic = 'force-dynamic';
 
@@ -156,6 +157,12 @@ export default async function ProviderProfilePage({ params }: Props) {
   }
   if (!provider) notFound();
 
+  // A seeded profile the shop has not taken over yet. It shows public facts
+  // only: no owner name we made up, no price band we defaulted, and a plain
+  // line saying who wrote it.
+  const unclaimed = isUnclaimed(provider);
+  const showOwner = !unclaimed && !isPlaceholderOwner(provider.ownerName);
+
   const specialties = provider.specialties ?? [];
   // What this shop says it wants to be sent. All optional, all shop-supplied —
   // nothing here is inferred, and a shop that has told us nothing renders
@@ -203,7 +210,9 @@ export default async function ProviderProfilePage({ params }: Props) {
     // an answer engine asked "who does air-cooled Porsche in San Diego" should
     // find the marque here, not only in the visible copy.
     knowsAbout: [...specialties, ...marques],
-    priceRange: provider.priceRange ?? '$$',
+    // A seeded row carries the route's '$$' default, which is our guess, not
+    // the shop's read. Leave it out until the shop claims the profile.
+    ...(unclaimed ? {} : { priceRange: provider.priceRange ?? '$$' }),
   };
   // Lead photo first, then the gallery. Google and the answer engines both
   // take an array here, and a profile with real work photos on it should say so
@@ -306,8 +315,21 @@ export default async function ProviderProfilePage({ params }: Props) {
             </h1>
 
             <p className="text-sm sm:text-base" style={{ color: '#6B7280' }}>
-              {provider.ownerName} · {formatLocation(provider.location)}
+              {showOwner ? `${provider.ownerName} · ` : ''}{formatLocation(provider.location)}
             </p>
+
+            {unclaimed && (
+              <p className="text-sm mt-3" style={{ color: '#6B7280' }}>
+                Not yet claimed by the shop. This profile was put together from public information.{' '}
+                <Link
+                  href={`/services/apply?claim=${encodeURIComponent(provider.slug)}`}
+                  className="font-medium underline underline-offset-2 hover:text-[#12352A]"
+                  style={{ color: '#1C8C87' }}
+                >
+                  Is this your shop? Claim it
+                </Link>
+              </p>
+            )}
 
               {/* Badges */}
               <div className="flex flex-wrap items-center gap-2 mt-4">
@@ -336,7 +358,7 @@ export default async function ProviderProfilePage({ params }: Props) {
                     ★ {ratingNum.toFixed(1)} ({reviewCount} {reviewCount === 1 ? 'review' : 'reviews'})
                   </a>
                 )}
-                {provider.priceRange && (
+                {provider.priceRange && !unclaimed && (
                   <span
                     className="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full"
                     style={{ background: '#F3F4F6', color: 'var(--text-primary)' }}

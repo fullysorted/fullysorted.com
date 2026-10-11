@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
 import { isTeam } from '@/lib/team-auth';
 import { isEmailAddress } from '@/lib/leads';
+import { isPlaceholderEmail } from '@/lib/claim-state';
 import { ensureAccountLinkColumns, mintAccountLink, LINK_TOKEN_TTL_DAYS } from '@/lib/account-link';
 
 async function getSql() {
@@ -57,6 +58,28 @@ export async function POST(request: NextRequest) {
 
   const sql = await getSql();
   await ensureAccountLinkColumns(sql);
+
+  // Claim model (2026-10-03): a seeded profile holds our own outreach+ address,
+  // not the shop's. Minting a link would mail it to ourselves and tell the
+  // person in front of us to check an inbox that will never get it. Send them
+  // to the form instead, where their real address gets matched to the row.
+  if (providerId) {
+    const [row] = await sql`SELECT email FROM service_providers WHERE id = ${providerId} LIMIT 1`;
+    if (row && isPlaceholderEmail(row.email as string | null)) {
+      if (team) {
+        return NextResponse.json(
+          { error: 'Seeded profile with no shop email yet. Add their email to the row, then send.' },
+          { status: 409 },
+        );
+      }
+      return NextResponse.json({
+        success: true,
+        needsForm: true,
+        message:
+          'This profile was built from public information, so there is no shop email on it yet. Fill in the form below with your shop email and we will match it to this profile, usually within a day.',
+      });
+    }
+  }
 
   const minted = await mintAccountLink(sql, providerId ? { providerId } : { email });
 

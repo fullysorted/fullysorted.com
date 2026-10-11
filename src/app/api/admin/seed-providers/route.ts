@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
+import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 
 function isAdmin(request: NextRequest): boolean {
   const secret = request.cookies.get('fs_admin')?.value;
@@ -112,22 +113,70 @@ export async function POST(request: NextRequest) {
     )
   `;
 
-  const results: Array<{ businessName: string; ok: boolean; id?: number; claimUrl?: string; error?: string }> = [];
+  // Claim model (2026-10-03, strict opt-in 2026-10-07): a seeded row is built
+  // but NOT public. It stays 'pending' with outreach_status 'staged' until the
+  // shop approves it from its claim link, which flips it to 'active'.
+  //
+  // ?dryRun=1 runs every check below and writes nothing. Run it first.
+  const dryRun = new URL(request.url).searchParams.get('dryRun') === '1';
+
+  // Checked once per request, not per row.
+  const suppression = (await sql`
+    SELECT LOWER(COALESCE(business_name, '')) AS name, LOWER(COALESCE(email, '')) AS email,
+           LOWER(COALESCE(domain, '')) AS domain
+    FROM outreach_suppression
+  `) as Array<{ name: string; email: string; domain: string }>;
+  const supNames = new Set(suppression.map((r) => r.name).filter(Boolean));
+  const supEmails = new Set(suppression.map((r) => r.email).filter(Boolean));
+  const supDomains = new Set(suppression.map((r) => r.domain).filter(Boolean));
+
+  const existing = (await sql`
+    SELECT LOWER(business_name) AS name, LOWER(COALESCE(location, '')) AS location,
+           LOWER(COALESCE(website, '')) AS website
+    FROM service_providers
+    WHERE COALESCE(status, '') <> 'rejected'
+  `) as Array<{ name: string; location: string; website: string }>;
+  const existingNameLoc = new Set(existing.map((r) => `${r.name}|${r.location}`));
+  const existingDomains = new Set(existing.map((r) => domainOf(r.website)).filter(Boolean));
+
+  const validCategories = new Set<string>(CATEGORY_OPTIONS.map((c) => c.value));
+  const seenInBatch = new Set<string>();
+
+  type Result = { businessName: string; ok: boolean; id?: number; claimUrl?: string; skipped?: string; error?: string };
+  const results: Result[] = [];
 
   for (const p of providers) {
+    const businessName = String(p.businessName ?? '').trim();
     try {
-      const businessName = p.businessName;
-      const category = p.category;
-      const location = p.location;
-      const description = p.description;
+      const category = String(p.category ?? '').trim();
+      const location = String(p.location ?? '').trim();
+      const description = String(p.description ?? '').trim();
       const specialties = p.specialties || '';
-      const website = p.website || null;
+      const website = p.website ? String(p.website).trim() : null;
       const years = p.yearsInBusiness || null;
+      const domain = domainOf(website);
+      const providedEmail = p.email ? String(p.email).trim().toLowerCase() : '';
 
-      if (!businessName || !category || !location || !description) {
-        results.push({ businessName: businessName || '(missing)', ok: false, error: 'Missing required field' });
-        continue;
+      const skip = (reason: string) => results.push({ businessName: businessName || '(missing)', ok: false, skipped: reason });
+
+      if (!businessName || !category || !location || !description) { skip('missing required field'); continue; }
+      if (!validCategories.has(category)) { skip(`unknown category '${category}'`); continue; }
+      // Title and registration: Chris vets every one by hand. Never seeded.
+      if (category === 'titling') { skip('titling is vetted by hand'); continue; }
+      // Transport: carriers only, never brokers.
+      if (category === 'transport' && (String(p.isBroker ?? '') === 'true' || /\bbroker/i.test(`${businessName} ${description}`))) {
+        skip('transport broker'); continue;
       }
+      if (supNames.has(businessName.toLowerCase()) || (domain && supDomains.has(domain)) || (providedEmail && supEmails.has(providedEmail))) {
+        skip('suppressed'); continue;
+      }
+      const nameLoc = `${businessName.toLowerCase()}|${location.toLowerCase()}`;
+      if (existingNameLoc.has(nameLoc) || (domain && existingDomains.has(domain))) { skip('already on the site'); continue; }
+      if (seenInBatch.has(nameLoc) || (domain && seenInBatch.has(domain))) { skip('duplicate in this batch'); continue; }
+      seenInBatch.add(nameLoc);
+      if (domain) seenInBatch.add(domain);
+
+      if (dryRun) { results.push({ businessName, ok: true }); continue; }
 
       const ownerName = (p.ownerName as string) || 'Outreach Pending';
       const email = (p.email as string) || `outreach+${slugify(businessName).slice(0, 30)}@fullysorted.com`;
@@ -141,14 +190,15 @@ export async function POST(request: NextRequest) {
           (business_name, owner_name, category, location, email, phone, website, years_in_business, specialties, why_list, status)
         VALUES
           (${businessName}, ${ownerName}, ${category}, ${location}, ${email}, ${phone}, ${website}, ${years}, ${specialties},
-           ${'Seeded outreach lead from Fully Sorted SoCal provider research database. Awaiting claim from business owner.'},
+           ${'Seeded profile from public information (claim model). Awaiting approval from the business owner.'},
            'pending')
         RETURNING id
       `;
       const applicationId = appRows[0]?.id ?? null;
 
-      // 2) Insert into service_providers as pending with claim token + outreach status
-      const specialtiesArray = specialties
+      // 2) Insert into service_providers, hidden until approved. price_range is
+      // NULL on purpose: the column default is our guess, not the shop's read.
+      const specialtiesArray = String(specialties)
         .split(',')
         .map((s: string) => s.trim())
         .filter(Boolean);
@@ -160,7 +210,7 @@ export async function POST(request: NextRequest) {
            outreach_status, claim_token)
         VALUES
           (${businessName}, ${ownerName}, ${slug}, ${category}, ${location}, ${email}, ${phone}, ${website}, ${description},
-           ${JSON.stringify(specialtiesArray)}::jsonb, ${years}, '$$', false, false, 'pending', ${applicationId},
+           ${JSON.stringify(specialtiesArray)}::jsonb, ${years}, NULL, false, false, 'pending', ${applicationId},
            'staged', ${claimToken})
         RETURNING id
       `;
@@ -169,16 +219,32 @@ export async function POST(request: NextRequest) {
       results.push({ businessName, ok: true, id: provRows[0]?.id, claimUrl });
     } catch (e) {
       results.push({
-        businessName: p.businessName || '(unknown)',
+        businessName: businessName || '(unknown)',
         ok: false,
         error: e instanceof Error ? e.message : String(e),
       });
     }
   }
 
+  const skipCounts: Record<string, number> = {};
+  for (const r of results) if (r.skipped) skipCounts[r.skipped] = (skipCounts[r.skipped] ?? 0) + 1;
+
   return NextResponse.json({
-    inserted: results.filter((r) => r.ok).length,
-    failed: results.filter((r) => !r.ok).length,
+    dryRun,
+    [dryRun ? 'wouldInsert' : 'inserted']: results.filter((r) => r.ok).length,
+    skipped: results.filter((r) => r.skipped).length,
+    skipCounts,
+    failed: results.filter((r) => !r.ok && !r.skipped).length,
     results,
   });
+}
+
+function domainOf(url: string | null | undefined): string {
+  const t = String(url ?? '').trim().toLowerCase();
+  if (!t) return '';
+  try {
+    return new URL(/^https?:\/\//.test(t) ? t : `https://${t}`).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
 }

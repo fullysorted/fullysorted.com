@@ -54,8 +54,8 @@ function normalizeWebsite(v: string) {
 }
 
 // ─── "Already listed?" ────────────────────────────────────
-function ClaimSearch() {
-  const [q, setQ] = useState('');
+function ClaimSearch({ initialQuery = '' }: { initialQuery?: string }) {
+  const [q, setQ] = useState(initialQuery);
   const [hits, setHits] = useState<Listed[]>([]);
   const [searched, setSearched] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -201,7 +201,15 @@ function ClaimSearch() {
 }
 
 // ─── "Not listed? Add your shop." ─────────────────────────
-export default function ApplyForm({ presetCategory = '' }: { presetCategory?: string }) {
+export default function ApplyForm({
+  presetCategory = '',
+  presetClaim = '',
+}: {
+  presetCategory?: string;
+  // Business name of the profile the "Claim it" link came from, resolved on
+  // the server. Seeds the search so the shop sees its own row first.
+  presetClaim?: string;
+}) {
   const { userId } = useAuth();
   const [form, setForm] = useState({
     businessName: '', ownerName: '', category: presetCategory, location: '', email: '',
@@ -339,7 +347,7 @@ export default function ApplyForm({ presetCategory = '' }: { presetCategory?: st
       </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14 grid gap-8">
-        <ClaimSearch />
+        <ClaimSearch initialQuery={presetClaim} />
 
         <form onSubmit={submit} noValidate className="rounded-2xl bg-white p-5 sm:p-7" style={{ border: `1px solid ${RULE}` }}>
           <p className="text-[11px] uppercase mb-2" style={{ fontFamily: MONO, letterSpacing: '0.12em', color: TEAL }}>
