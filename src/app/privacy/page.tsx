@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "What Fully Sorted collects, why, who sees it, how long we keep it, and the choices you have, including your California privacy rights.",
 };
 
-const LAST_UPDATED = "September 5, 2026";
+const LAST_UPDATED = "October 14, 2026";
 const CONTACT = "chris@fullysorted.com";
 
 /* ------------------------------------------------------------------ */
@@ -301,6 +301,14 @@ export default function PrivacyPage() {
               to train its models. We do not send your account credentials, payment details or
               private messages to any AI provider. Anything generated for you is a draft you can
               edit or discard before it is published.
+            </P>
+            <P>
+              Sort it, the question box on the homepage, is an AI feature for signed-in members.
+              When you ask a question, the question is sent to Anthropic&apos;s API along with
+              relevant pages from Fully Sorted, and the model may run web searches to answer it. We
+              keep each question and its answer with your account so we can see which answers fall
+              short and improve them. Leave personal details out of your questions. You can ask us
+              to delete your question history at any time through the contact page.
             </P>
           </div>
 

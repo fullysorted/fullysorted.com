@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader2, Database } from "lucide-react";
 
 // Phone-friendly front end for POST /api/admin/seed-providers.
@@ -25,6 +25,18 @@ export default function AdminSeedProvidersPage() {
   const [result, setResult] = useState<Summary | null>(null);
   const [sentInfo, setSentInfo] = useState("");
   const [error, setError] = useState("");
+
+  // Handoff from /admin/draft-profile: prefill once, then clear.
+  useEffect(() => {
+    try {
+      const handed = sessionStorage.getItem("fs_seed_payload");
+      if (handed) {
+        sessionStorage.removeItem("fs_seed_payload");
+        // Deferred so the prefill is a normal update, not a render-time cascade.
+        setTimeout(() => setText(handed), 0);
+      }
+    } catch { /* storage blocked: paste by hand */ }
+  }, []);
 
   async function run(dryRun: boolean) {
     setError(""); setResult(null); setSentInfo("");

@@ -35,7 +35,8 @@ export async function POST(request: NextRequest) {
   const { neon } = await import('@neondatabase/serverless');
   const sql = neon(process.env.DATABASE_URL);
 
-  let body: { providers?: Array<Record<string, string>> };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let body: { providers?: Array<Record<string, any>> };
   try {
     body = await request.json();
   } catch {
@@ -101,6 +102,8 @@ export async function POST(request: NextRequest) {
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS claim_token VARCHAR(64) UNIQUE`;
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_sent_at TIMESTAMP`;
   await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS outreach_responded_at TIMESTAMP`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS marques JSONB DEFAULT '[]'::JSONB`;
+  await sql`ALTER TABLE service_providers ADD COLUMN IF NOT EXISTS work_settings JSONB DEFAULT '[]'::JSONB`;
   // Suppression list — businesses that opted out, never re-seed
   await sql`
     CREATE TABLE IF NOT EXISTS outreach_suppression (
@@ -203,15 +206,24 @@ export async function POST(request: NextRequest) {
         .map((s: string) => s.trim())
         .filter(Boolean);
 
+      // From /admin/draft-profile. Only what the shop's own site states; an
+      // empty array means "not stated" and renders nothing (silence is never a no).
+      const strList = (v: unknown, allowed?: string[]) =>
+        Array.isArray(v)
+          ? v.map((x) => String(x).trim()).filter((x) => x && (!allowed || allowed.includes(x))).slice(0, 8)
+          : [];
+      const marques = strList(p.marques);
+      const workSettings = strList(p.workSettings, ['workshop', 'mobile', 'remote']);
+
       const provRows = await sql`
         INSERT INTO service_providers
           (business_name, owner_name, slug, category, location, email, phone, website, description,
            specialties, years_in_business, price_range, verified, founding_provider, status, application_id,
-           outreach_status, claim_token)
+           outreach_status, claim_token, marques, work_settings)
         VALUES
           (${businessName}, ${ownerName}, ${slug}, ${category}, ${location}, ${email}, ${phone}, ${website}, ${description},
            ${JSON.stringify(specialtiesArray)}::jsonb, ${years}, NULL, false, false, 'pending', ${applicationId},
-           'staged', ${claimToken})
+           'staged', ${claimToken}, ${JSON.stringify(marques)}::jsonb, ${JSON.stringify(workSettings)}::jsonb)
         RETURNING id
       `;
 

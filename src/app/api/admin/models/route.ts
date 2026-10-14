@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateModelPage } from '@/lib/ai/generate-model-page';
-import { AI_ASSIST_ENABLED } from '@/lib/features';
+import { AI_ADMIN_DRAFTS_ENABLED } from '@/lib/features';
+
+// A quick research draft is one long Sonnet call with web search: 1 to 4 minutes.
+export const maxDuration = 300;
 
 function isAdmin(request: NextRequest): boolean {
   const cookie = request.cookies.get('fs_admin')?.value;
@@ -57,6 +60,9 @@ export async function POST(request: NextRequest) {
       UPDATE vehicle_models
       SET status='published', published_at=COALESCE(published_at, NOW()), updated_at=NOW()
       WHERE status != 'published'
+        -- An AI quick draft is never bulk-published. It goes live only after a
+        -- person opens it and marks it reviewed or published on its own page.
+        AND NOT (COALESCE(ai_model, '') LIKE '%quick draft%' AND reviewed_at IS NULL)
       RETURNING id
     `) as { id: number }[];
     return NextResponse.json({ success: true, published: rows.length });
@@ -73,34 +79,72 @@ export async function POST(request: NextRequest) {
   }
 
   // action === 'generate' — run the AI agent, store as DRAFT (never auto-publish).
-  if (!AI_ASSIST_ENABLED) {
-    return NextResponse.json({ error: 'AI drafting is turned off (AI_ASSIST_ENABLED).' }, { status: 503 });
+  if (!AI_ADMIN_DRAFTS_ENABLED) {
+    return NextResponse.json({ error: 'AI drafting is turned off (AI_ADMIN_DRAFTS_ENABLED).' }, { status: 503 });
   }
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json({ error: 'ANTHROPIC_API_KEY not configured' }, { status: 503 });
   }
   try {
-    const { page, model: aiModel } = await generateModelPage({ make, model, generation });
+    const { page, model: aiModel, check, usage } = await generateModelPage({
+      make,
+      model,
+      generation,
+      focus: typeof body.focus === 'string' && body.focus.trim() ? body.focus.trim().slice(0, 300) : null,
+    });
+    if (!page?.slug || !/^[a-z0-9-]+\/[a-z0-9-]+$/.test(page.slug)) {
+      return NextResponse.json({ error: `The draft came back with an unusable slug (${page?.slug ?? 'none'}).` }, { status: 502 });
+    }
+
+    // Never overwrite a live page. A published history is replaced by a person,
+    // through a seed file, not by a button.
+    const live = (await sql`SELECT id FROM vehicle_models WHERE slug=${page.slug} AND status='published'`) as { id: number }[];
+    if (live.length) {
+      return NextResponse.json(
+        { error: `${page.slug} is already published. The draft was not saved so the live page is untouched.`, usd: usage.usd },
+        { status: 409 }
+      );
+    }
+
+    const reviewerNotes = [
+      `AI quick draft (${aiModel}), ${new Date().toISOString().slice(0, 10)}. Est. cost $${usage.usd.toFixed(2)}, ${usage.searches} searches.`,
+      check.warnings.length ? `CHECK BEFORE PUBLISHING:\n- ${check.warnings.join('\n- ')}` : 'Mechanical check: clean.',
+      page.gaps ? `Gaps: ${page.gaps}` : '',
+      page.chrisTakeQuestions?.length ? `Chris's Take questions:\n- ${page.chrisTakeQuestions.join('\n- ')}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n\n');
+    const aiLabel = `${aiModel} (quick draft)`;
 
     const inserted = (await sql`
       INSERT INTO vehicle_models
         (slug, make, model, generation, generation_code, year_start, year_end,
          body_styles, engines, production_total, production_notes, notable_trims, specs,
          summary, history, market_notes, what_to_look_for, common_problems, value_trajectory,
-         overall_confidence, status, ai_model, generated_at)
+         overall_confidence, status, ai_model, generated_at, reviewer_notes)
       VALUES
         (${page.slug}, ${page.make}, ${page.model}, ${page.generation}, ${page.generationCode},
          ${page.yearStart}, ${page.yearEnd}, ${JSON.stringify(page.bodyStyles || [])}, ${JSON.stringify(page.engines || [])},
          ${page.productionTotal}, ${page.productionNotes}, ${JSON.stringify(page.notableTrims || [])}, ${JSON.stringify(page.specs || {})},
          ${page.summary}, ${page.history}, ${page.marketNotes}, ${page.whatToLookFor}, ${page.commonProblems}, ${page.valueTrajectory},
-         ${page.overallConfidence}, 'draft', ${aiModel}, NOW())
+         ${page.overallConfidence}, 'draft', ${aiLabel}, NOW(), ${reviewerNotes})
       ON CONFLICT (slug) DO UPDATE SET
+        generation=EXCLUDED.generation, generation_code=EXCLUDED.generation_code,
+        year_start=EXCLUDED.year_start, year_end=EXCLUDED.year_end,
+        body_styles=EXCLUDED.body_styles, engines=EXCLUDED.engines,
+        production_total=EXCLUDED.production_total, production_notes=EXCLUDED.production_notes,
+        notable_trims=EXCLUDED.notable_trims, specs=EXCLUDED.specs,
         summary=EXCLUDED.summary, history=EXCLUDED.history, market_notes=EXCLUDED.market_notes,
         what_to_look_for=EXCLUDED.what_to_look_for, common_problems=EXCLUDED.common_problems,
-        value_trajectory=EXCLUDED.value_trajectory, ai_model=EXCLUDED.ai_model,
-        generated_at=NOW(), status='draft', updated_at=NOW()
+        value_trajectory=EXCLUDED.value_trajectory, overall_confidence=EXCLUDED.overall_confidence,
+        ai_model=EXCLUDED.ai_model, reviewer_notes=EXCLUDED.reviewer_notes,
+        generated_at=NOW(), reviewed_at=NULL, status='draft', updated_at=NOW()
+      WHERE vehicle_models.status <> 'published'
       RETURNING id
     `) as { id: number }[];
+    if (!inserted[0]) {
+      return NextResponse.json({ error: `${page.slug} went live while drafting. Nothing was changed.` }, { status: 409 });
+    }
     const modelId = inserted[0].id;
 
     await sql`DELETE FROM model_claims WHERE model_id=${modelId}`;
@@ -116,15 +160,25 @@ export async function POST(request: NextRequest) {
     }
     for (const c of page.claims || []) {
       const ids = (c.sourceRefs || []).map((ref) => refToId.get(ref)).filter((x): x is number => typeof x === 'number');
-      await sql`INSERT INTO model_claims (model_id, section, claim_text, confidence, status, source_ids, conflict_note)
-                VALUES (${modelId}, ${c.section}, ${c.claimText}, ${c.confidence}, ${c.status}, ${JSON.stringify(ids)}, ${c.conflictNote ?? null})`;
+      // The evidence quote rides in reviewer_note so a reviewer can check it
+      // against the source without a new column.
+      const evidence = (c.evidence || []).map((e) => `[${e.ref}] "${e.quote}"`).join(' ');
+      await sql`INSERT INTO model_claims (model_id, section, claim_text, confidence, status, source_ids, conflict_note, reviewer_note)
+                VALUES (${modelId}, ${c.section}, ${c.claimText}, ${c.confidence}, ${c.status}, ${JSON.stringify(ids)}, ${c.conflictNote ?? null}, ${evidence || null})`;
     }
 
     // Mark queue row drafted if present.
     await sql`UPDATE model_queue SET status='drafted'
               WHERE make=${make} AND model=${model} AND COALESCE(generation,'')=COALESCE(${generation ?? null},'')`;
 
-    return NextResponse.json({ success: true, modelId, slug: page.slug, status: 'draft' });
+    return NextResponse.json({
+      success: true,
+      modelId,
+      slug: page.slug,
+      status: 'draft',
+      warnings: check.warnings,
+      usd: Number(usage.usd.toFixed(2)),
+    });
   } catch (e) {
     return NextResponse.json({ error: (e as Error).message || 'Generation failed' }, { status: 500 });
   }

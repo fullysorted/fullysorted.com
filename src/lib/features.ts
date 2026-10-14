@@ -93,6 +93,31 @@ export const GIG_PAYMENTS_ENABLED: boolean = false;
 export const AI_ASSIST_ENABLED: boolean = false;
 
 /**
+ * AI_ADMIN_DRAFTS_ENABLED (2026-10-14): the two drafters only Chris and the
+ * team see, both behind the /admin password and both draft-only:
+ *   • /admin/models "Draft a new model page"   quick-tier cited history
+ *   • /admin/draft-profile                     claim-model provider profile
+ *
+ * Split from AI_ASSIST_ENABLED on purpose. That flag also switches on a PAID
+ * promise in the listing tiers and the public /sell helper, which still needs
+ * its prompt rewritten to the rules in the credits plan before it ships. This
+ * one touches nothing a visitor can see or pay for.
+ *
+ * Needs ANTHROPIC_API_KEY in Vercel from the credited fullysorted-prod
+ * workspace. Spend shows per call in Vercel logs as "[ai] ... est=$".
+ */
+export const AI_ADMIN_DRAFTS_ENABLED: boolean = true;
+
+/**
+ * SORT_IT_ENABLED (2026-10-14): the question box in the homepage hero
+ * (lib/ai/sort-it.ts, /api/sort-it). Members only, 20 questions a day each,
+ * and a site-wide daily dollar ceiling (env SORT_IT_DAILY_USD, default 10).
+ * False hides the box and the "Powered by AI" line together, so the site
+ * never shows a feature that is off.
+ */
+export const SORT_IT_ENABLED: boolean = true;
+
+/**
  * Owner check-in email on directory leads (2026-10-02).
  *
  * When on, the daily cron /api/cron/lead-checkins sends ONE short email to an

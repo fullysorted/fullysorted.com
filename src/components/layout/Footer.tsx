@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
+import { VALUE_GUIDE_PUBLIC, SORT_IT_ENABLED } from "@/lib/features";
+import { POWERED_BY_AI } from "@/lib/sort-it-shared";
 import { SignupForm } from "@/components/newsletter/SignupForm";
 import { FOR_SALE_SECTIONS } from "@/lib/for-sale";
 
@@ -168,6 +169,14 @@ export function Footer() {
             <Link href="/privacy#your-choices" className="hover:text-white transition-colors" style={{ color: "rgba(245,239,230,0.42)" }}>
               Do Not Sell or Share My Personal Information
             </Link>
+            {SORT_IT_ENABLED && (
+              <>
+                {" "}&nbsp;·&nbsp;{" "}
+                <Link href="/terms#research" className="hover:text-white transition-colors" style={{ color: "rgba(245,239,230,0.42)" }}>
+                  {POWERED_BY_AI}
+                </Link>
+              </>
+            )}
           </p>
           <div className="flex items-center gap-6">
             <a

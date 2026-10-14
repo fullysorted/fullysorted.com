@@ -26,12 +26,21 @@ function Label({ children, hint }: { children: React.ReactNode; hint?: string })
   );
 }
 
-export function WantedForm({ handle, categories }: { handle: string | null; categories: { key: string; label: string }[] }) {
+export function WantedForm({
+  handle,
+  categories,
+  initial,
+}: {
+  handle: string | null;
+  categories: { key: string; label: string }[];
+  /** Prefill from a Sort it answer. Always editable. */
+  initial?: { kind: WantedKind; title: string; body: string; make: string };
+}) {
   const router = useRouter();
-  const [kind, setKind] = useState<WantedKind>("car");
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [make, setMake] = useState("");
+  const [kind, setKind] = useState<WantedKind>(initial?.kind ?? "car");
+  const [title, setTitle] = useState(initial?.title ?? "");
+  const [body, setBody] = useState(initial?.body ?? "");
+  const [make, setMake] = useState(initial?.make ?? "");
   const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
   const [budget, setBudget] = useState("");

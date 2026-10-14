@@ -35,6 +35,7 @@ export default function AdminModelsPage() {
   const [gMake, setGMake] = useState("");
   const [gModel, setGModel] = useState("");
   const [gGen, setGGen] = useState("");
+  const [gFocus, setGFocus] = useState("");
   const [generating, setGenerating] = useState(false);
   const [genMsg, setGenMsg] = useState("");
 
@@ -80,12 +81,14 @@ export default function AdminModelsPage() {
     const res = await fetch("/api/admin/models", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "generate", make: gMake, model: gModel, generation: gGen || null }),
+      body: JSON.stringify({ action: "generate", make: gMake, model: gModel, generation: gGen || null, focus: gFocus || null }),
     });
     const d = await res.json();
-    setGenMsg(res.ok ? `✓ Drafted ${gMake} ${gModel} — review it below.` : `✗ ${d.error}`);
+    const cost = typeof d.usd === "number" ? ` Est. $${d.usd.toFixed(2)}.` : "";
+    const warn = d.warnings?.length ? ` ${d.warnings.length} things to check, listed in the page's reviewer notes.` : " Mechanical check clean.";
+    setGenMsg(res.ok ? `Drafted ${gMake} ${gModel} as a quick draft. Review it below.${warn}${cost}` : `${d.error}${cost}`);
     setGenerating(false);
-    if (res.ok) { setGMake(""); setGModel(""); setGGen(""); load(); }
+    if (res.ok) { setGMake(""); setGModel(""); setGGen(""); setGFocus(""); load(); }
   }
 
   return (
@@ -139,6 +142,11 @@ export default function AdminModelsPage() {
             <label className="block text-xs text-text-secondary mb-1">Generation (optional)</label>
             <input value={gGen} onChange={e => setGGen(e.target.value)} placeholder="993"
               className="h-9 px-3 w-32 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30" />
+          </div>
+          <div>
+            <label className="block text-xs text-text-secondary mb-1">Focus (optional)</label>
+            <input value={gFocus} onChange={e => setGFocus(e.target.value)} placeholder="US cars, manual only"
+              className="h-9 px-3 w-48 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30" />
           </div>
           <button type="submit" disabled={generating}
             className="h-9 px-4 text-sm font-semibold text-white rounded-lg inline-flex items-center gap-2 disabled:opacity-60"

@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { SmartSearch } from "@/components/search/SmartSearch";
+import { SORT_IT_ENABLED } from "@/lib/features";
 import type { SearchModel } from "@/lib/search-intent";
 import { tradeHref } from "@/lib/category-slugs";
 import { motion } from "framer-motion";
@@ -168,7 +169,7 @@ export function Hero({ featured, searchModels = [] }: { featured: FeaturedModel 
                 transition={{ duration: 0.55, delay: 0.2 }}
                 className="relative z-20"
               >
-                <SmartSearch models={searchModels} showExamples examplesColor={CREAM} />
+                <SmartSearch models={searchModels} showExamples examplesColor={CREAM} sortIt={SORT_IT_ENABLED} />
               </motion.div>
               <motion.p
                 initial={{ opacity: 0 }}

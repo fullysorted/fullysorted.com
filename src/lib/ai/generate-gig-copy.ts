@@ -1,13 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk';
-
-let _anthropic: Anthropic | null = null;
-function getAnthropic(): Anthropic {
-  if (!_anthropic) {
-    if (!process.env.ANTHROPIC_API_KEY) throw new Error('ANTHROPIC_API_KEY is not set');
-    _anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-  }
-  return _anthropic;
-}
+import { getAnthropic, MODELS } from './client';
 
 export interface GigCopyInput {
   service: string;       // what they do, e.g. "mobile detailing for air-cooled Porsches"
@@ -51,7 +42,7 @@ Produce a gig draft with three price tiers (Basic / Standard / Premium). Prices 
 
   const anthropic = getAnthropic();
   const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-6',
+    model: MODELS.write,
     max_tokens: 1200,
     messages: [{ role: 'user', content: prompt }],
   });
