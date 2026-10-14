@@ -39,8 +39,16 @@ import { CATEGORY_OPTIONS } from '@/lib/service-categories';
 import type { SortItAnswer, SortItDoor } from '@/lib/sort-it-shared';
 
 const SITE = 'https://www.fullysorted.com';
-const MAX_TURNS = 6;
-const SOFT_USD_CEILING = 0.35;
+/**
+ * Two budgets. "normal" is the first pass. "wide" is the Search wider button:
+ * twice the searches and page reads, more turns, and a higher ceiling. It
+ * counts as two of the member's daily questions.
+ */
+export type SortItMode = 'normal' | 'wide';
+const BUDGET: Record<SortItMode, { turns: number; searches: number; fetches: number; usd: number; effort: 'medium' | 'high' }> = {
+  normal: { turns: 6, searches: 4, fetches: 4, usd: 0.35, effort: 'medium' },
+  wide: { turns: 9, searches: 10, fetches: 8, usd: 0.9, effort: 'high' },
+};
 
 const CATEGORY_LIST = CATEGORY_OPTIONS.map((c) => `${c.value} (${c.label})`).join(', ');
 
@@ -56,7 +64,13 @@ HOW TO WORK
    - If they are hunting for a car or part, search_fully_sorted covers our listings and the Wanted board.
 3. Use web_search when our pages do not answer it, or the question needs something specific or current: a part number, a known fault on a specific engine, a recall, a club or registry, an event, what a specific car sold for. Search with the car's real vocabulary (chassis codes, engine codes, period names). Prefer marque clubs and registries, manufacturer and heritage sites, NHTSA, established US magazines, specialist shops' technical articles, and classic.com for dated sales. Use web_fetch to read the one or two pages that matter rather than trusting a search snippet for a number.
 4. For a hard fact (a spec, a production number, a part number, a date), have it from our model history or from two independent sources. If sources disagree, say so and give both. If you cannot establish it, say it is not documented. Never fill a gap from memory with a confident number.
-5. Stop researching as soon as you can answer well. Then call give_answer exactly once. Never answer in plain text.
+5. If the exact thing is not found, widen before you give up, one step at a time, and stop at the first step that finds something real:
+   a. Other names for the same thing: chassis and engine codes, period and market names, common misspellings, part numbers and their supersessions.
+   b. Close relatives: the adjacent model years, the sister body style, the same engine in another model, an equivalent part from another supplier. Say plainly which you relaxed.
+   c. Wider geography: the whole US, then importable from Canada, the UK, Europe or Japan, with a one-line note on what importing involves.
+   d. Other kinds of source: specialist dealers' inventory pages, marque club classifieds and registries, upcoming auction catalogs, parts specialists, recent sales on classic.com that show who handles these cars.
+   Never relax a must-have the person stated without saying so.
+6. Stop researching as soon as you can answer well. Then call give_answer exactly once. Never answer in plain text.
 
 THE ANSWER
 - 60 to 220 words. Lead with the answer itself in the first sentence. Then the reasoning or the specifics. Short paragraphs; "- " bullets only for steps or a short list. **bold** sparingly. No headings.
@@ -83,7 +97,10 @@ Every answer ends in one door:
 - none: the answer is complete on its own.
 Labels are short and plain: "Find an inspector", "Read the 964 history", "Post a Wanted".
 
-followUps: up to three short questions the person is likely to ask next, in their voice.`;
+followUps: up to three short questions the person is likely to ask next, in their voice.
+
+found: "yes" if you found what they asked for (the answer, or a real candidate car, part or person); "partial" if you found something close but relaxed something, or only part of it; "no" if not. Be honest; "no" with a good next step is a fine answer.
+relaxed: the widening steps you used, in plain words ("looked at 1970-71 cars too", "searched UK dealers"). Empty if none.`;
 
 // ── Tools ────────────────────────────────────────────────────────────────
 
@@ -161,8 +178,10 @@ const TOOLS = [
           required: ['door', 'label'],
         },
         followUps: { type: 'array', items: { type: 'string' } },
+        found: { type: 'string', enum: ['yes', 'partial', 'no'] },
+        relaxed: { type: 'array', items: { type: 'string' } },
       },
-      required: ['answer', 'confidence', 'sources', 'next'],
+      required: ['answer', 'confidence', 'sources', 'next', 'found'],
     },
   },
 ];
@@ -318,7 +337,7 @@ function toInternal(url: unknown): string | null {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function shapeAnswer(raw: any, searched: string[]): SortItAnswer {
+function shapeAnswer(raw: any, searched: string[], mode: SortItMode): SortItAnswer {
   const n = raw?.next ?? {};
   const door: SortItDoor = ['find_pro', 'listing', 'research', 'wanted', 'none'].includes(n.door) ? n.door : 'none';
   let href: string | null = null;
@@ -347,6 +366,9 @@ function shapeAnswer(raw: any, searched: string[]): SortItAnswer {
     next: door === 'none' || !href ? null : { door, label: clip(houseDashes(String(n.label || 'Next step')), 40), href },
     followUps: (Array.isArray(raw?.followUps) ? raw.followUps : []).slice(0, 3).map((f: unknown) => clip(houseDashes(String(f)), 90)),
     searched,
+    found: ['yes', 'partial', 'no'].includes(raw?.found) ? raw.found : 'partial',
+    relaxed: (Array.isArray(raw?.relaxed) ? raw.relaxed : []).slice(0, 4).map((r: unknown) => clip(houseDashes(String(r)), 80)),
+    mode,
   };
 }
 
@@ -356,22 +378,33 @@ const PRICES = { in: 2, out: 10, cacheWrite: 2.5, cacheRead: 0.1 }; // Sonnet 5.
 
 export async function sortIt(
   question: string,
-  onStep: (label: string) => void
+  onStep: (label: string) => void,
+  opts: { mode?: SortItMode; prior?: SortItAnswer | null } = {}
 ): Promise<{ answer: SortItAnswer; usage: UsageTotals; turns: number }> {
+  const mode: SortItMode = opts.mode ?? 'normal';
+  const b = BUDGET[mode];
   const client = getAnthropic();
   const usage: UsageTotals = { input: 0, output: 0, cacheWrite: 0, cacheRead: 0, searches: 0, fetches: 0, usd: 0 };
   const searched = new Set<string>();
   const tools = [
     ...TOOLS,
-    webSearchTool({ maxUses: 4, blockedDomains: ['bringatrailer.com'] }),
-    webFetchTool({ maxUses: 4, maxContentTokens: 6000, blockedDomains: ['bringatrailer.com', 'facebook.com', 'instagram.com'] }),
+    webSearchTool({ maxUses: b.searches, blockedDomains: ['bringatrailer.com'] }),
+    webFetchTool({ maxUses: b.fetches, maxContentTokens: 6000, blockedDomains: ['bringatrailer.com', 'facebook.com', 'instagram.com'] }),
   ];
+  const wideBrief = mode === 'wide'
+    ? `\n\nWIDE SEARCH. The member pressed "Search wider" after a first pass that did not fully find it.` +
+      (opts.prior
+        ? ` The first pass said: "${clip(opts.prior.answer, 600)}" It checked: ${opts.prior.searched.join(', ') || 'unknown'}. It already relaxed: ${opts.prior.relaxed.join('; ') || 'nothing'}.`
+        : '') +
+      ` Do not repeat those searches. Work through every widening step that has not been tried, using more searches and reading the promising pages, and report each candidate with where it is and its source.`
+    : '';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const messages: any[] = [{ role: 'user', content: `Question from a Fully Sorted member:\n\n${question}` }];
+  const messages: any[] = [{ role: 'user', content: `Question from a Fully Sorted member:\n\n${question}${wideBrief}` }];
   let turns = 0;
 
-  for (; turns < MAX_TURNS; turns++) {
-    const lastTurn = turns === MAX_TURNS - 1 || usage.usd > SOFT_USD_CEILING;
+  if (mode === 'wide') onStep('Widening the search');
+  for (; turns < b.turns; turns++) {
+    const lastTurn = turns === b.turns - 1 || usage.usd > b.usd;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const params: any = {
       model: MODELS.write,
@@ -379,7 +412,7 @@ export async function sortIt(
       system: [{ type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } }],
       tools,
       messages,
-      output_config: { effort: 'medium' },
+      output_config: { effort: b.effort },
     };
     const stream = client.messages.stream(params);
     // Live progress for the browser as each search or read finishes.
@@ -413,8 +446,8 @@ export async function sortIt(
     const blocks = msg.content as any[];
     const final = blocks.find((b) => b.type === 'tool_use' && b.name === 'give_answer');
     if (final) {
-      logUsage('sort-it', MODELS.write, usage, `turns=${turns + 1}`);
-      return { answer: shapeAnswer(final.input, [...searched]), usage, turns: turns + 1 };
+      logUsage(`sort-it:${mode}`, MODELS.write, usage, `turns=${turns + 1}`);
+      return { answer: shapeAnswer(final.input, [...searched], mode), usage, turns: turns + 1 };
     }
 
     messages.push({ role: 'assistant', content: blocks });
@@ -425,7 +458,7 @@ export async function sortIt(
       // Answered in prose despite instructions. Use it rather than fail.
       const text = blocks.filter((b) => b.type === 'text').map((b) => b.text).join('\n');
       logUsage('sort-it', MODELS.write, usage, `turns=${turns + 1} prose-fallback`);
-      return { answer: shapeAnswer({ answer: text, confidence: 'low', sources: [], next: { door: 'none', label: '' } }, [...searched]), usage, turns: turns + 1 };
+      return { answer: shapeAnswer({ answer: text, confidence: 'low', sources: [], next: { door: 'none', label: '' }, found: 'partial' }, [...searched], mode), usage, turns: turns + 1 };
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -436,7 +469,7 @@ export async function sortIt(
       if (c.name === 'find_specialists') { searched.add('the Fully Sorted directory'); onStep('Checking the directory'); }
       results.push({ type: 'tool_result', tool_use_id: c.id, content: await runClientTool(c.name, c.input ?? {}) });
     }
-    const nextIsLast = turns + 1 === MAX_TURNS - 1 || usage.usd > SOFT_USD_CEILING;
+    const nextIsLast = turns + 1 === b.turns - 1 || usage.usd > b.usd;
     if (lastTurn || nextIsLast) {
       results.push({ type: 'text', text: 'Research budget reached. Call give_answer now with what you have, and say what you could not confirm.' });
     }
