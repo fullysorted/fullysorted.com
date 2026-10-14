@@ -271,6 +271,57 @@ export default function TeamDashboard() {
     }
   }
 
+  // Bulk invite for the To invite tab. Calls the same per-row endpoint one at a
+  // time. /api/team/invite allows 100 sends an hour, so one run stops at 90.
+  const BULK_CAP = 90;
+  const [bulk, setBulk] = useState<{ running: boolean; sent: number; skipped: number; failed: number; note: string } | null>(null);
+
+  async function sendAllInvites() {
+    const rows = providers.filter((p) => p.outreach_status === "staged" && !!p.claim_token);
+    const real = rows.filter((p) => p.email && !p.email.startsWith("outreach+"));
+    const noEmail = rows.length - real.length;
+    if (real.length === 0) {
+      setBulk({ running: false, sent: 0, skipped: noEmail, failed: 0, note: "No rows in this tab have a real email." });
+      return;
+    }
+    const batch = real.slice(0, BULK_CAP);
+    const extra = real.length - batch.length;
+    const msg = extra > 0
+      ? `Send invites to ${batch.length} shops now? ${extra} more will be left for a run in an hour (the limit is 100 an hour).`
+      : `Send invites to ${batch.length} shops?`;
+    if (!confirm(msg)) return;
+
+    let sent = 0, failed = 0, inARow = 0;
+    const skipped = noEmail;
+    setBulk({ running: true, sent, skipped, failed, note: "" });
+    for (const p of batch) {
+      try {
+        const res = await fetch("/api/team/invite", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: p.id, reminder: false }),
+        });
+        if (res.status === 401) { router.push("/team"); return; }
+        if (!res.ok) throw new Error();
+        sent++; inARow = 0;
+      } catch {
+        failed++; inARow++;
+      }
+      setBulk({ running: true, sent, skipped, failed, note: "" });
+      if (inARow > 5) {
+        setBulk({ running: false, sent, skipped, failed, note: "Stopped after 6 failures in a row. Check the rows below and try again later." });
+        load();
+        return;
+      }
+      await new Promise((r) => setTimeout(r, 1500));
+    }
+    setBulk({
+      running: false, sent, skipped, failed,
+      note: extra > 0 ? `Done for now. ${extra} left. Come back in an hour for the rest.` : "Done.",
+    });
+    load();
+  }
+
   async function copyLink(p: PipelineProvider) {
     if (!p.claim_token) return;
     const url = `https://www.fullysorted.com/services/claim/${p.claim_token}`;
@@ -814,6 +865,26 @@ export default function TeamDashboard() {
             </button>
           )}
         </div>
+
+        {stage === "staged" && !loading && !loadError && providers.length > 0 && (
+          <div className="bg-white rounded-2xl border border-border p-4 space-y-2">
+            <button
+              onClick={sendAllInvites}
+              disabled={!!bulk?.running}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 h-11 text-sm font-semibold text-white rounded-lg disabled:opacity-60"
+              style={{ backgroundColor: "#1E6091" }}
+            >
+              {bulk?.running ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+              Send invites to everyone in this tab
+            </button>
+            {bulk && (
+              <p className="text-sm text-text-secondary">
+                Sent {bulk.sent} · Skipped {bulk.skipped} (no real email) · Failed {bulk.failed}
+                {bulk.note && <span className="block mt-1 text-foreground">{bulk.note}</span>}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Pipeline */}
         <div className="bg-white rounded-2xl border border-border overflow-hidden">

@@ -51,6 +51,7 @@ const nav = [
   { href: "/admin/submissions", label: "Sale Submissions", icon: Inbox },
   { href: "/admin/orders", label: "Orders", icon: DollarSign },
   { href: "/admin/import", label: "Import", icon: Database },
+  { href: "/admin/seed-providers", label: "Seed Providers", icon: Wrench },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

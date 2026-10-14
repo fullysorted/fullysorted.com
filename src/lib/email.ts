@@ -444,7 +444,7 @@ const PROVIDER_EMAIL_FOOTER =
 
 // First invite: "we built your listing — one click to approve it."
 export async function sendProviderInvite(d: ProviderInviteData) {
-  const firstName = (d.ownerName || "").split(" ")[0];
+  const firstName = /^outreach pending$/i.test((d.ownerName || "").trim()) ? "" : (d.ownerName || "").split(" ")[0];
   return sendEmail({
     to: d.to,
     subject: `Your Fully Sorted listing is ready to approve: ${d.businessName}`,
@@ -467,7 +467,7 @@ export async function sendProviderInvite(d: ProviderInviteData) {
 
 // Gentle nudge if the invite hasn't been acted on.
 export async function sendProviderInviteReminder(d: ProviderInviteData) {
-  const firstName = (d.ownerName || "").split(" ")[0];
+  const firstName = /^outreach pending$/i.test((d.ownerName || "").trim()) ? "" : (d.ownerName || "").split(" ")[0];
   return sendEmail({
     to: d.to,
     subject: `Quick reminder: your ${d.businessName} listing is waiting`,
