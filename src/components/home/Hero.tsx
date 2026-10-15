@@ -1,7 +1,6 @@
 "use client";
 
 import { SmartSearch } from "@/components/search/SmartSearch";
-import { SORT_IT_ENABLED } from "@/lib/features";
 import type { SearchModel } from "@/lib/search-intent";
 import { tradeHref } from "@/lib/category-slugs";
 import { motion } from "framer-motion";
@@ -25,9 +24,7 @@ import { TradeIcon } from "@/components/home/TradeIcon";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
-const CREAM = "#FFFFFF";
 const RULE = "rgba(18,53,42,0.14)";
-const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 
 export type FeaturedModel = {
   slug: string;
@@ -55,78 +52,35 @@ const tiles = [
   ...TRADE_CATEGORIES.filter((c) => !LEAD.includes(c.key)),
 ] as typeof TRADE_CATEGORIES;
 
-export function Hero({ featured, searchModels = [] }: { featured: FeaturedModel | null; searchModels?: SearchModel[] }) {
-  const photo = featured?.heroPhoto ?? "/images/services/restoration.jpg";
-  const credit = featured?.heroPhoto
-    ? featured.heroPhotoCredit
-    : "Photo: Egor Vikhrev / Unsplash";
-
+// `featured` is still passed by page.tsx; the white hero does not use it.
+export function Hero({ searchModels = [] }: { featured?: FeaturedModel | null; searchModels?: SearchModel[] }) {
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--bg-primary)" }}>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-5 sm:pt-6">
-        {/* The frame */}
-        <div
-          className="relative rounded-[28px] sm:rounded-[32px]"
-          style={{ background: INK }}
-        >
-          {/* The photo layer clips to the frame. The frame itself does not, so
-              the search suggestions can hang below it. */}
-          <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={photo}
-            alt=""
-            fetchPriority="high"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ opacity: 0.9 }}
-          />
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(90deg, rgba(18,53,42,0.94) 0%, rgba(18,53,42,0.62) 45%, rgba(18,53,42,0.15) 75%)" }}
-          />
-          <div
-            className="absolute inset-0 pointer-events-none lg:hidden"
-            style={{ background: "linear-gradient(180deg, rgba(18,53,42,0.2) 0%, rgba(18,53,42,0.85) 70%)" }}
-          />
-          </div>
-
-          {/* 2026-10-14: three words and the box. Everything else came out of
-              the frame; the search is the hero. Centered, nothing competing. */}
-          <div className="relative p-6 sm:p-10 lg:p-12 flex flex-col items-center justify-center min-h-[400px] lg:min-h-[480px]">
-            <div className="w-full max-w-2xl flex flex-col items-center gap-7 text-center" style={{ color: CREAM }}>
-              <div>
-                <motion.h1
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: 0.05 }}
-                  className="font-display text-[2.4rem] sm:text-[3.2rem] lg:text-[4rem] leading-[1.02] tracking-[-0.02em]"
-                >
-                  Get it sorted.
-                </motion.h1>
-              </div>
-
-              {/* z-index keeps the suggestion list above the trade tiles */}
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.2 }}
-                className="relative z-20 w-full text-left"
-              >
-                <SmartSearch models={searchModels} showExamples={!SORT_IT_ENABLED} examplesColor={CREAM} sortIt={SORT_IT_ENABLED} />
-              </motion.div>
-            </div>
-
-          </div>
-
-          {credit && (
-            <div
-              className="absolute left-5 bottom-3 text-[10px] uppercase hidden sm:block"
-              style={{ fontFamily: MONO, letterSpacing: "0.08em", color: CREAM, opacity: 0.7 }}
-            >
-              {credit}
-            </div>
-          )}
+        {/* 2026-10-14: the white hero. No photo, no gradient: the house rule is
+            one white hero pattern on every header page, and the homepage was
+            the last dark photo hero. A short headline and the plain search,
+            the same box returning visitors already know. The AI answers live
+            on their own page (/sort-it), linked from the menu. */}
+        <div className="relative flex flex-col items-center text-center pt-10 pb-6 sm:pt-16 sm:pb-10">
+          <motion.h1
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="font-display text-[2.4rem] sm:text-[3.4rem] lg:text-[4.2rem] leading-[1.02] tracking-[-0.02em]"
+            style={{ color: INK }}
+          >
+            Collector cars, sorted.
+          </motion.h1>
+          {/* z-index keeps the suggestion list above the trade tiles */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="relative z-20 w-full max-w-2xl mt-7 sm:mt-9 text-left [&>div]:mx-auto [&_.flex-wrap]:justify-center"
+          >
+            <SmartSearch models={searchModels} showExamples examplesColor={INK} />
+          </motion.div>
         </div>
 
         {/* Every live trade, as an icon tile */}

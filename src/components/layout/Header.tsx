@@ -7,6 +7,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { FOR_SALE_HUB, FOR_SALE_SECTIONS, WANTED_LINK } from "@/lib/for-sale";
 import { cn } from "@/lib/utils";
 import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
+import { SORT_IT_ENABLED } from "@/lib/features";
 
 // THE SITE FLOW, left to right: Services (the hub) -> Marketplace -> Research.
 // Keep this order in sync with the homepage sections (src/app/page.tsx), the
@@ -31,6 +32,8 @@ const navEntries: NavEntry[] = [
   { href: "/services", label: "Services" },
   { href: FOR_SALE_HUB.href, label: FOR_SALE_HUB.label, forSale: true },
   { href: "/research/models", label: "Research" },
+  // The AI answers have their own page (2026-10-14); the homepage keeps the plain search.
+  ...(SORT_IT_ENABLED ? [{ href: "/sort-it", label: "Sort it" }] : []),
   { href: "/shop", label: "Shop" },
   { href: "/about", label: "About" },
 ];
