@@ -1,8 +1,11 @@
 "use client";
 
 /**
- * The answer card for "Sort it". Opens under the search box when a question
- * is asked. Streams progress from /api/sort-it (NDJSON) so the member sees
+ * The "Sort it" window (2026-10-14: a dialog, not an inline card). Opens over
+ * the page when a question is asked and does all its work inside: progress,
+ * the answer, Search wider, follow-ups, and a box to ask the next question.
+ * Bottom sheet on a phone, centered window on a desktop. Rendered through a
+ * portal because the hero's animated wrappers would trap a fixed element. Streams progress from /api/sort-it (NDJSON) so the member sees
  * each search as it happens, then shows the answer, its sources, one next
  * step, follow-up questions and the disclaimer.
  *
@@ -10,9 +13,10 @@
  * is enforced on the server too; this is only the friendly version of it.
  */
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useAuth, SignInButton } from "@clerk/nextjs";
-import { ArrowRight, Loader2, Sparkles, X, Telescope } from "lucide-react";
+import { ArrowRight, ArrowUp, Loader2, Sparkles, X, Telescope } from "lucide-react";
 import { renderMarkdownLite } from "@/lib/markdown-lite";
 import {
   SORT_IT_NAME,
@@ -51,6 +55,20 @@ export function SortItPanel({
   const [wide, setWide] = useState<{ question: string; prior: SortItAnswer } | null>(null);
   const asked = useRef<string>("");
   const mode = wide && wide.question === question ? "wide" : "normal";
+  const [followUp, setFollowUp] = useState("");
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  // Escape closes; the page behind does not scroll while the window is open.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+  }, [onClose]);
+
+  // A new question or a wide search starts at the top of the window.
+  useEffect(() => { bodyRef.current?.scrollTo({ top: 0 }); }, [question, mode]);
 
   useEffect(() => {
     const key = `${mode}:${question}`;
@@ -103,20 +121,34 @@ export function SortItPanel({
     return () => ctrl.abort();
   }, [question, isLoaded, isSignedIn, mode, wide]);
 
-  return (
+  const busy = state.kind === "working" || (isSignedIn && state.kind === "idle");
+
+  return createPortal(
     <div
-      className="mt-3 rounded-2xl p-5 sm:p-6 text-left"
-      style={{ background: "#FFFFFF", color: INK, border: `1px solid ${RULE}`, boxShadow: "0 24px 50px -20px rgba(18,53,42,0.4)" }}
-      role="region"
-      aria-live="polite"
-      aria-label={`${SORT_IT_NAME} answer`}
+      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center sm:p-6"
+      style={{ background: "rgba(18,53,42,0.45)", backdropFilter: "blur(3px)" }}
+      onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="flex items-start justify-between gap-3">
-        <p className="text-[15px] font-semibold leading-snug min-w-0 break-words">{question}</p>
-        <button onClick={onClose} aria-label="Close" className="shrink-0 p-1 -m-1 rounded-full hover:opacity-70">
-          <X className="w-4 h-4" style={{ color: MUTED }} />
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={SORT_IT_NAME}
+        className="w-full sm:max-w-xl max-h-[88vh] sm:max-h-[80vh] flex flex-col rounded-t-3xl sm:rounded-3xl text-left overflow-hidden"
+        style={{ background: "#FFFFFF", color: INK, boxShadow: "0 30px 80px -20px rgba(18,53,42,0.55)" }}
+      >
+      {/* Header */}
+      <div className="flex items-center justify-between gap-3 px-5 sm:px-6 py-3.5" style={{ borderBottom: `1px solid ${RULE}` }}>
+        <span className="inline-flex items-center gap-2 text-sm font-bold">
+          <Sparkles className="w-4 h-4" style={{ color: TEAL }} /> {SORT_IT_NAME}
+        </span>
+        <button onClick={onClose} aria-label="Close" autoFocus className="p-1.5 -m-1.5 rounded-full hover:bg-black/5">
+          <X className="w-5 h-5" style={{ color: MUTED }} />
         </button>
       </div>
+
+      {/* Body */}
+      <div ref={bodyRef} className="flex-1 overflow-y-auto px-5 sm:px-6 py-5" aria-live="polite">
+      <p className="text-[17px] font-semibold leading-snug break-words">{question}</p>
 
       {isLoaded && !isSignedIn && (
         <div className="mt-4">
@@ -239,6 +271,43 @@ export function SortItPanel({
           </p>
         </div>
       )}
-    </div>
+      </div>
+
+      {/* Footer: the next question is asked here, not back on the page */}
+      {isSignedIn && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const t = followUp.trim();
+            if (t.length < 3 || busy) return;
+            setFollowUp("");
+            onAsk(t);
+          }}
+          className="flex items-center gap-2 px-4 sm:px-5 py-3"
+          style={{ borderTop: `1px solid ${RULE}` }}
+        >
+          <input
+            value={followUp}
+            onChange={(e) => setFollowUp(e.target.value)}
+            placeholder="Ask a follow-up"
+            aria-label="Ask a follow-up"
+            disabled={busy}
+            className="flex-1 h-11 px-4 rounded-full text-base sm:text-[15px] focus:outline-none disabled:opacity-60"
+            style={{ background: "var(--bg-surface, #F4F4F1)", color: INK }}
+          />
+          <button
+            type="submit"
+            disabled={busy || followUp.trim().length < 3}
+            aria-label="Ask"
+            className="w-11 h-11 rounded-full flex items-center justify-center text-white disabled:opacity-40"
+            style={{ background: TEAL }}
+          >
+            {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowUp className="w-5 h-5" />}
+          </button>
+        </form>
+      )}
+      </div>
+    </div>,
+    document.body
   );
 }

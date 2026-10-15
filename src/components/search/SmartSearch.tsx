@@ -12,7 +12,7 @@ import { useId, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, Wrench, BookOpen, ArrowRight, Sparkles } from "lucide-react";
 import { suggest, type SearchModel, type Suggestion } from "@/lib/search-intent";
-import { SORT_IT_NAME, POWERED_BY_AI, looksLikeQuestion } from "@/lib/sort-it-shared";
+import { SORT_IT_NAME, POWERED_SHORT, looksLikeQuestion } from "@/lib/sort-it-shared";
 import { SortItPanel } from "@/components/search/SortItPanel";
 
 const INK = "#12352A";
@@ -109,7 +109,7 @@ export function SmartSearch({
             aria-autocomplete="list"
             aria-activedescendant={showList && active >= 0 ? `${listId}-${active}` : undefined}
             aria-label={sortIt ? "Ask a question or search for a specialist" : "What does your car need?"}
-            placeholder={sortIt ? "Ask anything, or try brake job or Porsche 911" : "Try brake job, Porsche 911, or transport"}
+            placeholder={sortIt ? "Ask anything about your car" : "Try brake job, Porsche 911, or transport"}
             onChange={(e) => {
               setQ(e.target.value);
               setOpen(true);
@@ -139,7 +139,7 @@ export function SmartSearch({
           className="h-11 px-5 sm:px-7 rounded-full text-[15px] font-bold shrink-0 transition-opacity hover:opacity-90 w-full sm:w-auto"
           style={{ background: TEAL, color: "#FFFFFF" }}
         >
-          {questionMode ? SORT_IT_NAME : buttonLabel}
+          {sortIt ? SORT_IT_NAME : buttonLabel}
         </button>
       </form>
 
@@ -233,8 +233,8 @@ export function SmartSearch({
       )}
 
       {sortIt && !asking && (
-        <p className="mt-3 text-[10.5px] inline-flex items-center gap-1" style={{ color: examplesColor, opacity: 0.65 }}>
-          <Sparkles className="w-3 h-3" aria-hidden /> Ask it anything about your car. {POWERED_BY_AI}
+        <p className="mt-3 text-[10.5px] flex items-center justify-center gap-1" style={{ color: examplesColor, opacity: 0.65 }}>
+          <Sparkles className="w-3 h-3" aria-hidden /> {POWERED_SHORT}
         </p>
       )}
     </div>
