@@ -31,6 +31,13 @@ export interface SortItAnswer {
   followUps: string[];
   /** Which places were searched, so the answer never implies "everywhere". */
   searched: string[];
+  /**
+   * hunt: a car, part or memorabilia to buy, or a car to trace. Only hunts
+   * get "Search wider", and only hunts widen to the whole country and abroad.
+   * pro: a shop or specialist (widens to nearby cities and mobile shops).
+   * question: knowledge (no geography at all).
+   */
+  kind: 'hunt' | 'pro' | 'question';
   /** Did it find what was asked for? Drives the "Search wider" offer. */
   found: 'yes' | 'partial' | 'no';
   /** Widening steps it took, in plain words ("looked at 1970-71 cars too"). */

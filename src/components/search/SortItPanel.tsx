@@ -207,25 +207,22 @@ export function SortItPanel({
             </Link>
           )}
 
-          {state.answer.found !== "yes" && state.answer.mode === "normal" && state.remaining >= SORT_IT_WIDE_COST && (
-            <div className="mt-4 rounded-xl p-4" style={{ background: "rgba(28,140,135,0.06)" }}>
-              <p className="text-sm" style={{ color: INK }}>
-                {state.answer.found === "no" ? "Not found on the first pass." : "Close, but not exactly it."} A wide search tries other names and codes, nearby years, the whole country and abroad, and specialist dealers, clubs and auction catalogs.
-              </p>
+          {state.answer.kind === "hunt" && state.answer.found !== "yes" && state.answer.mode === "normal" && state.remaining >= SORT_IT_WIDE_COST && (
+            <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5">
               <button
                 onClick={() => setWide({ question, prior: state.answer })}
-                className="mt-3 inline-flex items-center gap-2 h-10 px-4 rounded-full text-sm font-bold hover:opacity-90"
+                className="inline-flex items-center gap-2 h-10 px-4 rounded-full text-sm font-bold hover:opacity-90"
                 style={{ color: TEAL, border: `1.5px solid ${TEAL}`, background: "#FFFFFF" }}
               >
                 <Telescope className="w-4 h-4" /> Search wider
               </button>
-              <span className="ml-3 text-[10.5px]" style={{ color: MUTED, opacity: 0.8 }}>Uses {SORT_IT_WIDE_COST} of your questions. Up to two minutes.</span>
+              <span className="text-[10.5px]" style={{ color: MUTED, opacity: 0.8 }}>Nationwide and abroad. Uses {SORT_IT_WIDE_COST} questions.</span>
             </div>
           )}
 
           {state.answer.found === "no" && state.answer.mode === "wide" && (
             <p className="mt-4 text-sm" style={{ color: MUTED }}>
-              The wide search came up empty too. A Wanted post puts it in front of the dealers, shops and owners on Fully Sorted, who often know of cars that are not advertised.
+              Nothing out there yet. A Wanted post puts it where dealers and shops on Fully Sorted can see it.
             </p>
           )}
 

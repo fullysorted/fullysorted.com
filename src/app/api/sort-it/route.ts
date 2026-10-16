@@ -84,11 +84,15 @@ export async function POST(request: NextRequest) {
     // Only the fields the harness reads, trimmed.
     if (mode === 'wide' && body?.prior && typeof body.prior === 'object') {
       const p = body.prior;
+      // Search wider is for hunts only (cars, parts, memorabilia for sale).
+      if (p.kind && p.kind !== 'hunt') {
+        return json({ type: 'error', code: 'failed', message: 'A wider search is for finding a car or part for sale.' }, 400);
+      }
       prior = {
         answer: String(p.answer ?? '').slice(0, 1500),
         searched: Array.isArray(p.searched) ? p.searched.slice(0, 6).map((x: unknown) => String(x).slice(0, 60)) : [],
         relaxed: Array.isArray(p.relaxed) ? p.relaxed.slice(0, 4).map((x: unknown) => String(x).slice(0, 100)) : [],
-        confidence: 'low', sources: [], next: null, followUps: [], found: 'partial', mode: 'normal',
+        confidence: 'low', sources: [], next: null, followUps: [], kind: 'hunt', found: 'partial', mode: 'normal',
       };
     }
   } catch { /* handled below */ }

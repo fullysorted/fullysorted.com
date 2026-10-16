@@ -64,10 +64,14 @@ HOW TO WORK
    - If they are hunting for a car or part, search_fully_sorted covers our listings and the Wanted board.
 3. Use web_search when our pages do not answer it, or the question needs something specific or current: a part number, a known fault on a specific engine, a recall, a club or registry, an event, what a specific car sold for. Search with the car's real vocabulary (chassis codes, engine codes, period names). Prefer marque clubs and registries, manufacturer and heritage sites, NHTSA, established US magazines, specialist shops' technical articles, and classic.com for dated sales. Use web_fetch to read the one or two pages that matter rather than trusting a search snippet for a number.
 4. For a hard fact (a spec, a production number, a part number, a date), have it from our model history or from two independent sources. If sources disagree, say so and give both. If you cannot establish it, say it is not documented. Never fill a gap from memory with a confident number.
-5. If the exact thing is not found, widen before you give up, one step at a time, and stop at the first step that finds something real:
+5. If the exact thing is not found, widen before you give up, one step at a time, and stop at the first step that finds something real. How far you widen depends on what kind of question it is:
+   - A HUNT (a car, part or piece of memorabilia to buy, or a specific car to trace): widen through every step below, including the whole country and abroad.
+   - A PRO (a shop, specialist or service): widen to nearby cities, then the state, then specialists who travel to the car (mobile) or work remotely. Never suggest a shop in another region as if it were local; say how far it is.
+   - A QUESTION (how something works, what goes wrong, specs, history): no geography. Widen only through other names and codes and other kinds of source.
+   The steps:
    a. Other names for the same thing: chassis and engine codes, period and market names, common misspellings, part numbers and their supersessions.
    b. Close relatives: the adjacent model years, the sister body style, the same engine in another model, an equivalent part from another supplier. Say plainly which you relaxed.
-   c. Wider geography: the whole US, then importable from Canada, the UK, Europe or Japan, with a one-line note on what importing involves.
+   c. Wider geography (HUNT only): the whole US, then importable from Canada, the UK, Europe or Japan, with a one-line note on what importing involves.
    d. Other kinds of source: specialist dealers' inventory pages, marque club classifieds and registries, upcoming auction catalogs, parts specialists, recent sales on classic.com that show who handles these cars.
    Never relax a must-have the person stated without saying so.
 6. Stop researching as soon as you can answer well. Then call give_answer exactly once. Never answer in plain text.
@@ -98,6 +102,8 @@ Every answer ends in one door:
 Labels are short and plain: "Find an inspector", "Read the 964 history", "Post a Wanted".
 
 followUps: up to three short questions the person is likely to ask next, in their voice.
+
+kind: "hunt", "pro" or "question", as defined in step 5.
 
 found: "yes" if you found what they asked for (the answer, or a real candidate car, part or person); "partial" if you found something close but relaxed something, or only part of it; "no" if not. Be honest; "no" with a good next step is a fine answer.
 relaxed: the widening steps you used, in plain words ("looked at 1970-71 cars too", "searched UK dealers"). Empty if none.`;
@@ -178,10 +184,11 @@ const TOOLS = [
           required: ['door', 'label'],
         },
         followUps: { type: 'array', items: { type: 'string' } },
+        kind: { type: 'string', enum: ['hunt', 'pro', 'question'] },
         found: { type: 'string', enum: ['yes', 'partial', 'no'] },
         relaxed: { type: 'array', items: { type: 'string' } },
       },
-      required: ['answer', 'confidence', 'sources', 'next', 'found'],
+      required: ['answer', 'confidence', 'sources', 'next', 'kind', 'found'],
     },
   },
 ];
@@ -366,6 +373,7 @@ function shapeAnswer(raw: any, searched: string[], mode: SortItMode): SortItAnsw
     next: door === 'none' || !href ? null : { door, label: clip(houseDashes(String(n.label || 'Next step')), 40), href },
     followUps: (Array.isArray(raw?.followUps) ? raw.followUps : []).slice(0, 3).map((f: unknown) => clip(houseDashes(String(f)), 90)),
     searched,
+    kind: ['hunt', 'pro', 'question'].includes(raw?.kind) ? raw.kind : 'question',
     found: ['yes', 'partial', 'no'].includes(raw?.found) ? raw.found : 'partial',
     relaxed: (Array.isArray(raw?.relaxed) ? raw.relaxed : []).slice(0, 4).map((r: unknown) => clip(houseDashes(String(r)), 80)),
     mode,

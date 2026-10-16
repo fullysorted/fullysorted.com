@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Car, Wrench, Package, Trophy } from "lucide-react";
 import { FOR_SALE_HUB, FOR_SALE_SECTIONS, WANTED_LINK } from "@/lib/for-sale";
 import { cn } from "@/lib/utils";
 import { useAuth, UserButton, SignInButton } from "@clerk/nextjs";
@@ -41,31 +41,31 @@ const NAV_LINK =
 // The supply side in one place (2026-10-03): shops kept missing where to list
 // a service, because the only header way in was "Sell a Car". Shop or service
 // comes first; that is who could not find it.
+//
+// 2026-10-15: trimmed to one line each with an icon. The blurbs and the fees
+// link made a small menu read like a page; fees are shown where people pay.
 const LIST_ITEMS = [
-  { href: "/services/apply", label: "Your shop or service", blurb: "Get your business in the directory. Free for the first 500." },
-  { href: "/sell", label: "A car", blurb: "Private sellers and dealers, one fee, paid once." },
-  { href: "/parts/new", label: "A part, memorabilia or artwork", blurb: "Up for 90 days." },
+  { href: "/sell", label: "Sell a car", icon: Car },
+  { href: "/parts/new?kind=part", label: "Sell parts", icon: Package },
+  { href: "/parts/new?kind=memorabilia", label: "Sell memorabilia", icon: Trophy },
+  { href: "/services/apply", label: "List your shop", icon: Wrench },
 ];
 
 function ListMenu() {
   return (
     <div className="relative group">
       <button type="button" className={`${NAV_LINK} inline-flex items-center gap-1`} aria-haspopup="true">
-        List or sell
+        Sell
         <ChevronDown className="w-3.5 h-3.5 opacity-60 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
       </button>
       <div className="absolute right-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-50">
-        <div className="w-80 rounded-2xl bg-white p-2 shadow-[0_24px_48px_-16px_rgba(18,53,42,0.28)]" style={{ border: "1px solid rgba(18,53,42,0.14)" }}>
+        <div className="w-60 rounded-xl bg-white p-1.5 shadow-[0_16px_36px_-14px_rgba(18,53,42,0.28)]" style={{ border: "1px solid rgba(18,53,42,0.12)" }}>
           {LIST_ITEMS.map((i) => (
-            <Link key={i.href} href={i.href} className="block rounded-xl px-3 py-2.5 hover:bg-surface transition-colors">
-              <span className="block text-sm font-semibold text-foreground">{i.label}</span>
-              <span className="block text-xs text-text-secondary mt-0.5 leading-snug">{i.blurb}</span>
+            <Link key={i.href} href={i.href} className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-surface transition-colors whitespace-nowrap">
+              <i.icon className="w-4 h-4 text-text-secondary shrink-0" aria-hidden />
+              {i.label}
             </Link>
           ))}
-          <div className="border-t border-border my-1.5 mx-3" />
-          <Link href="/pricing" className="block px-3 py-2 text-sm font-medium text-text-secondary hover:text-foreground">
-            How fees work
-          </Link>
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@ export function Header() {
             <ListMenu />
             <Link
               href="/services"
-              className="px-4 py-2 text-sm font-semibold bg-accent text-white rounded-lg hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-8px_rgba(30,96,145,0.55)] transition-all duration-200"
+              className="px-4 py-2 text-sm font-semibold whitespace-nowrap bg-accent text-white rounded-lg hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-8px_rgba(30,96,145,0.55)] transition-all duration-200"
             >
               Find a Pro
             </Link>
@@ -262,14 +262,15 @@ export function Header() {
           >
             Find a Pro
           </Link>
-          <p className="px-4 pt-3 text-xs font-semibold uppercase tracking-widest text-text-secondary">List or sell</p>
+          <p className="px-4 pt-3 text-xs font-semibold uppercase tracking-widest text-text-secondary">Sell</p>
           {LIST_ITEMS.map((i) => (
             <Link
               key={i.href}
               href={i.href}
               onClick={close}
-              className="px-4 py-3 text-base font-medium text-foreground rounded-xl border border-border hover:bg-surface transition-colors"
+              className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground rounded-xl border border-border hover:bg-surface transition-colors"
             >
+              <i.icon className="w-5 h-5 text-text-secondary shrink-0" aria-hidden />
               {i.label}
             </Link>
           ))}
