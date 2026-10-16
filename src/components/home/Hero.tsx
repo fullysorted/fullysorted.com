@@ -1,6 +1,7 @@
 "use client";
 
 import { SmartSearch } from "@/components/search/SmartSearch";
+import { HeaderLines } from "@/components/layout/HeaderLines";
 import type { SearchModel } from "@/lib/search-intent";
 import { tradeHref } from "@/lib/category-slugs";
 import { motion } from "framer-motion";
@@ -62,7 +63,8 @@ export function Hero({ searchModels = [] }: { featured?: FeaturedModel | null; s
             the last dark photo hero. A short headline and the plain search,
             the same box returning visitors already know. The AI answers live
             on their own page (/sort-it), linked from the menu. */}
-        <div className="relative flex flex-col items-center text-center pt-10 pb-6 sm:pt-16 sm:pb-10">
+        <div className="relative flex flex-col items-center text-center pt-14 pb-14 sm:pt-24 sm:pb-24">
+          <HeaderLines />
           <motion.h1
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
