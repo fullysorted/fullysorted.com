@@ -90,7 +90,11 @@ export const GIG_PAYMENTS_ENABLED: boolean = false;
  * To turn it on: put credit on the Anthropic account, confirm ANTHROPIC_API_KEY
  * is set in Vercel, then flip this.
  */
-export const AI_ASSIST_ENABLED: boolean = false;
+// On 2026-10-15, with the credited key in Vercel and the /sell writer
+// rewritten to the credits-plan rules (seller facts only, "What needs
+// attention" asked once, no "Expert take", sign-in, five drafts an hour).
+// The gig copy assistant stays retired regardless (no page calls it).
+export const AI_ASSIST_ENABLED: boolean = true;
 
 /**
  * AI_ADMIN_DRAFTS_ENABLED (2026-10-14): the two drafters only Chris and the

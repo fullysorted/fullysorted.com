@@ -168,6 +168,9 @@ export default function SellForm({ initialCategory = '' }: { initialCategory?: s
     zipCode: '',
     price: '',
     sellerNotes: '',
+    // What needs attention, in the seller's words. Feeds the writer's
+    // "What needs attention" paragraph; never saved on its own.
+    attention: '',
     description: '',
     highlights: [] as string[],
     expertTake: '',
@@ -368,7 +371,12 @@ export default function SellForm({ initialCategory = '' }: { initialCategory?: s
     }
   };
 
-  const generateAIDescription = async () => {
+  // Asked once when "What needs attention" is empty (credits plan rule).
+  const [attentionAsk, setAttentionAsk] = useState<string | null>(null);
+
+  const generateAIDescription = async (noIssuesConfirmed = false) => {
+    setAttentionAsk(null);
+    setSubmitError('');
     setIsGenerating(true);
     try {
       const res = await fetch('/api/ai/describe', {
@@ -379,15 +387,17 @@ export default function SellForm({ initialCategory = '' }: { initialCategory?: s
           mileage: form.mileage, transmission: form.transmission, engine: form.engine,
           exteriorColor: form.exteriorColor, interiorColor: form.interiorColor,
           bodyStyle: form.bodyStyle, sellerNotes: form.sellerNotes,
+          attention: form.attention, noIssuesConfirmed,
         }),
       });
       if (res.ok) {
         const data = await res.json();
+        if (data.ask) { setAttentionAsk(data.ask); return; }
         setForm((prev) => ({
           ...prev,
           description: data.description || prev.description,
           highlights: data.highlights || prev.highlights,
-          expertTake: data.expertTake || prev.expertTake,
+          expertTake: '',
         }));
       } else {
         const data = await res.json();
@@ -994,7 +1004,18 @@ export default function SellForm({ initialCategory = '' }: { initialCategory?: s
               value={form.sellerNotes}
               onChange={(e) => updateField('sellerNotes', e.target.value)}
               rows={4}
-              placeholder={`Tell us what makes this car special. Recent work done? History you know? Quirks?${AI_ASSIST_ENABLED ? " The more you share, the better the AI description." : ""}`}
+              placeholder={`Tell us what makes this car special. Recent work done? History you know? Quirks?${AI_ASSIST_ENABLED ? " The more you share, the better the draft." : ""}`}
+              className={`${inputClass} resize-none`}
+            />
+          </div>
+          <div>
+            <label className={labelClass}>What needs attention?</label>
+            <textarea
+              id="sell-attention"
+              value={form.attention}
+              onChange={(e) => updateField('attention', e.target.value)}
+              rows={3}
+              placeholder="Known issues, deferred work, anything a buyer should know. Buyers trust listings that admit something."
               className={`${inputClass} resize-none`}
             />
           </div>
@@ -1005,14 +1026,14 @@ export default function SellForm({ initialCategory = '' }: { initialCategory?: s
               instead; the description field below is right there. */}
           {!AI_ASSIST_ENABLED ? null : selectedTierConfig.aiDescription ? (
             <button
-              onClick={generateAIDescription}
+              onClick={() => generateAIDescription(false)}
               disabled={isGenerating || !form.year || !form.make || !form.model}
               className="shine flex items-center gap-2 bg-gradient-to-r from-accent to-accent-hover text-white px-6 py-3 rounded-xl font-semibold hover:from-accent-hover hover:to-accent-hover transition disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
             >
               {isGenerating ? (
                 <><Loader2 className="w-5 h-5 animate-spin" /> Writing your listing...</>
               ) : (
-                <><Sparkles className="w-5 h-5" /> Generate AI Description</>
+                <><Sparkles className="w-5 h-5" /> Write it with me</>
               )}
             </button>
           ) : (
@@ -1027,6 +1048,23 @@ export default function SellForm({ initialCategory = '' }: { initialCategory?: s
             </div>
           )}
 
+          {attentionAsk && (
+            <div className="bg-surface rounded-xl p-4">
+              <p className="text-sm font-medium text-foreground">{attentionAsk}</p>
+              <div className="flex flex-wrap gap-3 mt-3">
+                <button
+                  onClick={() => { setAttentionAsk(null); document.getElementById('sell-attention')?.focus(); }}
+                  className="px-4 py-2 rounded-lg text-sm font-semibold bg-accent text-white"
+                >
+                  Add something
+                </button>
+                <button onClick={() => generateAIDescription(true)} className="px-4 py-2 rounded-lg text-sm font-semibold text-text-secondary underline">
+                  Nothing to add, write it
+                </button>
+              </div>
+            </div>
+          )}
+
           {submitError && (
             <div className="bg-red-light border border-red/40 rounded-xl p-4 text-red text-sm">{submitError}</div>
           )}
@@ -1034,9 +1072,9 @@ export default function SellForm({ initialCategory = '' }: { initialCategory?: s
           {form.description && (
             <div className="space-y-4">
               <div>
-                <label className={labelClass}>{AI_ASSIST_ENABLED ? "AI-Generated Description" : "Description"}</label>
+                <label className={labelClass}>Description</label>
                 <textarea value={form.description} onChange={(e) => updateField('description', e.target.value)} rows={8} className={`${inputClass} resize-none`} />
-                <p className="text-xs text-text-tertiary mt-1">Feel free to edit. This is your listing.</p>
+                <p className="text-xs text-text-tertiary mt-1">{AI_ASSIST_ENABLED ? "Drafted by AI from your notes. Read it and fix anything that is not right. It goes out under your name." : "Feel free to edit. This is your listing."}</p>
               </div>
               {form.highlights.length > 0 && (
                 <div>
@@ -1048,15 +1086,6 @@ export default function SellForm({ initialCategory = '' }: { initialCategory?: s
                         <span className="text-sm text-foreground">{h}</span>
                       </div>
                     ))}
-                  </div>
-                </div>
-              )}
-              {form.expertTake && (
-                <div>
-                  <label className={labelClass}>Expert Take</label>
-                  <div className="bg-accent-light border-l-4 border-accent px-4 py-3 rounded-r-lg">
-                    <p className="text-sm italic text-foreground">&ldquo;{form.expertTake}&rdquo;</p>
-                    <p className="text-xs text-accent mt-1">Fully Sorted</p>
                   </div>
                 </div>
               )}

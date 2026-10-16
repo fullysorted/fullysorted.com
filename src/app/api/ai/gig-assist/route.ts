@@ -3,12 +3,15 @@ import { generateGigCopy } from '@/lib/ai/generate-gig-copy';
 import { rateLimit } from '@/lib/rate-limit';
 import { AI_ASSIST_ENABLED } from '@/lib/features';
 
+const GIG_ASSIST_RETIRED = true;
+
 const cap = (v: unknown, n: number) => (v == null ? undefined : String(v).slice(0, n));
 
 export async function POST(request: NextRequest) {
-  // Gated by AI_ASSIST_ENABLED. The key is set but has no credit, so without
-  // this the call reaches Anthropic and fails slowly. Refuse up front.
-  if (!AI_ASSIST_ENABLED) {
+  // Retired 2026-10-14. This served the freelancer gig wizard, which went with
+  // the business/freelancer split. No page calls it, so it stays off even with
+  // AI_ASSIST_ENABLED on: an unused paid endpoint is only an abuse target.
+  if (GIG_ASSIST_RETIRED || !AI_ASSIST_ENABLED) {
     return NextResponse.json({ error: 'AI assistance is turned off right now.' }, { status: 503 });
   }
   if (!process.env.ANTHROPIC_API_KEY) {
