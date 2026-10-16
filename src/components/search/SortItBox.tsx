@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * The question box on /sort-it. One input, one button; the answer opens in
+ * The question box at the top of the Research Hub. One input, one button; the answer opens in
  * the Sort it window (SortItPanel), which does all the work and takes
  * follow-ups. The homepage keeps the plain directory search.
  */

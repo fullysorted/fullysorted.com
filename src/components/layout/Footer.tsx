@@ -24,7 +24,6 @@ const footerLinks = {
   ],
   Research: [
     { href: "/research/models", label: "Model Histories" },
-    ...(SORT_IT_ENABLED ? [{ href: "/sort-it", label: "Sort it: ask a question" }] : []),
     // With the guide hidden the crowdsource form takes its slot — it is the one
     // live path that actually grows the comp set, so it must stay reachable.
     ...(VALUE_GUIDE_PUBLIC

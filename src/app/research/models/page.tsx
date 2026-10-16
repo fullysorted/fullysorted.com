@@ -4,6 +4,8 @@ import { getPublishedModelsWithMetaResult } from "@/lib/data/models";
 import { ModelsDirectory } from "./ModelsDirectory";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ResearchNav } from "@/components/research/ResearchNav";
+import { SortItBox } from "@/components/search/SortItBox";
+import { SORT_IT_ENABLED } from "@/lib/features";
 
 export const revalidate = 3600;
 
@@ -48,7 +50,12 @@ export default async function ModelsIndexPage() {
 
   return (
     <div style={{ background: "var(--bg-primary)" }} className="min-h-screen">
-      <ResearchNav active="models" title="Research Hub" subtitle="Know the car before you buy it." />
+      {/* Sort it lives here (2026-10-15): the research hub is where people
+          arrive with questions, and the model histories are what it reads
+          first. The directory filter below stays: instant, free, no sign-in. */}
+      <ResearchNav active="models" title="Research Hub" subtitle="Know the car before you buy it.">
+        {SORT_IT_ENABLED && <SortItBox />}
+      </ResearchNav>
       <JsonLd data={itemListSchema} />
 
       {/* Directory */}

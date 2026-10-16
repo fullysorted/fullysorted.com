@@ -127,11 +127,14 @@ export function ResearchNav({
   active,
   title,
   subtitle,
+  children,
 }: {
   active: ResearchSection;
   /** Optional page title, rendered above the tabs and aligned with them. */
   title?: string;
   subtitle?: string;
+  /** Under the subtitle: the Research Hub puts the Sort it box here. */
+  children?: React.ReactNode;
 }) {
   return (
     <div className="border-b border-border" style={{ background: "#ffffff" }}>
@@ -149,6 +152,7 @@ export function ResearchNav({
                 {subtitle}
               </p>
             )}
+            {children && <div className="mt-6 sm:mt-8">{children}</div>}
           </header>
         )}
 
