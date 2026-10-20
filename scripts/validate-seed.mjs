@@ -157,8 +157,8 @@ for (const b of ["no commission", "zero commission", "guaranteed", "vetted", "we
 }
 if (/!/.test(prose)) fails.push("exclamation mark in prose");
 if (/—/.test(prose)) fails.push("em dash (U+2014) in prose — rewrite as a sentence or use ' - '");
-if (/\$\s?[\d,]+/.test(o.marketNotes || "") && !/as of (august|september) 2026/i.test(o.marketNotes || "")) fails.push("marketNotes quotes a dollar figure without an 'as of <month> 2026' stamp");
-if (/\$\s?[\d,]+/.test(o.valueTrajectory || "") && !/as of (august|september) 2026/i.test(o.valueTrajectory || "")) fails.push("valueTrajectory quotes a dollar figure without an 'as of <month> 2026' stamp");
+if (/\$\s?[\d,]+/.test(o.marketNotes || "") && !/as of (january|february|march|april|may|june|july|august|september|october|november|december) 20(2[6-9]|[3-9][0-9])/i.test(o.marketNotes || "")) fails.push("marketNotes quotes a dollar figure without an 'as of <month> 2026' stamp");
+if (/\$\s?[\d,]+/.test(o.valueTrajectory || "") && !/as of (january|february|march|april|may|june|july|august|september|october|november|december) 20(2[6-9]|[3-9][0-9])/i.test(o.valueTrajectory || "")) fails.push("valueTrajectory quotes a dollar figure without an 'as of <month> 2026' stamp");
 if (/<[a-z]+[^>]*>/i.test(prose)) fails.push("raw HTML in prose");
 
 
