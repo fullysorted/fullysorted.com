@@ -9,6 +9,7 @@ import Link from 'next/link';
 import ContactLink from '@/components/provider/ContactLink';
 import { ProviderBanner } from '@/components/providers/ProviderBanner';
 import { ProviderMark } from '@/components/providers/ProviderMark';
+import { BotTrap, useBotTrap } from '@/components/BotTrap';
 import { SERVICE_CATEGORIES, TRADE_CATEGORIES, SALES_CATEGORIES, CATEGORY_TINTS } from '@/lib/service-categories';
 import { priceRangeTitle, PRICE_RANGE_KEY } from '@/lib/price-range';
 import { ratingDisplay } from '@/lib/reviews';
@@ -396,6 +397,7 @@ function RequestForm({ need }: { need: string }) {
   const [email, setEmail] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
   const [mailto, setMailto] = useState<string | null>(null);
+  const { hp, setHp, trapFields } = useBotTrap();
 
   if (state === 'sent') {
     return <p className="mt-5 text-sm font-semibold text-stone-900">Got it. We will go and find someone, and email you when we have.</p>;
@@ -417,6 +419,7 @@ function RequestForm({ need }: { need: string }) {
               email,
               subject: `Directory request: ${what.slice(0, 120)}`,
               message: `Looking for: ${what}\nWhere: ${where || 'not given'}`,
+              ...trapFields,
             }),
           });
           const data = await res.json().catch(() => ({}));
@@ -438,6 +441,7 @@ function RequestForm({ need }: { need: string }) {
       <button type="submit" disabled={state === 'sending'} className="h-11 rounded-xl text-sm font-bold text-white bg-accent hover:opacity-90 disabled:opacity-60">
         {state === 'sending' ? 'Sending...' : 'Find me someone'}
       </button>
+      <BotTrap value={hp} onChange={setHp} />
       <p className="text-xs text-center text-stone-500">
         Want more people looking?{' '}
         <Link href="/wanted/new" className="underline font-semibold">Put it on the wanted board</Link>.

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rate-limit";
 import { deliver, undeliverableResponse } from "@/lib/submissions";
+import { checkForBot } from "@/lib/bot-guard";
 
 export async function POST(request: NextRequest) {
   const limited = rateLimit(request, "contact", 5, 60_000);
@@ -12,6 +13,7 @@ export async function POST(request: NextRequest) {
     } catch {
       return NextResponse.json({ error: "Invalid request." }, { status: 400 });
     }
+    if (checkForBot(body, ["message"]).bot) return NextResponse.json({ success: true });
     let { name, email, subject, message } = body;
 
     if (!name || !email || !message) {

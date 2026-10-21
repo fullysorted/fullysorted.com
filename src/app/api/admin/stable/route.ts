@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { matchModelPage } from '@/lib/stable/match';
+import { isAdminRequest } from '@/lib/session-token';
 
 /**
  * Admin view of The Stable.
@@ -14,12 +15,7 @@ import { matchModelPage } from '@/lib/stable/match';
  * the owner sees one, so VINs are returned as the last six characters only and
  * nothing here ever changes a vehicle's visibility.
  */
-function isAdmin(request: NextRequest): boolean {
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const header = request.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 async function getSql() {
   const { neon } = await import('@neondatabase/serverless');

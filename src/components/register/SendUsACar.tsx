@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Mail, Plus } from "lucide-react";
+import { BotTrap, useBotTrap } from "@/components/BotTrap";
 
 /**
  * Open "send us a car" box for the model-history hub and make pages.
@@ -26,6 +27,7 @@ export function SendUsACar({ make }: { make?: string }) {
   const [done, setDone] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [mailto, setMailto] = useState<string | null>(null);
+  const { hp, setHp, trapFields } = useBotTrap();
 
   const set = (k: keyof typeof f, v: string) => setF((p) => ({ ...p, [k]: v }));
   const inputCls =
@@ -40,7 +42,7 @@ export function SendUsACar({ make }: { make?: string }) {
       const res = await fetch("/api/register/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kind: "new_car", ...f }),
+        body: JSON.stringify({ kind: "new_car", ...f, ...trapFields }),
       });
       const d = await res.json().catch(() => ({}));
       if (res.ok) setDone(d.message || "Thank you.");
@@ -118,6 +120,7 @@ export function SendUsACar({ make }: { make?: string }) {
             style={{ background: "#1E6091" }}>
             {busy ? "Sending" : "Send it"}
           </button>
+          <BotTrap value={hp} onChange={setHp} />
         </form>
       )}
     </div>

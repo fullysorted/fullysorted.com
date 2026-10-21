@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
 import { isMuse } from '@/lib/muse-auth';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
+import { checkForBot } from '@/lib/bot-guard';
 import { normalizeChassis, normalizeVin } from '@/lib/register/chassis';
 import { getOrCreateUserByEmail } from '@/lib/identity';
 
@@ -30,8 +31,14 @@ export async function POST(req: NextRequest) {
   } catch {
     return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
   }
+  if (!muse && checkForBot(body, ['body']).bot) {
+    return NextResponse.json({
+      success: true,
+      message: 'Thank you. A person will check this before anything appears.',
+    });
+  }
 
-  const s = (v: unknown, max = 500) => (v == null ? null : String(v).trim().slice(0, max) || null);
+  const s =(v: unknown, max = 500) => (v == null ? null : String(v).trim().slice(0, max) || null);
 
   const kindRaw = String(body.kind ?? '');
   if (!(KINDS as readonly string[]).includes(kindRaw)) {

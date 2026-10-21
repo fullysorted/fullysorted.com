@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Loader2, Send, Check, Plus, Minus } from 'lucide-react';
 import { trackGaEvent } from '@/components/analytics/GoogleAnalytics';
+import { BotTrap, useBotTrap } from '@/components/BotTrap';
 
 // On-site inquiry form for a provider profile.
 //
@@ -82,6 +83,7 @@ export default function ProviderInquiryForm({
   const [transport, setTransport] = useState('');
   const [timeline, setTimeline] = useState('');
   const [budget, setBudget] = useState('');
+  const { hp, setHp, trapFields } = useBotTrap();
 
   function buildBrief() {
     const b: Record<string, string> = {};
@@ -122,6 +124,7 @@ export default function ProviderInquiryForm({
           senderPhone: phone.trim() || undefined,
           messageText: message.trim(),
           brief: buildBrief(),
+          ...trapFields,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -335,6 +338,7 @@ export default function ProviderInquiryForm({
         Goes to {businessName}. We keep a copy so we can chase it up if they don&rsquo;t reply, and we never pass
         your details to anyone else.
       </p>
+      <BotTrap value={hp} onChange={setHp} />
     </form>
   );
 }

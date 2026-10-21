@@ -1,12 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { upsertResults, parseCsv, type RawResult } from '@/lib/server/ingestResults';
+import { isAdminRequest } from '@/lib/session-token';
 
-function isAdmin(req: NextRequest): boolean {
-  const cookie = req.cookies.get('fs_admin')?.value;
-  const header = req.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 // POST /api/admin/import/auction-results
 // Body: { rows: [...] }  OR  { csv: "..." }  OR  { json: "[...]" }  (+ optional source)

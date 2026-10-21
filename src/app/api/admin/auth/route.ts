@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { rateLimit } from '@/lib/rate-limit';
-
-const ADMIN_COOKIE = 'fs_admin';
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
+import { ADMIN_COOKIE, SESSION_MAX_AGE, makeSessionToken, safeEqual } from '@/lib/session-token';
 
 export async function POST(request: NextRequest) {
   // The admin key is a single shared password on a live site and this endpoint
@@ -34,18 +32,20 @@ export async function POST(request: NextRequest) {
   }
 
   const supplied = typeof secret === 'string' ? secret.trim() : '';
-  if (supplied !== adminSecret) {
+  if (!safeEqual(supplied, adminSecret)) {
     return NextResponse.json({ error: 'Invalid secret' }, { status: 401 });
   }
 
   const cookieStore = await cookies();
-  // The cookie carries the TRIMMED value, which is what middleware and
-  // lib/team-auth.ts both compare against.
-  cookieStore.set(ADMIN_COOKIE, adminSecret, {
+  // The cookie carries a signed, expiring session token (never the secret),
+  // keyed by the TRIMMED secret, which is what middleware and the API route
+  // helpers in lib/session-token.ts verify against.
+  cookieStore.set(ADMIN_COOKIE, makeSessionToken('admin', adminSecret), {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
+    // 'lax' so an /admin link opened from email or a text keeps the session.
     sameSite: 'lax',
-    maxAge: COOKIE_MAX_AGE,
+    maxAge: SESSION_MAX_AGE,
     path: '/',
   });
 

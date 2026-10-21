@@ -3,13 +3,9 @@ import { getDb, schema } from '@/lib/db';
 import { desc, eq } from 'drizzle-orm';
 import { releaseGigOrder } from '@/lib/server/gigRelease';
 import { refundGigOrder } from '@/lib/server/gigRefund';
+import { isAdminRequest } from '@/lib/session-token';
 
-function isAdmin(request: NextRequest): boolean {
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const header = request.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 // GET /api/admin/orders — every gig order across the marketplace + summary.
 export async function GET(request: NextRequest) {

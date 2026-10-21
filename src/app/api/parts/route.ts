@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { neon } from '@neondatabase/serverless';
 import { rateLimit } from '@/lib/rate-limit';
+import { checkForBot } from '@/lib/bot-guard';
 import { resolveCurrentUser } from '@/lib/identity';
 import { setHandle } from '@/lib/wanted';
 import { ensurePartsTables, parsePartsInput, getPartsAccess } from '@/lib/parts';
@@ -30,6 +31,7 @@ export async function POST(req: NextRequest) {
   let raw: Record<string, unknown>;
   try { raw = await req.json(); } catch { return NextResponse.json({ error: 'Invalid request' }, { status: 400 }); }
   if (raw.website) return NextResponse.json({ ok: true }); // honeypot
+  if (checkForBot(raw, ['body']).bot) return NextResponse.json({ ok: true });
   if (raw.agree !== true) return NextResponse.json({ error: 'Please confirm the listing rules.' }, { status: 400 });
 
   // A model link is only kept when it points at a published model history.

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { isAdminRequest } from '@/lib/session-token';
 
 /**
  * Database setup/migration endpoint.
@@ -9,8 +10,7 @@ import { NextResponse } from 'next/server';
  */
 
 export async function POST(request: Request) {
-  const secret = request.headers.get('x-admin-secret');
-  if (!process.env.ADMIN_SECRET || secret !== process.env.ADMIN_SECRET) {
+  if (!isAdminRequest(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

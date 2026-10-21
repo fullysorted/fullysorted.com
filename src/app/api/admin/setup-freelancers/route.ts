@@ -1,12 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isAdminRequest } from '@/lib/session-token';
 
-// Auth: header x-admin-secret OR fs_admin cookie.
-function isAuthorized(request: NextRequest): boolean {
-  const header = request.headers.get('x-admin-secret');
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (header === secret || cookie === secret);
-}
+// Auth: header x-admin-secret OR signed fs_admin session cookie.
+const isAuthorized = isAdminRequest;
 
 // Creates the gig tables and adds freelancer columns. Idempotent — safe to re-run.
 export async function POST(request: NextRequest) {

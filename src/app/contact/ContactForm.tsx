@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { CheckCircle, Mail } from "lucide-react";
+import { BotTrap, useBotTrap } from "@/components/BotTrap";
 
 export function ContactForm() {
   const [fields, setFields] = useState({ name: "", email: "", subject: "General Question", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const [mailto, setMailto] = useState<string | null>(null);
+  const { hp, setHp, trapFields } = useBotTrap();
 
   const inputStyle = {
     border: "1.5px solid rgba(0,0,0,0.12)",
@@ -27,7 +29,7 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({ ...fields, ...trapFields }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
@@ -152,6 +154,11 @@ export function ContactForm() {
         >
           {status === "loading" ? "Sending…" : "Send Message"}
         </button>
+        <p className="text-xs text-center" style={{ color: "#6b6b5e" }}>
+          No puzzles to solve. Scripts get turned away at the door.{" "}
+          <a href="/trust#security" className="underline">How</a>
+        </p>
+        <BotTrap value={hp} onChange={setHp} />
       </form>
     </div>
   );

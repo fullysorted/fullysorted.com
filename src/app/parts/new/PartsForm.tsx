@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Camera, X, Loader2 } from "lucide-react";
+import { BotTrap, useBotTrap } from "@/components/BotTrap";
 import { PARTS_KINDS, PARTS_CONDITIONS, PARTS_SHIPPING, PARTS_MAX_PHOTOS, PARTS_ITEM_FEE_CENTS, PARTS_PLAN_CENTS, PARTS_PLAN_MAX_LIVE, centsLabel, categoriesFor, partsCategory, type PartsKind, type PartsAccess } from "@/lib/parts-shared";
 
 const INK = "#12352A";
@@ -56,6 +57,7 @@ export function PartsForm({ handle, models, presetModelSlug, presetKind, presetS
   const [state, setState] = useState<"idle" | "sending">("idle");
   const [error, setError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const { hp, setHp, trapFields } = useBotTrap();
 
   // Live username check, debounced so typing does not spray requests.
   useEffect(() => {
@@ -113,7 +115,7 @@ export function PartsForm({ handle, models, presetModelSlug, presetKind, presetS
       const res = await fetch("/api/parts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kind, category, title, body, make, model, modelSlug, partNumber, condition, price, location, shipping, photos, handle: newHandle, agree, website, ...(access.mode === "pay" ? { pay } : {}) }),
+        body: JSON.stringify({ kind, category, title, body, make, model, modelSlug, partNumber, condition, price, location, shipping, photos, handle: newHandle, agree, website, ...trapFields, ...(access.mode === "pay" ? { pay } : {}) }),
       });
       const d = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -261,6 +263,7 @@ export function PartsForm({ handle, models, presetModelSlug, presetKind, presetS
       {/* Honeypot: people never see it, bots fill it in. */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)}
         className="absolute -left-[9999px] w-px h-px opacity-0" aria-hidden />
+      <BotTrap value={hp} onChange={setHp} />
 
       <label className="flex items-start gap-3 cursor-pointer">
         <input type="checkbox" required checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-1 w-5 h-5 accent-[#1C8C87]" />

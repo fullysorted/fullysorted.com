@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ensureReviewTable, REVIEW_REMINDER_DAYS, REVIEW_INVITE_EXPIRY_DAYS } from '@/lib/reviews';
+import { isAdminRequest } from '@/lib/session-token';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,10 +12,7 @@ function authorized(req: NextRequest): boolean {
   const auth = req.headers.get('authorization') || '';
   const cronSecret = process.env.CRON_SECRET;
   if (cronSecret && auth === `Bearer ${cronSecret}`) return true;
-  const admin = process.env.ADMIN_SECRET;
-  if (admin && (req.headers.get('x-admin-secret') === admin || req.cookies.get('fs_admin')?.value === admin)) {
-    return true;
-  }
+  if (isAdminRequest(req)) return true;
   return false;
 }
 

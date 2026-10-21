@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
+import { checkForBot } from '@/lib/bot-guard';
 import { ensureReviewTable, normalizeRating } from '@/lib/reviews';
 import { getOrCreateUserByEmail } from '@/lib/identity';
 
@@ -61,8 +62,9 @@ export async function POST(request: NextRequest) {
   } catch {
     return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
   }
+  if (checkForBot(body, ['body']).bot) return NextResponse.json({ success: true, businessName: null });
 
-  const token = String(body.token ?? '').trim();
+  const token =String(body.token ?? '').trim();
   const authorName = String(body.authorName ?? '').trim();
   const text = String(body.body ?? '').trim();
   const vehicle = String(body.vehicle ?? '').trim() || null;

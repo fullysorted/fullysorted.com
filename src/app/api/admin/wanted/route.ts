@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ensureWantedTables, WANTED_DAYS } from '@/lib/wanted';
 import { sendWantedApproved } from '@/lib/email';
+import { isAdminRequest } from '@/lib/session-token';
 
 /**
  * Admin moderation for the Wanted board.
@@ -8,12 +9,7 @@ import { sendWantedApproved } from '@/lib/email';
  * POST { action: 'approve' | 'reject' | 'remove' | 'reopen', id, note? }
  * Approving starts the 60-day clock and emails the poster once.
  */
-function isAdmin(request: NextRequest): boolean {
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const header = request.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 async function getSql() {
   const { neon } = await import('@neondatabase/serverless');

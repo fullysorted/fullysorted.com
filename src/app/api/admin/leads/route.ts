@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stageOf, JOB_STATUSES } from '@/lib/lead-stages';
+import { isAdminRequest } from '@/lib/session-token';
 
-function isAdmin(request: NextRequest): boolean {
-  const secret = request.cookies.get('fs_admin')?.value;
-  return !!process.env.ADMIN_SECRET && secret === process.env.ADMIN_SECRET;
-}
+const isAdmin = isAdminRequest;
 
 async function getSql() {
   const { neon } = await import('@neondatabase/serverless');

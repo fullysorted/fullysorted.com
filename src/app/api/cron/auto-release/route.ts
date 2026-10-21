@@ -3,6 +3,7 @@ import { getDb, schema } from '@/lib/db';
 import { and, eq, lt } from 'drizzle-orm';
 import { AUTO_RELEASE_DAYS } from '@/lib/payments';
 import { releaseGigOrder } from '@/lib/server/gigRelease';
+import { isAdminRequest } from '@/lib/session-token';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,8 +15,7 @@ function authorized(req: NextRequest): boolean {
   const auth = req.headers.get('authorization') || '';
   const cronSecret = process.env.CRON_SECRET;
   if (cronSecret && auth === `Bearer ${cronSecret}`) return true;
-  const admin = process.env.ADMIN_SECRET;
-  if (admin && (req.headers.get('x-admin-secret') === admin || req.cookies.get('fs_admin')?.value === admin)) return true;
+  if (isAdminRequest(req)) return true;
   // SECURITY: default DENY. A misconfigured deploy must not leave an endpoint
   // that moves money (releases held funds) open to the public.
   return false;

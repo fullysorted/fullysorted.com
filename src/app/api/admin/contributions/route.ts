@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isAdminRequest } from '@/lib/session-token';
 
 /**
  * Admin review for owner contributions to model histories.
@@ -9,12 +10,7 @@ import { NextRequest, NextResponse } from 'next/server';
  * published_at. Nothing here ever edits the cited research itself — if a
  * correction is right, Chris still updates the model page deliberately.
  */
-function isAdmin(req: NextRequest): boolean {
-  const cookie = req.cookies.get('fs_admin')?.value;
-  const header = req.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 async function getSql() {
   const { neon } = await import('@neondatabase/serverless');

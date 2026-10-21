@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import type { RegisterSeed, RegisterSeedChassis } from '@/lib/data/register';
 import { normalizeChassis, normalizeVin, EVENT_TYPES, OUTCOMES, SOURCE_TYPES, EVENT_STATUSES } from '@/lib/register/chassis';
 import { REGISTER_SEEDS } from '@/lib/data/register/index';
+import { isAdminRequest } from '@/lib/session-token';
 
 /**
  * Upserts chassis-register seed files into registry_chassis / registry_events.
@@ -22,12 +23,7 @@ import { REGISTER_SEEDS } from '@/lib/data/register/index';
 
 export const maxDuration = 300;
 
-function isAdmin(request: NextRequest): boolean {
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const header = request.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 async function getSql() {
   const { neon } = await import('@neondatabase/serverless');

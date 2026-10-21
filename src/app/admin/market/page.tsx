@@ -71,16 +71,9 @@ export default function AdminMarketPage() {
   async function triggerScrape() {
     setScraping(true);
     setScrapeMsg("");
-    // Get admin cookie value
-    const cookieVal = document.cookie
-      .split(";")
-      .map(c => c.trim())
-      .find(c => c.startsWith("fs_admin="))
-      ?.split("=")[1];
-
+    // The httpOnly admin session cookie goes along automatically (same origin).
     const res = await fetch("/api/scrape", {
       method: "POST",
-      headers: { "x-admin-secret": cookieVal || "" },
     });
     const data = await res.json();
     setScrapeMsg(

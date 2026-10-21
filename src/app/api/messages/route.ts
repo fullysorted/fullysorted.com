@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
 import { isMuse } from '@/lib/muse-auth';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
+import { checkForBot } from '@/lib/bot-guard';
 import { randomBytes } from 'crypto';
 import { resolveRelay, isEmailAddress, normalizeBrief, briefToText, type Relay } from '@/lib/leads';
 import { getOrCreateUserByEmail } from '@/lib/identity';
@@ -26,6 +27,10 @@ export async function POST(request: NextRequest) {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
+  }
+  // Public enquiries only; Muse requests are authenticated and skip the filter.
+  if (!muse && checkForBot(body, ['messageText']).bot) {
+    return NextResponse.json({ success: true, saved: true, relayed: false });
   }
 
   const {
