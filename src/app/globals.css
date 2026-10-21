@@ -318,3 +318,22 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .fs-nl-drive, .fs-nl-letter, .fs-nl-wheel, .fs-nl-popup { animation: none; }
 }
+
+/* "Powered by AI" badge on the Research Hub: one slow light sweep across the
+   words on load, again on hover. Static teal for reduced motion. */
+@keyframes fs-ai-sweep { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+.fs-ai-text {
+  background: linear-gradient(100deg, #1C8C87 0%, #1C8C87 40%, #7FD4CF 50%, #1C8C87 60%, #1C8C87 100%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fs-ai-sweep 2.4s ease-in-out 400ms 1 both;
+}
+@keyframes fs-ai-sweep-again { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+.fs-ai-badge:hover .fs-ai-text { animation: fs-ai-sweep-again 1.6s ease-in-out 1 both; }
+@media (prefers-reduced-motion: reduce) {
+  .fs-ai-text { animation: none; background: none; color: #1C8C87; }
+  .fs-ai-badge:hover .fs-ai-text { animation: none; }
+}

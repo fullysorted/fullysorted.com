@@ -6,6 +6,12 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ResearchNav } from "@/components/research/ResearchNav";
 import { SortItBox } from "@/components/search/SortItBox";
 import { SORT_IT_ENABLED } from "@/lib/features";
+import { PoweredByAi } from "@/components/research/PoweredByAi";
+
+const INK = "#12352A";
+const MUTED = "#6B7280";
+const RULE = "rgba(18,53,42,0.14)";
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 
 export const revalidate = 3600;
 
@@ -27,6 +33,39 @@ export default async function ModelsIndexPage() {
     source_count: m.source_count, claim_count: m.claim_count, disputed_count: m.disputed_count,
       hero_photo: m.hero_photo ?? null,
   }));
+
+  // The figures beside the title. Counted from what is published, never
+  // rounded up; the panel goes when there is nothing to count.
+  const makeCount = new Set(models.map((m) => m.slug.split("/")[0])).size;
+  const sourceCount = models.reduce((n, m) => n + (m.source_count ?? 0), 0);
+  const stats = [
+    { value: models.length, label: models.length === 1 ? "Model history" : "Model histories" },
+    { value: makeCount, label: makeCount === 1 ? "Make" : "Makes" },
+    ...(sourceCount > 0 ? [{ value: sourceCount, label: "Sources cited" }] : []),
+  ];
+  const statsPanel = models.length > 0 ? (
+    <div className="lg:border-l lg:pl-8" style={{ borderColor: RULE }}>
+      <dl className="grid grid-cols-3 lg:grid-cols-1">
+        {stats.map((st, i) => (
+          <div
+            key={st.label}
+            className={`flex flex-col-reverse lg:py-4 ${i > 0 ? "border-l pl-4 lg:border-l-0 lg:pl-0 lg:border-t" : "lg:pt-0"}`}
+            style={{ borderColor: RULE }}
+          >
+            <dt className="mt-2 text-[10.5px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: MUTED }}>
+              {st.label}
+            </dt>
+            <dd className="font-display tracking-tight text-3xl sm:text-4xl leading-none" style={{ color: INK }}>
+              {st.value.toLocaleString()}
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <p className="hidden lg:block border-t pt-4 text-[13px] leading-relaxed" style={{ color: MUTED, borderColor: RULE }}>
+        Every claim cited. Disputed figures flagged, not smoothed over.
+      </p>
+    </div>
+  ) : null;
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -53,7 +92,13 @@ export default async function ModelsIndexPage() {
       {/* Sort it lives here (2026-10-15): the research hub is where people
           arrive with questions, and the model histories are what it reads
           first. The directory filter below stays: instant, free, no sign-in. */}
-      <ResearchNav active="models" title="Research Hub" subtitle="Know the car before you buy it.">
+      <ResearchNav
+        active="models"
+        title="Research Hub"
+        subtitle="Know the car before you buy it."
+        eyebrow={SORT_IT_ENABLED ? <PoweredByAi /> : undefined}
+        aside={statsPanel}
+      >
         {SORT_IT_ENABLED && <SortItBox />}
       </ResearchNav>
       <JsonLd data={itemListSchema} />

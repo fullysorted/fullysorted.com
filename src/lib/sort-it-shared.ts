@@ -7,9 +7,9 @@
 export const SORT_IT_NAME = 'Sort it';
 
 /** The fun line. Dry, true, and says AI plainly. */
-export const POWERED_BY_AI = 'Powered by superintelligence. Raised on shop manuals.';
-/** The three-word version under the hero search box. */
-export const POWERED_SHORT = 'Powered by superintelligence';
+export const POWERED_BY_AI = 'Powered by AI. Raised on shop manuals.';
+/** The three-word version: the Research Hub badge and under the hero search box. */
+export const POWERED_SHORT = 'Powered by AI';
 
 /** Shown under every answer. */
 export const SORT_IT_DISCLAIMER =

@@ -6,13 +6,14 @@
  * follow-ups. The homepage keeps the plain directory search.
  */
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { SortItPanel } from "@/components/search/SortItPanel";
-import { SORT_IT_NAME, POWERED_SHORT } from "@/lib/sort-it-shared";
+import { SORT_IT_NAME } from "@/lib/sort-it-shared";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
 const MUTED = "#6B7280";
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', Menlo, monospace";
 
 const EXAMPLES = [
   "What goes wrong on a Mercedes Pagoda?",
@@ -36,7 +37,7 @@ export function SortItBox() {
       <form
         onSubmit={(e) => { e.preventDefault(); ask(q); }}
         className="flex flex-col sm:flex-row sm:items-center gap-2 rounded-[22px] sm:rounded-full p-2"
-        style={{ background: "#FFFFFF", boxShadow: "0 1px 0 rgba(18,53,42,0.06), 0 18px 40px -18px rgba(18,53,42,0.35)", border: "1px solid rgba(18,53,42,0.12)" }}
+        style={{ background: "#FFFFFF", boxShadow: "0 1px 2px rgba(18,53,42,0.05), 0 24px 48px -28px rgba(18,53,42,0.38)", border: "1px solid rgba(18,53,42,0.14)" }}
       >
         <label className="flex-1 flex items-center gap-3 pl-3 sm:pl-4 min-w-0">
           <Sparkles className="w-5 h-5 shrink-0" style={{ color: TEAL }} aria-hidden />
@@ -58,22 +59,35 @@ export function SortItBox() {
           {SORT_IT_NAME}
         </button>
       </form>
-      <p className="mt-3 text-[10.5px] flex items-center gap-1" style={{ color: MUTED, opacity: 0.8 }}>
-        <Sparkles className="w-3 h-3" aria-hidden /> {POWERED_SHORT}. Members, 20 questions a day.
+      {/* Fine print, smaller than body text. "Powered by AI" sits in the
+          badge above the title; the daily limit lives in the answer window. */}
+      <p className="mt-3 pl-1 text-[11px] leading-relaxed" style={{ color: MUTED, opacity: 0.85 }}>
+        Members only.
       </p>
 
-      <div className="flex flex-wrap gap-2 mt-6">
-        {EXAMPLES.map((ex) => (
-          <button
-            key={ex}
-            type="button"
-            onClick={() => ask(ex)}
-            className="px-3 py-1.5 rounded-full text-[13px] font-medium text-left hover:opacity-80"
-            style={{ color: INK, border: "1px solid rgba(18,53,42,0.2)" }}
-          >
-            {ex}
-          </button>
-        ))}
+      <div className="mt-7 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
+        <span className="text-[11px] uppercase shrink-0" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>
+          Try
+        </span>
+        <ul className="flex flex-col gap-1.5 min-w-0">
+          {EXAMPLES.map((ex) => (
+            <li key={ex}>
+              <button
+                type="button"
+                onClick={() => ask(ex)}
+                className="group inline-flex items-center gap-1.5 text-left text-[14px] sm:text-[15px] underline-offset-4 decoration-1 hover:underline"
+                style={{ color: INK, textDecorationColor: "rgba(28,140,135,0.5)" }}
+              >
+                {ex}
+                <ArrowUpRight
+                  className="w-3.5 h-3.5 shrink-0 opacity-40 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  style={{ color: TEAL }}
+                  aria-hidden
+                />
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {asking && <SortItPanel question={asking} onClose={() => setAsking(null)} onAsk={ask} />}

@@ -127,12 +127,18 @@ export function ResearchNav({
   active,
   title,
   subtitle,
+  eyebrow,
+  aside,
   children,
 }: {
   active: ResearchSection;
   /** Optional page title, rendered above the tabs and aligned with them. */
   title?: string;
   subtitle?: string;
+  /** Above the title: the Research Hub puts the "Powered by AI" badge here. */
+  eyebrow?: React.ReactNode;
+  /** Right-hand column beside the title on wide screens, below it on a phone. */
+  aside?: React.ReactNode;
   /** Under the subtitle: the Research Hub puts the Sort it box here. */
   children?: React.ReactNode;
 }) {
@@ -140,19 +146,25 @@ export function ResearchNav({
     <div className="border-b border-border" style={{ background: "#ffffff" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {title && (
-          <header className="pt-10 sm:pt-14 pb-6 sm:pb-8">
-            <h1
-              className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05]"
-              style={{ color: "#12352A" }}
-            >
-              {title}
-            </h1>
-            {subtitle && (
-              <p className="mt-3 text-base sm:text-lg max-w-2xl" style={{ color: "#6B7280" }}>
-                {subtitle}
-              </p>
-            )}
-            {children && <div className="mt-6 sm:mt-8">{children}</div>}
+          <header
+            className={`pt-10 sm:pt-14 pb-8 sm:pb-10${aside ? " lg:grid lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-16 lg:items-end" : ""}`}
+          >
+            <div className="min-w-0">
+              {eyebrow && <div className="mb-4">{eyebrow}</div>}
+              <h1
+                className="font-display tracking-tight text-4xl sm:text-5xl leading-[1.05]"
+                style={{ color: "#12352A" }}
+              >
+                {title}
+              </h1>
+              {subtitle && (
+                <p className="mt-3 text-base sm:text-lg max-w-2xl" style={{ color: "#6B7280" }}>
+                  {subtitle}
+                </p>
+              )}
+              {children && <div className="mt-7 sm:mt-9">{children}</div>}
+            </div>
+            {aside && <div className="mt-10 lg:mt-0">{aside}</div>}
           </header>
         )}
 
