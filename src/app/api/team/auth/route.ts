@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { rateLimit } from '@/lib/rate-limit';
-
-const TEAM_COOKIE = 'fs_team';
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
+import { TEAM_COOKIE, SESSION_MAX_AGE, makeSessionToken, safeEqual } from '@/lib/session-token';
 
 export async function POST(request: NextRequest) {
   // Brute-force guard on the login endpoint
@@ -27,16 +25,17 @@ export async function POST(request: NextRequest) {
   // the ride and reads to the user as "the code is wrong".
   const supplied = typeof secret === 'string' ? secret.trim() : '';
 
-  if (supplied !== teamSecret) {
+  if (!safeEqual(supplied, teamSecret)) {
     return NextResponse.json({ error: 'Invalid access code' }, { status: 401 });
   }
 
   const cookieStore = await cookies();
-  cookieStore.set(TEAM_COOKIE, teamSecret, {
+  // Signed, expiring session token, never the secret itself.
+  cookieStore.set(TEAM_COOKIE, makeSessionToken('team', teamSecret), {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
-    maxAge: COOKIE_MAX_AGE,
+    maxAge: SESSION_MAX_AGE,
     path: '/',
   });
 

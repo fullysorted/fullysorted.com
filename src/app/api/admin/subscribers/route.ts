@@ -1,17 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { neon } from '@neondatabase/serverless';
 import { ensureNewsletterTable } from '@/lib/newsletter';
+import { isAdminRequest } from '@/lib/session-token';
 
 /**
  * GET                 counts + latest 300 subscribers
  * GET ?format=csv     every ACTIVE subscriber as CSV, for the sending tool
  */
-function isAdmin(request: NextRequest): boolean {
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const header = request.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 const csvCell = (v: unknown) => {
   const s = v == null ? '' : String(v);

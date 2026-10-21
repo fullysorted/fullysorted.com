@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 import { LEAD_CHECKINS_ENABLED } from '@/lib/features';
 import { sendLeadCheckinEmail } from '@/lib/email';
+import { isAdminRequest } from '@/lib/session-token';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,10 +11,7 @@ function authorized(req: NextRequest): boolean {
   const auth = req.headers.get('authorization') || '';
   const cronSecret = process.env.CRON_SECRET;
   if (cronSecret && auth === `Bearer ${cronSecret}`) return true;
-  const admin = process.env.ADMIN_SECRET;
-  if (admin && (req.headers.get('x-admin-secret') === admin || req.cookies.get('fs_admin')?.value === admin)) {
-    return true;
-  }
+  if (isAdminRequest(req)) return true;
   return false;
 }
 

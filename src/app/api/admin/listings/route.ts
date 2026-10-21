@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
+import { isAdminRequest } from '@/lib/session-token';
 
-function isAdmin(request: NextRequest): boolean {
-  const secret = request.cookies.get('fs_admin')?.value;
-  return !!process.env.ADMIN_SECRET && secret === process.env.ADMIN_SECRET;
-}
+const isAdmin = isAdminRequest;
 
 // GET /api/admin/listings — all listings with filters
 export async function GET(request: NextRequest) {

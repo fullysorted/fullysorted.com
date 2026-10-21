@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isAdminRequest } from '@/lib/session-token';
 
 // Auth guard
-function isAuthorized(request: NextRequest): boolean {
-  const secret = request.headers.get('x-admin-secret');
-  return !!process.env.ADMIN_SECRET && secret === process.env.ADMIN_SECRET;
-}
+const isAuthorized = isAdminRequest;
 
 // Seed / illustrative market-comp data for development and demo use only.
 // Prices and dates are approximate representations of market activity and are

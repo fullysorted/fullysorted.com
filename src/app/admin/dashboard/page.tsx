@@ -115,7 +115,6 @@ export default function AdminDashboard() {
     setScrapeResult(null);
     const res = await fetch("/api/scrape", {
       method: "POST",
-      headers: { "x-admin-secret": document.cookie.match(/fs_admin=([^;]+)/)?.[1] || "" },
     });
     const data = await res.json();
     setScrapeResult(

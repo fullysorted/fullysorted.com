@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { WANTED_KINDS, type WantedKind } from "@/lib/wanted-shared";
+import { BotTrap, useBotTrap } from "@/components/BotTrap";
 
 const INK = "#12352A";
 const TEAL = "#1C8C87";
@@ -53,6 +54,7 @@ export function WantedForm({
   const [website, setWebsite] = useState("");
   const [state, setState] = useState<"idle" | "sending">("idle");
   const [error, setError] = useState<string | null>(null);
+  const { hp, setHp, trapFields } = useBotTrap();
 
   // Live username check, debounced so typing does not spray requests.
   useEffect(() => {
@@ -79,6 +81,7 @@ export function WantedForm({
           kind, title, body, make, category, location, budget,
           feeText: offerFee ? feeText : "", feeTerms: offerFee ? feeTerms : "",
           handle: newHandle, agree, website,
+          ...trapFields,
         }),
       });
       const d = await res.json().catch(() => ({}));
@@ -189,6 +192,7 @@ export function WantedForm({
       {/* Honeypot: people never see it, bots fill it in. */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)}
         className="absolute -left-[9999px] w-px h-px opacity-0" aria-hidden />
+      <BotTrap value={hp} onChange={setHp} />
 
       <label className="flex items-start gap-3 cursor-pointer">
         <input type="checkbox" required checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-1 w-5 h-5 accent-[#1C8C87]" />

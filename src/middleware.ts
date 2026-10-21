@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { verifySessionTokenEdge } from '@/lib/session-token-edge';
 
 const ADMIN_COOKIE = 'fs_admin';
 
@@ -16,12 +17,12 @@ export default async function middleware(request: NextRequest) {
   // Protect all /admin/* EXCEPT the login page itself
   if (pathname.startsWith('/admin') && pathname !== '/admin') {
     const cookie = request.cookies.get(ADMIN_COOKIE);
-    // Trimmed, matching /api/admin/auth and lib/team-auth.ts. An ADMIN_SECRET
-    // stored with a trailing newline would otherwise never equal the cookie the
-    // login route just set, and every admin page would bounce back to /admin.
+    // Trimmed, matching /api/admin/auth and lib/session-token.ts. An ADMIN_SECRET
+    // stored with a trailing newline would otherwise never verify the session
+    // the login route just signed, and every admin page would bounce back to /admin.
     const adminSecret = process.env.ADMIN_SECRET?.trim();
 
-    if (!cookie || !adminSecret || cookie.value.trim() !== adminSecret) {
+    if (!(await verifySessionTokenEdge(cookie?.value, 'admin', adminSecret))) {
       const loginUrl = new URL('/admin', request.url);
       loginUrl.searchParams.set('redirect', pathname);
       return NextResponse.redirect(loginUrl);

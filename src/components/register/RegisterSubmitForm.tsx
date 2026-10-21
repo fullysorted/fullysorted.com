@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Mail } from "lucide-react";
+import { BotTrap, useBotTrap } from "@/components/BotTrap";
 
 /**
  * Submission form for the Chassis Register.
@@ -55,6 +56,7 @@ export function RegisterSubmitForm({
   const [done, setDone] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [mailto, setMailto] = useState<string | null>(null);
+  const { hp, setHp, trapFields } = useBotTrap();
 
   const set = (k: keyof typeof f, v: string) => setF((p) => ({ ...p, [k]: v }));
   const inputCls =
@@ -69,7 +71,7 @@ export function RegisterSubmitForm({
       const res = await fetch("/api/register/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ modelSlug, ...f, chassis: prefilled ? chassis : f.chassis }),
+        body: JSON.stringify({ modelSlug, ...f, chassis: prefilled ? chassis : f.chassis, ...trapFields }),
       });
       const d = await res.json().catch(() => ({}));
       if (res.ok) setDone(d.message || "Thank you.");
@@ -192,6 +194,7 @@ export function RegisterSubmitForm({
       >
         {busy ? "Sending..." : "Send for review"}
       </button>
+      <BotTrap value={hp} onChange={setHp} />
     </form>
   );
 }

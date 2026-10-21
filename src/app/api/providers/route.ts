@@ -6,6 +6,7 @@ import { getDb, schema } from '@/lib/db';
 import { and, eq, sql } from 'drizzle-orm';
 import { rateLimit } from '@/lib/rate-limit';
 import { isMuse } from '@/lib/muse-auth';
+import { checkForBot } from '@/lib/bot-guard';
 import { isBlobImageUrl, PHOTO_REQUIRED_MESSAGE } from '@/lib/images';
 import { normalizeWorkSettings, normalizeTeamSize, radiusForSettings } from '@/lib/work-settings';
 
@@ -160,6 +161,12 @@ export async function POST(request: NextRequest) {
   if (limited) return limited;
   try {
     const body = await request.json();
+    if (!muse && checkForBot(body, ['description', 'idealClient', 'whyList']).bot) {
+      return NextResponse.json(
+        { provider: null, message: 'Application submitted successfully! We\'ll review it within 3-5 business days.' },
+        { status: 201 }
+      );
+    }
     const {
       businessName, ownerName, category, location, email,
       phone, website, instagram, yearsInBusiness,

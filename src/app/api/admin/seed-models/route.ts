@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
+import { isAdminRequest } from '@/lib/session-token';
 import { seed964 } from '@/lib/data/model-seed-964';
 import { seed240z } from '@/lib/data/model-seed-240z';
 import { seed993 } from '@/lib/data/model-seed-993';
@@ -160,13 +161,8 @@ const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, see
   seed348, seed456, seed550Maranello, seed360, seedF50, seedEnzo,
   seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx, seedFlaminia, seedBelAir195557, seedGrandWagoneer, seedScout, seedDiablo, seedC10SquareBody, seedTransAm197081, seedKarmannGhia, seed280z, seedCorollaAe86, seedIntegraTypeRDc2, seed190sl, seedE930Cs, seedModelA, seed442196472, seed124Spider, seedK5BlazerSquareBody, seedXjs];
 
-// Auth: header x-admin-secret OR fs_admin cookie (matches other admin routes).
-function isAuthorized(request: NextRequest): boolean {
-  const header = request.headers.get('x-admin-secret');
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (header === secret || cookie === secret);
-}
+// Auth: header x-admin-secret OR signed fs_admin session cookie (matches other admin routes).
+const isAuthorized = isAdminRequest;
 
 // Collectibles-first starter queue. The agent drains highest priority first;
 // daily-driver future-classics (4Runner et al.) sit low until collectibles are done.

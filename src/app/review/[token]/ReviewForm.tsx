@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Loader2, Check, Star } from 'lucide-react';
+import { BotTrap, useBotTrap } from '@/components/BotTrap';
 
 export default function ReviewForm({
   token,
@@ -21,6 +22,7 @@ export default function ReviewForm({
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const { hp, setHp, trapFields } = useBotTrap();
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -40,6 +42,7 @@ export default function ReviewForm({
           vehicle: vehicle.trim() || undefined,
           workDate: workDate.trim() || undefined,
           body: body.trim(),
+          ...trapFields,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -178,6 +181,7 @@ export default function ReviewForm({
         {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
         {sending ? 'Sending…' : 'Post my review'}
       </button>
+      <BotTrap value={hp} onChange={setHp} />
     </form>
   );
 }

@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isAdminRequest } from '@/lib/session-token';
 
-function isAdmin(request: NextRequest): boolean {
-  const secret = request.cookies.get('fs_admin')?.value;
-  return !!process.env.ADMIN_SECRET && secret === process.env.ADMIN_SECRET;
-}
+const isAdmin = isAdminRequest;
 
 export async function GET(request: NextRequest) {
   if (!isAdmin(request)) {

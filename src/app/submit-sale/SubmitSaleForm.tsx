@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Loader2, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
 import { VALUE_GUIDE_PUBLIC } from "@/lib/features";
+import { BotTrap, useBotTrap } from "@/components/BotTrap";
 
 export function SubmitSaleForm() {
   const [f, setF] = useState({
@@ -15,6 +16,7 @@ export function SubmitSaleForm() {
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   const [mailto, setMailto] = useState<string | null>(null);
+  const { hp, setHp, trapFields } = useBotTrap();
   const set = (k: string, v: string) => setF((p) => ({ ...p, [k]: v }));
   const input = "w-full h-11 px-3 text-sm border border-border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent";
   const label = "block text-xs font-bold uppercase tracking-wider text-text-secondary mb-1.5";
@@ -25,7 +27,7 @@ export function SubmitSaleForm() {
     try {
       const res = await fetch("/api/sales/submit", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...f, consent }),
+        body: JSON.stringify({ ...f, consent, ...trapFields }),
       });
       const d = await res.json();
       if (res.ok) setDone(true);
@@ -101,6 +103,7 @@ export function SubmitSaleForm() {
         {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShieldCheck className="w-4 h-4" />} Submit sale
       </button>
       <p className="text-[11px] text-text-tertiary mt-3">Reviewed before it appears in the data. We only ever publish the facts of a sale, never your personal details.</p>
+      <BotTrap value={hp} onChange={setHp} />
     </form>
   );
 }

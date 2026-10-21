@@ -10,6 +10,7 @@ import ProviderImagesFields from '@/components/media/ProviderImagesFields';
 import { ProviderMark } from '@/components/providers/ProviderMark';
 import type { LogoKind } from '@/lib/provider-images';
 import { trackGaEvent } from '@/components/analytics/GoogleAnalytics';
+import { BotTrap, useBotTrap } from '@/components/BotTrap';
 
 /**
  * 2026-10-05: the four-step wizard is gone. Since the claim model (we build the
@@ -221,8 +222,9 @@ export default function ApplyForm({
   const [error, setError] = useState('');
   const [duplicate, setDuplicate] = useState(false);
   const [linkSent, setLinkSent] = useState('');
+  const { hp, setHp, trapFields } = useBotTrap();
 
-  const update = (k: keyof typeof form, v: string) => {
+  const update =(k: keyof typeof form, v: string) => {
     setForm((f) => ({ ...f, [k]: v }));
     setErrors((e) => { if (!e[k]) return e; const n = { ...e }; delete n[k]; return n; });
   };
@@ -264,6 +266,7 @@ export default function ApplyForm({
           teamSize: null,
           serviceRadiusMiles: null,
           clerkUserId: userId || null,
+          ...trapFields,
         }),
       });
       const data = await res.json();
@@ -350,6 +353,7 @@ export default function ApplyForm({
         <ClaimSearch initialQuery={presetClaim} />
 
         <form onSubmit={submit} noValidate className="rounded-2xl bg-white p-5 sm:p-7" style={{ border: `1px solid ${RULE}` }}>
+          <BotTrap value={hp} onChange={setHp} />
           <p className="text-[11px] uppercase mb-2" style={{ fontFamily: MONO, letterSpacing: '0.12em', color: TEAL }}>
             Not listed?
           </p>

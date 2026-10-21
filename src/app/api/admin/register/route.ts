@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isAdminRequest } from '@/lib/session-token';
 
 /**
  * Admin review for Chassis Register submissions.
@@ -12,12 +13,7 @@ import { NextRequest, NextResponse } from 'next/server';
  * that, the submission's own anchor on the chassis page. The submitter's name
  * and email are never copied onto the event.
  */
-function isAdmin(request: NextRequest): boolean {
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const header = request.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 async function getSql() {
   const { neon } = await import('@neondatabase/serverless');

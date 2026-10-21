@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
 import { isMuse } from '@/lib/muse-auth';
 import { deliver, undeliverableResponse } from '@/lib/submissions';
+import { checkForBot } from '@/lib/bot-guard';
 
 // POST /api/sales/submit — public. A user reports a sale they know about. Stored
 // as 'pending' and never touches comps until an admin approves it.
@@ -14,6 +15,7 @@ export async function POST(req: NextRequest) {
   try {
     let body: Record<string, unknown>;
     try { body = await req.json(); } catch { return NextResponse.json({ error: 'Invalid request.' }, { status: 400 }); }
+    if (!muse && checkForBot(body, ['notes']).bot) return NextResponse.json({ success: true, message: 'Thanks! We review every submission before it goes live.' });
 
     const s = (v: unknown) => (v == null ? null : String(v).trim().slice(0, 500) || null);
     const n = (v: unknown) => { const x = parseInt(String(v ?? '').replace(/[^0-9.-]/g, ''), 10); return Number.isFinite(x) ? x : null; };

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { GeneratedModelPage } from '@/lib/ai/generate-model-page';
+import { isAdminRequest } from '@/lib/session-token';
 
 /**
  * POST /api/admin/models/import — insert a model page that was authored
@@ -12,12 +13,7 @@ import type { GeneratedModelPage } from '@/lib/ai/generate-model-page';
  *
  * Body: { page: GeneratedModelPage, authoredBy?: string }
  */
-function isAdmin(request: NextRequest): boolean {
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const header = request.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 export async function POST(request: NextRequest) {
   if (!isAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

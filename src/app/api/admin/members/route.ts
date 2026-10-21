@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isAdminRequest } from '@/lib/session-token';
 
 /**
  * Admin view of the membership: who has joined, and what each person has done.
@@ -15,12 +16,7 @@ import { NextRequest, NextResponse } from 'next/server';
  * Activity is matched on user_id OR the email string, because rows written
  * before the spine existed carry only the string.
  */
-function isAdmin(request: NextRequest): boolean {
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const header = request.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 async function getSql() {
   const { neon } = await import('@neondatabase/serverless');

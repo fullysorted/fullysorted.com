@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Star, Clock, Search, Wallet, HandCoins } from "lucide-react";
+import { ShieldCheck, Star, Clock, Search, Wallet, HandCoins, Lock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Trust & Safety",
@@ -40,6 +40,13 @@ const PILLARS = [
     title: "We respond",
     body:
       "Real people read every message. Support and trust reports get a reply within one business day; provider applications are read within a few days.",
+  },
+  {
+    icon: Lock,
+    id: "security",
+    title: "Locked doors, no puzzles",
+    body:
+      "Every form on the site quietly turns away scripts, so you never pick out traffic lights to send a message and the shops on the other end get mail from people. Sign-in runs through Clerk, so we never see or store your password. Card payments run through Stripe and never touch our servers. Staff tools sit behind signed sessions that expire on their own.",
   },
 ];
 

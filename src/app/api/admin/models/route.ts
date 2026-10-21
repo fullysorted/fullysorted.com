@@ -1,16 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateModelPage } from '@/lib/ai/generate-model-page';
 import { AI_ADMIN_DRAFTS_ENABLED } from '@/lib/features';
+import { isAdminRequest } from '@/lib/session-token';
 
 // A quick research draft is one long Sonnet call with web search: 1 to 4 minutes.
 export const maxDuration = 300;
 
-function isAdmin(request: NextRequest): boolean {
-  const cookie = request.cookies.get('fs_admin')?.value;
-  const header = request.headers.get('x-admin-secret');
-  const secret = process.env.ADMIN_SECRET;
-  return !!secret && (cookie === secret || header === secret);
-}
+const isAdmin = isAdminRequest;
 
 async function getSql() {
   const { neon } = await import('@neondatabase/serverless');

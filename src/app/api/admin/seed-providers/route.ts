@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 import { CATEGORY_OPTIONS } from '@/lib/service-categories';
+import { isAdminRequest } from '@/lib/session-token';
 
-function isAdmin(request: NextRequest): boolean {
-  const secret = request.cookies.get('fs_admin')?.value;
-  return !!process.env.ADMIN_SECRET && secret === process.env.ADMIN_SECRET;
-}
+const isAdmin = isAdminRequest;
 
 function slugify(s: string): string {
   return s

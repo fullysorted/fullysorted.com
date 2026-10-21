@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateProviderProfile } from '@/lib/ai/generate-provider-profile';
 import { AI_ADMIN_DRAFTS_ENABLED } from '@/lib/features';
+import { isAdminRequest } from '@/lib/session-token';
 
 // A profile draft reads three pages at most: usually 15 to 60 seconds.
 export const maxDuration = 120;
 
-function isAdmin(request: NextRequest): boolean {
-  const secret = request.cookies.get('fs_admin')?.value;
-  return !!process.env.ADMIN_SECRET && secret === process.env.ADMIN_SECRET;
-}
+const isAdmin = isAdminRequest;
 
 // POST /api/admin/providers/draft
 // Body: { businessName, website?, location?, category?, notes?, quality?: 'standard' | 'best' }
