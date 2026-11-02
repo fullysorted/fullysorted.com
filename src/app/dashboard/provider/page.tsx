@@ -27,7 +27,7 @@ const PRICE_RANGES = ['$', '$$', '$$$', '$$$$'];
 
 function StatusBadge({ status }: { status: string }) {
   const config = {
-    active: { icon: CheckCircle, label: 'Active — Listed in Directory', bg: 'bg-green-light', text: 'text-green-dark', border: 'border-green' },
+    active: { icon: CheckCircle, label: 'Active: Listed in Directory', bg: 'bg-green-light', text: 'text-green-dark', border: 'border-green' },
     pending: { icon: Clock, label: 'Pending Review', bg: 'bg-accent-light', text: 'text-accent', border: 'border-accent' },
     paused: { icon: AlertCircle, label: 'Paused', bg: 'bg-surface', text: 'text-text-secondary', border: 'border-border' },
     rejected: { icon: AlertCircle, label: 'Not Approved', bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
@@ -244,7 +244,7 @@ export default function ProviderDashboard() {
             <div>
               <p className="text-accent font-medium">Your profile is under review</p>
               <p className="text-accent text-sm mt-1">
-                Lightly curated. You can update your profile while you wait — changes will be reflected once approved. Expect a response within 3–5 business days.
+                Lightly curated. You can update your profile while you wait. Changes will be reflected once approved. Expect a response within 3–5 business days.
               </p>
             </div>
           </div>
@@ -255,7 +255,7 @@ export default function ProviderDashboard() {
         <div className="bg-gold-light border border-gold/40 rounded-xl p-5 mb-8 shine">
           <div className="flex items-center gap-3">
             <Sparkles className="w-5 h-5 text-gold" />
-            <p className="text-[#8a6d2f] font-medium">Founding Provider — Thank you for being one of the first!</p>
+            <p className="text-[#8a6d2f] font-medium">Founding Provider. Thank you for being one of the first!</p>
           </div>
         </div>
       )}
@@ -395,7 +395,7 @@ export default function ProviderDashboard() {
               <p className="font-semibold text-foreground mb-1">Your listing doesn&apos;t say this yet.</p>
               <p className="text-text-secondary">
                 Owners filter the directory by whether you come to the car or they bring it to you. Until you
-                answer, you still appear under every filter — but your card says nothing about how you work,
+                answer, you still appear under every filter, but your card says nothing about how you work,
                 which is the first thing they want to know.
               </p>
             </div>

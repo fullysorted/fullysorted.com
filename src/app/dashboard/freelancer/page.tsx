@@ -52,11 +52,11 @@ export default function FreelancerDashboard() {
         body: JSON.stringify({ avatarUrl: url }),
       });
       const d = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(d.error || "Couldn’t save that photo — try again.");
+      if (!res.ok) throw new Error(d.error || "Couldn’t save that photo. Try again.");
       setProvider((p) => (p ? { ...p, avatarUrl: url } : p));
       setPhotoMessage("Saved. It’s on your profile and every gig you publish.");
     } catch (e) {
-      setPhotoMessage(e instanceof Error ? e.message : "Couldn’t save that photo — try again.");
+      setPhotoMessage(e instanceof Error ? e.message : "Couldn’t save that photo. Try again.");
     }
     setSavingPhoto(false);
   }
@@ -131,7 +131,7 @@ export default function FreelancerDashboard() {
           <Sparkles className="w-8 h-8 text-accent mx-auto mb-3" />
           <h2 className="text-xl font-display font-semibold tracking-tight text-foreground mb-2">Let’s get you set up</h2>
           <p className="text-text-secondary text-sm max-w-md mx-auto mb-5">
-            Our guided setup walks you through everything — we’ll even draft your gig for you. Takes about five minutes.
+            Our guided setup walks you through everything, and we’ll even draft your gig for you. Takes about five minutes.
           </p>
           <Link href="/services/apply" className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg">
             Start guided setup <ArrowRight className="w-4 h-4" />
@@ -239,7 +239,7 @@ export default function FreelancerDashboard() {
         <p className="text-xs text-text-secondary">
           <strong className="text-foreground">Payments are coming soon.</strong> We’re putting the right legal and tax pieces in place
           (independent-contractor terms, 1099 handling, secure payouts) before turning on in-platform payments. For now, connect with
-          buyers directly — your earnings tracker switches on automatically once payouts go live.
+          buyers directly. Your earnings tracker switches on automatically once payouts go live.
         </p>
       </div>
 
@@ -258,7 +258,7 @@ export default function FreelancerDashboard() {
           </Link>
         </div>
         {gigs.length === 0 ? (
-          <p className="text-sm text-text-secondary py-6 text-center">No gigs yet. Build your first one — we’ll help you write it.</p>
+          <p className="text-sm text-text-secondary py-6 text-center">No gigs yet. Build your first one and we’ll help you write it.</p>
         ) : (
           <div className="space-y-3">
             {gigs.map((g) => {

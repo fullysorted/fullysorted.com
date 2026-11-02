@@ -49,8 +49,8 @@ export function FeaturedListings({ listings = [] }: FeaturedListingsProps) {
             </h2>
             <p className="mt-1 text-sm max-w-xl" style={{ color: "#6b6b5e" }}>
               Once your car is sorted, sell it the simple way: a flat listing fee
-              (the first 100 listings are free), no auction clock and no
-              buyer&apos;s premium, whether you are an owner or a dealer.
+              (the first 100 listings are free) and no auction clock, whether
+              you are an owner or a dealer.
             </p>
             <p className="mt-2 text-sm" style={{ color: "#6b6b5e" }}>
               Also for sale:{" "}

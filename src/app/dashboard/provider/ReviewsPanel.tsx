@@ -88,7 +88,7 @@ export default function ReviewsPanel({ slug }: { slug: string }) {
       });
       const d = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(d.error || 'Could not save that.');
-      setMsg('Saved — it goes live once we have checked it.');
+      setMsg('Saved. It goes live once we have checked it.');
       setT({ authorName: '', vehicle: '', workType: '', workDate: '', body: '', consent: false });
       setShowAdd(false);
     } catch (e) {
@@ -138,7 +138,7 @@ export default function ReviewsPanel({ slug }: { slug: string }) {
         </div>
       </div>
       <p className="text-xs text-text-tertiary mb-5 leading-relaxed">
-        Reviews are written by clients we email directly, and they are permanent — you can reply to one publicly, but
+        Reviews are written by clients we email directly, and they are permanent. You can reply to one publicly, but
         you cannot edit or remove it. A straight, unapologetic reply to a critical review reads better to a prospective
         client than an unbroken wall of fives.
       </p>

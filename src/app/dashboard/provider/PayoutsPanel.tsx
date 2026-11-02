@@ -30,8 +30,8 @@ const fmtDate = (s: string | null) => (s ? new Date(s).toLocaleDateString("en-US
 
 const STATUS_STYLE: Record<string, { label: string; bg: string; fg: string }> = {
   pending_payment: { label: "Awaiting payment", bg: "rgba(0,0,0,0.05)", fg: "#6b6b5e" },
-  paid: { label: "Paid — deliver now", bg: "rgba(176,141,63,0.14)", fg: "#8a6d2f" },
-  delivered: { label: "Delivered — awaiting buyer", bg: "rgba(30,96,145,0.1)", fg: "#1E6091" },
+  paid: { label: "Paid: deliver now", bg: "rgba(176,141,63,0.14)", fg: "#8a6d2f" },
+  delivered: { label: "Delivered: awaiting buyer", bg: "rgba(30,96,145,0.1)", fg: "#1E6091" },
   disputed: { label: "Problem reported", bg: "rgba(176,85,63,0.12)", fg: "#9a3f2f" },
   completed: { label: "Paid out", bg: "rgba(106,176,76,0.14)", fg: "#4b8b2e" },
   cancelled: { label: "Cancelled", bg: "rgba(0,0,0,0.05)", fg: "#9a9a8a" },
@@ -135,12 +135,12 @@ export function PayoutsPanel() {
             </span>
             <p className="text-sm text-text-secondary">
               Taking card payments through Fully Sorted isn&rsquo;t switched on yet. Owners can still request your
-              gigs and you quote them directly — the request lands in your email the same way a directory enquiry
+              gigs and you quote them directly. The request lands in your email the same way a directory enquiry
               does. We&rsquo;ll email you when paid booking opens.
             </p>
             {(payoutsEnabled || orders.some((o) => ["paid", "delivered", "disputed"].includes(o.status))) && (
               <p className="text-sm text-text-secondary mt-3">
-                Anything already paid for is unaffected — deliver it as normal and it pays out to you as normal.
+                Anything already paid for is unaffected. Deliver it as normal and it pays out to you as normal.
               </p>
             )}
           </div>

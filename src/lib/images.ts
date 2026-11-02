@@ -28,4 +28,4 @@ export function isBlobImageUrl(u: unknown): boolean {
 
 /** The message every caller shows when a photo is missing or not ours. */
 export const PHOTO_REQUIRED_MESSAGE =
-  'A photo is required — upload one, or paste a link to a picture on your website and we will fetch it.';
+  'A photo is required. Upload one, or paste a link to a picture on your website and we will fetch it.';

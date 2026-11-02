@@ -17,7 +17,7 @@ export const marqueFerrari = {
     { "year": 1962, "event": "250 GTO production begins; 36 are built through 1964.", "sourceRefs": ["wikipedia-250gto"] },
     { "year": 1963, "event": "Ford's attempt to buy Ferrari falls apart, leading to the GT40 program.", "sourceRefs": ["wikipedia-gt40"] },
     { "year": 1969, "event": "Fiat buys half of Ferrari's shares.", "sourceRefs": ["wikipedia-ferrari", "wikipedia-ferrari-nv"] },
-    { "year": 1976, "event": "Ferrari name begins to appear on V6 cars; gray-market era starts for the Boxer.", "sourceRefs": ["wikipedia-dino", "fj-512bb"] },
+    { "year": 1976, "event": "Ferrari name begins to appear on the V8 Dino 308 GT4; gray-market era starts for the Boxer.", "sourceRefs": ["wikipedia-dino", "wikipedia-gt4", "fj-512bb"] },
     { "year": 1987, "event": "The F40 arrives, the last Ferrari personally approved by Enzo.", "sourceRefs": ["wikipedia-f40"] },
     { "year": 1988, "event": "Enzo Ferrari dies; Fiat expands its stake to 90 percent.", "sourceRefs": ["wikipedia-ferrari"] },
     { "year": 2015, "event": "Ferrari prices its initial public offering in October.", "sourceRefs": ["wikipedia-ferrari-nv"] }
@@ -103,6 +103,15 @@ export const marqueFerrari = {
       "sourceType": "encyclopedia",
       "reliability": "medium",
       "notes": "Fiat bought 50 percent in 1969; Enzo kept a share now owned by Piero Ferrari; 2015 IPO; spun off from Fiat Chrysler Automobiles in 2016; Exor holding. Shares text with the main Ferrari article, so the Fiat 1969 date is not independent."
+    },
+    {
+      "ref": "wikipedia-gt4",
+      "title": "Ferrari GT4",
+      "url": "https://en.wikipedia.org/wiki/Ferrari_GT4",
+      "publisher": "Wikipedia",
+      "sourceType": "encyclopedia",
+      "reliability": "medium",
+      "notes": "The V8 Dino 308 GT4 received Ferrari badging from May 1976."
     },
     {
       "ref": "wikipedia-dino",

@@ -158,7 +158,7 @@ export default function EventsPage() {
         <div className="rounded-xl p-5 sm:p-6 bg-white" style={{ border: `1px solid ${RULE}` }}>
           <h2 className="font-display text-xl mb-1" style={{ color: INK }}>Missing one, or have a date we do not?</h2>
           <p className="text-sm max-w-2xl" style={{ color: MUTED }}>
-            Organizers and entrants: send the event name, the dates and a link to the official page. Judged concours only. There is no fee and no way to pay for a better spot.
+            Organizers and entrants: send the event name, the dates and a link to the official page. Judged concours only. There is no way to pay for a better spot.
           </p>
           <a href="mailto:hello@fullysorted.com?subject=Concours calendar" className="inline-flex items-center gap-1.5 text-sm font-semibold mt-3 underline underline-offset-4" style={{ color: TEAL }}>
             hello@fullysorted.com
