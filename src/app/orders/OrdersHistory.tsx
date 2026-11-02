@@ -22,7 +22,7 @@ const fmtDate = (s: string | null) => (s ? new Date(s).toLocaleDateString("en-US
 
 const STATUS: Record<string, { label: string; bg: string; fg: string; icon: React.ElementType }> = {
   paid: { label: "In progress", bg: "rgba(176,141,63,0.14)", fg: "#8a6d2f", icon: ShieldCheck },
-  delivered: { label: "Delivered — review", bg: "rgba(30,96,145,0.1)", fg: "#1E6091", icon: PackageCheck },
+  delivered: { label: "Delivered: review", bg: "rgba(30,96,145,0.1)", fg: "#1E6091", icon: PackageCheck },
   disputed: { label: "Problem reported", bg: "rgba(176,85,63,0.12)", fg: "#9a3f2f", icon: AlertTriangle },
   completed: { label: "Completed", bg: "rgba(106,176,76,0.14)", fg: "#4b8b2e", icon: CheckCircle2 },
   refunded: { label: "Refunded", bg: "rgba(0,0,0,0.05)", fg: "#9a9a8a", icon: Package },

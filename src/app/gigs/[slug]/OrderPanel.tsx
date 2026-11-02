@@ -57,7 +57,7 @@ export function OrderPanel({
       } else {
         await sendInquiry();
       }
-    } catch { setError("Network error — try again."); }
+    } catch { setError("Network error. Try again."); }
     setSubmitting(false);
   }
 
@@ -137,7 +137,7 @@ export function OrderPanel({
               </p>
             ) : (
               <p className="text-[11px] text-center" style={{ color: "#9a9a8a" }}>
-                No payment now — you’ll arrange payment with the provider directly.
+                No payment now. You’ll arrange payment with the provider directly.
               </p>
             )}
           </form>

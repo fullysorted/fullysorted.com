@@ -75,6 +75,9 @@ export function MarqueHistory({ m }: { m: MarqueHistoryData }) {
           ))}
         </ol>
       </details>
+      <p className="mt-3 text-xs" style={{ color: "#9a9a8a" }}>
+        Researched and drafted with AI help, then checked against the sources above.
+      </p>
     </section>
   );
 }

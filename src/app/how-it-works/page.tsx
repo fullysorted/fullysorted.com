@@ -193,7 +193,7 @@ export default async function HowItWorksPage() {
             <StepReveal
               n={2}
               title="Pick a package."
-              body={`Three packages, prices shown at this step and paid once, up front. The first ${FREE_LISTINGS_THRESHOLD} cars on the site list free. No auction, no bidding, no buyer's premium.`}
+              body={`Three packages, prices shown at this step and paid once, up front. The first ${FREE_LISTINGS_THRESHOLD} cars on the site list free. No auction, no bidding.`}
               demo={<PackageMock />}
               flip
             />

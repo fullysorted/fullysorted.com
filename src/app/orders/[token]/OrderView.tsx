@@ -55,7 +55,7 @@ export function OrderView({ token }: { token: string }) {
       const d = await res.json();
       if (res.ok) await load();
       else setErr(d.error || "Could not release payment.");
-    } catch { setErr("Network error — try again."); }
+    } catch { setErr("Network error. Try again."); }
     setActing(false);
   }
 
@@ -70,7 +70,7 @@ export function OrderView({ token }: { token: string }) {
       const d = await res.json();
       if (res.ok) { setReporting(false); setReason(""); await load(); }
       else setErr(d.error || "Could not submit.");
-    } catch { setErr("Network error — try again."); }
+    } catch { setErr("Network error. Try again."); }
     setActing(false);
   }
 
@@ -117,7 +117,7 @@ export function OrderView({ token }: { token: string }) {
         {order.status === "completed" ? (
           <div className="rounded-xl p-4 text-center" style={{ background: "rgba(106,176,76,0.1)" }}>
             <CheckCircle2 className="w-7 h-7 mx-auto mb-2" style={{ color: "#4b8b2e" }} />
-            <p className="text-sm font-bold" style={{ color: "#1a1a18" }}>All done — payment released.</p>
+            <p className="text-sm font-bold" style={{ color: "#1a1a18" }}>All done. Payment released.</p>
             <p className="text-xs mt-1" style={{ color: "#6b6b5e" }}>Thanks for using Fully Sorted.</p>
           </div>
         ) : order.status === "refunded" || order.status === "cancelled" ? (
@@ -130,9 +130,9 @@ export function OrderView({ token }: { token: string }) {
               <div className="rounded-xl p-4 mb-4 flex items-start gap-2.5" style={{ background: "rgba(176,85,63,0.08)", border: "1px solid rgba(176,85,63,0.25)" }}>
                 <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#B0553F" }} />
                 <div>
-                  <p className="text-xs font-semibold mb-0.5" style={{ color: "#8a3f2f" }}>Problem reported — we&rsquo;re on it</p>
+                  <p className="text-xs font-semibold mb-0.5" style={{ color: "#8a3f2f" }}>Problem reported. We&rsquo;re on it</p>
                   <p className="text-xs leading-relaxed" style={{ color: "#6b6b5e" }}>
-                    Your payment stays held while you and {order.providerName} sort it out — it won&rsquo;t auto-release. If it gets resolved, you can release payment below; otherwise the provider can refund you.
+                    Your payment stays held while you and {order.providerName} sort it out. It won&rsquo;t auto-release. If it gets resolved, you can release payment below; otherwise the provider can refund you.
                   </p>
                 </div>
               </div>
@@ -141,7 +141,7 @@ export function OrderView({ token }: { token: string }) {
                 <Clock className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#1E6091" }} />
                 <p className="text-xs leading-relaxed" style={{ color: "#6b6b5e" }}>
                   Your payment is held securely. {order.deliveredAt
-                    ? "The provider has marked the work delivered — review it, then release payment below."
+                    ? "The provider has marked the work delivered. Review it, then release payment below."
                     : "Once you're happy with the completed work, release the payment to the provider."}
                 </p>
               </div>
@@ -150,7 +150,7 @@ export function OrderView({ token }: { token: string }) {
             <button onClick={accept} disabled={acting}
               className="w-full h-11 rounded-xl text-white text-sm font-bold inline-flex items-center justify-center gap-2 disabled:opacity-60 bg-accent hover:bg-accent-hover transition-colors">
               {acting && !reporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle2 className="w-4 h-4" />}
-              {isDisputed ? "It's resolved — release payment" : "Accept work & release payment"}
+              {isDisputed ? "Resolved, release payment" : "Accept work & release payment"}
             </button>
 
             {/* Report a problem */}

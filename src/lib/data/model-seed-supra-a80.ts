@@ -67,7 +67,7 @@ export const seedSupraA80 = {
   heroPhotoCredit: "Photo: Pitak, CC BY-SA 4.0, via Wikimedia Commons" as string | null,
   overallConfidence: 'high' as const,
 
-  summary: `The fourth-generation Toyota Supra - chassis code A80, known to enthusiasts as the Mk4 - is the car that turned a competent Japanese grand tourer into a global legend. Launched in 1993 (Japan and the US) and built through 2002 for the home market, it paired flowing, aerodynamically aggressive styling with two new 3.0-liter inline-six engines from Toyota's JZ family: the naturally aspirated 2JZ-GE and the now-iconic twin-turbo 2JZ-GTE.
+  summary: `The fourth-generation Toyota Supra - chassis code A80, known to enthusiasts as the Mk4 - is the car that turned a competent Japanese grand tourer into a global legend. Launched in 1993 (Japan and the US) and built through 2002 for the home market, it paired flowing, aerodynamically aggressive styling with two new 3.0-liter inline-six engines from Toyota's JZ family: the naturally aspirated 2JZ-GE and the twin-turbo 2JZ-GTE.
 
 In the US, the Turbo's 2JZ-GTE was rated at 320 hp through a pair of sequential turbochargers - small turbo for low-rpm response, both turbos for top-end pull - fed through Toyota's first six-speed manual, the Getrag-built V160. Period road tests put it on pace with, and sometimes ahead of, far more expensive European exotics.
 
@@ -77,7 +77,7 @@ What cemented the Mk4's status, though, came later: an over-engineered cast-iron
 
 Toyota took its time replacing the A70 Supra, holding the third generation in production until it was confident the next car would clear the bar set by rivals like the Nissan 300ZX, Mazda RX-7 (FD) and Honda NSX. The A80 was developed over roughly four years under chief engineer Isao Tsuzuki and unveiled at the 1993 Chicago Auto Show, reaching US showrooms as a 1993.5 model.
 
-The design brief was "less is more." The A80 was shorter, lower and wider than the car it replaced, and Toyota leaned hard on weight reduction - even specifying hollow carpet fibers and aluminum components - to shed about 220 lb versus the A70. The styling, with its long hood and available tall rear wing, owed more to the legendary 2000GT than to its immediate predecessor.
+The design brief was "less is more." The A80 was shorter, lower and wider than the car it replaced, and Toyota leaned hard on weight reduction - even specifying hollow carpet fibers and aluminum components - to shed about 220 lb versus the A70. The styling, with its long hood and available tall rear wing, owed more to the 2000GT than to its immediate predecessor.
 
 ## Two engines, one legend
 

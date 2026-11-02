@@ -56,7 +56,7 @@ export default function ClaimExistingListing() {
           <button type="button" onClick={() => setOpen(true)} className="underline font-medium text-accent">
             Link your existing listing
           </button>{' '}
-          instead — don&apos;t apply twice.
+          instead. Don&apos;t apply twice.
         </p>
       ) : (
         <form onSubmit={submit}>
@@ -64,7 +64,7 @@ export default function ClaimExistingListing() {
             The email address on your listing
           </label>
           <p className="text-xs text-text-secondary mb-3">
-            We&apos;ll send a link to that address — not to this one — so only the business can claim it.
+            We&apos;ll send a link to that address, not to this one, so only the business can claim it.
           </p>
           <div className="flex flex-wrap gap-2">
             <input

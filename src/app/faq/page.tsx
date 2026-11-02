@@ -125,7 +125,7 @@ const SECTIONS: FaqSection[] = [
     items: [
       {
         q: "What does it cost to list a car?",
-        a: `One fee, paid once, up front. You see the packages and prices at the last step of listing. The first ${FREE_LISTINGS_THRESHOLD} cars listed on the site are free. There is no auction clock, no bidding and no buyer's premium: you set an asking price and buyers contact you directly.`,
+        a: `One fee, paid once, up front. You see the packages and prices at the last step of listing. The first ${FREE_LISTINGS_THRESHOLD} cars listed on the site are free. There is no auction clock and no bidding: you set an asking price and buyers contact you directly.`,
         link: { href: "/pricing", label: "How fees work" },
       },
       {
