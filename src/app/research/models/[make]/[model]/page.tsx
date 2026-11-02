@@ -374,7 +374,7 @@ export default async function ModelPage({ params }: Props) {
                   ))}
                 </ol>
                 <p className="text-xs mt-4" style={{ color: "#9a9a8a" }}>
-                  Researched and drafted with AI help, then checked against the sources above. We cite and link out; we do not
+                  Synthesized from the sources above and cross-checked. We cite and link out; we do not
                   republish other databases verbatim.
                 </p>
                 <MarqueNotice make={m.make} className="mt-4" />
