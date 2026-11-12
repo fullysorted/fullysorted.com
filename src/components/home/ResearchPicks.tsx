@@ -69,51 +69,60 @@ export function ResearchPicks({ picks, total }: { picks: ResearchPick[]; total: 
           </Link>
         </div>
 
-        {/* Six picks fill two desktop rows. On a phone that is six screens of
-            scrolling, so the last three are hidden there; "All model
-            histories" above is the way in. */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 [&>*:nth-child(n+4)]:hidden sm:[&>*:nth-child(n+4)]:flex">
-          {picks.map((p) => {
-            const y = years(p);
-            const blurb = clip(p.summary);
-            return (
-              <Link
-                key={p.slug}
-                href={`/research/models/${p.slug}`}
-                className="group flex flex-col rounded-[22px] overflow-hidden bg-white transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(18,53,42,0.45)]"
-                style={{ border: `1px solid ${RULE}` }}
-              >
-                <div className="relative aspect-[16/10] overflow-hidden" style={{ background: INK }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={p.heroPhoto}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div className="p-5 flex flex-col gap-2">
-                  {y && (
-                    <span className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.08em", color: MUTED }}>
-                      {y}
-                    </span>
-                  )}
-                  <span className="font-display text-[1.3rem] leading-tight" style={{ color: INK }}>
-                    {p.make} {p.model}
-                  </span>
-                  {blurb && (
-                    <p className="text-sm leading-relaxed" style={{ color: MUTED }}>
-                      {blurb}
-                    </p>
-                  )}
-                  <span className="inline-flex items-center gap-1.5 mt-1 text-sm font-bold" style={{ color: TEAL }}>
-                    Read the history <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </Link>
-            );
-          })}
+        {/* 2026-11-11: one history of the day, large, with the next few as
+            a list. Replaces the six equal cards. */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <Link href={`/research/models/${picks[0].slug}`} className="group block lg:col-span-7">
+            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden" style={{ background: INK }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={picks[0].heroPhoto}
+                alt={`${picks[0].make} ${picks[0].model}`}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </Link>
+          <div className="lg:col-span-5">
+            <p className="text-sm font-bold" style={{ color: INK }}>Today&apos;s history</p>
+            <Link href={`/research/models/${picks[0].slug}`} className="group block mt-2">
+              <span className="font-display text-3xl sm:text-[2.4rem] leading-[1.05] group-hover:underline underline-offset-4" style={{ color: INK }}>
+                {picks[0].make} {picks[0].model}
+              </span>
+              {years(picks[0]) && (
+                <span className="block mt-2 text-[12px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.08em", color: MUTED }}>
+                  {years(picks[0])}
+                </span>
+              )}
+              {clip(picks[0].summary, 200) && (
+                <span className="block mt-3 text-base leading-relaxed" style={{ color: MUTED }}>
+                  {clip(picks[0].summary, 200)}
+                </span>
+              )}
+              <span className="inline-flex items-center gap-1.5 mt-4 text-sm font-bold" style={{ color: TEAL }}>
+                Read the history <ArrowRight className="w-3.5 h-3.5" />
+              </span>
+            </Link>
+            {picks.length > 1 && (
+              <ul className="mt-8" style={{ borderTop: `1px solid ${RULE}` }}>
+                {picks.slice(1).map((p) => (
+                  <li key={p.slug} style={{ borderBottom: `1px solid ${RULE}` }}>
+                    <Link href={`/research/models/${p.slug}`} className="group flex items-baseline justify-between gap-4 py-3">
+                      <span className="font-semibold group-hover:underline underline-offset-4" style={{ color: INK }}>
+                        {p.make} {p.model}
+                      </span>
+                      {years(p) && (
+                        <span className="text-[11px] uppercase shrink-0" style={{ fontFamily: MONO, letterSpacing: "0.08em", color: MUTED }}>
+                          {years(p)}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </section>

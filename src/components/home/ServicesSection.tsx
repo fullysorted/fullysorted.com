@@ -77,36 +77,45 @@ export function ServicesSection({ providers = [], total = 0 }: { providers?: Rec
         {/* Four across on desktop; three on a phone, where each card is a
             full screen (the nth-child rule below). */}
         {hasProviders ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 [&>*:nth-child(n+4)]:hidden sm:[&>*:nth-child(n+4)]:block">
-            {providers.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/services/${p.slug}`}
-                className="group block rounded-xl overflow-hidden transition-shadow hover:shadow-[0_20px_50px_-24px_rgba(18,53,42,0.45)]"
-                style={{ border: `1px solid ${RULE}`, background: "#FFFFFF" }}
-              >
-                <div className="relative aspect-[4/3]" style={{ background: "#F4F6F5" }}>
-                  <Image
-                    src={p.avatar_url}
-                    alt={`${formatBusinessName(p.business_name)} photo`}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <p className="text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.12em", color: TEAL }}>
-                    {categoryLabel(p.category)}
-                  </p>
-                  <p className="mt-1.5 font-semibold leading-snug group-hover:underline underline-offset-4" style={{ color: INK }}>
-                    {formatBusinessName(p.business_name)}
-                  </p>
-                  {p.location && (
-                    <p className="mt-0.5 text-sm" style={{ color: MUTED }}>{formatLocation(p.location)}</p>
-                  )}
-                </div>
-              </Link>
-            ))}
+          /* 2026-11-11: one shop large, the rest as a list. Four equal cards
+             read as a template; the newest shop gets the room instead. */
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            <Link href={`/services/${providers[0].slug}`} className="group block lg:col-span-7">
+              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden" style={{ background: "#F4F6F5" }}>
+                <Image
+                  src={providers[0].avatar_url}
+                  alt={`${formatBusinessName(providers[0].business_name)} photo`}
+                  fill
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <p className="mt-4 font-display text-2xl leading-tight group-hover:underline underline-offset-4" style={{ color: INK }}>
+                {formatBusinessName(providers[0].business_name)}
+              </p>
+              <p className="mt-1 text-[12px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.08em", color: MUTED }}>
+                {[categoryLabel(providers[0].category), providers[0].location ? formatLocation(providers[0].location) : null].filter(Boolean).join(" / ")}
+              </p>
+            </Link>
+            <ul className="lg:col-span-5 self-start" style={{ borderTop: `1px solid ${RULE}` }}>
+              {providers.slice(1).map((p) => (
+                <li key={p.slug} style={{ borderBottom: `1px solid ${RULE}` }}>
+                  <Link href={`/services/${p.slug}`} className="group flex items-center gap-4 py-4">
+                    <span className="relative block w-16 h-16 shrink-0 rounded-xl overflow-hidden" style={{ background: "#F4F6F5" }}>
+                      <Image src={p.avatar_url} alt="" fill sizes="64px" className="object-cover" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-semibold leading-snug group-hover:underline underline-offset-4" style={{ color: INK }}>
+                        {formatBusinessName(p.business_name)}
+                      </span>
+                      <span className="block mt-0.5 text-[11px] uppercase" style={{ fontFamily: MONO, letterSpacing: "0.08em", color: MUTED }}>
+                        {[categoryLabel(p.category), p.location ? formatLocation(p.location) : null].filter(Boolean).join(" / ")}
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         ) : (
           <>

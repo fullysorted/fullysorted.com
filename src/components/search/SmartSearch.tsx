@@ -33,6 +33,7 @@ export function SmartSearch({
   models = [],
   initialQuery = "",
   buttonLabel = "Find a specialist",
+  placeholder,
   showExamples = false,
   examplesColor = INK,
   onSearch,
@@ -41,6 +42,8 @@ export function SmartSearch({
   models?: SearchModel[];
   initialQuery?: string;
   buttonLabel?: string;
+  /** Overrides the default hint text in the box. */
+  placeholder?: string;
   /** Tappable example searches under the box. */
   showExamples?: boolean;
   examplesColor?: string;
@@ -109,7 +112,7 @@ export function SmartSearch({
             aria-autocomplete="list"
             aria-activedescendant={showList && active >= 0 ? `${listId}-${active}` : undefined}
             aria-label={sortIt ? "Ask a question or search for a specialist" : "What does your car need?"}
-            placeholder={sortIt ? "Ask anything about your car" : "Try brake job, Porsche 911, or transport"}
+            placeholder={placeholder ?? (sortIt ? "Ask anything about your car" : "Try brake job, Porsche 911, or transport")}
             onChange={(e) => {
               setQ(e.target.value);
               setOpen(true);

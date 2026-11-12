@@ -86,6 +86,26 @@ export async function getRecentProviders(limit = 4): Promise<{ providers: Recent
   }
 }
 
+// Live directory size for the homepage growth line: every active shop, and how
+// many of them joined in the last seven days. Zeroes on any failure, and the
+// line hides itself at zero rather than showing an empty directory.
+export async function getProviderGrowth(): Promise<{ total: number; week: number }> {
+  if (!process.env.DATABASE_URL) return { total: 0, week: 0 };
+  try {
+    const { neon } = await import('@neondatabase/serverless');
+    const sql = neon(process.env.DATABASE_URL);
+    const rows = (await sql`
+      SELECT COUNT(*)::int AS total,
+             COUNT(*) FILTER (WHERE created_at > NOW() - INTERVAL '7 days')::int AS week
+      FROM service_providers
+      WHERE status = 'active' AND slug IS NOT NULL AND slug <> ''
+    `) as { total: number; week: number }[];
+    return { total: rows[0]?.total ?? 0, week: rows[0]?.week ?? 0 };
+  } catch {
+    return { total: 0, week: 0 };
+  }
+}
+
 // Every active provider, public fields only (no phone or website: those are
 // for members). Feeds the server-rendered fallback on /services so the main
 // directory page carries shop names and profile links in its HTML. The

@@ -3,7 +3,7 @@ import { Hero, type FeaturedModel } from "@/components/home/Hero";
 import { getPublishedModels } from "@/lib/data/models";
 import { toSearchModels, type SearchModel } from "@/lib/search-intent";
 import { ServicesSection } from "@/components/home/ServicesSection";
-import { getRecentProviders } from "@/lib/data/providers";
+import { getRecentProviders, getProviderGrowth } from "@/lib/data/providers";
 import { FeaturedListings } from "@/components/home/FeaturedListings";
 import { ResearchPicks, type ResearchPick } from "@/components/home/ResearchPicks";
 import { ValueGuidePreview } from "@/components/home/ValueGuidePreview";
@@ -161,8 +161,10 @@ async function getHomeResearch(): Promise<HomeResearch> {
   const withPhoto = models.filter((m) => m.hero_photo);
   if (withPhoto.length === 0) return { featured: null, picks: [], total: models.length, searchModels };
   const now = new Date();
-  const week = Math.floor((now.getTime() - Date.UTC(now.getUTCFullYear(), 0, 1)) / 604_800_000);
-  const seed = now.getUTCFullYear() * 53 + week;
+  // Rotates daily (was weekly until 2026-11-11): the homepage shows one
+  // history of the day, so the day of the year is the seed.
+  const day = Math.floor((now.getTime() - Date.UTC(now.getUTCFullYear(), 0, 1)) / 86_400_000);
+  const seed = now.getUTCFullYear() * 366 + day;
   const showpieces = withPhoto.filter((x) => HERO_SHOWPIECES.has(x.slug));
   const heroPool = showpieces.length > 0 ? showpieces : withPhoto;
   const m = heroPool[seed % heroPool.length];
@@ -180,7 +182,7 @@ async function getHomeResearch(): Promise<HomeResearch> {
     index: models.findIndex((x) => x.slug === m.slug) + 1,
   };
   const picks: ResearchPick[] = [];
-  for (let i = 1; i < withPhoto.length && picks.length < 6; i++) {
+  for (let i = 0; i < withPhoto.length && picks.length < 5; i++) {
     const p = withPhoto[(start + i) % withPhoto.length];
     picks.push({
       slug: p.slug,
@@ -197,11 +199,12 @@ async function getHomeResearch(): Promise<HomeResearch> {
 
 export default async function Home() {
   // The wanted strip is decoration here: if its read fails the homepage carries on without it.
-  const [listings, research, wanted, recent] = await Promise.all([
+  const [listings, research, wanted, recent, growth] = await Promise.all([
     getActiveListings(),
     getHomeResearch(),
     getOpenWantedPosts(3).catch(() => []),
-    getRecentProviders(4),
+    getRecentProviders(5),
+    getProviderGrowth(),
   ]);
 
   return (
@@ -209,7 +212,7 @@ export default async function Home() {
       {/* Honest about being early, without telling anyone to come back later */}
       <FoundingBand />
       {/* Services first — the hub is the front door */}
-      <Hero featured={research.featured} searchModels={research.searchModels} />
+      <Hero featured={research.featured} searchModels={research.searchModels} shopsTotal={growth.total} shopsThisWeek={growth.week} />
       <ServicesSection providers={recent.providers} total={recent.total} />
       {/* Marketplace second — one strong section */}
       <FeaturedListings listings={listings} />

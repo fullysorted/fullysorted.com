@@ -3,7 +3,6 @@
 import { SmartSearch } from "@/components/search/SmartSearch";
 import type { SearchModel } from "@/lib/search-intent";
 import { tradeHref } from "@/lib/category-slugs";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { TRADE_CATEGORIES, SALES_CATEGORIES, type ServiceCategoryKey } from "@/lib/service-categories";
 import { TradeIcon } from "@/components/home/TradeIcon";
@@ -53,7 +52,17 @@ const tiles = [
 ] as typeof TRADE_CATEGORIES;
 
 // `featured` is still passed by page.tsx; the white hero does not use it.
-export function Hero({ searchModels = [] }: { featured?: FeaturedModel | null; searchModels?: SearchModel[] }) {
+export function Hero({
+  searchModels = [],
+  shopsTotal = 0,
+  shopsThisWeek = 0,
+}: {
+  featured?: FeaturedModel | null;
+  searchModels?: SearchModel[];
+  /** Live count of active shops. The growth line hides at zero. */
+  shopsTotal?: number;
+  shopsThisWeek?: number;
+}) {
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--bg-primary)" }}>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-5 sm:pt-6">
@@ -63,24 +72,43 @@ export function Hero({ searchModels = [] }: { featured?: FeaturedModel | null; s
             the same box returning visitors already know. The AI answers live
             on their own page (/sort-it), linked from the menu. */}
         <div className="relative flex flex-col items-center text-center pt-10 pb-6 sm:pt-16 sm:pb-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05 }}
+          {/* No entrance animation: the headline is the largest thing on the
+              screen and fading it in from invisible delayed first paint. */}
+          <h1
             className="font-display text-[2.4rem] sm:text-[3.4rem] lg:text-[4.2rem] leading-[1.02] tracking-[-0.02em]"
             style={{ color: INK }}
           >
             Collector cars, sorted.
-          </motion.h1>
+          </h1>
           {/* z-index keeps the suggestion list above the trade tiles */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="relative z-20 w-full max-w-2xl mt-7 sm:mt-9 text-left [&>div]:mx-auto [&_.flex-wrap]:justify-center"
-          >
-            <SmartSearch models={searchModels} showExamples examplesColor={INK} />
-          </motion.div>
+          <div className="relative z-20 w-full max-w-2xl mt-7 sm:mt-9 text-left [&>div]:mx-auto [&_.flex-wrap]:justify-center">
+            <SmartSearch models={searchModels} buttonLabel="Find" placeholder="Find anything: a shop, a car, a part" showExamples examplesColor={INK} />
+          </div>
+          {/* Growth line: the live directory count, so an early visitor can
+              see it moving. Hidden at zero; the weekly part hides on a quiet week. */}
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-sm" style={{ color: "#4B5563" }}>
+            {shopsTotal > 0 && (
+              <span className="inline-flex items-center gap-2">
+                <span aria-hidden="true" className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: "#34845B" }} />
+                <span>
+                  <span className="font-mono text-base font-medium" style={{ color: INK }}>{shopsTotal}</span>{" "}
+                  {shopsTotal === 1 ? "shop" : "shops"} listed.
+                  {shopsThisWeek > 0 && (
+                    <>
+                      {" "}
+                      <span className="font-mono font-medium" style={{ color: INK }}>{shopsThisWeek}</span> new this week.
+                    </>
+                  )}
+                </span>
+              </span>
+            )}
+            <Link href="/services/apply" className="font-bold underline underline-offset-4" style={{ color: INK }}>
+              List yours
+            </Link>
+            <Link href="/wanted/new" className="font-bold underline underline-offset-4" style={{ color: INK }}>
+              Not here? We&apos;ll look for it.
+            </Link>
+          </div>
         </div>
 
         {/* Every live trade, as an icon tile */}
@@ -119,14 +147,15 @@ export function Hero({ searchModels = [] }: { featured?: FeaturedModel | null; s
                   Cars for sale &rarr;
                 </Link>
               </div>
-              {/* Three categories, so three across even on a phone: a
-                  two-column grid leaves one orphan. */}
-              <div className="grid grid-cols-3 lg:grid-cols-5 gap-3">
+              {/* Three categories. Three across from tablet up; stacked rows on
+                  a phone, where "Auction Representation" overflowed a
+                  third-width tile. */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
                 {SALES_CATEGORIES.map((c) => (
                   <Link
                     key={c.key}
                     href={`/services?type=${encodeURIComponent(c.key)}`}
-                    className="flex flex-col gap-3 rounded-2xl p-4 text-[15px] font-medium transition-colors hover:bg-[#E6F3F2]"
+                    className="flex flex-row items-center sm:flex-col sm:items-start gap-3 rounded-2xl p-4 text-[15px] font-medium transition-colors hover:bg-[#E6F3F2]"
                     style={{ color: INK, background: "var(--bg-surface)", border: `1px solid ${RULE}` }}
                   >
                     <TradeIcon k={c.key} className="w-8 h-8" />
