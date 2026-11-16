@@ -8,7 +8,7 @@ import { getPartsAccess } from "@/lib/parts";
 import { PlanPanel } from "./PlanPanel";
 import { getScanItem } from "@/lib/scan";
 import { scanToListing } from "@/lib/scan-shared";
-import { SCANNER_ENABLED } from "@/lib/features";
+import { SCANNER_ENABLED, SCANNER_STAFF_ONLY } from "@/lib/features";
 
 export const metadata: Metadata = {
   title: "List a Part, Memorabilia or Artwork",
@@ -62,7 +62,7 @@ export default async function NewPartsPage({ searchParams }: Props) {
           {PARTS_FREE_LISTINGS} listings on the board are free; after that it is a small fee per listing, or a monthly
           seller plan.
         </p>
-        {SCANNER_ENABLED && !scan && (
+        {SCANNER_ENABLED && !SCANNER_STAFF_ONLY && !scan && (
           <p className="text-sm -mt-4 mb-8" style={{ color: MUTED }}>
             More than a few to list? <Link href="/scan" className="font-semibold" style={{ color: TEAL }}>Scan them from photos</Link> and the form fills itself in.
           </p>

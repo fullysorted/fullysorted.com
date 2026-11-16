@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { resolveCurrentUser, isStaff } from "@/lib/identity";
+import { cookies } from "next/headers";
+import { resolveCurrentUser } from "@/lib/identity";
+import { ADMIN_COOKIE, isAdminCookie } from "@/lib/session-token";
 import { SCANNER_ENABLED } from "@/lib/features";
-import { listScanItems, countScanItems, scanBudget } from "@/lib/scan";
+import { scanAccess, listScanItems, countScanItems, scanBudget } from "@/lib/scan";
 import type { ScanItem, ScanUsage } from "@/lib/scan-shared";
 import { ScanBoard } from "./ScanBoard";
 
@@ -26,9 +28,10 @@ export default async function ScanPage() {
   let total = 0;
   let usage: ScanUsage | null = null;
   let failed = false;
-  if (user) {
+  const access = scanAccess(user, isAdminCookie((await cookies()).get(ADMIN_COOKIE)?.value));
+  if (user && access.allowed) {
     try {
-      const staff = isStaff(user);
+      const staff = access.staff;
       const [list, count, budget] = await Promise.all([listScanItems(user.id, { limit: 60 }), countScanItems(user.id), scanBudget(user.id, staff)]);
       items = list;
       total = count;
@@ -59,6 +62,8 @@ export default async function ScanPage() {
               <Link href="/sign-in?redirect_url=/scan" className="px-5 py-3 rounded-full text-sm font-semibold" style={{ color: INK, border: `1px solid ${INK}` }}>Sign in</Link>
             </div>
           </div>
+        ) : !access.allowed ? (
+          <p className="text-sm" style={{ color: MUTED }}>The scanner is not open yet.</p>
         ) : failed || !usage ? (
           <p className="text-sm" style={{ color: MUTED }}>The scanner did not load just now. Please refresh in a moment.</p>
         ) : (

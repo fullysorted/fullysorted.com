@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
-import { resolveCurrentUser, isStaff } from '@/lib/identity';
+import { resolveCurrentUser } from '@/lib/identity';
+import { isAdminRequest } from '@/lib/session-token';
 import { SCANNER_ENABLED } from '@/lib/features';
-import { getScanItem, saveScanComps, scanBudget, logScanSpend } from '@/lib/scan';
+import { scanAccess, getScanItem, saveScanComps, scanBudget, logScanSpend } from '@/lib/scan';
 import { findComps } from '@/lib/ai/scan-comps';
 
 // Haiku with up to three web searches: 10 to 40 seconds.
@@ -22,7 +23,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ id: string
   if (!Number.isInteger(id) || id <= 0) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   const user = await resolveCurrentUser();
   if (!user) return NextResponse.json({ error: 'Sign in first.', code: 'signin' }, { status: 401 });
-  if (!isStaff(user)) return NextResponse.json({ error: 'Not available.' }, { status: 403 });
+  if (!scanAccess(user, isAdminRequest(req)).staff) return NextResponse.json({ error: 'Not available.' }, { status: 403 });
   const burst = rateLimit(req, 'scan-comps', 20, 60_000);
   if (burst) return burst;
 

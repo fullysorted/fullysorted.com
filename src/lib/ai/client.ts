@@ -190,7 +190,8 @@ export async function runAgent(call: AgentCall): Promise<AgentResult> {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const blocks = msg.content as any[];
-    collectToolUrls(blocks, sources);
+    // Bookkeeping only: it must never be the reason an AI feature fails.
+    try { collectToolUrls(blocks, sources); } catch { /* sources stay as they are */ }
     if (stopReason === 'pause_turn') {
       messages.push({ role: 'assistant', content: blocks });
       continue;

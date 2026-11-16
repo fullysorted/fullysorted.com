@@ -21,8 +21,20 @@
  */
 import { neon } from '@neondatabase/serverless';
 import { isBlobImageUrl } from '@/lib/images';
+import { isStaff, type IdentityUser } from '@/lib/identity';
+import { SCANNER_STAFF_ONLY } from '@/lib/features';
 import { PARTS_KINDS, PARTS_CATEGORIES, PARTS_CONDITIONS, type PartsKind, type PartsCategoryKey, type PartsCondition } from '@/lib/parts-shared';
 import { SCAN_MAX_PHOTOS, SCAN_DAILY_LIMIT, SCAN_STAFF_DAILY_LIMIT, type ScanItem, type ScanComp, type ScanConfidence, type ScanUsage } from '@/lib/scan-shared';
+
+/**
+ * Who may use the scanner. `adminSession` is a valid /admin cookie on the
+ * same browser: the admin area is unlocked by password, not by a member's
+ * role, so the founder's member account may not carry a staff role.
+ */
+export function scanAccess(user: IdentityUser | null, adminSession: boolean): { staff: boolean; allowed: boolean } {
+  const staff = !!user && (isStaff(user) || adminSession);
+  return { staff, allowed: !!user && (!SCANNER_STAFF_ONLY || staff) };
+}
 
 function db() {
   if (!process.env.DATABASE_URL) return null;

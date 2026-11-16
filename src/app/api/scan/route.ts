@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rate-limit';
-import { resolveCurrentUser, isStaff } from '@/lib/identity';
+import { resolveCurrentUser } from '@/lib/identity';
+import { isAdminRequest } from '@/lib/session-token';
 import { SCANNER_ENABLED } from '@/lib/features';
 import { PARTS_KINDS, type PartsKind } from '@/lib/parts-shared';
-import { normalizeScanPhotos, scanBudget, logScanSpend, createScanItem, listScanItems, countScanItems } from '@/lib/scan';
+import { scanAccess, normalizeScanPhotos, scanBudget, logScanSpend, createScanItem, listScanItems, countScanItems } from '@/lib/scan';
 import { readItem } from '@/lib/ai/scan-item';
 
 // One Sonnet call reading up to four photos: usually 5 to 15 seconds.
@@ -23,6 +24,8 @@ export async function POST(req: NextRequest) {
   }
   const user = await resolveCurrentUser();
   if (!user) return NextResponse.json({ error: 'Sign in to scan.', code: 'signin' }, { status: 401 });
+  const access = scanAccess(user, isAdminRequest(req));
+  if (!access.allowed) return NextResponse.json({ error: 'The scanner is not open yet.', code: 'closed' }, { status: 403 });
   const burst = rateLimit(req, 'scan', 30, 60_000);
   if (burst) return burst;
 
@@ -33,7 +36,7 @@ export async function POST(req: NextRequest) {
   const kind = PARTS_KINDS.find((k) => k.key === raw.kind)?.key as PartsKind | undefined;
 
   try {
-    const staff = isStaff(user);
+    const staff = access.staff;
     const budget = await scanBudget(user.id, staff);
     if (budget.used >= budget.limit) {
       return NextResponse.json({ error: `That is ${budget.limit} scans in a day. It opens again tomorrow. Your photos are kept below; you can fill these in by hand.`, code: 'limit' }, { status: 429 });
@@ -66,6 +69,7 @@ export async function GET(req: NextRequest) {
   if (!process.env.DATABASE_URL) return NextResponse.json({ error: 'Unavailable' }, { status: 503 });
   const user = await resolveCurrentUser();
   if (!user) return NextResponse.json({ error: 'Sign in first.', code: 'signin' }, { status: 401 });
+  if (!scanAccess(user, isAdminRequest(req)).allowed) return NextResponse.json({ error: 'The scanner is not open yet.', code: 'closed' }, { status: 403 });
   const before = Number(new URL(req.url).searchParams.get('before') || 0);
   try {
     const [items, total] = await Promise.all([

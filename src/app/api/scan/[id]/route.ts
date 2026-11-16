@@ -1,21 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveCurrentUser } from '@/lib/identity';
-import { parseScanFields, updateScanItem, deleteScanItem } from '@/lib/scan';
+import { scanAccess, parseScanFields, updateScanItem, deleteScanItem } from '@/lib/scan';
+import { isAdminRequest } from '@/lib/session-token';
 
 type Ctx = { params: Promise<{ id: string }> };
 
-async function gate(ctx: Ctx) {
+async function gate(req: NextRequest, ctx: Ctx) {
   const id = Number((await ctx.params).id);
   if (!Number.isInteger(id) || id <= 0) return { error: NextResponse.json({ error: 'Not found' }, { status: 404 }) };
   if (!process.env.DATABASE_URL) return { error: NextResponse.json({ error: 'Unavailable' }, { status: 503 }) };
   const user = await resolveCurrentUser();
   if (!user) return { error: NextResponse.json({ error: 'Sign in first.', code: 'signin' }, { status: 401 }) };
+  if (!scanAccess(user, isAdminRequest(req)).allowed) return { error: NextResponse.json({ error: 'The scanner is not open yet.', code: 'closed' }, { status: 403 }) };
   return { id, user };
 }
 
 /** PATCH /api/scan/:id  the owner corrects a scanned item. Every query is scoped to the owner. */
 export async function PATCH(req: NextRequest, ctx: Ctx) {
-  const g = await gate(ctx);
+  const g = await gate(req, ctx);
   if ('error' in g) return g.error;
   let raw: Record<string, unknown>;
   try { raw = await req.json(); } catch { return NextResponse.json({ error: 'Invalid request' }, { status: 400 }); }
@@ -32,8 +34,8 @@ export async function PATCH(req: NextRequest, ctx: Ctx) {
 }
 
 /** DELETE /api/scan/:id  remove an item from the owner's inventory. A listing made from it is not touched. */
-export async function DELETE(_req: NextRequest, ctx: Ctx) {
-  const g = await gate(ctx);
+export async function DELETE(req: NextRequest, ctx: Ctx) {
+  const g = await gate(req, ctx);
   if ('error' in g) return g.error;
   try {
     const ok = await deleteScanItem(g.id, g.user.id);

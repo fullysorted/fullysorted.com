@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
 import { rateLimit } from '@/lib/rate-limit';
 import { resolveCurrentUser } from '@/lib/identity';
+import { scanAccess } from '@/lib/scan';
+import { isAdminRequest } from '@/lib/session-token';
 import { SCANNER_ENABLED } from '@/lib/features';
 
 /**
@@ -23,6 +25,7 @@ export async function POST(req: NextRequest) {
 
   const user = await resolveCurrentUser();
   if (!user) return NextResponse.json({ error: 'Sign in to scan.', code: 'signin' }, { status: 401 });
+  if (!scanAccess(user, isAdminRequest(req)).allowed) return NextResponse.json({ error: 'The scanner is not open yet.', code: 'closed' }, { status: 403 });
 
   try {
     const file = (await req.formData()).get('file');

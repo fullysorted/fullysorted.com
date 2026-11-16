@@ -66,6 +66,11 @@ export function isAdminRequest(request: NextRequest | Request): boolean {
   return verifySessionToken(token, 'admin', secret);
 }
 
+/** The same check for a server component, which has the cookie value but no request. */
+export function isAdminCookie(token: string | undefined): boolean {
+  return verifySessionToken(token, 'admin', adminSecret());
+}
+
 /** Team console access: a valid team session, or an admin session. */
 export function isTeamRequest(request: NextRequest): boolean {
   if (verifySessionToken(request.cookies.get(TEAM_COOKIE)?.value, 'team', teamSecret())) return true;

@@ -139,3 +139,14 @@ export const LEAD_CHECKINS_ENABLED: boolean = false;
  * False hides the page's capture box and the link on /parts/new together.
  */
 export const SCANNER_ENABLED: boolean = true;
+
+/**
+ * SCANNER_STAFF_ONLY (2026-11-16): soft launch. While true, /scan and every
+ * /api/scan route answer only a signed-in member who is staff: role admin or
+ * chris, or the same browser holding a valid /admin session. Everyone else
+ * sees "not open yet" and the link on /parts/new is hidden. Sign-in does not
+ * work on Vercel preview addresses (Clerk is a production instance tied to
+ * fullysorted.com), so this is how the scanner gets its first real test.
+ * Set to false to open it to all members.
+ */
+export const SCANNER_STAFF_ONLY: boolean = true;
