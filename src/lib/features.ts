@@ -130,3 +130,12 @@ export const SORT_IT_ENABLED: boolean = true;
  * copy in sendLeadCheckinEmail (src/lib/email.ts). Flip to true to start.
  */
 export const LEAD_CHECKINS_ENABLED: boolean = false;
+
+/**
+ * SCANNER_ENABLED (2026-11-16): /scan, the photo-to-draft inventory scanner
+ * (lib/scan.ts, lib/ai/scan-item.ts). Members only. Each read is a paid
+ * Sonnet call: 25 a day per member, 400 for staff, and a site-wide daily
+ * dollar ceiling (env SCAN_DAILY_USD, default 15). Comps are staff-only.
+ * False hides the page's capture box and the link on /parts/new together.
+ */
+export const SCANNER_ENABLED: boolean = true;
