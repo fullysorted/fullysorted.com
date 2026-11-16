@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { resolveCurrentUser } from "@/lib/identity";
 import { getPublishedModels, modelDisplayName } from "@/lib/data/models";
-import { PartsForm } from "./PartsForm";
+import { PartsForm, type ScanPrefill } from "./PartsForm";
 import { partsCategory, kindHref, PARTS_KINDS, PARTS_FREE_LISTINGS, type PartsKind, type PartsAccess } from "@/lib/parts-shared";
 import { getPartsAccess } from "@/lib/parts";
 import { PlanPanel } from "./PlanPanel";
+import { getScanItem } from "@/lib/scan";
+import { scanToListing } from "@/lib/scan-shared";
+import { SCANNER_ENABLED, SCANNER_STAFF_ONLY } from "@/lib/features";
 
 export const metadata: Metadata = {
   title: "List a Part, Memorabilia or Artwork",
@@ -18,14 +21,23 @@ const INK = "#12352A";
 const TEAL = "#1C8C87";
 const MUTED = "#6B7280";
 
-type Props = { searchParams: Promise<{ model?: string; kind?: string; shelf?: string }> };
+type Props = { searchParams: Promise<{ model?: string; kind?: string; shelf?: string; scan?: string }> };
 
 export default async function NewPartsPage({ searchParams }: Props) {
   const user = await resolveCurrentUser();
   const sp = await searchParams;
   const preset = sp.model ?? "";
   // The kind arrives as ?kind= or through one of its shelves.
-  const kind: PartsKind = partsCategory(sp.shelf)?.kind ?? (PARTS_KINDS.some((k) => k.key === sp.kind) ? (sp.kind as PartsKind) : "part");
+  // ?scan=<id> arrives from /scan. Only the owner's own row is ever read.
+  let scan: ScanPrefill | undefined;
+  const scanId = Number(sp.scan);
+  if (user && Number.isInteger(scanId) && scanId > 0) {
+    try {
+      const item = await getScanItem(scanId, user.id);
+      if (item) scan = { id: item.id, ...scanToListing(item) };
+    } catch { /* the form opens empty */ }
+  }
+  const kind: PartsKind = scan?.kind ?? partsCategory(sp.shelf)?.kind ?? (PARTS_KINDS.some((k) => k.key === sp.kind) ? (sp.kind as PartsKind) : "part");
   const heading = kind === "memorabilia" ? "List memorabilia" : kind === "art" ? "List artwork" : "List a part";
   const backLabel = PARTS_KINDS.find((k) => k.key === kind)?.label ?? "Parts";
   let access: PartsAccess | null = null;
@@ -50,9 +62,14 @@ export default async function NewPartsPage({ searchParams }: Props) {
           {PARTS_FREE_LISTINGS} listings on the board are free; after that it is a small fee per listing, or a monthly
           seller plan.
         </p>
+        {SCANNER_ENABLED && !SCANNER_STAFF_ONLY && !scan && (
+          <p className="text-sm -mt-4 mb-8" style={{ color: MUTED }}>
+            More than a few to list? <Link href="/scan" className="font-semibold" style={{ color: TEAL }}>Scan them from photos</Link> and the form fills itself in.
+          </p>
+        )}
         {access?.plan && <PlanPanel plan={access.plan} live={access.live} maxLive={access.maxLive} active={access.mode === "plan"} />}
         {user && access ? (
-          <PartsForm handle={user.handle} models={models} presetModelSlug={preset} presetKind={kind} presetShelf={sp.shelf} access={access} />
+          <PartsForm handle={user.handle} models={models} presetModelSlug={preset} presetKind={kind} presetShelf={sp.shelf} access={access} scan={scan} />
         ) : user ? (
           <p className="text-sm" style={{ color: MUTED }}>The form did not load just now. Please refresh in a moment.</p>
         ) : (

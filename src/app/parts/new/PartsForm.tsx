@@ -20,6 +20,8 @@ const TITLE_HINT: Record<PartsKind, string> = {
 };
 
 type ModelOption = { slug: string; name: string; make: string; model: string };
+/** A scanned item handed over from /scan. It fills the form; the member still checks and sends it. */
+export type ScanPrefill = { id: number; kind: PartsKind; category: string; title: string; body: string; make: string; model: string; partNumber: string; condition: string; price: string; location: string; photos: string[] };
 
 function Label({ children, hint }: { children: React.ReactNode; hint?: string }) {
   return (
@@ -30,25 +32,25 @@ function Label({ children, hint }: { children: React.ReactNode; hint?: string })
   );
 }
 
-export function PartsForm({ handle, models, presetModelSlug, presetKind, presetShelf, access }: { handle: string | null; models: ModelOption[]; presetModelSlug?: string; presetKind?: string; presetShelf?: string; access: PartsAccess }) {
+export function PartsForm({ handle, models, presetModelSlug, presetKind, presetShelf, access, scan }: { handle: string | null; models: ModelOption[]; presetModelSlug?: string; presetKind?: string; presetShelf?: string; access: PartsAccess; scan?: ScanPrefill }) {
   const router = useRouter();
   const preset = models.find((m) => m.slug === presetModelSlug);
   const presetCat = partsCategory(presetShelf);
-  const [kind, setKind] = useState<PartsKind>(presetCat ? presetCat.kind : PARTS_KINDS.some((k) => k.key === presetKind) ? (presetKind as PartsKind) : "part");
+  const [kind, setKind] = useState<PartsKind>(scan ? scan.kind : presetCat ? presetCat.kind : PARTS_KINDS.some((k) => k.key === presetKind) ? (presetKind as PartsKind) : "part");
   // Only asked when the free allowance is gone and there is no plan.
   const [pay, setPay] = useState<"item" | "plan">("item");
-  const [category, setCategory] = useState<string>(presetCat?.key ?? "");
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [make, setMake] = useState(preset?.make ?? "");
-  const [model, setModel] = useState(preset?.model ?? "");
+  const [category, setCategory] = useState<string>(scan?.category || presetCat?.key || "");
+  const [title, setTitle] = useState(scan?.title ?? "");
+  const [body, setBody] = useState(scan?.body ?? "");
+  const [make, setMake] = useState(scan?.make || preset?.make || "");
+  const [model, setModel] = useState(scan?.model || preset?.model || "");
   const [modelSlug, setModelSlug] = useState(preset?.slug ?? "");
-  const [partNumber, setPartNumber] = useState("");
-  const [condition, setCondition] = useState("");
-  const [price, setPrice] = useState("");
-  const [location, setLocation] = useState("");
+  const [partNumber, setPartNumber] = useState(scan?.partNumber ?? "");
+  const [condition, setCondition] = useState(scan?.condition ?? "");
+  const [price, setPrice] = useState(scan?.price ?? "");
+  const [location, setLocation] = useState(scan?.location ?? "");
   const [shipping, setShipping] = useState("");
-  const [photos, setPhotos] = useState<string[]>([]);
+  const [photos, setPhotos] = useState<string[]>(scan?.photos ?? []);
   const [uploading, setUploading] = useState(0);
   const [newHandle, setNewHandle] = useState("");
   const [handleNote, setHandleNote] = useState<{ ok: boolean; text: string } | null>(null);
@@ -115,7 +117,7 @@ export function PartsForm({ handle, models, presetModelSlug, presetKind, presetS
       const res = await fetch("/api/parts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kind, category, title, body, make, model, modelSlug, partNumber, condition, price, location, shipping, photos, handle: newHandle, agree, website, ...trapFields, ...(access.mode === "pay" ? { pay } : {}) }),
+        body: JSON.stringify({ kind, category, title, body, make, model, modelSlug, partNumber, condition, price, location, shipping, photos, handle: newHandle, agree, website, ...(scan ? { scanId: scan.id } : {}), ...trapFields, ...(access.mode === "pay" ? { pay } : {}) }),
       });
       const d = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -135,6 +137,11 @@ export function PartsForm({ handle, models, presetModelSlug, presetKind, presetS
 
   return (
     <form onSubmit={submit} className="space-y-6">
+      {scan && (
+        <p className="text-sm leading-relaxed rounded-xl px-4 py-3" style={{ background: "rgba(28,140,135,0.08)", color: INK }}>
+          Filled in from your scan. Read it through and correct anything the photos got wrong. The listing is yours, in your words.
+        </p>
+      )}
       <div>
         <Label>What is it?</Label>
         <div className="grid grid-cols-2 gap-2">

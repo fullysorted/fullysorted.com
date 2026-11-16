@@ -88,12 +88,12 @@ export interface UsageTotals {
   usd: number;
 }
 
-function emptyUsage(): UsageTotals {
+export function emptyUsage(): UsageTotals {
   return { input: 0, output: 0, cacheWrite: 0, cacheRead: 0, searches: 0, fetches: 0, usd: 0 };
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function addUsage(total: UsageTotals, model: string, u: any) {
+export function addUsage(total: UsageTotals, model: string, u: any) {
   if (!u) return;
   const p = PRICES[model] ?? PRICES[MODELS.write];
   const input = u.input_tokens ?? 0;
@@ -135,6 +135,29 @@ export interface AgentResult {
   text: string;
   usage: UsageTotals;
   stopReason: string | null;
+  /** Every address the server tools returned, across all turns. Lets a caller
+   *  drop any "source" the model cites that no search or fetch ever produced. */
+  sources: string[];
+}
+
+/** Collect every `url` string inside the non-text blocks of a response. Walks
+ *  whatever shape the tool result has, so a tool version bump cannot blind it. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function collectToolUrls(blocks: any[], into: Set<string>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const walk = (v: any, depth: number) => {
+    if (!v || depth > 8) return;
+    if (Array.isArray(v)) { for (const x of v) walk(x, depth + 1); return; }
+    if (typeof v !== 'object') return;
+    for (const [k, x] of Object.entries(v)) {
+      if (k === 'url' && typeof x === 'string' && /^https?:\/\//i.test(x)) into.add(x);
+      else walk(x, depth + 1);
+    }
+  };
+  for (const b of blocks ?? []) {
+    if (b?.type === 'text' || b?.type === 'thinking' || b?.type === 'redacted_thinking') continue;
+    walk(b, 0);
+  }
 }
 
 /**
@@ -148,6 +171,7 @@ export async function runAgent(call: AgentCall): Promise<AgentResult> {
   const messages: any[] = [{ role: 'user', content: call.user }];
   let stopReason: string | null = null;
   const textParts: string[] = [];
+  const sources = new Set<string>();
 
   for (let turn = 0; turn < 4; turn++) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -166,6 +190,8 @@ export async function runAgent(call: AgentCall): Promise<AgentResult> {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const blocks = msg.content as any[];
+    // Bookkeeping only: it must never be the reason an AI feature fails.
+    try { collectToolUrls(blocks, sources); } catch { /* sources stay as they are */ }
     if (stopReason === 'pause_turn') {
       messages.push({ role: 'assistant', content: blocks });
       continue;
@@ -181,7 +207,7 @@ export async function runAgent(call: AgentCall): Promise<AgentResult> {
   }
 
   logUsage(call.feature, call.model, usage, `stop=${stopReason}`);
-  return { text: textParts.join('\n'), usage, stopReason };
+  return { text: textParts.join('\n'), usage, stopReason, sources: [...sources] };
 }
 
 /** Pull a JSON object out of model text, tolerating fences or stray prose. */

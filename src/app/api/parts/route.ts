@@ -9,6 +9,7 @@ import { createPartsCheckout, PlanExistsError, type PayChoice } from '@/lib/part
 import { PARTS_KINDS, PARTS_PLAN_MAX_LIVE } from '@/lib/parts-shared';
 import { getPublishedModels } from '@/lib/data/models';
 import { notifyPartsPost } from '@/lib/email';
+import { markScanListed } from '@/lib/scan';
 
 /**
  * POST /api/parts  create a parts, memorabilia or artwork listing. Signed-in
@@ -72,6 +73,9 @@ export async function POST(req: NextRequest) {
       RETURNING id
     `;
     const id = Number(rows[0].id);
+    // Listed from a scan: mark the inventory row. It only ever matches the member's own row.
+    const scanId = Number(raw.scanId);
+    if (Number.isInteger(scanId) && scanId > 0) await markScanListed(scanId, user.id, id);
 
     if (status === 'unpaid' && pay) {
       const origin = req.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'https://fullysorted.com';
