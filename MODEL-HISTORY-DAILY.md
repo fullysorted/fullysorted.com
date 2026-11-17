@@ -58,6 +58,7 @@ registered, one held for a second research pass.
    `written <date>`.
 8. Gates, all required:
    - `validate-seed.mjs` prints `OK` for every new file.
+   - `check-claim-figures.mjs` prints `OK` for every new file.
    - `npx tsc --noEmit` is clean.
    - `git status` shows only: the new seed files, `route.ts`,
      `MODEL-HISTORY-QUEUE.md`. Anything else is a stop.
@@ -119,7 +120,12 @@ You are writing one cited model history for fullysorted.com. Read
     3, 4 and 6; 5 and 7 as available. If a category cannot be covered, say so
     in `productionNotes` and in the receipt.
 13. Never run git. Helper scripts go in `/tmp/<file stem>/`.
-14. Validate: `node scripts/validate-seed.mjs <file>` must print `OK`.
+14. Validate: `node scripts/validate-seed.mjs <file>` must print `OK`, and
+    `node scripts/check-claim-figures.mjs <file>` must print `OK`. The second
+    one fails when a dollar figure or a count in a claim appears in none of
+    that claim's quotes. A figure the file computes itself (a sum of table
+    rows) goes in that claim's `computed` array instead, with the rows it
+    was added from quoted as evidence.
 15. Return only the receipt JSON from spec section 10, with
     `chrisTakeQuestions` filled.
 
@@ -134,7 +140,9 @@ You did not write this file. Find what is wrong with it.
    NEAR if the page says the same thing in other words and give its exact
    sentence, or MISSING. Say whether the page loaded real article content."
    A blocked page, a cookie wall or an empty shell is `unreachable`.
-3. For each claim, check that its evidence quote contains the claim's figure.
+3. Run `node scripts/check-claim-figures.mjs <file>` and report its result.
+   For each figure it lists, fetch the cited page and report the page's exact
+   words for that figure, or NOT ON PAGE.
 4. Re-derive the six highest-risk numbers from the cited sources: production
    total (or why it is null), US price new, output, weight, 0-60, top speed.
    Re-add any sum the file computed, with a script.

@@ -337,7 +337,8 @@ export const seedSlR129 = {
    "evidence": [
     { "ref": "hagerty-buyers-guide", "quote": "The 500SL V-8 was the 5.0-liter, 32-valve, DOHC M119 unit, good for 322 horsepower." },
     { "ref": "cg-cheapwheels", "quote": "In 1993, 500SL's V8 engine was downgraded to 315 horsepower," },
-    { "ref": "mb-archive-500sl", "quote": "240 kW / 326 hp at 5500 rpm; from 09.1992: 235 kW / 320 hp at 5600 rpm" }
+    { "ref": "mb-archive-500sl", "quote": "240 kW / 326 hp at 5500 rpm; from 09.1992: 235 kW / 320 hp at 5600 rpm" },
+    { "ref": "mb-archive-500sl", "quote": "Total displacement 4973 cc" }
    ]
   },
   {
