@@ -146,12 +146,11 @@ import { seedCrx } from '@/lib/data/model-seed-crx';
 // Wave 2026-10-19: K5 Blazer and XJ-S. Seed with ?offset=138&limit=2.
 import { seedK5BlazerSquareBody } from '@/lib/data/model-seed-k5-blazer-square-body';
 import { seedXjs } from '@/lib/data/model-seed-xjs';
-// Wave 2026-11-17: eight histories. Seed with the admin button (new only) or ?offset=140&limit=8.
+// Wave 2026-11-17: seven histories. Seed with the admin button (new only) or ?offset=140&limit=7.
 import { seedCherokeeXj } from '@/lib/data/model-seed-cherokee-xj';
 import { seedVanagon } from '@/lib/data/model-seed-vanagon';
 import { seed3SeriesE30 } from '@/lib/data/model-seed-3-series-e30';
 import { seedCorvetteC4 } from '@/lib/data/model-seed-corvette-c4';
-import { seed3100AdvanceDesign } from '@/lib/data/model-seed-3100-advance-design';
 import { seedSlR129 } from '@/lib/data/model-seed-sl-r129';
 import { seedCayman987 } from '@/lib/data/model-seed-cayman-987';
 import { seedContinental196169 } from '@/lib/data/model-seed-continental-1961-69';
@@ -169,7 +168,7 @@ const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, see
   seed250GtLusso, seed275Gtb, seed330Gtc, seed365Gtb4Daytona, seed512Bb, seed288Gto,
   seed348, seed456, seed550Maranello, seed360, seedF50, seedEnzo,
   seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx, seedFlaminia, seedBelAir195557, seedGrandWagoneer, seedScout, seedDiablo, seedC10SquareBody, seedTransAm197081, seedKarmannGhia, seed280z, seedCorollaAe86, seedIntegraTypeRDc2, seed190sl, seedE930Cs, seedModelA, seed442196472, seed124Spider, seedK5BlazerSquareBody, seedXjs,
-  seedCherokeeXj, seedVanagon, seed3SeriesE30, seedCorvetteC4, seed3100AdvanceDesign, seedSlR129, seedCayman987, seedContinental196169];
+  seedCherokeeXj, seedVanagon, seed3SeriesE30, seedCorvetteC4, seedSlR129, seedCayman987, seedContinental196169];
 
 // Auth: header x-admin-secret OR signed fs_admin session cookie (matches other admin routes).
 const isAuthorized = isAdminRequest;

@@ -5,7 +5,8 @@ Change the run by editing this file or `MODEL-HISTORY-QUEUE.md`, never the
 scheduled task. `MODEL-HISTORY-SPEC.md` is the content standard; where this
 file is more specific, this file wins.
 
-Set 2026-11-17. First run under it: eight histories, the same day.
+Set 2026-11-17. First run under it, the same day: eight written, seven
+registered, one held for a second research pass.
 
 ## Settings
 
@@ -20,7 +21,7 @@ Set 2026-11-17. First run under it: eight histories, the same day.
 |---|---|---|
 | Orchestrator | the session itself | Picks the cars, briefs the agents, adjudicates, registers, runs the gates, pushes, reports. Writes no history itself. |
 | Writer | Opus subagent | Researches and writes one seed file. |
-| Checker | Sonnet subagent | Audits one finished seed it did not write, then applies the fixes the orchestrator approves. |
+| Checker | Sonnet subagent | Audits one finished seed it did not write. Fixes mechanical defects only. Re-checks what the writer changed. |
 
 ## Orchestrator procedure
 
@@ -29,18 +30,24 @@ Set 2026-11-17. First run under it: eight histories, the same day.
    `npm ci --no-audit --no-fund` there for the typecheck.
 2. Read this file, `MODEL-HISTORY-QUEUE.md` and `MODEL-HISTORY-SPEC.md`
    sections 0 to 8. Take the first rows with status `queued`, up to the cars
-   per run. Confirm no file with that stem exists.
+   per run. Confirm no file with that stem exists, unless the row's notes
+   begin with UPGRADE, in which case the writer works from the existing file
+   under spec section 12.
 3. Launch one writer per car in the background, model Opus, with the brief
    under "Writer brief". Give each the row's slug, file stem, export name,
    make, model, generation, years and scope notes.
 4. When a writer finishes, run `node scripts/validate-seed.mjs <file>`. It
    must print `OK`. Then launch a checker for that file, model Sonnet, with
    the brief under "Checker brief".
-5. Adjudicate each checker report. Send the same checker a fix list (it keeps
-   its context, so it costs little): approve every fix that removes an
+5. Adjudicate each checker report and send the fix list to the **writer**,
+   by message, so it keeps its context. Approve every fix that removes an
    unsupported statement, corrects a number to its source, or swaps in an
    evidence quote that carries the figure. Never approve a fix that adds a
-   fact without a fetched source.
+   fact without a fetched source. The checker does not apply substantive
+   fixes: the one who checks the work does not also rewrite it. When the
+   writer reports back, message the checker to re-check only the claims and
+   quotes that changed. If the writer cannot be reached, the orchestrator
+   applies the fixes itself and says so in the report.
 6. After the fix pass, validate again and read the diff of each file yourself:
    `summary`, `marketNotes`, `whatToLookFor` and `valueTrajectory` in full.
    Run the slop sweep under "Final read". A car whose checker verdict is

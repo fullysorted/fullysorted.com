@@ -2,7 +2,9 @@
 
 The daily run (`MODEL-HISTORY-DAILY.md`) takes the first rows whose status is
 `queued`, top to bottom. Reorder rows to change priority. Add a row to add a
-car. Status values: `queued`, `written YYYY-MM-DD`, `held YYYY-MM-DD: reason`.
+car. Status values: `queued`, `written YYYY-MM-DD`, `held YYYY-MM-DD: reason`. A `queued`
+row whose notes begin with UPGRADE already has a file: the writer improves it
+under spec section 12 instead of starting again.
 
 Order is a judgment of US ownership-search demand and of gaps beside pages
 already published, set 2026-11-17. It is not measured. When fresh demand data
@@ -17,7 +19,7 @@ File path is `src/lib/data/model-seed-<file stem>.ts`.
 | 2 | written 2026-11-17 | volkswagen/vanagon | vanagon | seedVanagon | Volkswagen | Vanagon | T3 | 1980-1991 | |
 | 3 | written 2026-11-17 | bmw/3-series-e30 | 3-series-e30 | seed3SeriesE30 | BMW | 3 Series | E30 | 1984-1991 | |
 | 4 | written 2026-11-17 | chevrolet/corvette-c4 | corvette-c4 | seedCorvetteC4 | Chevrolet | Corvette | C4 | 1984-1996 | |
-| 5 | written 2026-11-17 | chevrolet/3100-advance-design | 3100-advance-design | seed3100AdvanceDesign | Chevrolet | 3100 | Advance Design | 1947-1955 | |
+| 5 | queued | chevrolet/3100-advance-design | 3100-advance-design | seed3100AdvanceDesign | Chevrolet | 3100 | Advance Design | 1947-1955 | UPGRADE of an existing file, held 2026-11-17, not registered. Year-by-year identification and five dated Hagerty Marketplace results are checked and sound. Missing: a US price new, any production figure, a period source, and a rust and repair source above low reliability. Try the GM Heritage Center vehicle information kits for 1947-55 Chevrolet trucks and a Hemmings buyer's guide. Remove the $1,419 price and the HotCars NADA values (one low-reliability source). Hood script is 1947 only, Hydra-Matic is 1954, drop the 1947-49 span on the 90 hp figure and the 235 'through 1955' line. Rewrite whatToLookFor, commonProblems and valueTrajectory as description. Set confidence low if the gaps stay open. |
 | 6 | written 2026-11-17 | mercedes-benz/sl-r129 | sl-r129 | seedSlR129 | Mercedes-Benz | SL | R129 | 1990-2002 | |
 | 7 | written 2026-11-17 | porsche/cayman-987 | cayman-987 | seedCayman987 | Porsche | Cayman | 987 | 2006-2012 | |
 | 8 | written 2026-11-17 | lincoln/continental-1961-69 | continental-1961-69 | seedContinental196169 | Lincoln | Continental | Fourth generation | 1961-1969 | |
