@@ -146,6 +146,14 @@ import { seedCrx } from '@/lib/data/model-seed-crx';
 // Wave 2026-10-19: K5 Blazer and XJ-S. Seed with ?offset=138&limit=2.
 import { seedK5BlazerSquareBody } from '@/lib/data/model-seed-k5-blazer-square-body';
 import { seedXjs } from '@/lib/data/model-seed-xjs';
+// Wave 2026-11-17: seven histories. Seed with the admin button (new only) or ?offset=140&limit=7.
+import { seedCherokeeXj } from '@/lib/data/model-seed-cherokee-xj';
+import { seedVanagon } from '@/lib/data/model-seed-vanagon';
+import { seed3SeriesE30 } from '@/lib/data/model-seed-3-series-e30';
+import { seedCorvetteC4 } from '@/lib/data/model-seed-corvette-c4';
+import { seedSlR129 } from '@/lib/data/model-seed-sl-r129';
+import { seedCayman987 } from '@/lib/data/model-seed-cayman-987';
+import { seedContinental196169 } from '@/lib/data/model-seed-continental-1961-69';
 // All researched model drafts to seed (status='draft' for human review).
 // Ferrari wave (2026-09-02) sits at indices 73-84: seed with ?offset=73&limit=6 then ?offset=79&limit=6.
 const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx, seedCorvetteC2, seedMustang1stGen, seed930Turbo, seedRx7Fd, seedETypeS1, seedBronco1stGen, seedFj40, seedW113Pagoda, seedBmw2002, seedSkylineR34, seedCountach, seedTestarossa, seedShelbyCobra, seedDeLoreanDmc12, seedBmwIsetta, seedAmphicar770, seed356, seedCitroenDs,
@@ -159,7 +167,8 @@ const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, see
   seedLandCruiser80,
   seed250GtLusso, seed275Gtb, seed330Gtc, seed365Gtb4Daytona, seed512Bb, seed288Gto,
   seed348, seed456, seed550Maranello, seed360, seedF50, seedEnzo,
-  seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx, seedFlaminia, seedBelAir195557, seedGrandWagoneer, seedScout, seedDiablo, seedC10SquareBody, seedTransAm197081, seedKarmannGhia, seed280z, seedCorollaAe86, seedIntegraTypeRDc2, seed190sl, seedE930Cs, seedModelA, seed442196472, seed124Spider, seedK5BlazerSquareBody, seedXjs];
+  seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx, seedFlaminia, seedBelAir195557, seedGrandWagoneer, seedScout, seedDiablo, seedC10SquareBody, seedTransAm197081, seedKarmannGhia, seed280z, seedCorollaAe86, seedIntegraTypeRDc2, seed190sl, seedE930Cs, seedModelA, seed442196472, seed124Spider, seedK5BlazerSquareBody, seedXjs,
+  seedCherokeeXj, seedVanagon, seed3SeriesE30, seedCorvetteC4, seedSlR129, seedCayman987, seedContinental196169];
 
 // Auth: header x-admin-secret OR signed fs_admin session cookie (matches other admin routes).
 const isAuthorized = isAdminRequest;
@@ -282,7 +291,19 @@ export async function POST(request: NextRequest) {
   const offset = Math.max(0, Number(sp.get('offset') ?? 0) || 0);
   const limitRaw = sp.get('limit');
   const limit = limitRaw === null ? SEEDS.length : Math.max(1, Number(limitRaw) || SEEDS.length);
-  const batch = SEEDS.slice(offset, offset + limit);
+  // ?new=1 seeds only the seeds whose slug is not in the database yet, six at a
+  // time unless ?limit= says otherwise. It never rewrites a page that exists, so
+  // it is the safe button to press from a phone after a deploy adds histories.
+  const onlyNew = sp.get('new') === '1';
+  let batch = SEEDS.slice(offset, offset + limit);
+  let remainingNew = 0;
+  if (onlyNew) {
+    const have = new Set(((await sql`SELECT slug FROM vehicle_models`) as { slug: string }[]).map((r) => r.slug));
+    const missing = SEEDS.filter((s) => !have.has(s.slug));
+    const newLimit = limitRaw === null ? 6 : limit;
+    batch = missing.slice(0, newLimit);
+    remainingNew = missing.length - batch.length;
+  }
 
   for (const s of batch) {
   // Optional per-seed hero photo; most seeds do not carry one yet.
@@ -382,6 +403,12 @@ export async function POST(request: NextRequest) {
     nextOffset: nextOffset < SEEDS.length ? nextOffset : null,
     remaining: Math.max(0, SEEDS.length - nextOffset),
     status: 'draft',
-    message: `Tables ready. ${results.length} model drafts seeded — review them in /admin/models before publishing.`,
+    onlyNew,
+    remainingNew,
+    message: onlyNew
+      ? (results.length === 0
+        ? 'Nothing new to seed. Every history in the code is already in the database.'
+        : `${results.length} new ${results.length === 1 ? 'draft' : 'drafts'} seeded: ${results.map((r) => r.slug).join(', ')}.`)
+      : `Tables ready. ${results.length} model drafts seeded — review them in /admin/models before publishing.`,
   });
 }

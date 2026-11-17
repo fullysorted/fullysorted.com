@@ -52,11 +52,21 @@ export default function AdminModelsPage() {
   }
   useEffect(() => { load(); }, []);
 
+  // Seeds only histories that are in the code but not in the database, six per
+  // request, repeating until none are left. Existing pages are never rewritten.
   async function seed() {
-    setGenMsg("Seeding 964 + creating tables…");
-    const res = await fetch("/api/admin/seed-models", { method: "POST" });
-    const d = await res.json();
-    setGenMsg(res.ok ? `✓ ${d.message}` : `✗ ${d.error}`);
+    setGenMsg("Seeding new histories…");
+    const seeded: string[] = [];
+    for (let i = 0; i < 12; i++) {
+      const res = await fetch("/api/admin/seed-models?new=1", { method: "POST" });
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok) { setGenMsg(`✗ ${d.error || `Seed failed (${res.status})`}${seeded.length ? ` after ${seeded.length} seeded` : ""}`); load(); return; }
+      for (const r of (d.seeded || []) as { slug: string }[]) seeded.push(r.slug);
+      if (!d.remainingNew) break;
+    }
+    setGenMsg(seeded.length
+      ? `✓ ${seeded.length} new ${seeded.length === 1 ? "draft" : "drafts"} seeded: ${seeded.join(", ")}. Review, then publish.`
+      : "Nothing new to seed. Every history in the code is already in the database.");
     load();
   }
 
@@ -156,7 +166,7 @@ export default function AdminModelsPage() {
           </button>
           <button type="button" onClick={seed}
             className="h-9 px-4 text-sm font-semibold rounded-lg border border-border hover:bg-surface inline-flex items-center gap-2">
-            <FileText className="w-4 h-4" /> Seed 964 + create tables
+            <FileText className="w-4 h-4" /> Seed new histories
           </button>
         </form>
         {genMsg && <p className="text-xs text-text-secondary mt-3">{genMsg}</p>}
