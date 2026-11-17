@@ -74,7 +74,7 @@ export const seedCayman987 = {
  "marketNotes": "As of November 2026 classic.com's 987.2 Cayman market, which covers the 2009-2012 base, S and R cars together, shows an average of $40,935 across 179 recorded sales, with a lowest sale of $16,250 and a top sale of $93,000. The page did not show dates for either extreme or a market benchmark. For the 987.1 base Cayman with a manual gearbox, classic.com as of November 2026 gives a market benchmark of $25,586 and an average of $25,790 across 95 sales, with a lowest sale of $11,874 and a top sale of $39,500. The all-variant 987.1 page did not load its market values, so no like-for-like 987.1 S figure is quoted here, and the two classic.com averages above are not a 987.1 versus 987.2 comparison because one is a single trim and the other is every trim. The stuttcars buyer's guide, undated, puts the 987.2 premium over a comparable 987.1 at $8,000 to $15,000, PDK cars at $2,000 to $4,000 below their manual counterparts, and the Cayman R at $60,000 to $80,000 in one section and $55,000 to $75,000 in another, which the guide does not reconcile; it also reports, secondhand, a Hagerty excellent-condition value of about $90,300 for the Cayman R. Those are one specialist's ranges, not recorded sales. No individual auction lot page for a 987 Cayman was retrieved for this research, so no single sale is named with house, month and premium.",
  "whatToLookFor": "The model year settles which engine family a US Cayman has. A 2006-2008 car has the M97-family engine with the larger intermediate shaft bearing that LN Engineering describes as non-serviceable without full engine disassembly, so there is no bearing retrofit to look for in its records the way there is on earlier cars; the evidence of health is oil analysis history, filter inspections and a cylinder bore inspection. A 2009-2012 car has no intermediate shaft in the 3.4-liter MA1 engine, but bore scoring is still reported, so the same bore inspection applies to a 987.2 S or R. The 3.4-liter cars are the ones the specialists flag for scoring; the 2.7 and 2.9 base engines are reported as less prone, not immune. On a 987.2 base car the sources disagree on how the 2.9 is fueled: stuttcars says direct injection, LN Engineering says port injection, and Porsche Cars North America's releases attribute direct injection to the S models only. Gearbox: 987.1 automatics are the five-speed Tiptronic S, 987.2 automatics are the seven-speed PDK. For the special editions, documents carry the value. A Design Edition 1 has a numbered badge on the glove box lid and was black only; a Cayman R should show its 2012 model year, its lowered ride height and its delete specification on the build sheet, with any radio or air conditioning recorded as specified rather than added later; Peridot Metallic was unique to the R. A Cayman S Sport offered with a US title needs its import or delivery history explained, because no source consulted confirms the model was sold new here. A Black Edition's claimed 330 hp and 500-car run rest on one source, so a seller's paperwork is worth more than the badge.",
  "commonProblems": "Two engine faults dominate owner conversation, and neither has a published failure rate. The first is the intermediate shaft bearing on 2006-2008 cars. LN Engineering states that late 2005 through 2008 987 models have the larger non-serviceable bearing, that it cannot be replaced without full engine disassembly, and that its failure rate is much lower than the earlier bearing's but not zero. The stuttcars buyer's guide gives a failure rate of less than 1 percent; it does not say where that number comes from, and it is reported here as that guide's figure, not a measured rate. The second is bore scoring, cylinder wall damage that LN describes as leading to oil consumption, piston slap and eventually engine failure. LN says bore scoring primarily affects the 3.4-liter engines (Boxster S and Cayman S) and describes the 2.7-liter base engines as less prone. It also states the 2009 MA1 Alusil block can suffer scoring, so the direct-injection cars are not exempt. Owners on Rennlist report scoring on both the 987.1 S and the direct-injection 3.4, and one poster in the same thread notes there is no real data behind the complaints. The stuttcars guide puts onset at about 30,000 to 80,000 miles, again without a source. No US shop labor rate or engine rebuild cost was retrieved for this page, so no repair figure is quoted. The NHTSA recall listing for the Cayman could not be retrieved in this research, so recall campaigns are not listed here.",
- "valueTrajectory": "The new prices set the frame: $49,400 for the 2006 base car, $58,900 for the first Cayman S, $61,500 for the 2010 Cayman S and $66,300 for the 2012 Cayman R. As of November 2026 classic.com shows a 987.1 base manual car averaging $25,790 and the 987.2 range as a whole averaging $40,935, with a top 987.2 sale of $93,000 across all variants. A Hagerty editorial piece, undated in the fetched copy, reported that 987 Boxster and Cayman values had held steady since September 2019 before rising 25 percent to an average of $43,000 across all variants in condition 2. The stuttcars guide puts 987.2 cars at a premium of $8,000 to $15,000 over comparable 987.1 cars, PDK cars $2,000 to $4,000 below their manual counterparts, and the Cayman R at both $60,000 to $80,000 and $55,000 to $75,000, without reconciling the two. The classic.com 987.1 all-variant page did not load its market values, so no 987.1 S figure is quoted, and no source here measures how the engine question affects 987.1 S prices against 987.2 S prices.",
+ "valueTrajectory": "The new prices set the frame: $49,400 for the base car at its July 2006 launch, $58,900 for the first Cayman S, $61,500 for the 2010 Cayman S and $66,300 for the 2012 Cayman R. As of November 2026 classic.com shows a 987.1 base manual car averaging $25,790 and the 987.2 range as a whole averaging $40,935, with a top 987.2 sale of $93,000 across all variants. A Hagerty editorial piece, undated in the fetched copy, reported that 987 Boxster and Cayman values had held steady since September 2019 before rising 25 percent to an average of $43,000 across all variants in condition 2. The stuttcars guide puts 987.2 cars at a premium of $8,000 to $15,000 over comparable 987.1 cars, PDK cars $2,000 to $4,000 below their manual counterparts, and the Cayman R at both $60,000 to $80,000 and $55,000 to $75,000, without reconciling the two. The classic.com 987.1 all-variant page did not load its market values, so no 987.1 S figure is quoted, and no source here measures how the engine question affects 987.1 S prices against 987.2 S prices.",
  "overallConfidence": "medium",
  "sources": [
   {
@@ -240,6 +240,33 @@ export const seedCayman987 = {
    "notes": "As of November 2026, all 987.2 variants together: average $40,935, 179 sales, lowest $16,250, top $93,000, no dates or CMB shown; model years 2009 to 2012."
   },
   {
+   "ref": "pcna-2009-prices",
+   "title": "Porsche Cars North America announces 2009 Boxster and Cayman pricing (January 2009)",
+   "url": "https://www2020.theautochannel.com/news/2009/01/14/363443.html",
+   "publisher": "The Auto Channel (reprint of Porsche Cars North America release)",
+   "sourceType": "manufacturer",
+   "reliability": "high",
+   "notes": "PCNA release as reprinted: 2.9-liter 255 hp in the Boxster and 265 hp in the Cayman; DFI attributed to the Boxster S and Cayman S; US MSRP $50,300 base Cayman and $60,200 Cayman S; US sales in March; 2009 model year. States no injection type for the 2.9."
+  },
+  {
+   "ref": "pcna-2009-announcement",
+   "title": "Porsche announces 2009 Boxster and Cayman (November 2008)",
+   "url": "https://www2020.theautochannel.com/news/2008/11/19/250027.html",
+   "publisher": "The Auto Channel (reprint of Porsche announcement)",
+   "sourceType": "manufacturer",
+   "reliability": "high",
+   "notes": "Porsche announcement as reprinted: 2.9-liter base engine 255 hp in the Boxster and 265 hp in the Cayman; DFI first used on the Boxster S and Cayman S; $49,400 base Cayman and $59,100 Cayman S; 2009 model year. States no injection type for the 2.9."
+  },
+  {
+   "ref": "velocity-2007-cayman",
+   "title": "What Changed (2007 Porsche Cayman)",
+   "url": "https://acdamstore.velocityjournal.com/journal/2007/porsche/15217/whatsnew.html",
+   "publisher": "Velocity Journal model-year database (publisher not stated on the page)",
+   "sourceType": "specialist",
+   "reliability": "medium",
+   "notes": "Model-year change list for the 2007 Cayman: says the Cayman gains a base model powered by the 2.7L from the Boxster, which points to the base car being a 2007 model. Secondary database, not a Porsche document."
+  },
+  {
    "ref": "hagerty-987-affordable",
    "title": "Affordable Porsches: 2005-2012 Boxsters/Caymans ride swell of younger interest",
    "url": "https://www.hagerty.com/media/?p=262609",
@@ -291,20 +318,23 @@ export const seedCayman987 = {
    "sourceRefs": ["scm-base-cayman-release", "stuttcars-987-guide"],
    "evidence": [
     { "ref": "scm-base-cayman-release", "quote": "Pricing for the new model in the U.S. and Canada is $49,400 (USD) and $69,600 (CAD)." },
+    { "ref": "scm-base-cayman-release", "quote": "Power is routed from the Cayman’s flexible powerplant via a standard five-speed manual transmission" },
+    { "ref": "scm-base-cayman-release", "quote": "Porsche will also offer the well-known Tiptronic(R) S five-speed automatic transmission." },
     { "ref": "stuttcars-987-guide", "quote": "The base Cayman came equipped with a 2.7L flat-six producing 245 horsepower" }
    ]
   },
   {
    "section": "history",
-   "claimText": "The base Cayman went on sale in North America on July 29, 2006; Porsche's release gives no model year, and classic.com states that the manual base model debuted for the 2006 model year, six months after the Cayman S launch.",
+   "claimText": "The base Cayman went on sale in North America on July 29, 2006; Porsche's release gives no model year, classic.com states that the manual base model debuted for the 2006 model year, and a model-year database lists the 2.7-liter base Cayman among the changes for 2007.",
    "confidence": "medium",
    "status": "disputed",
-   "sourceRefs": ["scm-base-cayman-release", "classic-987-1-base-manual", "classic-987-1"],
-   "conflictNote": "classic.com states the manual base Cayman debuted for the 2006 model year and lists the 987.1 as 2006 to 2008. Porsche's North American release dates the base car's on-sale to July 29, 2006 without naming a model year. No source consulted states the base car's first US model year directly, so whether the earliest base cars are 2006 or 2007 models is not resolved here.",
+   "sourceRefs": ["scm-base-cayman-release", "classic-987-1-base-manual", "classic-987-1", "velocity-2007-cayman"],
+   "conflictNote": "classic.com states the manual base Cayman debuted for the 2006 model year and lists the 987.1 as 2006 to 2008. A model-year database says the Cayman gains a base model for 2007, which points to 2007; it is a secondary source, not a Porsche document. Porsche's North American release dates the base car's on-sale to July 29, 2006 without naming a model year. No Porsche document fetched states the base car's first US model year, so the question is not resolved here, though the model-year database points to 2007.",
    "evidence": [
     { "ref": "scm-base-cayman-release", "quote": "The Porsche Cayman goes on sale in North America July 29, 2006." },
     { "ref": "classic-987-1-base-manual", "quote": "The manual-equipped Cayman Base Model debuted for the 2006 model year." },
-    { "ref": "classic-987-1", "quote": "Model years for Porsche Cayman - 987.1 (2006 to 2008)" }
+    { "ref": "classic-987-1", "quote": "Model years for Porsche Cayman - 987.1 (2006 to 2008)" },
+    { "ref": "velocity-2007-cayman", "quote": "The Cayman gains a base model powered by the 2.7L from the Boxster." }
    ]
   },
   {
@@ -336,6 +366,8 @@ export const seedCayman987 = {
    "sourceRefs": ["ln-987-1-guide", "ln-9a1", "rennlist-bore-scoring-base"],
    "evidence": [
     { "ref": "ln-987-1-guide", "quote": "Base models (2.7L) and pre-2007 Boxster S models (3.2L) are less prone to the issue" },
+    { "ref": "ln-987-1-guide", "quote": "It primarily affects:" },
+    { "ref": "ln-987-1-guide", "quote": "3.4L engines (Boxster S and Cayman S)." },
     { "ref": "ln-9a1", "quote": "The Porsche MA1 (9A1) Alusil engine block can suffer from cylinder bore scoring as shown here." },
     { "ref": "rennlist-bore-scoring-base", "quote": "We all know the 987.1 S motors can and do get bore scoring and we're also seeing it in the DFI 3.4 motors." }
    ]
@@ -354,26 +386,67 @@ export const seedCayman987 = {
   },
   {
    "section": "specs",
-   "claimText": "Sources disagree on how the 987.2 base Cayman's 2.9-liter engine is fueled: stuttcars says it received direct fuel injection, while LN Engineering says the 987.2 base models still use port fuel injection.",
+   "claimText": "Sources disagree on how the 987.2 base Cayman's 2.9-liter engine is fueled: stuttcars says it received direct fuel injection, while LN Engineering says the 987.2 base models still use port fuel injection; Porsche Cars North America's releases attribute direct injection to the S models only.",
    "confidence": "medium",
    "status": "disputed",
-   "sourceRefs": ["stuttcars-cayman-2009", "ln-9a1"],
-   "conflictNote": "stuttcars states the engine was increased from 2.7 to 2.9 liters and received direct fuel injection. LN Engineering, an engine specialist, states that 987.2 base models still utilize port fuel injection. No Porsche document retrieved for this page settles it, so the question is not resolved by any source consulted here.",
+   "sourceRefs": ["stuttcars-cayman-2009", "ln-9a1", "pcna-2009-prices", "pcna-2009-announcement"],
+   "conflictNote": "stuttcars states the engine was increased from 2.7 to 2.9 liters and received direct fuel injection. LN Engineering, an engine specialist, states that 987.2 base models still utilize port fuel injection. Porsche Cars North America's releases, as reprinted, say that for the first time the Boxster S and Cayman S use direct fuel injection, which sits with LN Engineering, but no Porsche page fetched states the 2.9's injection type outright. The question is not resolved by any source consulted here.",
    "evidence": [
     { "ref": "stuttcars-cayman-2009", "quote": "The engine displacement was increased from 2.7 to 2.9-liter and received direct fuel injection." },
-    { "ref": "ln-9a1", "quote": "and direct injection (987.2 base models still utilize port fuel injection)." }
+    { "ref": "ln-9a1", "quote": "and direct injection (987.2 base models still utilize port fuel injection)." },
+    { "ref": "pcna-2009-prices", "quote": "For the first time, the Boxster S and the Cayman S use Porsche's new Direct Fuel Injection (DFI)." },
+    { "ref": "pcna-2009-announcement", "quote": "For the first time, the Boxster S and the Cayman S use Porsche's new direct fuel injection (DFI)." }
    ]
   },
   {
    "section": "specs",
-   "claimText": "The 987.2 base Cayman's 2.9-liter engine is given as 265 hp by the stuttcars buyer's guide and the press section of the stuttcars model page, while the same model page's specification table lists 255 hp at 6,400 rpm.",
+   "claimText": "Porsche Cars North America gives the 987.2 base Cayman's 2.9-liter engine as 265 hp and gives 255 hp as the Boxster's figure; the stuttcars Cayman page specification table shows 255 hp at 6,400 rpm, which matches the PCNA Boxster figure.",
+   "confidence": "high",
+   "status": "verified",
+   "sourceRefs": ["pcna-2009-prices", "pcna-2009-announcement", "stuttcars-cayman-2009"],
+   "evidence": [
+    { "ref": "pcna-2009-prices", "quote": "The 2.9 liter flat six cylinder develops 255 hp in the Boxster and 265 hp in the Cayman." },
+    { "ref": "pcna-2009-announcement", "quote": "265 hp in the Cayman, representing an increase in power of 10 hp and 20 hp, respectively, over the preceding models." },
+    { "ref": "stuttcars-cayman-2009", "quote": "255 bhp @ 6400 rpm" }
+   ]
+  },
+  {
+   "section": "specs",
+   "claimText": "The stuttcars Cayman 2009-2012 page gives the 987.2 base Cayman's top speed as 165 mph in its specification box and as 164 mph with the manual and 163 mph with PDK in its press release text.",
    "confidence": "medium",
    "status": "disputed",
-   "sourceRefs": ["stuttcars-987-guide", "stuttcars-cayman-2009"],
-   "conflictNote": "The stuttcars buyer's guide states 265 hp for the 2.9-liter base car. The stuttcars 2009-2012 Cayman page lists 255 hp at 6,400 rpm in its specification table while its press release section says 265. No US Porsche document for the 987.2 base Cayman was retrieved, so the figure is not resolved by an independent source here.",
+   "sourceRefs": ["stuttcars-cayman-2009"],
+   "conflictNote": "The stuttcars specification box lists 165 mph while the press release text on the same page gives 164 mph manual and 163 mph PDK. The page does not reconcile them and no other source consulted gives a 987.2 base top speed.",
    "evidence": [
-    { "ref": "stuttcars-987-guide", "quote": "The base model received a larger 2.9L flat-six producing 265 hp" },
-    { "ref": "stuttcars-cayman-2009", "quote": "255 bhp @ 6400 rpm" }
+    { "ref": "stuttcars-cayman-2009", "quote": "Top Speed 165 mph" },
+    { "ref": "stuttcars-cayman-2009", "quote": "Top speed, in turn, is 265 km/h or 164 mph and, respectively, 263 km/h or 163 mph with PDK transmission." }
+   ]
+  },
+  {
+   "section": "market",
+   "claimText": "Porsche Cars North America priced the 2009 Cayman at $50,300 and the Cayman S at $60,200 in its January 2009 release, with US sales from March, after a November 2008 announcement at $49,400 and $59,100.",
+   "confidence": "high",
+   "status": "verified",
+   "sourceRefs": ["pcna-2009-prices", "pcna-2009-announcement"],
+   "evidence": [
+    { "ref": "pcna-2009-prices", "quote": "$50,300 for the base Cayman and $60,200 for the Cayman S" },
+    { "ref": "pcna-2009-prices", "quote": "The new Boxster and Cayman models go on sale in the U.S. in March of this year." },
+    { "ref": "pcna-2009-announcement", "quote": "$49,400 for the base Cayman and $59,100 for the Cayman S." },
+    { "ref": "pcna-2009-announcement", "quote": "Both add new standard and optional features for the 2009 model year." }
+   ]
+  },
+  {
+   "section": "market",
+   "claimText": "The stuttcars buyer's guide puts 987.2 cars at a premium of $8,000 to $15,000 over comparable 987.1 cars, PDK cars at $2,000 to $4,000 below their manual counterparts, and the Cayman R at $60,000 to $80,000 in one section and $55,000 to $75,000 in another, without reconciling the two; these are one specialist's ranges, not recorded sales.",
+   "confidence": "low",
+   "status": "disputed",
+   "sourceRefs": ["stuttcars-987-guide"],
+   "conflictNote": "The stuttcars guide gives $60,000 to $80,000 for the Cayman R in its market value section and $55,000 to $75,000 in its What You'll Pay section. The guide does not reconcile them.",
+   "evidence": [
+    { "ref": "stuttcars-987-guide", "quote": "987.2s command a premium of $8K–$15K more, depending on trim and condition." },
+    { "ref": "stuttcars-987-guide", "quote": "PDK-equipped cars are slightly more available and tend to be $2K–$4K less than their manual counterparts." },
+    { "ref": "stuttcars-987-guide", "quote": "Expect to pay anywhere from $55,000–$75,000, depending on spec (manuals are more valuable than PDK)" },
+    { "ref": "stuttcars-987-guide", "quote": "typically commands $60,000–$80,000, with some pristine examples surpassing that." }
    ]
   },
   {
@@ -460,7 +533,11 @@ export const seedCayman987 = {
    "status": "verified",
    "sourceRefs": ["classic-987-2"],
    "evidence": [
-    { "ref": "classic-987-2", "quote": "Model years for Porsche Cayman - 987.2 (2009 to 2012)" }
+    { "ref": "classic-987-2", "quote": "Model years for Porsche Cayman - 987.2 (2009 to 2012)" },
+    { "ref": "classic-987-2", "quote": "Avg $40,935" },
+    { "ref": "classic-987-2", "quote": "Sales Count 179" },
+    { "ref": "classic-987-2", "quote": "Lowest Sale $16,250" },
+    { "ref": "classic-987-2", "quote": "Top Sale $93,000" }
    ]
   },
   {
@@ -470,7 +547,11 @@ export const seedCayman987 = {
    "status": "verified",
    "sourceRefs": ["classic-987-1-base-manual"],
    "evidence": [
-    { "ref": "classic-987-1-base-manual", "quote": "CMB $25,586" }
+    { "ref": "classic-987-1-base-manual", "quote": "CMB $25,586" },
+    { "ref": "classic-987-1-base-manual", "quote": "Avg $25,790" },
+    { "ref": "classic-987-1-base-manual", "quote": "Sales Count 95" },
+    { "ref": "classic-987-1-base-manual", "quote": "Lowest Sale $11,874" },
+    { "ref": "classic-987-1-base-manual", "quote": "Top Sale $39,500" }
    ]
   },
   {
@@ -500,7 +581,8 @@ export const seedCayman987 = {
    "status": "verified",
    "sourceRefs": ["stuttcars-987-overview"],
    "evidence": [
-    { "ref": "stuttcars-987-overview", "quote": "Peridot Metallic is the unique color for the Cayman R." }
+    { "ref": "stuttcars-987-overview", "quote": "Peridot Metallic is the unique color for the Cayman R." },
+    { "ref": "stuttcars-987-overview", "quote": "The base price on the Cayman 2.7 was a whopping 19% lower than on the 3.4-litre S-version." }
    ]
   },
   {
