@@ -22,7 +22,7 @@ export const seedContinental196169 = {
   "460 cu in (7,538 cc) 385-series V8, carbureted, 365 hp at 4,600 rpm; introduced midway through 1968 production per Curbside Classic and listed for 1969 by carnut.com; torque given as 485 lb-ft by Hagerty and Curbside Classic and 500 lb-ft by carnut.com"
  ],
  "productionTotal": null,
- "productionNotes": "Three independent tallies of fourth-generation Continental production were found, and none of them agree on the total. Hagerty's definitive buyer's guide states 334,345 cars for 1961-1969. The carnut.com specification table, which breaks production out by year and body style, sums to 341,870 cars (275,250 sedans, 45,273 two-door hardtops and 21,347 convertibles). Curbside Classic's year-by-year table sums to 342,781. The gap between Hagerty and the two tables is about 7,500 cars, and no source explains it. The year figures disagree too. For 1961, carnut.com lists 22,303 sedans and 2,857 convertibles (25,160 cars, the same total a Barrett-Jackson listing gives), Curbside Classic lists 25,164, Hagerty's definitive guide says 25,000 were sold, and Hagerty's shorter guide says Ford sold 21,560 units in the first year. For 1967, carnut.com and Hagerty's shorter guide agree on 32,331 sedans, 11,060 coupes and 2,276 convertibles (45,667 cars), while Curbside Classic gives 46,667, exactly 1,000 more, which reads like a transcription slip but is not confirmed as one. For 1969, carnut.com gives 38,383 and Curbside Classic 38,290. For 1966, the peak year, carnut.com and Curbside Classic agree on 54,755 cars while Hagerty rounds it to 56,000. The convertible count is the one place the sources line up: carnut.com's yearly convertible figures sum to 21,347, which is Hagerty's stated total, and the 1961 (2,857), 1964 (3,328) and 1967 (2,276) convertible figures each appear in at least two further sources, including RM Sotheby's lot pages. No Ford or Lincoln factory production document was fetched for this page, so no total is given. A fourth source, motor-car.net, lists yearly figures that sum to the same 341,870 as the carnut.com table, including 45,667 for 1967 and 38,383 for 1969; this makes Curbside Classic's 46,667 for 1967 and 38,290 for 1969 the outliers among the three yearly tables, while Hagerty's 334,345 remains unreconciled with any of them and the total stays unresolved. The Continental Mark III, which carnut.com lists separately with 30,858 built for 1969, is not counted in any figure here.",
+ "productionNotes": "Three independent tallies of fourth-generation Continental production were found, and none of them agree on the total. Hagerty's definitive buyer's guide states 334,345 cars for 1961-1969. The carnut.com specification table, which breaks production out by year and body style, sums to 341,870 cars (275,250 sedans, 45,273 two-door hardtops and 21,347 convertibles). Curbside Classic's year-by-year table sums to 342,781. The gap between Hagerty and the two tables is about 7,500 cars, and no source explains it. The year figures disagree too. For 1961, carnut.com lists 22,303 sedans and 2,857 convertibles (25,160 cars, the same total a Barrett-Jackson listing gives), Curbside Classic lists 25,164, Hagerty's definitive guide says 25,000 were sold, and Hagerty's shorter guide says Ford sold 21,560 units in the first year. For 1967, carnut.com and Hagerty's shorter guide agree on 32,331 sedans, 11,060 coupes and 2,276 convertibles (45,667 cars), while Curbside Classic gives 46,667, exactly 1,000 more, which reads like a transcription slip but is not confirmed as one. For 1969, carnut.com and motor-car.net give 38,383 and Curbside Classic 38,290. For 1966, the peak year, carnut.com and Curbside Classic agree on 54,755 cars while Hagerty rounds it to 56,000. The convertible count is the one place the sources line up: carnut.com's yearly convertible figures sum to 21,347, which is Hagerty's stated total, and the 1961 (2,857), 1964 (3,328) and 1967 (2,276) convertible figures each appear in at least two further sources, including RM Sotheby's lot pages. No Ford or Lincoln factory production document was fetched for this page, so no total is given. A fourth source, motor-car.net, lists yearly figures that sum to the same 341,870 as the carnut.com table, including 45,667 for 1967 and 38,383 for 1969; this makes Curbside Classic's 46,667 for 1967 and 38,290 for 1969 the outliers among the three yearly tables, while Hagerty's 334,345 remains unreconciled with any of them and the total stays unresolved. The Continental Mark III, which carnut.com lists separately with 30,858 built for 1969, is not counted in any figure here.",
  "notableTrims": [
   {
    "name": "1961 four-door convertible",
@@ -248,15 +248,20 @@ export const seedContinental196169 = {
  "claims": [
   {
    "section": "production",
-   "claimText": "Total fourth-generation Continental production for 1961-1969 is stated as 334,345 by Hagerty, while the carnut.com table sums to 341,870 and Curbside Classic's table sums to 342,781.",
+   "claimText": "Total fourth-generation Continental production for 1961-1969 is stated as 334,345 by Hagerty, while the carnut.com table and motor-car.net's yearly figures both sum to 341,870 and Curbside Classic's table sums to 342,781.",
    "confidence": "medium",
    "status": "disputed",
-   "sourceRefs": ["hagerty-definitive", "carnut-specs", "curbside-1969"],
-   "conflictNote": "Hagerty states 334,345 cars. carnut.com's year and body-style table sums to 341,870. Curbside Classic's year table sums to 342,781. Neither table is a factory document and Hagerty does not cite its source. Not resolved by any source consulted here.",
+   "sourceRefs": ["hagerty-definitive", "carnut-specs", "curbside-1969", "motorcar-4thgen"],
+   "conflictNote": "Hagerty states 334,345 cars. carnut.com's year and body-style table sums to 341,870. Curbside Classic's year table sums to 342,781. The yearly figures on motor-car.net sum to 341,870, matching carnut.com, which leaves Curbside Classic's 1967 and 1969 figures as the outliers among the tables. Neither table is a factory document and Hagerty does not cite its source. Not resolved by any source consulted here.",
    "evidence": [
     { "ref": "hagerty-definitive", "quote": "In total, 334,345 Continentals were built during this period." },
+    { "ref": "carnut-specs", "quote": "22,303 Continental 4dr 123 4927/4927" },
     { "ref": "carnut-specs", "quote": "32,331 Continental 4dr 126 5049/5049" },
-    { "ref": "curbside-1969", "quote": "Continental production peaked in 1966 but lost ground each year thereafter" }
+    { "ref": "curbside-1969", "quote": "1961 | 25164 |" },
+    { "ref": "curbside-1969", "quote": "1967 | 46667 |" },
+    { "ref": "curbside-1969", "quote": "1969 | 38290 |" },
+    { "ref": "motorcar-4thgen", "quote": "Total production was 45,667." },
+    { "ref": "motorcar-4thgen", "quote": "Sales held steady at 38,383 for the Continental, plus another 30,858 for the new Continental Mark III." }
    ]
   },
   {
@@ -267,24 +272,30 @@ export const seedContinental196169 = {
    "sourceRefs": ["carnut-specs", "bj-1961-conv", "curbside-1969", "hagerty-definitive", "hagerty-handy"],
    "conflictNote": "carnut.com and Barrett-Jackson give 25,160; Curbside Classic gives 25,164; Hagerty's definitive guide gives 25,000; Hagerty's shorter guide gives 21,560. All agree on 2,857 convertibles. The sedan count is not resolved by any source consulted here.",
    "evidence": [
+    { "ref": "carnut-specs", "quote": "22,303 Continental 4dr 123 4927/4927" },
     { "ref": "carnut-specs", "quote": "2,857 Continental Conv 123" },
     { "ref": "bj-1961-conv", "quote": "Only 2,857 convertibles were made in 1961 from a total of 25,160 cars produced." },
-    { "ref": "curbside-1969", "quote": "Continental production peaked in 1966 but lost ground each year thereafter" },
+    { "ref": "curbside-1969", "quote": "1961 | 25164 |" },
     { "ref": "hagerty-definitive", "quote": "With 25,000 examples sold in 1961, it remains the rarest model year for the car" },
     { "ref": "hagerty-handy", "quote": "Ford sold 21,560 units, 2857 of which were convertibles, in the initial year of production." }
    ]
   },
   {
    "section": "production",
-   "claimText": "For 1967, carnut.com and Hagerty agree on 32,331 sedans, 11,060 coupes and 2,276 convertibles, a total of 45,667, while Curbside Classic lists 46,667 for the year.",
+   "claimText": "For 1967, carnut.com and Hagerty agree on 32,331 sedans, 11,060 coupes and 2,276 convertibles, a total of 45,667, while Curbside Classic lists 46,667 for the year; motor-car.net also gives 45,667.",
    "confidence": "medium",
    "status": "disputed",
-   "sourceRefs": ["hagerty-handy", "carnut-specs", "curbside-1969"],
-   "conflictNote": "carnut.com's body-style figures and Hagerty's shorter guide give 45,667 for 1967. Curbside Classic's table gives 46,667, exactly 1,000 more, which may be a transcription error but is not confirmed as one by any source consulted here.",
+   "sourceRefs": ["hagerty-handy", "carnut-specs", "curbside-1969", "motorcar-4thgen"],
+   "conflictNote": "carnut.com's body-style figures, Hagerty's shorter guide and motor-car.net give 45,667 for 1967. Curbside Classic's table gives 46,667, exactly 1,000 more, which may be a transcription error but is not confirmed as one by any source consulted here. Three sources agree on 45,667, so Curbside Classic's figure is the outlier. Curbside Classic's 1969 figure of 38,290 also differs from the 38,383 given by carnut.com and motor-car.net.",
    "evidence": [
     { "ref": "hagerty-handy", "quote": "A total of 32,331 sedans, 2276 convertibles, and 11,060 coupes were produced this year" },
     { "ref": "carnut-specs", "quote": "32,331 Continental 4dr 126 5049/5049" },
-    { "ref": "curbside-1969", "quote": "Continental production peaked in 1966 but lost ground each year thereafter" }
+    { "ref": "motorcar-4thgen", "quote": "Total production was 45,667." },
+    { "ref": "curbside-1969", "quote": "1967 | 46667 |" },
+    { "ref": "carnut-specs", "quote": "29,351 Continental 4dr 126 5011/5011" },
+    { "ref": "carnut-specs", "quote": "9,032 Continental 2dr 126 4916/4916" },
+    { "ref": "motorcar-4thgen", "quote": "Sales held steady at 38,383 for the Continental, plus another 30,858 for the new Continental Mark III." },
+    { "ref": "curbside-1969", "quote": "1969 | 38290 |" }
    ]
   },
   {
@@ -319,7 +330,7 @@ export const seedContinental196169 = {
    "sourceRefs": ["curbside-1969", "hagerty-definitive", "curbside-mt-1966"],
    "conflictNote": "Curbside Classic's table and carnut.com's 1966 sedan, coupe and convertible figures total 54,755. Hagerty's definitive guide gives a spike to 56,000. Not resolved by any source consulted here.",
    "evidence": [
-    { "ref": "curbside-1969", "quote": "Continental production peaked in 1966 but lost ground each year thereafter" },
+    { "ref": "curbside-1969", "quote": "1966 | 54755 |" },
     { "ref": "hagerty-definitive", "quote": "except for a spike to 56,000 units in 1966 that coincided with the redesign" },
     { "ref": "curbside-mt-1966", "quote": "Continental coupe production totaled 15,766 units for 1966" }
    ]
@@ -336,7 +347,8 @@ export const seedContinental196169 = {
     { "ref": "hagerty-handy", "quote": "the 430-cubic-inch MEL V-8 engine needed only 300 hp fed by a two-barrel Carter carburetor" },
     { "ref": "vance-timescolonist", "quote": "The 7.0 litre (430 cu in.) 300 horsepower overhead valve V-8" },
     { "ref": "rm-1967-conv", "quote": "the Lincoln V-8 was upsized from 430 cu. in. to 462 cu. in. and power increased from 320 hp to 340 hp." },
-    { "ref": "carnut-specs", "quote": "Lincoln & Continental 1960s General Specs" }
+    { "ref": "carnut-specs", "quote": "1961 315 H.P. V8-430 2 Barrel" },
+    { "ref": "carnut-specs", "quote": "320 @ 4100" }
    ]
   },
   {
@@ -364,7 +376,8 @@ export const seedContinental196169 = {
     { "ref": "curbside-1969", "quote": "The 460 had been introduced midway through 1968 model production to replace the 462" },
     { "ref": "hagerty-definitive", "quote": "when a 460-cubic-inch motor would take over (365 horsepower and 485 lb-ft of torque)." },
     { "ref": "ccmarket-profile", "quote": "Featuring improved cooling, and more power from fewer cubic inches this new 460cid V8 delivered 365 horses." },
-    { "ref": "carnut-specs", "quote": "Lincoln & Continental 1960s General Specs" }
+    { "ref": "carnut-specs", "quote": "1969 365 H.P. V8-460 4 Barrel" },
+    { "ref": "carnut-specs", "quote": "500 @ 2800" }
    ]
   },
   {
@@ -376,7 +389,8 @@ export const seedContinental196169 = {
    "evidence": [
     { "ref": "hagerty-definitive", "quote": "which saw three extra inches of wheelbase added in order to improve the comfort available to back seat riders." },
     { "ref": "vance-timescolonist", "quote": "both the wheelbase and overall length were increased 3.0 in. (76 mm)." },
-    { "ref": "carnut-specs", "quote": "2,857 Continental Conv 123" }
+    { "ref": "carnut-specs", "quote": "2,857 Continental Conv 123" },
+    { "ref": "carnut-specs", "quote": "32,331 Continental 4dr 126 5049/5049" }
    ]
   },
   {
@@ -386,7 +400,8 @@ export const seedContinental196169 = {
    "status": "verified",
    "sourceRefs": ["oldride-1961", "scm-1961-conv"],
    "evidence": [
-    { "ref": "oldride-1961", "quote": "Standard features on the Continental included a 430 cid V8 engine." },
+    { "ref": "oldride-1961", "quote": "4-dr Sedan - 6P | $6,067 | 4,927 lbs | 22,303" },
+    { "ref": "oldride-1961", "quote": "4-dr Convertible - 6P | $6,713 | 5,215 lbs | 2,857" },
     { "ref": "scm-1961-conv", "quote": "at least $500 more than a comparable Cadillac." }
    ]
   },
@@ -444,7 +459,7 @@ export const seedContinental196169 = {
    "sourceRefs": ["curbside-1969", "carnut-specs"],
    "evidence": [
     { "ref": "curbside-1969", "quote": "In the spring of 1968 Lincoln would begin producing the Continental Mark III." },
-    { "ref": "carnut-specs", "quote": "Lincoln & Continental 1960s General Specs" }
+    { "ref": "carnut-specs", "quote": "30,858 Continental Mark III 2dr 117.2 4475/4475" }
    ]
   },
   {
@@ -483,12 +498,13 @@ export const seedContinental196169 = {
   },
   {
    "section": "market",
-   "claimText": "As of November 2026 classic.com's market benchmark for the 1961-1969 Continental convertible is $73,958.",
+   "claimText": "As of November 2026 classic.com's figure for the market benchmark of the 1961-1969 Continental convertible is $73,958.",
    "confidence": "medium",
    "status": "verified",
    "sourceRefs": ["classic-conv"],
    "evidence": [
-    { "ref": "classic-conv", "quote": "The fourth-generation Lincoln Continental was built in three different body styles, but the most notable was the convertible." }
+    { "ref": "classic-conv", "quote": "The fourth-generation Lincoln Continental was built in three different body styles, but the most notable was the convertible." },
+    { "ref": "classic-conv", "quote": "CMB $73,958" }
    ]
   },
   {
@@ -499,7 +515,9 @@ export const seedContinental196169 = {
    "sourceRefs": ["scm-1961-conv", "rm-1964-conv", "rm-1967-conv"],
    "evidence": [
     { "ref": "scm-1961-conv", "quote": "sold for $103,600, including buyer's premium, at RM Sotheby's sale." },
+    { "ref": "rm-1964-conv", "quote": "$38,500 USD | Sold" },
     { "ref": "rm-1964-conv", "quote": "Just 3,328 convertibles were produced for the 1964 model year." },
+    { "ref": "rm-1967-conv", "quote": "$74,800 USD | Sold" },
     { "ref": "rm-1967-conv", "quote": "In addition, this Lincoln remains unrestored and is a preservation car in original, as received from the factory condition." }
    ]
   },
