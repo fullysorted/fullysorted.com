@@ -156,6 +156,8 @@ import { seedCayman987 } from '@/lib/data/model-seed-cayman-987';
 import { seedContinental196169 } from '@/lib/data/model-seed-continental-1961-69';
 import { seed3100AdvanceDesign } from '@/lib/data/model-seed-3100-advance-design';
 import { seed4Runner1stGen } from '@/lib/data/model-seed-4runner-1st-gen';
+import { seedCamaro2ndGen } from '@/lib/data/model-seed-camaro-2nd-gen';
+import { seedP1800 } from '@/lib/data/model-seed-p1800';
 // All researched model drafts to seed (status='draft' for human review).
 // Ferrari wave (2026-09-02) sits at indices 73-84: seed with ?offset=73&limit=6 then ?offset=79&limit=6.
 const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, seedNsx, seedCorvetteC2, seedMustang1stGen, seed930Turbo, seedRx7Fd, seedETypeS1, seedBronco1stGen, seedFj40, seedW113Pagoda, seedBmw2002, seedSkylineR34, seedCountach, seedTestarossa, seedShelbyCobra, seedDeLoreanDmc12, seedBmwIsetta, seedAmphicar770, seed356, seedCitroenDs,
@@ -171,7 +173,8 @@ const SEEDS = [seed964, seed240z, seed993, seedE30M3, seed308, seedSupraA80, see
   seed348, seed456, seed550Maranello, seed360, seedF50, seedEnzo,
   seed911LongHood, seed912, seed914, seed924, seed944, seed968, seedF430, seedDb9Manual, seed911997Gt3, seed911996, seed911996Gt3, seed458, seed250TestaRossa, seed575mMaranello, seed599, seedLaFerrari, seedBoxster986, seed911997, seedM3E46, seedCorvetteC5, seedC10ActionLine, seedBeetleType1, seedMr2Sw20, seedEliseS2, seedCorvetteC6, seedGto196474, seedSpitfire, seed350z, seedMustangFoxBody, seedM5E39, seedGrandNational, seedJeepCj, seedW123, seedViperGen12, seedFordGt2005, seedVolvo240, seedCrx, seedFlaminia, seedBelAir195557, seedGrandWagoneer, seedScout, seedDiablo, seedC10SquareBody, seedTransAm197081, seedKarmannGhia, seed280z, seedCorollaAe86, seedIntegraTypeRDc2, seed190sl, seedE930Cs, seedModelA, seed442196472, seed124Spider, seedK5BlazerSquareBody, seedXjs,
   seedCherokeeXj, seedVanagon, seed3SeriesE30, seedCorvetteC4, seedSlR129, seedCayman987, seedContinental196169,
-  seed3100AdvanceDesign, seed4Runner1stGen];
+  seed3100AdvanceDesign, seed4Runner1stGen,
+  seedCamaro2ndGen, seedP1800];
 
 // Auth: header x-admin-secret OR signed fs_admin session cookie (matches other admin routes).
 const isAuthorized = isAdminRequest;
