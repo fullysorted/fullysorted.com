@@ -442,41 +442,50 @@ const PROVIDER_EMAIL_FOOTER =
   "Chris Peterson · Founder, Fully Sorted · fullysorted.com<br/>" +
   `Questions, or don't want to hear from us again? Email <a href="mailto:${REPLY_TO}" style="color:#9a9a8a;">${REPLY_TO}</a> and we'll remove you.`;
 
-// First invite: "we built your listing — one click to approve it."
+// First invite: the page is built, the shop decides whether it goes live.
+// Written in the founder's voice (provider email is a named exception to the
+// no-first-person rule). Fee language follows AGENTS.md: state the founding
+// promise, never claim the absence of a fee.
 export async function sendProviderInvite(d: ProviderInviteData) {
   const firstName = /^outreach pending$/i.test((d.ownerName || "").trim()) ? "" : (d.ownerName || "").split(" ")[0];
   return sendEmail({
     to: d.to,
-    subject: `Your Fully Sorted listing is ready to approve: ${d.businessName}`,
+    subject: `A page for ${d.businessName} is built. It goes live when you say so.`,
     html: orderShell({
       accent: "#1E6091",
-      heading: "Your founding-provider listing is ready",
+      heading: "Your page is built. You decide if it goes live.",
       bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
-        <p>We've put together a <strong>free founding-provider listing</strong> for <strong>${esc(d.businessName)}</strong> in the Fully Sorted ${esc(categoryLabel(d.category))} directory for the ${esc(d.location)} area. Nothing is published until you say so.</p>
-        <p>One click to review it. Then choose whichever suits you:</p>
-        <p style="margin:12px 0 0 0;"><strong>Yes, this is mine: claim it</strong>. Goes live now; we'll follow up with a link to edit your details and add photos.<br/>
-        <strong>List it, but I don't want an account</strong>. Goes live as-is, nothing to maintain.<br/>
-        <strong>No thanks, remove me</strong>. We take you off and never contact you again.</p>
-        <p>The listing is free and there is no contract.</p>`,
-      ctaLabel: "Review your listing",
+        <p>Chris Peterson here, San Diego. 26 years in collector cars, and co-chairman of the La Jolla Concours d'Elegance.</p>
+        <p>Every week somebody asks me who they should trust with their car. I built Fully Sorted so I would have a better answer than whoever I could remember that day. It is a national directory of the people who do the work, trade by trade. An owner finds <strong>${esc(d.businessName)}</strong> and gets in touch with you.</p>
+        <p>We put together a page for you, listed under ${esc(categoryLabel(d.category))} in ${esc(d.location)}, from public information. It is not live, and it stays that way until you say otherwise.</p>
+        <p>Have a look. It takes about thirty seconds, and there are three buttons:</p>
+        <p style="margin:12px 0 0 0;"><strong>Yes, this is mine: claim it.</strong> Live right away, and we send you a link to fix details and add photos.<br/>
+        <strong>List it, but I don't want an account.</strong> Live as it stands, nothing to maintain.<br/>
+        <strong>No thanks, remove me.</strong> It comes down and you never hear from us again.</p>
+        <p>The first 500 shops are founding members and keep the directory listing free for life. Reviews come only from owners who used you, you can answer every one, and nobody can pay to rank above you.</p>
+        <p>If we got something wrong about the shop, reply and I will fix it.</p>
+        <p>Chris</p>`,
+      ctaLabel: "See your page",
       ctaUrl: d.claimUrl,
       footerHtml: PROVIDER_EMAIL_FOOTER,
     }),
   });
 }
 
-// Gentle nudge if the invite hasn't been acted on.
+// One nudge if the invite has not been acted on.
 export async function sendProviderInviteReminder(d: ProviderInviteData) {
   const firstName = /^outreach pending$/i.test((d.ownerName || "").trim()) ? "" : (d.ownerName || "").split(" ")[0];
   return sendEmail({
     to: d.to,
-    subject: `Quick reminder: your ${d.businessName} listing is waiting`,
+    subject: `Still holding the page for ${d.businessName}`,
     html: orderShell({
       accent: "#1E6091",
-      heading: "Your listing is one click away",
+      heading: "Still built, still unpublished",
       bodyHtml: `<p>${firstName ? `Hi ${esc(firstName)},` : "Hi,"}</p>
-        <p>Just a quick nudge. Your free founding-provider listing for <strong>${esc(d.businessName)}</strong> is built and waiting for your OK. It takes about 30 seconds to review, and you can choose to claim it, have us list it as-is, or remove it entirely.</p>`,
-      ctaLabel: "Review your listing",
+        <p>Chris at Fully Sorted again. The page we built for <strong>${esc(d.businessName)}</strong> is still sitting unpublished, waiting on you.</p>
+        <p>Thirty seconds to look it over. Claim it, have us list it as it stands, or tell us to take it down. Each one is a single button, and "no thanks" is a perfectly good answer.</p>
+        <p>Chris</p>`,
+      ctaLabel: "See your page",
       ctaUrl: d.claimUrl,
       footerHtml: PROVIDER_EMAIL_FOOTER,
     }),
